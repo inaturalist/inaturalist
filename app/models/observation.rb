@@ -3441,11 +3441,11 @@ class Observation < ApplicationRecord
 
   def application_id_to_index
     return oauth_application_id if oauth_application_id
-    if is_iphone_app_user_agent?( user_agent )
-      return OauthApplication.inaturalist_iphone_app.try(:id)
+    if is_classic_ios_app_user_agent?( user_agent )
+      return OauthApplication.classic_ios_app.try(:id)
     end
-    if is_android_app_user_agent?( user_agent )
-      return OauthApplication.inaturalist_android_app.try(:id)
+    if is_classic_android_app_user_agent?( user_agent )
+      return OauthApplication.classic_android_app.try(:id)
     end
   end
 

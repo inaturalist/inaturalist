@@ -66,16 +66,18 @@
       %dl.meta
         %dt=t :website
         %dd=t "views.stats.index.website_desc_html", url: site_url( "network" )
-        %dt=t :iphone
-        %dd=t "views.stats.index.iphone_desc_html", url: @site.iphone_app_url
-        %dt=t :android
-        %dd=t "views.stats.index.android_desc_html", url: @site.android_app_url
+        %dt=t :inat_next_ios
+        %dd=t "views.stats.index.inat_next_ios_desc_html", url: @site.inat_next_ios_app_url
+        %dt=t :inat_next_android_temp
+        %dd=t "views.stats.index.inat_next_android_desc_temp_html", url: @site.inat_next_android_app_url
     .col-md-6
       %dl.meta
         %dt=t :seek
         %dd=t "views.stats.index.seek_desc_html", url: wiki_page_url( :seek_app )
-        %dt=t :inat_next
-        %dd=t "views.stats.index.inat_next_desc_html", url: @site.inat_next_app_url
+        %dt=t :inat_classic_ios
+        %dd=t "views.stats.index.inat_classic_ios_desc_html", url: @site.iphone_app_url
+        %dt=t :inat_classic_android_temp
+        %dd=t "views.stats.index.inat_classic_android_desc_temp_html", url: @site.android_app_url
         %dt= t(:other).capitalize
         %dd=t "views.stats.index.other_desc_html", url: wiki_page_url( "developers" )
   .row

@@ -77,7 +77,7 @@ class UserInstallationStatistic < ApplicationRecord
   def self.get_installation_activity_from_kibana_data( day, application_id, platform_id, installation_activity_data )
     kibana_es_client = Elasticsearch::Client.new( host: CONFIG.kibana_es_uri )
     puts "installation activity_from_kibana_data = #{day} / #{application_id}"
-    oauth_application_id = convert_application_id_into_oauth_application_id( application_id )
+    oauth_application_id = convert_application_id_into_oauth_application_id( application_id, platform_id )
     start_time = day.beginning_of_day
     24.times.each do
       end_time = start_time + 1.hour
@@ -178,19 +178,25 @@ class UserInstallationStatistic < ApplicationRecord
     UserInstallation.where(
       "created_at=? AND oauth_application_id=? AND platform_id=?",
       creation_date,
-      convert_application_id_into_oauth_application_id( application_id ),
+      convert_application_id_into_oauth_application_id( application_id, platform_id ),
       platform_id
     )
   end
 
-  def self.convert_application_id_into_oauth_application_id( application_id )
+  def self.convert_application_id_into_oauth_application_id( application_id, platform_id )
     case application_id
     when "iNaturalistAndroid"
-      OauthApplication.inaturalist_android_app&.id
+      OauthApplication.classic_android_app&.id
     when "iNaturalistiOS"
-      OauthApplication.inaturalist_iphone_app&.id
+      OauthApplication.classic_ios_app&.id
     when "iNaturalistReactNative"
-      OauthApplication.inat_next_app&.id
+      # iNat Next shares one parsed user agent name across platforms, so the
+      # platform is the only thing distinguishing the two applications
+      if platform_id == "Android"
+        OauthApplication.inat_next_android_app&.id
+      else
+        OauthApplication.inat_next_ios_app&.id
+      end
     else
       0
     end

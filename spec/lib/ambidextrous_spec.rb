@@ -39,6 +39,13 @@ describe Ambidextrous do
       ]
     end
 
+    let( :react_android_user_agents ) do
+      [
+        "iNaturalistRN/1.0.24 (Build 218; Android 16; SM-S901U1; Handset; Samsung)",
+        "iNaturalistRN/1.0.24 (Build 218; Android 14; Pixel 8; Handset; Google)"
+      ]
+    end
+
     let( :other_user_agents ) do
       [
         "Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1",
@@ -60,9 +67,11 @@ describe Ambidextrous do
         allow( request_double ).to receive( :user_agent ).and_return( user_agent )
         allow( request_double ).to receive( :headers ).and_return( { "X-Via" => "other" } )
         allow( instance ).to receive( :request ).and_return( request_double )
-        expect( instance.send( :is_android_app? ) ).to be true
-        expect( instance.send( :is_iphone_app? ) ).to be false
+        expect( instance.send( :is_classic_android_app? ) ).to be true
+        expect( instance.send( :is_classic_ios_app? ) ).to be false
         expect( instance.send( :is_inatrn_app? ) ).to be false
+        expect( instance.send( :is_inatrn_ios_app? ) ).to be false
+        expect( instance.send( :is_inatrn_android_app? ) ).to be false
       end
     end
 
@@ -72,9 +81,11 @@ describe Ambidextrous do
         allow( request_double ).to receive( :user_agent ).and_return( user_agent )
         allow( request_double ).to receive( :headers ).and_return( { "X-Via" => "other" } )
         allow( instance ).to receive( :request ).and_return( request_double )
-        expect( instance.send( :is_android_app? ) ).to be false
-        expect( instance.send( :is_iphone_app? ) ).to be true
+        expect( instance.send( :is_classic_android_app? ) ).to be false
+        expect( instance.send( :is_classic_ios_app? ) ).to be true
         expect( instance.send( :is_inatrn_app? ) ).to be false
+        expect( instance.send( :is_inatrn_ios_app? ) ).to be false
+        expect( instance.send( :is_inatrn_android_app? ) ).to be false
       end
     end
 
@@ -84,9 +95,26 @@ describe Ambidextrous do
         allow( request_double ).to receive( :user_agent ).and_return( user_agent )
         allow( request_double ).to receive( :headers ).and_return( { "X-Via" => "other" } )
         allow( instance ).to receive( :request ).and_return( request_double )
-        expect( instance.send( :is_android_app? ) ).to be false
-        expect( instance.send( :is_iphone_app? ) ).to be false
+        expect( instance.send( :is_classic_android_app? ) ).to be false
+        expect( instance.send( :is_classic_ios_app? ) ).to be false
         expect( instance.send( :is_inatrn_app? ) ).to be true
+        expect( instance.send( :is_inatrn_ios_app? ) ).to be true
+        expect( instance.send( :is_inatrn_android_app? ) ).to be false
+      end
+    end
+
+    it "when React Native on Android" do
+      react_android_user_agents.each do | user_agent |
+        request_double = double( "request" )
+        allow( request_double ).to receive( :user_agent ).and_return( user_agent )
+        allow( request_double ).to receive( :headers ).and_return( { "X-Via" => "other" } )
+        allow( instance ).to receive( :request ).and_return( request_double )
+        # the classic Android app and iNat Next Android must not be confused
+        expect( instance.send( :is_classic_android_app? ) ).to be false
+        expect( instance.send( :is_classic_ios_app? ) ).to be false
+        expect( instance.send( :is_inatrn_app? ) ).to be true
+        expect( instance.send( :is_inatrn_ios_app? ) ).to be false
+        expect( instance.send( :is_inatrn_android_app? ) ).to be true
       end
     end
 
@@ -96,9 +124,11 @@ describe Ambidextrous do
         allow( request_double ).to receive( :user_agent ).and_return( user_agent )
         allow( request_double ).to receive( :headers ).and_return( { "X-Via" => "other" } )
         allow( instance ).to receive( :request ).and_return( request_double )
-        expect( instance.send( :is_android_app? ) ).to be false
-        expect( instance.send( :is_iphone_app? ) ).to be false
+        expect( instance.send( :is_classic_android_app? ) ).to be false
+        expect( instance.send( :is_classic_ios_app? ) ).to be false
         expect( instance.send( :is_inatrn_app? ) ).to be false
+        expect( instance.send( :is_inatrn_ios_app? ) ).to be false
+        expect( instance.send( :is_inatrn_android_app? ) ).to be false
       end
     end
   end

@@ -1,51 +1,80 @@
 # frozen_string_literal: true
 
 module Ambidextrous
-  IPHONE_APP_USER_AGENT_PATTERN_2 = /^iNaturalist\/\d+.+iOS/i
+  CLASSIC_IOS_APP_USER_AGENT_PATTERN_2 = /^iNaturalist\/\d+.+iOS/i
 
-  ANDROID_APP_USER_AGENT_REGEX_PATTERNS = [
+  CLASSIC_ANDROID_APP_USER_AGENT_REGEX_PATTERNS = [
     "(iNaturalist)/([0-9.]+) \\(Build [0-9]+; Android"
   ].freeze
-  IPHONE_APP_USER_AGENT_REGEX_PATTERNS = [
+  CLASSIC_IOS_APP_USER_AGENT_REGEX_PATTERNS = [
     "(iNaturalist)/([0-9]+) CFNetwork",
     "(iNaturalist)/([0-9.]+) \\(iOS",
     "(iNaturalist)/([0-9.]+) \\(iPad",
     "(iNaturalist)/([0-9.]+) \\(iPhone"
   ].freeze
-  REACT_APP_USER_AGENT_REGEX_PATTERNS = [
-    "(iNaturalistRN)/([0-9.]+) \\(Build",
+  REACT_IOS_APP_USER_AGENT_REGEX_PATTERNS = [
+    "(iNaturalistRN)/([0-9.]+) \\(Build [0-9]+; iOS",
     "(iNaturalistRN)/([0-9.]+) Handset",
     "(iNaturalistReactNative)/([0-9.]+)"
   ].freeze
+  REACT_ANDROID_APP_USER_AGENT_REGEX_PATTERNS = [
+    "(iNaturalistRN)/([0-9.]+) \\(Build [0-9]+; Android"
+  ].freeze
+  SEEK_APP_USER_AGENT_REGEX_PATTERNS = [
+    "(Seek)/([0-9.]+).*Handset"
+  ].freeze
 
-  def is_android_app_user_agent?( user_agent )
+  def is_classic_android_app_user_agent?( user_agent )
     return false if user_agent.nil?
 
-    ANDROID_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
+    CLASSIC_ANDROID_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
       user_agent =~ /#{pattern}/
     end
   end
 
-  def is_iphone_app_user_agent?( user_agent )
+  def is_classic_ios_app_user_agent?( user_agent )
     return false if user_agent.nil?
 
-    IPHONE_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
+    CLASSIC_IOS_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
+      user_agent =~ /#{pattern}/
+    end
+  end
+
+  def is_inatrn_ios_app_user_agent?( user_agent )
+    return false if user_agent.nil?
+
+    REACT_IOS_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
+      user_agent =~ /#{pattern}/
+    end
+  end
+
+  def is_inatrn_android_app_user_agent?( user_agent )
+    return false if user_agent.nil?
+
+    REACT_ANDROID_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
+      user_agent =~ /#{pattern}/
+    end
+  end
+
+  def is_seek_app_user_agent?( user_agent )
+    return false if user_agent.nil?
+
+    SEEK_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
       user_agent =~ /#{pattern}/
     end
   end
 
   def is_inatrn_app_user_agent?( user_agent )
-    return false if user_agent.nil?
-
-    REACT_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
-      user_agent =~ /#{pattern}/
-    end
+    is_inatrn_ios_app_user_agent?( user_agent ) ||
+      is_inatrn_android_app_user_agent?( user_agent )
   end
 
+  # Seek is deliberately excluded here, matching long-standing behaviour
   def is_mobile_app_user_agent?( user_agent )
-    is_android_app_user_agent?( user_agent ) ||
-      is_iphone_app_user_agent?( user_agent ) ||
-      is_inatrn_app_user_agent?( user_agent )
+    is_classic_android_app_user_agent?( user_agent ) ||
+      is_classic_ios_app_user_agent?( user_agent ) ||
+      is_inatrn_ios_app_user_agent?( user_agent ) ||
+      is_inatrn_android_app_user_agent?( user_agent )
   end
 
   protected
@@ -67,21 +96,21 @@ module Ambidextrous
       request.headers["X-Via"] === "node-api"
   end
 
-  def is_android_app?
+  def is_classic_android_app?
     return false if is_inaturalistjs_request?
 
-    is_android_app_user_agent?( request.user_agent )
+    is_classic_android_app_user_agent?( request.user_agent )
   end
 
-  def is_iphone_app?
+  def is_classic_ios_app?
     return false if is_inaturalistjs_request?
 
-    is_iphone_app_user_agent?( request.user_agent )
+    is_classic_ios_app_user_agent?( request.user_agent )
   end
 
-  def is_iphone_app_2?
+  def is_classic_ios_app_2?
     return false if is_inaturalistjs_request?
-    !(request.user_agent =~ IPHONE_APP_USER_AGENT_PATTERN_2).nil?
+    !(request.user_agent =~ CLASSIC_IOS_APP_USER_AGENT_PATTERN_2).nil?
   end
 
   def is_inatrn_app?
@@ -90,10 +119,23 @@ module Ambidextrous
     is_inatrn_app_user_agent?( request.user_agent )
   end
 
+  def is_inatrn_ios_app?
+    return false if is_inaturalistjs_request?
+
+    is_inatrn_ios_app_user_agent?( request.user_agent )
+  end
+
+  def is_inatrn_android_app?
+    return false if is_inaturalistjs_request?
+
+    is_inatrn_android_app_user_agent?( request.user_agent )
+  end
+
   def is_mobile_app?
     return false if is_inaturalistjs_request?
 
-    is_android_app? || is_iphone_app? || is_inatrn_app?
+    is_classic_android_app? || is_classic_ios_app? ||
+      is_inatrn_ios_app? || is_inatrn_android_app?
   end
 
   # haml agreesively removes whitespace in ugly mode. This forces it to look the way you meant it to look

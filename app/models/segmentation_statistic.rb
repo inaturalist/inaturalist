@@ -149,9 +149,9 @@ class SegmentationStatistic < ApplicationRecord
         app_obs_count = user_app_bucket["doc_count"]
         user[:web_obs] -= app_obs_count
         case user_app_bucket["key"]
-        when OauthApplication.inaturalist_iphone_app&.id
+        when OauthApplication.classic_ios_app&.id
           user[:ios_obs] += app_obs_count
-        when OauthApplication.inaturalist_android_app&.id
+        when OauthApplication.classic_android_app&.id
           user[:android_obs] += app_obs_count
         when OauthApplication.seek_app&.id
           user[:seek_obs] += app_obs_count
@@ -294,9 +294,9 @@ class SegmentationStatistic < ApplicationRecord
           app_q_count = user_app_bucket["doc_count"]
           user[:web_q] -= app_q_count
           case user_app_bucket["key"]
-          when OauthApplication.inaturalist_iphone_app&.id
+          when OauthApplication.classic_ios_app&.id
             user[:ios_q] += app_q_count
-          when OauthApplication.inaturalist_android_app&.id
+          when OauthApplication.classic_android_app&.id
             user[:android_q] += app_q_count
           when OauthApplication.seek_app&.id
             user[:seek_q] += app_q_count
