@@ -31,23 +31,23 @@ class OauthApplication < Doorkeeper::Application
   end
 
   def self.classic_android_app
-    @@classic_android_app ||= OauthApplication.where( id: CONFIG.CLASSIC_ANDROID_APP_ID ).first
+    @@classic_android_app ||= OauthApplication.where( id: CONFIG.oauth_apps&.classic_android_id ).first
   end
 
   def self.classic_ios_app
-    @@classic_ios_app ||= OauthApplication.where( id: CONFIG.CLASSIC_IOS_APP_ID ).first
+    @@classic_ios_app ||= OauthApplication.where( id: CONFIG.oauth_apps&.classic_ios_id ).first
   end
 
   def self.seek_app
-    @@seek_app ||= OauthApplication.where( id: CONFIG.SEEK_APP_ID ).first
+    @@seek_app ||= OauthApplication.where( id: CONFIG.oauth_apps&.seek_id ).first
   end
 
   def self.inat_next_ios_app
-    @@inat_next_ios_app ||= OauthApplication.where( id: CONFIG.INAT_NEXT_IOS_APP_ID ).first
+    @@inat_next_ios_app ||= OauthApplication.where( id: CONFIG.oauth_apps&.inat_next_ios_id ).first
   end
 
   def self.inat_next_android_app
-    @@inat_next_android_app ||= OauthApplication.where( id: CONFIG.INAT_NEXT_ANDROID_APP_ID ).first
+    @@inat_next_android_app ||= OauthApplication.where( id: CONFIG.oauth_apps&.inat_next_android_id ).first
   end
 
   def set_scopes
