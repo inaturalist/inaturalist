@@ -7,9 +7,17 @@ const contextPromise = request.newContext( {
 
 type CommandOptions = Record<string, unknown> | string | unknown[];
 
+// App commands run synchronously in the request; heavy ones (e.g. seed_dashboard,
+// which reindexes taxa in Elasticsearch and runs notification jobs inline) can
+// take well over Playwright's default 30s API timeout, so allow generous time.
+const COMMAND_TIMEOUT_MS = 180_000;
+
 const app = async ( name: string, options: CommandOptions = {} ): Promise<unknown> => {
   const context = await contextPromise;
-  const response = await context.post( "/__e2e__/command", { data: { name, options } } );
+  const response = await context.post( "/__e2e__/command", {
+    data: { name, options },
+    timeout: COMMAND_TIMEOUT_MS
+  } );
   if ( !response.ok() ) {
     const body = await response.text();
     throw new Error( `/__e2e__/command failed (${response.status()}): ${body}` );

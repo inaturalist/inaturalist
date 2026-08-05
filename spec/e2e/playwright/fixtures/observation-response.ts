@@ -77,10 +77,31 @@ export function buildObservationApiResponse( obsData: Record<string, unknown> ) 
 }
 
 /**
+ * The obs-show page fetches many sub-resources after the main observation
+ * (identifications, comments, taxon summary, quality metrics, subscriptions,
+ * "other observations"…). Left unmocked they resolve — or fail after retries —
+ * late, reflowing the page so screenshots never stabilize. Fulfill every v2
+ * GET with an empty result set for a deterministic layout. Register this
+ * BEFORE mockObservationFetch so the specific observation route (registered
+ * later, and thus matched first) still takes precedence.
+ */
+export async function mockObservationSubresources( page: Page ): Promise<void> {
+  await page.route( /\/v\d\//, route => (
+    route.request().method() === "GET"
+      ? route.fulfill( {
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify( { total_results: 0, page: 1, per_page: 30, results: [] } )
+      } )
+      : route.continue()
+  ) );
+}
+
+/**
  * Intercepts the inat-api /observations/:uuid fetch so a single observation
  * can be rendered without depending on the indexer or a populated ES cluster.
- * Only matches the observation fetch itself — sub-resources like
- * /taxon_summary or /quality_metrics pass through unmodified.
+ * Matches only the observation fetch itself — sub-resources like
+ * /taxon_summary or /quality_metrics are handled by mockObservationSubresources.
  */
 export async function mockObservationFetch(
   page: Page,
@@ -88,7 +109,7 @@ export async function mockObservationFetch(
 ): Promise<void> {
   const uuid = obsData["uuid"] as string;
   await page.route(
-    new RegExp( `/observations/${uuid}(\\?|$)` ),
+    new RegExp( `/v\\d/observations/${uuid}(\\?|$)` ),
     async route => {
       await route.fulfill( {
         status: 200,
