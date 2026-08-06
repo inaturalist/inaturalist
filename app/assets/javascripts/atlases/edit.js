@@ -9,9 +9,12 @@ $( function ( ) {
       url: $this.attr( "href" ),
       success: function ( data ) {
         console.log( "success" ); // eslint-disable-line no-console
-        var tableRow = "<tr><td><a href=\"/places/" + data.place_id + "\">"
-          + data.place_name + "</a></td><td></td></tr>";
-        $( "tbody.places tr:last" ).after( tableRow );
+        var $tableRow = $( "<tr></tr>" ).append(
+          $( "<td></td>" ).append(
+            $( "<a></a>" ).attr( "href", "/places/" + data.place_id ).text( data.place_name )
+          )
+        ).append( $( "<td></td>" ) );
+        $( "tbody.places tr:last" ).after( $tableRow );
       },
       error: function ( ) {
         console.log( "error" ); // eslint-disable-line no-console
@@ -32,13 +35,16 @@ $( function ( ) {
       url: $this.attr( "href" ),
       data: { place_id: placeID, atlas_id: atlasID },
       success: function ( data ) {
-        var tableRow = "<tr><td><a href=\"/places/" + data.place_id + "\">"
-          + data.place_name + "</a></td><td></td></tr>";
+        var $tableRow = $( "<tr></tr>" ).append(
+          $( "<td></td>" ).append(
+            $( "<a></a>" ).attr( "href", "/places/" + data.place_id ).text( data.place_name )
+          )
+        ).append( $( "<td></td>" ) );
         if ( $( "tbody.exploded tr:last" ) ) {
-          $( "tbody.exploded" ).append( tableRow );
+          $( "tbody.exploded" ).append( $tableRow );
           $( ".no_exploded" ).fadeOut( );
         } else {
-          $( "tbody.exploded tr:last" ).after( tableRow );
+          $( "tbody.exploded tr:last" ).after( $tableRow );
         }
       },
       error: function ( ) {
