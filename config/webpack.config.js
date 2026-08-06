@@ -12,6 +12,10 @@ const config = {
       import: "./terra_draw/webpack-entry",
       runtime: "runtime"
     },
+    "kml": {
+      import: "./kml/webpack-entry",
+      runtime: "runtime"
+    },
     "computer-vision": {
       import: "./computer_vision/demo/webpack-entry",
       dependOn: ["react-main", "react-dropzone"]
