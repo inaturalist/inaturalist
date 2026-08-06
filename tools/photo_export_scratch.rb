@@ -22,3 +22,7 @@ Observation.preload_associations( @observations,
     ] )
 
     ObservationPhotoUrlExporter.export( [17991], size: "original" )
+    ObservationPhotoUrlExporter.export( [6598, 11177, 13217], size: "medium" )
+
+    [6598, 11177, 13217]
+    
