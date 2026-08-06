@@ -110,7 +110,6 @@ gem "rison-rb", "0.1.0"
 gem "rqrcode", "~> 2.0"
 gem "rubyzip", "~> 2.3.0"
 gem "sass-rails"
-gem "savon" # allow to consume soap services with WSDL
 gem "soundcloud"
 gem "sprockets"
 gem "terrapin"

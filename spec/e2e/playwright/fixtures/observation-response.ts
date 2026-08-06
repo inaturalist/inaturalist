@@ -46,7 +46,8 @@ export function buildObservationApiResponse( obsData: Record<string, unknown> ) 
         user: {
           id: obsData["user_id"],
           login: "e2e_test_user",
-          name: "E2E Test User"
+          name: "E2E Test User",
+          preferences: {}
         },
         photos: [
           {
@@ -63,7 +64,9 @@ export function buildObservationApiResponse( obsData: Record<string, unknown> ) 
         spam: false,
         captive: false,
         out_of_range: false,
-        comments_count: 0,
+        comments: ( obsData["comments"] as unknown[] ) || [],
+        ofvs: ( obsData["ofvs"] as unknown[] ) || [],
+        comments_count: ( ( obsData["comments"] as unknown[] ) || [] ).length,
         identifications_count: 1,
         faves_count: 0,
         num_identification_agreements: 1,

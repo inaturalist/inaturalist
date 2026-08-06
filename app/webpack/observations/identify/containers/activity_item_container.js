@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { setConfig } from "../../../shared/ducks/config";
 import { showModeratorActionForm } from "../../../shared/ducks/moderator_actions";
-import ActivityItem from "../../show/components/activity_item";
+import ActivityItem from "../../show/components/activity_item_legacy";
 import {
   addID,
   fetchCurrentObservation,
