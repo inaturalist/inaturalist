@@ -4,7 +4,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import LazyLoad from "react-lazy-load";
 import moment from "moment";
 import _ from "lodash";
-import HighlightsCarousel from "./highlights_carousel";
+import HighlightsCarousel from "./highlights_carousel_legacy";
 
 const HighlightsTab = ( {
   trendingTaxa,
@@ -24,22 +24,25 @@ const HighlightsTab = ( {
     <Row>
       <Col xs={12}>
         <HighlightsCarousel
-          title={ I18n.t( "trending" ) }
-          url={ trendingUrl }
+          title={I18n.t( "trending" )}
+          url={trendingUrl}
           description={
-            placeName ?
-              <span
-                dangerouslySetInnerHTML={{ __html: I18n.t(
-                  "views.taxa.show.trending_in_place_desc_html",
-                  { place: placeName, url: placeUrl }
-                ) }}
-              ></span>
-              :
-              I18n.t( "views.taxa.show.trending_desc" )
+            placeName
+              ? (
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: I18n.t(
+                      "views.taxa.show.trending_in_place_desc_html",
+                      { place: placeName, url: placeUrl }
+                    )
+                  }}
+                />
+              )
+              : I18n.t( "views.taxa.show.trending_desc" )
           }
-          taxa={ trendingTaxa }
-          showNewTaxon={ showNewTaxon }
-          config={ config }
+          taxa={trendingTaxa}
+          showNewTaxon={showNewTaxon}
+          config={config}
         />
         { discoveriesShown ? (
           <LazyLoad
@@ -49,13 +52,13 @@ const HighlightsTab = ( {
             onContentVisible={fetchRecent}
           >
             <HighlightsCarousel
-              title={ I18n.t( "discoveries" ) }
-              taxa={ discoveries ? discoveries.map( d => d.taxon ) : null }
-              showNewTaxon={ showNewTaxon }
-              captionForTaxon={ taxon => {
+              title={I18n.t( "discoveries" )}
+              taxa={discoveries ? discoveries.map( d => d.taxon ) : null}
+              showNewTaxon={showNewTaxon}
+              captionForTaxon={taxon => {
                 const discovery = _.find( discoveries, d => d.taxon.id === taxon.id );
                 if ( !discoveries ) {
-                  return <span></span>;
+                  return <span />;
                 }
                 // let icon;
                 // if ( discovery.identification.category === "leading" ) {
@@ -71,23 +74,23 @@ const HighlightsTab = ( {
                       </span>
                     */ }
                     <a
-                      href={ `/observations/${discovery.identification.observation.id}`}
+                      href={`/observations/${discovery.identification.observation.id}`}
                       className="text-muted"
                     >
                       { moment( discovery.identification.created_at ).fromNow( ) }
                     </a>
                   </div>
                 );
-              } }
-              description={ I18n.t( "views.taxa.show.discoveries_desc" ) }
-              urlForTaxon={ taxon => {
+              }}
+              description={I18n.t( "views.taxa.show.discoveries_desc" )}
+              urlForTaxon={taxon => {
                 const discovery = _.find( discoveries, d => d.taxon.id === taxon.id );
                 if ( !discoveries ) {
                   return null;
                 }
                 return `/observations/${discovery.identification.observation.id}`;
-              } }
-              config={ config }
+              }}
+              config={config}
             />
           </LazyLoad>
         ) : null }
@@ -100,11 +103,11 @@ const HighlightsTab = ( {
           >
             <div className={!wantedTaxa || wantedTaxa.length === 0 ? "hidden" : ""}>
               <HighlightsCarousel
-                title={ I18n.t( "wanted" ) }
-                description={ I18n.t( "views.taxa.show.wanted_desc" ) }
-                taxa={ wantedTaxa ? wantedTaxa.slice( 0, 20 ) : null }
-                showNewTaxon={ showNewTaxon }
-                config={ config }
+                title={I18n.t( "wanted" )}
+                description={I18n.t( "views.taxa.show.wanted_desc" )}
+                taxa={wantedTaxa ? wantedTaxa.slice( 0, 20 ) : null}
+                showNewTaxon={showNewTaxon}
+                config={config}
               />
             </div>
           </LazyLoad>

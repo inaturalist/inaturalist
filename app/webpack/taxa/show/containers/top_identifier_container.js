@@ -12,7 +12,8 @@ function mapStateToProps( state ) {
     linkText: I18n.t( "leaderboard" ),
     name: I18n.t( "no_identifications" ),
     noContent: true,
-    className: "TopIdentifier"
+    className: "TopIdentifier",
+    config: state.config
   };
   if ( !leader || !leader.user ) {
     return props;

@@ -1,5 +1,8 @@
 import { connect } from "react-redux";
 import App from "../components/app";
+import AppLegacy from "../components/app_legacy";
+import gatedComponent from "../../../shared/components/gated_component";
+import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 import { showNewTaxon } from "../actions/taxon";
 
 function mapStateToProps( state ) {
@@ -18,7 +21,7 @@ function mapDispatchToProps( dispatch ) {
 const AppContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( App );
+)( gatedComponent( RESPONSIVE_TEST_GROUPS, App, AppLegacy ) );
 
 export default AppContainer;
 

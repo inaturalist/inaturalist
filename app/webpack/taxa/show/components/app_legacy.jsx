@@ -6,7 +6,7 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
 import ChartsContainer from "../containers/charts_container";
-import Leaders from "./leaders";
+import Leaders from "./leaders_legacy";
 import TaxonPageTabsContainer from "../containers/taxon_page_tabs_container";
 import PhotoModalContainer from "../containers/photo_modal_container";
 import PhotoChooserModalContainer from "../containers/photo_chooser_modal_container";
@@ -14,24 +14,22 @@ import PlaceChooserContainer from "../containers/place_chooser_container";
 import TaxonChangeAlertContainer from "../containers/taxon_change_alert_container";
 import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import AkaNamesContainer from "../containers/aka_names_container";
-import StatusRow from "./status_row";
+import StatusRow from "./status_row_legacy";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 
 const App = ( { taxon, showNewTaxon, config } ) => {
-  const responsive = config.currentUser?.isAdmin
-    && config.currentUser?.isInTestGroup( "responsive-taxon-detail" );
   return (
     <div id="TaxonDetail">
       <Grid>
         <TaxonChangeAlertContainer />
         <Row className="preheader">
-          <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
+          <Col xs={8}>
             <TaxonCrumbsContainer />
             <a className="permalink" href={`/taxa/${taxon.id}-${taxon.name.replace( /[^a-zA-Z0-9]/g, "-" )}`}>
               <i className="icon-link" />
             </a>
           </Col>
-          <Col xs={responsive ? null : 4} sm={responsive ? 4 : null}>
+          <Col xs={4}>
             <div className="pull-right">
               <TaxonAutocomplete
                 inputClassName="input-sm"
@@ -92,10 +90,10 @@ const App = ( { taxon, showNewTaxon, config } ) => {
                 establishmentMeans={taxon.establishment_means}
               />
               <Row>
-                <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
+                <Col xs={6}>
                   <PhotoPreviewContainer />
                 </Col>
-                <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
+                <Col xs={6}>
                   <Leaders taxon={taxon} />
                   <Row>
                     <Col xs={12}>
