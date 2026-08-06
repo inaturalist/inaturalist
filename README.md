@@ -22,3 +22,18 @@ For **security vulnerabilities** that require confidential communication, please
 Use of the Time Zone Geometries feature with the recommended source data will include information from [Timezone Boundary Builder](https://github.com/evansiroky/timezone-boundary-builder), which is made available under the [Open Database License (ODbL)](https://opendatacommons.org/licenses/odbl/).
 
 This project is tested with BrowserStack.
+
+
+
+### Additional setup:
+
+If you encounter errors with finding libpq, try running the commands below:
+
+```
+brew install libpq
+brew install shared-mime-info
+echo 'export PATH="/opt/homebrew/opt/libpq/bin:$PATH"' >> /Users/<USERNAME>/.zshrc
+export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
+```
