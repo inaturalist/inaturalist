@@ -7,9 +7,10 @@ class UserInstallationStatistic < ApplicationRecord
     get_installation_activity_from_kibana_data( at_time, "iNaturalistiOS", "iOS", installation_data )
     get_installation_activity_from_kibana_data( at_time, "iNaturalistReactNative", "Android", installation_data )
     get_installation_activity_from_kibana_data( at_time, "iNaturalistReactNative", "iOS", installation_data )
+    activity_date = at_time.to_date
     installation_data.keys.in_groups_of( 1000, false ).each do | installation_ids |
       User.transaction do
-        existing_records = UserInstallation.where( installation_id: installation_ids )
+        existing_records = UserInstallation.where( installation_id: installation_ids ).to_a
         unrecorded_ids = installation_ids - existing_records.map( &:installation_id )
         # Create new user installations
         new_records = unrecorded_ids.map do | installation_id |
@@ -33,7 +34,8 @@ class UserInstallationStatistic < ApplicationRecord
           end
         end
         # Update user of installations if needed, but keep the first logged in date
-        ( existing_records + new_records ).each do | installation_from_db |
+        all_records = existing_records + new_records
+        all_records.each do | installation_from_db |
           installation_from_kibana = installation_data[installation_from_db.installation_id]
           kibana_user_id = installation_from_kibana[:user_id]
           if !kibana_user_id.nil? && installation_from_db.user_id != kibana_user_id
@@ -44,6 +46,8 @@ class UserInstallationStatistic < ApplicationRecord
 
           installation_from_db.save!
         end
+        # Every installation in this batch was seen in the logs for that day
+        UserInstallationActivity.record_activity( all_records, activity_date )
       end
     end
   end
