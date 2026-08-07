@@ -55,3 +55,5 @@ declare module "react-bootstrap";
 declare module "react-redux";
 // no types available on npm
 declare module "react-lazy-load";
+// thin JS wrapper around the iNat REST API; ships no types
+declare module "inaturalistjs";

@@ -5,6 +5,7 @@ import mousetrap from "mousetrap";
 import ReactDOM from "react-dom";
 import TextEditorFormatButton from "./text_editor_format_button";
 import UserText from "./user_text";
+import CommentPhotoDropzone from "./comment_photo_dropzone";
 
 class TextEditor extends React.Component {
   constructor( props, context ) {
@@ -13,6 +14,8 @@ class TextEditor extends React.Component {
     this.boldButton = React.createRef();
     this.italicButton = React.createRef();
     this.linkButton = React.createRef();
+    // holds CommentPhotoDropzone's file-dialog opener when photoUpload is set
+    this.photoUploadOpenRef = React.createRef();
     this.state = {
       preview: false,
       content: props.content
@@ -69,6 +72,19 @@ class TextEditor extends React.Component {
     };
   }
 
+  // Append uploaded-photo markdown to the live editor content and push it back
+  // through the parent's onBlur wiring, which is the only path that syncs the
+  // value the comment form actually submits (it reads from redux, not this
+  // component's state). state.content is current because textareaOnChange updates
+  // it on every keystroke, so nothing typed-but-not-yet-blurred is lost.
+  handlePhotoInsert( markdown ) {
+    const { onBlur } = this.props;
+    const { content } = this.state;
+    const newContent = `${content || ""}${markdown}`;
+    this.setState( { content: newContent } );
+    if ( onBlur ) { onBlur( { target: { value: newContent } } ); }
+  }
+
   render( ) {
     const {
       maxLength,
@@ -77,7 +93,8 @@ class TextEditor extends React.Component {
       textareaClassName,
       showCharsRemainingAt,
       onBlur,
-      onChange
+      onChange,
+      photoUpload
     } = this.props;
     const { preview, content } = this.state;
     const textareaChars = content ? content.length : 0;
@@ -87,6 +104,27 @@ class TextEditor extends React.Component {
         onChange( e );
       }
     };
+    const textareaEl = (
+      <textarea
+        ref={this.textarea}
+        className={textareaClassName}
+        maxLength={maxLength}
+        placeholder={placeholder}
+        onChange={textareaOnChange}
+        onBlur={onBlur}
+        value={content || ""}
+      />
+    );
+    const editorArea = photoUpload && !preview
+      ? (
+        <CommentPhotoDropzone
+          onInsert={md => this.handlePhotoInsert( md )}
+          openRef={this.photoUploadOpenRef}
+        >
+          { textareaEl }
+        </CommentPhotoDropzone>
+      )
+      : textareaEl;
     return (
       <div className={`TextEditor ${className || ""} ${preview ? "with-preview" : ""}`}>
         { this.textarea && (
@@ -188,6 +226,23 @@ class TextEditor extends React.Component {
                 tip={I18n.t( "add_a_numbered_list" )}
               />
             </div>
+            { photoUpload && (
+              <div className="btn-group media-controls" role="group" aria-label={I18n.t( "upload_photo" )}>
+                <button
+                  type="button"
+                  tabIndex="-1"
+                  className="btn btn-default btn-xs"
+                  disabled={preview}
+                  title={I18n.t( "upload_photo" )}
+                  aria-label={I18n.t( "upload_photo" )}
+                  onClick={( ) => {
+                    if ( this.photoUploadOpenRef.current ) { this.photoUploadOpenRef.current( ); }
+                  }}
+                >
+                  <i className="fa fa-camera" />
+                </button>
+              </div>
+            ) }
             <div className="btn-group pull-right" role="group" aria-label={I18n.t( "preview" )}>
               { preview ? (
                 <button
@@ -211,15 +266,7 @@ class TextEditor extends React.Component {
             </div>
           </div>
         ) }
-        <textarea
-          ref={this.textarea}
-          className={textareaClassName}
-          maxLength={maxLength}
-          placeholder={placeholder}
-          onChange={textareaOnChange}
-          onBlur={onBlur}
-          value={content || ""}
-        />
+        { editorArea }
         { maxLength && textareaChars > showCharsRemainingAt && (
           <div className="text-muted small chars-remaining">
             { I18n.t( "x_of_y_short", { x: textareaChars, y: maxLength } )}
@@ -247,7 +294,8 @@ TextEditor.propTypes = {
   textareaClassName: PropTypes.string,
   showCharsRemainingAt: PropTypes.number,
   onBlur: PropTypes.func,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  photoUpload: PropTypes.bool
 };
 
 TextEditor.defaultProps = {

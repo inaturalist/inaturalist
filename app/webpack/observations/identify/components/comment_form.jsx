@@ -56,6 +56,7 @@ class CommentForm extends React.Component {
             showCharsRemainingAt={4000}
             textareaClassName="form-control"
             mentions
+            photoUpload
           />
         </div>
         <button

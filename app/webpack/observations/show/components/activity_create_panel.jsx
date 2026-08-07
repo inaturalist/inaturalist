@@ -88,6 +88,7 @@ class ActivityCreatePanel extends React.Component {
             content={content}
             showCharsRemainingAt={4000}
             onBlur={e => updateEditorContent( "activity", e.target.value )}
+            photoUpload
           />
         </div>
       );
