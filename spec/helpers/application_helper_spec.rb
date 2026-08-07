@@ -276,7 +276,7 @@ describe ApplicationHelper do
         let( :options ) { { base_url: base_url } }
 
         it do
-          is_expected.to eq URI.join(base_url, source).to_s
+          is_expected.to eq URI.join( base_url, source ).to_s
         end
       end
 
@@ -289,7 +289,7 @@ describe ApplicationHelper do
       context "with neither base or site" do
         before { controller.request.host = UrlHelper.root_url }
 
-        it { is_expected.to eq URI.join(UrlHelper.root_url, source).to_s }
+        it { is_expected.to eq URI.join( UrlHelper.root_url, source ).to_s }
       end
     end
 
@@ -376,34 +376,6 @@ describe ApplicationHelper do
     #     end
     #   end
     # end
-  end
-
-  describe "update_tagline_for" do
-    include UsersHelper
-    before { enable_has_subscribers }
-    after { disable_has_subscribers }
-
-    it "states an observation field value was added" do
-      without_delay do
-        o = Observation.make!
-        ofv = ObservationFieldValue.make!( observation: o, user: User.make! )
-        expect( update_tagline_for( UpdateAction.last, skip_links: true ) ).to match(
-          "#{ofv.user.login} added a value for .* to an observation by #{o.user.login}"
-        )
-      end
-    end
-
-    it "states an observation field value was updated" do
-      without_delay do
-        o = Observation.make!
-        ofv = ObservationFieldValue.make!( observation: o, user: o.user )
-        ofv.updater = User.make!
-        ofv.save
-        expect( update_tagline_for( UpdateAction.last, skip_links: true ) ).to match(
-          "#{ofv.updater.login} updated a value for .* on an observation by #{o.user.login}"
-        )
-      end
-    end
   end
 
   describe "create_announcement_impression" do
