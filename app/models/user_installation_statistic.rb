@@ -7,9 +7,10 @@ class UserInstallationStatistic < ApplicationRecord
     get_installation_activity_from_kibana_data( at_time, "iNaturalistiOS", "iOS", installation_data )
     get_installation_activity_from_kibana_data( at_time, "iNaturalistReactNative", "Android", installation_data )
     get_installation_activity_from_kibana_data( at_time, "iNaturalistReactNative", "iOS", installation_data )
+    activity_date = at_time.to_date
     installation_data.keys.in_groups_of( 1000, false ).each do | installation_ids |
       User.transaction do
-        existing_records = UserInstallation.where( installation_id: installation_ids )
+        existing_records = UserInstallation.where( installation_id: installation_ids ).to_a
         unrecorded_ids = installation_ids - existing_records.map( &:installation_id )
         # Create new user installations
         new_records = unrecorded_ids.map do | installation_id |
@@ -33,7 +34,8 @@ class UserInstallationStatistic < ApplicationRecord
           end
         end
         # Update user of installations if needed, but keep the first logged in date
-        ( existing_records + new_records ).each do | installation_from_db |
+        all_records = existing_records + new_records
+        all_records.each do | installation_from_db |
           installation_from_kibana = installation_data[installation_from_db.installation_id]
           kibana_user_id = installation_from_kibana[:user_id]
           if !kibana_user_id.nil? && installation_from_db.user_id != kibana_user_id
@@ -44,6 +46,8 @@ class UserInstallationStatistic < ApplicationRecord
 
           installation_from_db.save!
         end
+        # Every installation in this batch was seen in the logs for that day
+        UserInstallationActivity.record_activity( all_records, activity_date )
       end
     end
   end
@@ -77,7 +81,7 @@ class UserInstallationStatistic < ApplicationRecord
   def self.get_installation_activity_from_kibana_data( day, application_id, platform_id, installation_activity_data )
     kibana_es_client = Elasticsearch::Client.new( host: CONFIG.kibana_es_uri )
     puts "installation activity_from_kibana_data = #{day} / #{application_id}"
-    oauth_application_id = convert_application_id_into_oauth_application_id( application_id )
+    oauth_application_id = convert_application_id_into_oauth_application_id( application_id, platform_id )
     start_time = day.beginning_of_day
     24.times.each do
       end_time = start_time + 1.hour
@@ -178,19 +182,25 @@ class UserInstallationStatistic < ApplicationRecord
     UserInstallation.where(
       "created_at=? AND oauth_application_id=? AND platform_id=?",
       creation_date,
-      convert_application_id_into_oauth_application_id( application_id ),
+      convert_application_id_into_oauth_application_id( application_id, platform_id ),
       platform_id
     )
   end
 
-  def self.convert_application_id_into_oauth_application_id( application_id )
+  def self.convert_application_id_into_oauth_application_id( application_id, platform_id )
     case application_id
     when "iNaturalistAndroid"
-      OauthApplication.inaturalist_android_app&.id
+      OauthApplication.classic_android_app&.id
     when "iNaturalistiOS"
-      OauthApplication.inaturalist_iphone_app&.id
+      OauthApplication.classic_ios_app&.id
     when "iNaturalistReactNative"
-      OauthApplication.inat_next_app&.id
+      # iNat Next shares one parsed user agent name across platforms, so the
+      # platform is the only thing distinguishing the two applications
+      if platform_id == "Android"
+        OauthApplication.inat_next_android_app&.id
+      else
+        OauthApplication.inat_next_ios_app&.id
+      end
     else
       0
     end

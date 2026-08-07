@@ -5809,6 +5809,36 @@ ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
 
 
 --
+-- Name: user_installation_activities; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_installation_activities (
+    id bigint NOT NULL,
+    user_installation_id bigint NOT NULL,
+    activity_date date NOT NULL
+);
+
+
+--
+-- Name: user_installation_activities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_installation_activities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_installation_activities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_installation_activities_id_seq OWNED BY public.user_installation_activities.id;
+
+
+--
 -- Name: user_installations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -7360,6 +7390,13 @@ ALTER TABLE ONLY public.user_donations ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: user_installation_activities id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_installation_activities ALTER COLUMN id SET DEFAULT nextval('public.user_installation_activities_id_seq'::regclass);
+
+
+--
 -- Name: user_installations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8607,6 +8644,14 @@ ALTER TABLE ONLY public.user_daily_active_categories
 
 ALTER TABLE ONLY public.user_donations
     ADD CONSTRAINT user_donations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_installation_activities user_installation_activities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_installation_activities
+    ADD CONSTRAINT user_installation_activities_pkey PRIMARY KEY (id);
 
 
 --
@@ -11242,6 +11287,20 @@ CREATE INDEX index_user_donations_on_user_id ON public.user_donations USING btre
 
 
 --
+-- Name: index_user_installation_activities_on_activity_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_installation_activities_on_activity_date ON public.user_installation_activities USING btree (activity_date);
+
+
+--
+-- Name: index_user_installation_activities_on_installation_and_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_user_installation_activities_on_installation_and_date ON public.user_installation_activities USING btree (user_installation_id, activity_date);
+
+
+--
 -- Name: index_user_installations_on_installation_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12218,6 +12277,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260514211433'),
 ('20260514215925'),
 ('20260618232456'),
-('20260706194405');
+('20260706194405'),
+('20260806120000');
 
 

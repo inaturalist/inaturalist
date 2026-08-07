@@ -8,9 +8,10 @@
 - content_for :extrajs do
   :javascript
     var OFFICIAL_APP_IDS = #{ [
-      OauthApplication.inat_next_app&.id,
-      OauthApplication.inaturalist_android_app&.id,
-      OauthApplication.inaturalist_iphone_app&.id,
+      OauthApplication.inat_next_ios_app&.id,
+      OauthApplication.inat_next_android_app&.id,
+      OauthApplication.classic_android_app&.id,
+      OauthApplication.classic_ios_app&.id,
       OauthApplication.seek_app&.id
     ].compact.to_json };
     if ( typeof( CURRENT_USER ) !== undefined ) {

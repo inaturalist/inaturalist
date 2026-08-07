@@ -197,10 +197,11 @@ Stats.loadCumulativePlatforms = function ( json ) {
       chartOptions: { isStacked: true },
       series: [
         { label: I18n.t( "website" ) },
-        { label: I18n.t( "iphone" ) },
-        { label: I18n.t( "android" ) },
+        { label: I18n.t( "inat_next_ios" ) },
+        { label: I18n.t( "inat_next_android_temp" ) },
         { label: I18n.t( "seek" ) },
-        { label: I18n.t( "inat_next" ) },
+        { label: I18n.t( "inat_classic_ios" ) },
+        { label: I18n.t( "inat_classic_android_temp" ) },
         { label: I18n.t( "other" ) }
       ],
       data: _.map( json, function ( stat ) {
@@ -208,10 +209,12 @@ Stats.loadCumulativePlatforms = function ( json ) {
         return [
           Stats.dateForStat( stat ),
           stat.data.platforms_cumulative.web,
+          // inat_next is the iOS series, kept unrenamed for historical continuity
+          stat.data.platforms_cumulative.inat_next,
+          stat.data.platforms_cumulative.inat_next_android,
+          stat.data.platforms_cumulative.seek,
           stat.data.platforms_cumulative.iphone,
           stat.data.platforms_cumulative.android,
-          stat.data.platforms_cumulative.seek,
-          stat.data.platforms_cumulative.inat_next,
           stat.data.platforms_cumulative.other
         ];
       } )
@@ -252,10 +255,11 @@ Stats.loadPlatforms = function ( json ) {
       chartType: "AnnotationChart",
       series: [
         { label: I18n.t( "website" ) },
-        { label: I18n.t( "iphone" ) },
-        { label: I18n.t( "android" ) },
+        { label: I18n.t( "inat_next_ios" ) },
+        { label: I18n.t( "inat_next_android_temp" ) },
         { label: I18n.t( "seek" ) },
-        { label: I18n.t( "inat_next" ) },
+        { label: I18n.t( "inat_classic_ios" ) },
+        { label: I18n.t( "inat_classic_android_temp" ) },
         { label: I18n.t( "other" ) }
       ],
       data: _.map( json, function ( stat ) {
@@ -263,10 +267,12 @@ Stats.loadPlatforms = function ( json ) {
         return [
           Stats.dateForStat( stat ),
           stat.data.platforms.web,
+          // inat_next is the iOS series, kept unrenamed for historical continuity
+          stat.data.platforms.inat_next,
+          stat.data.platforms.inat_next_android,
+          stat.data.platforms.seek,
           stat.data.platforms.iphone,
           stat.data.platforms.android,
-          stat.data.platforms.seek,
-          stat.data.platforms.inat_next,
           stat.data.platforms.other
         ];
       } )
