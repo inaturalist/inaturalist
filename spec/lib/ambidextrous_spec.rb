@@ -24,6 +24,7 @@ describe Ambidextrous do
         "iNaturalist/720 CFNetwork/1568.200.51 Darwin/24.1.0",
         "iNaturalist/720 CFNetwork/1568.300.101 Darwin/24.2.0",
         "iNaturalist/3.3.5 (iPhone; iOS 18.1.1; Scale/3.00)",
+        "iNaturalist/3.3.5 (iPad; iOS 18.1.1; Scale/2.00)",
         "iNaturalist/720 CFNetwork/1485 Darwin/23.1.0",
         "iNaturalist/716 CFNetwork/1498.700.2 Darwin/23.6.0"
       ]
@@ -35,7 +36,17 @@ describe Ambidextrous do
         "iNaturalistRN/0.55.3 (Build 130; iOS 18.1.1; iPhone14,7; Handset; Apple)",
         "iNaturalistReactNative/130 CFNetwork/1568.200.51 Darwin/24.1.0",
         "iNaturalistReactNative/132 CFNetwork/1568.200.51 Darwin/24.1.0",
-        "iNaturalistRN/0.57.0 (Build 132; iOS 18.1.1; iPhone16,2; Handset; Apple)"
+        "iNaturalistRN/0.57.0 (Build 132; iOS 18.1.1; iPhone16,2; Handset; Apple)",
+        "iNaturalistRN/1.0.26 (Build 223; iOS 26.5.2; iPhone14,6; Handset; Apple)",
+        "iNaturalistRN/1.0.26 (Build 223; iPadOS 26.5; iPad15,7; Handset; Apple)",
+        "iNaturalistReactNative/155 CFNetwork/3860.600.12 Darwin/25.5.0"
+      ]
+    end
+
+    let( :react_android_user_agents ) do
+      [
+        "iNaturalistRN/1.0.24 (Build 218; Android 16; SM-S901U1; Handset; Samsung)",
+        "iNaturalistRN/1.0.24 (Build 218; Android 14; Pixel 8; Handset; Google)"
       ]
     end
 
@@ -60,9 +71,11 @@ describe Ambidextrous do
         allow( request_double ).to receive( :user_agent ).and_return( user_agent )
         allow( request_double ).to receive( :headers ).and_return( { "X-Via" => "other" } )
         allow( instance ).to receive( :request ).and_return( request_double )
-        expect( instance.send( :is_android_app? ) ).to be true
-        expect( instance.send( :is_iphone_app? ) ).to be false
+        expect( instance.send( :is_classic_android_app? ) ).to be true
+        expect( instance.send( :is_classic_ios_app? ) ).to be false
         expect( instance.send( :is_inatrn_app? ) ).to be false
+        expect( instance.send( :is_inatrn_ios_app? ) ).to be false
+        expect( instance.send( :is_inatrn_android_app? ) ).to be false
       end
     end
 
@@ -72,9 +85,11 @@ describe Ambidextrous do
         allow( request_double ).to receive( :user_agent ).and_return( user_agent )
         allow( request_double ).to receive( :headers ).and_return( { "X-Via" => "other" } )
         allow( instance ).to receive( :request ).and_return( request_double )
-        expect( instance.send( :is_android_app? ) ).to be false
-        expect( instance.send( :is_iphone_app? ) ).to be true
+        expect( instance.send( :is_classic_android_app? ) ).to be false
+        expect( instance.send( :is_classic_ios_app? ) ).to be true
         expect( instance.send( :is_inatrn_app? ) ).to be false
+        expect( instance.send( :is_inatrn_ios_app? ) ).to be false
+        expect( instance.send( :is_inatrn_android_app? ) ).to be false
       end
     end
 
@@ -84,9 +99,26 @@ describe Ambidextrous do
         allow( request_double ).to receive( :user_agent ).and_return( user_agent )
         allow( request_double ).to receive( :headers ).and_return( { "X-Via" => "other" } )
         allow( instance ).to receive( :request ).and_return( request_double )
-        expect( instance.send( :is_android_app? ) ).to be false
-        expect( instance.send( :is_iphone_app? ) ).to be false
+        expect( instance.send( :is_classic_android_app? ) ).to be false
+        expect( instance.send( :is_classic_ios_app? ) ).to be false
         expect( instance.send( :is_inatrn_app? ) ).to be true
+        expect( instance.send( :is_inatrn_ios_app? ) ).to be true
+        expect( instance.send( :is_inatrn_android_app? ) ).to be false
+      end
+    end
+
+    it "when React Native on Android" do
+      react_android_user_agents.each do | user_agent |
+        request_double = double( "request" )
+        allow( request_double ).to receive( :user_agent ).and_return( user_agent )
+        allow( request_double ).to receive( :headers ).and_return( { "X-Via" => "other" } )
+        allow( instance ).to receive( :request ).and_return( request_double )
+        # the classic Android app and iNat Next Android must not be confused
+        expect( instance.send( :is_classic_android_app? ) ).to be false
+        expect( instance.send( :is_classic_ios_app? ) ).to be false
+        expect( instance.send( :is_inatrn_app? ) ).to be true
+        expect( instance.send( :is_inatrn_ios_app? ) ).to be false
+        expect( instance.send( :is_inatrn_android_app? ) ).to be true
       end
     end
 
@@ -96,9 +128,11 @@ describe Ambidextrous do
         allow( request_double ).to receive( :user_agent ).and_return( user_agent )
         allow( request_double ).to receive( :headers ).and_return( { "X-Via" => "other" } )
         allow( instance ).to receive( :request ).and_return( request_double )
-        expect( instance.send( :is_android_app? ) ).to be false
-        expect( instance.send( :is_iphone_app? ) ).to be false
+        expect( instance.send( :is_classic_android_app? ) ).to be false
+        expect( instance.send( :is_classic_ios_app? ) ).to be false
         expect( instance.send( :is_inatrn_app? ) ).to be false
+        expect( instance.send( :is_inatrn_ios_app? ) ).to be false
+        expect( instance.send( :is_inatrn_android_app? ) ).to be false
       end
     end
   end

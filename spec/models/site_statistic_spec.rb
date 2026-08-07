@@ -5,15 +5,23 @@ require "spec_helper"
 describe SiteStatistic do
   before :all do
     make_default_site
-    OauthApplication.make!( name: "iNaturalist Android App" )
-    OauthApplication.make!( name: "iNaturalist iPhone App" )
-    OauthApplication.make!( name: "Seek" )
-    OauthApplication.make!( name: "iNaturalist (iNat Next)" )
+    @classic_android_app = OauthApplication.make!( name: "iNaturalist Android App" )
+    @classic_ios_app = OauthApplication.make!( name: "iNaturalist iPhone App" )
+    @seek_app = OauthApplication.make!( name: "Seek" )
+    @inat_next_ios_app = OauthApplication.make!( name: "iNaturalist (iNat Next)" )
+    @inat_next_android_app = OauthApplication.make!( name: "iNaturalist (iNat Next) Android" )
   end
 
   elastic_models( Observation, Identification, User, Project )
 
   before :each do
+    # RSpec mocks cannot be set up in before( :all ), so the records are created
+    # there and the finders are stubbed here
+    allow( OauthApplication ).to receive( :classic_android_app ).and_return( @classic_android_app )
+    allow( OauthApplication ).to receive( :classic_ios_app ).and_return( @classic_ios_app )
+    allow( OauthApplication ).to receive( :seek_app ).and_return( @seek_app )
+    allow( OauthApplication ).to receive( :inat_next_ios_app ).and_return( @inat_next_ios_app )
+    allow( OauthApplication ).to receive( :inat_next_android_app ).and_return( @inat_next_android_app )
     allow( SiteStatistic ).to( receive( :generate_daily_active_user_model_data ) do
       {
         current_users: [],
@@ -99,14 +107,15 @@ describe SiteStatistic do
   describe "platforms_stats" do
     it "returns observation counts by selected applications" do
       Observation.make!( oauth_application_id: nil )
-      2.times { Observation.make!( oauth_application_id: OauthApplication.inaturalist_iphone_app.id ) }
-      3.times { Observation.make!( oauth_application_id: OauthApplication.inaturalist_android_app.id ) }
-      4.times { Observation.make!( oauth_application_id: OauthApplication.seek_app.id ) }
-      5.times { Observation.make!( oauth_application_id: OauthApplication.inat_next_app.id ) }
+      2.times { Observation.make!( oauth_application_id: @classic_ios_app.id ) }
+      3.times { Observation.make!( oauth_application_id: @classic_android_app.id ) }
+      4.times { Observation.make!( oauth_application_id: @seek_app.id ) }
+      5.times { Observation.make!( oauth_application_id: @inat_next_ios_app.id ) }
+      7.times { Observation.make!( oauth_application_id: @inat_next_android_app.id ) }
       6.times { Observation.make!( oauth_application_id: 999 ) }
       # create another from 2 days ago and see it is not counted
       Observation.make!(
-        oauth_application_id: OauthApplication.inaturalist_iphone_app.id,
+        oauth_application_id: @classic_ios_app.id,
         created_at: 2.days.ago
       )
       platform_stats = SiteStatistic.platforms_stats
@@ -115,6 +124,7 @@ describe SiteStatistic do
       expect( platform_stats[:android] ).to eq 3
       expect( platform_stats[:seek] ).to eq 4
       expect( platform_stats[:inat_next] ).to eq 5
+      expect( platform_stats[:inat_next_android] ).to eq 7
       expect( platform_stats[:other] ).to eq 6
     end
   end
@@ -122,14 +132,15 @@ describe SiteStatistic do
   describe "platforms_cumulative_stats" do
     it "returns cumulative observation counts by selected applications" do
       Observation.make!( oauth_application_id: nil )
-      2.times { Observation.make!( oauth_application_id: OauthApplication.inaturalist_iphone_app.id ) }
-      3.times { Observation.make!( oauth_application_id: OauthApplication.inaturalist_android_app.id ) }
-      4.times { Observation.make!( oauth_application_id: OauthApplication.seek_app.id ) }
-      5.times { Observation.make!( oauth_application_id: OauthApplication.inat_next_app.id ) }
+      2.times { Observation.make!( oauth_application_id: @classic_ios_app.id ) }
+      3.times { Observation.make!( oauth_application_id: @classic_android_app.id ) }
+      4.times { Observation.make!( oauth_application_id: @seek_app.id ) }
+      5.times { Observation.make!( oauth_application_id: @inat_next_ios_app.id ) }
+      7.times { Observation.make!( oauth_application_id: @inat_next_android_app.id ) }
       6.times { Observation.make!( oauth_application_id: 999 ) }
       # create another from 2 days ago and see it is counted
       Observation.make!(
-        oauth_application_id: OauthApplication.inaturalist_iphone_app.id,
+        oauth_application_id: @classic_ios_app.id,
         created_at: 2.days.ago
       )
       platforms_cumulative_stats = SiteStatistic.platforms_cumulative_stats
@@ -138,6 +149,7 @@ describe SiteStatistic do
       expect( platforms_cumulative_stats[:android] ).to eq 3
       expect( platforms_cumulative_stats[:seek] ).to eq 4
       expect( platforms_cumulative_stats[:inat_next] ).to eq 5
+      expect( platforms_cumulative_stats[:inat_next_android] ).to eq 7
       expect( platforms_cumulative_stats[:other] ).to eq 6
     end
   end

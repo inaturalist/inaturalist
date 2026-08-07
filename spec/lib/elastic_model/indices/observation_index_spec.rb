@@ -138,15 +138,17 @@ describe "Observation Index" do
   end
 
   it "indexes applications based on user agent" do
-    OauthApplication.make!(name: "iNaturalist Android App")
-    OauthApplication.make!(name: "iNaturalist iPhone App")
+    classic_android_app = OauthApplication.make!( name: "iNaturalist Android App" )
+    classic_ios_app = OauthApplication.make!( name: "iNaturalist iPhone App" )
+    allow( OauthApplication ).to receive( :classic_android_app ).and_return( classic_android_app )
+    allow( OauthApplication ).to receive( :classic_ios_app ).and_return( classic_ios_app )
     o = Observation.make!( oauth_application_id: 11 )
     expect( o.as_indexed_json[:oauth_application_id] ).to eq 11
     o.update( oauth_application_id: nil,
       user_agent: "iNaturalist/1.5.1 (Build 195; Android 3.18..." )
-    expect( o.as_indexed_json[:oauth_application_id] ).to eq OauthApplication.inaturalist_android_app.id
+    expect( o.as_indexed_json[:oauth_application_id] ).to eq classic_android_app.id
     o.update( user_agent: "iNaturalist/2.7 (iOS iOS 10.3.2 iPhone)" )
-    expect( o.as_indexed_json[:oauth_application_id] ).to eq OauthApplication.inaturalist_iphone_app.id
+    expect( o.as_indexed_json[:oauth_application_id] ).to eq classic_ios_app.id
   end
 
   it "private_place_ids should include places that contain the positional_accuracy" do

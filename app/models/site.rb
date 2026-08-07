@@ -588,8 +588,14 @@ class Site < ApplicationRecord
     end
   end
 
-  def inat_next_app_url
+  def inat_next_ios_app_url
     "https://apps.apple.com/us/app/inaturalist-next/id6475737561"
+  end
+
+  # Blank until iNat Next Android is listed on the Play Store, in the same way
+  # the iphone_app_url and android_app_url preferences can be blank
+  def inat_next_android_app_url
+    ""
   end
 
   def self.homepage_observation_data( options = {} )

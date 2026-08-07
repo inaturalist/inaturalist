@@ -116,6 +116,14 @@ base: &base
     jwt_secret: secret
     jwt_application_secret: application_secret
 
+    # Database ids of the official OauthApplication records.
+    oauth_apps:
+        classic_android_id:
+        classic_ios_id:
+        seek_id:
+        inat_next_ios_id:
+        inat_next_android_id:
+
     # # Path to the CA .crt file
     # ca_file: "/path/to/certs/ca-bundle.crt"
     # # Path to the certificates directory
