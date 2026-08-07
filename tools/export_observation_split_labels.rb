@@ -83,6 +83,10 @@ class ObservationSplitLabelExporter
   # obs_photos_count is counted off observation_photos rather than read from the
   # observations.observation_photos_count counter cache: the cache can drift, and
   # this is an index-only scan on (observation_id).
+  #
+  # The subquery has to be wrapped in Arel.sql -- plain "table.column" strings
+  # pass Rails' raw SQL allowlist, but anything more raises
+  # ActiveRecord::UnknownAttributeReference.
   PLUCK_COLUMNS = [
     "observation_photos.photo_id",
     "observation_photos.observation_id",
@@ -92,8 +96,10 @@ class ObservationSplitLabelExporter
     "observations.created_at",
     "photos.created_at",
     "observations.taxon_id",
-    "( SELECT COUNT(*) FROM observation_photos x " \
-      "WHERE x.observation_id = observation_photos.observation_id )",
+    Arel.sql(
+      "( SELECT COUNT(*) FROM observation_photos x " \
+        "WHERE x.observation_id = observation_photos.observation_id )"
+    ),
     "observation_photos.position",
     "users.deleted_at"
   ].freeze
