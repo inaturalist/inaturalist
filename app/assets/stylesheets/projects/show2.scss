@@ -13,7 +13,7 @@ $background-color: #1A1A1A;
 
 
 body {
-  min-width: 980px;
+  min-width: fit-content;
 }
 
 .bootstrap {
@@ -50,7 +50,7 @@ body {
 body.responsive {
   min-width: auto;
   #wrapper {
-    min-width: 980px;
+    min-width: fit-content;
     background: $page-background-grey;
   }
 }
