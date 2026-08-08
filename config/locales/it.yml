@@ -2476,6 +2476,14 @@ it:
   inappropriate: Inappropriato
   #Name of the newer version of iNaturalist's mobile app, called iNatNext
   inat_next: iNatNext
+  #Chart series and legend label on the stats page
+  inat_classic_android_temp: Android
+  #Chart series and legend label on the stats page
+  inat_classic_ios: iOS classico
+  #Chart series and legend label on the stats page
+  inat_next_android_temp: iNatNext Android
+  #Chart series and legend label on the stats page
+  inat_next_ios: iOS
   inaturalist_network: Rete di iNaturalist
   inaturalist_network_affiliation: Affiliazione al Network iNaturalist
   #Label for messages you've received
@@ -8072,7 +8080,16 @@ it:
         avg_ttcid: TTCID Media
         avg_ttid: TTID Media
         identifiers_desc: Hanno aggiunto in questo giorno un'ID ad un'osservazione di qualcun altro
-        #label for chart legend, linking to more information on iNatNext
+        #Chart series and legend label on the stats page
+        inat_classic_android_desc_temp_html: Create tramite <a href="%{url}">iNaturalist (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_classic_ios_desc_html: Create tramite <a href="%{url}">iNaturalist Classico (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_temp_html: Create tramite <a href="%{url}">iNatNext (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_next_ios_desc_html: Create tramite <a href="%{url}">iNaturalist (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_html: Create tramite l'<a href="%{url}">App Android iNatNext</a>
         inat_next_desc_html: Creato tramite <a href="%{url}">iNatNext</a>
         iphone_desc_html: Create con l'<a href="%{url}">app iPhone iNaturalist</a>
         med_ttcid: TTCID Mediana
