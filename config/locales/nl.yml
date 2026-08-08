@@ -1804,6 +1804,7 @@ nl:
   devise_unlock_instructions_unlock: Deblokkeer je account
   #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Ontdek
+  discover_nature_around_you: Ontdek de natuur om je heen
   discoveries: Ontdekkingen
   did_you_mean: 'Bedoelde u'
   did_you_photos_flickr?: Heb je foto's geplaatst op Flickr?
@@ -1859,6 +1860,7 @@ nl:
     <a href="/observations/import?project_id=%{project_id}#csv_import">bulk-uploader</a> te gebruiken
   download_csv: CSV downloaden
   download_csv_template: CSV-sjabloon downloaden
+  download_inaturalist_app: Download iNaturalist in de App Store
   download_kml: KML downloaden
   downstream_coverage_rank: Afdalende dekkingrang
   downstream_coverage_colon_rank: "Onderliggende dekking: niveau %{rank}"
@@ -2525,6 +2527,14 @@ nl:
   inappropriate: Ongepast
   #Name of the newer version of iNaturalist's mobile app, called iNatNext
   inat_next: iNatNext
+  #Chart series and legend label on the stats page
+  inat_classic_android_temp: Android
+  #Chart series and legend label on the stats page
+  inat_classic_ios: iNat Classic (iOS)
+  #Chart series and legend label on the stats page
+  inat_next_android_temp: iNat Next Android
+  #Chart series and legend label on the stats page
+  inat_next_ios: iOS
   inaturalist_network: iNaturalist netwerk
   inaturalist_network_affiliation: iNaturalist netwerk affiliatie
   #Label for messages you've received
@@ -5433,6 +5443,8 @@ nl:
     #reason displayed to users who have been suspended for posting machine generated content
     #REPLACED with adding_machine_generated_content below
     machine_generated_content: Machine gegenereerde waarnemingen, determinaties en opmerkingen
+    #reason displayed to users who have been suspended for posting machine generated content
+    adding_machine_generated_content: Machinegegenereerde inhoud toevoegen
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
     #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Voortdurende schending van auteursrechten (na waarschuwing)
@@ -8239,6 +8251,12 @@ nl:
         avg_ttcid: Gem TTCID
         avg_ttid: Gem TTID
         identifiers_desc: Een ID toegevoegd aan iemands waarneming op deze dag
+        #Chart series and legend label on the stats page
+        inat_classic_android_desc_temp_html: Gemaakt met <a href="%{url}">iNaturalist (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_classic_ios_desc_html: Gemaakt met <a href="%{url}">iNaturalist Classic (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_temp_html: Gemaakt met <a href="%{url}">iNaturalist Next (Android)</a>
         inat_next_desc_html: Gemaakt met <a href="%{url}">iNatNext</a>
         iphone_desc_html: Gemaakt met de <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTCID
