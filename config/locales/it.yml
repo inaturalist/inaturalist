@@ -2476,6 +2476,14 @@ it:
   inappropriate: Inappropriato
   #Name of the newer version of iNaturalist's mobile app, called iNatNext
   inat_next: iNatNext
+  #Chart series and legend label on the stats page
+  inat_classic_android_temp: Android
+  #Chart series and legend label on the stats page
+  inat_classic_ios: iOS classico
+  #Chart series and legend label on the stats page
+  inat_next_android_temp: iNatNext Android
+  #Chart series and legend label on the stats page
+  inat_next_ios: iOS
   inaturalist_network: Rete di iNaturalist
   inaturalist_network_affiliation: Affiliazione al Network iNaturalist
   #Label for messages you've received
@@ -3066,7 +3074,7 @@ it:
     <strong>visibile solo ai curatori</strong> e <strong>i curatori non possono vedere la propria storia</strong>, quindi le note su una persona non dovrebbero mai essere visibili
     a quella persona.
   #Replaces the username of the moderator on automatic unsuspension actions
-  moderator_actions_suspension_expired: Scadenza della sospensione
+  moderator_actions_suspension_expired: Sospensione scaduta
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Nascondi
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -7765,7 +7773,7 @@ it:
           URL di un servizio di registrazione eventi che stai utilizzando per il tuo bioblitz. Se è un URL Eventbrite che contiene in ID numerico, includeremo un widget di registrazione sulla tua pagina di progetto fino all'inizio del bioblitz.
         #label for a form field setting allowing the editor to toggle display
         #of the Leaderboard panel showing top observers and species
-        hide_leaderboard: Nascondi la classifica
+        hide_leaderboard: Nascondi Classifica
         icon_desc: "Sarà ritagliato ad un quadrato"
         it_looks_like_this_project_can_be_converted: |
           Sembra che questo progetto può essere convertito in un nuovo <a href="%{url}">Collection Project</a>.
@@ -7883,7 +7891,7 @@ it:
           #Label for a form field for a project's starting time
           start_time: Orario di inizio
           #Label for a form field for a project's end time
-          end_time: Fine dei Tempi
+          end_time: Ora di fine
           #Label for a form field allowing projects to specify start/end times in addition to dates
           include_times: Include gli orari
           #Label for a form select field allowing the editor to choose calendar months
@@ -8072,7 +8080,16 @@ it:
         avg_ttcid: TTCID Media
         avg_ttid: TTID Media
         identifiers_desc: Hanno aggiunto in questo giorno un'ID ad un'osservazione di qualcun altro
-        #label for chart legend, linking to more information on iNatNext
+        #Chart series and legend label on the stats page
+        inat_classic_android_desc_temp_html: Create tramite <a href="%{url}">iNaturalist (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_classic_ios_desc_html: Create tramite <a href="%{url}">iNaturalist Classico (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_temp_html: Create tramite <a href="%{url}">iNatNext (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_next_ios_desc_html: Create tramite <a href="%{url}">iNaturalist (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_html: Create tramite l'<a href="%{url}">App Android iNatNext</a>
         inat_next_desc_html: Creato tramite <a href="%{url}">iNatNext</a>
         iphone_desc_html: Create con l'<a href="%{url}">app iPhone iNaturalist</a>
         med_ttcid: TTCID Mediana
@@ -8320,7 +8337,7 @@ it:
           #label for a subtab that displays only IDs that have not received any votes
           no_votes: Nessun voto
           #label for a subtab that displays only IDs that have not yet been nominated
-          not_nominated: Non nominata
+          not_nominated: Non nominato
           #label for a link to view an identification in the context of its associated
           #observation so users can view other remarks relevant to the conversation
           view_full_conversation: Visualizza la conversazione completa
@@ -9530,7 +9547,7 @@ it:
               must_be_valid_for_specified_placement: dev'essere valido per il posizionamento specificato
             parent_announcement_id:
               #Error shown when an announcement's global announcement field references itself
-              cannot_reference_self: non può riferirsi a se stessa
+              cannot_reference_self: non può riferirsi a se stesso
               #Error shown when an announcement's global announcement is itself a variant of another announcement
               cannot_reference_variant: non può fare riferimento a un annuncio che sia essa stesso una variante (è consentito un solo livello di annidamento)
               #Error shown when trying to set an global announcement on an announcement that already has variants

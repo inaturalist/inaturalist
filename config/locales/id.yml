@@ -2415,6 +2415,14 @@ id:
   inappropriate: Tidak pantas
   #Name of the newer version of iNaturalist's mobile app, called iNatNext
   inat_next: iNatNext
+  #Chart series and legend label on the stats page
+  inat_classic_android_temp: Android
+  #Chart series and legend label on the stats page
+  inat_classic_ios: iOS Klasik
+  #Chart series and legend label on the stats page
+  inat_next_android_temp: iNatNext Android
+  #Chart series and legend label on the stats page
+  inat_next_ios: iOS
   inaturalist_network: Jaringan iNaturalist
   inaturalist_network_affiliation: Afiliasi Jaringan iNaturalist
   #Label for messages you've received
@@ -7970,7 +7978,16 @@ id:
         avg_ttcid: Rata2 WUIDK
         avg_ttid: Rata2 WUID
         identifiers_desc: Telah menambahkan ID untuk pengamatan orang lain pada hari ini
-        #label for chart legend, linking to more information on iNatNext
+        #Chart series and legend label on the stats page
+        inat_classic_android_desc_temp_html: Dibuat melalui <a href="%{url}">iNaturalist (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_classic_ios_desc_html: Dibuat melalui <a href="%{url}">iNaturalist Klasik (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_temp_html: Dibuat melalui <a href="%{url}">iNatNext (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_next_ios_desc_html: Dibuat melalui <a href="%{url}">iNaturalist (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_html: Dibuat melalui <a href="%{url}">aplikasi iNatNext Android</a>
         inat_next_desc_html: Dibuat menggunakan <a href="%{url}">iNatNext</a>
         iphone_desc_html: Dibuat melalui <a href="%{url}">aplikasi iNaturalist iPhone</a>
         med_ttcid: Median WUIDK
