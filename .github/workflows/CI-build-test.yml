@@ -54,7 +54,7 @@ jobs:
           - 6333:6333
           - 6334:6334
         env:
-          - QDRANT__SERVICE__API_KEY=1234567890
+          QDRANT__SERVICE__API_KEY: 1234567890
 
     strategy:
       fail-fast: false
