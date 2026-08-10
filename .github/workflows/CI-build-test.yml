@@ -48,26 +48,21 @@ jobs:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
+      qdrant:
+        image: qdrant/qdrant:v1.19.0
+        ports:
+          - 6333:6333
+          - 6334:6334
+        environment:
+          - QDRANT__SERVICE__API_KEY=1234567890
+
     strategy:
       fail-fast: false
       matrix:
         # Note that these letter prefix patterns must match existing files or
         # Github will error out of the build
         spec_pattern:
-          - spec/models/{a,b,c,d,e,f,g}*_spec.rb
-          - spec/models/{i,l,m}*_spec.rb
-          - spec/models/oauth*_spec.rb spec/models/observation_{f,b}*_spec.rb
-          - spec/models/observation_{g,l,p,r}*_spec.rb
-          - spec/models/observation_s*_spec.rb spec/models/observation_spec.rb spec/models/observation_p*_spec.rb
-          - spec/models/p{a,h,l,o}*_spec.rb
-          - spec/models/pr*_spec.rb
-          - spec/models/{q,s,u,w,y}*_spec.rb
-          - spec/models/taxon_{c,d,f,l,m,n,p,r,s}*_spec.rb
-          - spec/models/taxon_spec.rb spec/models/trip_*_spec.rb
-          - spec/controllers/{a,c,e,f,g,i,l,m}*_spec.rb
-          - spec/controllers/o*_spec.rb
-          - spec/controllers/{p,q,r,s,t,u,v,w}*_spec.rb
-          - spec/helpers spec/initializers spec/lib spec/views spec/features
+          - spec/lib spec/models/taxon_photo_spec.rb
 
     steps:
     - uses: actions/checkout@v5

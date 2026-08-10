@@ -42,32 +42,8 @@ RSpec.configure do | config |
 
   config.before( :suite ) do
     DatabaseCleaner.strategy = :transaction
-    Elasticsearch::Model.client.ping
-    es_classes = [
-      ControlledTerm,
-      ExemplarIdentification,
-      Identification,
-      ObservationField,
-      Observation,
-      Place,
-      Project,
-      Taxon,
-      TaxonPhoto,
-      UpdateAction,
-      User
-    ].freeze
-    print "Rebuilding #{es_classes.size} indexes"
-    es_classes.each do | klass |
-      print "."
-      begin
-        klass.__elasticsearch__.delete_index!
-      rescue StandardError => e
-        raise e unless e.class.to_s =~ /NotFound/
-      end
-      klass.__elasticsearch__.create_index!
-      ElasticModel.wait_until_index_exists( klass.index_name, timeout: 1 )
-    end
-    puts
+    rebuild_all_test_elasticsearch_indices
+    rebuild_all_test_qdrant_collections
   end
 
   config.before( :each ) do
@@ -128,6 +104,33 @@ Shoulda::Matchers.configure do | config |
     with.test_framework :rspec
     with.library :rails
   end
+end
+
+def rebuild_all_test_elasticsearch_indices
+  Elasticsearch::Model.client.ping
+  es_classes = ApplicationRecord.descendants.filter {| m | m.respond_to?( :elastic_index! ) }
+  print "Rebuilding #{es_classes.size} indexes"
+  es_classes.each do | klass |
+    print "."
+    begin
+      klass.__elasticsearch__.delete_index!
+    rescue StandardError => e
+      raise e unless e.class.to_s =~ /NotFound/
+    end
+    klass.__elasticsearch__.create_index!
+    ElasticModel.wait_until_index_exists( klass.index_name, timeout: 1 )
+  end
+  puts
+end
+
+def rebuild_all_test_qdrant_collections
+  qdrant_classes = ApplicationRecord.descendants.filter {| m | m.respond_to?( :qdrant_index! ) }
+  print "Rebuilding #{qdrant_classes.size} collections"
+  qdrant_classes.each do | klass |
+    print "."
+    klass.__qdrant__.create_collection!( force: true )
+  end
+  puts
 end
 
 # Pretend Delayed Job doesn't exist and run all jobs when they are queued
@@ -287,6 +290,40 @@ def disable_elastic_indexing( *args )
   end
 end
 
+# Turn on elastic indexing for certain models. We do this selectively b/c
+# updating ES slows down the specs.
+def enable_qdrant_indexing( *args )
+  options = args.last.is_a?( Hash ) ? args.pop : {}
+  classes = [args].flatten
+  classes.each do | klass |
+    klass.__qdrant__.create_collection!( force: true )
+    next if options[:use_transactional_fixtures] == false
+
+    unless klass == TaxonPhoto
+      klass.send :after_save, :qdrant_index!
+      klass.send :after_touch, :qdrant_index!
+    end
+    klass.send :after_destroy, :qdrant_delete!
+  end
+end
+
+# Turn off elastic indexing for certain models. Make sure to do this after
+# specs if you used enable_elastic_indexing
+def disable_qdrant_indexing( *args )
+  options = args.last.is_a?( Hash ) ? args.pop : {}
+  classes = [args].flatten
+  classes.each do | klass |
+    unless options[:use_transactional_fixtures] == false
+      unless klass == TaxonPhoto
+        klass.send :skip_callback, :save, :after, :qdrant_index!
+        klass.send :skip_callback, :touch, :after, :qdrant_index!
+      end
+      klass.send :skip_callback, :destroy, :after, :qdrant_delete!
+    end
+    klass.__qdrant__.create_collection!( force: true )
+  end
+end
+
 # The `test` environment doesn't commit, and we use commit hooks to update model
 # data in Elasticsearch. Tests also create a ton of data that doesn't need to be
 # indexed. Use this method in specs to temporarily turn the ES-related commit
@@ -306,6 +343,19 @@ def stub_elastic_index!( *models )
       allow_any_instance_of( model ).to receive( :elastic_index! ).and_return true
       allow( model ).to receive( :elastic_index! ).and_return true
     end
+  end
+end
+
+# The `test` environment doesn't commit, and we use commit hooks to update model
+# data in Elasticsearch. Tests also create a ton of data that doesn't need to be
+# indexed. Use this method in specs to temporarily turn the ES-related commit
+# hooks into save/touch/destroy hooks so they work in specs, and clear out test
+# index data
+def qdrant_models( *args )
+  around( :each ) do | example |
+    enable_qdrant_indexing( *args )
+    example.run
+    disable_qdrant_indexing( *args )
   end
 end
 
