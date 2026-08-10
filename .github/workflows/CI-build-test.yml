@@ -53,7 +53,7 @@ jobs:
         ports:
           - 6333:6333
           - 6334:6334
-        environment:
+        env:
           - QDRANT__SERVICE__API_KEY=1234567890
 
     strategy:
