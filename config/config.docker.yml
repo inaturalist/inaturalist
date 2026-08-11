@@ -99,6 +99,13 @@ base: &base
     jwt_secret: <%= ENV.fetch("INAT_JWT_SECRET") { "secret" } %>
     jwt_application_secret: <%= ENV.fetch("INAT_JWT_APPLICATION_SECRET") { "application_secret" } %>
 
+    oauth_apps:
+        classic_android_id: <%= ENV.fetch("INAT_OAUTH_CLASSIC_ANDROID_ID") { "INAT_OAUTH_CLASSIC_ANDROID_ID" } %>
+        classic_ios_id: <%= ENV.fetch("INAT_OAUTH_CLASSIC_IOS_ID") { "INAT_OAUTH_CLASSIC_IOS_ID" } %>
+        seek_id: <%= ENV.fetch("INAT_OAUTH_SEEK_ID") { "INAT_OAUTH_SEEK_ID" } %>
+        inat_next_ios_id: <%= ENV.fetch("INAT_OAUTH_INAT_NEXT_IOS_ID") { "INAT_OAUTH_INAT_NEXT_IOS_ID" } %>
+        inat_next_android_id: <%= ENV.fetch("INAT_OAUTH_INAT_NEXT_ANDROID_ID") { "INAT_OAUTH_INAT_NEXT_ANDROID_ID" } %>
+
     banned_emails: <%= ENV.fetch("INAT_BANNED_EMAILS") { ["INAT_BANNED_EMAILS"] } %>
 
     aggregator_exception_project_ids: <%= ENV.fetch("INAT_AGGREGATOR_EXCEPTION_PROJECT_IDS") { ["INAT_AGGREGATOR_EXCEPTION_PROJECT_IDS"] } %>

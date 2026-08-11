@@ -958,10 +958,11 @@ class SiteStatistic < ApplicationRecord
   def self.platforms_stats(at_time = Time.now)
     at_time = at_time.utc
     date_filter = { range: { created_at: { gte: at_time - 1.day, lt: at_time } } }
-    iphone_app_id = OauthApplication.inaturalist_iphone_app.try( :id ) || -1
-    android_app_id = OauthApplication.inaturalist_android_app.try( :id ) || -1
+    iphone_app_id = OauthApplication.classic_ios_app.try( :id ) || -1
+    android_app_id = OauthApplication.classic_android_app.try( :id ) || -1
     seek_app_id = OauthApplication.seek_app.try( :id ) || -1
-    inat_next_app_id = OauthApplication.inat_next_app.try( :id ) || -1
+    inat_next_ios_app_id = OauthApplication.inat_next_ios_app.try( :id ) || -1
+    inat_next_android_app_id = OauthApplication.inat_next_android_app.try( :id ) || -1
     {
       web: Observation.elastic_search(
         filters: [
@@ -995,10 +996,20 @@ class SiteStatistic < ApplicationRecord
         size: 0,
         track_total_hits: true
       ).total_entries,
+      # inat_next is the iOS series. It predates the Android build and is left
+      # unrenamed so the existing stored time series stays continuous
       inat_next: Observation.elastic_search(
         filters: [
           date_filter,
-          { term: { "oauth_application_id.keyword": inat_next_app_id } }
+          { term: { "oauth_application_id.keyword": inat_next_ios_app_id } }
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries,
+      inat_next_android: Observation.elastic_search(
+        filters: [
+          date_filter,
+          { term: { "oauth_application_id.keyword": inat_next_android_app_id } }
         ],
         size: 0,
         track_total_hits: true
@@ -1013,7 +1024,8 @@ class SiteStatistic < ApplicationRecord
                 iphone_app_id,
                 android_app_id,
                 seek_app_id,
-                inat_next_app_id
+                inat_next_ios_app_id,
+                inat_next_android_app_id
               ] } }
             }
           }
@@ -1027,10 +1039,11 @@ class SiteStatistic < ApplicationRecord
   def self.platforms_cumulative_stats( at_time = Time.now )
     at_time = at_time.utc
     date_filter = { range: { created_at: { lte: at_time } } }
-    iphone_app_id = OauthApplication.inaturalist_iphone_app.try( :id ) || -1
-    android_app_id = OauthApplication.inaturalist_android_app.try( :id ) || -1
+    iphone_app_id = OauthApplication.classic_ios_app.try( :id ) || -1
+    android_app_id = OauthApplication.classic_android_app.try( :id ) || -1
     seek_app_id = OauthApplication.seek_app.try( :id ) || -1
-    inat_next_app_id = OauthApplication.inat_next_app.try( :id ) || -1
+    inat_next_ios_app_id = OauthApplication.inat_next_ios_app.try( :id ) || -1
+    inat_next_android_app_id = OauthApplication.inat_next_android_app.try( :id ) || -1
     {
       web: Observation.elastic_search(
         filters: [
@@ -1064,10 +1077,20 @@ class SiteStatistic < ApplicationRecord
         size: 0,
         track_total_hits: true
       ).total_entries,
+      # inat_next is the iOS series. It predates the Android build and is left
+      # unrenamed so the existing stored time series stays continuous
       inat_next: Observation.elastic_search(
         filters: [
           date_filter,
-          { term: { oauth_application_id: inat_next_app_id } }
+          { term: { oauth_application_id: inat_next_ios_app_id } }
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries,
+      inat_next_android: Observation.elastic_search(
+        filters: [
+          date_filter,
+          { term: { oauth_application_id: inat_next_android_app_id } }
         ],
         size: 0,
         track_total_hits: true
@@ -1082,7 +1105,8 @@ class SiteStatistic < ApplicationRecord
                 iphone_app_id,
                 android_app_id,
                 seek_app_id,
-                inat_next_app_id
+                inat_next_ios_app_id,
+                inat_next_android_app_id
               ] } }
             }
           }

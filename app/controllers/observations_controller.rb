@@ -723,14 +723,14 @@ class ObservationsController < ApplicationController
       end
       format.json do
         if errors
-          json = if @observations.size == 1 && is_iphone_app_2?
+          json = if @observations.size == 1 && is_classic_ios_app_2?
             {:error => @observations.map{|o| o.errors.full_messages}.flatten.uniq.compact.to_sentence}
           else
             {:errors => @observations.map{|o| o.errors.full_messages}}
           end
           render :json => json, :status => :unprocessable_entity
         else
-          if @observations.size == 1 && is_iphone_app_2?
+          if @observations.size == 1 && is_classic_ios_app_2?
             render :json => @observations[0].to_json(
               :viewer => current_user,
               :methods => [:user_login, :iconic_taxon_name],
@@ -928,7 +928,7 @@ class ObservationsController < ApplicationController
         format.xml  { head :ok }
         format.js { render :json => @observations }
         format.json do
-          if @observations.size == 1 && is_iphone_app_2?
+          if @observations.size == 1 && is_classic_ios_app_2?
             render :json => @observations[0].to_json(
               viewer: current_user,
               methods: [:user_login, :iconic_taxon_name],
