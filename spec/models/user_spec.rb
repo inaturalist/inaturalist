@@ -1502,7 +1502,7 @@ describe User do
     it "should queue moving photos if needed" do
       # normally the `change_photo_bucket_if_needed` jobs aren't queued if the
       # odp_s3_bucket isn't enabled, which it isn't in specs. Force it to be enabled
-      allow( LocalPhoto ).to receive( :odp_s3_bucket_enabled ).and_return( true )
+      allow( LocalPhoto ).to receive( :odp_s3_bucket_enabled? ).and_return( true )
       # since there isn't a odp_s3_bucket in testing, photos will never think
       # they should change buckets unless we mock this to return true
       allow_any_instance_of( LocalPhoto ).to receive( :photo_bucket_should_be_changed? ).
