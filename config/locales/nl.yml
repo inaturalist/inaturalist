@@ -6636,6 +6636,8 @@ nl:
   you_didnt_select_any_photos_to_tag: U hebt geen te labelen foto's geselecteerd.
   you_dont_have_permission_to_do_that: Je hebt hiervoor geen rechten.
   you_dont_have_permission_to_edit_that_observation: "Je hebt geen rechten om deze waarneming te bewerken."
+  #Error message shown when a site admin tries to edit an announcement that is not targeted to their site
+  you_dont_have_permission_to_edit_that_announcement: Je hebt geen rechten om die mededeling te bewerken.
   you_dont_have_permission_to_edit_that_project: Je hebt geen rechten om dit project te bewerken.
   you_dont_have_permission_to_edit_that_taxon: |
     Je hebt geen rechten om dit taxon te bewerken. Neem contact op met één van de taxoncuratoren, of meld dit taxon om wijzigingen aan te vragen.
@@ -7853,10 +7855,26 @@ nl:
       user_unsuspended:
         #A line in an email telling a user their account suspension is being lifted lifted.
         message: De schorsing van jouw account op %{site_name} is opgeheven en je kunt de site weer gebruiken.
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message_2: Je account op %{site_name} is weer hersteld en je kunt opnieuw inloggen.
         #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
         reason: "Je account is om de volgende reden geschorst: %{reason}"
+        #A message included in account unsuspension emails requesting that users abide by guidelines and warning of
+        #longer future suspensions.
+        please_abide_html: 'Houd je aan de <a href="%{community_guidelines_url}">iNaturalist Community Guidelines</a> en <a href="%{terms_of_use_url}">Gebruiksvoorwaarden</a>. Toekomstige overtredingen kunnen leiden tot langere schorsingen.'
+        #A message in account reinstatement emails telling users how to contact support, with a link.
+        contact_us_html: 'Als je vragen of opmerkingen hebt, kan je <a href="%{contact_us_url}">contact met ons opnemen</a>.'
         #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
         login_prompt: '<a href="%{login_url}">Log in op je account</a> om de site te blijven gebruiken.'
+      user_suspended:
+        #A message in a suspension notification email for timed suspensions, with the reason and relative time until the suspension is lifted.
+        message_timed: "Je iNaturalist-account is om de volgende reden geschorst: %{reason}. Je schorsing wordt opgeheven in %{duration}."
+        #A message in a suspension notification email for indefinite suspensions, with the reason.
+        message_indefinite: "Je iNaturalist-account is voor onbepaalde tijd geschorst om de volgende reden: %{reason}."
+        #A paragraph in a suspension notification email telling users how to appeal and warning about sockpuppet accounts, with a link to support.
+        appeal_html: 'Als je denkt dat deze schorsing ten onrechte is gemaakt of in beroep wilt gaan, <a href="%{contact_us_url}">neem dan contact op met iNaturalist Support</a>. Houd er rekening mee dat het gebruik van andere accounts om schorsing te ontlopen ertoe leidt dat de andere accounts geschorst worden en hun openbare inhoud wordt verwijderd.'
+        #A paragraph in a suspension notification email asking users to follow community guidelines and terms of use, with links.
+        abide_html: 'Alle leden van de iNaturalist-gemeenschap worden gevraagd zich te houden aan de <a href="%{community_guidelines_url}">Richtlijnen voor de gemeenschap</a> en de <a href="%{terms_of_use_url}">Gebruiksvoorwaarden</a>.'
       users_updates_suspended:
         message: |
           Je bent al een tijdje inactief op %{site_name}, dus we hebben je abonnementen opgeschort. Als je weer nieuwtjes over de activiteiten op de website wil ontvangen moet je <a href="%{login_url}">opnieuw inloggen op je account</a>.
@@ -8533,6 +8551,14 @@ nl:
           #Label for a a taxon page tab that displays Identifications with remarks
           #that make them useful information or advice for how to identify the organism
           identification_tips: Determinatie Tips
+          #Placeholder text for a search field allowing users to search on identification
+          #bodies, or search on usernames of who added the identifications
+          search_identifications: Zoek determinaties op tekst of gebruikersnaam
+          #Empty state message saying there are no identifications to show because
+          #none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            Er zijn geen genomineerde en upvote determinaties voor dit organisme
+            op dit moment, probeer het later nog eens!
           sort:
             #sort option for displaying results with the most votes first
             highest_to_lowest_votes: "Sorteer: Van hoogste naar laagste stemmen"
@@ -8544,6 +8570,18 @@ nl:
             oldest_to_newest: "Sorteer: Oudste eerst"
             #sort option for displaying results with the longest descriptions first
             longest_to_shortest: "Sorteer: Langste eerst"
+          #label for a subtab that displays only IDs that have been upvoted
+          upvoted: Upvoted
+          #label for a subtab that displays only IDs that have been downvoted, and
+          #as a result are not visible to most users
+          downvoted_and_hidden: Downvote (verborgen)
+          #label for a subtab that displays only IDs that have not received any votes
+          no_votes: Geen stem
+          #label for a subtab that displays only IDs that have not yet been nominated
+          not_nominated: Niet genomineerd
+          #label for a link to view an identification in the context of its associated
+          #observation so users can view other remarks relevant to the conversation
+          view_full_conversation: Toon het volledige gesprek
         frequency:
           research: Onderzoekskwaliteit
           verifiable: Verifieerbaar
@@ -9494,6 +9532,8 @@ nl:
         exclude_donor_start_date: Uitsluiten donor met startdatum
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Uitsluiten donor met einddatum
+        #Column header for countries excluded by IP address
+        exclude_ip_countries: IP landen uitsluiten
         excludes_non_site: Verberg andere mededelingen in deze plaatsing zonder Site ID
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
@@ -9519,6 +9559,8 @@ nl:
         max_observations: Max waarnemingen
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Min. waarnemingen
+        #A selection dropdown to choose the global announcement that this targeted announcement variant is based on
+        parent_announcement_id: Wereldwijde Aankondiging (optioneel)
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Plaatsing
         #Preference for an announcement that is only shown to the user who created the announcement
