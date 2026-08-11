@@ -207,7 +207,7 @@ $.fn.taxonAutocomplete = function( options ) {
     }
     var apiBaseURL = "<%= CONFIG.node_api_url %>";
     if ( options.useAPIv2 ) {
-      apiBaseURL = apiBaseURL.replace( "/v1", "/v2" );
+      apiBaseURL = "<%= CONFIG.node_api_url_v2 %>";
       headers["X-HTTP-Method-Override"] = "GET";
       params.fields = TAXON_AUTOCOMPLETE_FIELDS;
     }

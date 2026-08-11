@@ -123,6 +123,7 @@ function updateBrowserStateHistory( initial = false ) {
     if ( lifelist.speciesPlaceFilter ) {
       browserState.speciesPlaceFilter = {
         id: lifelist.speciesPlaceFilter.id,
+        uuid: lifelist.speciesPlaceFilter.uuid,
         display_name: lifelist.speciesPlaceFilter.display_name
       };
       newURLParams.place_id = lifelist.speciesPlaceFilter.id;
@@ -326,7 +327,7 @@ export function updateObservationsSearch( reload = false ) {
       searchParams.without_taxon = true;
     }
     if ( lifelist.speciesPlaceFilter ) {
-      searchParams.place_id = lifelist.speciesPlaceFilter.id;
+      searchParams.place_id = lifelist.speciesPlaceFilter.uuid;
     }
     dispatch( observationsSearch.initializeSearch( {
       method: "observations",
@@ -394,7 +395,7 @@ export function updateUnobservedSpeciesSearch( reload = false ) {
       searchParams.taxon_id = lifelist.detailsTaxon.id;
     }
     if ( lifelist.speciesPlaceFilter ) {
-      searchParams.place_id = lifelist.speciesPlaceFilter.id;
+      searchParams.place_id = lifelist.speciesPlaceFilter.uuid;
     }
     dispatch( unobservedSpeciesSearch.initializeSearch( {
       method: "observations",
@@ -637,8 +638,12 @@ export function fetchUser( user, options ) {
               childTicker,
               childDescendantCount,
               childHasMilestoneChildren
-            } = descendantsRecursive( childID, ticker,
-              nextMilestoneTaxonID, ancestors.concat( [childID] ) );
+            } = descendantsRecursive(
+              childID,
+              ticker,
+              nextMilestoneTaxonID,
+              ancestors.concat( [childID] )
+            );
             ticker = childTicker;
             thisDescendantCount += childDescendantCount;
             descendantCount += childDescendantCount;
