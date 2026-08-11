@@ -158,7 +158,7 @@ end
 group :test do
   gem "factory_bot_rails", require: false
   gem "faker"
-  gem "rspec"
+  gem "rspec", "~> 3.13.2"
   gem "rspec-html-matchers"
   gem "rspec-rails"
   gem "shoulda-matchers"

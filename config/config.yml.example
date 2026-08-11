@@ -173,7 +173,6 @@ base: &base
 
     model_taxonomy: taxonomy.csv
 
-
 development:
     <<: *base
 

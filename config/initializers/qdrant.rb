@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# load our own Qdrant logic
 require "qdrant"
-require "qdrant_model"
+# load our own Qdrant logic
+require "qdrant_model/acts_as_qdrant_model"
 
 qdrant_config = {
   url: CONFIG.qdrant.url,

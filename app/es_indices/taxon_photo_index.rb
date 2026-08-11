@@ -9,7 +9,7 @@ class TaxonPhoto < ApplicationRecord
 
   scope :load_for_index, lambda {
     includes(
-      { taxon: :iconic_taxon },
+      :taxon,
       photo: [
         :flags,
         :file_extension,

@@ -47,9 +47,7 @@ class TaxonPhoto < ApplicationRecord
         taxon_id: taxon_id,
         photo_id: photo_id,
         photo_file_updated_at: photo&.file_updated_at,
-        ancestor_ids: taxon&.self_and_ancestor_ids,
-        iconic_taxon_id: taxon&.iconic_taxon_id,
-        iconic_taxon_name: taxon&.iconic_taxon&.name
+        ancestor_ids: taxon&.self_and_ancestor_ids
       }
     }
   end

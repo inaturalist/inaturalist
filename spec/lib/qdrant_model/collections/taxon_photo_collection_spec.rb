@@ -22,7 +22,7 @@ describe "TaxonPhoto Collection" do
     expect( json[:payload][:ancestor_ids] ).to eq tp.taxon.self_and_ancestor_ids
   end
 
-  it "as_indexed_json does not need to regenerate embedding if nothing has changed" do
+  it "as_qdrant_json does not need to regenerate embedding if nothing has changed" do
     allow( TaxonPhoto ).to receive( :embeddings_for_taxon_photos ) do
       { taxon_photo_id.to_s => embedding }
     end.once
@@ -34,7 +34,7 @@ describe "TaxonPhoto Collection" do
     tp.qdrant_index!
   end
 
-  it "as_indexed_json does need to regenerate embedding if the photo has been updated" do
+  it "as_qdrant_json does need to regenerate embedding if the photo has been updated" do
     allow( TaxonPhoto ).to receive( :embeddings_for_taxon_photos ) do
       { taxon_photo_id.to_s => embedding }
     end.twice
@@ -48,7 +48,7 @@ describe "TaxonPhoto Collection" do
     tp.qdrant_index!
   end
 
-  it "as_indexed_json does need to regenerate embedding if the photo has changed" do
+  it "as_qdrant_json does need to regenerate embedding if the photo has changed" do
     allow( TaxonPhoto ).to receive( :embeddings_for_taxon_photos ) do
       { taxon_photo_id.to_s => embedding }
     end.twice
@@ -62,7 +62,7 @@ describe "TaxonPhoto Collection" do
     tp.qdrant_index!
   end
 
-  it "as_indexed_json does need to regenerate embedding if the taxon ancestry has changed" do
+  it "as_qdrant_json does need to regenerate embedding if the taxon ancestry has changed" do
     allow( TaxonPhoto ).to receive( :embeddings_for_taxon_photos ) do
       { taxon_photo_id.to_s => embedding }
     end.twice

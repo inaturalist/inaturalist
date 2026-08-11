@@ -290,8 +290,8 @@ def disable_elastic_indexing( *args )
   end
 end
 
-# Turn on elastic indexing for certain models. We do this selectively b/c
-# updating ES slows down the specs.
+# Turn on Qdrant indexing for certain models. We do this selectively b/c
+# updating Qdrant slows down the specs.
 def enable_qdrant_indexing( *args )
   options = args.last.is_a?( Hash ) ? args.pop : {}
   classes = [args].flatten
@@ -307,8 +307,8 @@ def enable_qdrant_indexing( *args )
   end
 end
 
-# Turn off elastic indexing for certain models. Make sure to do this after
-# specs if you used enable_elastic_indexing
+# Turn off Qdrant indexing for certain models. Make sure to do this after
+# specs if you used enable_qdrant_indexing
 def disable_qdrant_indexing( *args )
   options = args.last.is_a?( Hash ) ? args.pop : {}
   classes = [args].flatten
@@ -347,8 +347,8 @@ def stub_elastic_index!( *models )
 end
 
 # The `test` environment doesn't commit, and we use commit hooks to update model
-# data in Elasticsearch. Tests also create a ton of data that doesn't need to be
-# indexed. Use this method in specs to temporarily turn the ES-related commit
+# data in Qdrant. Tests also create a ton of data that doesn't need to be
+# indexed. Use this method in specs to temporarily turn the Qdrant-related commit
 # hooks into save/touch/destroy hooks so they work in specs, and clear out test
 # index data
 def qdrant_models( *args )
