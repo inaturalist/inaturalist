@@ -20,6 +20,11 @@ class Comment < ApplicationRecord
 
   belongs_to_with_uuid :parent, polymorphic: true
   belongs_to :user
+  has_many :comment_photos, dependent: :destroy
+
+  # Matches the numeric photo id in an iNat photo URL, e.g.
+  # https://static.inaturalist.org/photos/42/small.jpg -> 42
+  PHOTO_URL_ID = %r{/photos/(\d+)}
 
   MAX_LENGTH = 5000
   validates_length_of :body, within: 1..MAX_LENGTH
@@ -29,6 +34,7 @@ class Comment < ApplicationRecord
   after_create :update_parent_counter_cache
   after_destroy :update_parent_counter_cache
   after_save :index_parent
+  after_save :sync_comment_photos
   after_touch :index_parent
   after_destroy :index_parent
 
@@ -91,6 +97,18 @@ class Comment < ApplicationRecord
         parent.class.where( id: parent_id ).update_all( comments_count: parent.comments.count )
       end
     end
+    true
+  end
+
+  def sync_comment_photos
+    return true if bulk_delete
+
+    photo_ids = body.to_s.scan( PHOTO_URL_ID ).flatten.map( &:to_i ).uniq
+    if photo_ids.any?
+      CommentPhoto.where( user_id: user_id, comment_id: nil, photo_id: photo_ids ).
+        update_all( comment_id: id, updated_at: Time.now )
+    end
+    comment_photos.where.not( photo_id: photo_ids ).find_each( &:destroy )
     true
   end
 

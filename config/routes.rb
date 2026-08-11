@@ -272,6 +272,7 @@ Rails.application.routes.draw do
   delete "flickr/remove_tag" => "flickr/remove_tag", as: "flickr_remove_tag"
 
   resources :observation_photos, only: [:show, :create, :update, :destroy]
+  resources :comment_photos, only: [:create]
   resources :observation_sounds, only: [:show, :create, :update, :destroy]
   resources :soundcloud_sounds, only: [:index]
   resources :sounds, only: [:show, :create, :update, :destroy, :local_sound_fields] do

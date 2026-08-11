@@ -9,6 +9,7 @@ class Photo < ApplicationRecord
   has_many :observation_photos, dependent: :destroy
   has_many :taxon_photos, dependent: :destroy
   has_many :guide_photos, dependent: :destroy, inverse_of: :photo
+  has_many :comment_photos, dependent: :destroy
   has_many :observations, through: :observation_photos
   has_many :taxa, through: :taxon_photos
 
@@ -269,6 +270,7 @@ class Photo < ApplicationRecord
     return false if observation_photos.loaded? ? !observation_photos.empty? : observation_photos.exists?
     return false if taxon_photos.loaded? ? !taxon_photos.empty? : taxon_photos.exists?
     return false if guide_photos.loaded? ? !guide_photos.empty? : guide_photos.exists?
+    return false if comment_photos.loaded? ? !comment_photos.empty? : comment_photos.exists?
 
     true
   end

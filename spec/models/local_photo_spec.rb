@@ -512,3 +512,21 @@ describe LocalPhoto, "to_tags" do
     end
   end
 end
+
+describe LocalPhoto, "file size validation" do
+  elastic_models( Observation )
+
+  it "is invalid when the file exceeds 20 MB" do
+    photo = LocalPhoto.make
+    photo.file_file_size = 21.megabytes
+    photo.valid?
+    expect( photo.errors.full_messages.join( "; " ) ).to match( /less than 20 MB/ )
+  end
+
+  it "is valid at a normal size" do
+    photo = LocalPhoto.make
+    photo.file_file_size = 2.megabytes
+    photo.valid?
+    expect( photo.errors[:file_file_size] ).to be_blank
+  end
+end

@@ -17,6 +17,25 @@ const ACCEPT = {
   "image/heif": []
 };
 
+// Records ownership of a freshly uploaded comment photo (same-origin, so it
+// never touches the node API). Rejects on a non-2xx (e.g. the upload throttle)
+// so the caller can keep the markdown out of the comment body.
+const createCommentPhoto = ( photoId: number ): Promise<void> => {
+  const csrf = document.querySelector<HTMLMetaElement>( "meta[name=csrf-token]" )?.content;
+  return fetch( "/comment_photos", {
+    method: "POST",
+    credentials: "same-origin",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      ...( csrf ? { "X-CSRF-Token": csrf } : {} )
+    },
+    body: JSON.stringify( { photo_id: photoId } )
+  } ).then( response => {
+    if ( !response.ok ) { throw new Error( "comment photo not created" ); }
+  } );
+};
+
 interface Props {
   // Called with the markdown for each uploaded photo, ready to append to the body.
   onInsert: ( markdown: string ) => void;
@@ -37,9 +56,12 @@ const CommentPhotoDropzone = ( { onInsert, children, openRef }: Props ): React.R
     setUploading( true );
     Promise.all( acceptedFiles.map( file => (
       inatjs.photos.create( { file }, { same_origin: true } )
-        .then( ( photo: { medium_url: string } ) => {
-          onInsert( `\n![](${photo.medium_url})\n` );
-        } )
+        .then( ( photo: { id: number; medium_url: string } ) => (
+          // Embed only after the join is recorded.
+          createCommentPhoto( photo.id ).then( ( ) => {
+            onInsert( `\n![](${photo.medium_url})\n` );
+          } )
+        ) )
     ) ) )
       .catch( ( ) => { setError( I18n.t( "failed_to_save_record" ) ); } )
       .then( ( ) => { setUploading( false ); } );

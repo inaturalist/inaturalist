@@ -100,6 +100,11 @@ class LocalPhoto < Photo
   validates_presence_of :user, unless: :subtype
   validates_attachment_content_type :file, content_type: Photo::MIME_PATTERNS,
     :message => "must be JPG, PNG, GIF, HEIC, or HEIF"
+  # Server-side ceiling on uploads; the web dropzone's client-side maxSize
+  # (MAX_FILE_SIZE in observations/uploader/models/util.js) is UX only and is
+  # trivially bypassed by posting straight to the API. 20 MB matches that value.
+  validates_attachment_size :file, less_than: 20.megabytes,
+    message: "must be less than 20 MB"
 
   attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation
 

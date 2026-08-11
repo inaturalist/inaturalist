@@ -13,6 +13,12 @@ const photosCreate = ( inatjs as unknown as {
   photos: { create: jest.Mock };
 } ).photos.create;
 
+const mockFetch = ( ok: boolean ): jest.Mock => {
+  const fn = jest.fn( ).mockResolvedValue( { ok, status: ok ? 201 : 429 } );
+  ( global as unknown as { fetch: jest.Mock } ).fetch = fn;
+  return fn;
+};
+
 const jpeg = ( ) => new File( ["x"], "beetle.jpg", { type: "image/jpeg" } );
 
 const fileInput = ( container: HTMLElement ) => (
@@ -41,10 +47,12 @@ describe( "CommentPhotoDropzone", ( ) => {
     expect( typeof openRef.current ).toBe( "function" );
   } );
 
-  it( "uploads a dropped file and inserts markdown pointing at its medium_url", async ( ) => {
+  it( "uploads, records the comment photo, then inserts markdown pointing at its medium_url", async ( ) => {
     photosCreate.mockResolvedValue( {
+      id: 42,
       medium_url: "https://static.inaturalist.org/photos/42/medium.jpg"
     } );
+    const fetchMock = mockFetch( true );
     const onInsert = jest.fn( );
     const { container } = render(
       <CommentPhotoDropzone onInsert={onInsert}><textarea /></CommentPhotoDropzone>
@@ -54,6 +62,12 @@ describe( "CommentPhotoDropzone", ( ) => {
     await waitFor( ( ) => expect( photosCreate ).toHaveBeenCalledTimes( 1 ) );
     expect( photosCreate.mock.calls[0][0] ).toEqual( { file: expect.any( File ) } );
     expect( photosCreate.mock.calls[0][1] ).toEqual( { same_origin: true } );
+
+    // the join is recorded same-origin against /comment_photos with the photo id
+    await waitFor( ( ) => expect( fetchMock ).toHaveBeenCalledTimes( 1 ) );
+    expect( fetchMock.mock.calls[0][0] ).toEqual( "/comment_photos" );
+    expect( JSON.parse( fetchMock.mock.calls[0][1].body ) ).toEqual( { photo_id: 42 } );
+
     await waitFor( ( ) => expect( onInsert ).toHaveBeenCalledWith(
       "\n![](https://static.inaturalist.org/photos/42/medium.jpg)\n"
     ) );
@@ -61,8 +75,25 @@ describe( "CommentPhotoDropzone", ( ) => {
     await waitFor( ( ) => expect( container.querySelector( ".fa-spinner" ) ).toBeNull( ) );
   } );
 
+  it( "does not insert when recording the comment photo is rejected (e.g. throttled)", async ( ) => {
+    photosCreate.mockResolvedValue( {
+      id: 42,
+      medium_url: "https://static.inaturalist.org/photos/42/medium.jpg"
+    } );
+    mockFetch( false );
+    const onInsert = jest.fn( );
+    const { container } = render(
+      <CommentPhotoDropzone onInsert={onInsert}><textarea /></CommentPhotoDropzone>
+    );
+    await userEvent.upload( fileInput( container ), jpeg( ) );
+
+    await waitFor( ( ) => expect( container.querySelector( ".fa-spinner" ) ).toBeNull( ) );
+    expect( onInsert ).not.toHaveBeenCalled( );
+  } );
+
   it( "does not insert when the upload fails", async ( ) => {
     photosCreate.mockRejectedValue( new Error( "boom" ) );
+    const fetchMock = mockFetch( true );
     const onInsert = jest.fn( );
     const { container } = render(
       <CommentPhotoDropzone onInsert={onInsert}><textarea /></CommentPhotoDropzone>
@@ -71,6 +102,8 @@ describe( "CommentPhotoDropzone", ( ) => {
 
     await waitFor( ( ) => expect( photosCreate ).toHaveBeenCalledTimes( 1 ) );
     await waitFor( ( ) => expect( container.querySelector( ".fa-spinner" ) ).toBeNull( ) );
+    // upload never succeeded, so we never tried to record a join or insert
+    expect( fetchMock ).not.toHaveBeenCalled( );
     expect( onInsert ).not.toHaveBeenCalled( );
   } );
 } );

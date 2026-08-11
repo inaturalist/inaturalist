@@ -174,4 +174,37 @@ describe Comment do
       expect( Comment.make!.deletable_by?( User.make! ) ).to be false
     end
   end
+
+  describe "comment photo syncing" do
+    let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
+    let( :photo ) { LocalPhoto.make!( user: user ) }
+    let( :body_with_photo ) do
+      "look at this ![](https://static.inaturalist.org/photos/#{photo.id}/small.jpg)"
+    end
+
+    it "links the commenter's dropped photo once its url appears in the body" do
+      cp = CommentPhoto.create!( user: user, photo: photo )
+      comment = Comment.make!( user: user, body: body_with_photo )
+      expect( cp.reload.comment_id ).to eq comment.id
+    end
+
+    it "does not link another user's unlinked comment photo" do
+      other = make_user_with_privilege( UserPrivilege::INTERACTION )
+      others_photo = LocalPhoto.make!( user: other )
+      cp = CommentPhoto.create!( user: other, photo: others_photo )
+      Comment.make!(
+        user: user,
+        body: "![](https://static.inaturalist.org/photos/#{others_photo.id}/small.jpg)"
+      )
+      expect( cp.reload.comment_id ).to be_nil
+    end
+
+    it "destroys the join when the photo is removed from the body on edit" do
+      cp = CommentPhoto.create!( user: user, photo: photo )
+      comment = Comment.make!( user: user, body: body_with_photo )
+      expect( cp.reload.comment_id ).to eq comment.id
+      comment.update!( body: "never mind" )
+      expect( CommentPhoto.find_by_id( cp.id ) ).to be_blank
+    end
+  end
 end

@@ -219,7 +219,8 @@ namespace :inaturalist do
       photos = Photo.joins( "left join observation_photos op on (photos.id=op.photo_id)" ).
         joins( "left join taxon_photos tp on (photos.id=tp.photo_id)" ).
         joins( "left join guide_photos gp on (photos.id=gp.photo_id)" ).
-        where( "op.id IS NULL and tp.id IS NULL and gp.id IS NULL" ).
+        joins( "left join comment_photos cp on (photos.id=cp.photo_id)" ).
+        where( "op.id IS NULL and tp.id IS NULL and gp.id IS NULL and cp.id IS NULL" ).
         where( "photos.id BETWEEN ? AND ?", index, index + batch_size ).
         where( "photos.created_at <= ?", 1.week.ago )
       photos.each do | p |
@@ -236,6 +237,15 @@ namespace :inaturalist do
       index += batch_size
       puts "#{index} :: total #{orphans_count} :: last #{last_orphan_id}"
     end
+  end
+
+  desc "Delete comment photos that were dropped into an editor but never submitted"
+  task delete_expired_comment_photos: :environment do
+    # Destroy (not delete_all) so each row's after_destroy reaps its now-orphaned
+    # photo via Photo.destroy_orphans.
+    CommentPhoto.where( comment_id: nil ).
+      where( "created_at < ?", CommentPhoto::DRAFT_TTL.ago ).
+      find_each( &:destroy )
   end
 
   desc "Delete orphaned sounds"
