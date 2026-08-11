@@ -1500,15 +1500,30 @@ describe User do
     end
 
     it "should queue moving photos if needed" do
+      # normally the `change_photo_bucket_if_needed` jobs aren't queued if the
+      # odp_s3_bucket isn't enabled, which it isn't in specs. Force it to be enabled
+      allow( LocalPhoto ).to receive( :odp_s3_bucket_enabled ).and_return( true )
+      # since there isn't a odp_s3_bucket in testing, photos will never think
+      # they should change buckets unless we mock this to return true
+      allow_any_instance_of( LocalPhoto ).to receive( :photo_bucket_should_be_changed? ).
+        and_return( true )
       u = User.make!
       p = LocalPhoto.make!( user: u )
       expect( p.license ).to eq Photo::COPYRIGHT
-      user_spy = spy( User )
-      after_delayed_job_finishes( ignore_run_at: true ) do
-        u.preferred_photo_license = Observation::CC_BY
-        u.update( make_photo_licenses_same: true )
-      end
-      expect( user_spy ).to have_been_called_with( u )
+      u.update( preferred_photo_license: Observation::CC_BY, make_photo_licenses_same: true )
+      # expect the first job to be queued that will update the photo licenses
+      expect( Delayed::Job.where(
+        queue: "throttled",
+        unique_hash: "{:\"User::update_photo_licenses\"=>#{u.id}}"
+      ) ).to exist
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
+
+      # that job will queue additional jobs, one per photo, if the photo license is no
+      # longer compatible with the bucket it is in
+      expect( Delayed::Job.where(
+        queue: "photos",
+        unique_hash: "{:\"LocalPhoto::change_photo_bucket_if_needed\"=>#{p.id}}"
+      ) ).to exist
     end
 
     it "should not update GoogleStreetViewPhotos" do
