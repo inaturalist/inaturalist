@@ -5,18 +5,12 @@
   margin-bottom: 0;
 }
 
-.container.main {
-   min-width:950px;
-   width: auto !important;
-   width:950px;
-}
-
 .dashboard-container {
   @include container-padding;
-  max-width: $xl + ( 60px * 2 );
-  margin-inline: auto;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+.dashboard_tab_row {
+  margin-bottom: 15px;
 }
 
 .dashboard-columns {
