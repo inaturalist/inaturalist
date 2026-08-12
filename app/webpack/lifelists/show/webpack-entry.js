@@ -2,10 +2,11 @@ import _ from "lodash";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
+import inatjs from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import lifelistReducer, { fetchUser, updateWithHistoryState } from "./reducers/lifelist";
 import exportModalReducer from "./reducers/export_modal";
-import { setConfig, setCurrentUser } from "../../shared/ducks/config";
+import { setConfig, setCurrentUser, enableApiV2 } from "../../shared/ducks/config";
 import inatAPIReducer from "../../shared/ducks/inat_api_duck";
 import sharedStore from "../../shared/shared_store";
 
@@ -31,6 +32,12 @@ if ( !_.isEmpty( PREFERRED_PLACE ) ) {
     preferredPlace: PREFERRED_PLACE
   } ) );
 }
+
+sharedStore.dispatch( setConfig( {
+  testingApiV2: true
+} ) );
+
+sharedStore.dispatch( enableApiV2( ) );
 
 /* global LIFELIST_USER */
 sharedStore.dispatch( fetchUser( LIFELIST_USER, {

@@ -15,7 +15,7 @@ const UnobservedSpeciesGridContainer = APIWrapper( "unobservedSpecies", Species 
 
 const DetailsView = ( {
   lifelist, setSpeciesPlaceFilter, setObservationSort,
-  setDetailsTaxon, inatAPI
+  setDetailsTaxon, inatAPI, config
 } ) => {
   let view;
   let searchOptions;
@@ -214,6 +214,7 @@ const DetailsView = ( {
             </Badge>
           ) : (
             <PlaceAutocomplete
+              config={config}
               resetOnChange={false}
               initialPlaceID={lifelist.speciesPlaceFilter}
               bootstrapClear
@@ -234,6 +235,7 @@ const DetailsView = ( {
 };
 
 DetailsView.propTypes = {
+  config: PropTypes.object,
   lifelist: PropTypes.object,
   inatAPI: PropTypes.object,
   setDetailsTaxon: PropTypes.func,

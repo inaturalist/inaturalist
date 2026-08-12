@@ -1,4 +1,5 @@
 import _ from "lodash";
+import inatjs from "inaturalistjs";
 import { fetch } from "../util";
 import CurrentUser from "../models/current_user";
 import Config from "../models/config";
@@ -62,6 +63,32 @@ export function toggleConfig( key ) {
   return {
     type: TOGGLE_CONFIG,
     key
+  };
+}
+
+export function enableApiV2( ) {
+  return dispatch => {
+    // check for an API v2 meta tag
+    const apiV2UrlElement = document.querySelector( "meta[name=\"config:inaturalist_api_url_v2\"]" );
+    let apiV2Url = apiV2UrlElement && apiV2UrlElement.getAttribute( "content" );
+    if ( !apiV2Url ) {
+      // check for an API v1 meta tag
+      const apiUrlElement = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+      apiV2Url = apiUrlElement && apiUrlElement.getAttribute( "content" ).replace( "/v1", "/v2" );
+    }
+    if ( !apiV2Url ) {
+      return;
+    }
+
+    // update config to indicate API v2 has been enabled
+    dispatch( setConfig( {
+      testingApiV2: true
+    } ) );
+    // update the inatjs config for this session
+    inatjs.setConfig( {
+      apiURL: apiV2Url,
+      writeApiURL: apiV2Url
+    } );
   };
 }
 
