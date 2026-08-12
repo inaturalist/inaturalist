@@ -53,27 +53,27 @@ describe( "TaxonPageHeader", ( ) => {
     expect( screen.getByText( "Lion" ) ).toBeInTheDocument( );
   } );
 
-  it( "renders the prefix and extra slots", ( ) => {
+  it( "renders the prefix and suffix slots", ( ) => {
     render(
       <TaxonPageHeader
         taxon={taxon}
         heading={<h1>Lion</h1>}
         afterSelect={jest.fn( )}
         prefix={<div>before</div>}
-        extra={<div>after</div>}
+        suffix={<div>after</div>}
       />
     );
     expect( screen.getByText( "before" ) ).toBeInTheDocument( );
     expect( screen.getByText( "after" ) ).toBeInTheDocument( );
   } );
 
-  it( "renders the placeChooser inside the place-chooser container", ( ) => {
+  it( "renders the place chooser inside the place-chooser container", ( ) => {
     const { container } = render(
       <TaxonPageHeader
         taxon={taxon}
         heading={<h1>Lion</h1>}
         afterSelect={jest.fn( )}
-        placeChooser={<span>chooser</span>}
+        placeChooserContainer={( ) => <span>chooser</span>}
       />
     );
     expect(

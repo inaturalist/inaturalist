@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import { Row, Col } from "react-bootstrap";
-import ObservationsGridItem from "../../../shared/components/observations_grid_item";
+import ObservationsGridItem from "../../../shared/components/observations_grid_item_legacy";
 import Carousel from "./carousel";
 import TaxonThumbnail from "./taxon_thumbnail";
 
@@ -27,7 +27,9 @@ const HiglightsCarousel = ( {
       <div>
         <h2>{ title }</h2>
         <p className="text-muted text-center">
-          <i className="fa fa-refresh fa-spin"></i> { I18n.t( "loading" ) }
+          <i className="fa fa-refresh fa-spin" />
+          {" "}
+          { I18n.t( "loading" ) }
         </p>
       </div>
     );
@@ -40,20 +42,20 @@ const HiglightsCarousel = ( {
         <Row key={`${keyBase}-${i}`} className="d-flex">
           {
             chunk.map( taxon => (
-              <Col xs={ columnWidth } key={ `${keyBase}-item-${taxon.id}` } className="d-flex">
+              <Col xs={columnWidth} key={`${keyBase}-item-${taxon.id}`} className="d-flex">
                 <TaxonThumbnail
-                  taxon={ taxon }
-                  height={ thumbnailHeight }
-                  onClick={ e => {
+                  taxon={taxon}
+                  height={thumbnailHeight}
+                  onClick={e => {
                     if ( !showNewTaxon ) return true;
                     if ( e.metaKey || e.ctrlKey ) return true;
                     e.preventDefault( );
                     showNewTaxon( taxon );
                     return false;
-                  } }
-                  captionForTaxon={ captionForTaxon }
-                  urlForTaxon={ urlForTaxon }
-                  config={ config }
+                  }}
+                  captionForTaxon={captionForTaxon}
+                  urlForTaxon={urlForTaxon}
+                  config={config}
                 />
               </Col>
             ) )
@@ -69,9 +71,9 @@ const HiglightsCarousel = ( {
             chunk.map( obs => (
               <Col xs={columnWidth} key={`${keyBase}-item-${obs.id}`}>
                 <ObservationsGridItem
-                  observation={ obs }
-                  controls={ captionForObservation ? captionForObservation( obs ) : null }
-                  user={ config.currentUser }
+                  observation={obs}
+                  controls={captionForObservation ? captionForObservation( obs ) : null}
+                  user={config.currentUser}
                 />
               </Col>
             ) )
@@ -82,11 +84,11 @@ const HiglightsCarousel = ( {
   }
   return (
     <Carousel
-      title={ title }
-      description={ description }
-      url={ url }
-      noContent={ I18n.t( "no_observations_yet" ) }
-      items={ items }
+      title={title}
+      description={description}
+      url={url}
+      noContent={I18n.t( "no_observations_yet" )}
+      items={items}
     />
   );
 };

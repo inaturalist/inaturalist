@@ -49,6 +49,37 @@ describe TaxaController do
       expect { get( :show, params: { id: taxon.id } ) }.not_to raise_error
     end
 
+    describe "responsive gating" do
+      it "is responsive for a user in the responsive-taxon-detail group" do
+        user = create( :user )
+        user.update_column( :test_groups, "responsive-taxon-detail" )
+        sign_in user
+        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
+        get :show, params: { id: taxon.id }
+        expect( assigns( :responsive ) ).to be true
+        expect( assigns( :skip_min_width ) ).to be true
+        expect( response.body ).to have_tag( "link[href*='taxa/show']" )
+        expect( response.body ).not_to have_tag( "link[href*='show_legacy']" )
+      end
+
+
+      it "is not responsive for a user in no responsive test group" do
+        sign_in create( :user )
+        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
+        get :show, params: { id: taxon.id }
+        expect( assigns( :responsive ) ).to be_falsey
+        expect( assigns( :skip_min_width ) ).to be_falsey
+        expect( response.body ).to have_tag( "link[href*='show_legacy']" )
+      end
+
+      it "is not responsive when logged out" do
+        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
+        get :show, params: { id: taxon.id }
+        expect( assigns( :responsive ) ).to be_falsey
+        expect( assigns( :skip_min_width ) ).to be_falsey
+      end
+    end
+
     describe "locale-prefixed URLs" do
       let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
 
