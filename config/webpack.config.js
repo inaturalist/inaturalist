@@ -92,6 +92,10 @@ const config = {
       import: "./users/edit/webpack-entry",
       dependOn: ["react-main", "react-dnd", "react-dropzone"]
     },
+    "users-subnav": {
+      import: "./users/subnav/webpack-entry",
+      dependOn: ["react-main"]
+    },
     "users-confirmation-banner": {
       import: "./users/confirmation_banner/webpack-entry",
       dependOn: ["react-main"]

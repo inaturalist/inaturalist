@@ -56,7 +56,7 @@ const TabDrawer = ( {
               return <li key={item.value} className={css.separator} />;
             }
             const itemIcon = item.icon
-              ? <i className={`fa ${item.icon} ${css["item-icon"]}`} />
+              ? <i className={`${item.icon} ${css["item-icon"]}`} />
               : null;
             if ( item.kind === "link" ) {
               return (
