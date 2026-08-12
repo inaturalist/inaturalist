@@ -60,6 +60,22 @@ describe UsersController, "dashboard" do
       get :dashboard
       expect( response.body ).to have_tag( "div.TestGroupBanner--compact" )
     end
+
+    it "links a user already in the group to the feedback survey" do
+      user = User.make!
+      user.update_column( :test_groups, "responsive-global" )
+      sign_in user
+      get :dashboard
+      expect( response.body ).to have_tag( "div.TestGroupBanner--compact" ) do
+        with_tag "a[href='https://inaturalist.typeform.com/to/HZsu49MO'][target='_blank']"
+      end
+    end
+
+    it "does not link to the feedback survey before joining" do
+      sign_in User.make!
+      get :dashboard
+      expect( response.body ).not_to have_tag( "a[href*='typeform']" )
+    end
   end
 
   describe "announcements" do

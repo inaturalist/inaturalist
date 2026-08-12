@@ -1,5 +1,25 @@
 @import "breakpoints";
 
+// The compact test group banner is drawn as if it hangs off the bottom edge of
+// the header, so the header can't keep its default margin. The page owns its
+// top spacing instead, since what lands at the top varies: an announcement has
+// no margin of its own, and the by-login h1 would stack its own on top of ours.
+body.responsive {
+  #header {
+    margin-bottom: 0;
+  }
+
+  .dashboard-container {
+    padding-top: 20px;
+
+    // Only when the by-login heading leads the page: behind an announcement it
+    // still needs its own margin to separate the two.
+    > h3:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
 .dashboard-container .nav-tabs.user-subnav {
   @media ( max-width: $md-max ) { display: none; }
   margin-bottom: 0;

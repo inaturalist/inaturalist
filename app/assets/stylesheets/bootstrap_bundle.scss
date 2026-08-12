@@ -336,13 +336,6 @@ body>div>.popover .label {
   @include container-padding;
 }
 
-// The compact banner is drawn as if it hangs off the bottom edge of the header
-// (no top border, only the bottom corners rounded), so the header's default
-// margin would leave a gap between the two.
-#bodywrapper:has( .TestGroupBanner--compact ) #header {
-  margin-bottom: 0;
-}
-
 .bootstrap .TestGroupBanner.alert {
   display: flex;
   align-items: center;
@@ -352,6 +345,12 @@ body>div>.popover .label {
   .TestGroupBanner-action {
     display: inline-block;
     padding-left: 5px;
+  }
+
+  // Padding rather than gap, which the compact variant zeroes out
+  .TestGroupBanner-feedback {
+    padding-left: 5px;
+    text-decoration: underline;
   }
 
   &.TestGroupBanner--compact {

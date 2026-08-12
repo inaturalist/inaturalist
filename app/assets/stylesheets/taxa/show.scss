@@ -17,6 +17,20 @@
 #app {
   min-height: 600px;
 }
+
+// The compact test group banner is drawn as if it hangs off the bottom edge of
+// the header, so the header can't keep its default margin. The page owns its
+// top spacing instead: .preheader is a flex container with no margin of its
+// own, so without this the content sits flush against the header or banner.
+body.responsive {
+  #header {
+    margin-bottom: 0;
+  }
+
+  #TaxonDetail {
+    padding-top: 20px;
+  }
+}
 #initial-loading .loading {
   display: inline-block;
   margin: 20px auto;

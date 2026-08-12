@@ -10,6 +10,9 @@
 -# Uses .TestGroupBanner, deliberately NOT the React component's
 -# .TestGroupToggle. The two used to share that class, so page stylesheets
 -# targeting one silently restyled the other.
+-# Surveys collecting feedback on a test, by group name. A group without one
+-# simply gets no feedback link.
+- feedback_urls = { "responsive-global" => "https://inaturalist.typeform.com/to/HZsu49MO" }
 - if logged_in?
   - joined = current_user.in_test_group?( group )
   - key_prefix = group.tr( "-", "_" )
@@ -20,4 +23,7 @@
   .test-group-container
     .TestGroupBanner.alert.alert-warning.text-center{ class: ( "TestGroupBanner--compact" if joined ) }
       = t( status_key )
+      -# Only worth asking for feedback once someone is actually testing.
+      - if joined && ( feedback_url = feedback_urls[group] )
+        = link_to t( :feedback ), feedback_url, class: "TestGroupBanner-feedback", target: "_blank", rel: "noopener noreferrer"
       = button_to t( joined ? :stop_testing : :yes ), path, method: :put, class: "btn #{joined ? 'btn-warning btn-xs' : 'btn-success'}", form_class: "TestGroupBanner-action"
