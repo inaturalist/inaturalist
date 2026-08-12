@@ -1,7 +1,7 @@
 - content_for(:title) do
   = t(:your_home)
 - content_for(:extracss) do
-  = stylesheet_link_tag "identifications", "lists", "lists/show_listed_taxa", "dashboard-responsive"
+  = stylesheet_link_tag "identifications", "lists", "lists/show_listed_taxa", "dashboard_responsive"
 - content_for(:extrajs) do
   :javascript
     DASHBOARD_TAB = "#{params[:tab] || 'updates'}";
