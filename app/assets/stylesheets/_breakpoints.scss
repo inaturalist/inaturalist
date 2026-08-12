@@ -19,7 +19,7 @@ $xxl-max: 1399.98px;
   max-width: $xl + ( 60px * 2 );
   margin-inline: auto;
 
-  @media ( max-width: $md-max ) {
+  @media ( max-width: $lg-max ) {
     padding-left: 30px;
     padding-right: 30px;
   }
