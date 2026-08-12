@@ -43,7 +43,7 @@ describe( "PhotoPreview gallery", ( ) => {
       />
     );
     expect( screen.getByTestId( "main-photo" ) ).toHaveTextContent( "photo-11" );
-    fireEvent.click( screen.getAllByLabelText( "view_photo" )[2] );
+    fireEvent.click( screen.getAllByLabelText( "view_full_size_photo" )[2] );
     expect( screen.getByTestId( "main-photo" ) ).toHaveTextContent( "photo-13" );
   } );
 
@@ -55,7 +55,7 @@ describe( "PhotoPreview gallery", ( ) => {
         layout="gallery"
       />
     );
-    fireEvent.click( screen.getAllByLabelText( "view_photo" )[2] );
+    fireEvent.click( screen.getAllByLabelText( "view_full_size_photo" )[2] );
     expect( screen.getByTestId( "main-photo" ) ).toHaveTextContent( "photo-13" );
 
     rerender(

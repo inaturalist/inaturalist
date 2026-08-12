@@ -158,7 +158,7 @@ const GalleryPreview = ( {
               <a
                 className="photoItem"
                 href={taxonPhoto.photo.photoUrl( )}
-                aria-label={I18n.t( "view_photo" )}
+                aria-label={I18n.t( "view_full_size_photo" )}
                 onClick={e => {
                   e.preventDefault( );
                   setCurrentPhotoIdx( idx );

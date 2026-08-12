@@ -10,7 +10,6 @@ import PhotoModalContainer from "../containers/photo_modal_container";
 import PhotoChooserModalContainer from "../containers/photo_chooser_modal_container";
 import PlaceChooserContainer from "../containers/place_chooser_container";
 import TaxonChangeAlertContainer from "../containers/taxon_change_alert_container";
-
 import AkaNamesContainer from "../containers/aka_names_container";
 import StatusRow from "./status_row";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
@@ -31,7 +30,8 @@ interface Props {
 const App = ( { taxon, showNewTaxon, config = {} }: Props ) => {
   const flagsButton = isCuratorOrAdmin( config.currentUser )
     && taxon.flag_counts
-    && ( taxon.flag_counts.unresolved ?? 0 ) > 0
+    && taxon.flag_counts.unresolved
+    && taxon.flag_counts.unresolved > 0
     ? (
       <a href={`/taxa/${taxon.id}/flags`} className="btn btn-default btn-flags">
         <i className="fa fa-flag" />
@@ -53,9 +53,9 @@ const App = ( { taxon, showNewTaxon, config = {} }: Props ) => {
       )}
         afterSelect={( result: { item: unknown } ) => showNewTaxon( result.item )}
         showNewTaxon={showNewTaxon}
-        placeChooser={<PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />}
+        placeChooserContainer={PlaceChooserContainer}
         prefix={<TaxonChangeAlertContainer />}
-        extra={<AkaNamesContainer />}
+        suffix={<AkaNamesContainer />}
       />
       <div id="hero">
         <StatusRow

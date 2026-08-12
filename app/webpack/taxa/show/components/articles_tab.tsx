@@ -3,8 +3,6 @@ import _ from "lodash";
 import { isCuratorOrAdmin } from "../../shared/util";
 import type { Taxon, CurrentUser } from "../../../shared/types";
 
-type TaxonWithVision = Taxon & { vision?: boolean };
-
 interface TaxonLink {
   taxon_link: {
     id: number;
@@ -14,7 +12,7 @@ interface TaxonLink {
 }
 
 interface Props {
-  taxon: TaxonWithVision;
+  taxon: Taxon;
   description?: string;
   descriptionSource?: string;
   descriptionSourceUrl?: string;

@@ -15,7 +15,9 @@ import UserText from "../../../shared/components/user_text";
 import UsersPopover from "../../../observations/show/components/users_popover";
 import UserLink from "../../../shared/components/user_link";
 import type {
-  Taxon, CurrentUser, Config, User
+  Taxon, CurrentUser, Config, Vote, TermValue, ExemplarIdentification,
+  ControlledAttribute, ControlledValue, Identification,
+  IdentificationsQuery, SortOption, Bounds
 } from "../../../shared/types";
 
 // Use custom relative times for moment
@@ -28,81 +30,20 @@ const relativeTime = {
 moment.locale( I18n.locale );
 moment.updateLocale( moment.locale( ), { relativeTime } );
 
-interface SortOption {
-  key: string;
-  label: string;
-  order_by: string;
-  order: string;
-}
-
-interface IdentificationsQuery {
-  downvoted?: string | null;
-  upvoted?: string | null;
-  nominated?: string | null;
-  q?: string | null;
-  term_value_id?: number | null;
-  order_by?: string;
-  order?: string;
-  sortKey?: string;
-  page?: number | null;
-}
-
-interface IdentificationVote {
-  vote_flag: boolean;
-  user?: { id: number };
-}
-
-interface AnnotationValue {
-  id: number;
-  label: string;
-}
-
-interface IdentificationObservation {
-  id: number;
-  photos: { photoUrl: ( size?: string ) => string }[];
-  annotations: {
-    uuid: string;
-    controlled_attribute: AnnotationValue;
-    controlled_value: AnnotationValue;
-  }[];
-  discussion_count: number;
-}
-
-interface Identification {
-  uuid: string;
-  id: number;
-  user: User;
-  observation: IdentificationObservation;
-  body: string;
-  created_at: string;
-}
-
-interface IdentificationResult {
-  id: number;
+// The search endpoint always embeds the identification it nominated.
+type IdentificationResult = ExemplarIdentification & {
   identification: Identification;
-  votes: IdentificationVote[];
-  nominated_by_user?: User;
-  nominated_at?: string;
-}
+};
 
 interface IdentificationsResponse {
   results?: IdentificationResult[];
   total_results?: number;
   page?: number;
   per_page?: number;
+  // Injected by the container while the fetch is in flight, not part of the payload.
   loading?: boolean;
   category_counts?: Record<string, number>;
-  category_controlled_terms?: {
-    controlled_attribute: AnnotationValue;
-    controlled_value: AnnotationValue;
-  }[];
-}
-
-interface Bounds {
-  swlng?: number;
-  swlat?: number;
-  nelng?: number;
-  nelat?: number;
+  category_controlled_terms?: TermValue[];
 }
 
 interface Props {
@@ -362,8 +303,8 @@ class IdentificationsTab extends Component<Props, State> {
         </a>
       </time>
     );
-    const votesFor: IdentificationVote[] = [];
-    const votesAgainst: IdentificationVote[] = [];
+    const votesFor: Vote[] = [];
+    const votesAgainst: Vote[] = [];
     let userVotedFor = false;
     let userVotedAgainst = false;
     _.each( result.votes, v => {
@@ -795,7 +736,7 @@ class IdentificationsTab extends Component<Props, State> {
       setIdentificationsQuery
     } = this.props;
 
-    const allAttributeValues: { term: AnnotationValue; value: AnnotationValue }[] = [];
+    const allAttributeValues: { term: ControlledAttribute; value: ControlledValue }[] = [];
     if ( ( response?.results?.length ?? 0 ) > 0 ) {
       _.each( response?.category_controlled_terms, annotation => {
         allAttributeValues.push( {

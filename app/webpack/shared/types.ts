@@ -33,6 +33,7 @@ export interface Taxon {
   complete_species_count?: number;
   flag_counts?: { unresolved?: number; resolved?: number };
   photos_locked?: boolean;
+  vision?: boolean;
   atlas_id?: number;
   // Page-specific fields (conservationStatuses, listed_taxa, listed_taxa_count,
   // conservationStatus, establishment_means, ancestors) are not on the shared type;
@@ -102,4 +103,66 @@ export interface ControlledValue {
 export interface TermValue {
   controlled_attribute: ControlledAttribute;
   controlled_value: ControlledValue;
+}
+
+export interface Vote {
+  vote_flag?: boolean;
+  user?: { id?: number };
+}
+
+// The exemplar_identifications API object. The embedded `identification` is only
+// present on the search endpoint's results, not when it hangs off an activity item.
+export interface ExemplarIdentification {
+  id: number;
+  votes?: Vote[];
+  nominated_by_user?: User;
+  nominated_at?: string;
+}
+
+// Observation as embedded in an identification payload. inatjs wraps the photos as
+// model instances; the observation itself is not the full Observation model, so the
+// prototype methods on that type are deliberately absent here.
+export interface IdentificationObservation {
+  id: number;
+  photos: Photo[];
+  annotations: ( TermValue & { uuid: string } )[];
+  discussion_count: number;
+}
+
+export interface Identification {
+  uuid: string;
+  id: number;
+  user: User;
+  observation: IdentificationObservation;
+  body: string;
+  created_at: string;
+}
+
+// Query state for a paged identifications search.
+export interface IdentificationsQuery {
+  downvoted?: string | null;
+  upvoted?: string | null;
+  nominated?: string | null;
+  q?: string | null;
+  term_value_id?: number | null;
+  order_by?: string;
+  order?: string;
+  sortKey?: string;
+  page?: number | null;
+}
+
+// An option in a sort dropdown: `key` identifies it in state, `label` is display text.
+export interface SortOption {
+  key: string;
+  label: string;
+  order_by: string;
+  order: string;
+}
+
+// Geographic bounding box, as used by map viewports and map-bounded queries.
+export interface Bounds {
+  swlng?: number;
+  swlat?: number;
+  nelng?: number;
+  nelat?: number;
 }

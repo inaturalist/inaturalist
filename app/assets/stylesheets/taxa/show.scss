@@ -1062,6 +1062,8 @@ $introducedColor: #E4007C;
     }
     select[name="sort"] {
       min-width: 195px;
+      width: auto;
+      max-width: 100%;
       @media ( max-width: $md-max ) {
         min-width: 0;
         width: 100%;
