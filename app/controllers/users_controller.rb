@@ -557,13 +557,14 @@ class UsersController < ApplicationController
       @ungrafted_taxa = Taxon.where( "ancestry IS NULL" ).active.limit( 50 ).
         sort{ |t| t.id }[0...5]
     end
+    @test_group_toggle = "responsive-global"
     respond_to do |format|
       format.html do
         render layout: "bootstrap"
       end
     end
   end
-  
+
   def updates_count
     count = current_user.recent_notifications(unviewed: true,
       filters: [ { terms: { notification: [ "activity", "mention" ] } } ], per_page: 1).total_entries

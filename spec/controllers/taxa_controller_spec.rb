@@ -80,6 +80,35 @@ describe TaxaController do
       end
     end
 
+    describe "responsive-global test group toggle" do
+      it "prompts a signed-in user who is not in the group to join" do
+        sign_in create( :user )
+        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
+        get :show, params: { id: taxon.id }
+        expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
+        expect( response.body ).to have_tag( "div.TestGroupBanner" ) do
+          with_tag "form[action*='join_test'][action*='responsive-global']"
+        end
+      end
+
+      it "offers a signed-in user already in the group a way to leave" do
+        user = create( :user )
+        user.update_column( :test_groups, "responsive-global" )
+        sign_in user
+        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
+        get :show, params: { id: taxon.id }
+        expect( response.body ).to have_tag( "div.TestGroupBanner--compact" ) do
+          with_tag "form[action*='leave_test'][action*='responsive-global']"
+        end
+      end
+
+      it "does not render the toggle for anonymous users" do
+        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
+        get :show, params: { id: taxon.id }
+        expect( response.body ).not_to have_tag( "div.TestGroupBanner" )
+      end
+    end
+
     describe "locale-prefixed URLs" do
       let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
 

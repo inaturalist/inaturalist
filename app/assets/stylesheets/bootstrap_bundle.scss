@@ -347,6 +347,11 @@ body>div>.popover .label {
     padding-left: 5px;
   }
 
+  .TestGroupBanner-feedback {
+    padding-left: 5px;
+    text-decoration: underline;
+  }
+
   &.TestGroupBanner--compact {
     gap: 0;
     margin-top: 0;

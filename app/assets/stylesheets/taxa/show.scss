@@ -17,6 +17,16 @@
 #app {
   min-height: 600px;
 }
+
+body.responsive {
+  #header {
+    margin-bottom: 0;
+  }
+
+  #TaxonDetail {
+    padding-top: 20px;
+  }
+}
 #initial-loading .loading {
   display: inline-block;
   margin: 20px auto;

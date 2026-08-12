@@ -1,5 +1,21 @@
 @import "breakpoints";
 
+body.responsive {
+  #header {
+    margin-bottom: 0;
+  }
+
+  .dashboard-container {
+    padding-top: 20px;
+
+    // Only when the by-login heading leads the page: behind an announcement it
+    // still needs its own margin to separate the two.
+    > h3:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
 .dashboard-container .nav-tabs.user-subnav {
   @media ( max-width: $md-max ) { display: none; }
   margin-bottom: 0;
