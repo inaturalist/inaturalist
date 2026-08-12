@@ -2758,6 +2758,14 @@ en:
   inappropriate: Inappropriate
   # Name of the newer version of iNaturalist's mobile app, called iNatNext
   inat_next: iNatNext
+  # Chart series and legend label on the stats page
+  inat_classic_android_temp: Android
+  # Chart series and legend label on the stats page
+  inat_classic_ios: Classic iOS
+  # Chart series and legend label on the stats page
+  inat_next_android_temp: iNatNext Android
+  # Chart series and legend label on the stats page
+  inat_next_ios: iOS
   inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network Affiliation
   # Label for messages you've received
@@ -6753,6 +6761,8 @@ en:
   view_post: View Post
   view_projects_from_place: "View projects from %{place}"
   view_sample: View Sample
+  # Label for a link that opens the external source of a conservation status
+  view_source: View Source
   view_stats: View Stats
   # Text for a link that takes the user to the relevant taxon details page
   view_taxon: View Taxon
@@ -6867,6 +6877,10 @@ en:
     omitted from the original, but no content has been changed or extended.
   # Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
   wikipedia_summary_throttled: The Wikipedia summary could not be fetched right now. Please try again in 30 minutes.
+  # Specifies that missing articles will display this message, with a link to the wikipedia page. Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled_html: | 
+    The Wikipedia summary could not be fetched right now, or it does not exist.
+    Please try again in %{minutes} minutes or check if the article exists on <a href="%{url}">Wikipedia</a>.
   with: with
   # Filter for observations not in a particular taxon
   without_taxon: Not in taxon
@@ -9217,7 +9231,16 @@ en:
         avg_ttcid: Avg TTCID
         avg_ttid: Avg TTID
         identifiers_desc: Added an ID to someone else's obs on this day
-        # label for chart legend, linking to more information on iNatNext
+        # Chart series and legend label on the stats page
+        inat_classic_android_desc_temp_html: Created via <a href="%{url}">iNaturalist (Android)</a>
+        # Chart series and legend label on the stats page
+        inat_classic_ios_desc_html: Created via <a href="%{url}">iNaturalist Classic (iOS)</a>
+        # Chart series and legend label on the stats page
+        inat_next_android_desc_temp_html: Created via <a href="%{url}">iNatNext (Android)</a> 
+        # Chart series and legend label on the stats page
+        inat_next_ios_desc_html: Created via <a href="%{url}">iNaturalist (iOS)</a>
+        # Chart series and legend label on the stats page
+        inat_next_android_desc_html: Created via the <a href="%{url}">iNatNext Android app</a>        
         inat_next_desc_html: Created via <a href="%{url}">iNatNext</a>
         iphone_desc_html: Created via the <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTCID

@@ -914,6 +914,9 @@ nl:
   card: Kaart
   casual: onvolledig
   casual_: Onvolledig
+  #Label for the Casual quality grade, but indicating it only includes observations that are marked
+  #casual because they have a quality assessment vote that they are non-wild
+  casual_non_wild_only_: Onvolledig (alleen niet-wild)
   casual_tooltip_html: '"Onvolledige" waarnemingen missen media, een locatie of een datum, of voldoen om andere redenen niet aan de eisen van de kwaliteitsbeoordelingen "Onderzoekskwaliteit" of "ID Nodig"- . <a href="https://www.inaturalist.org/pages/help#quality"> Meer informatie over kwaliteitsbeoordelingen</a>'
   casual_tooltip_html2: '"Onvolledige" waarnemingen missen media, een locatie of een datum, of voldoen om andere redenen niet aan de eisen van de kwaliteitsbeoordelingen "Onderzoekskwaliteit" of "ID Nodig". <a href="https://help.inaturalist.org/nl/support/solutions/articles/151000169936"> Meer informatie over kwaliteitsbeoordelingen</a>'
   categories: Categorieën
@@ -6303,6 +6306,8 @@ nl:
   view_projects_from_place: "Projecten weergeven van %{place}"
   view_sample: Voorbeeld weergeven
   view_stats: Statistieken bekijken
+  #Text for a link that takes the user to the relevant taxon details page
+  view_taxon: Toon Taxon
   view_taxon_change: Taxonwijziging weergeven
   view_taxon_changes: Taxonwijzigingen weergeven
   view_taxon_framework_relationship: Bekijk de taxonkader-relatie
@@ -6408,6 +6413,12 @@ nl:
   wikipedia_attribution_cc_by_sa_3_html: |
     Dit artikel maakt gebruik van materiaal uit het Wikipedia-artikel <a href="%{url}">"%{title}"</a>, uitgebracht onder de <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Naamsvermelding-GelijkDelen License 3.0</a>. Er is misschien inhoud weggelaten uit het origineel maar er is geen inhoud gewijzigd of toegevoegd.
+  #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: De samenvatting van Wikipedia kon niet worden opgehaald. Probeer het over 30 minuten opnieuw.
+  #Specifies that missing articles will display this message, with a link to the wikipedia page. Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled_html: |
+    De Wikipedia-samenvatting kon nu niet worden opgehaald of deze bestaat niet.
+    Probeer het opnieuw in %{minutes} minuten of controleer of het artikel bestaat op <a href="%{url}">Wikipedia</a>.
   with: met
   #Filter for observations not in a particular taxon
   without_taxon: Niet in taxon

@@ -129,11 +129,14 @@ module Users
     private
 
     def oauth_application_from_user_agent
-      case request.user_agent
-      when %r{^iNaturalist/\d+.*Build.*Android} then OauthApplication.inaturalist_android_app
-      when %r{^iNaturalist/\d+.*CFNetwork.*Darwin} then OauthApplication.inaturalist_iphone_app
-      when %r{^Seek/\d+.*Handset} then OauthApplication.seek_app
-      end
+      user_agent = request.user_agent
+      return OauthApplication.inat_next_android_app if is_inatrn_android_app_user_agent?( user_agent )
+      return OauthApplication.inat_next_ios_app if is_inatrn_ios_app_user_agent?( user_agent )
+      return OauthApplication.classic_android_app if is_classic_android_app_user_agent?( user_agent )
+      return OauthApplication.classic_ios_app if is_classic_ios_app_user_agent?( user_agent )
+      return OauthApplication.seek_app if is_seek_app_user_agent?( user_agent )
+
+      nil
     end
   end
 end

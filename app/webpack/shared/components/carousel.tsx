@@ -3,6 +3,8 @@ import React, {
 } from "react";
 import css from "./carousel.module.css";
 
+const ITEM_GAP_SIZE = 5; // px
+
 export interface CarouselProps {
   items: React.ReactElement[];
   finalItem?: React.ReactElement;
@@ -11,6 +13,9 @@ export interface CarouselProps {
   description?: string | React.ReactNode;
   noContent?: string;
   className?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
+  linkClassName?: string;
 }
 
 const Carousel = ( {
@@ -20,19 +25,21 @@ const Carousel = ( {
   url,
   description,
   noContent,
-  className = ""
+  className = "",
+  titleClassName = "",
+  descriptionClassName = "",
+  linkClassName = ""
 }: CarouselProps ) => {
   const [activeIndex, setActiveIndex] = useState( 0 );
   const [trackWidth, setTrackWidth] = useState( 0 );
   const [itemWidth, setItemWidth] = useState( 0 );
   const trackRef = useRef<HTMLDivElement>( null );
+  const allItems = finalItem ? [...items, finalItem] : items;
 
   const measureItemWidth = useCallback( () => {
     if ( !trackRef.current ) return;
-    const child = Array.from( trackRef.current.children ).find( el => {
-      const h = el as HTMLElement;
-      return !h.style.width && h.getBoundingClientRect().width > 0;
-    } ) as HTMLElement | undefined;
+    const children = Array.from( trackRef.current.children ) as HTMLElement[];
+    const child = children.find( el => !el.style.width && el.getBoundingClientRect().width > 0 );
     if ( child ) {
       const w = child.getBoundingClientRect().width;
       setItemWidth( prev => ( prev !== w ? w : prev ) );
@@ -69,19 +76,16 @@ const Carousel = ( {
 
   useEffect( () => {
     const track = trackRef.current;
+    const stride = itemWidth ? itemWidth + ITEM_GAP_SIZE : 0;
     let raf: number;
     const handleScroll = () => {
       cancelAnimationFrame( raf );
       raf = requestAnimationFrame( () => {
-        if ( !track ) return;
-        const trackLeft = track.getBoundingClientRect().left;
-        let closest = 0;
-        let minDist = Infinity;
-        Array.from( track.children ).forEach( ( child, i ) => {
-          const dist = Math.abs( child.getBoundingClientRect().left - trackLeft );
-          if ( dist < minDist ) { minDist = dist; closest = i; }
-        } );
-        setActiveIndex( closest );
+        if ( !track || !stride ) return;
+        // items are uniform width + gap, so the item nearest the left edge is
+        // just scrollLeft / stride — one cheap read instead of measuring each child.
+        const idx = Math.round( track.scrollLeft / stride );
+        setActiveIndex( Math.min( Math.max( idx, 0 ), allItems.length - 1 ) );
       } );
     };
     if ( track ) track.addEventListener( "scroll", handleScroll, { passive: true } );
@@ -89,16 +93,16 @@ const Carousel = ( {
       if ( track ) track.removeEventListener( "scroll", handleScroll );
       cancelAnimationFrame( raf );
     };
-  }, [] );
+  }, [itemWidth, allItems.length] );
 
   // Until the carousel has been measured, render only a couple items so off-screen
   // elements don't mount and fire network requests on first paint. After ResizeObserver
   // measures the track, visibleCount switches to the real value and placeholders get sized.
   const INITIAL_VISIBLE = 2;
   const visibleCount = trackWidth && itemWidth
-    ? Math.ceil( trackWidth / itemWidth )
+    ? Math.ceil( trackWidth / ( itemWidth + ITEM_GAP_SIZE ) )
     : INITIAL_VISIBLE;
-  const allItems = finalItem ? [...items, finalItem] : items;
+  const allItemsVisible = allItems.length < visibleCount;
   const renderedItems = allItems.map( ( item, index ) => {
     const distFromActive = Math.abs( index - activeIndex );
     return (
@@ -115,7 +119,7 @@ const Carousel = ( {
   } );
 
   const link = url && (
-    <a href={url} className={css.readmore}>
+    <a href={url} className={[css.readmore, linkClassName].filter( Boolean ).join( " " )}>
       { I18n.t( "view_all_caps" ) }
     </a>
   );
@@ -123,17 +127,21 @@ const Carousel = ( {
   return (
     <div className={`${css.carousel}${className ? ` ${className}` : ""}`}>
       { title && (
-        <div className={css.title}>
+        <div className={[css.title, titleClassName].filter( Boolean ).join( " " )}>
           { title }
           { link }
         </div>
       ) }
-      { description && <p>{ description }</p> }
+      { description && (
+        <p className={[css.description, descriptionClassName].filter( Boolean ).join( " " )}>
+          { description }
+        </p>
+      ) }
       { allItems.length === 0 && (
         <p className="text-muted text-center">{ noContent }</p>
       ) }
       <div className={css.body}>
-        { allItems.length > 0 && (
+        { allItems.length > 0 && !allItemsVisible && (
           <button
             type="button"
             className={`btn ${css.navbtn}`}
@@ -144,10 +152,10 @@ const Carousel = ( {
             ❮
           </button>
         ) }
-        <div className={css.track} ref={trackRef}>
+        <div className={allItemsVisible ? css.statictrack : css.track} ref={trackRef}>
           { renderedItems }
         </div>
-        { allItems.length > 0 && (
+        { allItems.length > 0 && !allItemsVisible && (
           <button
             type="button"
             className={`btn ${css.navbtn}`}

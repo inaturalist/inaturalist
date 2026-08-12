@@ -753,7 +753,7 @@ class ApplicationController < ActionController::Base
   end
 
   def remove_header_and_footer_for_apps
-    return true unless is_android_app? || is_iphone_app? || is_inatrn_app?
+    return true unless is_classic_android_app? || is_classic_ios_app? || is_inatrn_app?
 
     @headless = true
     @footless = true
@@ -966,6 +966,10 @@ class ApplicationController < ActionController::Base
   def set_testing_responsive
     if current_user&.in_test_group?( "responsive-header" )
       @responsive = true
+    end
+    if current_user&.in_test_group?( "responsive-global" )
+      @responsive = true
+      request.variant = :responsive
     end
   end
 

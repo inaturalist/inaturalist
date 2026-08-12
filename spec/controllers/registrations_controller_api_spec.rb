@@ -153,6 +153,7 @@ describe Users::RegistrationsController, "create" do
 
   it "should set the oauth_application_id based on the Seek User-Agent" do
     a = OauthApplication.make!( name: "Seek" )
+    allow( OauthApplication ).to receive( :seek_app ).and_return( a )
     request.env["HTTP_USER_AGENT"] = "Seek/2.12.9 Handset (Build 199) Android/8.1.0"
     u = register_user_with_params
     expect( u.oauth_application_id ).to eq a.id
@@ -160,16 +161,42 @@ describe Users::RegistrationsController, "create" do
 
   it "should set the oauth_application_id based on the iPhone User-Agent" do
     a = OauthApplication.make!( name: "iNaturalist iPhone App" )
+    allow( OauthApplication ).to receive( :classic_ios_app ).and_return( a )
     request.env["HTTP_USER_AGENT"] = "iNaturalist/636 CFNetwork/1220.1 Darwin/20.3.0"
     u = register_user_with_params
     expect( u.oauth_application_id ).to eq a.id
   end
 
-  it "should set the oauth_application_id based on the Seek User-Agent" do
+  it "should set the oauth_application_id based on the Android User-Agent" do
     a = OauthApplication.make!( name: "iNaturalist Android App" )
+    allow( OauthApplication ).to receive( :classic_android_app ).and_return( a )
     request.env["HTTP_USER_AGENT"] =
       "iNaturalist/1.23.4 (Build 493; Android 4.14.190-20973144-abA715WVLU2CUB5 A715WVLU2CUB5; SDK 30; " \
         "a71 SM-A715W a71cs; OS Version 11)"
+    u = register_user_with_params
+    expect( u.oauth_application_id ).to eq a.id
+  end
+
+  it "should set the oauth_application_id based on the non-CFNetwork iPhone User-Agent" do
+    a = OauthApplication.make!( name: "iNaturalist iPhone App" )
+    allow( OauthApplication ).to receive( :classic_ios_app ).and_return( a )
+    request.env["HTTP_USER_AGENT"] = "iNaturalist/3.3.5 (iPhone; iOS 18.1.1; Scale/3.00)"
+    u = register_user_with_params
+    expect( u.oauth_application_id ).to eq a.id
+  end
+
+  it "should set the oauth_application_id based on the iNat Next iOS User-Agent" do
+    a = OauthApplication.make!( name: "iNaturalist (iNat Next)" )
+    allow( OauthApplication ).to receive( :inat_next_ios_app ).and_return( a )
+    request.env["HTTP_USER_AGENT"] = "iNaturalistRN/1.0.24 (Build 218; iOS 26.5.2; iPhone18,3; Handset; Apple)"
+    u = register_user_with_params
+    expect( u.oauth_application_id ).to eq a.id
+  end
+
+  it "should set the oauth_application_id based on the iNat Next Android User-Agent" do
+    a = OauthApplication.make!( name: "iNaturalist (iNat Next) Android" )
+    allow( OauthApplication ).to receive( :inat_next_android_app ).and_return( a )
+    request.env["HTTP_USER_AGENT"] = "iNaturalistRN/1.0.24 (Build 218; Android 16; SM-S901U1; Handset; Samsung)"
     u = register_user_with_params
     expect( u.oauth_application_id ).to eq a.id
   end

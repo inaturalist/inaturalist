@@ -4,6 +4,10 @@ import {
   searchWrapper
 } from "../../../shared/ducks/inat_api_duck";
 import { updateSession } from "../../../shared/util";
+import {
+  OBSERVATION_FIELDS,
+  SPECIES_COUNTS_FIELDS
+} from "../../../shared/api_fields";
 
 const SET_ATTRIBUTES = "lifelists-show/SET_ATTRIBUTES";
 
@@ -43,7 +47,6 @@ const TREE_MODES = [
   "simplified",
   "full_taxonomy"
 ];
-
 
 const DEFAULT_STATE = {
   loading: true,
@@ -120,6 +123,7 @@ function updateBrowserStateHistory( initial = false ) {
     if ( lifelist.speciesPlaceFilter ) {
       browserState.speciesPlaceFilter = {
         id: lifelist.speciesPlaceFilter.id,
+        uuid: lifelist.speciesPlaceFilter.uuid,
         display_name: lifelist.speciesPlaceFilter.display_name
       };
       newURLParams.place_id = lifelist.speciesPlaceFilter.id;
@@ -152,7 +156,8 @@ export function fetchAllCommonNames( callback ) {
     }
     inatjs.taxa.lifelist_metadata( {
       observed_by_user_id: lifelist.user.login,
-      locale: I18n.locale
+      locale: I18n.locale,
+      fields: "all"
     } ).then( response => {
       const preferredCommonName = { };
       const preferredCommonNames = { };
@@ -306,7 +311,8 @@ export function updateObservationsSearch( reload = false ) {
       user_id: lifelist.user.id,
       order_by: "observed_on",
       order: "desc",
-      locale: I18n.locale
+      locale: I18n.locale,
+      fields: OBSERVATION_FIELDS
     };
     if ( lifelist.observationSort === "dateAsc" ) {
       searchParams.order = "asc";
@@ -321,7 +327,7 @@ export function updateObservationsSearch( reload = false ) {
       searchParams.without_taxon = true;
     }
     if ( lifelist.speciesPlaceFilter ) {
-      searchParams.place_id = lifelist.speciesPlaceFilter.id;
+      searchParams.place_id = lifelist.speciesPlaceFilter.uuid;
     }
     dispatch( observationsSearch.initializeSearch( {
       method: "observations",
@@ -347,7 +353,7 @@ export function updateSpeciesPlaceSearch( reload = false ) {
         force: true,
         searchParams: {
           user_id: lifelist.user.id,
-          place_id: lifelist.speciesPlaceFilter.id,
+          place_id: lifelist.speciesPlaceFilter.uuid,
           locale: I18n.locale
         },
         resultsModify: results => {
@@ -379,19 +385,25 @@ export function updateSpeciesPlaceSearch( reload = false ) {
 export function updateUnobservedSpeciesSearch( reload = false ) {
   return ( dispatch, getState ) => {
     const { lifelist } = getState( );
+    const searchParams = {
+      unobserved_by_user_id: lifelist.user.id,
+      quality_grade: "research",
+      locale: I18n.locale,
+      fields: SPECIES_COUNTS_FIELDS
+    };
+    if ( lifelist.detailsTaxon ) {
+      searchParams.taxon_id = lifelist.detailsTaxon.id;
+    }
+    if ( lifelist.speciesPlaceFilter ) {
+      searchParams.place_id = lifelist.speciesPlaceFilter.uuid;
+    }
     dispatch( unobservedSpeciesSearch.initializeSearch( {
       method: "observations",
       action: "speciesCounts",
       perPage: 50,
       force: true,
       maxResults: 500,
-      searchParams: {
-        unobserved_by_user_id: lifelist.user.id,
-        taxon_id: lifelist.detailsTaxon ? lifelist.detailsTaxon.id : null,
-        place_id: lifelist.speciesPlaceFilter ? lifelist.speciesPlaceFilter.id : null,
-        quality_grade: "research",
-        locale: I18n.locale
-      }
+      searchParams
     } ) );
     if ( reload ) {
       dispatch( unobservedSpeciesSearch.fetchFirstPage( ) );
@@ -575,7 +587,10 @@ export function fetchUser( user, options ) {
   return ( dispatch, getState ) => {
     const { config } = getState( );
     const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
-    let searchParams = { user_id: user.id };
+    let searchParams = {
+      user_id: user.id,
+      fields: "all"
+    };
     let featuredTaxonID;
     if ( urlParams.filter ) {
       delete searchParams.user_id;
@@ -623,8 +638,12 @@ export function fetchUser( user, options ) {
               childTicker,
               childDescendantCount,
               childHasMilestoneChildren
-            } = descendantsRecursive( childID, ticker,
-              nextMilestoneTaxonID, ancestors.concat( [childID] ) );
+            } = descendantsRecursive(
+              childID,
+              ticker,
+              nextMilestoneTaxonID,
+              ancestors.concat( [childID] )
+            );
             ticker = childTicker;
             thisDescendantCount += childDescendantCount;
             descendantCount += childDescendantCount;

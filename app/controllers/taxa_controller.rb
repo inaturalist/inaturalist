@@ -230,11 +230,12 @@ class TaxaController < ApplicationController
         else
           session[:preferred_taxon_page_ancestors_shown]
         end
-        if current_user&.in_test_group?( "responsive-header" ) &&
-            current_user.in_test_group?( "responsive-taxon-detail" )
+        @taxon_detail_responsive = current_user&.in_test_group?( "responsive-taxon-detail" ) ||
+          current_user&.in_test_group?( "responsive-global" )
+        if @taxon_detail_responsive
+          @responsive = true
           @skip_min_width = true
         end
-
         # Build the list of all locale URLs available for this taxon (all locales with a valid
         # common name). Used by the view to render hreflang alternate tags on every page variant.
         # Both the default /taxa/... page and locale-prefixed pages need the full sibling list.
@@ -1188,6 +1189,9 @@ class TaxaController < ApplicationController
     @wikipedia_throttled = @taxon.shows_wikipedia? &&
       ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) &&
       wikipedia_recently_throttled?
+    if @taxon.shows_wikipedia?
+      @wikipedia_url = TaxonDescribers::Wikipedia.new( locale: I18n.locale ).default_page_url( @taxon )
+    end
     @description&.force_encoding( "UTF-8" )
     respond_to do | format |
       format.html { render partial: "description" }

@@ -70,12 +70,10 @@ class ObservationsHighlight extends Component {
     );
     return (
       <div className="ObservationsHighlight">
-        <Col xs={12}>
-          <h3>
-            { title }
-            { viewAll }
-          </h3>
-        </Col>
+        <h3>
+          { title }
+          { viewAll }
+        </h3>
         <div className={`list ${empty ? "empty" : ""}`}>
           { content }
         </div>

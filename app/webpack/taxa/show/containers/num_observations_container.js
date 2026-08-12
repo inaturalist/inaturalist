@@ -11,7 +11,8 @@ function mapStateToProps( state ) {
     label: I18n.t( "total_observations_caps" ),
     name: 0,
     linkText: I18n.t( "view_all" ),
-    noContent: true
+    noContent: true,
+    config: state.config
   };
   if ( state.config.currentUser && state.config.currentUser.login ) {
     props.extraLinkText = I18n.t( "view_yours" );

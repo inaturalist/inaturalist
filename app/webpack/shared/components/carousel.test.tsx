@@ -26,6 +26,13 @@ describe( "Carousel", ( ) => {
     expect( screen.queryByTitle( "previous_taxon_short" ) ).not.toBeInTheDocument( );
   } );
 
+  it( "removes the nav buttons when all items are visible", ( ) => {
+    render( <Carousel items={[<div key="A">Item A</div>]} /> );
+    expect( screen.getByText( "Item A" ) ).toBeInTheDocument( );
+    expect( screen.queryByTitle( "previous_taxon_short" ) ).not.toBeInTheDocument( );
+    expect( screen.queryByTitle( "next_taxon_short" ) ).not.toBeInTheDocument( );
+  } );
+
   it( "disables prev at the start and enables next when there is more than one item", ( ) => {
     render( <Carousel items={items} /> );
     expect( screen.getByTitle( "previous_taxon_short" ) ).toBeDisabled( );

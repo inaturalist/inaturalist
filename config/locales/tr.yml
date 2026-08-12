@@ -891,6 +891,9 @@ tr:
   card: Kart
   casual: sıradan
   casual_: Sıradan
+  #Label for the Casual quality grade, but indicating it only includes observations that are marked
+  #casual because they have a quality assessment vote that they are non-wild
+  casual_non_wild_only_: Sıradan (yalnızca yabani olmayanlar)
   casual_tooltip_html: '"Sıradan" gözlemlerde medya, konum veya tarih eksiktir ya da başka nedenlerle "Araştırma" ya da "Tanımlama Gerekli" derecelerinin gerekliliklerini karşılamamaktadır. <a href="https://www.inaturalist.org/pages/help#quality">Nitelik sınıfı hakkında daha çok bilgi edin</a>'
   casual_tooltip_html2: '“Sıradan” gözlemlerde medya, konum veya tarih bilgisi eksik olabilir ya da başka nedenlerle ‘Araştırma’ veya “Tanımlama Gerekli” nitelik sınıflarının gerekliliklerini karşılamayabilir. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Nitelik sınıfları hakkında daha fazla bilgi edinin</a>'
   categories: Kategoriler
@@ -6083,6 +6086,8 @@ tr:
   view_projects_from_place: "%{place} konumundan projeleri görüntüle"
   view_sample: Örneği Görüntüle
   view_stats: İstatistikleri Görüntüle
+  #Text for a link that takes the user to the relevant taxon details page
+  view_taxon: Taksonu Görüntüle
   view_taxon_change: Takson Değiştirme'yi Görüntüle
   view_taxon_changes: Takson Değişikliklerini Görüntüle
   view_taxon_framework_relationship: Takson çerçevesi ilişkisini görüntüle
@@ -6187,6 +6192,12 @@ tr:
     Kaynak: Vikipedi, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     Burada, <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Atıf-Aynı Lisansla Paylaş Lisansı 3.0</a> kullanılarak yayınlanan <a href="%{url}">%{title}</a> Vikipedi makalesinde kullanılan öğeler kullanılmıştır.
+  #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: Vikipedi özeti şu anda alınamadı. Lütfen 30 dakika sonra tekrar deneyin.
+  #Specifies that missing articles will display this message, with a link to the wikipedia page. Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled_html: |
+    Vikipedi özeti şu anda alınamadı ya da mevcut değil. 
+    Lütfen %{minutes} dakika sonra tekrar deneyin veya makalenin <a href="%{url}">Vikipedi</a>'de mevcut olup olmadığını kontrol edin.
   with: ile
   #Filter for observations not in a particular taxon
   without_taxon: Taksonda değil

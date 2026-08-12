@@ -1475,6 +1475,7 @@ bg:
   exact_date: Точна дата
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Точен ранг
+  except: с изключение на
   exclude_places: Изключвай места
   exclude_taxa: Изключвай таксони
   exclude_users: Изключвай потребители
@@ -2319,6 +2320,8 @@ bg:
   most_observed_species: Най-наблюдавани видове
   multiple_select_option: '-- множествен --'
   multiple_taxa_for_taxon_change: "Множество таксони (вход за размяна/обединяване, изход за разделяне)"
+  must_be_in_taxon: трябва да е от таксон %{taxon}
+  must_be_not_in_taxon: не трябва да е от таксон %{taxon}
   must_be_not_observed_by_user: не трябва да е наблюдавано от %{user}
   must_be_not_observed_in_place: не трябва да е наблюдавано в %{place}
   must_be_observed_after: трябва да е наблюдавано след %{operand}
@@ -2328,6 +2331,8 @@ bg:
   must_be_less_than_x_MB: "Трябва да е по-малко от %{x} MB"
   must_have_observation_field: "трябва да има попълнено поле за наблюдения '%{operand}'"
   must_have_photos: трябва да има снимки
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "Трябва да има оценки на качество: %{grades}"
   must_have_x: "трябва да има %{x}"
   #Mute is a noun here
   mute_removed: Заглушаването е отменено
@@ -3262,6 +3267,8 @@ bg:
     Така или иначе, ще трябва да ограничим създаването на места в бъдеще, имайки предвид скоростта на разрастване на iNat.
   plants: растения
   play_first_sound: Възпроизведи първия звук
+  #Title to a section warning a user to exercise caution
+  please_be_careful!: Моля, бъдете внимателни!
   please_confirm_your_inat_username: "Моля потвърдете Вашето потребителско име на %{site_name}"
   please_fix_your_csv_and_try_again: Моля поправете Вашия CSV и опитайте отново.
   please_hold_on_while_the_file: Моля изчакайте докато файлът се генерира. Може да отнеме няколко минути ако имате много наблюдения.
@@ -3315,6 +3322,8 @@ bg:
     Ще виждате скритите координати на наблюдения от членове, които са ги доверили
   project_coordinate_access_disabled_until_datetime: |
     Няма да имате достъп до скритите координати до %{datetime}
+  project_coordinate_access_warning: |
+    Достъпът до координати е важен за учените, но с него могат да злоупотребят бракониери. Уверете се, че имате доверие на всички куратори на проекта, преди да се доверите на този проект.
   project_cover: Корица на проекта
   project_created_on: създаде този проект на %{date}
   project_curator_tools: Инструменти за куратори на проекта

@@ -101,7 +101,7 @@ class Annotations extends React.Component {
       action = ( <div className="loading_spinner" /> );
     } else if ( this.viewerIsObserver || viewerIsAnnotator ) {
       action = (
-        <button
+        <span
           type="button"
           className="btn btn-nostyle"
           onClick={() => {
@@ -110,7 +110,7 @@ class Annotations extends React.Component {
           }}
         >
           <i className="glyphicon glyphicon-remove-circle" />
-        </button>
+        </span>
       );
     }
     let voteAction;
@@ -187,11 +187,12 @@ class Annotations extends React.Component {
         </td>
         <td className="value">
           <UserImage user={a.user} />
-          <span className="value-label" title={valueDefinition}>
-            { valueLabel }
-          </span>
-          &nbsp;
-          { action }
+          <div className="value-content">
+            <span className="value-label" title={valueDefinition}>
+              { valueLabel }
+            </span>
+            { action }
+          </div>
         </td>
         <td className="agree">
           <span className="check">

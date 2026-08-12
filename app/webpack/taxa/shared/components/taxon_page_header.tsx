@@ -10,11 +10,16 @@ interface TaxonPageHeaderProps {
   config?: Config;
   heading: React.ReactNode;
   afterSelect: ( result: { item: unknown } ) => void;
-  placeChooser?: React.ReactNode;
+  // Each page connects its own place chooser to its own store, so the component
+  // is passed in and the header supplies the shared container / props.
+  placeChooserContainer?: React.ComponentType<{
+    container?: HTMLElement;
+    clearButton?: boolean;
+  }>;
   showNewTaxon?: ( taxon: unknown ) => void;
   crumbsText?: string;
   prefix?: React.ReactNode;
-  extra?: React.ReactNode;
+  suffix?: React.ReactNode;
 }
 
 const TaxonPageHeader = ( {
@@ -22,11 +27,11 @@ const TaxonPageHeader = ( {
   config = {},
   heading,
   afterSelect,
-  placeChooser,
+  placeChooserContainer: PlaceChooserContainer,
   showNewTaxon,
   crumbsText,
   prefix,
-  extra
+  suffix
 }: TaxonPageHeaderProps ) => (
   <div className={css["taxon-detail-inner"]}>
     { prefix }
@@ -59,11 +64,16 @@ const TaxonPageHeader = ( {
     <div id="TaxonHeader" className={css["taxon-header"]}>
       <div className={css.inner}>
         <div id="place-chooser-container">
-          { placeChooser }
+          { PlaceChooserContainer && (
+            <PlaceChooserContainer
+              container={document.getElementById( "app" ) ?? undefined}
+              clearButton
+            />
+          ) }
         </div>
         { heading }
       </div>
-      { extra }
+      { suffix }
     </div>
   </div>
 );
