@@ -11,7 +11,8 @@ function mapStateToProps( state ) {
     label: I18n.t( "total_species_observed_caps" ),
     name: I18n.t( "x_of_y", { x: "?", y: state.taxon.taxon.complete_species_count } ),
     linkText: I18n.t( "view_all" ),
-    noContent: true
+    noContent: true,
+    config: state.config
   };
   const baseParams = {
     view: "species",

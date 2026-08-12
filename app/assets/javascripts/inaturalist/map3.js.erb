@@ -685,6 +685,13 @@ iNaturalist.LegendControl = function( controlDiv, map ) {
   var controlUI = $( "<div><div id='map-legend-label' class='gmap-label'>" + I18n.t( "map_legend" ) +"</div></div>" ).
     addClass( "gmapv3legend" );
   controlUI.click( function( ) {
+    var availableHeight = $( map.getDiv( ) ).height( ) - controlUI.outerHeight( true ) - 75;
+    var availableWidth = $( map.getDiv( ) ).width( ) - 25;
+    $( "#map-legend" ).css( {
+      "max-height": availableHeight + "px",
+      "max-width": availableWidth + "px",
+      "overflow-y": "auto"
+    } );
     $( "#map-legend" ).toggle( );
     $( "#map-legend" ).focus( );
   });

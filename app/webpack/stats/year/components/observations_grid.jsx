@@ -4,7 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import moment from "moment";
-import ObservationsGridItem from "../../../shared/components/observations_grid_item";
+import ObservationsGridItem from "../../../shared/components/observations_grid_item_legacy";
 
 class ObservationsGrid extends React.Component {
   constructor( props ) {

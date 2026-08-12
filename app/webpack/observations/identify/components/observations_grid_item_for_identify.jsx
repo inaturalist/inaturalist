@@ -5,7 +5,7 @@ import {
   OverlayTrigger,
   Tooltip
 } from "react-bootstrap";
-import ObservationsGridItem from "../../../shared/components/observations_grid_item";
+import ObservationsGridItem from "../../../shared/components/observations_grid_item_legacy";
 
 const ObservationsGridItemForIdentify = ( {
   observation,

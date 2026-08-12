@@ -11,7 +11,7 @@ import {
 import LazyLoad from "react-lazy-load";
 import _ from "lodash";
 import TaxonPageMapContainer from "../containers/taxon_page_map_container";
-import StatusTab from "./status_tab";
+import StatusTab from "./status_tab_legacy";
 import TaxonomyTabContainer from "../containers/taxonomy_tab_container";
 import ArticlesTabContainer from "../containers/articles_tab_container";
 import InteractionsTabContainer from "../containers/interactions_tab_container";

@@ -1,0 +1,255 @@
+import _ from "lodash";
+import React from "react";
+import UserText from "../../../shared/components/user_text";
+import TaxonomicBranch from "../../../shared/components/taxonomic_branch";
+import { isCuratorOrAdmin } from "../../shared/util";
+import type { Taxon, CurrentUser } from "../../../shared/types";
+
+interface PlaceTaxonName {
+  place_id: number;
+  position: number;
+  place?: {
+    id: number;
+    name: string;
+  };
+}
+
+interface TaxonName {
+  id: number;
+  is_valid: boolean;
+  lexicon: string;
+  name: string;
+  position?: number;
+  creator_id?: number;
+  place_taxon_names?: PlaceTaxonName[];
+}
+
+interface Props {
+  taxon: Taxon;
+  taxonChangesCount?: number;
+  taxonSchemesCount?: number;
+  names?: TaxonName[];
+  showNewTaxon?: ( taxon: Taxon, opts?: { skipScrollTop?: boolean } ) => void;
+  allChildrenShown?: boolean;
+  toggleAllChildrenShown?: ( ) => void;
+  provisionalChildrenShown?: boolean;
+  toggleProvisionalChildrenShown?: ( ) => void;
+  currentUser?: CurrentUser;
+}
+
+const TaxonomyTab = ( {
+  taxon,
+  taxonChangesCount = 0,
+  taxonSchemesCount = 0,
+  names = [],
+  showNewTaxon,
+  allChildrenShown = false,
+  toggleAllChildrenShown,
+  provisionalChildrenShown = false,
+  toggleProvisionalChildrenShown,
+  currentUser
+}: Props ) => {
+  const viewerIsCurator = isCuratorOrAdmin( currentUser );
+  const lexiconLabel = ( n: TaxonName ) => (
+    I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } )
+  );
+  const sortedNames = _.sortBy( names, [lexiconLabel, n => n.position] );
+  const namesGroupedByPlace: Record<string, TaxonName[]> = { };
+  const places: Record<string, { id: number; name: string }> = { };
+  names.forEach( n => {
+    if ( n.lexicon === "Scientific Names" ) {
+      return;
+    }
+    n.place_taxon_names?.forEach( ptn => {
+      if ( !ptn.place ) {
+        return;
+      }
+      places[ptn.place.id] = ptn.place;
+      namesGroupedByPlace[ptn.place_id] = namesGroupedByPlace[ptn.place_id] || [];
+      namesGroupedByPlace[ptn.place_id].push( { ...n, position: ptn.position } );
+    } );
+  } );
+  const placeLabel = ( placeID: string ) => (
+    I18n.t( `places_name.${_.snakeCase( places[placeID].name )}`, { defaultValue: places[placeID].name } )
+  );
+  return (
+    <div className="TaxonomyTab">
+      <div className="tab-section">
+        <div className="tab-row">
+          <div className="tab-main">
+            <h3>{ I18n.t( "taxonomy" ) }</h3>
+            <TaxonomicBranch
+              taxon={taxon}
+              chooseTaxon={t => showNewTaxon?.( t, { skipScrollTop: true } )}
+              toggleAllChildrenShown={toggleAllChildrenShown}
+              allChildrenShown={allChildrenShown}
+              provisionalChildrenShown={provisionalChildrenShown}
+              toggleProvisionalChildrenShown={toggleProvisionalChildrenShown}
+              currentUser={currentUser}
+              tabular
+            />
+          </div>
+          <div className="tab-side">
+            <ul className="tab-links list-group">
+              <li className="list-group-item internal">
+                <a
+                  href={`/taxa/${taxon.id}/taxonomy_details`}
+                  rel="nofollow"
+                >
+                  <i className="fa fa-sitemap accessory-icon" />
+                  { I18n.t( "taxonomy_details" ) }
+                </a>
+              </li>
+              <li className="list-group-item internal">
+                <a href={`/taxon_changes?taxon_id=${taxon.id}`}>
+                  <span className="badge pull-right">
+                    { I18n.toNumber( taxonChangesCount, { precision: 0 } ) }
+                  </span>
+                  <i className="fa fa-random accessory-icon" />
+                  { I18n.t( "taxon_changes" ) }
+                </a>
+              </li>
+              <li className="list-group-item internal">
+                <a href={`/taxa/${taxon.id}/schemes`}>
+                  <span className="badge pull-right">
+                    { I18n.toNumber( taxonSchemesCount, { precision: 0 } ) }
+                  </span>
+                  <i className="glyphicon glyphicon-list-alt accessory-icon" />
+                  { I18n.t( "taxon_schemes" ) }
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className="tab-section">
+        <div className="tab-row">
+          <div className="tab-main">
+            <h3>{ I18n.t( "names" ) }</h3>
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>{ I18n.t( "language_slash_type" ) }</th>
+                  <th>{ I18n.t( "name" ) }</th>
+                  { currentUser ? (
+                    <th>{ I18n.t( "action" ) }</th>
+                  ) : null }
+                </tr>
+              </thead>
+              <tbody>
+                { sortedNames.map( n => (
+                  <tr
+                    key={`taxon-names-${n.id}`}
+                    className={n.is_valid ? "" : "outdated"}
+                  >
+                    <td>
+                      { lexiconLabel( n ) }
+                    </td>
+                    <td
+                      className={n.lexicon && _.snakeCase( n.lexicon ).match( /scientific/ ) ? "sciname" : "comname"}
+                    >
+                      { n.name }
+                    </td>
+                    { currentUser ? (
+                      <td>
+                        { viewerIsCurator || n.creator_id === currentUser.id ? (
+                          <a href={`/taxon_names/${n.id}/edit`}>{ I18n.t( "edit" ) }</a>
+                        ) : null }
+                      </td>
+                    ) : null }
+                  </tr>
+                ) ) }
+              </tbody>
+            </table>
+            { _.isEmpty( namesGroupedByPlace ) ? null : (
+              <div>
+                <h3>{ I18n.t( "regional_names" ) }</h3>
+                <UserText
+                  text={I18n.t( "views.taxa.show.about_regional_names_desc" ).replace( /\n+/gm, " " )}
+                />
+                <table className="table table-striped regional-names">
+                  <thead>
+                    <tr>
+                      <th>{ I18n.t( "place" ) }</th>
+                      <th>{ I18n.t( "name" ) }</th>
+                      <th>{ I18n.t( "language_slash_type" ) }</th>
+                      { currentUser ? (
+                        <th>{ I18n.t( "action" ) }</th>
+                      ) : null }
+                    </tr>
+                  </thead>
+                  <tbody>
+                    { _.sortBy( Object.keys( namesGroupedByPlace ), placeLabel )
+                      .map( placeID => (
+                        _.sortBy( namesGroupedByPlace[placeID], "position" )
+                          .map( n => (
+                            <tr
+                              key={`taxon-names-${n.id}`}
+                              className={n.is_valid ? "" : "outdated"}
+                            >
+                              <td>
+                                <a href={`/places/${placeID}`}>
+                                  { placeLabel( placeID ) }
+                                </a>
+                              </td>
+                              <td className="comname">
+                                { n.name }
+                              </td>
+                              <td>
+                                { lexiconLabel( n ) }
+                              </td>
+                              { currentUser ? (
+                                <td>
+                                  { viewerIsCurator || n.creator_id === currentUser.id ? (
+                                    <a href={`/taxon_names/${n.id}/edit`}>{ I18n.t( "edit" ) }</a>
+                                  ) : null }
+                                </td>
+                              ) : null }
+                            </tr>
+                          ) )
+                      ) ) }
+                  </tbody>
+                </table>
+              </div>
+            )}
+            <h3 className={`text-center ${names.length > 0 ? "hidden" : ""}`}>
+              <i className="fa fa-refresh fa-spin" />
+            </h3>
+          </div>
+          <div className="tab-side">
+            { currentUser ? (
+              <ul className="tab-links list-group">
+                { viewerIsCurator ? (
+                  <li className="list-group-item internal">
+                    <a href={`/taxa/${taxon.id}/names`} rel="nofollow">
+                      <i className="fa fa-gear accessory-icon" />
+                      { I18n.t( "manage_names" ) }
+                    </a>
+                  </li>
+                ) : null }
+                { currentUser.content_creation_restrictions ? null : (
+                  <li className="list-group-item internal">
+                    <a
+                      href={`/taxa/${taxon.id}/taxon_names/new`}
+                      rel="nofollow"
+                    >
+                      <i className="fa fa-plus accessory-icon" />
+                      { I18n.t( "add_a_name" ) }
+                    </a>
+                  </li>
+                ) }
+              </ul>
+            ) : null }
+            <h4>{ I18n.t( "about_names" ) }</h4>
+            <UserText
+              text={I18n.t( "views.taxa.show.about_names_desc" ).replace( /\n+/gm, " " )}
+              truncate={400}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TaxonomyTab;
