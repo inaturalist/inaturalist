@@ -11,6 +11,26 @@ describe UsersController, "dashboard" do
     expect( response ).to be_successful
   end
 
+  describe "responsive gate" do
+    it "sets the responsive variant for a responsive-global member" do
+      user = User.make!
+      user.update_column( :test_groups, "responsive-global" )
+      sign_in user
+      get :dashboard
+      expect( assigns( :responsive ) ).to be_truthy
+      expect( request.variant ).to include( :responsive )
+    end
+
+    it "does not set the responsive variant for a user in no test group" do
+      user = User.make!
+      expect( user.test_groups ).to be_blank
+      sign_in user
+      get :dashboard
+      expect( assigns( :responsive ) ).to be_falsey
+      expect( request.variant ).to be_blank
+    end
+  end
+
   describe "announcements" do
     it "should target a site" do
       site = create :site

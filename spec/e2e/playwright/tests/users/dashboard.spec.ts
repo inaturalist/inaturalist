@@ -1,0 +1,27 @@
+import { test } from "@playwright/test";
+import { login } from "../../helpers/auth.helper";
+import { app, appMake } from "../../support/on-rails";
+import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
+
+const TEST_PASSWORD = "TestPass123!";
+
+let testEmail: string;
+
+test.beforeAll( async () => {
+  const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
+  testEmail = user.email as string;
+  // Enable the responsive dashboard. "responsive-global" flips the template
+  // variant (responsive dashboard + subnav drawer); "responsive-header"
+  // collapses the nav into a hamburger on narrow viewports. Both are needed for
+  // the page-level overflow check to exercise the shipping responsive layout.
+  await app( "add_test_group", {
+    user_id: user.id,
+    test_groups: ["responsive-header", "responsive-global"]
+  } );
+} );
+
+test.beforeEach( async ( { page } ) => {
+  await login( page, testEmail, TEST_PASSWORD );
+} );
+
+expectNoHorizontalOverflow( "/home" );
