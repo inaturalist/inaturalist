@@ -5231,6 +5231,14 @@ en:
   resolved_by: Resolved by
   resolved_by_user_on_date_html: Resolved by %{user} on %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
+  # Prompt to join a test of the responsive, mobile-friendly redesign of the
+  # site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Test the new mobile-friendly responsive layout? 
+    Note that not all pages have been converted yet.
+  # Message displayed when you have joined the test of the responsive,
+  # mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Currently in mobile-friendly mode
   restart: Restart
   restore: Restore
   restoring: Restoring...
