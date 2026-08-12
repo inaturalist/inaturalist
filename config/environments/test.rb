@@ -45,4 +45,9 @@ Rails.application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # Raise on deprecations from the curated disallowed list (see
+  # config.active_support.disallowed_deprecation_warnings in application.rb)
+  # so upgrade-breaking usage fails CI. Also applies to the e2e test server.
+  config.active_support.disallowed_deprecation = :raise
 end

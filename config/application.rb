@@ -14,6 +14,30 @@ module Inaturalist
     config.load_defaults 5.0
     config.active_record.belongs_to_required_by_default = false
 
+    # Curated list of Rails deprecation warnings that block the next upgrade
+    # hop. Matched warnings use the disallowed deprecation behavior: :raise in
+    # test (see config/environments/test.rb), :log everywhere else. Strings
+    # are substring-matched, Regexps are matched against the full message.
+    # Grow this list at each upgrade phase. NOTE: this only covers warnings
+    # emitted after this config is applied at boot; warnings emitted by gems
+    # at require time are not affected.
+    config.active_support.disallowed_deprecation_warnings = [
+      # Removed in Rails 7.0
+      "Rendering actions with '.' in the name is deprecated",
+      # Sprockets: referencing an asset that is not in the pipeline
+      "is not present in the asset pipeline",
+      # Rails 7.x zeitwerk: require_dependency is deprecated
+      "require_dependency",
+      # Rails 7.1: serialize :attr, JSON -> serialize :attr, coder: JSON
+      /Passing the (coder|class) as positional argument/,
+      # Rails 7.2: enum status: {...} -> enum :status, {...}
+      "Defining enums with keyword arguments"
+    ]
+    # Rails 6.1 defaults the disallowed deprecation behavior to :raise; make
+    # :log the safe default for every environment. test.rb overrides this to
+    # :raise so the disallowed list fails CI.
+    config.active_support.disallowed_deprecation = :log
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

@@ -75,5 +75,9 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  # Deprecations on the curated disallowed list (application.rb) must be
+  # logged, never raised, in production
+  config.active_support.disallowed_deprecation = :log
+
   config.log_formatter = CustomLogFormatter.new
 end
