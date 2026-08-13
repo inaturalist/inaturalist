@@ -19,7 +19,7 @@
   :javascript
     ( function ( ) {
       var container = document.getElementById( "test-group-container" );
-      var key = "dismissedTestGroup:#{group}#{':joined' if joined}";
+      var key = "dismissedTestGroup:#{group}";
       var snoozeMs = 5 * 24 * 60 * 60 * 1000;
       try {
         var dismissedAt = Number( localStorage.getItem( key ) );
