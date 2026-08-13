@@ -384,10 +384,22 @@ body>div>.popover .label {
     gap: 0;
     max-width: 800px;
     margin: 0 auto;
-    padding: 5px 15px;
+    padding: 5px 30px;
     font-size: 12px;
     line-height: 18px;
     border-top: 0;
     border-radius: 0 0 4px 4px;
+
+    // The compact strip hangs off the header, so its dismiss button sits
+    // inside the strip rather than overlapping the header above it.
+    .TestGroupBanner-dismiss {
+      top: 50%;
+      right: 4px;
+      width: 18px;
+      height: 18px;
+      margin-top: -9px;
+      font-size: 13px;
+      line-height: 18px;
+    }
   }
 }
