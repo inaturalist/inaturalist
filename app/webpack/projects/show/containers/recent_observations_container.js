@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import _ from "lodash";
 import { stringify } from "querystring";
-import RecentObservations from "../../../taxa/show/components/recent_observations";
+import RecentObservations from "../../../taxa/show/components/recent_observations_legacy";
 import { showPhotoModal, setPhotoModal } from "../../../taxa/shared/ducks/photo_modal";
 
 function mapStateToProps( state ) {
