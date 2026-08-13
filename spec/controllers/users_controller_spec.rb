@@ -630,6 +630,112 @@ describe UsersController, "suspend" do
   end
 end
 
+describe UsersController, "index" do
+  elastic_models( Observation )
+  render_views
+
+  it "is successful with no recent activity" do
+    # Regression: index.html.erb read @updates.first.created_at before the
+    # blank? guard, so /people 500d whenever recent activity was empty (the
+    # normal state of a fresh DB).
+    expect( Site.default.users_index_recent_activity ).to be_blank
+    get :index
+    expect( response ).to be_successful
+  end
+
+  it "renders the responsive curator grid with real users" do
+    make_curator
+    user = User.make!
+    user.update_column( :test_groups, "responsive-global" )
+    sign_in user
+    get :index
+    expect( response ).to be_successful
+    expect( Nokogiri::HTML( response.body ).at_css( "ul.CuratorGrid li.UserWithIcon" ) ).to be_present
+  end
+
+  describe "responsive gate" do
+    it "sets the responsive variant for a responsive-global member" do
+      user = User.make!
+      user.update_column( :test_groups, "responsive-global" )
+      sign_in user
+      get :index
+      expect( assigns( :responsive ) ).to be_truthy
+      expect( request.variant ).to include( :responsive )
+    end
+
+    it "sets @responsive but no variant for a responsive-header member" do
+      user = User.make!
+      user.update_column( :test_groups, "responsive-header" )
+      sign_in user
+      get :index
+      expect( assigns( :responsive ) ).to be_truthy
+      expect( request.variant ).to be_blank
+    end
+
+    it "does not set the responsive variant for a user in no test group" do
+      user = User.make!
+      expect( user.test_groups ).to be_blank
+      sign_in user
+      get :index
+      expect( assigns( :responsive ) ).to be_falsey
+      expect( request.variant ).to be_blank
+    end
+
+    it "does not set the responsive variant for an anonymous visitor" do
+      get :index
+      expect( assigns( :responsive ) ).to be_falsey
+      expect( request.variant ).to be_blank
+    end
+  end
+end
+
+describe UsersController, "leaderboard" do
+  elastic_models( Observation )
+  render_views
+
+  it "is successful" do
+    # /people/leaderboard requires login (not in authenticate_user!'s :except).
+    sign_in User.make!
+    get :leaderboard
+    expect( response ).to be_successful
+  end
+
+  describe "responsive gate" do
+    it "sets the responsive variant for a responsive-global member" do
+      user = User.make!
+      user.update_column( :test_groups, "responsive-global" )
+      sign_in user
+      get :leaderboard
+      expect( assigns( :responsive ) ).to be_truthy
+      expect( request.variant ).to include( :responsive )
+    end
+
+    it "sets @responsive but no variant for a responsive-header member" do
+      user = User.make!
+      user.update_column( :test_groups, "responsive-header" )
+      sign_in user
+      get :leaderboard
+      expect( assigns( :responsive ) ).to be_truthy
+      expect( request.variant ).to be_blank
+    end
+
+    it "does not set the responsive variant for a user in no test group" do
+      user = User.make!
+      expect( user.test_groups ).to be_blank
+      sign_in user
+      get :leaderboard
+      expect( assigns( :responsive ) ).to be_falsey
+      expect( request.variant ).to be_blank
+    end
+
+    it "does not set the responsive variant for an anonymous visitor" do
+      get :leaderboard
+      expect( assigns( :responsive ) ).to be_falsey
+      expect( request.variant ).to be_blank
+    end
+  end
+end
+
 describe UsersController, "unsuspend" do
   let( :curator ) { make_curator }
   let( :suspended_user ) do

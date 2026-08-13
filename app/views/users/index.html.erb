@@ -32,7 +32,7 @@
     <h3>
       <span class="right meta ui small">
         <%= t :updated %>
-        <%- last_updated = [@updates.first.created_at, 1.hour.ago].max %>
+        <%- last_updated = [@updates.first&.created_at, 1.hour.ago].compact.max %>
         <abbr class="date timeago" title="<%=t :n_ago, :n => time_ago_in_words(last_updated.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(last_updated) %></abbr>
       </span>
       <%= t :recently_active %>

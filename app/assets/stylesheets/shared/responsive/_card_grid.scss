@@ -1,0 +1,14 @@
+// Fluid card grid: wraps items into as many equal columns as fit at >= --card-min
+// wide. No breakpoints or column-count math — each consumer sets a single
+// --card-min and the browser derives the count; `gap` handles the gutters.
+.CardGrid {
+  display: grid;
+  // Keep --card-min at or below the narrowest content width (~345px at 375px)
+  // so a single column never exceeds the container and forces overflow.
+  grid-template-columns: repeat( auto-fill, minmax( var( --card-min, 150px ), 1fr ) );
+  gap: 10px;
+
+  > * {
+    min-width: 0; // let ellipsis/wrapping work inside items
+  }
+}

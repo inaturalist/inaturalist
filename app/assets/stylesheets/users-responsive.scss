@@ -1,0 +1,138 @@
+// Responsive page sheet for /people (index) and /people/leaderboard, loaded by
+// the +responsive template variants only. Forked from users.css by pruning:
+// the fixed 230x230 tiles and Blueprint .column/.span-* layout are replaced by
+// the fluid .CardGrid primitive and flex.
+@import "breakpoints";
+@import "shared/responsive/card_grid";
+@import "shared/responsive/user_with_icon";
+
+// The md-breakpoint hole: blueprint/lib/grid.css gives .container a fixed 950px,
+// and index.scss only fluidizes it below $mobile-max. Neutralize it page-scoped
+// so the legacy layout's #wrapper.container fills the viewport at every width;
+// .PeoplePage's container-padding then becomes the only horizontal padding.
+body.responsive #wrapper.container {
+  width: auto;
+  max-width: none;
+  margin-inline: 0;
+}
+
+.PeoplePage {
+  @include container-padding;
+
+  #pageheader {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+
+    h2 {
+      margin: 0;
+    }
+
+    form {
+      display: flex;
+      gap: 5px;
+      justify-content: flex-end;
+      flex: 1 1 auto;
+
+      .text {
+        width: 100%;
+        max-width: 240px;
+      }
+    }
+  }
+
+  // Section headings carry a right-aligned "updated" meta note.
+  h3 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 5px 15px;
+  }
+
+  // Avatars for the leaderboard rows and curator cards (.UserWithIcon .icon).
+  // user_image(size: "thumb", no_inline_dimensions: true) emits a background-image
+  // div sized 100% by index.scss, so the icon needs an explicit 48px box.
+  .UserWithIcon {
+    .icon {
+      flex: 0 0 48px;
+      width: 48px;
+      height: 48px;
+      margin-inline-end: 10px;
+    }
+  }
+
+  // Recently active: square photo tiles with a caption overlay.
+  .RecentGrid {
+    --card-min: 150px;
+
+    .usercol {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .userimagelink {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .blurb {
+      position: absolute;
+      inset-inline: 0;
+      bottom: 0;
+      padding: 10px;
+      color: #eee;
+      background-color: rgba( 0, 0, 0, 0.3 );
+
+      a {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      &:hover {
+        background-color: rgba( 0, 0, 0, 0.5 );
+      }
+    }
+
+    .userlink {
+      display: block;
+      font-size: 150%;
+      color: #fff;
+    }
+  }
+
+  // Leaderboard: three columns, each an ordered list of users.
+  .LeaderboardGrid {
+    --card-min: 260px;
+  }
+
+  .LeaderboardColumn {
+    ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+
+  // Curators: compact stat cards.
+  .CuratorGrid {
+    --card-min: 180px;
+  }
+
+  // Prev/next pager (leaderboard) and month/year read-more rows.
+  .pager {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
