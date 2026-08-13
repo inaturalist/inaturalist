@@ -83,6 +83,22 @@ describe "layouts/bootstrap" do
       render
       expect( rendered ).to have_tag( "button.TestGroupBanner-dismiss" )
     end
+
+    it "renders a hidden account settings notice for a joined user only" do
+      allow( view ).to receive( :current_user ).and_return( User.make!( test_groups: "responsive-global" ) )
+      allow( view ).to receive( :logged_in? ).and_return( true )
+      @test_group_toggle = "responsive-global"
+      render
+      expect( rendered ).to have_tag( "div#test-group-dismissed-notice.hidden" )
+    end
+
+    it "renders no account settings notice for a user who has not joined" do
+      allow( view ).to receive( :current_user ).and_return( User.make! )
+      allow( view ).to receive( :logged_in? ).and_return( true )
+      @test_group_toggle = "responsive-global"
+      render
+      expect( rendered ).not_to have_tag( "div#test-group-dismissed-notice" )
+    end
   end
 
   describe "flash" do

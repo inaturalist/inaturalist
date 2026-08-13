@@ -2950,6 +2950,10 @@ en:
   leave: Leave
   leave_a_comment: Leave a comment
   leave_this_project: Leave this project
+  # Shown after dismissing the banner that lets you leave a test of a new
+  # feature, pointing at the other place you can leave it
+  leave_this_test_group_in_account_settings_html: |
+    You can leave this test any time in your <a href="%{url}">account settings</a>.
   # Terminal nodes in a taxonomic tree
   leaves: leaves
   legacy_authentication_notice_html: |

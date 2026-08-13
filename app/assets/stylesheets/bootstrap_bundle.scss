@@ -402,4 +402,10 @@ body>div>.popover .label {
       line-height: 18px;
     }
   }
+
+  // Flex would make the inline link its own flex item and drop the spaces
+  // around it, so prose banners stay block level.
+  &.TestGroupBanner--text {
+    display: block;
+  }
 }
