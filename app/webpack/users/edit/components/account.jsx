@@ -217,7 +217,7 @@ const Account = ( {
                   <td className="col-xs-4 borderless table-row">
                     { I18n.t( "mobile_friendly_mode" ) }
                   </td>
-                  <td className="col-xs-4 borderless table-row">
+                  <td className="col-xs-4 borderless table-row text-center">
                     <button
                       type="button"
                       className="btn btn-success"
@@ -225,6 +225,16 @@ const Account = ( {
                     >
                       { config.currentUser.isInTestGroup( "responsive-global" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
                     </button>
+                    { config.currentUser.isInTestGroup( "responsive-global" ) && (
+                      <a
+                        className="btn btn-link"
+                        href="https://inaturalist.typeform.com/to/HZsu49MO"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        { I18n.t( "feedback" ) }
+                      </a>
+                    ) }
                   </td>
                 </tr>
                 { viewerIsAdmin && (
