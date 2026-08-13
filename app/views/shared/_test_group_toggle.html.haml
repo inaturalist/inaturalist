@@ -4,9 +4,31 @@
   - key_prefix = group.tr( "-", "_" )
   - status_key = joined ? :"#{key_prefix}_test_joined_status" : :"#{key_prefix}_test_prompt"
   - path = joined ? leave_test_user_path( current_user, test: group ) : join_test_user_path( current_user, test: group )
-  .test-group-container
+  .test-group-container{ id: "test-group-container" }
     .TestGroupBanner.alert.alert-warning.text-center{ class: ( "TestGroupBanner--compact" if joined ) }
       = t( status_key )
       - if joined && ( feedback_url = feedback_urls[group] )
         = link_to t( :feedback ), feedback_url, class: "TestGroupBanner-feedback", target: "_blank", rel: "noopener noreferrer"
       = button_to t( joined ? :stop_testing : :yes ), path, method: :put, class: "btn #{joined ? 'btn-warning btn-xs' : 'btn-success'}", form_class: "TestGroupBanner-action"
+      - unless joined
+        %button.close.TestGroupBanner-dismiss{ type: "button", title: t( :dismiss ), "aria-label" => t( :dismiss ) }
+          %span{ "aria-hidden" => "true" }= "×"
+  - unless joined
+    :javascript
+      ( function ( ) {
+        var container = document.getElementById( "test-group-container" );
+        var key = "dismissedTestGroup:#{group}";
+        var snoozeMs = 5 * 24 * 60 * 60 * 1000;
+        try {
+          var dismissedAt = Number( localStorage.getItem( key ) );
+          if ( Date.now( ) - dismissedAt < snoozeMs ) {
+            container.style.display = "none";
+          } else if ( dismissedAt ) {
+            localStorage.removeItem( key );
+          }
+        } catch ( e ) { /* storage unavailable, banner just stays */ }
+        container.querySelector( ".TestGroupBanner-dismiss" ).addEventListener( "click", function ( ) {
+          container.style.display = "none";
+          try { localStorage.setItem( key, Date.now( ) ); } catch ( e ) { }
+        } );
+      } )( );

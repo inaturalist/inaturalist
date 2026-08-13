@@ -67,6 +67,22 @@ describe "layouts/bootstrap" do
       render
       expect( rendered ).not_to have_tag( "div.TestGroupBanner" )
     end
+
+    it "renders a dismiss button for a user who has not joined the group" do
+      allow( view ).to receive( :current_user ).and_return( User.make! )
+      allow( view ).to receive( :logged_in? ).and_return( true )
+      @test_group_toggle = "responsive-global"
+      render
+      expect( rendered ).to have_tag( "button.TestGroupBanner-dismiss" )
+    end
+
+    it "renders no dismiss button for a user who has joined the group" do
+      allow( view ).to receive( :current_user ).and_return( User.make!( test_groups: "responsive-global" ) )
+      allow( view ).to receive( :logged_in? ).and_return( true )
+      @test_group_toggle = "responsive-global"
+      render
+      expect( rendered ).not_to have_tag( "button.TestGroupBanner-dismiss" )
+    end
   end
 
   describe "flash" do
