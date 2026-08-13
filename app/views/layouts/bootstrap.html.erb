@@ -125,6 +125,7 @@
       <% end -%>
 
       <div id="wrapper" class="bootstrap">
+        <%= render "shared/test_group_toggle", group: @test_group_toggle if @test_group_toggle %>
         <% if @feature_test -%>
           <div class="container">
             <div class="box bg-warning">

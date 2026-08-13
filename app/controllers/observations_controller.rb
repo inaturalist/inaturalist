@@ -334,6 +334,7 @@ class ObservationsController < ApplicationController
           @responsive = true
           @skip_min_width = true
         end
+        @test_group_toggle = "responsive-global"
         return render layout: "bootstrap"
       end
        

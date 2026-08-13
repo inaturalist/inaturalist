@@ -49,6 +49,26 @@ describe "layouts/bootstrap" do
     end
   end
 
+  describe "test group toggle" do
+    before { @site = Site.make! }
+
+    it "renders the banner of an opted-in page at the top of the wrapper" do
+      allow( view ).to receive( :current_user ).and_return( User.make! )
+      allow( view ).to receive( :logged_in? ).and_return( true )
+      @test_group_toggle = "responsive-global"
+      render
+      wrapper = Nokogiri::HTML( rendered ).at_css( "#wrapper" )
+      expect( wrapper.element_children.first.to_html ).to include( "TestGroupBanner" )
+    end
+
+    it "renders no banner for a page that has not opted in" do
+      allow( view ).to receive( :current_user ).and_return( User.make! )
+      allow( view ).to receive( :logged_in? ).and_return( true )
+      render
+      expect( rendered ).not_to have_tag( "div.TestGroupBanner" )
+    end
+  end
+
   describe "flash" do
     before { @site = Site.make! }
     it "shows flash content for supported types" do
