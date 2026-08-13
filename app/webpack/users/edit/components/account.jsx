@@ -210,88 +210,88 @@ const Account = ( {
               </SettingsItem>
             )
             : <div className="nocontent"><div className="loading_spinner" /></div> }
-          { ( viewerIsAdmin || config.currentUser.isInTestGroup( "helpful-id-tips-reviewer" ) ) && (
-            <SettingsItem header="Test Groups" htmlFor="user_test_groups">
-              <table className="table">
-                <tbody className="borderless">
-                  { viewerIsAdmin && (
-                    <>
-                      <tr>
-                        <td className="col-xs-4 borderless table-row">
-                          Responsive Global
-                        </td>
-                        <td className="col-xs-4 borderless table-row">
-                          <button
-                            type="button"
-                            className="btn btn-success"
-                            onClick={( ) => toggleGroup( "responsive-global" )}
-                          >
-                            { config.currentUser.isInTestGroup( "responsive-global" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="col-xs-4 borderless table-row">
-                          Responsive Header
-                        </td>
-                        <td className="col-xs-4 borderless table-row">
-                          <button
-                            type="button"
-                            className="btn btn-success"
-                            onClick={( ) => toggleGroup( "responsive-header" )}
-                          >
-                            { config.currentUser.isInTestGroup( "responsive-header" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="col-xs-4 borderless table-row">
-                          Responsive Obs Detail
-                        </td>
-                        <td className="col-xs-4 borderless table-row">
-                          <button
-                            type="button"
-                            className="btn btn-success"
-                            onClick={( ) => toggleGroup( "responsive-obs-detail" )}
-                          >
-                            { config.currentUser.isInTestGroup( "responsive-obs-detail" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="col-xs-4 borderless table-row">
-                          Responsive Taxon Detail
-                        </td>
-                        <td className="col-xs-4 borderless table-row">
-                          <button
-                            type="button"
-                            className="btn btn-success"
-                            onClick={( ) => toggleGroup( "responsive-taxon-detail" )}
-                          >
-                            { config.currentUser.isInTestGroup( "responsive-taxon-detail" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
-                          </button>
-                        </td>
-                      </tr>
-                    </>
-                  ) }
+          <SettingsItem header={I18n.t( "test_groups" )} htmlFor="user_test_groups">
+            <table className="table">
+              <tbody className="borderless">
+                <tr>
+                  <td className="col-xs-4 borderless table-row">
+                    { I18n.t( "mobile_friendly_mode" ) }
+                  </td>
+                  <td className="col-xs-4 borderless table-row">
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={( ) => toggleGroup( "responsive-global" )}
+                    >
+                      { config.currentUser.isInTestGroup( "responsive-global" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
+                    </button>
+                  </td>
+                </tr>
+                { viewerIsAdmin && (
+                <>
                   <tr>
                     <td className="col-xs-4 borderless table-row">
-                      Helpful ID Tips
+                      Responsive Header
                     </td>
                     <td className="col-xs-4 borderless table-row">
                       <button
                         type="button"
                         className="btn btn-success"
-                        onClick={( ) => toggleGroup( "helpful-id-tips" )}
+                        onClick={( ) => toggleGroup( "responsive-header" )}
                       >
-                        { config.currentUser.isInTestGroup( "helpful-id-tips" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
+                        { config.currentUser.isInTestGroup( "responsive-header" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
                       </button>
                     </td>
                   </tr>
-                </tbody>
-              </table>
-            </SettingsItem>
-          )}
+                  <tr>
+                    <td className="col-xs-4 borderless table-row">
+                      Responsive Obs Detail
+                    </td>
+                    <td className="col-xs-4 borderless table-row">
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={( ) => toggleGroup( "responsive-obs-detail" )}
+                      >
+                        { config.currentUser.isInTestGroup( "responsive-obs-detail" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="col-xs-4 borderless table-row">
+                      Responsive Taxon Detail
+                    </td>
+                    <td className="col-xs-4 borderless table-row">
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={( ) => toggleGroup( "responsive-taxon-detail" )}
+                      >
+                        { config.currentUser.isInTestGroup( "responsive-taxon-detail" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
+                      </button>
+                    </td>
+                  </tr>
+                </>
+                ) }
+                { ( viewerIsAdmin || config.currentUser.isInTestGroup( "helpful-id-tips-reviewer" ) ) && (
+                <tr>
+                  <td className="col-xs-4 borderless table-row">
+                    Helpful ID Tips
+                  </td>
+                  <td className="col-xs-4 borderless table-row">
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={( ) => toggleGroup( "helpful-id-tips" )}
+                    >
+                      { config.currentUser.isInTestGroup( "helpful-id-tips" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
+                    </button>
+                  </td>
+                </tr>
+                ) }
+              </tbody>
+            </table>
+          </SettingsItem>
         </div>
       </div>
       <div className="row">

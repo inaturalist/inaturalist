@@ -3372,6 +3372,9 @@ en:
   # Label shown when a date has not been entered
   missing_date: Missing Date
   mobile: Mobile
+  # Name of the test group for the responsive, mobile-friendly redesign of the
+  # site, matching the wording of the banner that prompts you to join it
+  mobile_friendly_mode: Mobile-Friendly Mode
   moderation_history_for_user_html: Moderation history for %{user}
   moderation_history_desc_html: |
     This includes moderator actions (e.g. hiding or unhiding comments), notes,
@@ -6078,6 +6081,9 @@ en:
   # Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Text formatting controls
   text_editing_controls: Text editing controls
+  # Heading for the account settings section where you join or leave tests of
+  # new features
+  test_groups: Test Groups
   thank_you!: Thank you!
   thanks!: Thanks!
   thanks_from_all_of_us_here_at: Thanks from all of us here at
