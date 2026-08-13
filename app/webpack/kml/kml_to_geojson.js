@@ -1,6 +1,3 @@
-// Fetches user-uploaded KML/KMZ project assets and converts them to GeoJSON
-// for rendering with google.maps.Data, replacing the deprecated
-// google.maps.KmlLayer (WEB-1009)
 const toGeoJSON = require( "@tmcw/togeojson" );
 const JSZip = require( "jszip" );
 const sanitizeHtml = require( "sanitize-html" );
@@ -13,8 +10,6 @@ function kmlTextToGeoJSON( kmlText ) {
   return toGeoJSON.kml( dom );
 }
 
-// KMZ is a zip archive whose main document is conventionally doc.kml at the
-// root, but any single .kml entry is accepted by Google Earth
 function kmzToKmlText( arrayBuffer ) {
   return JSZip.loadAsync( arrayBuffer ).then( zip => {
     const kmlFiles = zip.file( /\.kml$/i );
@@ -39,9 +34,6 @@ function fetchGeoJSON( url ) {
   } ).then( kmlTextToGeoJSON );
 }
 
-// KmlLayer sanitized Placemark description balloons on Google's side, so
-// descriptions must be sanitized here before injecting into an InfoWindow.
-// togeojson represents HTML (CDATA) descriptions as { "@type": "html", value: ... }
 function sanitizeDescription( description ) {
   if ( !description ) { return ""; }
   const html = typeof ( description ) === "object" ? description.value : description;

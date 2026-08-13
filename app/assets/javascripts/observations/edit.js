@@ -39,8 +39,6 @@ $(document).ready(function() {
     })
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map).div)
   } else if (typeof(KML_ASSET_URLS) != 'undefined' && KML_ASSET_URLS != null && KML_ASSET_URLS.length > 0) {
-    // assign the control to the map so overlays registered after the KML
-    // assets load asynchronously still show up in it
     map._overlayControl = new iNaturalist.OverlayControl(map)
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(map._overlayControl.div)
     map.addKmlAssets(KML_ASSET_URLS, {

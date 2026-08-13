@@ -1033,14 +1033,6 @@ google.maps.Map.prototype.getOverlay = function(name) {
   }
 }
 
-// Renders user-uploaded KML/KMZ assets as google.maps.Data layers, replacing
-// the deprecated google.maps.KmlLayer. Requires the kml-webpack bundle, which
-// defines window.KmlAssets (see app/webpack/kml/webpack-entry.js).
-// options:
-//   preserveViewport: when falsy, fit the map to the loaded features
-//   suppressInfoWindows: don't open info windows with Placemark name/description
-//   click: click handler for the layers (receives a google.maps.Data.MouseEvent)
-//   name: overlay name shown in the OverlayControl
 google.maps.Map.prototype.addKmlAssets = function( urls, options ) {
   options = options || { };
   var map = this;
