@@ -52,6 +52,12 @@ describe "disallowed deprecation warnings" do
     end.to raise_error( ActiveSupport::DeprecationException )
   end
 
+  it "subscribes to deprecation notifications for production logging" do
+    expect(
+      ActiveSupport::Notifications.notifier.listening?( "deprecation.rails" )
+    ).to be true
+  end
+
   it "does not raise on deprecations that are not on the disallowed list" do
     original_behavior = ActiveSupport::Deprecation.behavior
     begin
