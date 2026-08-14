@@ -1,12 +1,29 @@
 - feedback_urls = { "responsive-global" => "https://inaturalist.typeform.com/to/HZsu49MO" }
-- if logged_in?
+- toggle_opt_out_preference = "prefers_hide_#{group.underscore}_toggle";
+- if logged_in? && !current_user.try( toggle_opt_out_preference )
   - joined = current_user.in_test_group?( group )
   - key_prefix = group.tr( "-", "_" )
   - status_key = joined ? :"#{key_prefix}_test_joined_status" : :"#{key_prefix}_test_prompt"
   - path = joined ? leave_test_user_path( current_user, test: group ) : join_test_user_path( current_user, test: group )
-  .test-group-container
+  .test-group-container{ id: "test-group-container" }
     .TestGroupBanner.alert.alert-warning.text-center{ class: ( "TestGroupBanner--compact" if joined ) }
       = t( status_key )
       - if joined && ( feedback_url = feedback_urls[group] )
         = link_to t( :feedback ), feedback_url, class: "TestGroupBanner-feedback", target: "_blank", rel: "noopener noreferrer"
       = button_to t( joined ? :stop_testing : :yes ), path, method: :put, class: "btn #{joined ? 'btn-warning btn-xs' : 'btn-success'}", form_class: "TestGroupBanner-action"
+      %button.close.TestGroupBanner-dismiss{ type: "button", title: t( :dismiss ), "aria-label" => t( :dismiss ) }
+        %i{ class: "fa fa-close" }
+  .test-group-container.hidden{ id: "test-group-dismissed-notice" }
+    .TestGroupBanner.alert.alert-info.text-center.TestGroupBanner--compact.TestGroupBanner--text
+      = t( :join_or_leave_this_test_in_account_settings_html, url: generic_edit_user_path( anchor: "account" ) )
+  :javascript
+    ( function ( ) {
+      var container = document.getElementById( "test-group-container" );
+      var toggleOptOutPreference = "#{toggle_opt_out_preference}";
+      var notice = document.getElementById( "test-group-dismissed-notice" );
+      container.querySelector( ".TestGroupBanner-dismiss" ).addEventListener( "click", function ( ) {
+        container.style.display = "none";
+        if ( notice ) { notice.classList.remove( "hidden" ); }
+        updateSession( { [toggleOptOutPreference]: true } )
+      } );
+    } )( );

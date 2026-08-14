@@ -21,7 +21,7 @@ describe "shared/_test_group_toggle" do
       expect( rendered ).to have_tag( "div.TestGroupBanner" ) do
         with_tag "form[action*='join_test'][action*='responsive-global']"
       end
-      expect( rendered ).not_to have_tag( "div.TestGroupBanner--compact" )
+      expect( rendered ).not_to have_tag( "#test-group-container div.TestGroupBanner--compact" )
       expect( rendered ).not_to have_tag( "div.TestGroupBanner .btn-xs" )
     end
 
