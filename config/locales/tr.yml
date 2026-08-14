@@ -4756,6 +4756,14 @@ tr:
   resolved_by: Çözen
   resolved_by_user_on_date_html: '%{user} tarafından %{date} tarihinde çözüldü'
   resolver_said_x_html: '<span class="meta">%{resolver}</span>"%{x}" dedi'
+  #Prompt to join a test of the responsive, mobile-friendly redesign of the
+  #site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Mobil cihazlara uyumlu yeni duyarlı tasarımı denemek ister misiniz? 
+    Henüz tüm sayfaların bu tasarıma dönüştürülmediğini lütfen unutmayın.
+  #Message displayed when you have joined the test of the responsive,
+  #mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Şu anda mobil uyumlu modda.
   restart: Yeniden başlat
   restore: Geri yükle
   restoring: Geri yükleniyor...
@@ -6093,6 +6101,8 @@ tr:
   view_post: Gönderiyi görüntüle
   view_projects_from_place: "%{place} konumundan projeleri görüntüle"
   view_sample: Örneği Görüntüle
+  #Label for a link that opens the external source of a conservation status
+  view_source: Kaynağı Görüntüle
   view_stats: İstatistikleri Görüntüle
   #Text for a link that takes the user to the relevant taxon details page
   view_taxon: Taksonu Görüntüle
