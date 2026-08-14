@@ -261,9 +261,9 @@ module TaxaHelper
       end
     end
     node[:data][:html] = if is_a?( ActionController::Base )
-      render_to_string( partial: "taxa/taxon.html.erb", object: taxon )
+      render_to_string( partial: "taxa/taxon", formats: [:html], object: taxon )
     else
-      render( partial: "taxa/taxon.html.erb", object: taxon )
+      render( partial: "taxa/taxon", formats: [:html], object: taxon )
     end
 
     node

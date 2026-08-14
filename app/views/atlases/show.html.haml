@@ -1,6 +1,6 @@
 - content_for :title do
   Atlas for
-  = render "taxa/taxon.txt.erb", taxon: @atlas.taxon
+  = render partial: "taxa/taxon", formats: [:txt], locals: { taxon: @atlas.taxon }
 
 - content_for :extrajs do
   = javascript_include_tag "atlases/show"

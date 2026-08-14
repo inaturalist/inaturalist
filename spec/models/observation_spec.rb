@@ -521,6 +521,14 @@ describe Observation do
     end
   end
 
+  describe "#to_plain_s" do
+    it "renders the taxon partial when given a viewer" do
+      taxon = create :taxon, :as_species
+      observation = create :observation, taxon: taxon
+      expect( observation.to_plain_s( viewer: observation.user ) ).to include taxon.name
+    end
+  end
+
   describe "#set_license" do
     let!( :observation ) { create :observation }
 

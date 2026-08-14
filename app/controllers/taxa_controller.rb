@@ -478,7 +478,7 @@ class TaxaController < ApplicationController
     end
     respond_to do | format |
       format.html do
-        render partial: "clashes.html.haml", locals: { results: @results }
+        render partial: "clashes", formats: [:html], locals: { results: @results }
       end
       format.json do
         render json: @results.to_json( methods: [:html] )

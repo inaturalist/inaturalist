@@ -1,6 +1,6 @@
 :ruby
   @title = if @object.is_a?( Taxon )
-    t(:flag_for_taxon_title_html, title: link_to( render( "taxa/taxon.txt", taxon: @object ), @object ) )
+    t(:flag_for_taxon_title_html, title: link_to( render( partial: "taxa/taxon", formats: [:txt], locals: { taxon: @object } ), @object ) )
   elsif @object.is_a?( Observation )
     t(:flag_for_observation_title_html, title: link_to( @object.to_plain_s, @object ) )
   elsif @object.respond_to?( :title ) || @object.respond_to?( :name )
