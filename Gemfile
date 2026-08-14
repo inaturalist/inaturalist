@@ -117,7 +117,7 @@ gem "terser"
 gem "utf8-cleaner"
 gem "watu_table_builder", require: "table_builder"
 gem "whenever", require: false
-gem "will_paginate"
+gem "will_paginate", "~> 4.0"
 gem "xmp", git: "https://github.com/inaturalist/xmp.git"
 gem "ya2yaml"
 gem "yajl-ruby", require: "yajl"
