@@ -72,7 +72,10 @@ const App = ( { taxon, showNewTaxon, config } ) => {
                 }
               </h1>
               <div id="place-chooser-container">
-                <PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />
+                <PlaceChooserContainer
+                  container={$( "#wrapper.bootstrap" ).get( 0 )}
+                  clearButton
+                />
               </div>
             </div>
           </Col>

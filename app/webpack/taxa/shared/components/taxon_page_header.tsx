@@ -66,7 +66,9 @@ const TaxonPageHeader = ( {
         <div id="place-chooser-container">
           { PlaceChooserContainer && (
             <PlaceChooserContainer
-              container={document.getElementById( "app" ) ?? undefined}
+              container={
+                document.querySelector<HTMLElement>( "#wrapper.bootstrap" ) ?? undefined
+              }
               clearButton
             />
           ) }
