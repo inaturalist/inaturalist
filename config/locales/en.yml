@@ -2872,6 +2872,10 @@ en:
   jobs: Jobs
   join: Join
   join_and_add_an_observation_to_project_html: Join and Add An Observation to %{project}
+  # Shown after dismissing a banner that invites you to join, or lets you
+  # leave, a test of a new feature, pointing at the other place to do both
+  join_or_leave_this_test_in_account_settings_html: |
+    You can join or leave this test any time in your <a href="%{url}">account settings</a>.
   join_project: Join this project
   # Prompt to join a specific project
   join_project?: Join %{project}?
@@ -2950,10 +2954,6 @@ en:
   leave: Leave
   leave_a_comment: Leave a comment
   leave_this_project: Leave this project
-  # Shown after dismissing the banner that lets you leave a test of a new
-  # feature, pointing at the other place you can leave it
-  leave_this_test_group_in_account_settings_html: |
-    You can leave this test any time in your <a href="%{url}">account settings</a>.
   # Terminal nodes in a taxonomic tree
   leaves: leaves
   legacy_authentication_notice_html: |
