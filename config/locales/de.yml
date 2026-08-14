@@ -4779,6 +4779,14 @@ de:
   resolved_by: Geklärt durch
   resolved_by_user_on_date_html: Geklärt von %{user} am %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} meint,</span> "%{x}"'
+  #Prompt to join a test of the responsive, mobile-friendly redesign of the
+  #site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Möchtest  du das neue Handy-freundliche responsive Layout testen?
+    Beachte, dass noch nicht alle Seiten konvertiert wurden.
+  #Message displayed when you have joined the test of the responsive,
+  #mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Derzeit im Handy-freundlichen Modus.
   restart: Neustart
   restore: Wiederherstellen
   restoring: Stelle wieder her …
@@ -6141,6 +6149,8 @@ de:
   view_post: Eintrag anzeigen
   view_projects_from_place: "Projekte von %{place} anzeigen"
   view_sample: Beispiel anzeigen
+  #Label for a link that opens the external source of a conservation status
+  view_source: Quelle anzeigen
   view_stats: Statistiken
   #Text for a link that takes the user to the relevant taxon details page
   view_taxon: Taxon anzeigen
