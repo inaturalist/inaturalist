@@ -4932,6 +4932,14 @@ da:
   resolved_by: Løst af
   resolved_by_user_on_date_html: Løst af %{user} den %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} sagde,</span> "%{x}"'
+  #Prompt to join a test of the responsive, mobile-friendly redesign of the
+  #site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Test det nye mobilvenlige, responsive layout?
+    Bemærk, at ikke alle sider endnu er konverteret.
+  #Message displayed when you have joined the test of the responsive,
+  #mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Er i øjeblikket mobilvenlig tilstand.
   restart: Genstart
   restore: Gendan
   restoring: Gendanner...
