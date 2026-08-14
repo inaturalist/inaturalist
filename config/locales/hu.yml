@@ -4286,6 +4286,14 @@ hu:
   resolved: Megoldva
   resolved_by: 'Megoldotta:'
   resolved_by_user_on_date_html: 'Megoldotta %{user} ekkor: %{date}'
+  #Prompt to join a test of the responsive, mobile-friendly redesign of the
+  #site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Tesztelnéd az új, mobilbarát reszponzív elrendezést?
+    Fontos: még nem minden oldal lett átkonvertálva.
+  #Message displayed when you have joined the test of the responsive,
+  #mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Jelenleg mobilbarát módban.
   restart: Újraindítás
   restore: Visszaállítás
   restoring: Visszaállítás...
