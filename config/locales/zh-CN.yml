@@ -1787,6 +1787,8 @@ zh-CN:
   edit_moderator_note: 编辑版主批注
   #Text on a button allowing you to edit the suspension reason or end date for a user
   edit_suspension: 编辑：停用
+  #Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
+  edit_suspension_alternative_html: 如果您只需要更新原因或到期日，你可以转而使用 <a href="%{edit_link}">编辑停用</a> 。
   edit_a_batch_of_observations: 批量编辑观察记录
   edit_account_settings_and_profile: "编辑账户设置和详细信息"
   edit_assessment: 编辑评估
@@ -2392,6 +2394,14 @@ zh-CN:
   inappropriate: 不适当的
   #Name of the newer version of iNaturalist's mobile app, called iNatNext
   inat_next: iNatNext
+  #Chart series and legend label on the stats page
+  inat_classic_android_temp: 安卓
+  #Chart series and legend label on the stats page
+  inat_classic_ios: 经典iOS
+  #Chart series and legend label on the stats page
+  inat_next_android_temp: iNatNext Android
+  #Chart series and legend label on the stats page
+  inat_next_ios: iOS
   inaturalist_network: iNaturalist 网络
   inaturalist_network_affiliation: iNaturalist网络关系
   #Label for messages you've received
@@ -4698,6 +4708,14 @@ zh-CN:
   resolved_by: 解决者
   resolved_by_user_on_date_html: 由%{user}于 %{date} 解决
   resolver_said_x_html: '<span class="meta">%{resolver}说：</span>“%{x}”'
+  #Prompt to join a test of the responsive, mobile-friendly redesign of the
+  #site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    是否测试新的移动友好响应式布局？
+    请注意，并非所有页面都已转换完成。
+  #Message displayed when you have joined the test of the responsive,
+  #mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: 目前处于移动友好模式。
   restart: 重启
   restore: 恢复
   restoring: 正在恢复...
@@ -6018,6 +6036,8 @@ zh-CN:
   view_post: 查看帖子
   view_projects_from_place: "查看来自%{place}的项目"
   view_sample: 查看示例
+  #Label for a link that opens the external source of a conservation status
+  view_source: 查看来源
   view_stats: 查看状态
   #Text for a link that takes the user to the relevant taxon details page
   view_taxon: 查看分类单元
@@ -6409,6 +6429,8 @@ zh-CN:
         按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论是否使用应用软件。
       #Tooltip for the global announcement select when editing an announcement that already has variants
       parent_announcement_disabled_desc: 本次公告针对多个变体，无法分配全球性公告。
+      #Tooltip for the global announcement select field on the announcement form
+      parent_announcement_desc: 选择一条公告，该公告应替换给符合定向规则的用户。
       site_ids_desc: |
         按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论其属于哪个站点。
       start_desc: |
@@ -7409,6 +7431,8 @@ zh-CN:
           </p>
       user_unsuspended:
         #A line in an email telling a user their account suspension is being lifted lifted.
+        message: 您的帐户 %{site_name} 已经解除停用，您可以再次使用该网站。
+        #A line in an email telling a user their account suspension is being lifted lifted.
         message_2: 您在%{site_name}上的帐户已经恢复了，您可以重新登录了。
         #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
         reason: "您的帐户被停用的原因如下： %{reason}"
@@ -7417,6 +7441,8 @@ zh-CN:
         please_abide_html: '请遵守 <a href="%{community_guidelines_url}">iNaturalist社区指南</a> 和 <a href="%{terms_of_use_url}">使用条款</a>。未来的违反可能导致更长时间的停用。'
         #A message in account reinstatement emails telling users how to contact support, with a link.
         contact_us_html: '如果你有任何问题或顾虑，可以 <a href="%{contact_us_url}">联系我们</a>。'
+        #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
+        login_prompt: '<a href="%{login_url}">登录您的帐户</a> 以继续使用该网站。'
       user_suspended:
         #A message in a suspension notification email for timed suspensions, with the reason and relative time until the suspension is lifted.
         message_timed: "您的iNaturalist账号因以下原因被停用：%{reason}。您的停用状态将在%{duration}后被解除。"
@@ -7793,6 +7819,16 @@ zh-CN:
         avg_ttcid: 平均TTCID
         avg_ttid: 平均TTID
         identifiers_desc: 此日为其他人的观察添加了一个鉴定
+        #Chart series and legend label on the stats page
+        inat_classic_android_desc_temp_html: 由 <a href="%{url}">iNaturalist（安卓）</a>创建
+        #Chart series and legend label on the stats page
+        inat_classic_ios_desc_html: 由 <a href="%{url}">iNaturalist 经典版（iOS）</a>创建
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_temp_html: 由 <a href="%{url}">iNatNext（安卓）</a>创建
+        #Chart series and legend label on the stats page
+        inat_next_ios_desc_html: 由 <a href="%{url}">iNaturalist（iOS）</a>创建
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_html: 由 <a href="%{url}">iNatNext 安卓应用</a>创建
         inat_next_desc_html: 通过<a href="%{url}">iNatNext</a>创建
         iphone_desc_html: 通过<a href="%{url}">iNaturalist iPhone应用</a>创建
         med_ttcid: 中位数TTCID
