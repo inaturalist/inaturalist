@@ -4761,6 +4761,14 @@ id:
   resolved_by: Diselesaikan oleh
   resolved_by_user_on_date_html: Diselesaikan oleh %{user} pada %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} berkata, </span> "%{x}"'
+  #Prompt to join a test of the responsive, mobile-friendly redesign of the
+  #site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Mau coba tata letak responsif baru yang lebih ramah untuk seluler?
+    Harap diingat bahwa belum semua halaman sudah dikonversi.
+  #Message displayed when you have joined the test of the responsive,
+  #mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Saat ini dalam mode ramah mobile.
   restart: Mulai Ulang
   restore: Pulihkan
   restoring: Memulihkan…
