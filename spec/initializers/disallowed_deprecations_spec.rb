@@ -2,11 +2,7 @@
 
 require "spec_helper"
 
-# Exercises the curated list in config.active_support.disallowed_deprecation_warnings
-# (config/application.rb). The test environment raises on these
-# (config/environments/test.rb) so CI fails on upgrade-breaking usage, while other
-# environments log them. Messages here mirror the real Rails wording so the specs
-# lock the pattern-to-message contract for each list entry.
+# Tests config.active_support.disallowed_deprecation_warnings
 describe "disallowed deprecation warnings" do
   it "raises on require_dependency deprecations" do
     expect do

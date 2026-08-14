@@ -14,13 +14,7 @@ module Inaturalist
     config.load_defaults 5.0
     config.active_record.belongs_to_required_by_default = false
 
-    # Curated list of Rails deprecation warnings that block the next upgrade
-    # hop. Matched warnings use the disallowed deprecation behavior: :raise in
-    # test (see config/environments/test.rb), :log everywhere else. Strings
-    # are substring-matched, Regexps are matched against the full message.
-    # Grow this list at each upgrade phase. NOTE: this only covers warnings
-    # emitted after this config is applied at boot; warnings emitted by gems
-    # at require time are not affected.
+    # Rails deprecation warnings that are disallowed, and raise in CI.
     config.active_support.disallowed_deprecation_warnings = [
       # Removed in Rails 7.0
       "Rendering actions with '.' in the name is deprecated",
@@ -33,9 +27,6 @@ module Inaturalist
       # Rails 7.2: enum status: {...} -> enum :status, {...}
       "Defining enums with keyword arguments"
     ]
-    # Rails 6.1 defaults the disallowed deprecation behavior to :raise; make
-    # :log the safe default for every environment. test.rb overrides this to
-    # :raise so the disallowed list fails CI.
     config.active_support.disallowed_deprecation = :log
 
     # Settings in config/environments/* take precedence over those specified here.
