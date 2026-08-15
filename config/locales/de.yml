@@ -2536,6 +2536,10 @@ de:
   jobs: Jobs
   join: Beitreten
   join_and_add_an_observation_to_project_html: Beitreten und eine Beobachtung zu %{project} hinzufügen
+  #Shown after dismissing a banner that invites you to join, or lets you
+  #leave, a test of a new feature, pointing at the other place to do both
+  join_or_leave_this_test_in_account_settings_html: |
+    Du kannst jederzeit an diesem Test teilnehmen oder ihn verlassen <a href="%{url}">Kontoeinstellungen</a>.
   join_project: Diesem Projekt beitreten
   #Prompt to join a specific project
   join_project?: Dem Projekt "%{project}" beitreten?
@@ -3023,6 +3027,9 @@ de:
   #Label shown when a date has not been entered
   missing_date: Fehlendes Datum
   mobile: Mobil
+  #Name of the test group for the responsive, mobile-friendly redesign of the
+  #site, matching the wording of the banner that prompts you to join it
+  mobile_friendly_mode: Handy-freundlicher Modus
   moderation_history_for_user_html: Moderationsverlauf für %{user}
   moderation_history_desc_html: |
     Dies beinhaltet Aktionen des Moderators (z.B. Kommentare verstecken oder freischalten), Anmerkungen und Markierungen über alles, was dieser Benutzer mit Ausnahme von Taxa erstellt hat. Dies ist <strong>nur für Kuratoren sichtbar</strong> und <strong>Kuratoren können
@@ -5528,6 +5535,9 @@ de:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Textformatierungskontrollen
   text_editing_controls: Textformatierungskontrollen
+  #Heading for the account settings section where you join or leave tests of
+  #new features
+  test_groups: Testgruppen
   thank_you!: Vielen Dank!
   thanks!: Danke!
   thanks_from_all_of_us_here_at: Danke von uns allen hier bei
