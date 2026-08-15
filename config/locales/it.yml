@@ -2580,6 +2580,10 @@ it:
   jobs: Lavora con noi
   join: Unisciti
   join_and_add_an_observation_to_project_html: Unisciti ed Aggiungi Un'Osservazione a %{project}
+  #Shown after dismissing a banner that invites you to join, or lets you
+  #leave, a test of a new feature, pointing at the other place to do both
+  join_or_leave_this_test_in_account_settings_html: |
+    Puoi iscriverti o lasciare questo test in qualsiasi momento nelle <a href="%{url}">Impostazioni del profilo</a>.
   join_project: Unisciti a questo progetto
   #Prompt to join a specific project
   join_project?: Ti vuoi unire a %{project}?
