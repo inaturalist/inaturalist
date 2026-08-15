@@ -2647,6 +2647,10 @@ da:
   jobs: Stillinger
   join: Tilslut
   join_and_add_an_observation_to_project_html: Deltag og tilføj en observation til %{project}
+  #Shown after dismissing a banner that invites you to join, or lets you
+  #leave, a test of a new feature, pointing at the other place to do both
+  join_or_leave_this_test_in_account_settings_html: |
+    Tilmelding til eller afslutning på denne test kan ske som helst via <a href="%{url}">Kontoindstillinger</a>.
   join_project: Bliv medlem af dette projekt
   #Prompt to join a specific project
   join_project?: Tilmeld dig %{project}?
@@ -3137,6 +3141,9 @@ da:
   #Label shown when a date has not been entered
   missing_date: Dato mangler
   mobile: Mobil
+  #Name of the test group for the responsive, mobile-friendly redesign of the
+  #site, matching the wording of the banner that prompts you to join it
+  mobile_friendly_mode: Mobilvenlig tilstand
   moderation_history_for_user_html: Moderationshistorik for %{user}
   moderation_history_desc_html: |
     Dette omfatter moderatorhandlinger (f.eks. skjule/vise kommentarer), notater,
@@ -5739,6 +5746,9 @@ da:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Tekstformateringskontroller
   text_editing_controls: Tekstredigeringskontroller
+  #Heading for the account settings section where you join or leave tests of
+  #new features
+  test_groups: Testgrupper
   thank_you!: Tak!
   thanks!: Tak!
   thanks_from_all_of_us_here_at: Tak fra alle os her hos
