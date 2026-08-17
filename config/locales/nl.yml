@@ -2633,6 +2633,10 @@ nl:
   jobs: Vacatures
   join: Lid worden
   join_and_add_an_observation_to_project_html: Word lid en voeg een waarneming toe aan %{project}
+  #Shown after dismissing a banner that invites you to join, or lets you
+  #leave, a test of a new feature, pointing at the other place to do both
+  join_or_leave_this_test_in_account_settings_html: |
+    Je kunt op elk moment aan deze test deelnemen of verlaten via je <a href="%{url}">Accountinstellingen</a>.
   join_project: Doe mee aan dit project
   #Prompt to join a specific project
   join_project?: Deelnemen aan %{project}?
@@ -3120,6 +3124,9 @@ nl:
   #Label shown when a date has not been entered
   missing_date: Datum ontbreekt
   mobile: Mobiel
+  #Name of the test group for the responsive, mobile-friendly redesign of the
+  #site, matching the wording of the banner that prompts you to join it
+  mobile_friendly_mode: Mobielvriendelijke modus
   moderation_history_for_user_html: Moderatiegeschiedenis voor %{user}
   moderation_history_desc_html: |
     Dit omvat moderatoracties (bv. het verbergen of activeren van reacties), notities
@@ -4914,6 +4921,14 @@ nl:
   resolved_by: Opgelost door
   resolved_by_user_on_date_html: Opgelost door %{user} op %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} zei,</span> "%{x}"'
+  #Prompt to join a test of the responsive, mobile-friendly redesign of the
+  #site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Wil je de nieuwe, mobielvriendelijke, responsieve lay-out testen?
+    Let op: niet alle pagina's zijn al omgezet.
+  #Message displayed when you have joined the test of the responsive,
+  #mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Momenteel in mobielvriendelijke modus.
   restart: Herstart
   restore: Herstellen
   restoring: Aan het herstellen ...
@@ -5681,6 +5696,9 @@ nl:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Tekstvormgevings-elementen
   text_editing_controls: Tekstbewerkings-elementen
+  #Heading for the account settings section where you join or leave tests of
+  #new features
+  test_groups: Testgroepen
   thank_you!: Bedankt!
   thanks!: Bedankt!
   thanks_from_all_of_us_here_at: Bedankt van iedereen hier bij
@@ -6323,6 +6341,8 @@ nl:
   view_post: Bericht weergeven
   view_projects_from_place: "Projecten weergeven van %{place}"
   view_sample: Voorbeeld weergeven
+  #Label for a link that opens the external source of a conservation status
+  view_source: Toon bron
   view_stats: Statistieken bekijken
   #Text for a link that takes the user to the relevant taxon details page
   view_taxon: Toon Taxon
