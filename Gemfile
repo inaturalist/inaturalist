@@ -49,8 +49,8 @@ gem "doorkeeper"
 gem "dynamic_form", git: "https://github.com/GoodMeasuresLLC/dynamic_form.git"
 gem "elasticsearch", "~> 8"
 gem "elasticsearch-api", "~> 8"
-gem "elasticsearch-model", "~> 8"
-gem "elasticsearch-rails", "8.0.0.pre"
+gem "elasticsearch-model", "~> 8.0.1"
+gem "elasticsearch-rails", "8.0.1"
 gem "email_address"
 gem "exifr", require: ["exifr", "exifr/jpeg", "exifr/tiff"]
 gem "exiftool_vendored" # Vendored version includes exiftool and exiftool gem

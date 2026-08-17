@@ -347,11 +347,11 @@ GEM
       elasticsearch-api (= 8.14.0)
     elasticsearch-api (8.14.0)
       multi_json
-    elasticsearch-model (8.0.0)
+    elasticsearch-model (8.0.1)
       activesupport (> 3)
       elasticsearch (~> 8)
       hashie
-    elasticsearch-rails (8.0.0.pre)
+    elasticsearch-rails (8.0.1)
     email_address (0.2.5)
       base64
       simpleidn
@@ -824,8 +824,8 @@ DEPENDENCIES
   ed25519
   elasticsearch (~> 8)
   elasticsearch-api (~> 8)
-  elasticsearch-model (~> 8)
-  elasticsearch-rails (= 8.0.0.pre)
+  elasticsearch-model (~> 8.0.1)
+  elasticsearch-rails (= 8.0.1)
   email_address
   exifr
   exiftool_vendored
