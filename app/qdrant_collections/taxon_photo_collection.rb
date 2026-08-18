@@ -73,10 +73,12 @@ class TaxonPhoto < ApplicationRecord
       next unless payload["ancestor_ids"] && taxon_photo&.taxon &&
         payload["ancestor_ids"].sort == taxon_photo.taxon.self_and_ancestor_ids&.sort
       next unless payload["photo_id"] == taxon_photo.photo_id
-      next unless (
-        payload["photo_file_updated_at"].blank? && taxon_photo.photo&.file_updated_at.blank?
-      ) || Time.parse( payload["photo_file_updated_at"] ).floor ==
-        taxon_photo.photo&.file_updated_at&.floor
+
+      indexed_file_updated_at = payload["photo_file_updated_at"]
+      if indexed_file_updated_at.present?
+        indexed_file_updated_at = Time.parse( indexed_file_updated_at )
+      end
+      next unless indexed_file_updated_at&.floor == taxon_photo.photo&.file_updated_at&.floor
 
       true
     end
