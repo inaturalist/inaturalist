@@ -43,6 +43,12 @@ describe ActsAsQdrantModel do
       end
     end
 
+    describe "enabled?" do
+      it "returns true if a client is configured" do
+        expect( TaxonPhoto.__qdrant__.enabled? ).to be true
+      end
+    end
+
     describe "collection_exists?" do
       it "returns false if the collection does not exist" do
         TaxonPhoto.__qdrant__.delete_collection!
@@ -95,6 +101,105 @@ describe ActsAsQdrantModel do
         TaxonPhoto.__qdrant__.delete_collection!
         TaxonPhoto.__qdrant__.delete_collection!
         expect( TaxonPhoto.__qdrant__.collection_exists? ).to be false
+      end
+    end
+
+    describe "disabled" do
+      let( :vector_size ) { 2048 }
+      let( :embedding ) { Array.new( vector_size ) { rand } }
+
+      before do
+        allow( TaxonPhoto.__qdrant__ ).to receive( :client ).and_return( nil )
+      end
+
+      before do | example |
+        next if example.metadata[:skip_spec_overrides]
+
+        # mock the remote fetching of taxon photo embeddings, and return the test embedding
+        allow( TaxonPhoto ).to receive( :embeddings_for_taxon_photos ) do | taxon_photos |
+          taxon_photos.to_h {| tp | [tp.id.to_s, embedding] }
+        end
+        # enable all lifecycle callbacks for TaxonPhoto for: :create, :update, and :destroy
+        allow( TaxonPhoto ).to receive( :qdrant_lifecycle_callback_enabled ) do | action |
+          [:create, :update, :destroy].include?( action )
+        end
+      end
+
+      let( :taxon_photo ) { TaxonPhoto.make! }
+
+      describe "enabled?" do
+        it "returns false if a client is not configured" do
+          expect( TaxonPhoto.__qdrant__.enabled? ).to be false
+        end
+      end
+
+      describe "set_configuration" do
+        it "still allows the configuration to be set when disabled" do
+          # the collection definitions will still exist and will still be loaded even if Qdrant
+          # is not enabled. Allow the configuration to be set, but all other methods like
+          # those that actually create the collection, will be disabled
+          original_configuration = TaxonPhoto.__qdrant__.configuration
+          custom_configuration = {
+            collection_parameters: {
+              on_disk_payload: true
+            }
+          }
+          TaxonPhoto.__qdrant__.set_configuration( custom_configuration )
+          expect( TaxonPhoto.__qdrant__.configuration ).to eq custom_configuration
+
+          # restore the original configuration for future specs
+        ensure
+          TaxonPhoto.__qdrant__.set_configuration( original_configuration )
+        end
+      end
+
+      describe "collection_exists?" do
+        it "returns false when disabled" do
+          expect( TaxonPhoto.__qdrant__.collection_exists? ).to be false
+        end
+      end
+
+      describe "create_collection!" do
+        it "returns nil when disabled" do
+          expect( TaxonPhoto.__qdrant__.create_collection! ).to be_nil
+        end
+      end
+
+      describe "delete_collection!" do
+        it "returns nil when disabled" do
+          expect( TaxonPhoto.__qdrant__.delete_collection! ).to be_nil
+        end
+      end
+
+      describe "upsert_points" do
+        it "returns nil when disabled" do
+          expect( TaxonPhoto.__qdrant__.upsert_points( [taxon_photo.as_qdrant_json] ) ).to be_nil
+          expect( TaxonPhoto.__qdrant__.count ).to eq 0
+        end
+      end
+
+      describe "count" do
+        it "returns zero when disabled" do
+          expect( TaxonPhoto.__qdrant__.count ).to eq 0
+        end
+      end
+
+      describe "get" do
+        it "returns nil when disabled" do
+          expect( TaxonPhoto.__qdrant__.get( taxon_photo.id ) ).to be_nil
+        end
+      end
+
+      describe "get_all" do
+        it "returns an empty array when disabled" do
+          expect( TaxonPhoto.__qdrant__.get_all( [taxon_photo.id] ) ).to eq []
+        end
+      end
+
+      describe "delete" do
+        it "returns nil when disabled" do
+          expect( TaxonPhoto.__qdrant__.delete( [taxon_photo.id] ) ).to be_nil
+        end
       end
     end
   end

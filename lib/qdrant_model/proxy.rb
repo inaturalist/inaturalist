@@ -28,7 +28,13 @@ module ActsAsQdrantModel
       @configuration = configuration
     end
 
+    def enabled?
+      !!client
+    end
+
     def collection_exists?
+      return false unless enabled?
+
       begin
         client.collections.get( collection_name: collection_name )
       rescue Faraday::ResourceNotFound
@@ -38,6 +44,8 @@ module ActsAsQdrantModel
     end
 
     def create_collection!( options = {} )
+      return unless enabled?
+
       delete_collection! if options[:force]
 
       return if collection_exists?
@@ -51,6 +59,8 @@ module ActsAsQdrantModel
     end
 
     def create_indices!
+      return unless enabled?
+
       payload_indices = @configuration[:payload_indices] || {}
       payload_indices.each do | field_name, field_schema |
         # Create index for field in collection
@@ -64,10 +74,13 @@ module ActsAsQdrantModel
     end
 
     def delete_collection!
+      return unless enabled?
+
       client.collections.delete( collection_name: collection_name )
     end
 
     def upsert_points( points )
+      return unless enabled?
       return if points.blank?
 
       points.in_groups_of( MAX_BATCH_SIZE, false ) do | batch |
@@ -80,6 +93,8 @@ module ActsAsQdrantModel
     end
 
     def count( filter = {} )
+      return 0 unless enabled?
+
       response = client.points.count(
         collection_name: collection_name,
         filter: filter,
@@ -89,6 +104,8 @@ module ActsAsQdrantModel
     end
 
     def get( id )
+      return unless enabled?
+
       begin
         response = client.points.get(
           collection_name: collection_name,
@@ -101,6 +118,8 @@ module ActsAsQdrantModel
     end
 
     def get_all( ids )
+      return [] unless enabled?
+
       response = client.points.get_all(
         collection_name: collection_name,
         ids: ids,
@@ -110,6 +129,8 @@ module ActsAsQdrantModel
     end
 
     def delete( ids )
+      return unless enabled?
+
       client.points.delete(
         collection_name: collection_name,
         points: ids,
@@ -126,7 +147,13 @@ module ActsAsQdrantModel
       @class_proxy = target.class.__qdrant__
     end
 
+    def enabled?
+      class_proxy.enabled?
+    end
+
     def upsert_point
+      return unless enabled?
+
       qdrant_json = target.as_qdrant_json
       return if qdrant_json.blank?
 
@@ -134,6 +161,8 @@ module ActsAsQdrantModel
     end
 
     def delete_point
+      return unless enabled?
+
       class_proxy.delete( [@target.id] )
     end
   end

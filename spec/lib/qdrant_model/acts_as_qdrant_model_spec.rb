@@ -81,6 +81,41 @@ describe ActsAsQdrantModel do
         expect_point_matches_json( point, updated_qdrant_json )
         expect( updated_qdrant_json[:payload][:photo_id] ).not_to eq( original_photo_id )
       end
+
+      describe "disabled" do
+        before do
+          allow( TaxonPhoto.__qdrant__ ).to receive( :client ).and_return( nil )
+        end
+
+        it "does not index the document on create nor raise an error" do
+          expect_any_instance_of( TaxonPhoto ).to receive( :qdrant_index! ).and_call_original
+          expect( TaxonPhoto.qdrant_count ).to eq( 0 )
+          tp = TaxonPhoto.make!
+          expect( TaxonPhoto.qdrant_count ).to eq( 0 )
+          expect( TaxonPhoto.qdrant_get( tp.id ) ).to be_nil
+        end
+
+        it "does not index the document on update nor raise an error" do
+          expect_any_instance_of( TaxonPhoto ).to receive( :qdrant_index! ).
+            at_least( :once ).and_call_original
+          expect( TaxonPhoto.qdrant_count ).to eq( 0 )
+          tp = TaxonPhoto.make!
+          tp.update( photo: Photo.make! )
+          expect( TaxonPhoto.qdrant_count ).to eq( 0 )
+          expect( TaxonPhoto.qdrant_get( tp.id ) ).to be_nil
+        end
+
+        it "does not index the document on destroy nor raise an error" do
+          expect_any_instance_of( TaxonPhoto ).to receive( :qdrant_delete! ).
+            at_least( :once ).and_call_original
+          expect( TaxonPhoto.qdrant_count ).to eq( 0 )
+          tp = TaxonPhoto.make!
+          expect( TaxonPhoto.qdrant_count ).to eq( 0 )
+          expect( TaxonPhoto.qdrant_get( tp.id ) ).to be_nil
+          tp.destroy
+          expect( TaxonPhoto.qdrant_count ).to eq( 0 )
+        end
+      end
     end
   end
 
@@ -216,6 +251,67 @@ describe ActsAsQdrantModel do
         TaxonPhoto.qdrant_index!
       end
     end
+
+    describe "disabled" do
+      before do
+        allow( TaxonPhoto.__qdrant__ ).to receive( :client ).and_return( nil )
+      end
+
+      describe "enabled?" do
+        it "returns false if a client is not configured" do
+          expect( TaxonPhoto.make!.__qdrant__.enabled? ).to be false
+        end
+      end
+
+      describe "qdrant_count" do
+        it "returns 0 when disabled" do
+          expect( TaxonPhoto.qdrant_count ).to eq 0
+          5.times { TaxonPhoto.make! }
+          expect( TaxonPhoto.qdrant_count ).to eq 0
+        end
+      end
+
+      describe "qdrant_get" do
+        it "returns nil when disabled" do
+          taxon_photo = TaxonPhoto.make!
+          expect( TaxonPhoto.qdrant_get( taxon_photo.id ) ).to be_nil
+        end
+      end
+
+      describe "qdrant_get_all" do
+        it "returns an empty array when disabled" do
+          taxon_photo = TaxonPhoto.make!
+          expect( TaxonPhoto.qdrant_get_all( [taxon_photo.id] ) ).to eq []
+        end
+      end
+
+      describe "qdrant_delete_by_ids!" do
+        it "returns nil when disabled" do
+          taxon_photo = TaxonPhoto.make!
+          expect( TaxonPhoto.qdrant_count ).to eq 0
+          expect( TaxonPhoto.qdrant_delete_by_ids!( [taxon_photo.id] ) ).to be_nil
+          expect( TaxonPhoto.qdrant_count ).to eq 0
+          # the DB record still exists
+          expect( TaxonPhoto.find( taxon_photo.id ) ).to be_a( TaxonPhoto )
+        end
+      end
+
+      describe "qdrant_index!" do
+        it "returns nil when disabled" do
+          expect( TaxonPhoto ).not_to receive( :bulk_qdrant_index )
+          TaxonPhoto.make!
+          expect( TaxonPhoto.qdrant_count ).to eq 0
+          expect( TaxonPhoto.qdrant_index! ).to be_nil
+          expect( TaxonPhoto.qdrant_count ).to eq 0
+        end
+
+        it "does not invoke the load_for_qdrant_index scope when disabled" do
+          expect( TaxonPhoto ).not_to receive( :load_for_qdrant_index )
+          expect( TaxonPhoto ).not_to receive( :embeddings_for_taxon_photos )
+          TaxonPhoto.qdrant_index!
+        end
+      end
+    end
   end
 
   describe "InstanceMethods" do
@@ -242,6 +338,37 @@ describe ActsAsQdrantModel do
         expect( TaxonPhoto.qdrant_count ).to eq 1
         taxon_photo.qdrant_delete!
         expect( TaxonPhoto.qdrant_count ).to eq 0
+      end
+    end
+
+    describe "disabled" do
+      before do
+        allow( TaxonPhoto.__qdrant__ ).to receive( :client ).and_return( nil )
+      end
+
+      describe "enabled?" do
+        it "returns false if a client is not configured" do
+          taxon_photo = TaxonPhoto.make!
+          expect( taxon_photo.__qdrant__.enabled? ).to be false
+        end
+      end
+
+      describe "qdrant_index!" do
+        it "returns nil if disabled" do
+          taxon_photo = TaxonPhoto.make!
+          expect( TaxonPhoto.qdrant_count ).to eq 0
+          expect( taxon_photo.qdrant_index! ).to be_nil
+          expect( TaxonPhoto.qdrant_count ).to eq 0
+        end
+      end
+
+      describe "qdrant_delete!" do
+        it "returns nil if disabled" do
+          taxon_photo = TaxonPhoto.make!
+          expect( TaxonPhoto.qdrant_count ).to eq 0
+          expect( taxon_photo.qdrant_delete! ).to be_nil
+          expect( TaxonPhoto.qdrant_count ).to eq 0
+        end
       end
     end
   end

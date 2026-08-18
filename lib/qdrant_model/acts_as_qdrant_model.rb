@@ -85,6 +85,8 @@ module ActsAsQdrantModel
     #   TaxonPhoto.qdrant_index!( batch_size: 20 )
     #   TaxonPhoto.qdrant_index!( scope: TaxonPhoto.where( id: [1,2,3,...] ), batch_size: 20 )
     def qdrant_index!( options = {} )
+      return unless __qdrant__.enabled?
+
       if options[:scope] && options[:ids]
         raise Error, "Cannot pass both :scope and :ids to qdrant_index!"
       end
@@ -176,6 +178,8 @@ module ActsAsQdrantModel
     end
 
     def qdrant_index!
+      return unless __qdrant__.enabled?
+
       if self.class.respond_to?( :prune_batch_for_qdrant_index ) &&
           self.class.prune_batch_for_qdrant_index( [self] ).empty?
         return

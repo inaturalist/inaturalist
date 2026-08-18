@@ -6,6 +6,8 @@ class TaxonPhoto < ApplicationRecord
   qdrant_collection_settings(
     collection_parameters: {
       on_disk_payload: true,
+      shard_number: 6,
+      replication_factor: 2,
       vectors: {
         size: 2048,
         distance: "Cosine",
@@ -57,6 +59,8 @@ class TaxonPhoto < ApplicationRecord
   end
 
   def self.prune_batch_for_qdrant_index( batch )
+    return [] unless __qdrant__.enabled?
+
     existing_indexed_documents = TaxonPhoto.qdrant_get_all( batch.map( &:id ) ).index_by {| d | d["id"] }
     batch.select {| taxon_photo | taxon_photo&.taxon&.is_active? }.
       reject do | taxon_photo |
