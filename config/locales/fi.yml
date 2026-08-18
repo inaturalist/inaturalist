@@ -2946,7 +2946,7 @@ fi:
   most_recent_observation_by_date_observed: Viimeisin varmistettavissa oleva havainto havaintopäivämäärän mukaan
   most_species: Eniten lajeja
   most_observed_species: Useimmin havaitut lajit
-  most_observed_introduced_species: Useimmin havaitut tulokaslajit
+  most_observed_introduced_species: Useimmin havaitut vieraslajit
   most_observed_threatened_species: Useimmin havaitut uhanalaiset lajit
   multiple: useita
   multiple_select_option: "\n-- useita --"
@@ -2989,7 +2989,7 @@ fi:
     ubio: uBio
   names: Nimet
   names_for_taxon_html: "Nimet taksonille %{taxon}"
-  native: kotoperäinen
+  native: alkuperäinen
   native_to_place: "Paikallinen maassa %{place}"
   #Short for "navigation," used to describe a navigational component on the
   #project detail page when editing custom project data
@@ -6938,7 +6938,7 @@ fi:
         about_conservation_status_desc: |
           Uhanalaisuusluokitus tiivistää eliöryhmän sukupuuttoriskin.
         about_establishment_desc: |
-          Vakiintuneisuus kuvastaa sitä, miten laji saapui nykyiselle esiintymispaikalleen. Tulokas tarkoittaa ihmisen avustuksella saapunutta ja kotoperäinen puolestaan ilman ihmisen vaikutusta saapunutta lajia. Endeeminen laji esiintyy vain tietyssä paikassa, eikä missään muualla.
+          Vakiintuneisuus kuvastaa sitä, miten laji saapui nykyiselle esiintymispaikalleen. Vieraslaji tarkoittaa ihmisen avustuksella saapunutta ja alkuperäinen puolestaan ilman ihmisen vaikutusta saapunutta lajia. Endeeminen laji esiintyy vain tietyssä paikassa, eikä missään muualla.
         about_taxon_curators_desc: |
           Nämä ihmiset hallinnoivat taksonomisen puun sitä osaa, joka sisältää tämän taksonin. Jos haluat tehdä muutoksia, liputa tämä taksoni tai ota yhteyttä johonkin näistä henkilöistä.
         charts_caps: Taulukko
