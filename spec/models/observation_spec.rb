@@ -1215,6 +1215,67 @@ describe Observation do
       expect( o.community_taxon ).to eq s1
     end
 
+    describe "with test cases" do
+      before { setup_test_case_taxonomy }
+
+      it "reverts the community ID and quality grade on identifier account deletion" do
+        o = make_research_grade_candidate_observation
+        Identification.make!( observation: o, taxon: @f, user: o.user )
+        Identification.make!( observation: o, taxon: @s1 )
+        o.reload
+        expect( o.community_taxon ).to eq @f
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+
+        second_species_id = Identification.make!( observation: o, taxon: @s1 )
+        o.reload
+        expect( o.community_taxon ).to eq @s1
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+
+        without_delay { second_species_id.user.destroy }
+        o.reload
+        expect( o.community_taxon ).to eq @f
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
+
+      it "reverts the community ID and quality grade on identification deletion" do
+        o = make_research_grade_candidate_observation
+        Identification.make!( observation: o, taxon: @f, user: o.user )
+        Identification.make!( observation: o, taxon: @s1 )
+        o.reload
+        expect( o.community_taxon ).to eq @f
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+
+        second_species_id = Identification.make!( observation: o, taxon: @s1 )
+        o.reload
+        expect( o.community_taxon ).to eq @s1
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+
+        without_delay { second_species_id.destroy }
+        o.reload
+        expect( o.community_taxon ).to eq @f
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
+
+      it "reverts the community ID and quality grade on identification withdrawal" do
+        o = make_research_grade_candidate_observation
+        Identification.make!( observation: o, taxon: @f, user: o.user )
+        Identification.make!( observation: o, taxon: @s1 )
+        o.reload
+        expect( o.community_taxon ).to eq @f
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+
+        second_species_id = Identification.make!( observation: o, taxon: @s1 )
+        o.reload
+        expect( o.community_taxon ).to eq @s1
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+
+        without_delay { second_species_id.update( current: false ) }
+        o.reload
+        expect( o.community_taxon ).to eq @f
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
+    end
+
     describe "test cases: " do
       before { setup_test_case_taxonomy }
 
