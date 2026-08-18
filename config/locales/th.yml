@@ -2010,6 +2010,9 @@ th:
   none: ไม่ระบุ
   none_found: ไม่พบ
   not_confident_top_suggestions: เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำอันดับแรกของเรา
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: อาจไม่พบในบริเวณนี้
   not_evaluated: ยังไม่มีการประเมิน
   not_finding_place_you_want?: ไม่พบสถานที่ที่คุณต้องการ?
   #Filter for observations not in a particular place
@@ -2031,6 +2034,11 @@ th:
     พิกัดที่แสดงให้ผู้อื่นเห็นเป็นจุดที่ถูกสุ่มภายในกรอบสี่เหลี่ยมขนาด 0.2 องศา โดยมีพิกัดจริงซ่อนอยู่ในกรอบนั้น
   #verb, call to action, e.g. "Observe nature nearby"
   observe: สังเกต
+  observation: การสังเกต
+  observation_: การสังเกต
+  observation_accuracy_experiment_year: "ปี"
+  observation_accuracy_experiment_quality_grade: "ระดับคุณภาพ"
+  observation_accuracy_experiment_show_frequency: "แสดงความถี่"
   observation_accuracy_experiment_research_grade_results: "ผลระดับงานวิจัย"
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
