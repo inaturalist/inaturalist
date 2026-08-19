@@ -174,12 +174,13 @@ GEM
     activerecord-postgis-adapter (7.1.1)
       activerecord (~> 6.1)
       rgeo-activerecord (~> 7.0.0)
-    activerecord-session_store (2.0.0)
-      actionpack (>= 5.2.4.1)
-      activerecord (>= 5.2.4.1)
+    activerecord-session_store (2.1.0)
+      actionpack (>= 6.1)
+      activerecord (>= 6.1)
+      cgi (>= 0.3.6)
       multi_json (~> 1.11, >= 1.11.2)
-      rack (>= 2.0.8, < 3)
-      railties (>= 5.2.4.1)
+      rack (>= 2.0.8, < 4)
+      railties (>= 6.1)
     activestorage (6.1.7.9)
       actionpack (= 6.1.7.9)
       activejob (= 6.1.7.9)
@@ -287,6 +288,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    cgi (0.5.2)
     chroma (0.2.0)
     chunky_png (1.4.0)
     climate_control (1.2.0)
@@ -347,11 +349,11 @@ GEM
       elasticsearch-api (= 8.14.0)
     elasticsearch-api (8.14.0)
       multi_json
-    elasticsearch-model (8.0.0)
+    elasticsearch-model (8.0.1)
       activesupport (> 3)
       elasticsearch (~> 8)
       hashie
-    elasticsearch-rails (8.0.0.pre)
+    elasticsearch-rails (8.0.1)
     email_address (0.2.5)
       base64
       simpleidn
@@ -779,7 +781,7 @@ DEPENDENCIES
   actionpack-action_caching
   actionpack-page_caching
   activerecord-postgis-adapter
-  activerecord-session_store
+  activerecord-session_store (= 2.1.0)
   acts-as-taggable-on
   acts_as_votable
   ancestry
@@ -824,8 +826,8 @@ DEPENDENCIES
   ed25519
   elasticsearch (~> 8)
   elasticsearch-api (~> 8)
-  elasticsearch-model (~> 8)
-  elasticsearch-rails (= 8.0.0.pre)
+  elasticsearch-model (~> 8.0.1)
+  elasticsearch-rails (= 8.0.1)
   email_address
   exifr
   exiftool_vendored
