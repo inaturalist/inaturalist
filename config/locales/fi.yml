@@ -2372,6 +2372,8 @@ fi:
   introduced_in_place: "Vieraslaji paikassa %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Virheellinen päivämäärä
+  #Error message shown when a time format is invalid
+  invalid_time: Virheellinen päivämäärä
   invitation: Kutsu
   invite: kutsu
   invite_people: Kutsu ihmisiä
@@ -6635,9 +6637,28 @@ fi:
         contain_entire_image_without_cropping: Käytä koko kuvaa rajaamatta sitä.
         custom_banner_icon_and_project_description: Oma nimi, kuvausteksti, banneri ja ikoni
         data_visualizations: Tietojen visualisoinnit
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Päivämäärä
+          #Label for a form field for a project's starting date
+          start_date: Aloituspäivä
+          #Label for a form field for a project's end date
+          end_date: Päättymispäivä
+          #Label for a form field for a project's starting time
+          start_time: Aloitusaika
+          #Label for a form field for a project's end time
+          end_time: Loppuaika
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Sisällytä ajat
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Valitse kuukaudet
         delete_project: Poista projekti
         display_project_name: Näytä projektin nimi
         duplicate_project: Kopioi projekti
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: Päättymispäivän tulee olla aloituspäivän jälkeen
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: Loppuajan tulee olla aloitusajan jälkeen
         #description for a form option that excludes from the project any observation that
         #has quality_grade casual, unless the only reason it is casual is because it is marked
         #captive
