@@ -240,6 +240,35 @@ describe Observation do
         expect( o ).to be_coordinates_obscured
         expect( o.coordinates_viewable_by?( curator ) ).to be true
       end
+      it "should not allow curator access if observation_requirements_updated_at is blank" do
+        ProjectUser.make!(
+          project: project,
+          user: o.user,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
+        project.update_column( :observation_requirements_updated_at, nil )
+        stub_api_response_for_observation( o )
+        expect( o ).to be_in_collection_projects( [project] )
+        expect( o ).to be_coordinates_obscured
+        expect( o.coordinates_viewable_by?( curator ) ).to be false
+      end
+      it "should allow curator access after a project with a blank " \
+        "observation_requirements_updated_at is saved" do
+        ProjectUser.make!(
+          project: project,
+          user: o.user,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
+        project.update_column( :observation_requirements_updated_at, nil )
+        project.reload.save!
+        expect( project.observation_requirements_updated_at ).to(
+          be < ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+        )
+        stub_api_response_for_observation( o )
+        expect( o ).to be_in_collection_projects( [project] )
+        expect( o ).to be_coordinates_obscured
+        expect( o.coordinates_viewable_by?( curator ) ).to be true
+      end
       describe "taxon" do
         let( :pu ) do
           ProjectUser.make!(

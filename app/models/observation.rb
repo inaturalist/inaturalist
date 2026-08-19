@@ -932,6 +932,12 @@ class Observation < ApplicationRecord
     options[:except] += [:cached_tag_list, :geom, :private_geom]
     options[:except].uniq!
     options[:methods].uniq!
+    # ActiveModel ignores :except when :only is present, so ensure excepted
+    # attributes like hidden coordinates never slip through :only
+    if options[:only]
+      excepted = options[:except].map( &:to_s )
+      options[:only] = [options[:only]].flatten.compact.reject {| k | excepted.include?( k.to_s ) }
+    end
     h = super(options)
     h.each do |k,v|
       h[k] = v.gsub(/<script.*script>/i, "") if v.is_a?(String)

@@ -274,6 +274,48 @@ describe Project do
         )
       end
     end
+    describe "with a blank observation_requirements_updated_at" do
+      let( :project ) { Project.make!( :collection ) }
+      it "should backdate observation_requirements_updated_at when requirements " \
+        "change and there are no trusting members" do
+        project.update_column( :observation_requirements_updated_at, nil )
+        project.reload
+        project.update( prefers_user_trust: true )
+        expect( project.observation_requirements_updated_at ).not_to be_blank
+        expect( project.observation_requirements_updated_at ).to(
+          be < ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+        )
+      end
+      it "should backdate observation_requirements_updated_at on any save, " \
+        "even without requirements changes" do
+        project.update_column( :observation_requirements_updated_at, nil )
+        project.reload
+        project.update( title: "#{project.title} amended" )
+        expect( project.observation_requirements_updated_at ).not_to be_blank
+        expect( project.observation_requirements_updated_at ).to(
+          be < ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+        )
+      end
+      it "should still set observation_requirements_updated_at to now when " \
+        "requirements change and trusting members exist" do
+        ProjectUser.make!(
+          project: project,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
+        project.update_column( :observation_requirements_updated_at, nil )
+        project.reload
+        project.update( prefers_user_trust: true )
+        expect( project.observation_requirements_updated_at ).to be >= 1.hour.ago
+      end
+      it "should not change a non-blank observation_requirements_updated_at when " \
+        "requirements change with no trusting members" do
+        original_time = 1.month.ago
+        project.update_column( :observation_requirements_updated_at, original_time )
+        project.reload
+        project.update( prefers_user_trust: true )
+        expect( project.observation_requirements_updated_at.to_i ).to eq original_time.to_i
+      end
+    end
   end
 
   describe "destruction" do

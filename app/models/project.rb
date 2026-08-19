@@ -424,6 +424,15 @@ class Project < ApplicationRecord
       self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
       return true
     end
+    # Projects that predate this column, or that only changed requirements
+    # while no members trusted them, can have a blank value, which blocks
+    # curator coordinate access forever. A blank value implies requirements
+    # have never changed while any member trusted the project, so backdating
+    # doesn't skip a wait period anyone should be subject to
+    if observation_requirements_updated_at.blank?
+      Rails.logger.debug "set_observation_requirements_updated_at: blank on a persisted project, backdating"
+      self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+    end
     old_params = Project.find( id ).collection_search_parameters
     new_params = collection_search_parameters
     trusting_project_users = project_users.joins( :stored_preferences ).where(
