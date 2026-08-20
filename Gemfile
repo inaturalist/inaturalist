@@ -88,6 +88,7 @@ gem "optimist"
 gem "parallel"
 gem "patron"
 gem "pg", "~> 1.5.9"
+gem "qdrant-ruby", "~> 0.9.10"
 gem "rack-cors"
 gem "rack-mobile-detect"
 gem "rack-tracker"
@@ -157,7 +158,7 @@ end
 group :test do
   gem "factory_bot_rails", require: false
   gem "faker"
-  gem "rspec"
+  gem "rspec", "~> 3.13.2"
   gem "rspec-html-matchers"
   gem "rspec-rails"
   gem "shoulda-matchers"

@@ -111,6 +111,11 @@ base: &base
     # An instance of https://github.com/inaturalist/inatVisionAPI
     vision_api_url: http://localhost:8080
 
+    # Qdrant is a vector database
+    qdrant:
+        api_key: "1234567890"
+        url: http://localhost:6333
+
     # The secrets used to sign the JWT for authenticated requests to the
     # iNaturalistAPI. These need to be same as in the API's config.js.
     jwt_secret: secret
