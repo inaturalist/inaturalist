@@ -541,7 +541,7 @@ class ProjectsController < ApplicationController
         render :partial => "projects/observed_taxa_count_widget"
       end
       format.widget do
-        render :js => render_to_string(:partial => "projects/observed_taxa_count_widget.js.erb")
+        render :js => render_to_string(:partial => "projects/observed_taxa_count_widget", :formats => [:js])
       end
     end
   end
@@ -557,7 +557,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html
       format.widget do
-        render :js => render_to_string(:partial => "widget.js.erb")
+        render :js => render_to_string(:partial => "widget", :formats => [:js])
       end
     end
   end
@@ -611,7 +611,7 @@ class ProjectsController < ApplicationController
 
     # Load tips HTML
     @taxa.map! do |taxon|
-      taxon.html = render_to_string(:partial => 'taxa/taxon.html.erb', 
+      taxon.html = render_to_string(:partial => 'taxa/taxon', :formats => [:html],
         :object => taxon, :locals => {
           :image_options => {:size => 'small'},
           :link_image => true,

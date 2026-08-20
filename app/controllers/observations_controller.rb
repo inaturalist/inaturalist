@@ -1231,7 +1231,7 @@ class ObservationsController < ApplicationController
         if fragment_exist?(@cache_key)
           render read_fragment(@cache_key)
         else
-          render :partial => 'add_from_list.html.erb'
+          render :partial => 'add_from_list', :formats => [:html]
         end
       end
     end
