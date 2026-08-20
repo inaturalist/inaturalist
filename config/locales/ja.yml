@@ -740,6 +740,11 @@ ja:
   based_on_a_sample_of_percent_of_these_ids_html:
     other: |
       この %{percent} %のサンプルに基づき、%{child} の観察記録で<strong>意図しない不一致が %{count} 件</strong>発生すると試算されます。
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    コミュニティ分類群はこれ以上改善の余地がありますか？
+    なお、「いいえ」を選択した場合、条件によっては観察記録はカジュアル扱いとなるので慎重に選択してください。
+    たとえば写真の画質が悪くそれ以上同定不能であることが確実な場合や、投稿者がコミュニティ分類群を無効にしており誤同定が修正されていない場合などです。
   batch: 一括
   batch_edit: 一括編集
   #Where x is the title of a list of taxa
@@ -1398,6 +1403,8 @@ ja:
     gaps_obs_pilot_current_condition_1: "まだコンピュータビジョンモデルでは非対応"
     #label of link to explore species view
     gaps_obs_pilot_browse: "種を見る"
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "リンクが見つからない場合、近くにこれらの基準に一致する種が存在しない可能性があります。"
   data_deficient: データ不足
   data_quality: データ品質
   data_quality_assessment: データ品質評価
@@ -1597,6 +1604,7 @@ ja:
   devise_unlock_instructions_unlock: アカウントのロックを解除
   #e.g. "With iNaturalist, you can discover nature nearby"
   discover: 発見
+  discover_nature_around_you: 周囲の自然を発見しましょう
   discoveries: 発見
   did_you_mean: 'もしかして:'
   did_you_photos_flickr?: Flickrに写真をアップしていませんか？
@@ -1651,6 +1659,7 @@ ja:
     <a href="/observations/import?project_id=%{project_id}#csv_import">一括アップローダ</a>で使用するための<a href="%{url}">テンプレートをダウンロード</a>
   download_csv: CSVファイルでダウンロード
   download_csv_template: CSVテンプレートをダウンロード
+  download_inaturalist_app: App StoreでiNaturalistをダウンロード
   download_kml: KMLファイルでダウンロード
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
@@ -1825,6 +1834,7 @@ ja:
     外部アプリケーションとは、あなたの代わりにiNaturalistアカウントにアクセスすることを許可したサードパーティのソフトウェアアプリケーションです。一般的に、外部アプリケーションはあなたのアカウントでできることは全てできますので、許可を与える前にアプリ開発者を信頼してください。
   extinct: 絶滅
   extinct_in_the_wild: 野生絶滅
+  provisional_taxon: 暫定的
   extra_properties: その他のプロパティー
   evidence_accurately_depicts_organism_or_scene: 生物やシーンを正確に描写する証拠
   evidence_of_organism: 生物の証拠
@@ -2249,6 +2259,10 @@ ja:
   inappropriate: 不適切
   #Name of the newer version of iNaturalist's mobile app, called iNatNext
   inat_next: iNatNext
+  #Chart series and legend label on the stats page
+  inat_classic_android_temp: アンドロイド
+  #Chart series and legend label on the stats page
+  inat_next_ios: iOS
   inaturalist_network: iNaturalistネットワーク
   inaturalist_network_affiliation: iNaturalistネットワーク所属
   #Label for messages you've received
@@ -2814,7 +2828,7 @@ ja:
   #Action a moderator can take to unsuspend a user; verb
   moderator_actions_unsuspend: 凍結解除する
   moderator_note_desc: |
-    モデレーターノートとは、あるユーザーに関するモデレーション対応や証拠に基づく懸念、例えば、そのユーザーがソックパペット・アカウントの可能性があるかどうかなどを記録したものです。ユーザーに関する個人的な意見や伝聞は含めないでください。
+    モデレーターノートとは、あるユーザーに関するモデレーション対応や証拠に基づく懸念、例えば、そのユーザーがガイドライン違反の目的で使用されている複数アカウントの一部である可能性があるかどうかなどを記録したものです。ユーザーに関する個人的な意見や伝聞は含めないでください。
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: モデレーター / フラグ作成者
   mollusks: 軟体動物
@@ -4791,6 +4805,48 @@ ja:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: ウィキペディアや他のウィキメディア財団のプロジェクトに適している
   summary: 概要
   supporting: サポート
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1日間
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3日間
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1週間
+  #a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2週間
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1ヶ月
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2ヶ月
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: 無期限
+  #note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: この理由は利用停止されたユーザーに表示されますのでご注意ください。
+  #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: この理由は利用停止されたアカウントに表示されますのでご注意ください。
+  #note displayed when a curator is editing a suspension
+  suspension_reason_edit_note: 理由を更新し、なぜユーザーの利用停止状況を変更するのか説明してください。
+  #predefined reasons for user suspension which are listed to curators in the user suspension form
+  suspension_reasons:
+    #reason displayed to users who have been suspended for posting hate speech
+    hate_speech: ヘイトスピーチ
+    #reason displayed to users who have been suspended for posting of insults or threats
+    insults_or_threats: 侮辱や脅迫
+    #reason displayed to users who have been suspended for posting sexually explicit content
+    #REPLACED with posting_sexually_explicit_human_content below
+    sexually_explicit_content: 性的に露骨な内容
+    #reason displayed to users who are creating false accounts to circumvent suspensions,
+    #https://en.wikipedia.org/wiki/Sock_puppet_account
+    #REPLACED with misusing_a_second_account below
+    sockpuppet_accounts: 偽アカウント
+    #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    #REPLACED with intentionally_adding_false_data below
+    false_ids_or_dqa_votes: 意図的に偽IDやDQA投票を追加すること
+    #reason displayed to users who have been suspended for posting machine generated content
+    #REPLACED with adding_machine_generated_content below
+    machine_generated_content: AI生成の画像や録音、観察記録、同定、コメントの投稿
+    #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    #REPLACED with continued_posting_media_without_owners_permission_after_warning below
+    continued_copyright_infringement_after_warning: 著作権侵害（一度の警告後、繰り返される場合）
   suspend_user: ユーザーの利用停止
   suspend_user_html: '%{user} を利用停止する'
   suspend_user_reason_instructions_html: |
@@ -5476,8 +5532,11 @@ ja:
   view_projects_from_place: "%{place}のプロジェクトを表示"
   view_sample: サンプルを見る
   view_stats: 統計データを表示
+  #Text for a link that takes the user to the relevant taxon details page
+  view_taxon: 分類群を見る
   view_taxon_change: 分類群変更履歴を表示
   view_taxon_changes: 分類群変更履歴を表示
+  view_taxon_framework_relationship: 分類群の枠組み関係を確認
   view_taxon_page: 分類群ページを表示
   view_taxon_page_for_this_x: "この%{x}の分類群ページを表示"
   view_taxononomy_details_for_taxon: "%{taxon} の分類の詳細を表示"
@@ -5576,6 +5635,8 @@ ja:
   wikipedia_attribution_cc_by_sa_3_html: |
     この記事に流用するウィキペディア掲載の記事<a href="%{url}">"%{title}"</a>の内容は、権利の継承を<a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>に指定されています。元の記事から除去された可能性はあっても、このページ上で内容の改変は行われていません。
+  #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: ウィキペディアの要約は今すぐ取得できません。30分後にもう一度お試しください。
   #Filter for observations not in a particular taxon
   without_taxon: 分類群に含まれていません
   #Label for a button to withdraw an identification, i.e. to deactivate it
@@ -6694,6 +6755,7 @@ ja:
         recent_desc: 7日以内の登録者数
         recent_w_0_obs_desc: 7日以内に登録し、まだ一つも観察記録を投稿していないユーザー数
         recent_w_7_obs_desc: 7日以内に登録し、7件以上の観察記録を投稿したユーザー数
+        ids_last_7_days_desc: 過去7日間に追加した同定
         TTCID_desc: 誰かにコミュニティ分類群と一致する同定をしてもらう準備ができました
         TTID_desc: 誰かに同定してもらう準備ができました
         TTID_note: |
@@ -6818,6 +6880,10 @@ ja:
           注意：入力分類群の分類階級が属以下の場合、ここにチェックを入れることにより学名が変更されることになります。例えば：
           <i>Canis</i> 属を <i>Dogis</i> 属に入れ替えると、<i>Canis lupus</i> は <i>Dogis lupus</i> に、<i>Canis lupus</i> ssp. <i>lupus</i> は <i>Dogis lupus</i> ssp. <i>lupus</i> へと自動で変更されます。
           これはかなりの混乱を引き起こす可能性があるので、場合によってはフラグを立てるなどして、慎重に使用してください。
+      #a message when a taxon change was deleted
+      taxon_change_deleted: 分類の変更は削除されました。
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: 分類変更は正常に更新されました。
     taxon_names:
       form:
         new_name_guidelines_html: |

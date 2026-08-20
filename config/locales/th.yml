@@ -1394,6 +1394,7 @@ th:
   grid_layout: การจัดวางแบบตาราง
   grouping: การจัดกลุ่ม
   guides: คู่มือสำรวจ
+  guide_will_be_deleted: คู่มือสำรวจจะถูกลบ คู่มือขนาดใหญ่จะต้องใช้เวลาลบนานขึ้น
   guide_was_successfully_published: เผยแพร่คู่มือสำเร็จแล้ว
   guidelines: ข้อแนะนำ
   has_id_supported_by_two_or_more: ได้รับการจำแนกจากสองคนขึ้นไป
@@ -2009,6 +2010,9 @@ th:
   none: ไม่ระบุ
   none_found: ไม่พบ
   not_confident_top_suggestions: เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำอันดับแรกของเรา
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: อาจไม่พบในบริเวณนี้
   not_evaluated: ยังไม่มีการประเมิน
   not_finding_place_you_want?: ไม่พบสถานที่ที่คุณต้องการ?
   #Filter for observations not in a particular place
@@ -2030,6 +2034,11 @@ th:
     พิกัดที่แสดงให้ผู้อื่นเห็นเป็นจุดที่ถูกสุ่มภายในกรอบสี่เหลี่ยมขนาด 0.2 องศา โดยมีพิกัดจริงซ่อนอยู่ในกรอบนั้น
   #verb, call to action, e.g. "Observe nature nearby"
   observe: สังเกต
+  observation: การสังเกต
+  observation_: การสังเกต
+  observation_accuracy_experiment_year: "ปี"
+  observation_accuracy_experiment_quality_grade: "ระดับคุณภาพ"
+  observation_accuracy_experiment_show_frequency: "แสดงความถี่"
   observation_accuracy_experiment_research_grade_results: "ผลระดับงานวิจัย"
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
@@ -3546,8 +3555,7 @@ th:
         deprecated_banner: |
           โปรดทราบว่า ตั้งแต่เดือนมกราคม 2019 เป็นต้นไป ฟีเจอร์คู่มือสำรวจนี้จะไม่มีการพัฒนาเพิ่มเติมแล้ว โดยจะคงไว้ในสภาพเดิมและไม่มีการลบฟีเจอร์นี้ออกไป
         funding2_html: |
-          เงินทุนสําหรับการพัฒนา Guides จัดทําโดย
-          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
+          สนับสนุนทุนเพื่อพัฒนาคู่มือสำรวจโดย <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           คู่มือสำรวจธรรมชาติจะช่วยให้คุณเรียนรู้เกี่ยวกับความหลากหลายทางชีวภาพจากทั่วโลก ไม่ว่าคุณกำลังสำรวจในอุทยานแห่งชาติเซเรนเกตีหรือแค่สวนสาธารณะใกล้บ้าน คู่มือจะช่วยให้คุณเข้าใจความหลากหลายของสิ่งมีชีวิตอันน่าทึ่งของโลกใบนี้
       pdf_layouts:

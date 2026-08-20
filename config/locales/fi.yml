@@ -2372,6 +2372,8 @@ fi:
   introduced_in_place: "Vieraslaji paikassa %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Virheellinen päivämäärä
+  #Error message shown when a time format is invalid
+  invalid_time: Virheellinen päivämäärä
   invitation: Kutsu
   invite: kutsu
   invite_people: Kutsu ihmisiä
@@ -2401,6 +2403,10 @@ fi:
   jobs: Työpaikat
   join: Liity
   join_and_add_an_observation_to_project_html: Liity ja lisää havainto projektiin %{project}
+  #Shown after dismissing a banner that invites you to join, or lets you
+  #leave, a test of a new feature, pointing at the other place to do both
+  join_or_leave_this_test_in_account_settings_html: |
+    Voit liittyä tai poistua tästä testistä milloin tahansa <a href="%{url}">tilin asetuksissa</a>.
   join_project: Liity tähän projektiin
   #Prompt to join a specific project
   join_project?: Liity projektiin %{project}?
@@ -2412,6 +2418,7 @@ fi:
   journal: Päiväkirja
   journal_archives_for: Päiväkirja-arkisto kohteelle
   journal_post: Päiväkirjamerkintä
+  journal_post_: päiväkirjamerkintä
   journal_post_deleted: Päiväkirjamerkintä poistettu
   journal_posts: Päiväkirjamerkinnät
   jpg_png_or_gif: "JPG, PNG tai GIF"
@@ -2848,6 +2855,9 @@ fi:
   #Label shown when a date has not been entered
   missing_date: Puuttuva päivämäärä
   mobile: Mobiili
+  #Name of the test group for the responsive, mobile-friendly redesign of the
+  #site, matching the wording of the banner that prompts you to join it
+  mobile_friendly_mode: Mobiiliystävällinen tila
   moderation_history_for_user_html: Moderointihistoria käyttäjälle %{user}
   moderation_history_desc_html: |
     Tämä sisältää valvojan toiminnot (esim. kommenttien piilottamisen tai esiin tuomisen), muistiinpanot,
@@ -2946,7 +2956,7 @@ fi:
   most_recent_observation_by_date_observed: Viimeisin varmistettavissa oleva havainto havaintopäivämäärän mukaan
   most_species: Eniten lajeja
   most_observed_species: Useimmin havaitut lajit
-  most_observed_introduced_species: Useimmin havaitut tulokaslajit
+  most_observed_introduced_species: Useimmin havaitut vieraslajit
   most_observed_threatened_species: Useimmin havaitut uhanalaiset lajit
   multiple: useita
   multiple_select_option: "\n-- useita --"
@@ -2989,7 +2999,7 @@ fi:
     ubio: uBio
   names: Nimet
   names_for_taxon_html: "Nimet taksonille %{taxon}"
-  native: kotoperäinen
+  native: alkuperäinen
   native_to_place: "Paikallinen maassa %{place}"
   #Short for "navigation," used to describe a navigational component on the
   #project detail page when editing custom project data
@@ -4283,6 +4293,7 @@ fi:
   recaptcha_verification_failed: reCAPTCHA-varmistus epäonnistui
   receive_email_notifications: Vastaanota sähköposti-ilmoituksia
   receive_email_notifications_description: "Jos poistat tämän käytöstä, et enää saa sähköposteja %{site_name} koskien ilmoituksia. Saat ilmoitukset kaikista alla valituista asioista:"
+  receive_project_journal_notifications?: Vastaanota ilmoituksia projektin päiväkirjamerkinnöistä?
   receive_updates_from_this_project: Haluan saada tätä projektia koskevia päivityksiä
   recent: Viimeaikainen
   recent_evidence_of_organism: Näyttöä että eliö ollut paikalla lähiaikoina
@@ -4395,6 +4406,14 @@ fi:
   resolved_by: Ratkaissut
   resolved_by_user_on_date_html: Ratkaissut %{user} %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} sanoi,</span> "%{x}"'
+  #Prompt to join a test of the responsive, mobile-friendly redesign of the
+  #site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Testaa uutta mobiiliystävällistä responsiivista asettelua?
+    Huomaa, että kaikkia sivuja ei ole vielä muunnettu.
+  #Message displayed when you have joined the test of the responsive,
+  #mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Tällä hetkellä mobiiliystävällisessä tilassa.
   restart: Käynnistä uudelleen
   restore: Palauta
   restoring: Palauttaa...
@@ -4990,6 +5009,9 @@ fi:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Tekstin muotoilu
   text_editing_controls: Tekstin muokkaus
+  #Heading for the account settings section where you join or leave tests of
+  #new features
+  test_groups: Testiryhmät
   thank_you!: Kiitos!
   thanks!: Kiitos!
   thanks_from_all_of_us_here_at: Kiitos meiltä kaikilta
@@ -5506,6 +5528,8 @@ fi:
   view_post: Näytä viesti
   view_projects_from_place: "Näytä projektit paikasta %{place}"
   view_sample: Näytä esimerkki
+  #Label for a link that opens the external source of a conservation status
+  view_source: Näytä lähde
   view_stats: Näytä tilastot
   view_taxon_change: Näytä taksonimuutos
   view_taxon_changes: Näytä taksonimuutokset
@@ -6048,6 +6072,8 @@ fi:
       pdf_layout_notes:
         grid: |
           Yksittäisten kuvien ruudukko, ei kuvauksia
+        journal: |
+          Jaa sivu, lajitiedot vasemmalla, tilaa muistiinpanoille oikealla. Lajitiedot lyhennetään, jotta ne mahtuvat sivulle.
       pdf_generation_notice: |
         Olethan kärsivällinen, suuren PFD-tiedoston luominen voi viedä minuutin tai pari.
       tags_help_html: |
@@ -6625,9 +6651,28 @@ fi:
         contain_entire_image_without_cropping: Käytä koko kuvaa rajaamatta sitä.
         custom_banner_icon_and_project_description: Oma nimi, kuvausteksti, banneri ja ikoni
         data_visualizations: Tietojen visualisoinnit
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Päivämäärä
+          #Label for a form field for a project's starting date
+          start_date: Aloituspäivä
+          #Label for a form field for a project's end date
+          end_date: Päättymispäivä
+          #Label for a form field for a project's starting time
+          start_time: Aloitusaika
+          #Label for a form field for a project's end time
+          end_time: Loppuaika
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Sisällytä ajat
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Valitse kuukaudet
         delete_project: Poista projekti
         display_project_name: Näytä projektin nimi
         duplicate_project: Kopioi projekti
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: Päättymispäivän tulee olla aloituspäivän jälkeen
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: Loppuajan tulee olla aloitusajan jälkeen
         #description for a form option that excludes from the project any observation that
         #has quality_grade casual, unless the only reason it is casual is because it is marked
         #captive
@@ -6785,7 +6830,6 @@ fi:
         avg_ttcid: Keskimääräinen TTID
         avg_ttid: Keskimääräinen TTID
         identifiers_desc: Lisäsi tänään tunnistuksen jonkun muun havaintoon
-        #label for chart legend, linking to more information on iNatNext
         inat_next_desc_html: Luotu <a href="%{url}">iNatNext</a>-sovelluksella
         iphone_desc_html: Luotu <a href="%{url}">iNaturalist iPhone-sovelluksen</a> kautta
         med_ttcid: Mediaani TTID
@@ -6929,7 +6973,7 @@ fi:
         about_conservation_status_desc: |
           Uhanalaisuusluokitus tiivistää eliöryhmän sukupuuttoriskin.
         about_establishment_desc: |
-          Vakiintuneisuus kuvastaa sitä, miten laji saapui nykyiselle esiintymispaikalleen. Tulokas tarkoittaa ihmisen avustuksella saapunutta ja kotoperäinen puolestaan ilman ihmisen vaikutusta saapunutta lajia. Endeeminen laji esiintyy vain tietyssä paikassa, eikä missään muualla.
+          Vakiintuneisuus kuvastaa sitä, miten laji saapui nykyiselle esiintymispaikalleen. Vieraslaji tarkoittaa ihmisen avustuksella saapunutta ja alkuperäinen puolestaan ilman ihmisen vaikutusta saapunutta lajia. Endeeminen laji esiintyy vain tietyssä paikassa, eikä missään muualla.
         about_taxon_curators_desc: |
           Nämä ihmiset hallinnoivat taksonomisen puun sitä osaa, joka sisältää tämän taksonin. Jos haluat tehdä muutoksia, liputa tämä taksoni tai ota yhteyttä johonkin näistä henkilöistä.
         charts_caps: Taulukko
@@ -7653,6 +7697,7 @@ fi:
       #violations of the Community Guidelines for future reference
       ModeratorNote: Valvojien muistiinpanot
       Photo: Valokuva
+      Post: Päiväkirjamerkintä
       TaxonLink: Taksonilinkki
     attributes:
       announcement:

@@ -2543,6 +2543,14 @@ da:
   inappropriate: Upassende
   #Name of the newer version of iNaturalist's mobile app, called iNatNext
   inat_next: iNatNext
+  #Chart series and legend label on the stats page
+  inat_classic_android_temp: Android
+  #Chart series and legend label on the stats page
+  inat_classic_ios: Klassisk iOS
+  #Chart series and legend label on the stats page
+  inat_next_android_temp: iNatNext Android
+  #Chart series and legend label on the stats page
+  inat_next_ios: iOS
   inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network-tilknytning
   #Label for messages you've received
@@ -2639,6 +2647,10 @@ da:
   jobs: Stillinger
   join: Tilslut
   join_and_add_an_observation_to_project_html: Deltag og tilføj en observation til %{project}
+  #Shown after dismissing a banner that invites you to join, or lets you
+  #leave, a test of a new feature, pointing at the other place to do both
+  join_or_leave_this_test_in_account_settings_html: |
+    Tilmelding til eller afslutning på denne test kan ske som helst via <a href="%{url}">Kontoindstillinger</a>.
   join_project: Bliv medlem af dette projekt
   #Prompt to join a specific project
   join_project?: Tilmeld dig %{project}?
@@ -3129,6 +3141,9 @@ da:
   #Label shown when a date has not been entered
   missing_date: Dato mangler
   mobile: Mobil
+  #Name of the test group for the responsive, mobile-friendly redesign of the
+  #site, matching the wording of the banner that prompts you to join it
+  mobile_friendly_mode: Mobilvenlig tilstand
   moderation_history_for_user_html: Moderationshistorik for %{user}
   moderation_history_desc_html: |
     Dette omfatter moderatorhandlinger (f.eks. skjule/vise kommentarer), notater,
@@ -4924,6 +4939,14 @@ da:
   resolved_by: Løst af
   resolved_by_user_on_date_html: Løst af %{user} den %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} sagde,</span> "%{x}"'
+  #Prompt to join a test of the responsive, mobile-friendly redesign of the
+  #site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Test det nye mobilvenlige, responsive layout?
+    Bemærk, at ikke alle sider endnu er konverteret.
+  #Message displayed when you have joined the test of the responsive,
+  #mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Er i øjeblikket mobilvenlig tilstand.
   restart: Genstart
   restore: Gendan
   restoring: Gendanner...
@@ -5723,6 +5746,9 @@ da:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Tekstformateringskontroller
   text_editing_controls: Tekstredigeringskontroller
+  #Heading for the account settings section where you join or leave tests of
+  #new features
+  test_groups: Testgrupper
   thank_you!: Tak!
   thanks!: Tak!
   thanks_from_all_of_us_here_at: Tak fra alle os her hos
@@ -6381,6 +6407,8 @@ da:
   view_post: Vis indlæg
   view_projects_from_place: "Vis projekter fra %{place}"
   view_sample: Vis prøve
+  #Label for a link that opens the external source of a conservation status
+  view_source: Vis kilde
   view_stats: Vis statistikker
   #Text for a link that takes the user to the relevant taxon details page
   view_taxon: Se taxon
@@ -8529,7 +8557,16 @@ da:
         avg_ttcid: Gnms TTFID
         avg_ttid: Gnms TTID
         identifiers_desc: Tilføjede et ID til en andens obs på denne dag
-        #label for chart legend, linking to more information on iNatNext
+        #Chart series and legend label on the stats page
+        inat_classic_android_desc_temp_html: Oprettet via <a href="%{url}">iNaturalist (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_classic_ios_desc_html: Oprettet via <a href="%{url}">iNaturalist Classic (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_temp_html: Oprettet via <a href="%{url}">iNatNext (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_next_ios_desc_html: Oprettet via <a href="%{url}">iNaturalist (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_html: Oprettet via <a href="%{url}">iNatNext Android-app</a>
         inat_next_desc_html: Oprettet via <a href="%{url}">iNatNext</a>
         iphone_desc_html: Oprettet via <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTFID
