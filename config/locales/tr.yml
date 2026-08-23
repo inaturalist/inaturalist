@@ -2537,6 +2537,10 @@ tr:
   jobs: Bizimle Çalış
   join: Katıl
   join_and_add_an_observation_to_project_html: Katıl ve %{project} Projesine Bir Gözlem Ekle
+  #Shown after dismissing a banner that invites you to join, or lets you
+  #leave, a test of a new feature, pointing at the other place to do both
+  join_or_leave_this_test_in_account_settings_html: |
+    <a href="%{url}">Hesap ayarlarınız</a>dan bu teste istediğiniz zaman katılabilir veya testten çıkabilirsiniz.
   join_project: Bu projeye katıl
   #Prompt to join a specific project
   join_project?: '%{project} projesine girilsin mi?'
@@ -3019,6 +3023,9 @@ tr:
   #Label shown when a date has not been entered
   missing_date: Eksik Tarih
   mobile: Mobil
+  #Name of the test group for the responsive, mobile-friendly redesign of the
+  #site, matching the wording of the banner that prompts you to join it
+  mobile_friendly_mode: Mobil Uyumlu Mod
   moderation_history_for_user_html: '%{user} kullanıcısının moderasyon geçmişi'
   moderation_history_desc_html: |
     Bu, moderatör işlemlerini (ör. yorumları gizleme veya görünür hale getirme), notları ve bu kullanıcının taksonlar dışındaki tüm katkılarına eklenmiş işaretleri içerir. Bu bölüm <strong>yalnızca küratörler tarafından görülebilir</strong> ve <strong>küratörler kendi geçmişlerini görüntüleyemez</strong>, bu nedenle bir kişi hakkında yazılan notlar asla o kişinin kendisi tarafından görülebilir olmamalıdır.
@@ -5485,6 +5492,9 @@ tr:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Metin biçimlendirme kontrolleri
   text_editing_controls: Metin düzenleme kontrolleri
+  #Heading for the account settings section where you join or leave tests of
+  #new features
+  test_groups: Test Grupları
   thank_you!: Teşekkürler!
   thanks!: Teşekkürler!
   thanks_from_all_of_us_here_at: Hepimiz adına teşekkürler
