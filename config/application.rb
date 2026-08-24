@@ -14,6 +14,21 @@ module Inaturalist
     config.load_defaults 5.0
     config.active_record.belongs_to_required_by_default = false
 
+    # Rails deprecation warnings that are disallowed, and raise in CI.
+    config.active_support.disallowed_deprecation_warnings = [
+      # Removed in Rails 7.0
+      "Rendering actions with '.' in the name is deprecated",
+      # Sprockets: referencing an asset that is not in the pipeline
+      "is not present in the asset pipeline",
+      # Rails 7.x zeitwerk: require_dependency is deprecated
+      "require_dependency",
+      # Rails 7.1: serialize :attr, JSON -> serialize :attr, coder: JSON
+      /Passing the (coder|class) as positional argument/,
+      # Rails 7.2: enum status: {...} -> enum :status, {...}
+      "Defining enums with keyword arguments"
+    ]
+    config.active_support.disallowed_deprecation = :log
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
