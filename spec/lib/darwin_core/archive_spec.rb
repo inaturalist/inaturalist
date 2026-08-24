@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 describe DarwinCore::Archive, "make_metadata" do
@@ -18,6 +20,20 @@ describe DarwinCore::Archive, "make_metadata" do
     xml = Nokogiri::XML( File.open( archive.make_metadata ) )
     contact_elt = xml.at_xpath( "//contact" )
     expect( contact_elt.to_s ).to match /#{ Site.default.contact[:first_name] }/
+  end
+
+  it "downcases licenses for alternateIdentifier" do
+    archive = DarwinCore::Archive.new( licenses: ["CC-BY", "CC-BY-NC"] )
+    xml = Nokogiri::XML( File.open( archive.make_metadata ) )
+    alternate_identifier = CGI.unescape( xml.at_xpath( "//alternateIdentifier" ).text )
+    expect( alternate_identifier ).to include "&license=cc-by,cc-by-nc"
+  end
+
+  it "downcases licenses for abstract" do
+    archive = DarwinCore::Archive.new( licenses: ["CC-BY", "CC-BY-NC"] )
+    xml = Nokogiri::XML( File.open( archive.make_metadata ) )
+    abstract = CGI.unescape( xml.at_xpath( "//abstract" ).text )
+    expect( abstract ).to include "&license=cc-by,cc-by-nc"
   end
 end
 

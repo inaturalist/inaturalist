@@ -106,9 +106,10 @@ class GuidesController < ApplicationController
         if params[:print].yesish?
           @layout = params[:layout] if Guide::PDF_LAYOUTS.include?( params[:layout] )
           @layout ||= Guide::GRID
-          @template = "guides/show_#{@layout}.pdf.haml"
-          render layout: "bootstrap.pdf",
+          @template = "guides/show_#{@layout}"
+          render layout: "bootstrap",
             template: @template,
+            formats: :pdf,
             orientation: ( @layout == "journal" ) ? "Landscape" : nil,
             margin: {
               left: 0,

@@ -450,7 +450,7 @@ class PlacesController < ApplicationController
       format.html { redirect_to @place }
       format.json do
         @taxa.map! do | taxon |
-          taxon.html = render_to_string( partial: "taxa/taxon.html.erb",
+          taxon.html = render_to_string( partial: "taxa/taxon", formats: [:html],
             object: taxon, locals: {
               image_options: { size: "small" },
               link_image: true,
