@@ -3,9 +3,7 @@
 require "spec_helper"
 
 # HTML behavior for registrations. JSON behavior is covered in
-# spec/controllers/registrations_controller_api_spec.rb. These specs pin the
-# statuses used by devise's responder, which must not change with devise
-# 4.9's configurable error_status and redirect_status
+# spec/controllers/registrations_controller_api_spec.rb.
 describe Users::RegistrationsController do
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]

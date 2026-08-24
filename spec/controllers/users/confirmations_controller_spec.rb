@@ -14,6 +14,7 @@ describe Users::ConfirmationsController do
     it "confirms the user with a valid token and redirects 302 to sign in" do
       user = create :user, confirmed_at: nil
       get :show, params: { confirmation_token: user.confirmation_token }
+
       expect( user.reload.confirmed? ).to be true
       expect( response ).to have_http_status( :found )
       expect( response ).to redirect_to( new_user_session_path( confirmed: true ) )
@@ -21,7 +22,7 @@ describe Users::ConfirmationsController do
 
     it "re-renders the form with a 200 for an invalid token" do
       get :show, params: { confirmation_token: "nonsense" }
-      # This status is devise 4.9's error_status, which must remain :ok
+
       expect( response ).to have_http_status( :ok )
       expect( response ).to render_template( :new )
     end
@@ -30,6 +31,7 @@ describe Users::ConfirmationsController do
       user = create :user
       sign_in user
       get :show, params: { confirmation_token: "anything" }
+
       expect( response ).to redirect_to( dashboard_path )
     end
   end
@@ -37,6 +39,7 @@ describe Users::ConfirmationsController do
   describe "create" do
     it "redirects 302 with the paranoid message for an unknown email" do
       post :create, params: { user: { email: "nobody@nowhere.test" } }
+
       expect( response ).to have_http_status( :found )
       expect( flash[:notice] ).to eq I18n.t( "devise.confirmations.send_paranoid_instructions" )
     end

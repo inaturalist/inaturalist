@@ -12,7 +12,7 @@ describe "Authentication", type: :request do
   describe "unauthenticated HTML request to a protected page" do
     it "redirects 302 to the sign in page" do
       get "/users/edit"
-      # 302 here is devise 4.9's redirect_status, which must remain :found
+
       expect( response ).to have_http_status( :found )
       expect( URI.parse( response.headers["Location"] ).path ).to eq new_user_session_path
     end
@@ -73,7 +73,6 @@ describe "Authentication", type: :request do
     end
 
     it "delivers a password reset email for a request with an application JWT" do
-      # ensure the user exists before measuring deliveries
       user
       expect do
         post "/users/password", headers: {
@@ -84,12 +83,7 @@ describe "Authentication", type: :request do
   end
 
   describe "locale handling in authentication failures" do
-    # The locale set by ApplicationController#set_request_locale carries over
-    # into Devise::FailureApp, so authentication errors are localized. With
-    # devise 4.8 that happens implicitly because I18n.locale persists for the
-    # duration of the request; devise 4.9.4 made the FailureApp do this
-    # explicitly. Either way, API clients receive localized error messages,
-    # and that should not change
+    # Confirm that API error messages respect localization.
     it "renders the 401 error message in the requested locale" do
       get "/users/api_token", params: { locale: "es" }, headers: {
         "Accept" => "application/json"

@@ -219,12 +219,9 @@ Devise.setup do | config |
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 
-  # Statuses devise uses when re-rendering a form after a validation failure
-  # and when redirecting. Devise 4.9 kept the pre-Hotwire values below for
-  # existing apps, but new apps get :unprocessable_entity and :see_other, so
-  # pin the old values in case a future devise version changes the defaults.
-  # Both web and API clients depend on these,
-  # e.g. spec/requests/authentication_spec.rb
+  # Explicitly sets responder statuses for devise. This is a safeguard against
+  # future changes, as devise defaults for new apps changed, but existing
+  # applications still retain these defaults. See spec/requests/authentication_spec.rb
   config.responder.error_status = :ok
   config.responder.redirect_status = :found
 

@@ -2,9 +2,9 @@
 
 require "spec_helper"
 
-# The app does not customize Devise::UnlocksController, so these specs pin the
-# behavior of the stock controller and its gem-provided views, which have no
-# other coverage in this app
+# These specs test Devise code, which may be undesireable
+# however, it provides some confidence that upgrades to the gem
+# will not change behavior in our API.
 describe Devise::UnlocksController do
   let( :user ) { create :user }
 

@@ -60,7 +60,7 @@ describe Users::PasswordsController do
           password_confirmation: "anything"
         }
       }
-      # This status is devise 4.9's error_status, which must remain :ok
+
       expect( response ).to have_http_status( :ok )
     end
 
@@ -74,6 +74,7 @@ describe Users::PasswordsController do
           password_confirmation: "new password 123"
         }
       }
+
       expect( response ).to have_http_status( :found )
       expect( session["warden.user.user.key"] ).not_to be_blank
     end
@@ -88,10 +89,14 @@ describe Users::PasswordsController do
           password_confirmation: "new password 123"
         }
       }
+
       expect( user.reload.confirmed? ).to be true
     end
   end
 
+  # We may be able to remove this route/controller action based on the
+  # comment on PasswordsController#require_no_authentication_or_app_jwt
+  # referencing the completed issue here https://github.com/inaturalist/iNaturalistAPI/issues/378
   describe "require_no_authentication" do
     let( :user ) { create :user }
 

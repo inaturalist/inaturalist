@@ -2,8 +2,6 @@
 
 require "spec_helper"
 
-# Pins authentication behavior that must not change across devise upgrades,
-# both for web users and for anything else that funnels through warden
 describe Users::SessionsController do
   let( :user ) { create :user }
 
@@ -54,8 +52,6 @@ describe Users::SessionsController do
       it "re-renders the sign in form with a 200 and the paranoid invalid message " \
         "for a bad password" do
         post :create, params: { user: { email: user.email, password: "nope" } }
-        # The devise failure app recalls users/sessions#new here, and the
-        # status it uses is devise 4.9's error_status, which must remain :ok
         expect( response ).to have_http_status( :ok )
         expect( flash[:alert] ).to eq I18n.t( "devise.failure.invalid" )
         expect( controller.send( :current_user ) ).to be_blank
@@ -82,7 +78,6 @@ describe Users::SessionsController do
         user.update( failed_attempts: Devise.maximum_attempts - 1 )
         post :create, params: { user: { email: user.email, password: "nope" } }
         expect( user.reload.access_locked? ).to be true
-        # Devise.paranoid should hide the fact that the account is locked
         expect( flash[:alert] ).to eq I18n.t( "devise.failure.invalid" )
       end
     end
