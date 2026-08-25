@@ -39,7 +39,7 @@ gem "damerau-levenshtein", "~> 1.3", ">= 1.3.3"
 gem "dbf" # Needed for georuby shapefile support
 gem "delayed_job"
 gem "delayed_job_active_record", "~> 4.1.11"
-gem "devise"
+gem "devise", "~> 4.9.4"
 gem "devise-encryptable"
 gem "devise-i18n"
 gem "devise_suspendable"

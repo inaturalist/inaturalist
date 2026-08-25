@@ -219,6 +219,12 @@ Devise.setup do | config |
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 
+  # Explicitly sets responder statuses for devise. This is a safeguard against
+  # future changes, as devise defaults for new apps changed, but existing
+  # applications still retain these defaults. See spec/requests/authentication_spec.rb
+  config.responder.error_status = :ok
+  config.responder.redirect_status = :found
+
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
