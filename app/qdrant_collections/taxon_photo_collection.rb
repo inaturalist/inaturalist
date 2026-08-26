@@ -64,23 +64,23 @@ class TaxonPhoto < ApplicationRecord
     existing_indexed_documents = TaxonPhoto.qdrant_get_all( batch.map( &:id ) ).index_by {| d | d["id"] }
     batch.select {| taxon_photo | taxon_photo&.taxon&.is_active? }.
       reject do | taxon_photo |
-      indexed_doc = existing_indexed_documents[taxon_photo.id]
-      # if there is an existing indexed document with the same taxon ancestors,
-      # and the same photo and version, no need to reindex
-      next unless indexed_doc
+        indexed_doc = existing_indexed_documents[taxon_photo.id]
+        # if there is an existing indexed document with the same taxon ancestors,
+        # and the same photo and version, no need to reindex
+        next unless indexed_doc
 
-      payload = indexed_doc["payload"]
-      next unless payload["ancestor_ids"] && taxon_photo&.taxon &&
-        payload["ancestor_ids"].sort == taxon_photo.taxon.self_and_ancestor_ids&.sort
-      next unless payload["photo_id"] == taxon_photo.photo_id
+        payload = indexed_doc["payload"]
+        next unless payload["ancestor_ids"] && taxon_photo&.taxon &&
+          payload["ancestor_ids"].sort == taxon_photo.taxon.self_and_ancestor_ids&.sort
+        next unless payload["photo_id"] == taxon_photo.photo_id
 
-      indexed_file_updated_at = payload["photo_file_updated_at"]
-      if indexed_file_updated_at.present?
-        indexed_file_updated_at = Time.parse( indexed_file_updated_at )
+        indexed_file_updated_at = payload["photo_file_updated_at"]
+        if indexed_file_updated_at&.present?
+          indexed_file_updated_at = Time.parse( indexed_file_updated_at )
+        end
+        next unless indexed_file_updated_at&.floor == taxon_photo.photo&.file_updated_at&.floor
+
+        true
       end
-      next unless indexed_file_updated_at&.floor == taxon_photo.photo&.file_updated_at&.floor
-
-      true
-    end
   end
 end
