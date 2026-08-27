@@ -3,47 +3,38 @@ he:
   x_changes:
     one: "שינוי %{count}"
     two: "%{count} שינויים"
-    many: "%{count} שינויים"
     other: "%{count} שינויים"
   x_comments:
     one: 'תגובה %{count}'
     two: '%{count} תגובות'
-    many: '%{count} תגובות'
     other: '%{count} תגובות'
   x_comments_html:
     one: 'תגובה <span class="count">%{count}</span>'
     two: '<span class="count">%{count}</span> תגובות'
-    many: '<span class="count">%{count}</span> תגובות'
     other: '<span class="count">%{count}</span> תגובות'
   x_faves:
     one: 'מועדף %{count}'
     two: '%{count} מועדפים'
-    many: '%{count} מועדפים'
     other: '%{count} מועדפים'
   x_flags_resolved_html:
     one: "סימון אחד נפתר"
     two: "<span class='count'>%{count}</span> סימונים נפתרו"
-    many: "<span class='count'>%{count}</span> סימונים נפתרו"
     other: "<span class='count'>%{count}</span> סימונים נפתרו"
   x_identifications:
     one: 'זיהוי אחד'
     two: '%{count} זיהויים'
-    many: '%{count} זיהויים'
     other: '%{count} זיהויים'
   x_identifications_html:
     one: 'זיהוי <span class="count">%{count}</span>'
     two: '<span class="count">%{count}</span> זיהויים'
-    many: '<span class="count">%{count}</span> זיהויים'
     other: '<span class="count">%{count}</span> זיהויים'
   x_identifications_:
     one: 'זיהוי אחד'
     two: '%{count} זיהויים'
-    many: '%{count} זיהויים'
     other: '%{count} זיהויים'
   x_identifications_caps_html:
     one: 'זיהוי <span class="count">%{count}</span>'
     two: '<span class="count">%{count}</span> זיהויים'
-    many: '<span class="count">%{count}</span> זיהויים'
     other: '<span class="count">%{count}</span> זיהויים'
   #Number of people who have added identifications
   x_identifiers_caps_html:
@@ -52,18 +43,14 @@ he:
     #Number of people who have added identifications
     two: '<span class="count">%{count}</span> מזהים.ות'
     #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> מזהים.ות'
-    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> מזהים.ות'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> זיהוי נעשה עבור אחרים'
     two: '<span class="count">%{count}</span> זיהויים נעשו עבור אחרים'
-    many: '<span class="count">%{count}</span> זיהויים נעשו עבור אחרים'
     other: '<span class="count">%{count}</span> זיהויים נעשו עבור אחרים'
   x_languages:
     one: "שפה %{count}"
     two: "%{count} שפות"
-    many: "%{count} שפות"
     other: "%{count} שפות"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
@@ -72,171 +59,137 @@ he:
     #Count of number of taxa that represent the first addition to a life list
     two: "%{count} תצפיות בכורה"
     #Count of number of taxa that represent the first addition to a life list
-    many: "%{count} תצפיות בכורה"
-    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} תצפיות בכורה"
   x_journal_posts_html:
     one: 'פוסט אחד'
     two: '<span class="count">%{count}</span> פוסטים'
-    many: '<span class="count">%{count}</span> פוסטים'
     other: '<span class="count">%{count}</span> פוסטים'
   x_matching_taxa:
     one: 'טקסון תואם אחד'
     two: '%{count} טקסונים תואמים'
-    many: '%{count} טקסונים תואמים'
     other: '%{count} טקסונים תואמים'
   x_matching_taxa_html:
     one: 'טקסון תואם <span class="count">%{count}</span>'
     two: '<span class="count">%{count}</span> טקסונים תואמים'
-    many: '<span class="count">%{count}</span> טקסונים תואמים'
     other: '<span class="count">%{count}</span> טקסונים תואמים'
   x_misidentifications_of_this_species:
     one: "זיהוי שגוי אחד של המין"
     two: "%{count} זיהויים שגויים של המין"
-    many: "%{count} זיהויים שגויים של המין"
     other: "%{count} זיהויים שגויים של המין"
   x_misidentifications_of_species_in_this_genus:
     one: "זיהוי %{count} אחד שגוי של מינים בסוג זה"
     two: "%{count} זיהויים שגויים של מינים בסוג זה"
-    many: "%{count} זיהויים שגויים של מינים בסוג זה"
     other: "%{count} זיהויים שגויים של מינים בסוג זה"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "זיהוי שגוי %{count} ב%{rank} הזה"
     two: "%{count} זיהויים שגויים ב%{rank} הזה"
-    many: "%{count} זיהויים שגויים ב%{rank} הזה"
     other: "%{count} זיהויים שגויים ב%{rank} הזה"
   x_observations:
     one: "תצפית %{count}"
     two: "%{count} תצפיות"
-    many: "%{count} תצפיות"
     other: "%{count} תצפיות"
   x_observations_:
     one: "תצפית %{count}"
     two: "%{count} תצפיות"
-    many: "%{count} תצפיות"
     other: "%{count} תצפיות"
   x_observations_html:
     one: "תצפית <span class='count'>%{count}</span>"
     two: "<span class='count'>%{count}</span> תצפיות"
-    many: "<span class='count'>%{count}</span> תצפיות"
     other: "<span class='count'>%{count}</span> תצפיות"
   x_observations_caps_html:
     one: "תצפית <span class='count'>%{count}</span>"
     two: "<span class='count'>%{count}</span> תצפיות"
-    many: "<span class='count'>%{count}</span> תצפיות"
     other: "<span class='count'>%{count}</span> תצפיות"
   x_observations_link_html:
     one: "<a href='%{url}'>תצפית %{count}</a>"
     two: "<a href='%{url}'>%{count} תצפיות</a>"
-    many: "<a href='%{url}'>%{count} תצפיות</a>"
     other: "<a href='%{url}'>%{count} תצפיות</a>"
   x_observations_reviewed_html:
     one: "תצפית אחת עברה בדיקה"
     two: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
-    many: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
     other: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
   x_observers_caps_html:
     one: '<span class="count">%{count}</span> מתצפת.ת'
     two: '<span class="count">%{count}</span> מתצפתים.ות'
-    many: '<span class="count">%{count}</span> מתצפתים.ות'
     other: '<span class="count">%{count}</span> מתצפתים.ות'
   x_others:
     one: "אחר %{count}"
     two: "%{count} אחרים"
-    many: "ו%{count} אחרים"
     other: "%{count} אחרים"
   x_people:
     one: "בן אדם %{count}"
     two: "%{count} בני אדם"
-    many: "%{count} בני אדם"
     other: "%{count} בני אדם"
   x_people_html:
     one: 'אדם <span class="count">%{count}</span>'
     two: '<span class="count">%{count}</span> א.נשים'
-    many: '<span class="count">%{count}</span> א.נשים'
     other: '<span class="count">%{count}</span> א.נשים'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} א.נשים</strong> עזרו ל%{user} עם <strong>%{y} זיהויים</strong>"
   x_photos:
     one: "תמונה אחת"
     two: "%{count} תמונות"
-    many: "%{count} תמונות"
     other: "%{count} תמונות"
   x_new_species:
     one: "מין%{count} חדש"
     two: "%{count} מינים חדשים"
-    many: "%{count} מינים חדשים"
     other: "%{count} מינים חדשים"
   x_new_users:
     one: 'משתמש.ת חדש.ה %{count}'
     two: '%{count} משתמשות ומשתמשים חדשים'
-    many: '%{count} משתמשות ומשתמשים חדשים'
     other: '%{count} משתמשות ומשתמשים חדשים'
   x_species:
     one: 'מין %{count}'
     two: '%{count} מינים'
-    many: '%{count} מינים'
     other: '%{count} מינים'
   x_species_caps_html:
     one: "מין <span class='count'>%{count}</span>"
     two: "<span class='count'>%{count}</span> מינים"
-    many: "<span class='count'>%{count}</span> מינים"
     other: "<span class='count'>%{count}</span> מינים"
   x_species_html:
     one: "מין <span class=\"count\">%{count}</span>"
     two: "<span class=\"count\">%{count}</span> מינים"
-    many: "<span class=\"count\">%{count}</span> מינים"
     other: "<span class=\"count\">%{count}</span> מינים"
   x_species_link_html:
     one: "<a href='%{url}'>מין %{count}</a>"
     two: "<a href='%{url}'>%{count} מינים</a>"
-    many: "<a href='%{url}'>%{count} מינים</a>"
     other: "<a href='%{url}'>%{count} מינים</a>"
   x_suggestions_filtered_by_colon:
     one: "הצעה %{count} מסוננת לפי:"
     two: "%{count} הצעות מסוננות לפי:"
-    many: "%{count} הצעות מסוננות לפי:"
     other: "%{count} הצעות מסוננות לפי:"
   x_taxa:
     one: "טקסון אחד"
     two: "%{count} טקסונים"
-    many: "%{count} טקסונים"
     other: "%{count} טקסונים"
   x_taxa_observed_html:
     one: "טקסון <span class='count'>%{count}</span> נצפה"
     two: "<span class='count'>%{count}</span> טקסונים נצפו"
-    many: "<span class='count'>%{count}</span> טקסונים נצפו"
     other: "<span class='count'>%{count}</span> טקסונים נצפו"
   x_research_grade_observations_html:
     one: "תצפית אחת בדרגת מחקר"
     two: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר"
-    many: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר"
     other: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר"
   x_research_grade_observations_to_species_html:
     one: "תצפית אחת בדרגת מחקר זוהתה לרמה של מין או נמוך יותר"
     two: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר זוהו לרמת המין או נמוך יותר"
-    many: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר זוהו לרמת המין או נמוך יותר"
     other: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר זוהו לרמת המין או נמוך יותר"
   x_sounds:
     one: "קול אחד"
     two: "%{count} קולות"
-    many: "%{count} קולות"
     other: "%{count} קולות"
   x_taxa_curated_html:
     one: "טקסון אחד טופל"
     two: "<span class='count'>%{count}</span> טקסונים טופלו"
-    many: "<span class='count'>%{count}</span> טקסונים טופלו"
     other: "<span class='count'>%{count}</span> טקסונים טופלו"
   x_taxa_matching_current_filters:
     one: "טקסון אחד תואם את הגדרות הסינון"
     two: "%{count} טקסונים תואמים את הגדרות הסינון"
-    many: "%{count} טקסונים תואמים את הגדרות הסינון"
     other: "%{count} טקסונים תואמים את הגדרות הסינון"
   x_taxon_changes_added_html:
     one: "שינוי טקסון אחד נוסף"
     two: "<span class='count'>%{count}</span> שינויי טקסון נוספו"
-    many: "<span class='count'>%{count}</span> שינויי טקסון נוספו"
     other: "<span class='count'>%{count}</span> שינויי טקסון נוספו"
   _100_day_trends: מגמות 100 ימים
   _percent_ID_d: "אחוז מזוהה"
@@ -588,72 +541,58 @@ he:
     x_plantae:
       one: "צמח אחד"
       two: "%{count} צמחים"
-      many: "%{count} צמחים"
       other: "%{count} צמחים"
     x_animalia:
       one: "בעל חיים %{count}"
       two: "%{count} בעלי חיים"
-      many: "%{count} בעלי חיים"
       other: "%{count} בעלי חיים"
     x_mollusca:
       one: "רכיכה אחת"
       two: "%{count} רכיכות"
-      many: "%{count} רכיכות"
       other: "%{count} רכיכות"
     x_amphibia:
       one: "דו-חי %{count}"
       two: "%{count} דו-חיים"
-      many: "%{count} דו-חיים"
       other: "%{count} דו-חיים"
     x_mammalia:
       one: "יונק %{count}"
       two: "%{count} יונקים"
-      many: "%{count} יונקים"
       other: "%{count} יונקים"
     x_actinopterygii:
       one: "מקרין סנפיר אחד"
       two: "%{count} מקריני סנפיר"
-      many: "%{count} מקריני סנפיר"
       other: "%{count} מקריני סנפיר"
     x_reptilia:
       one: "זוחל %{count}"
       two: "%{count} זוחלים"
-      many: "%{count} זוחלים"
       other: "%{count} זוחלים"
     x_aves:
       one: "ציפור אחת"
       two: "%{count} ציפורים"
-      many: "%{count} ציפורים"
       other: "%{count} ציפורים"
     x_insecta:
       one: "חרק %{count}"
       two: "%{count} חרקים"
-      many: "%{count} חרקים"
       other: "%{count} חרקים"
     x_arachnida:
       one: "עכבישן %{count}"
       two: "%{count} עכבישניים"
-      many: "%{count} עכבישניים"
       other: "%{count} עכבישניים"
     x_fungi:
       one: "פטרייה %{count}"
       two: "%{count} פטריות"
-      many: "%{count} פטריות"
       other: "%{count} פטריות"
     x_chromista:
       one: "%{count} כרומיסטים"
       two: "%{count} כרומיסטים"
-      many: "%{count} כרומיסטים"
       other: "%{count} כרומיסטים"
     x_protozoa:
       one: "%{count} פרוטוזואות"
       two: "%{count} פרוטוזואות"
-      many: "%{count} פרוטוזואות"
       other: "%{count} פרוטוזואות"
     x_other_animals:
       one: "חיה אחרת אחת"
       two: "%{count} חיות אחרות"
-      many: "%{count} חיות אחרות"
       other: "%{count} חיות אחרות"
   all_taxa_: כל הטקסונים
   all_taxa_in_this_guide: כל הטקסונים במדריך זה
@@ -920,8 +859,6 @@ he:
     one: |
       על פי מדגם של %{percent}% מתוך הזיהויים הללו, להערכתנו זה יביא ל-<strong>%{count} חילוקי דעות לא מכוונים</strong> עם זיהויים של %{child}.
     two: |
-      על פי מדגם של %{percent}% מתוך הזיהויים הללו, להערכתנו זה יביא ל-<strong>%{count} חילוקי דעות לא מכוונים</strong> עם זיהויים של %{child}.
-    many: |
       על פי מדגם של %{percent}% מתוך הזיהויים הללו, להערכתנו זה יביא ל-<strong>%{count} חילוקי דעות לא מכוונים</strong> עם זיהויים של %{child}.
     other: |
       על פי מדגם של %{percent}% מתוך הזיהויים הללו, להערכתנו זה יביא ל-<strong>%{count} חילוקי דעות לא מכוונים</strong> עם זיהויים של %{child}.
@@ -1949,7 +1886,6 @@ he:
   editing_observations:
     one: 'עריכת תצפית <span class="count">1</span>:'
     two: 'עריכת <span class="count">%{count}</span> תצפיות:'
-    many: 'עריכת <span class="count">%{count}</span> תצפיות:'
     other: 'עריכת <span class="count">%{count}</span> תצפיות:'
   editing_project: עריכת %{project}
   editing_project_asset: עורך נכס פרויקט עבור
@@ -2035,7 +1971,6 @@ he:
   excluding_x_taxa:
     one: לא כולל %{count} טקסון
     two: לא כולל %{count} טקסונים
-    many: לא כולל %{count} טקסונים
     other: לא כולל %{count} טקסונים
   exclusion_filters: סינון החוצה
   existing_flags: סימונים קיימים
@@ -2224,7 +2159,6 @@ he:
   following_x_people:
     one: 'עוקב.ת אחרי אדם אחד'
     two: 'עוקב.ת אחרי %{count} א.נשים'
-    many: 'עוקב.ת אחרי %{count} א.נשים'
     other: 'עוקב.ת אחרי %{count} א.נשים'
   for_a_taxon: עבור טקסון
   #Notice about column headers in an observations export
@@ -2255,7 +2189,6 @@ he:
   fungi:
     one: פטריה
     two: פטריות
-    many: פטריות
     other: פטריות
   gbif: GBIF
   gbif_occurrences: התרחשויות GBIF
@@ -2351,7 +2284,6 @@ he:
   heads_up_there_are_other_draft_taxon_changes_html:
     one: "<strong>שימו לב!</strong> יש %{count} טיוטת שינוי טקסון אחרת עם אותם הטקסונים שהוכנסו:"
     two: "<strong>שימו לב!</strong> יש %{count} טיוטות שינוי טקסון אחרות עם אותם הטקסונים שהוכנסו:"
-    many: "<strong>שימו לב!</strong> יש %{count} טיוטות שינוי טקסון אחרות עם אותם הטקסונים שהוכנסו:"
     other: "<strong>שימו לב!</strong> יש %{count} טיוטות שינוי טקסון אחרות עם אותם הטקסונים שהוכנסו:"
   heads_up_this_photo_has_been_flagged: "שימו לב: תמונה זו סומנה."
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
@@ -4445,7 +4377,6 @@ he:
   project_admins:
     one: אדמינ.ית פרויקט
     two: אדמיני.ות פרויקט
-    many: אדמיני.ות פרויקט
     other: אדמיני.ות פרויקט
   project_aggregator_filter_error: |
     לא ניתן להשתמש בצבירת תצפיות אוטומטית אלא אם הפרויקט משויך למקום בגודל סביר, או אם הפרויקט מאפשר תצפיות של טקסונים מסוימים או טקסונים המופיעים ברשימה.
@@ -4548,14 +4479,12 @@ he:
     x_kingdoms:
       one: ממלכה
       two: ממלכות
-      many: ממלכות
       other: ממלכות
     subkingdom: תת ממלכה
     phylum: פילום
     x_phyla:
       one: מערכה
       two: מערכות
-      many: מערכות
       other: מערכות
     subphylum: תת-מערכה
     superclass: מחלקת על
@@ -4563,7 +4492,6 @@ he:
     x_classes:
       one: מחלקה
       two: מחלקות
-      many: מחלקות
       other: מחלקות
     subclass: תת מחלקה
     infraclass: אינפרא-מחלקה
@@ -4572,7 +4500,6 @@ he:
     x_orders:
       one: סדרה
       two: סדרות
-      many: סדרות
       other: סדרות
     suborder: תת-סדרה
     infraorder: אנפרא-סדרה
@@ -4586,7 +4513,6 @@ he:
     x_families:
       one: משפחה
       two: משפחות
-      many: משפחות
       other: משפחות
     subfamily: תת משפחה
     supertribe: סופר-שבט
@@ -4596,7 +4522,6 @@ he:
     x_genera:
       one: סוג
       two: סוגים
-      many: סוגים
       other: סוגים
     genushybrid: היבריד ברמת סוג
     subgenus: תת סוג
@@ -4608,7 +4533,6 @@ he:
     x_species:
       one: מין
       two: מינים
-      many: מינים
       other: מינים
     hybrid: בן-כלאיים
     #Singular
@@ -4766,7 +4690,6 @@ he:
   remove_observations:
     one: להסיר תצפית אחת?
     two: להסיר %{count} תצפיות?
-    many: להסיר %{count} תצפיות?
     other: להסיר %{count} תצפיות?
   remove_photo: הסרת תמונה
   remove_place: הסרת מקום
@@ -4883,7 +4806,6 @@ he:
   saving_num_of_count_observations:
     one: שומר תצפית...
     two: שומר %{num} מתוך %{count} תצפיות...
-    many: שומר %{num} מתוך %{count} תצפיות...
     other: שומר %{num} מתוך %{count} תצפיות...
   saving_verb: שומר...
   scale_colon: "קנה מידה:"
@@ -5214,7 +5136,6 @@ he:
   submit_observations:
     one: הגשת תצפית אחת
     two: הצגת %{count} תצפיות
-    many: הצגת %{count} תצפיות
     other: הצגת %{count} תצפיות
   submitted: נשלח
   #Label for a button that subscribes the user to updates on a resource, e.g.
@@ -5282,77 +5203,62 @@ he:
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: "%{taxon} היא %{rank} ב%{iconic_taxon} ובה תצפית אחת"
     two: "%{taxon} היא %{rank} ב%{iconic_taxon} ובה %{count} תצפיות"
-    many: "%{taxon} היא %{rank} ב%{iconic_taxon} ובה %{count} תצפיות"
     other: "%{taxon} היא %{rank} ב%{iconic_taxon} ובה %{count} תצפיות"
   taxon_is_a_rank_of_amphibia_with_x_observations:
     one: "%{taxon} היא %{rank} של דו-חיים ובה תצפית אחת"
     two: "%{taxon} היא %{rank} של דו-חיים ובה %{count} תצפיות"
-    many: "%{taxon} היא %{rank} של דו-חיים ובה %{count} תצפיות"
     other: "%{taxon} היא %{rank} של דו-חיים ובה %{count} תצפיות"
   taxon_is_a_rank_of_aves_with_x_observations:
     one: "%{taxon} הוא %{rank} של ציפורים עם תצפית אחת"
     two: "%{taxon} הוא %{rank} של ציפורים עם %{count} תצפיות"
-    many: "%{taxon} הוא %{rank} של ציפורים עם %{count} תצפיות"
     other: "%{taxon} הוא %{rank} של ציפורים עם %{count} תצפיות"
   taxon_is_a_rank_of_mammalia_with_x_observations:
     one: "%{taxon} היא %{rank} של יונקים ובה תצפית אחת"
     two: "%{taxon} היא %{rank} של יונקים ובה %{count} תצפיות"
-    many: "%{taxon} היא %{rank} של יונקים ובה %{count} תצפיות"
     other: "%{taxon} היא %{rank} של יונקים ובה %{count} תצפיות"
   taxon_is_a_rank_of_reptilia_with_x_observations:
     one: "%{taxon} היא %{rank} של זוחלים ובה תצפית אחת"
     two: "%{taxon} היא %{rank} של זוחלים ובה %{count} תצפיות"
-    many: "%{taxon} היא %{rank} של זוחלים ובה %{count} תצפיות"
     other: "%{taxon} היא %{rank} של זוחלים ובה %{count} תצפיות"
   taxon_is_a_rank_of_plantae_with_x_observations:
     one: "%{taxon} הוא %{rank} של צמחים עם תצפית אחת"
     two: "%{taxon} הוא %{rank} של צמחים עם %{count} תצפיות"
-    many: "%{taxon} הוא %{rank} של צמחים עם %{count} תצפיות"
     other: "%{taxon} הוא %{rank} של צמחים עם %{count} תצפיות"
   taxon_is_a_rank_of_actinopterygii_with_x_observations:
     one: "%{taxon} היא %{rank} של מקריני סנפיר ובה תצפית אחת"
     two: "%{taxon} היא %{rank} של מקריני סנפיר ובה %{count} תצפיות"
-    many: "%{taxon} היא %{rank} של מקריני סנפיר ובה %{count} תצפיות"
     other: "%{taxon} היא %{rank} של מקריני סנפיר ובה %{count} תצפיות"
   taxon_is_a_rank_of_animalia_with_x_observations:
     one: "%{taxon} היא %{rank} של בעלי חיים ובה תצפית אחת"
     two: "%{taxon} היא %{rank} של בעלי חיים ובה %{count} תצפיות"
-    many: "%{taxon} היא %{rank} של בעלי חיים ובה %{count} תצפיות"
     other: "%{taxon} היא %{rank} של בעלי חיים ובה %{count} תצפיות"
   taxon_is_a_rank_of_insecta_with_x_observations:
     one: "%{taxon} היא %{rank} של חרקים ובה תצפית אחת"
     two: "%{taxon} היא %{rank} של חרקים ובה %{count} תצפיות"
-    many: "%{taxon} היא %{rank} של בעלי חיים ובה %{count} תצפיות"
     other: "%{taxon} היא %{rank} של בעלי חיים ובה %{count} תצפיות"
   taxon_is_a_rank_of_arachnida_with_x_observations:
     one: "%{taxon} היא %{rank} של עכבשיים ובה תצפית אחת"
     two: "%{taxon} היא %{rank} של עכבישיים ובה %{count} תצפיות"
-    many: "%{taxon} היא %{rank} של עכבישיים ובה %{count} תצפיות"
     other: "%{taxon} היא %{rank} של עכבישיים ובה %{count} תצפיות"
   taxon_is_a_rank_of_fungi_with_x_observations:
     one: "%{taxon} הוא %{rank} של פטריות עם תצפית אחת"
     two: "%{taxon} הוא %{rank} של פטריות עם %{count} תצפיות"
-    many: "%{taxon} הוא %{rank} של פטריות עם %{count} תצפיות"
     other: "%{taxon} הוא %{rank} של פטריות עם %{count} תצפיות"
   taxon_is_a_rank_of_protozoa_with_x_observations:
     one: "%{taxon} הוא %{rank} של פרוטוזואות עם תצפית אחת"
     two: "%{taxon} הוא %{rank} של פרוטוזואות עם %{count} תצפיות"
-    many: "%{taxon} הוא %{rank} של פרוטוזואות עם %{count} תצפיות"
     other: "%{taxon} הוא %{rank} של פרוטוזואות עם %{count} תצפיות"
   taxon_is_a_rank_of_mollusca_with_x_observations:
     one: "%{taxon} היא %{rank} של רכיכות ובה תצפית אחת"
     two: "%{taxon} היא %{rank} של רכיכות ובה %{count} תצפיות"
-    many: "%{taxon} היא %{rank} של רכיכות ובה %{count} תצפיות"
     other: "%{taxon} היא %{rank} של רכיכות ובה %{count} תצפיות"
   taxon_is_a_rank_of_chromista_with_x_observations:
     one: "%{taxon} היא %{rank} בכרומיסטה (אצות חומות וקרוביהן) עם תצפית אחת"
     two: "%{taxon} היא %{rank} בכרומיסטה (אצות חומות וקרוביהן) עם %{count} תצפיות"
-    many: "%{taxon} היא %{rank} בכרומיסטה (אצות חומות וקרוביהן) עם %{count} תצפיות"
     other: "%{taxon} היא %{rank} בכרומיסטה (אצות חומות וקרוביהן) עם %{count} תצפיות"
   taxon_is_kingdom_of_life_with_x_observations:
     one: "%{taxon} היא ממלכת חיים ובה תצפית אחת"
     two: "%{taxon} היא ממלכת חיים ובה %{count} תצפיות"
-    many: "%{taxon} היא ממלכת חיים ובה %{count} תצפיות"
     other: "%{taxon} היא ממלכת חיים ובה %{count} תצפיות"
   taxon_is_threatened_coordinates_hidden: טקסון בסיכון, קואורדינטות מוסתרות כברירת מחדל
   taxon_is_threatened_coordinates_hidden_desc: |
@@ -5526,7 +5432,6 @@ he:
   there_are_x_synonyms_html:
     one: "ישנה <span class='count'>1</span> מילה נרדפת</span>"
     two: "ישנן <span class='count'>%{count}</span> מילים נרדפות</span>"
-    many: "ישנן <span class='count'>%{count}</span> מילים נרדפות</span>"
     other: "ישנן <span class='count'>%{count}</span> מילים נרדפות</span>"
   there_isnt_a_wikipedia_article_titled_x_html: |
     אין ערך ויקיפדיה או ניתוב מחדש בכותרת '%{x}'. אולי ברצונך <a href='http://en.wikipedia.org/wiki/%{x}'>ליצור כזה</a>?
@@ -5578,7 +5483,6 @@ he:
   this_observation_is_featured_on_x_sites:
     one: תצפית זו מוצגת באתר %{count}
     two: תצפית זו מוצגת ב-%{count} אתרים
-    many: תצפית זו מוצגת ב-%{count} אתרים
     other: תצפית זו מוצגת ב-%{count} אתרים
   this_observation_is_research_grade: תצפית זו היא בדרגת מחקר!
   this_observation_was_created_using: "תצפית זו נוצרה באמצעות:"
@@ -5846,7 +5750,6 @@ he:
   update_x_selected_taxa:
     one: "עדכון טקסון נבחר"
     two: "עדכון %{count} טקסונים נבחרים"
-    many: "עדכון %{count} טקסונים נבחרים"
     other: "עדכון %{count} טקסונים נבחרים"
   update_your_content: עדכון התוכן שלך
   update_with_eol_content: עדכון באמצעות תוכן EOL
@@ -5886,7 +5789,6 @@ he:
   uploading_num_of_count_photos:
     one: מעלה תמונה...
     two: מעלה %{num} מתוך %{count} תמונות...
-    many: מעלה %{num} מתוך %{count} תמונות...
     other: מעלה %{num} מתוך %{count} תמונות...
   url_for_your_app_outside_of_inaturalist: קישור עבור האפליקציה שלך מחוץ ל-iNaturalist
   url_identifier_of_a_project_derived_from: "קישור / מזהה הפרויקט נוסע ממקור חיצוני כלשהו"
@@ -5905,7 +5807,6 @@ he:
   used_x_times:
     one: משומש פעם אחת
     two: משומש %{count} פעמים
-    many: משומש %{count} פעמים
     other: משומש %{count} פעמים
   user: משתמש.ת
   user1_and_user2_faved_this_observation: "%{user1} ו%{user2} אהבו תצפית זו"
@@ -5940,7 +5841,6 @@ he:
   user_added_x_observations2_html:
     one: "%{user} הוסיפ.ה תצפית אחת"
     two: "%{user} הוסיפ.ה %{count} תצפיות"
-    many: "%{user} הוסיפ.ה %{count} תצפיות"
     other: "%{user} הוסיפ.ה %{count} תצפיות"
   user_already_authenticated: משתמש זה כבר אושר
   user_already_app_owner: היוזר כבר בעלים של אפליקציה
@@ -6054,7 +5954,6 @@ he:
   view_all_number:
     one: "צפייה בכל %{count}"
     two: "צפייה בכל %{count}"
-    many: "צפייה בכל %{count}"
     other: "צפייה בכל %{count}"
   view_all_observations: צפייה בכל התצפיות
   view_all_photocount_photos: "צפייה בכל %{photo_count} התמונות"
@@ -6238,7 +6137,6 @@ he:
   x_observations_failed:
     one: "תצפית %{count} נכשלה"
     two: "%{count} תצפיות נכשלו"
-    many: "%{count} תצפיות נכשלו"
     other: "%{count} תצפיות נכשלו"
   x_of_y: "%{x} מתוך %{y}"
   #This might be shown if there is a character limit in a text field, in which
@@ -6247,12 +6145,10 @@ he:
   x_of_count_confirmed:
     one: "%{x} מתוך %{count} מאושר"
     two: "%{x} מתוך %{count} מאושרים"
-    many: "%{x} מתוך %{count} מאושרים"
     other: "%{x} מתוך %{count} מאושרים"
   x_of_count_observed:
     one: "נצפה %{x} מתוך %{count}"
     two: "נצפו %{x} מתוך %{count}"
-    many: "נצפו %{x} מתוך %{count}"
     other: "נצפו %{x} מתוך %{count}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} מתוך %{y} א.נשים (יותר מ-2/3) בהסכמה שזה"
   x_is_the_root_of_the_tree: "%{rank} %{name} הוא השורש של העץ"
@@ -6304,7 +6200,6 @@ he:
   yir_email_of_your_observations:
     one: מתוך התצפית ה-%{count} שלך, האם את.ה יודע.ת כמה דווחו בשנת %{year}?
     two: מתוך %{count} התצפיות שלך, האם את.ה יודע.ת כמה דווחו בשנת %{year}?
-    many: מתוך %{count} התצפיות שלך, האם את.ה יודע.ת כמה דווחו בשנת %{year}?
     other: מתוך %{count} התצפיות שלך, האם את.ה יודע.ת כמה דווחו בשנת %{year}?
   #Feel free to adjust this if %{year} or "Your" don't translate well
   yir_email_subject: |
@@ -6903,12 +6798,10 @@ he:
       exporting_all_x_taxa:
         one: מייצא טקסון %{count}
         two: מייצא את כל %{count} הטקסונים
-        many: מייצא את כל %{count} הטקסונים
         other: מייצא את כל %{count} הטקסונים
       exporting_x_taxa:
         one: מייצא טקסון %{count}
         two: מייצא %{count} טקסונים
-        many: מייצא %{count} טקסונים
         other: מייצא %{count} טקסונים
       no_observations_found_in_place: לא נמצאו תצפיות ב%{place}.
       no_observations_found_within_this_taxon_in_place: לא נמצאו תצפיות בתוך טקסון זה ב%{place}.
@@ -7081,8 +6974,6 @@ he:
           #Count of how many taxa several observation searches have in common
           two: "%{count} משותפים"
           #Count of how many taxa several observation searches have in common
-          many: "%{count} משותפים"
-          #Count of how many taxa several observation searches have in common
           other: "%{count} משותפים"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
@@ -7090,8 +6981,6 @@ he:
           one: "%{count} לא במשותף"
           #Count of how many taxa are not present in *all* of several observation searches
           two: "%{count} לא במשותף"
-          #Count of how many taxa are not present in *all* of several observation searches
-          many: "%{count} לא במשותף"
           #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} לא במשותף"
         #Count of how many taxa are present in an observation search
@@ -7101,8 +6990,6 @@ he:
           #Count of how many taxa are present in an observation search
           two: "%{count} סך הכל"
           #Count of how many taxa are present in an observation search
-          many: "%{count} סך הכל"
-          #Count of how many taxa are present in an observation search
           other: "%{count} סך הכל"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
@@ -7110,8 +6997,6 @@ he:
           one: "%{count} יחודי"
           #Count of how many taxa in several observation searches are present in only one of those searches
           two: "%{count} יחודיים"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          many: "%{count} יחודיים"
           #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} יחודיים"
       export:
@@ -7977,7 +7862,6 @@ he:
         view_all_publications_count_caps2:
           one: "בצפייה בפרסום ה-%{count}"
           two: "צפייה ב-%{count} הפרסומים"
-          many: "צפייה בכל %{count} הפרסומים"
           other: "צפייה בכל %{count} הפרסומים"
     taxa:
       edit:
@@ -8125,7 +8009,6 @@ he:
       taxon_change_pending:
         one: "שינוי טקסון זה ממתין כעת. הוא דורש אישור של אוצר.ת 1 כדי להתבצע."
         two: "שינוי טקסון זה ממתין כעת. זה דורש אישור של שני אוצרים כדי להתבצע."
-        many: "שינוי טקסון זה ממתין כעת. זה דורש אישור של %{count} אוצרים כדי להתבצע."
         other: "שינוי טקסון זה ממתין כעת. זה דורש אישור של %{count} אוצרים כדי להתבצע."
       #message when someone tries to commit a taxon change with active children
       input_taxon_cannot_have_active_children: |
@@ -8148,7 +8031,6 @@ he:
       requires_approval:
         one: "דורש אישור של אוצר.ת 1 נוספ.ת כדי להתבצע"
         two: "דורשת אישור מאת 2 אוצרים.ות נוספים.ות כדי להתבצע."
-        many: "דורשת אישור מאת %{count} אוצרים.ות נוספים.ות כדי להתבצע."
         other: "דורשת אישור מאת %{count} אוצרים.ות נוספים.ות כדי להתבצע."
     taxon_links:
       form:
@@ -8213,16 +8095,12 @@ he:
             <strong class="count">תצפית %{count}</strong>, כוללת את העבודה של <strong class="count">%{helpers_count} הא.נשים</strong> שעזרו לך בזיהויים
           two: |
             <strong class="count">%{count} תצפיות</strong>, כוללות את העבודה של <strong class="count">%{helpers_count} הא.נשים</strong> שעזרו לך בזיהויים
-          many: |
-            <strong class="count">%{count} תצפיות</strong>, כוללות את העבודה של <strong class="count">%{helpers_count} הא.נשים</strong> שעזרו לך בזיהויים
           other: |
             <strong class="count">%{count} תצפיות</strong>, כוללות את העבודה של <strong class="count">%{helpers_count} הא.נשים</strong> שעזרו לך בזיהויים
         x_projects_html:
           one: |
             <strong class="count">פרויקט %{count}</strong> שאין לו מנהל.ת או אדמינ.ית אחר.ת שיכול.ה להפוך לבעלים החדש
           two: |
-            <strong class="count">%{count} פרויקטים</strong> שאין להם מנהל.ת או אדמינ.ית אחר.ת שיכול.ה להפוך לבעלים החדש
-          many: |
             <strong class="count">%{count} פרויקטים</strong> שאין להם מנהל.ת או אדמינ.ית אחר.ת שיכול.ה להפוך לבעלים החדש
           other: |
             <strong class="count">%{count} פרויקטים</strong> שאין להם מנהל.ת או אדמינ.ית אחר.ת שיכול.ה להפוך לבעלים החדש
@@ -8231,14 +8109,11 @@ he:
             <strong class="count">הזיהוי ה-%{count} שלך</strong> על תצפית של יוזר אחר, שעלול להשפיע על איכות הנתונים של אותה התצפית
           two: |
             <strong class="count">%{count} מהזיהויים שלך</strong> על התצפיות של <strong class="count">%{helpees_count} יוזרים אחרים</strong>, שעלולים להשפיע על איכות הנתונים של אותן התצפיות
-          many: |
-            <strong class="count">%{count} מהזיהויים שלך</strong> על התצפיות של <strong class="count">%{helpees_count} יוזרים אחרים</strong>, שעלולים להשפיע על איכות הנתונים של אותן התצפיות
           other: |
             <strong class="count">%{count} מהזיהויים שלך</strong> על התצפיות של <strong class="count">%{helpees_count} יוזרים אחרים</strong>, שעלולים להשפיע על איכות הנתונים של אותן התצפיות
         x_comments_html:
           one: <strong class="count">תגובה %{count}</strong> שהוספת
           two: <strong class="count">%{count} תגובות</strong> שהוספת
-          many: <strong class="count">%{count} תגובות</strong> שהוספת
           other: <strong class="count">%{count} תגובות</strong> שהוספת
         furthermore_cannot_undo_html: |
           נוסף על כך, <strong>פעולה זו הינה בלתי-הפיכה.</strong> אם דעתך תשתנה, לא יהיה ניתן לקבל את התוכן שלך בחזרה.
@@ -8436,17 +8311,14 @@ he:
         observations_to_date:
           one: "תצפית עד כה"
           two: "תצפיות עד כה"
-          many: "תצפיות עד כה"
           other: "תצפיות עד כה"
         species_observed:
           one: "מין שנצפה"
           two: "מינים שנצפו"
-          many: "מינים שנצפו"
           other: "מינים שנצפו"
         people_signed_up:
           one: "א.נשים הצטרפו"
           two: "א.נשים הצטרפו"
-          many: "א.נשים הצטרפו"
           other: "א.נשים הצטרפו"
         how_it_works: איך זה עובד
         record_your_observations: תעדו את התצפיות שלכם.ן
@@ -8736,78 +8608,63 @@ he:
       about_x_hours:
         one: בערך %{count} שעות
         two: בערך %{count} שעות
-        many: בערך %{count} שעות
         other: בערך %{count} שעות
       about_x_months:
         one: בערך חודש
         two: בערך %{count} חודשים
-        many: בערך %{count} חודשים
         other: בערך %{count} חודשים
       about_x_years:
         one: בערך %{count} שנים
         two: בערך %{count} שנים
-        many: בערך %{count} שנים
         other: בערך %{count} שנים
       almost_x_years:
         one: כמעט שנה
         two: כמעט %{count} שנים
-        many: כמעט %{count} שנים
         other: כמעט %{count} שנים
       half_a_minute: חצי דקה
       less_than_x_minutes:
         one: פחות מדקה
         two: פחות מ %{count} דקות
-        many: פחות מ %{count} דקות
         other: פחות מ %{count} דקות
       less_than_x_seconds:
         one: פחות משניה
         two: פחות מ %{count} שניות
-        many: פחות מ %{count} שניות
         other: פחות מ %{count} שניות
       over_x_years:
         one: יותר משנה
         two: יותר מ %{count} שנים
-        many: יותר מ %{count} שנים
         other: יותר מ %{count} שנים
       x_days:
         one: "יום אחד"
         two: '%{count} ימים'
-        many: '%{count} ימים'
         other: '%{count} ימים'
       x_minutes:
         one: "דקה אחת"
         two: '%{count} דקות'
-        many: '%{count} דקות'
         other: '%{count} דקות'
       x_months:
         one: "חודש אחד"
         two: '%{count} חודשים'
-        many: '%{count} חודשים'
         other: '%{count} חודשים'
       x_seconds:
         one: "שניה אחת"
         two: '%{count} שניות'
-        many: '%{count} שניות'
         other: '%{count} שניות'
     countdown_x_days:
       one: יום
       two: ימים
-      many: ימים
       other: ימים
     countdown_x_hours:
       one: שעה
       two: שעות
-      many: שעות
       other: שעות
     countdown_x_minutes:
       one: דקה
       two: דקות
-      many: דקות
       other: דקות
     countdown_x_seconds:
       one: שניה
       two: שניות
-      many: שניות
       other: שניות
     prompts:
       day: יום
@@ -8872,7 +8729,6 @@ he:
           byte:
             one: בייט
             two: בייטים
-            many: בייטים
             other: בייטים
           gb: GB
           kb: KB
@@ -9184,7 +9040,6 @@ he:
         equal_to:
           one: חייב להיות שווה ל־%{count}
           two: חייבים להיות שווים ל־%{count}
-          many: חייבים להיות שווים ל־%{count}
           other: חייבים להיות שווים ל־%{count}
         must_look_like_an_email_address: חייב להיראות כמו כתובת דוא"ל
         even: חייב להיות זוגי
@@ -9192,24 +9047,20 @@ he:
         greater_than:
           one: חייב להיות גדול מ־%{count}
           two: חייבים להיות גדולים מ־%{count}
-          many: חייבים להיות גדולים מ־%{count}
           other: חייבים להיות גדולים מ־%{count}
         greater_than_or_equal_to:
           one: חייב להיות גדול או שווה ל-%{count}
           two: חייבים להיות גדולים או שווים ל-%{count}
-          many: חייבים להיות גדולים או שווים ל-%{count}
           other: חייבים להיות גדולים או שווים ל-%{count}
         inclusion: לא ברשימה
         invalid: שגוי
         less_than:
           one: חייב להיות קטן מ-%{count}
           two: חייבים להיות קטנים מ־%{count}
-          many: חייבים להיות קטנים מ־%{count}
           other: חייבים להיות קטנים מ־%{count}
         less_than_or_equal_to:
           one: חייב להיות קטן או שווה ל-%{count}
           two: חייבים להיות קטנים או שווים ל-%{count}
-          many: חייבים להיות קטנים או שווים ל-%{count}
           other: חייבים להיות קטנים או שווים ל-%{count}
         new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
         not_a_number: הוא לא מספר
@@ -9225,24 +9076,20 @@ he:
         too_long:
           one: ארוך מדי (המקסימום הוא תו אחד)
           two: ארוך מדי (מקסימום %{count} תווים)
-          many: ארוך מדי (מקסימום %{count} תווים)
           other: ארוך מדי (מקסימום %{count} תווים)
         too_short:
           one: קצר מדי (יש מינימום של תו אחד)
           two: קצר מדי (המינימום הוא %{count} תווים)
-          many: קצר מדי (המינימום הוא %{count} תווים)
           other: קצר מדי (המינימום הוא %{count} תווים)
         wrong_length:
           one: באורך לא נכון (צריך להיות תו %{count})
           two: באורך לא נכון (צרים להיות %{count} תווים)
-          many: באורך לא נכון (צרים להיות %{count} תווים)
           other: באורך לא נכון (צרים להיות %{count} תווים)
       template:
         body: 'אירעו בעיות עם השדות הבאים:'
         header:
           one: "טעות אחת מנעה את שמירת %{model} זה"
           two: '%{count} טעויות מנעו את שמירת %{model} זה'
-          many: '%{count} טעויות מנעו את שמירת %{model} זה'
           other: '%{count} טעויות מנעו את שמירת %{model} זה'
       models:
         announcement:
