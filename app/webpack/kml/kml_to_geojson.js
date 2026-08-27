@@ -7,7 +7,16 @@ function kmlTextToGeoJSON( kmlText ) {
   if ( dom.querySelector( "parsererror" ) ) {
     throw new Error( "Could not parse KML" );
   }
-  return toGeoJSON.kml( dom );
+  const geojson = toGeoJSON.kml( dom, { skipNullGeometry: true } );
+  geojson.features = geojson.features.reverse( );
+  geojson.features.forEach( ( feature, index ) => {
+    if ( feature.id ) {
+      feature.properties.kml_id = feature.id;
+    }
+    feature.id = `kml-feature-${index}`;
+  } );
+
+  return geojson;
 }
 
 function kmzToKmlText( arrayBuffer ) {
