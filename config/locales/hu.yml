@@ -2279,6 +2279,10 @@ hu:
   jobs: Állások
   join: Csatlakozás
   join_and_add_an_observation_to_project_html: Csatlakozz és tölts fel egy megfigyelést a %{project} projekthez.
+  #Shown after dismissing a banner that invites you to join, or lets you
+  #leave, a test of a new feature, pointing at the other place to do both
+  join_or_leave_this_test_in_account_settings_html: |
+    Bármikor csatlakozhatsz vagy kiléphetsz a a tesztből a <a href="%{url}">Fiókbeállítások</a>nál.
   join_project: Csatlakozás a projekthez
   #Prompt to join a specific project
   join_project?: '%{project} projekthez csatlakozás'
@@ -2732,6 +2736,9 @@ hu:
   #Label shown when a date has not been entered
   missing_date: Hiányzó dátum
   mobile: Mobil
+  #Name of the test group for the responsive, mobile-friendly redesign of the
+  #site, matching the wording of the banner that prompts you to join it
+  mobile_friendly_mode: Mobilbarát mód
   moderation_history_for_user_html: '%{user} felhasználó moderálási előzményei'
   #Replaces the username of the moderator on automatic unsuspension actions
   moderator_actions_suspension_expired: A felfüggesztés lejárt
@@ -4286,6 +4293,14 @@ hu:
   resolved: Megoldva
   resolved_by: 'Megoldotta:'
   resolved_by_user_on_date_html: 'Megoldotta %{user} ekkor: %{date}'
+  #Prompt to join a test of the responsive, mobile-friendly redesign of the
+  #site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Tesztelnéd az új, mobilbarát reszponzív elrendezést?
+    Fontos: még nem minden oldal lett átkonvertálva.
+  #Message displayed when you have joined the test of the responsive,
+  #mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Jelenleg mobilbarát módban.
   restart: Újraindítás
   restore: Visszaállítás
   restoring: Visszaállítás...
@@ -4796,6 +4811,9 @@ hu:
   terms_service: Felhasználási feltételek
   terrain: terep
   text: Szöveg
+  #Heading for the account settings section where you join or leave tests of
+  #new features
+  test_groups: Tesztcsoportok
   thank_you!: Köszönjük!
   thanks!: Köszönjük!
   thanks_from_all_of_us_here_at: Köszönjük a hozzájárulásokat
@@ -5318,6 +5336,8 @@ hu:
   view_post: Bejegyzés megtekintése
   view_projects_from_place: "Projektek innen: %{place}"
   view_sample: Példa megtekintése
+  #Label for a link that opens the external source of a conservation status
+  view_source: Forrás megtekintése
   view_stats: Statisztikák megtekintése
   view_taxon_change: Taxonváltozások megtekintése
   view_taxon_changes: Taxonváltozások megtekintése
@@ -6451,7 +6471,6 @@ hu:
         avg_ttcid: Átlag TTCID
         avg_ttid: Átlag TTID
         identifiers_desc: Meghatározást adott e napon más valaki megfigyeléséhez
-        #label for chart legend, linking to more information on iNatNext
         inat_next_desc_html: Létrehozva az <a href="%{url}">iNatNext</a> segítségével
         iphone_desc_html: Létrehozva az <a href="%{url}">iNaturalist iPhone alkalmazásból</a>
         med_ttcid: Med TTCID
