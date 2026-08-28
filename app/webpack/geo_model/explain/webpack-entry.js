@@ -18,20 +18,33 @@ const serverPayload = SERVER_PAYLOAD;
 const taxon = new Taxon( serverPayload.taxon );
 sharedStore.dispatch( setTaxon( taxon ) );
 
-google.maps.importLibrary( "maps" ).then( ( ) => (
-  google.maps.importLibrary( "drawing" )
-) ).then( ( ) => (
-  google.maps.importLibrary( "geometry" )
-) ).then( ( ) => (
-  google.maps.importLibrary( "places" )
-) )
-  .then( ( ) => {
-    /* global loadMap3 */
-    loadMap3( );
-    render(
-      <Provider store={sharedStore}>
-        <AppContainer />
-      </Provider>,
-      document.getElementById( "app" )
-    );
-  } );
+const renderApp = ( ) => render(
+  <Provider store={sharedStore}>
+    <AppContainer />
+  </Provider>,
+  document.getElementById( "app" )
+);
+
+// The Maps API may be unavailable, e.g. when the browser blocks requests to
+// Google; render the app without a map rather than not at all
+if (
+  typeof ( google ) === "undefined"
+  || !google.maps
+  || !google.maps.importLibrary
+) {
+  renderApp( );
+} else {
+  google.maps.importLibrary( "maps" ).then( ( ) => (
+    google.maps.importLibrary( "drawing" )
+  ) ).then( ( ) => (
+    google.maps.importLibrary( "geometry" )
+  ) ).then( ( ) => (
+    google.maps.importLibrary( "places" )
+  ) )
+    .then( ( ) => {
+      /* global loadMap3 */
+      loadMap3( );
+    } )
+    .catch( ( ) => { } )
+    .then( renderApp );
+}

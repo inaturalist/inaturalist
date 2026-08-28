@@ -52,7 +52,8 @@ const util = class util {
 
   // returns a Promise
   static reverseGeocode( lat, lng ) {
-    if ( typeof ( google ) === "undefined" ) return new Promise( );
+    // new Promise( ) with no executor throws, so resolve with no location
+    if ( typeof ( google ) === "undefined" ) return Promise.resolve( null );
     const geocoder = new google.maps.Geocoder( );
     return new Promise( resolve => {
       geocoder.geocode( { location: { lat, lng } }, ( results, status ) => {

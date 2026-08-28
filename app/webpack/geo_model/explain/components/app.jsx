@@ -61,6 +61,9 @@ class App extends React.Component {
 
   componentDidMount( ) {
     this.map = $( ".TaxonMap", ReactDOM.findDOMNode( this ) ).data( "taxonMap" );
+    // The map won't exist if the Maps API failed to load, e.g. when the
+    // browser blocks requests to Google
+    if ( !this.map ) return;
     this.map.setOptions( {
       styles: baseMapStyle,
       minZoom: 2,
@@ -87,6 +90,7 @@ class App extends React.Component {
 
   setLayer( selectLayer ) {
     const { taxon } = this.props;
+    if ( !this.map ) return;
     if ( this.state.selectedLayerIndex ) {
       this.map.overlayMapTypes.setAt( this.state.selectedLayerIndex - 1, null );
     }
@@ -356,7 +360,7 @@ class App extends React.Component {
             }
           }]}
           gestureHandling="auto"
-          mapType={google.maps.MapTypeId.TERRAIN}
+          mapType={typeof ( google ) !== "undefined" ? google.maps.MapTypeId.TERRAIN : null}
           showLegend
         />
         <div className="container">

@@ -107,6 +107,9 @@ class TaxonMap extends React.Component {
   }
 
   setMapFromProps( ) {
+    // the taxonMap jQuery plugin is only defined once the Maps API has
+    // loaded, which never happens if the browser blocks requests to Google
+    if ( typeof ( $.fn.taxonMap ) !== "function" ) return;
     $( ReactDOM.findDOMNode( this ) ).taxonMap( this.props );
   }
 

@@ -10,6 +10,9 @@ class GooglePlacesAutocomplete extends React.Component {
   }
 
   componentDidMount( ) {
+    // Without the Maps API (e.g. Google blocked by the browser) there is
+    // nothing to wire up
+    if ( typeof ( google ) === "undefined" ) return;
     this.placesAutocomplete = new google.maps.places.Autocomplete(
       this.input.current,
       {
