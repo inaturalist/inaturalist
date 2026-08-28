@@ -63,6 +63,40 @@ const MULTI_GEOMETRY_KML = `<?xml version="1.0" encoding="UTF-8"?>
   </Placemark>
 </kml>`;
 
+// Mirrors ArcGIS-exported trail KML: repeated <Folder id="FeatureLayer0">
+// elements whose Placemark ids overlap between folders (e.g. two different
+// features both with id="ID_00000")
+const DUPLICATE_ID_KML = `<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <Folder id="FeatureLayer0">
+      <name>Layer One</name>
+      <Placemark id="ID_00000">
+        <name>Tidelands Trail</name>
+        <MultiGeometry>
+          <LineString><coordinates>-122.1,37.5,0 -122.2,37.6,0</coordinates></LineString>
+          <LineString><coordinates>-122.3,37.7,0 -122.4,37.8,0</coordinates></LineString>
+        </MultiGeometry>
+      </Placemark>
+      <Placemark id="ID_00001">
+        <name>Marsh Trail</name>
+        <LineString><coordinates>-122.5,37.9,0 -122.6,38.0,0</coordinates></LineString>
+      </Placemark>
+    </Folder>
+    <Folder id="FeatureLayer0">
+      <name>Layer Two</name>
+      <Placemark id="ID_00000">
+        <name>Bay View Trail</name>
+        <LineString><coordinates>-121.1,36.5,0 -121.2,36.6,0</coordinates></LineString>
+      </Placemark>
+      <Placemark id="ID_00001">
+        <name>Ridge Trail</name>
+        <LineString><coordinates>-121.3,36.7,0 -121.4,36.8,0</coordinates></LineString>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>`;
+
 describe( "kmlTextToGeoJSON", ( ) => {
   it( "converts a simple Placemark to a Feature with name and description", ( ) => {
     const geojson = kmlAssets.kmlTextToGeoJSON( SIMPLE_KML );
@@ -96,6 +130,56 @@ describe( "kmlTextToGeoJSON", ( ) => {
 
   it( "throws on unparseable KML", ( ) => {
     expect( ( ) => kmlAssets.kmlTextToGeoJSON( "<kml><unclosed" ) ).toThrow( );
+  } );
+
+  describe( "Placemarks with duplicate KML ids across sibling Folders", ( ) => {
+    it( "keeps every Placemark from every Folder", ( ) => {
+      const geojson = kmlAssets.kmlTextToGeoJSON( DUPLICATE_ID_KML );
+      expect( geojson.features.length ).toEqual( 4 );
+      const names = geojson.features.map( f => f.properties.name ).sort( );
+      expect( names ).toEqual(
+        ["Bay View Trail", "Marsh Trail", "Ridge Trail", "Tidelands Trail"]
+      );
+    } );
+
+    it( "assigns a unique feature id to every feature", ( ) => {
+      // google.maps.Data.addGeoJson keys features by id, so features sharing
+      // an id silently replace each other and only one would render
+      const geojson = kmlAssets.kmlTextToGeoJSON( DUPLICATE_ID_KML );
+      const ids = geojson.features.map( f => f.id );
+      expect( ids.every( id => id ) ).toEqual( true );
+      expect( new Set( ids ).size ).toEqual( geojson.features.length );
+    } );
+
+    it( "preserves the original KML id in properties.kml_id", ( ) => {
+      const geojson = kmlAssets.kmlTextToGeoJSON( DUPLICATE_ID_KML );
+      const kmlIds = geojson.features.map( f => f.properties.kml_id ).sort( );
+      expect( kmlIds ).toEqual( ["ID_00000", "ID_00000", "ID_00001", "ID_00001"] );
+    } );
+
+    it( "does not add kml_id to features that had no KML id", ( ) => {
+      const geojson = kmlAssets.kmlTextToGeoJSON( SIMPLE_KML );
+      const feature = geojson.features[0];
+      expect( feature.id ).toBeTruthy( );
+      expect( feature.properties ).not.toHaveProperty( "kml_id" );
+    } );
+  } );
+
+  it( "skips Placemarks with no geometry", ( ) => {
+    // google.maps.Data.addGeoJson throws on features with null geometry
+    const kml = `<?xml version="1.0" encoding="UTF-8"?>
+      <kml xmlns="http://www.opengis.net/kml/2.2">
+        <Document>
+          <Placemark id="ID_EMPTY"><name>No geometry</name></Placemark>
+          <Placemark id="ID_REAL">
+            <name>Real</name>
+            <Point><coordinates>1,2,0</coordinates></Point>
+          </Placemark>
+        </Document>
+      </kml>`;
+    const geojson = kmlAssets.kmlTextToGeoJSON( kml );
+    expect( geojson.features.length ).toEqual( 1 );
+    expect( geojson.features[0].properties.name ).toEqual( "Real" );
   } );
 } );
 
