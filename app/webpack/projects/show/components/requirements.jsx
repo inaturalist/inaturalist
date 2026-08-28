@@ -48,15 +48,15 @@ const Requirements = ( {
       />
     ) );
   const locationRules = _.isEmpty( project.placeRules ) ? I18n.t( "worldwide" )
-    : _.map( _.sortBy( project.placeRules, r => r.place.display_name ), r => (
-      <a key={`project-place-rules-${r.id}`} href={`/places/${r.place.id}`}>
-        { r.place.display_name }
+    : _.map( _.sortBy( project.placeRules, r => r.place?.display_name ), r => (
+      <a key={`project-place-rules-${r.id}`} href={`/places/${r.place?.id}`}>
+        { r.place?.display_name }
       </a>
     ) );
   const exceptLocationRules = !_.isEmpty( project.notPlaceRules )
-    && _.map( _.sortBy( project.notPlaceRules, r => r.place.display_name ), r => (
-      <a key={`project-place-rules-${r.id}`} href={`/places/${r.place.id}`}>
-        { r.place.display_name }
+    && _.map( _.sortBy( project.notPlaceRules, r => r.place?.display_name ), r => (
+      <a key={`project-place-rules-${r.id}`} href={`/places/${r.place?.id}`}>
+        { r.place?.display_name }
       </a>
     ) );
   let userRules;

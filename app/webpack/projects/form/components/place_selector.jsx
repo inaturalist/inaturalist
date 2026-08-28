@@ -41,9 +41,9 @@ class PlaceSelector extends React.Component {
         { !_.isEmpty( project[rulesAttribute] ) && (
           <div className="icon-previews">
             { _.map( project[rulesAttribute], placeRule => (
-              <div className="badge-div" key={`place_rule_${placeRule.place.id}`}>
+              <div className="badge-div" key={`place_rule_${placeRule.place?.id}`}>
                 <span className="badge">
-                  { placeRule.place.display_name }
+                  { placeRule.place?.display_name }
                   <button
                     type="button"
                     className="btn btn-nostyle"
