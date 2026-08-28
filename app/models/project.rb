@@ -426,9 +426,7 @@ class Project < ApplicationRecord
     end
     # Projects that predate this column, or that only changed requirements
     # while no members trusted them, can have a blank value, which blocks
-    # curator coordinate access forever. A blank value implies requirements
-    # have never changed while any member trusted the project, so backdating
-    # doesn't skip a wait period anyone should be subject to
+    # curator coordinate access forever.
     if observation_requirements_updated_at.blank?
       Rails.logger.debug "set_observation_requirements_updated_at: blank on a persisted project, backdating"
       self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
@@ -1379,7 +1377,7 @@ class Project < ApplicationRecord
   end
 
   def self.datetime_rule_to_instance( rule_value )
-    return nil if !rule_value.respond_to?( :strip )
+    return nil unless rule_value.respond_to?( :strip )
 
     if rule_value.strip.match( / / )
       begin
