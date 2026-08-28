@@ -1077,7 +1077,45 @@ google.maps.Map.prototype.addKmlAssets = function( urls, options ) {
           iNaturalist.Map.infoWindow.open( map );
         } );
       }
-      map.addOverlay( options.name || "KML Layer", layer );
+      // ScreenOverlay legends render as custom controls, snapped to the
+      // control slot nearest their KML screenXY
+      var screenOverlayEls = [];
+      _.each( geojson.screenOverlays || [], function( so ) {
+        var img = document.createElement( "img" );
+        img.src = so.iconUrl;
+        img.alt = so.name || "";
+        img.style.margin = "10px";
+        var mapDiv = map.getDiv( );
+        if ( mapDiv.offsetWidth > 0 ) {
+          img.style.maxWidth = Math.round( mapDiv.offsetWidth * 0.4 ) + "px";
+        }
+        if ( mapDiv.offsetHeight > 0 ) {
+          img.style.maxHeight = Math.round( mapDiv.offsetHeight * 0.4 ) + "px";
+        }
+        if ( so.width ) { img.style.width = so.width + "px"; }
+        if ( so.height ) { img.style.height = so.height + "px"; }
+        // add the control only once the image loads, so dead or blocked
+        // legend URLs show nothing, like KmlLayer did (blocked cross-origin
+        // responses can fire load with an empty image instead of error)
+        img.onload = function( ) {
+          if ( !img.naturalWidth ) { return; }
+          var position = google.maps.ControlPosition[so.position]
+            || google.maps.ControlPosition.RIGHT_BOTTOM;
+          map.controls[position].push( img );
+          screenOverlayEls.push( img );
+        };
+      } );
+      // KmlLayer rendered ScreenOverlays as part of the layer, so the
+      // OverlayControl checkbox must toggle geometry and legends together
+      map.addOverlay( options.name || "KML Layer", {
+        setMap: function( m ) {
+          layer.setMap( m );
+          _.each( screenOverlayEls, function( el ) {
+            el.style.display = m ? "" : "none";
+          } );
+        },
+        getMap: function( ) { return layer.getMap( ); }
+      } );
       if ( !options.preserveViewport ) {
         _.each( features, function( feature ) {
           feature.getGeometry( ).forEachLatLng( function( latLng ) {

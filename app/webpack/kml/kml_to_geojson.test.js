@@ -97,6 +97,32 @@ const DUPLICATE_ID_KML = `<?xml version="1.0" encoding="UTF-8"?>
   </Document>
 </kml>`;
 
+// Mirrors the redwood_ranges.kml project asset: a legend image pinned to the
+// bottom-right of the screen alongside regular geometry
+const SCREEN_OVERLAY_KML = `<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <ScreenOverlay id="legend">
+      <name>Legend</name>
+      <Icon>
+        <href>http://www.inaturalist.org/attachments/project_assets/4-legend.png</href>
+      </Icon>
+      <overlayXY x="1" y="0" xunits="fraction" yunits="fraction"/>
+      <screenXY x="0.99" y="0.05" xunits="fraction" yunits="fraction"/>
+    </ScreenOverlay>
+    <Placemark>
+      <name>Giant Sequoia</name>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>-118.7,36.0,0 -118.7,36.1,0 -118.6,36.1,0 -118.7,36.0,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>`;
+
 describe( "kmlTextToGeoJSON", ( ) => {
   it( "converts a simple Placemark to a Feature with name and description", ( ) => {
     const geojson = kmlAssets.kmlTextToGeoJSON( SIMPLE_KML );
@@ -181,16 +207,110 @@ describe( "kmlTextToGeoJSON", ( ) => {
     expect( geojson.features.length ).toEqual( 1 );
     expect( geojson.features[0].properties.name ).toEqual( "Real" );
   } );
+
+  describe( "ScreenOverlays", ( ) => {
+    it( "extracts ScreenOverlays that togeojson ignores", ( ) => {
+      const geojson = kmlAssets.kmlTextToGeoJSON( SCREEN_OVERLAY_KML );
+      expect( geojson.features.length ).toEqual( 1 );
+      expect( geojson.screenOverlays.length ).toEqual( 1 );
+      const overlay = geojson.screenOverlays[0];
+      expect( overlay.name ).toEqual( "Legend" );
+      expect( overlay.iconHref )
+        .toEqual( "http://www.inaturalist.org/attachments/project_assets/4-legend.png" );
+      expect( overlay.position ).toEqual( "RIGHT_BOTTOM" );
+    } );
+
+    it( "skips ScreenOverlays with visibility 0", ( ) => {
+      const kml = SCREEN_OVERLAY_KML.replace(
+        "<name>Legend</name>",
+        "<name>Legend</name><visibility>0</visibility>"
+      );
+      expect( kmlAssets.kmlTextToGeoJSON( kml ).screenOverlays ).toEqual( [] );
+    } );
+
+    it( "skips ScreenOverlays with no icon href", ( ) => {
+      const kml = SCREEN_OVERLAY_KML.replace( /<Icon>[\s\S]*?<\/Icon>/, "" );
+      expect( kmlAssets.kmlTextToGeoJSON( kml ).screenOverlays ).toEqual( [] );
+    } );
+
+    it( "captures pixel sizes", ( ) => {
+      const kml = SCREEN_OVERLAY_KML.replace(
+        "</ScreenOverlay>",
+        "<size x=\"120\" y=\"80\" xunits=\"pixels\" yunits=\"pixels\"/></ScreenOverlay>"
+      );
+      const overlay = kmlAssets.kmlTextToGeoJSON( kml ).screenOverlays[0];
+      expect( overlay.width ).toEqual( 120 );
+      expect( overlay.height ).toEqual( 80 );
+    } );
+  } );
 } );
 
-describe( "kmzToKmlText", ( ) => {
-  it( "extracts doc.kml from a KMZ archive", async ( ) => {
+describe( "screenOverlayControlPosition", ( ) => {
+  const position = ( x, y, xunits, yunits ) => kmlAssets.screenOverlayControlPosition( {
+    x, y, xunits: xunits || "fraction", yunits: yunits || "fraction"
+  } );
+
+  it( "maps fractions per the migration guide examples", ( ) => {
+    // KML screen coordinates originate at the bottom left
+    expect( position( 0, 1 ) ).toEqual( "TOP_LEFT" );
+    expect( position( 1, 1 ) ).toEqual( "TOP_RIGHT" );
+    expect( position( 0.99, 0.05 ) ).toEqual( "RIGHT_BOTTOM" );
+    expect( position( 0, 0 ) ).toEqual( "BOTTOM_LEFT" );
+    expect( position( 0.5, 1 ) ).toEqual( "TOP_CENTER" );
+    expect( position( 0.5, 0.5 ) ).toEqual( "BOTTOM_CENTER" );
+  } );
+
+  it( "treats pixels as offsets from the left/bottom edges", ( ) => {
+    expect( position( 10, 30, "pixels", "pixels" ) ).toEqual( "BOTTOM_LEFT" );
+  } );
+
+  it( "treats insetPixels as offsets from the right/top edges", ( ) => {
+    expect( position( 10, 10, "insetPixels", "insetPixels" ) ).toEqual( "TOP_RIGHT" );
+  } );
+
+  it( "defaults to RIGHT_BOTTOM when screenXY is missing", ( ) => {
+    expect( kmlAssets.screenOverlayControlPosition( null ) ).toEqual( "RIGHT_BOTTOM" );
+  } );
+} );
+
+describe( "resolveScreenOverlayIcons", ( ) => {
+  it( "passes through absolute http(s) hrefs", async ( ) => {
+    const resolved = await kmlAssets.resolveScreenOverlayIcons( [{ iconHref: "https://example.com/legend.png" }], "/assets/a.kml", null );
+    expect( resolved[0].iconUrl ).toEqual( "https://example.com/legend.png" );
+  } );
+
+  it( "resolves relative hrefs against the KML URL", async ( ) => {
+    const resolved = await kmlAssets.resolveScreenOverlayIcons( [{ iconHref: "legend.png" }], "/attachments/project_assets/5-a.kml?123", null );
+    expect( resolved[0].iconUrl ).toMatch( /\/attachments\/project_assets\/legend\.png$/ );
+  } );
+
+  it( "drops non-http(s) hrefs", async ( ) => {
+    // eslint-disable-next-line no-script-url
+    const overlays = [{ iconHref: "javascript:alert(1)" }];
+    const resolved = await kmlAssets.resolveScreenOverlayIcons( overlays, "/assets/a.kml", null );
+    expect( resolved ).toEqual( [] );
+  } );
+
+  it( "serves KMZ archive-relative hrefs as blob URLs", async ( ) => {
+    global.URL.createObjectURL = jest.fn( ( ) => "blob:mock-legend" );
+    const zip = new JSZip( );
+    zip.file( "files/legend.png", "png bytes" );
+    const resolved = await kmlAssets.resolveScreenOverlayIcons( [{ iconHref: "files/legend.png" }], "/assets/a.kmz", zip );
+    expect( resolved[0].iconUrl ).toEqual( "blob:mock-legend" );
+    expect( global.URL.createObjectURL ).toHaveBeenCalled( );
+    delete global.URL.createObjectURL;
+  } );
+} );
+
+describe( "kmzToKml", ( ) => {
+  it( "extracts doc.kml and the archive from a KMZ", async ( ) => {
     const zip = new JSZip( );
     zip.file( "other.kml", "<kml></kml>" );
     zip.file( "doc.kml", SIMPLE_KML );
     const buffer = await zip.generateAsync( { type: "arraybuffer" } );
-    const kmlText = await kmlAssets.kmzToKmlText( buffer );
-    expect( kmlText ).toEqual( SIMPLE_KML );
+    const extracted = await kmlAssets.kmzToKml( buffer );
+    expect( extracted.kmlText ).toEqual( SIMPLE_KML );
+    expect( extracted.zip.file( "other.kml" ) ).toBeTruthy( );
   } );
 
   it( "falls back to the first KML entry when there is no doc.kml", async ( ) => {
@@ -198,15 +318,15 @@ describe( "kmzToKmlText", ( ) => {
     zip.file( "something.kml", SIMPLE_KML );
     zip.file( "images/icon.png", "not kml" );
     const buffer = await zip.generateAsync( { type: "arraybuffer" } );
-    const kmlText = await kmlAssets.kmzToKmlText( buffer );
-    expect( kmlText ).toEqual( SIMPLE_KML );
+    const extracted = await kmlAssets.kmzToKml( buffer );
+    expect( extracted.kmlText ).toEqual( SIMPLE_KML );
   } );
 
   it( "rejects when the archive contains no KML", async ( ) => {
     const zip = new JSZip( );
     zip.file( "readme.txt", "nothing here" );
     const buffer = await zip.generateAsync( { type: "arraybuffer" } );
-    await expect( kmlAssets.kmzToKmlText( buffer ) ).rejects.toThrow( /no KML/ );
+    await expect( kmlAssets.kmzToKml( buffer ) ).rejects.toThrow( /no KML/ );
   } );
 } );
 
@@ -239,6 +359,37 @@ describe( "fetchGeoJSON", ( ) => {
   it( "rejects on a failed response", async ( ) => {
     global.fetch = jest.fn( ).mockResolvedValue( { ok: false, status: 404 } );
     await expect( kmlAssets.fetchGeoJSON( "/missing.kml" ) ).rejects.toThrow( /404/ );
+  } );
+
+  it( "resolves ScreenOverlay icons from a fetched KML", async ( ) => {
+    global.fetch = jest.fn( ).mockResolvedValue( {
+      ok: true,
+      text: ( ) => Promise.resolve( SCREEN_OVERLAY_KML )
+    } );
+    const geojson = await kmlAssets.fetchGeoJSON( "/attachments/project_assets/5-a.kml" );
+    expect( geojson.screenOverlays.length ).toEqual( 1 );
+    expect( geojson.screenOverlays[0].iconUrl )
+      .toEqual( "http://www.inaturalist.org/attachments/project_assets/4-legend.png" );
+    expect( geojson.screenOverlays[0].position ).toEqual( "RIGHT_BOTTOM" );
+  } );
+
+  it( "resolves ScreenOverlay icons packed inside a KMZ", async ( ) => {
+    global.URL.createObjectURL = jest.fn( ( ) => "blob:kmz-legend" );
+    const kmzKml = SCREEN_OVERLAY_KML.replace(
+      "http://www.inaturalist.org/attachments/project_assets/4-legend.png",
+      "files/legend.png"
+    );
+    const zip = new JSZip( );
+    zip.file( "doc.kml", kmzKml );
+    zip.file( "files/legend.png", "png bytes" );
+    const buffer = await zip.generateAsync( { type: "arraybuffer" } );
+    global.fetch = jest.fn( ).mockResolvedValue( {
+      ok: true,
+      arrayBuffer: ( ) => Promise.resolve( buffer )
+    } );
+    const geojson = await kmlAssets.fetchGeoJSON( "/attachments/project_assets/5-a.kmz" );
+    expect( geojson.screenOverlays[0].iconUrl ).toEqual( "blob:kmz-legend" );
+    delete global.URL.createObjectURL;
   } );
 } );
 
