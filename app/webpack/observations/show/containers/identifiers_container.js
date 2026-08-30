@@ -6,6 +6,7 @@ import { updateSession } from "../ducks/users";
 function mapStateToProps( state ) {
   return {
     observation: state.observation,
+    observationPlaces: state.observationPlaces,
     identifiers: state.identifications.identifiers,
     config: state.config
   };
@@ -14,7 +15,7 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     updateSession: params => { dispatch( updateSession( params ) ); },
-    fetchTaxonIdentifiers: ( ) => { dispatch( fetchTaxonIdentifiers( ) ); }
+    fetchTaxonIdentifiers: placeId => { dispatch( fetchTaxonIdentifiers( { placeId } ) ); }
   };
 }
 

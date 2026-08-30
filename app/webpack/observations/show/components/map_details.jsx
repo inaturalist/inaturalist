@@ -2,17 +2,12 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import util from "../util";
 
 class MapDetails extends React.Component {
   static placeList( places ) {
     return places.map( p => {
-      let placeType;
-      if ( p && p.place_type && iNatModels.Place.PLACE_TYPES[p.place_type] ) {
-        placeType = I18n.t( `place_geo.geo_planet_place_types.${
-          _.snakeCase( iNatModels.Place.PLACE_TYPES[p.place_type] )}` );
-      } else {
-        placeType = I18n.t( "unknown" );
-      }
+      const placeType = util.placeToPlaceTypeString( p );
       const label = placeType && (
         <span className="type">
           { _.upperFirst( placeType ) }
@@ -21,9 +16,7 @@ class MapDetails extends React.Component {
       return (
         <span className="place" key={`place-${p.id}`}>
           <a href={`/observations?place_id=${p.id}`}>
-            { I18n.t( `places_name.${_.snakeCase( p.name )}`, {
-              defaultValue: p.display_name || p.name
-            } ) }
+            { util.placeToPlaceNameString( p ) }
           </a>
           { label }
         </span>
