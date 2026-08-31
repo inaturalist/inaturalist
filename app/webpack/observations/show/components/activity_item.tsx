@@ -21,24 +21,12 @@ import HiddenContentMessageContainer from "../../../shared/containers/hidden_con
 import HiddenActivityItem from "./hidden_activity_item";
 import UsersPopover from "./users_popover";
 import type {
-  Config, CurrentUser, Observation, Taxon, User
+  Config, CurrentUser, ExemplarIdentification, Observation, Taxon, User, Vote
 } from "../../../shared/types";
 
 /* eslint-disable react/no-danger */
 
 type ActivityUser = User & { id: number; login: string };
-
-interface Vote {
-  vote_flag?: boolean;
-  user?: { id?: number };
-}
-
-interface ExemplarIdentification {
-  id: number;
-  nominated_by_user?: { login: string };
-  nominated_at?: string;
-  votes?: Vote[];
-}
 
 interface TaxonChange {
   id: number;

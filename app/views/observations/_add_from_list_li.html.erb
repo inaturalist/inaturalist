@@ -1,7 +1,7 @@
 <%- listed_taxon ||= add_from_list_li -%>
         <li id="<%= dom_id(listed_taxon.taxon) %>" class="listed_taxon clear">
           <%- 
-            rendered_taxon_name = render(:partial => "shared/taxon.html.erb", :object => listed_taxon.taxon) 
+            rendered_taxon_name = render(:partial => "shared/taxon", :object => listed_taxon.taxon) 
             stripped_taxon_name = strip_tags(rendered_taxon_name).strip
             prevletter ||= nil
             letter = stripped_taxon_name.first.upcase

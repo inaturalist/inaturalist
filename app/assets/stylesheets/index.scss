@@ -1076,8 +1076,8 @@ ul.leafylist li li:first-child {
 .taxon.has-com-name > .secondary-name {
   color: #aaa;
 }
-.taxon.has-com-name .secondary-name:before { content: '('; display: contents; }
-.taxon.has-com-name .secondary-name:after { content: ')'; display: contents; }
+.taxon.has-com-name .secondary-name:before { content: '('; display: inline; }
+.taxon.has-com-name .secondary-name:after { content: ')'; display: inline; }
 .taxon.has-com-name.no-parens .secondary-name:before { content: ''; display: inline-block; }
 .taxon.has-com-name.no-parens .secondary-name:after { content: ''; display: inline-block; }
 .taxon .altname { color: #aaa; }
@@ -2036,8 +2036,8 @@ user-icon .icon-person:before {
         .secondary-name {
           color: #aaa;
         }
-        .secondary-name:before { content: '('; display: contents; }
-        .secondary-name:after { content: ')'; display: contents; }
+        .secondary-name:before { content: '('; display: inline; }
+        .secondary-name:after { content: ')'; display: inline; }
       }
       .ac-view {
         &.view-observations {

@@ -2415,6 +2415,14 @@ id:
   inappropriate: Tidak pantas
   #Name of the newer version of iNaturalist's mobile app, called iNatNext
   inat_next: iNatNext
+  #Chart series and legend label on the stats page
+  inat_classic_android_temp: Android
+  #Chart series and legend label on the stats page
+  inat_classic_ios: iOS Klasik
+  #Chart series and legend label on the stats page
+  inat_next_android_temp: iNatNext Android
+  #Chart series and legend label on the stats page
+  inat_next_ios: iOS
   inaturalist_network: Jaringan iNaturalist
   inaturalist_network_affiliation: Afiliasi Jaringan iNaturalist
   #Label for messages you've received
@@ -2510,6 +2518,10 @@ id:
   jobs: Pekerjaan
   join: Gabung
   join_and_add_an_observation_to_project_html: Gabung dan Tambahkan Pengamatan ke %{project}
+  #Shown after dismissing a banner that invites you to join, or lets you
+  #leave, a test of a new feature, pointing at the other place to do both
+  join_or_leave_this_test_in_account_settings_html: |
+    Anda dapat bergabung atau keluar dari pengujian ini kapan saja melalui <a href="%{url}">pengaturan akun</a> Anda.
   join_project: Gabung dengan proyek ini
   #Prompt to join a specific project
   join_project?: Gabung dengan %{project}?
@@ -2995,6 +3007,9 @@ id:
   #Label shown when a date has not been entered
   missing_date: Tanggal Tidak Ada
   mobile: Ponsel
+  #Name of the test group for the responsive, mobile-friendly redesign of the
+  #site, matching the wording of the banner that prompts you to join it
+  mobile_friendly_mode: Mode Ramah Mobile
   moderation_history_for_user_html: Riwayat moderasi untuk %{user}
   moderation_history_desc_html: |
     Ini termasuk tindakan moderator (seperti menyembunyikan atau menampilkan komentar), catatan, dan semua tanda yang diberikan pengguna ini kepada apapun kecuali taksa. Ini <strong>hanya dapat dilihat oleh kurator</strong> dan <strong>kurator tidak dapat melihat riwayatnya sendiri</strong>, jadi catatan tentang seseorang seharusnya tidak dapat dilihat oleh orang itu sendiri.
@@ -4753,6 +4768,14 @@ id:
   resolved_by: Diselesaikan oleh
   resolved_by_user_on_date_html: Diselesaikan oleh %{user} pada %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} berkata, </span> "%{x}"'
+  #Prompt to join a test of the responsive, mobile-friendly redesign of the
+  #site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Mau coba tata letak responsif baru yang lebih ramah untuk seluler?
+    Harap diingat bahwa belum semua halaman sudah dikonversi.
+  #Message displayed when you have joined the test of the responsive,
+  #mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Saat ini dalam mode ramah mobile.
   restart: Mulai Ulang
   restore: Pulihkan
   restoring: Memulihkan…
@@ -5461,6 +5484,9 @@ id:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Kontrol format teks
   text_editing_controls: Kontrol penyuntingan teks
+  #Heading for the account settings section where you join or leave tests of
+  #new features
+  test_groups: Grup Pengujian
   thank_you!: Terima kasih!
   thanks!: Terima kasih!
   thanks_from_all_of_us_here_at: Terima kasih dari kami semua di
@@ -7970,7 +7996,16 @@ id:
         avg_ttcid: Rata2 WUIDK
         avg_ttid: Rata2 WUID
         identifiers_desc: Telah menambahkan ID untuk pengamatan orang lain pada hari ini
-        #label for chart legend, linking to more information on iNatNext
+        #Chart series and legend label on the stats page
+        inat_classic_android_desc_temp_html: Dibuat melalui <a href="%{url}">iNaturalist (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_classic_ios_desc_html: Dibuat melalui <a href="%{url}">iNaturalist Klasik (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_temp_html: Dibuat melalui <a href="%{url}">iNatNext (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_next_ios_desc_html: Dibuat melalui <a href="%{url}">iNaturalist (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_html: Dibuat melalui <a href="%{url}">aplikasi iNatNext Android</a>
         inat_next_desc_html: Dibuat menggunakan <a href="%{url}">iNatNext</a>
         iphone_desc_html: Dibuat melalui <a href="%{url}">aplikasi iNaturalist iPhone</a>
         med_ttcid: Median WUIDK

@@ -263,7 +263,9 @@ module DarwinCore
 
     def observations_params
       params = {}
-      params[:license] = [@opts[:licenses]].flatten.compact.join( "," ) unless @opts[:licenses].include?( "ignore" )
+      unless @opts[:licenses].include?( "ignore" )
+        params[:license] = [@opts[:licenses]].flatten.compact.join( "," ).downcase
+      end
       params[:place_id] = []
       if @place
         params[:place_id].push( @place.id )

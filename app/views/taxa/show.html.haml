@@ -16,7 +16,7 @@
   = javascript_include_tag "webpack/user-text-webpack"
   = javascript_include_tag "webpack/taxa-show-webpack"
 - content_for :extracss do
-  = stylesheet_link_tag "taxa/show"
+  = stylesheet_link_tag( @taxon_detail_responsive ? "taxa/show" : "taxa/show_legacy" )
 - content_for :extrahead do
   - if CONFIG.facebook && !CONFIG.facebook.namespace.blank?
     %meta{ property: "og:type", content: "#{CONFIG.facebook.namespace}:taxon"}

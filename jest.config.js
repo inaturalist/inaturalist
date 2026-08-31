@@ -10,7 +10,11 @@ module.exports = {
   transform: {
     "^.+\\.[jt]sx?$": "babel-jest"
   },
-  transformIgnorePatterns: ["/node_modules/"],
+  // htmlparser2 v12 (a sanitize-html dependency) and its dependency chain are
+  // ESM-only, so they must be transpiled for jest's CommonJS runtime
+  transformIgnorePatterns: [
+    "/node_modules/(?!(htmlparser2|domelementtype|domhandler|domutils|dom-serializer|entities)/)"
+  ],
   clearMocks: true,
   setupFilesAfterEnv: ["<rootDir>/app/webpack/jest.setup.ts"]
 };

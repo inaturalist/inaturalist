@@ -5,11 +5,23 @@ import inaturalistjs from "inaturalistjs";
 
 class PlaceAutocomplete extends React.Component {
   componentDidMount( ) {
+    const { config } = this.props;
     const domNode = ReactDOM.findDOMNode( this );
     const opts = {
       ...this.props,
       idEl: $( "input[name='place_id']", domNode ),
-      react: true
+      react: true,
+      useAPIv2: config?.testingApiV2,
+      fields: config?.testingApiV2 ? {
+        place: {
+          id: true,
+          uuid: true,
+          slug: true,
+          display_name: true,
+          place_type: true,
+          admin_level: true
+        }
+      } : null
     };
     $( "input[name='place_name']", domNode ).placeAutocomplete( opts );
     this.fetchPlace( );
@@ -56,6 +68,8 @@ class PlaceAutocomplete extends React.Component {
     }
   }
 
+  // this is currently referenced in the project place selector
+  // eslint-disable-next-line react/no-unused-class-component-methods
   inputElement( ) {
     const domNode = ReactDOM.findDOMNode( this );
     return $( "input[name='place_name']", domNode );

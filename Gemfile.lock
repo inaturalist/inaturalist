@@ -174,12 +174,13 @@ GEM
     activerecord-postgis-adapter (7.1.1)
       activerecord (~> 6.1)
       rgeo-activerecord (~> 7.0.0)
-    activerecord-session_store (2.0.0)
-      actionpack (>= 5.2.4.1)
-      activerecord (>= 5.2.4.1)
+    activerecord-session_store (2.1.0)
+      actionpack (>= 6.1)
+      activerecord (>= 6.1)
+      cgi (>= 0.3.6)
       multi_json (~> 1.11, >= 1.11.2)
-      rack (>= 2.0.8, < 3)
-      railties (>= 5.2.4.1)
+      rack (>= 2.0.8, < 4)
+      railties (>= 6.1)
     activestorage (6.1.7.9)
       actionpack (= 6.1.7.9)
       activejob (= 6.1.7.9)
@@ -203,16 +204,17 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     ancestry (4.1.0)
       activerecord (>= 5.2.6)
-    angular-rails-templates (1.1.0)
-      railties (>= 4.2, < 7)
+    angular-rails-templates (1.4.0)
+      railties (>= 5.0, < 8.2)
       sprockets (>= 3.0, < 5)
+      sprockets-rails
       tilt
     anonymous_loader (0.1.3)
       version_gem (~> 1.1, >= 1.1.14)
     ast (2.4.3)
-    audited (5.3.3)
-      activerecord (>= 5.0, < 7.1)
-      request_store (~> 1.2)
+    audited (5.8.0)
+      activerecord (>= 5.2, < 8.2)
+      activesupport (>= 5.2, < 8.2)
     auth-sanitizer (0.2.3)
       version_gem (~> 1.1, >= 1.1.14)
     aws-eventstream (1.4.0)
@@ -286,6 +288,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    cgi (0.5.2)
     chroma (0.2.0)
     chunky_png (1.4.0)
     climate_control (1.2.0)
@@ -315,7 +318,7 @@ GEM
     delayed_job_active_record (4.1.11)
       activerecord (>= 3.0, < 9.0)
       delayed_job (>= 3.0, < 5)
-    devise (4.8.0)
+    devise (4.9.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -329,7 +332,7 @@ GEM
       devise
       rails (>= 3.0.4)
       warden
-    diff-lcs (1.5.0)
+    diff-lcs (1.6.2)
     diffy (3.4.1)
     docile (1.4.0)
     domain_name (0.5.20190701)
@@ -346,11 +349,11 @@ GEM
       elasticsearch-api (= 8.14.0)
     elasticsearch-api (8.14.0)
       multi_json
-    elasticsearch-model (8.0.0)
+    elasticsearch-model (8.0.1)
       activesupport (> 3)
       elasticsearch (~> 8)
       hashie
-    elasticsearch-rails (8.0.0.pre)
+    elasticsearch-rails (8.0.1)
     email_address (0.2.5)
       base64
       simpleidn
@@ -545,6 +548,8 @@ GEM
     public_suffix (7.0.5)
     puma (7.2.1)
       nio4r (~> 2.0)
+    qdrant-ruby (0.9.10)
+      faraday (>= 2.0.1, < 3)
     racc (1.8.1)
     rack (2.2.23)
     rack-cors (1.1.1)
@@ -609,11 +614,9 @@ GEM
     rdoc (6.3.4.1)
     redcarpet (3.5.1)
     regexp_parser (2.10.0)
-    request_store (1.5.1)
-      rack (>= 1.4)
-    responders (3.0.1)
-      actionpack (>= 5.0)
-      railties (>= 5.0)
+    responders (3.1.1)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -637,21 +640,21 @@ GEM
       chunky_png (~> 1.0)
       rqrcode_core (~> 1.0)
     rqrcode_core (1.2.0)
-    rspec (3.10.0)
-      rspec-core (~> 3.10.0)
-      rspec-expectations (~> 3.10.0)
-      rspec-mocks (~> 3.10.0)
-    rspec-core (3.10.2)
-      rspec-support (~> 3.10.0)
-    rspec-expectations (3.10.2)
+    rspec (3.13.2)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.6)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.5)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.10.0)
+      rspec-support (~> 3.13.0)
     rspec-html-matchers (0.9.4)
       nokogiri (~> 1)
       rspec (>= 3.0.0.a, < 4)
-    rspec-mocks (3.10.3)
+    rspec-mocks (3.13.8)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.10.0)
+      rspec-support (~> 3.13.0)
     rspec-rails (5.1.2)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
@@ -660,7 +663,7 @@ GEM
       rspec-expectations (~> 3.10)
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
-    rspec-support (3.10.3)
+    rspec-support (3.13.7)
     rubocop (1.74.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -760,7 +763,7 @@ GEM
     websocket-extensions (0.1.5)
     whenever (1.0.0)
       chronic (>= 0.6.3)
-    will_paginate (3.3.1)
+    will_paginate (4.0.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     ya2yaml (0.31)
@@ -780,12 +783,12 @@ DEPENDENCIES
   actionpack-action_caching
   actionpack-page_caching
   activerecord-postgis-adapter
-  activerecord-session_store
+  activerecord-session_store (= 2.1.0)
   acts-as-taggable-on
   acts_as_votable
   ancestry
-  angular-rails-templates
-  audited
+  angular-rails-templates (= 1.4.0)
+  audited (= 5.8.0)
   aws-sdk-cloudfront
   aws-sdk-s3
   aws-sdk-waf
@@ -814,7 +817,7 @@ DEPENDENCIES
   dbf
   delayed_job
   delayed_job_active_record (~> 4.1.11)
-  devise
+  devise (~> 4.9.4)
   devise-encryptable
   devise-i18n
   devise_suspendable
@@ -825,8 +828,8 @@ DEPENDENCIES
   ed25519
   elasticsearch (~> 8)
   elasticsearch-api (~> 8)
-  elasticsearch-model (~> 8)
-  elasticsearch-rails (= 8.0.0.pre)
+  elasticsearch-model (~> 8.0.1)
+  elasticsearch-rails (= 8.0.1)
   email_address
   exifr
   exiftool_vendored
@@ -868,6 +871,7 @@ DEPENDENCIES
   patron
   pg (~> 1.5.9)
   puma
+  qdrant-ruby (~> 0.9.10)
   rack-cors
   rack-mobile-detect
   rack-tracker
@@ -889,7 +893,7 @@ DEPENDENCIES
   riparian!
   rison-rb (= 0.1.0)
   rqrcode (~> 2.0)
-  rspec
+  rspec (~> 3.13.2)
   rspec-html-matchers
   rspec-rails
   rubocop-rails
@@ -907,7 +911,7 @@ DEPENDENCIES
   watu_table_builder
   webmock
   whenever
-  will_paginate
+  will_paginate (~> 4.0)
   xmp!
   ya2yaml
   yajl-ruby

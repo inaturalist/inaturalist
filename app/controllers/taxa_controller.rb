@@ -230,11 +230,13 @@ class TaxaController < ApplicationController
         else
           session[:preferred_taxon_page_ancestors_shown]
         end
-        if current_user&.in_test_group?( "responsive-header" ) &&
-            current_user.in_test_group?( "responsive-taxon-detail" )
+        @taxon_detail_responsive = current_user&.in_test_group?( "responsive-taxon-detail" ) ||
+          current_user&.in_test_group?( "responsive-global" )
+        if @taxon_detail_responsive
+          @responsive = true
           @skip_min_width = true
         end
-
+        @test_group_toggle = "responsive-global"
         # Build the list of all locale URLs available for this taxon (all locales with a valid
         # common name). Used by the view to render hreflang alternate tags on every page variant.
         # Both the default /taxa/... page and locale-prefixed pages need the full sibling list.
@@ -477,7 +479,7 @@ class TaxaController < ApplicationController
     end
     respond_to do | format |
       format.html do
-        render partial: "clashes.html.haml", locals: { results: @results }
+        render partial: "clashes", formats: [:html], locals: { results: @results }
       end
       format.json do
         render json: @results.to_json( methods: [:html] )

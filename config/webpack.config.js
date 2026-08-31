@@ -12,6 +12,10 @@ const config = {
       import: "./terra_draw/webpack-entry",
       runtime: "runtime"
     },
+    "kml": {
+      import: "./kml/webpack-entry",
+      runtime: "runtime"
+    },
     "computer-vision": {
       import: "./computer_vision/demo/webpack-entry",
       dependOn: ["react-main", "react-dropzone"]
@@ -91,6 +95,10 @@ const config = {
     "users-edit": {
       import: "./users/edit/webpack-entry",
       dependOn: ["react-main", "react-dnd", "react-dropzone"]
+    },
+    "users-subnav": {
+      import: "./users/subnav/webpack-entry",
+      dependOn: ["react-main"]
     },
     "users-confirmation-banner": {
       import: "./users/confirmation_banner/webpack-entry",

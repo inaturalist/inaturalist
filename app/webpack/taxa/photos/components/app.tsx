@@ -2,7 +2,6 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonPageHeader from "../../shared/components/taxon_page_header";
-
 import PlaceChooserContainer from "../containers/place_chooser_container";
 import PhotoBrowserContainer from "../containers/photo_browser_container";
 import PhotoModalContainer from "../containers/photo_modal_container";
@@ -35,7 +34,7 @@ const App = ( { taxon, config = {} }: Props ) => {
           const url = urlForTaxon( result.item );
           if ( url ) { window.location.href = url; }
         }}
-        placeChooser={<PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />}
+        placeChooserContainer={PlaceChooserContainer}
         crumbsText={I18n.t( "photo_browser" )}
       />
       <div id="hero">

@@ -334,6 +334,7 @@ class ObservationsController < ApplicationController
           @responsive = true
           @skip_min_width = true
         end
+        @test_group_toggle = "responsive-global"
         return render layout: "bootstrap"
       end
        
@@ -1230,7 +1231,7 @@ class ObservationsController < ApplicationController
         if fragment_exist?(@cache_key)
           render read_fragment(@cache_key)
         else
-          render :partial => 'add_from_list.html.erb'
+          render :partial => 'add_from_list', :formats => [:html]
         end
       end
     end
