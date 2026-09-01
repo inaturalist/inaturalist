@@ -18,23 +18,25 @@ body.responsive #wrapper.container {
   flex-wrap: wrap;
 
   > * {
-    box-sizing: border-box;
-    width: 50%;   // mobile: 2
-    padding: 5px;
+    // margin (not padding) so card backgrounds don't paint the gutter. Margin
+    // sits outside the width, so subtract each cell's 10px horizontal margin.
+    margin: 5px;
+    width: calc( 50% - 10px );   // mobile: 2
     min-width: 0; // let ellipsis/wrapping work inside cells
   }
 }
 
 // Recently-active tiles: 2 mobile (default), 3 tablet, 4 desktop.
 #recent .CardGrid > * {
-  @media ( min-width: $sm ) { width: 33.333%; }
-  @media ( min-width: $md ) { width: 25%; }
+  @media ( min-width: $sm ) { width: calc( 33.333% - 10px ); }
+  @media ( min-width: $md ) { width: calc( 25% - 10px ); }
 }
 
 // Leaderboard cells need room for avatar + login + count link: 1 mobile, 3 desktop.
 #leaderboard .CardGrid > * {
-  width: 100%;
-  @media ( min-width: $md ) { width: 33.333%; }
+  width: calc( 100% - 10px );
+  padding-left: 0;
+  @media ( min-width: $md ) { width: calc( 33.333% - 10px ); }
 }
 
 // Recently-active tiles: square, image fills, blurb overlays the bottom.
@@ -59,11 +61,19 @@ body.responsive #wrapper.container {
 }
 .usercol .user_image { width: 100% !important; height: 100% !important; }
 
+// Count/stat text: match the legacy view — normal body size (not the 15px
+// _user_with_icon.scss forces) and baseline-aligned count (not its text-top).
+.UserWithIcon .subtitle {
+  font-size: inherit;
+  span { vertical-align: baseline; }
+}
+
 // Avatar sizing inside .UserWithIcon (user_image emits a background-image div sized 100%).
 .UserWithIcon .icon .user_image {
   width: 48px;
   height: 48px;
   margin-inline-end: 10px;
+  margin-left: 5px;
 }
 
 // Search form stacks below the heading instead of floating, and never overflows.
