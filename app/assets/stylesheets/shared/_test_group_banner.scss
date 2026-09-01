@@ -1,0 +1,68 @@
+// Shared styling for the responsive opt-in banner (shared/_test_group_toggle),
+// imported by both bootstrap_bundle.scss (bootstrap-layout pages) and
+// test_group_banner.scss (legacy application-layout pages) so the two stay in sync.
+@import "breakpoints";
+
+.test-group-container {
+  @include container-padding;
+}
+
+.bootstrap .TestGroupBanner.alert {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  .TestGroupBanner-action {
+    display: inline-block;
+    padding-left: 5px;
+  }
+
+  // Hangs off the banner's top right corner rather than sitting inside it.
+  .TestGroupBanner-dismiss {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #999;
+    color: white;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 12px;
+    padding: 0 0 1px 0;
+    border: 0 transparent;
+    text-shadow: none;
+    opacity: 1;
+    font-size: 14px;
+  }
+
+  .TestGroupBanner-feedback {
+    padding-left: 5px;
+    color: #337ab7;
+    text-decoration: underline;
+  }
+
+  &.TestGroupBanner--compact {
+    gap: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5px 30px;
+    font-size: 12px;
+    line-height: 18px;
+    border-top: 0;
+    border-radius: 0 0 4px 4px;
+
+    .TestGroupBanner-dismiss {
+      top: 50%;
+      right: 4px;
+      margin-top: -10px;
+    }
+  }
+
+  &.TestGroupBanner--text {
+    display: block;
+  }
+}

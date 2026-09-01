@@ -11,6 +11,10 @@ body.responsive #wrapper.container {
   max-width: 950px;
 }
 
+body.responsive #header {
+  margin-bottom: 0;
+}
+
 // Fluid card grid: flex-wrap row, cells sized by percentage per breakpoint.
 // border-box padding is the gutter (flex `gap` + percentage widths overflow).
 .CardGrid {
