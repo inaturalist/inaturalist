@@ -11,6 +11,19 @@ body.responsive #header {
   margin-bottom: 0;
 }
 
+#pageheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+  gap: 10px;
+  margin: 10px 0 20px 0;
+
+  h2 {
+    margin: 0;
+  }
+}
+
 .CardGrid {
   display: flex;
   flex-wrap: wrap;
@@ -22,8 +35,9 @@ body.responsive #header {
   }
 }
 
-// Recently-active tiles: 2 mobile (default), 3 tablet, 4 desktop.
-#recent .CardGrid > * {
+// Recently-active tiles + curators: 2 mobile (default), 3 tablet, 4 desktop.
+#recent .CardGrid > *,
+#curators .CardGrid > * {
   @media ( min-width: $sm ) { width: calc( 33.333% - 10px ); }
   @media ( min-width: $md ) { width: calc( 25% - 10px ); }
 }
@@ -68,19 +82,6 @@ body.responsive #header {
   height: 48px;
   margin-inline-end: 10px;
   margin-left: 5px;
-}
-
-#pageheader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap-reverse;
-  gap: 10px;
-  margin-top: 10px;
-
-  h2 {
-    margin: 0;
-  }
 }
 
 .leaderboard-pager { display: flex; justify-content: space-between; flex-wrap: wrap; }
