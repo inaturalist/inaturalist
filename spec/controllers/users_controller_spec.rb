@@ -162,6 +162,51 @@ describe UsersController, "dashboard" do
   end
 end
 
+describe UsersController, "index" do
+  elastic_models( Observation )
+
+  it "renders" do
+    get :index
+    expect( response ).to be_successful
+  end
+
+  # regression: index.html.erb read @updates.first.created_at before the blank? guard,
+  # so /people 500ed whenever recent activity was empty (the normal fresh-DB state here).
+  it "renders when there is no recent activity" do
+    get :index
+    expect( assigns( :updates ) ).to be_blank
+    expect( response ).to be_successful
+  end
+
+  it "renders the responsive variant for a responsive-global member" do
+    user = User.make!
+    user.update_column( :test_groups, "responsive-global" )
+    sign_in user
+    get :index
+    expect( response ).to be_successful
+    expect( request.variant ).to include( :responsive )
+  end
+end
+
+describe UsersController, "leaderboard" do
+  elastic_models( Observation )
+
+  it "renders" do
+    sign_in User.make! # leaderboard requires auth (unlike the public index)
+    get :leaderboard
+    expect( response ).to be_successful
+  end
+
+  it "renders the responsive variant for a responsive-global member" do
+    user = User.make!
+    user.update_column( :test_groups, "responsive-global" )
+    sign_in user
+    get :leaderboard
+    expect( response ).to be_successful
+    expect( request.variant ).to include( :responsive )
+  end
+end
+
 describe UsersController, "update" do
   let( :user ) { User.make! }
   before { sign_in user }

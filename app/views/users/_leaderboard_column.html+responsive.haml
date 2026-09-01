@@ -1,0 +1,32 @@
+- extra ||= nil
+- sub ||= nil
+- date ||= @date || Date.today
+%div
+  %h4
+    - if time_unit == 'month'
+      =t "leaderboard_most.#{noun_plural.downcase}_in_month_year", month_year: l( date, format: :month_year )
+    - else
+      =t "leaderboard_most.#{noun_plural.downcase}_in_year", year: date.year
+  %ol
+    - if !data.blank?
+      - for user, count in data
+        %li.stacked
+          .UserWithIcon
+            .icon
+              = link_to_user user do
+                = user_image user, :size => 'thumb', :no_inline_dimensions => true
+            .title-subtitle
+              .title= link_to_user user, :class => "large"
+              .subtitle
+                - if sub
+                  = sub.call(user, count)
+                - else
+                  - if noun == 'species'
+                    - url = taxa_observations_path(:user_id => user.login, :on => time_unit == 'month' ? date.strftime("%Y-%m") : date.year, :hrank => "species")
+                  - else
+                    - url = observations_path( user_id: user.login, on: time_unit == "month" ? date.strftime( "%Y-%m" ) : date.year )
+                  = link_to url do
+                    =t "x_#{noun.camelize.parameterize.pluralize}_html", :count => count.to_i
+    - else
+      .nocontent.meta=t :no_results_found
+  = extra

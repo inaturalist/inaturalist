@@ -265,6 +265,7 @@ class UsersController < ApplicationController
       end
     end
 
+    @test_group_toggle = "responsive-global"
     respond_to do | format |
       format.html
     end
@@ -287,6 +288,7 @@ class UsersController < ApplicationController
         @most_identifications = most_identifications(:per => 'month', :year => @year, :month => @month)
       end
     end
+    @test_group_toggle = "responsive-global"
   end
   
   def show
