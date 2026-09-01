@@ -170,8 +170,6 @@ describe UsersController, "index" do
     expect( response ).to be_successful
   end
 
-  # regression: index.html.erb read @updates.first.created_at before the blank? guard,
-  # so /people 500ed whenever recent activity was empty (the normal fresh-DB state here).
   it "renders when there is no recent activity" do
     get :index
     expect( assigns( :updates ) ).to be_blank
