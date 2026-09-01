@@ -303,6 +303,7 @@ a.UserImage,
           color: #808080;
           text-align: left;
           & > div {
+            position: relative;
             min-height: 500px;
           }
           & > div > i {
