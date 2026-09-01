@@ -27,11 +27,21 @@ body.responsive #header {
 .CardGrid {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 10px;
 
   > * {
     margin: 5px;
     width: calc( 50% - 10px );   // mobile: 2
     min-width: 0; // let ellipsis/wrapping work inside cells
+  }
+}
+
+#curators {
+  margin-top: 10px;
+
+  p {
+    font-family: inherit;
+    font-size: 1.2em;
   }
 }
 
@@ -72,6 +82,10 @@ body.responsive #header {
 }
 .usercol .user_image { width: 100% !important; height: 100% !important; }
 
+.UserWithIcon {
+  margin-bottom: 10px;
+}
+
 .UserWithIcon .subtitle {
   font-size: inherit;
   span { vertical-align: baseline; }
@@ -83,6 +97,21 @@ body.responsive #header {
   margin-inline-end: 10px;
   margin-left: 5px;
 }
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 10px;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.updated { color: #888; font-size: 0.8em; }
+
+.timeago { border-bottom: 0; }
 
 .leaderboard-pager { display: flex; justify-content: space-between; flex-wrap: wrap; }
 

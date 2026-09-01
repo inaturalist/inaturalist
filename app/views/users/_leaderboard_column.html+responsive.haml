@@ -10,13 +10,13 @@
   %ol
     - if !data.blank?
       - for user, count in data
-        %li.stacked
+        %li
           .UserWithIcon
             .icon
               = link_to_user user do
                 = user_image user, :size => 'thumb', :no_inline_dimensions => true
             .title-subtitle
-              .title= link_to_user user, :class => "large"
+              .title= link_to_user user
               .subtitle
                 - if sub
                   = sub.call(user, count)
@@ -28,5 +28,5 @@
                   = link_to url do
                     =t "x_#{noun.camelize.parameterize.pluralize}_html", :count => count.to_i
     - else
-      .nocontent.meta=t :no_results_found
+      .empty=t :no_results_found
   = extra

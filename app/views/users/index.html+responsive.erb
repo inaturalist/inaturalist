@@ -2,7 +2,7 @@
   <%= t(:people) %>
 <% end %>
 <% content_for(:extracss) do %>
-  <%= stylesheet_link_tag 'users-responsive' %>
+  <%= stylesheet_link_tag 'users_responsive' %>
 <% end %>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript">
@@ -14,25 +14,25 @@
 <div id="pageheader">
   <h2><%= t(:the_people_of_inat, :site_name => @site.name) %></h2>
   <% if logged_in? -%>
-    <%= form_tag( search_path, method: :get, class: "buttonrow smallbuttons" ) do %>
+    <%= form_tag( search_path, method: :get, class: "people-search" ) do %>
       <%= hidden_field_tag "source[]", "users" %>
-      <%= text_field_tag :q, @q, :class => 'text', :placeholder => t(:search_by_name_or_email) %>
-      <%= submit_tag t(:search), :class => 'last default button' %>
+      <%= text_field_tag :q, @q, :placeholder => t(:search_by_name_or_email) %>
+      <%= submit_tag t(:search) %>
     <% end %>
   <% end -%>
 </div>
 
-<div id="recent" class="stacked">
-  <h3>
-    <span class="right meta ui small">
+<div id="recent">
+  <div class="section-header">
+    <h3><%= t :recently_active %></h3>
+    <div class="updated">
       <%= t :updated %>
       <%- last_updated = [@updates.first&.created_at, 1.hour.ago].compact.max %>
-      <abbr class="date timeago" title="<%=t :n_ago, :n => time_ago_in_words(last_updated.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(last_updated) %></abbr>
-    </span>
-    <%= t :recently_active %>
-  </h3>
+      <abbr class="timeago" title="<%=t :n_ago, :n => time_ago_in_words(last_updated.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(last_updated) %></abbr>
+    </div>
+  </div>
   <% if @updates.blank? %>
-    <div class="noresults meta"><%= t :no_recent_activity %></div>
+    <div class="empty"><%= t :no_recent_activity %></div>
   <% else %>
     <div class="CardGrid">
       <% @updates.compact.each do |update| %>
@@ -97,7 +97,7 @@
                 <%= raw t 'people_added.comment.without_by', comment_subject_link: comment_subject_link, gender: class_name, vow_or_con: class_name.first.downcase %>
               <% end -%>
             <% end %>
-            <abbr class="date timeago" title="<%=t :n_ago, :n => time_ago_in_words(update.created_at.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(update.created_at) %></abbr>
+            <abbr class="timeago" title="<%=t :n_ago, :n => time_ago_in_words(update.created_at.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(update.created_at) %></abbr>
           </div>
         </div>
       <% end %>
@@ -106,14 +106,14 @@
 </div>
 
 <% cache @leaderboard_key, :expires_in => 1.day do %>
-  <div id="leaderboard" class="stacked">
-    <h3>
-      <div class="right small meta ui">
+  <div id="leaderboard">
+    <div class="section-header">
+      <h3><%= t :leaderboards %></h3>
+      <div class="updated">
         <%= t :updated_daily %>
-        (<abbr class="meta ui stacked date timeago" data-now="<%= Time.now.getutc.iso8601 %>" title="<%=t :n_ago, :n => time_ago_in_words(Time.now.getutc.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(Time.now) %></abbr>)
+        (<abbr class="timeago" data-now="<%= Time.now.getutc.iso8601 %>" title="<%=t :n_ago, :n => time_ago_in_words(Time.now.getutc.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(Time.now) %></abbr>)
       </div>
-      <%= t :leaderboards %>
-    </h3>
+    </div>
 
     <div class="CardGrid">
       <%= render 'leaderboard_column', :noun => 'observation', :noun_plural => 'observations', :time_unit => 'month', :data => @most_observations %>
@@ -126,9 +126,9 @@
         :sub => Proc.new {|user, count| link_to( t(:x_identifications_html, count: count ), identifications_by_login_path( user.login, on: Time.now.strftime( "%Y-%m" ) ) )} %>
     </div>
     <div class="leaderboard-readmore">
-      <div class='meta'><%=raw t :observations_observed_this_month %></div>
+      <div class="leaderboard-note"><%=raw t :observations_observed_this_month %></div>
       <%- prev_date = Date.today - 1.month -%>
-      <%= link_to t(:view_leaderboard_from_last_month), leaderboard_for_people_path(:year => prev_date.year, :month => prev_date.month), :class => "readmore" %>
+      <%= link_to t(:view_leaderboard_from_last_month), leaderboard_for_people_path(:year => prev_date.year, :month => prev_date.month) %>
     </div>
 
     <div class="CardGrid">
@@ -143,7 +143,7 @@
     </div>
     <div class="leaderboard-readmore">
       <%- prev_date = Date.today - 1.year -%>
-      <%= link_to t(:view_leaderboard_from_last_year), leaderboard_for_people_path(:year => prev_date.year), :class => "readmore" %>
+      <%= link_to t(:view_leaderboard_from_last_year), leaderboard_for_people_path(:year => prev_date.year) %>
     </div>
   </div>
 <% end -%>
@@ -171,7 +171,7 @@
         <% end %>
       </div>
     <% else %>
-      <div class="nocontent meta"><%= t :no_curators_yet %></div>
+      <div class="empty"><%= t :no_curators_yet %></div>
     <% end %>
   </div>
 <% end -%>
