@@ -1,10 +1,6 @@
 @import "breakpoints";
-@import "shared/responsive/user_with_icon"; // .UserWithIcon flex layout (webpack loads it for React pages; the asset pipeline doesn't)
+@import "shared/responsive/user_with_icon";
 
-// Override Blueprint's fixed 950px page container (grid.css:25): fluid with the
-// shared responsive container-padding (60/30/15), but keep the 950px cap, centered.
-// width:auto drops the fixed 950px so max-width can take effect. Specificity (1,2,1)
-// beats both grid.css and the index.scss body.responsive .container rule.
 body.responsive #wrapper.container {
   width: auto;
   @include container-padding;
@@ -15,15 +11,11 @@ body.responsive #header {
   margin-bottom: 0;
 }
 
-// Fluid card grid: flex-wrap row, cells sized by percentage per breakpoint.
-// border-box padding is the gutter (flex `gap` + percentage widths overflow).
 .CardGrid {
   display: flex;
   flex-wrap: wrap;
 
   > * {
-    // margin (not padding) so card backgrounds don't paint the gutter. Margin
-    // sits outside the width, so subtract each cell's 10px horizontal margin.
     margin: 5px;
     width: calc( 50% - 10px );   // mobile: 2
     min-width: 0; // let ellipsis/wrapping work inside cells
@@ -36,19 +28,20 @@ body.responsive #header {
   @media ( min-width: $md ) { width: calc( 25% - 10px ); }
 }
 
-// Leaderboard cells need room for avatar + login + count link: 1 mobile, 3 desktop.
-#leaderboard .CardGrid > * {
-  width: calc( 100% - 10px );
-  padding-left: 0;
-  @media ( min-width: $md ) { width: calc( 33.333% - 10px ); }
-}
-
 // Recently-active tiles: square, image fills, blurb overlays the bottom.
 .usercol {
   position: relative;
   overflow: hidden;
   aspect-ratio: 1 / 1;
 }
+
+// Leaderboard tiles: 1 mobile, 3 desktop.
+#leaderboard .CardGrid > * {
+  width: calc( 100% - 10px );
+  margin-left: 0;
+  @media ( min-width: $md ) { width: calc( 33.333% - 10px ); }
+}
+
 .userimagelink { display: block; width: 100%; height: 100%; }
 .userlink { display: block; font-size: 150%; color: white; z-index: 1; }
 .blurb {
@@ -65,14 +58,11 @@ body.responsive #header {
 }
 .usercol .user_image { width: 100% !important; height: 100% !important; }
 
-// Count/stat text: match the legacy view — normal body size (not the 15px
-// _user_with_icon.scss forces) and baseline-aligned count (not its text-top).
 .UserWithIcon .subtitle {
   font-size: inherit;
   span { vertical-align: baseline; }
 }
 
-// Avatar sizing inside .UserWithIcon (user_image emits a background-image div sized 100%).
 .UserWithIcon .icon .user_image {
   width: 48px;
   height: 48px;
@@ -80,7 +70,6 @@ body.responsive #header {
   margin-left: 5px;
 }
 
-// Search form stacks below the heading instead of floating, and never overflows.
 #pageheader {
   display: flex;
   justify-content: space-between;
@@ -94,7 +83,5 @@ body.responsive #header {
   }
 }
 
-// Leaderboard prev/next pager: flex instead of blueprint .left/.right floats
-// (also handles the one-link case — prev is always present, next optional).
 .leaderboard-pager { display: flex; justify-content: space-between; flex-wrap: wrap; }
 
