@@ -683,9 +683,17 @@ a.UserImage,
       margin-top: 15px;
     }
   }
+  // Undo the legacy global .description style, which greys and italicizes the
+  // block and then flips nested <em> back to upright for contrast. Notes are
+  // user prose, so <em> must stay italic.
   .description {
     font-style: normal;
     color: inherit;
+
+    em {
+      font-style: italic;
+      color: inherit;
+    }
   }
   @media ( max-width: $sm-max ) {
     .compare-obs-btn {
