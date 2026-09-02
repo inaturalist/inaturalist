@@ -113,17 +113,18 @@ class TaxonPhoto < ApplicationRecord
     end
   end
 
-  def self.embeddings_for_taxon_photos( taxon_photos )
+  def self.embeddings_for_taxon_photos( taxon_photos, options = {} )
     # many tests will create taxa, which in turn will create taxon photos, which will want
     # to be indexed and call the API to generate embeddings. Instead of mocking an API response
     # for all those tests, do not allow this method to run in specs
-    return {} if Rails.env.test?
+    return {} if Rails.env.test? && !options[:enable_in_test_env]
 
     5.times do
       begin
         Timeout.timeout( 20 ) do
           uri = URI.parse( "#{CONFIG.vision_api_url}/embeddings_for_photos" )
           http = Net::HTTP.new( uri.host, uri.port )
+          http.use_ssl = true if uri.scheme == "https"
           request = Net::HTTP::Post.new(
             uri.request_uri,
             "Content-Type": "application/json"

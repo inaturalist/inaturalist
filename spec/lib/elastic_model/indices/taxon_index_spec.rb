@@ -72,4 +72,34 @@ describe "Taxon Index" do
       expect( t.indexed_place_ids ).to eq []
     end
   end
+
+  describe "embeddings_for_taxon_photos" do
+    let( :taxon_photo ) { TaxonPhoto.make! }
+    let( :response_object ) { { "success" => true } }
+
+    it "uses SSL when connecting to HTTPS endpoints" do
+      expect( CONFIG ).to receive( :vision_api_url ).and_return( "https://vision.api" )
+      stub_request( :post, "https://vision.api/embeddings_for_photos" ).to_return(
+        status: 200,
+        body: response_object.to_json,
+        headers: { "Content-Type" => "application/json" }
+      )
+      expect_any_instance_of( Net::HTTP ).to receive( "use_ssl=" ).
+        at_least( :once ).and_call_original
+      expect( TaxonPhoto.embeddings_for_taxon_photos( [taxon_photo], enable_in_test_env: true ) ).
+        to eq response_object
+    end
+
+    it "does not use SSL when connecting to HTTP endpoints" do
+      expect( CONFIG ).to receive( :vision_api_url ).and_return( "http://vision.api" )
+      stub_request( :post, "http://vision.api/embeddings_for_photos" ).to_return(
+        status: 200,
+        body: response_object.to_json,
+        headers: { "Content-Type" => "application/json" }
+      )
+      expect_any_instance_of( Net::HTTP ).not_to receive( "use_ssl=" )
+      expect( TaxonPhoto.embeddings_for_taxon_photos( [taxon_photo], enable_in_test_env: true ) ).
+        to eq response_object
+    end
+  end
 end
