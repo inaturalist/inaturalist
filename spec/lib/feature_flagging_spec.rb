@@ -253,8 +253,16 @@ describe FeatureFlagging do
 
   # Everything above runs against the memory adapter configured in spec_helper.
   # This proves the migration in db/structure.sql actually backs it.
+  # The production storage stack over the real tables, minus the memcached
+  # layer ( see feature_flagging_adapter_stack_spec.rb for that ).
   describe "the ActiveRecord adapter" do
-    let( :ar_flipper ) { Flipper.new( Flipper::Adapters::ActiveRecord.new ) }
+    let( :ar_flipper ) { Flipper.new( FeatureFlagging.build_adapter( cache: nil ) ) }
+
+    it "reads back through the stack" do
+      expect( ar_flipper.enabled?( flag ) ).to be false
+      ar_flipper.enable( flag )
+      expect( ar_flipper.enabled?( flag ) ).to be true
+    end
 
     it "persists a percentage gate to flipper_gates" do
       ar_flipper.enable_percentage_of_actors( flag, 42 )

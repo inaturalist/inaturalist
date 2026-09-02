@@ -48,10 +48,46 @@ module FeatureFlagging
     hello_world: %w(control treatment)
   }.freeze
 
+  # Seconds a flag's gates may be served from memcached. Toggles made through
+  # flipper delete the affected keys, so this only bounds staleness for writes
+  # that bypass the adapter ( raw SQL ) or a read that refilled the cache from a
+  # lagging replica.
+  CACHE_TTL = 10
+
   class UnknownFlagError < StandardError; end
   class UnknownExperimentError < StandardError; end
 
   class << self
+    # The storage stack behind Flipper.instance:
+    #
+    #   fail_closed -> [ instrumented -> cache -> ] instrumented -> base
+    #
+    # Built lazily by config/initializers/flipper.rb and directly by specs. The
+    # flipper engine wraps the result in its ActorLimit adapter and the
+    # per-request Memoizable. FailClosedAdapter is outermost so a failure
+    # anywhere below it, memcached included, reads as "all flags off". The
+    # Instrumented layers are what FeatureFlagging::Telemetry counts.
+    def build_adapter( base: Flipper::Adapters::ActiveRecord.new, cache: shared_cache, ttl: CACHE_TTL )
+      adapter = Flipper::Adapters::Instrumented.new( base, instrumenter: ActiveSupport::Notifications )
+      if cache
+        # Production sets no Rails.cache namespace; the prefix keeps environments
+        # that share a memcached from reading each other's gates.
+        adapter = Flipper::Adapters::ActiveSupportCacheStore.new( adapter, cache, ttl, prefix: "#{Rails.env}:" )
+        adapter = Flipper::Adapters::Instrumented.new( adapter, instrumenter: ActiveSupport::Notifications )
+      end
+      # Fully qualified: inside `class << self` a bare constant would be looked up
+      # on the singleton class, which the classic autoloader cannot resolve.
+      FeatureFlagging::FailClosedAdapter.new( adapter )
+    end
+
+    # Only a shared network cache earns its round trip. The file store staging
+    # runs with ( RAILS_ENV=development ) and the test memory store are
+    # per-process, so a toggle on one server could never invalidate another's
+    # copy, and neither is faster than one indexed read of a tiny table.
+    def shared_cache( store = Rails.cache )
+      store if store.is_a?( ActiveSupport::Cache::MemCacheStore )
+    end
+
     # actor: a User, nil, or anything else responding to #flipper_id
     def enabled?( key, actor = nil )
       key = key.to_sym
