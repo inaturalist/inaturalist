@@ -33,7 +33,8 @@ Then **restart the Rails server**.
 > references `Flipper::UI` at load time, so a missing gem means the whole route set fails
 > to load and *every* page 500s with unrelated-looking `undefined local variable or method
 > 'stats_path'` errors. Look for `uninitialized constant Flipper` in
-> `log/development.log`.
+> `log/development.log`. WEB-1171 added `flipper-active_support_cache_store` to the bundle,
+> so the host needs another `bundle install` after pulling it.
 
 Confirm the tables exist:
 
@@ -48,12 +49,11 @@ bundle exec rails runner 'puts ActiveRecord::Base.connection.tables.grep( /flipp
 
 ```sh
 bundle exec rspec \
-  spec/lib/feature_flagging_spec.rb \
-  spec/lib/feature_flagging_ui_spec.rb \
-  spec/lib/feature_flagging_payload_spec.rb \
-  spec/lib/feature_flagging_admin_spec.rb \
+  spec/lib/feature_flagging*_spec.rb \
+  spec/initializers/flipper_spec.rb \
+  spec/controllers/feature_flags_controller_spec.rb \
   spec/helpers/application_helper_spec.rb
-# => 114 examples, 0 failures
+# => 0 failures
 ```
 
 What each file is for:
@@ -64,11 +64,19 @@ What each file is for:
 | `feature_flagging_ui_spec.rb` | The mount: anonymous/non-admin/curator all 404, admin 200, and a real GET-scrape-token-POST CSRF round trip |
 | `feature_flagging_payload_spec.rb` | One real page per layout renders the flag map, and fails if a fourth layout starts emitting it uncovered |
 | `feature_flagging_admin_spec.rb` | The dashboard readout, plus non-admins not seeing it |
+| `feature_flagging_fail_closed_adapter_spec.rb` | `FeatureFlagging::FailClosedAdapter`: reads that raise log and report every flag off; writes re-raise |
+| `feature_flagging_adapter_stack_spec.rb` | `FeatureFlagging.build_adapter`: memcached layer only for a `MemCacheStore`, 10 s TTL, env-prefixed keys, toggles expire the cache, fail-closed around the cache too |
+| `feature_flagging_telemetry_spec.rb` | `FeatureFlagging::Telemetry`: the `feature_flag_*` counters and their presence in the request payload |
+| `feature_flagging_preload_spec.rb` | Preload in the Memoizer middleware: one read per request, 200 with flags off when storage raises, toggles visible on the next request through the cache |
+| `spec/initializers/flipper_spec.rb` | The initializer wiring: `build_adapter` is the configured storage, memoize and preload on, Memoizer innermost inside Makara, telemetry subscribed |
 
 Specs use flipper's in-memory adapter, swapped fresh per example in `spec/spec_helper.rb`.
-You do not need to reset flag state between examples.
+You do not need to reset flag state between examples. Flipper's own rspec helper is turned
+off in `config/environments/test.rb` so `Flipper.configuration` keeps reflecting the
+initializer.
 
-Middleware order (memoizer should be innermost, inside Makara's context):
+Middleware order (memoizer should be innermost, inside Makara's context) is pinned by
+`spec/initializers/flipper_spec.rb`; to eyeball it:
 
 ```sh
 bundle exec rails middleware | grep -E "Makara|Flipper|Warden|Session"
@@ -76,6 +84,13 @@ bundle exec rails middleware | grep -E "Makara|Flipper|Warden|Session"
 # Warden::Manager
 # Makara::Middleware
 # Flipper::Middleware::Memoizer      <- last
+```
+
+And the storage stack (`active_support_cache_store` appears only where `Rails.cache` is memcached):
+
+```sh
+bundle exec rails runner 'puts Flipper.adapter.adapter_stack'
+# memoizable -> actor_limit -> fail_closed_adapter -> instrumented -> ...
 ```
 
 ---
@@ -126,7 +141,12 @@ avoids advertising the path.
 would mean the CSRF integration broke (see Troubleshooting).
 
 **d. Propagation with no restart.** Reload `/admin` — the readout flips to `true`
-immediately. There is no cache TTL today, so changes take effect on the very next request.
+immediately. Locally there is no cache layer at all (the development file store is
+per-process, so `FeatureFlagging.shared_cache` is nil). In production flags are cached in
+memcached for `FeatureFlagging::CACHE_TTL` (10 s), but a toggle made through flipper deletes
+the affected keys, so changes still land on the very next request on every server. The TTL
+only bounds staleness for writes that bypass flipper (raw SQL) or a read that refilled the
+cache from a lagging replica.
 
 **e. Delivery to the browser.** View source on any page and find:
 
@@ -258,6 +278,10 @@ independent.
 # Turn everything off but keep the features registered (the intended resting state)
 bundle exec rails runner 'FeatureFlagging::KNOWN_FLAGS.each_key {| f | Flipper.disable( f ) }'
 
+# Make sure every declared flag is registered. Preload only covers rows in
+# flipper_features; a declared flag nobody has registered costs one extra read per request.
+bundle exec rails runner 'FeatureFlagging::KNOWN_FLAGS.each_key {| f | Flipper.add( f ) }'
+
 # Inspect what is stored
 bundle exec rails runner '
 puts ActiveRecord::Base.connection.select_all( "SELECT feature_key, key, value FROM flipper_gates" ).to_a.inspect
@@ -285,3 +309,35 @@ silently turns a flag off everywhere.
 | `FeatureFlagging::UnknownFlagError` | The flag is not in `KNOWN_FLAGS`. That is deliberate: declare it there (with a one-line description) so typos and retired flags fail loudly instead of evaluating `false` forever. |
 | A flag never appears in `CONFIG.feature_flags` | Only `CLIENT_FLAGS` are sent to browsers. Server-only flags stay out of page source on purpose. |
 | Flags all report `false` and the log says `treating as off` | Reads are fail-closed and the `flipper_gates` query failed — most likely the migration has not run in that environment. |
+| Flags all report `false` and the log says `adapter get_all failed` | Same cause, caught one layer lower: the preload in `Flipper::Middleware::Memoizer` failed and `FeatureFlagging::FailClosedAdapter` turned it into "all flags off" instead of a 500. Expect one more `adapter get failed` line per flag checked on that request. |
+| `feature_flag_db_reads` is 1 on every production request | The memcached layer is not active. `Rails.cache` is not a `MemCacheStore` in that environment, or memcached is unreachable and every read is a miss (look for Dalli errors). |
+| `feature_flag_db_reads` or `feature_flag_cache_reads` above 1 per request | A `KNOWN_FLAGS` key with no `flipper_features` row; preload cannot cover it. Register it (see §6). |
+| A toggle shows on one server but not another for a few seconds | The other server refilled its cache from a lagging replica. Bounded by the 10 s TTL. |
+
+---
+
+## 8. Telemetry
+
+Every request record Logstasher writes (`log/<env>.logstash.log`, `subtype: "ActionController"`)
+carries four fields from `FeatureFlagging::Telemetry`, merged in by
+`ApplicationController#append_info_to_payload`:
+
+| Field | Meaning |
+|---|---|
+| `feature_flag_checks` | `FeatureFlagging.enabled?` calls during the request |
+| `feature_flag_db_reads` | flipper reads that reached Postgres |
+| `feature_flag_cache_reads` | flipper reads that reached memcached (0 where there is no cache layer) |
+| `feature_flag_runtime` | milliseconds spent waiting on flipper storage |
+
+An ordinary HTML page today makes 3 checks over 2 flags. Before WEB-1171 that was 2 DB reads
+per request (one per distinct flag); with preload it is 1 (the `get_all` LEFT JOIN), and with
+memcached it is 1 cache read and 0 DB reads on a hit. Locally:
+
+```sh
+curl -s -o /dev/null http://localhost:3000/observations
+tail -1 log/development.logstash.log | grep -o '"feature_flag_[a-z_]*":[0-9.]*'
+# "feature_flag_checks":3  "feature_flag_db_reads":1  "feature_flag_cache_reads":0  "feature_flag_runtime":...
+```
+
+These are the numbers to watch in Kibana after a deploy, and the numbers that decide whether
+the cache layer and preload are still earning their keep.

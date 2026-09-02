@@ -26,6 +26,13 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
   config.cache_store = :memory_store
 
+  # Flipper's bundled rspec helper would replace the configured storage with a
+  # shared in-memory adapter at suite start. spec/spec_helper.rb gives every
+  # example its own in-memory instance instead, which leaves
+  # Flipper.configuration reflecting config/initializers/flipper.rb so
+  # spec/initializers/flipper_spec.rb can check the production storage stack.
+  config.flipper.test_help = false
+
   # Raise exceptions instead of rendering exception templates
   config.action_dispatch.show_exceptions = false
 
