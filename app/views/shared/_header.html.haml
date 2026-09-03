@@ -175,7 +175,7 @@
           %ul.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-user-menu-dropdown-toggle" } }
             %li= link_to t(:dashboard), home_path
             %li= link_to t(:edit_observations), observations_by_login_path(current_user.login), :class => "observations_link"
-            %li.header-xs.header-sm
+            %li.header-xs.header-sm.add-obs-menu-item
               = link_to t(:add_observations), upload_observations_path
             %li= link_to t(:calendar), calendar_path(current_user.login), :class => "calendar_link"
             %li= link_to t(:identifications), identifications_by_login_path(current_user.login), :class => "identifications_link"

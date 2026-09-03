@@ -457,6 +457,8 @@ $(document).ready(function() {
   $('.dna').dnaHighlight()
 
   if ( $( "#header" ).length > 0 ) {
+    fitHeader( );
+    $( window ).on( "resize", _.debounce( fitHeader, 100 ) );
     $( "#header .search input" ).universalAutocomplete( );
     function showHeaderSearch() {
       $( "#headersearch" ).addClass( "open" );
@@ -974,6 +976,26 @@ $.fn.naturalHeight = function() {
 }
 
 
+// Beyond this the exact number adds width without adding meaning, and the
+// header has little width to spare on narrow screens.
+var MAX_HEADER_COUNT = 99
+
+function headerCountLabel(count) {
+  return count > MAX_HEADER_COUNT ? MAX_HEADER_COUNT + "+" : count
+}
+
+// The header lays out in a single row, so long notification counts can push it
+// wider than the viewport. Dropping the least essential item is preferable to
+// horizontal overflow of the whole page.
+function fitHeader() {
+  var header = document.getElementById( "header" );
+  if ( !header ) { return; }
+  header.classList.remove( "crowded" );
+  if ( header.scrollWidth > header.clientWidth ) {
+    header.classList.add( "crowded" );
+  }
+}
+
 function setUpdatesCount(count, options) {
   options = options || {}
   if (count > 0) {
@@ -982,7 +1004,7 @@ function setUpdatesCount(count, options) {
     } else {
       $('#header .updates').switchClass('', 'hasupdates')
     }
-    $('#header .updates .count').html(count)
+    $('#header .updates .count').html(headerCountLabel(count))
   } else {
     if (options.skipAnimation) {
       $('#header .updates').removeClass('hasupdates')
@@ -991,6 +1013,7 @@ function setUpdatesCount(count, options) {
     }
     $('#header .updates .count').html(0)
   }
+  fitHeader()
 }
 
 function getUpdatesCount() {
@@ -1007,7 +1030,7 @@ function setMessagesCount(count, options) {
     } else {
       $('#header .messages').switchClass('', 'hasupdates')
     }
-    $('#header .messages .count').html(count)
+    $('#header .messages .count').html(headerCountLabel(count))
   } else {
     if (options.skipAnimation) {
       $('#header .messages').removeClass('hasupdates')
@@ -1016,6 +1039,7 @@ function setMessagesCount(count, options) {
     }
     $('#header .messages .count').html(0)
   }
+  fitHeader()
 }
 
 function getMessagesCount() {

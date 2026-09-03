@@ -142,3 +142,41 @@ test.describe( "Header at the lg breakpoint (logged in)", () => {
     await expect( page.locator( "#header .add-obs .btn-inat span" ) ).toBeVisible();
   } );
 } );
+
+test.describe( "Header with large notification counts (xs)", () => {
+  const setCounts = ( page: Page, count: number ) => page.evaluate( c => {
+    ( window as any ).setUpdatesCount( c, { skipAnimation: true } );
+    ( window as any ).setMessagesCount( c, { skipAnimation: true } );
+  }, count );
+
+  test.beforeEach( async ( { page } ) => {
+    await page.setViewportSize( VIEWPORTS.xs );
+    await page.goto( "/" );
+    await page.locator( "#header .add-obs" ).waitFor();
+  } );
+
+  test( "keeps the upload button while the counts are small", async ( { page } ) => {
+    await setCounts( page, 1 );
+    await expect( page.locator( "#header .add-obs" ) ).toBeVisible();
+    await expect( page.locator( "#header" ) ).not.toHaveClass( /\bcrowded\b/ );
+  } );
+
+  test( "drops the upload button for the user menu when the counts overflow", async ( { page } ) => {
+    await setCounts( page, 8888 );
+
+    await expect( page.locator( "#header" ) ).toHaveClass( /\bcrowded\b/ );
+    await expect( page.locator( "#header .add-obs" ) ).toBeHidden();
+
+    // The user menu keeps offering the upload link, so nothing becomes unreachable.
+    const menuItemDisplay = await page.locator(
+      "#header .dropdown-menu .add-obs-menu-item"
+    ).evaluate( el => getComputedStyle( el ).display );
+    expect( menuItemDisplay ).not.toBe( "none" );
+
+    const { bodyWidth, viewportWidth } = await page.evaluate( () => ( {
+      bodyWidth: document.body.scrollWidth,
+      viewportWidth: window.innerWidth
+    } ) );
+    expect( bodyWidth ).toBeLessThanOrEqual( viewportWidth + 1 );
+  } );
+} );
