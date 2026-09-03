@@ -181,7 +181,7 @@ class PlacesController < ApplicationController
       end
       format.json do
         if ( partial = params[:partial] ) && ALLOWED_SHOW_PARTIALS.include?( partial )
-          @place.html = render_to_string( partial: "#{partial}.html.erb", object: @place )
+          @place.html = render_to_string( partial: partial, formats: :html, object: @place )
         end
         render( json: @place.to_json(
           methods: [:place_type_name, :html]

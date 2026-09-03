@@ -262,7 +262,7 @@ class TaxaController < ApplicationController
       format.json do
         partial = params[:partial]
         if partial.present? && ALLOWED_SHOW_PARTIALS.include?( partial )
-          @taxon.html = render_to_string( partial: "#{partial}.html.erb", object: @taxon )
+          @taxon.html = render_to_string( partial: partial, formats: :html, object: @taxon )
         end
         Taxon.preload_associations(
           [@taxon], [{ taxon_photos: { photo: :user } }, { taxon_names: :place_taxon_names }, :iconic_taxon]
@@ -664,14 +664,14 @@ class TaxaController < ApplicationController
           end
           if params[:partial]
             partial_path = if params[:partial] == "taxon"
-              "shared/#{params[:partial]}.html.erb"
+              "shared/#{params[:partial]}"
             else
-              "taxa/#{params[:partial]}.html.erb"
+              "taxa/#{params[:partial]}"
             end
           end
           @taxa.each_with_index do | t, i |
             if params[:partial]
-              @taxa[i].html = render_to_string( partial: partial_path, locals: { taxon: t } )
+              @taxa[i].html = render_to_string( partial: partial_path, formats: :html, locals: { taxon: t } )
               options[:methods] << :html
             end
             @taxa[i].current_user = current_user
