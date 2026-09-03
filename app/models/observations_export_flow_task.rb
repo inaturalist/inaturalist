@@ -159,7 +159,7 @@ class ObservationsExportFlowTask < FlowTask
 
   def json_archive
     json_path = File.join( work_path, "#{basename}.json" )
-    json_opts = { only: export_columns, include: [:observation_field_values, :photos] }
+    json_opts = { only: export_columns, viewer: user, include: [:observation_field_values, :photos] }
     FileUtils.mkdir_p( File.dirname( json_path ), mode: 0o755 )
     search_params = params.merge( viewer: user, authenticate: user )
     File.open( json_path, "w" ) do | f |
