@@ -1,8 +1,5 @@
 let PhotoMarkerOverlayView;
 
-// google.maps.OverlayView only exists once the Maps API has loaded, so the
-// class must be defined lazily rather than at module evaluation time, which
-// would break the whole bundle when Google is blocked
 export default function definePhotoMarkerOverlayView( ) {
   if ( PhotoMarkerOverlayView ) return PhotoMarkerOverlayView;
   if ( typeof ( google ) === "undefined" ) return null;

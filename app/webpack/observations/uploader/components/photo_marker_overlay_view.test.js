@@ -10,9 +10,6 @@ describe( "definePhotoMarkerOverlayView", ( ) => {
 
   describe( "when google is not defined", ( ) => {
     it( "can be imported without throwing", ( ) => {
-      // Regression test for WEB-1240: a top-level `extends
-      // google.maps.OverlayView` threw at module evaluation time when Google
-      // was blocked, taking down the whole observations-uploader bundle
       expect( ( ) => {
         // eslint-disable-next-line global-require
         require( "./photo_marker_overlay_view" );

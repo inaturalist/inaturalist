@@ -62,8 +62,7 @@ class App extends React.Component {
 
   componentDidMount( ) {
     this.map = $( ".TaxonMap", ReactDOM.findDOMNode( this ) ).data( "taxonMap" );
-    // The map won't exist if the Maps API failed to load, e.g. when the
-    // browser blocks requests to Google
+    // Handle blocked google requests.
     if ( !this.map ) return;
     this.map.setOptions( {
       styles: baseMapStyle,

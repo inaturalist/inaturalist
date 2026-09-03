@@ -64,8 +64,7 @@ class LocationChooserMap extends React.Component {
       updateState,
       zoom
     } = this.props;
-    // When Google is blocked the Maps API never loads; skip map setup so the
-    // rest of the location chooser still works
+
     if ( typeof ( google ) === "undefined" ) return;
     const domNode = ReactDOM.findDOMNode( this );
     const map = iNaturalist.Map.createMap( {

@@ -12,8 +12,6 @@ var loadMap3 = function ( ) {
 /* eslint-disable */
 
 // requires GoogleMap classes
-// Pages that load Google Maps asynchronously define google.maps before any
-// library loads, so also check for a member of the "maps" library
 if (
   typeof( google ) == "undefined"
   || typeof( google.maps ) == "undefined"

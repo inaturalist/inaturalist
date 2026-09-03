@@ -25,8 +25,6 @@ const renderApp = ( ) => render(
   document.getElementById( "app" )
 );
 
-// Handles loading Google Maps and its libraries, and adds graceful degradation
-// if the Maps API is blocked by the browser.
 const loadGoogleMaps = ( ) => {
   if (
     typeof ( google ) === "undefined"

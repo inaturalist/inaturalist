@@ -133,10 +133,6 @@ inatTaxonMap.fit = function ( elt ) {
 
 inatTaxonMap.setupGoogleMap = function ( elt ) {
   var options = $( elt ).data( "taxonMapOptions" );
-  // On pages that load Google Maps asynchronously, `google` and `google.maps`
-  // exist before any library loads, so check for a member of the "maps"
-  // library and for the iNaturalist map helpers that loadMap3 defines only
-  // once the library is available
   if (
     typeof ( google ) === "undefined"
     || !google.maps

@@ -24,8 +24,6 @@ describe( "TaxonMap", ( ) => {
 
   describe( "when Google is blocked on an async-loading page", ( ) => {
     beforeEach( ( ) => {
-      // google_maps_async_js defines this stub without any network request,
-      // so google is defined but no library members are
       global.google = { maps: { importLibrary: jest.fn( ) } };
     } );
 
