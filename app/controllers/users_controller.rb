@@ -60,11 +60,12 @@ class UsersController < ApplicationController
     :cache_path => Proc.new {|c|
       c.send(
         :dashboard_updates_url,
-        :user_id => c.instance_variable_get("@current_user").id,
-        :ssl => c.request.ssl?
+        :user_id => c.instance_variable_get( "@current_user" ).id,
+        :ssl => c.request.ssl?,
+        :variant => Array( c.request.variant ).first
       )
     },
-    :if => Proc.new {|c| 
+    :if => Proc.new {|c|
       (c.params.keys - %w(action controller format)).blank?
     }
   cache_sweeper :user_sweeper, :only => [:update]
