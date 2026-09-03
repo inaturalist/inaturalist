@@ -2,7 +2,7 @@ import { test, expect, Page } from "@playwright/test";
 import { login } from "../../helpers/auth.helper";
 import { app, appMake } from "../../support/on-rails";
 import { VIEWPORTS } from "../../../shared/breakpoints";
-import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
+import { expectNoHorizontalOverflow, expectWithinViewport } from "../../helpers/overflow.helper";
 
 const TEST_PASSWORD = "TestPass123!";
 
@@ -173,10 +173,6 @@ test.describe( "Header with large notification counts (xs)", () => {
     ).evaluate( el => getComputedStyle( el ).display );
     expect( menuItemDisplay ).not.toBe( "none" );
 
-    const { bodyWidth, viewportWidth } = await page.evaluate( () => ( {
-      bodyWidth: document.body.scrollWidth,
-      viewportWidth: window.innerWidth
-    } ) );
-    expect( bodyWidth ).toBeLessThanOrEqual( viewportWidth + 1 );
+    await expectWithinViewport( page, "xs breakpoint" );
   } );
 } );
