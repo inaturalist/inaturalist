@@ -3,14 +3,13 @@
 = content_for :extracss do
   = stylesheet_link_tag 'users_responsive'
 - cache @leaderboard_key, :expires_in => 1.day do
-  #pageheader
-    .updated
-      =t :updated_daily
-      = surround '(', ')' do
-        %abbr.timeago{"data-now" => Time.now.getutc.iso8601, :title => Time.now.getutc.iso8601}=t :n_ago, :n => time_ago_in_words(Time.now)
-    .back-link
-      %strong
-        = link_to t(:back_to_people), people_path
+  #pageheader.leaderboard-header
+    .breadcrumbs
+      = link_to t(:back_to_people), people_path, :class => "crumb back"
+      .updated
+        =t :updated_daily
+        = surround '(', ')' do
+          %abbr.timeago{"data-now" => Time.now.getutc.iso8601, :title => Time.now.getutc.iso8601}=t :n_ago, :n => time_ago_in_words(Time.now)
     %h2
       = @title
   #leaderboard
@@ -19,8 +18,7 @@
         noun: 'observation',
         noun_plural: 'observations',
         time_unit: @time_unit,
-        data: @most_observations,
-        extra: "<div class='leaderboard-note'>#{t :observations_observed_this_month}</div>".html_safe
+        data: @most_observations
       = render 'leaderboard_column',
         noun: 'species',
         noun_plural: 'species',
@@ -32,6 +30,7 @@
         time_unit: @time_unit,
         data: @most_identifications,
         sub: Proc.new {|user, count| link_to("#{t :x_identifications_html, count: count}".html_safe, identifications_by_login_path(user.login, :on => @time_unit == 'year' ? @year : "#{@year}-#{@month}"))}
+    .leaderboard-note=raw t :observations_observed_this_month
 .leaderboard-pager
   - if @time_unit == 'year'
     %strong= link_to "‹ #{@year - 1}".html_safe, :year => @year - 1

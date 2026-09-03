@@ -1,4 +1,3 @@
-- extra ||= nil
 - sub ||= nil
 - date ||= @date || Date.today
 %div
@@ -29,4 +28,3 @@
                     =t "x_#{noun.camelize.parameterize.pluralize}_html", :count => count.to_i
     - else
       .empty=t :no_results_found
-  = extra

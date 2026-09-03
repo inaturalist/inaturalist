@@ -106,3 +106,8 @@
 }
 
 @import "shared/test_group_banner";
+
+body:not( .responsive ) .bootstrap .TestGroupBanner.alert.TestGroupBanner--compact {
+  margin-top: -20px;
+  margin-bottom: 10px;
+}

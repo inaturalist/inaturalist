@@ -16,8 +16,8 @@
   <% if logged_in? -%>
     <%= form_tag( search_path, method: :get, class: "people-search" ) do %>
       <%= hidden_field_tag "source[]", "users" %>
-      <%= text_field_tag :q, @q, :placeholder => t(:search_by_name_or_email) %>
-      <%= submit_tag t(:search) %>
+      <%= text_field_tag :q, @q, class: "text", placeholder: t(:search_by_name_or_email) %>
+      <%= submit_tag t(:search), class: "button default" %>
     <% end %>
   <% end -%>
 </div>
@@ -128,7 +128,7 @@
     <div class="leaderboard-readmore">
       <div class="leaderboard-note"><%=raw t :observations_observed_this_month %></div>
       <%- prev_date = Date.today - 1.month -%>
-      <%= link_to t(:view_leaderboard_from_last_month), leaderboard_for_people_path(:year => prev_date.year, :month => prev_date.month) %>
+      <%= link_to t(:view_leaderboard_from_last_month), leaderboard_for_people_path(:year => prev_date.year, :month => prev_date.month), :class => "readmore" %>
     </div>
 
     <div class="CardGrid">
@@ -143,7 +143,7 @@
     </div>
     <div class="leaderboard-readmore">
       <%- prev_date = Date.today - 1.year -%>
-      <%= link_to t(:view_leaderboard_from_last_year), leaderboard_for_people_path(:year => prev_date.year) %>
+      <%= link_to t(:view_leaderboard_from_last_year), leaderboard_for_people_path(:year => prev_date.year), :class => "readmore" %>
     </div>
   </div>
 <% end -%>

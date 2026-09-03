@@ -17,17 +17,49 @@ body.responsive #header {
   align-items: center;
   flex-wrap: wrap-reverse;
   gap: 10px;
-  margin: 10px 0 20px 0;
+  margin: 10px 0;
 
   h2 {
     margin: 0;
   }
 }
 
+.people-search {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  input.text {
+    width: 150px;
+    padding: 1px 3px;
+    font-size: 100%;
+  }
+
+  input.button {
+    float: none;
+    margin: 0;
+    padding: 1px 3px;
+    font-size: 100%;
+    font-weight: normal;
+  }
+}
+
+#pageheader.leaderboard-header {
+  display: block;
+
+  .breadcrumbs {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
 .CardGrid {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 5px;
 
   > * {
     margin: 5px;
@@ -109,9 +141,17 @@ body.responsive #header {
   }
 }
 
-.updated { color: #888; font-size: 0.8em; }
+.updated { color: #888; font-size: 14px; }
 
 .timeago { border-bottom: 0; }
 
-.leaderboard-pager { display: flex; justify-content: space-between; flex-wrap: wrap; }
+.leaderboard-pager { display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 20px; }
 
+.leaderboard-note { color: #888; }
+
+.empty { color: #888; text-align: center; }
+
+#curators .UserWithIcon .title a,
+#leaderboard .UserWithIcon .title a {
+  color: #337ab7;
+}
