@@ -93,3 +93,17 @@ describe CommentsController, "oauth authentication" do
   after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "a CommentsController"
 end
+
+describe CommentsController, "user" do
+  render_views
+  let( :curator ) { make_curator }
+  let( :user ) { User.make! }
+  before do
+    sign_in curator
+  end
+  it "renders without raising errors" do
+    expect do
+      get :user, params: { login: user.login }
+    end.not_to raise_error
+  end
+end

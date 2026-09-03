@@ -49,6 +49,12 @@ describe TaxaController do
       expect { get( :show, params: { id: taxon.id } ) }.not_to raise_error
     end
 
+    it "renders with partial parameter without raising errors" do
+      expect do
+        get :show, params: { id: taxon.id, partial: "chooser" }, format: :json
+      end.not_to raise_error
+    end
+
     describe "responsive gating" do
       it "is responsive for a user in the responsive-taxon-detail group" do
         user = create( :user )
@@ -360,6 +366,34 @@ describe TaxaController do
       expect( response ).to be_successful
       expect( assigns( :iconic_taxa ) ).not_to be_empty
       expect( assigns( :faceted_iconic_taxa ) ).to be_nil
+    end
+
+    it "renders in html with taxon partial parameter without raising errors" do
+      Taxon.make!( name: "test" )
+      expect do
+        get :search, params: { q: "test", partial: "taxon" }
+      end.not_to raise_error
+    end
+
+    it "renders in html with non-taxon partial parameter without raising errors" do
+      Taxon.make!( name: "test" )
+      expect do
+        get :search, params: { q: "test", partial: "chooser" }
+      end.not_to raise_error
+    end
+
+    it "renders in json with taxon partial parameter without raising errors" do
+      Taxon.make!( name: "test" )
+      expect do
+        get :search, params: { q: "test", partial: "taxon" }, format: :json
+      end.not_to raise_error
+    end
+
+    it "renders in json with non-taxon partial parameter without raising errors" do
+      Taxon.make!( name: "test" )
+      expect do
+        get :search, params: { q: "test", partial: "chooser" }, format: :json
+      end.not_to raise_error
     end
   end
 

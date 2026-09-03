@@ -633,13 +633,13 @@ class TaxaController < ApplicationController
         end
 
         partial_path = if params[:partial] == "taxon"
-          "shared/#{params[:partial]}.html.erb"
+          "shared/#{params[:partial]}"
         elsif params[:partial]
-          "taxa/#{params[:partial]}.html.erb"
+          "taxa/#{params[:partial]}"
         end
 
         if partial_path && lookup_context.find_all( partial_path ).any?
-          render partial: partial_path, locals: {
+          render partial: partial_path, format: :html, locals: {
             js_link: params[:js_link]
           }
         else

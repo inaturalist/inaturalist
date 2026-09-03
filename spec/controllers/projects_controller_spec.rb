@@ -268,3 +268,13 @@ describe ProjectsController, "stats" do
     expect( body["data"][0]["unique_observers"] ).to eq 1
   end
 end
+
+describe ProjectsController, "stats_slideshow" do
+  render_views
+  let( :project ) { Project.make! }
+  it "renders without raising errors" do
+    expect do
+      get :stats_slideshow, params: { id: project.id }
+    end.not_to raise_error
+  end
+end
