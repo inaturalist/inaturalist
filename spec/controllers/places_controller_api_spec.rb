@@ -159,3 +159,12 @@ describe PlacesController, "autocomplete" do
     expect( json.size ).to eq 3
   end
 end
+
+describe PlacesController, "show" do
+  let( :place ) { make_place_with_geom }
+  it "renders without raising errors" do
+    expect do
+      get :show, params: { id: place.id, partial: "autocomplete_item" }, format: :json
+    end.not_to raise_error
+  end
+end

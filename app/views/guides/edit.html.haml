@@ -195,7 +195,7 @@
           .row
             .col-xs-12
               %p=t 'views.guides.edit.licensing_explanation'
-          - for row in Observation::LICENSES.in_groups_of(2)
+          - for row in Observation::LICENSES.in_groups_of( 2, false )
             .row
               - for code, name, description in row
                 .col-xs-6
