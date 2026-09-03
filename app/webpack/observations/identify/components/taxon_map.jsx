@@ -81,6 +81,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { objectToComparable } from "../../../shared/util";
+import { googleMapsIsLoaded } from "../../../shared/google_maps";
 
 class TaxonMap extends React.Component {
   componentDidMount( ) {
@@ -101,8 +102,9 @@ class TaxonMap extends React.Component {
       return;
     }
     this.setMapFromProps( );
-    if ( typeof ( google ) !== "undefined" ) {
-      google.maps.event.trigger( $( ReactDOM.findDOMNode( this ) ).data( "taxonMap" ), "resize" );
+    const map = $( ReactDOM.findDOMNode( this ) ).data( "taxonMap" );
+    if ( map && googleMapsIsLoaded( ) ) {
+      google.maps.event.trigger( map, "resize" );
     }
   }
 
