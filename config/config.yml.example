@@ -173,6 +173,10 @@ base: &base
 
     model_taxonomy: taxonomy.csv
 
+    carto:
+        # check 1password engineering vault
+        api_key: some-api-key
+
 development:
     <<: *base
 
