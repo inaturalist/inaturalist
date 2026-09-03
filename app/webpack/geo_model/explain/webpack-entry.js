@@ -25,27 +25,22 @@ const renderApp = ( ) => render(
   document.getElementById( "app" )
 );
 
-// The Maps API may be unavailable, e.g. when the browser blocks requests to
-// Google; render the app without a map rather than not at all
-if (
-  typeof ( google ) === "undefined"
-  || !google.maps
-  || !google.maps.importLibrary
-) {
-  renderApp( );
-} else {
-  google.maps.importLibrary( "maps" ).then( ( ) => (
-    google.maps.importLibrary( "drawing" )
-  ) ).then( ( ) => (
-    google.maps.importLibrary( "geometry" )
-  ) ).then( ( ) => (
-    google.maps.importLibrary( "places" )
-  ) )
-    .then( ( ) => {
-      /* global loadMap3 */
-      loadMap3( );
-    } )
-    // eslint-disable-next-line no-console
-    .catch( e => console.warn( "Google Maps failed to load", e ) )
-    .then( renderApp );
-}
+// Handles loading Google Maps and its libraries, and adds graceful degradation
+// if the Maps API is blocked by the browser.
+const loadGoogleMaps = ( ) => {
+  if (
+    typeof ( google ) === "undefined"
+    || !google.maps
+    || !google.maps.importLibrary
+  ) {
+    return Promise.resolve( );
+  }
+  return google.maps.importLibrary( "maps" )
+    .then( ( ) => google.maps.importLibrary( "drawing" ) )
+    .then( ( ) => google.maps.importLibrary( "geometry" ) )
+    .then( ( ) => google.maps.importLibrary( "places" ) )
+    .then( ( ) => loadMap3( ) )
+    .catch( e => console.warn( "Google Maps failed to load", e ) );
+};
+
+loadGoogleMaps( ).then( renderApp );
