@@ -33,7 +33,7 @@ class TorqueMap extends React.Component {
       keyboard: false,
       scrollWheelZoom: false
     } );
-    L.tileLayer( `https://cartodb-basemaps-{s}.global.ssl.fastly.net/${basemap}/{z}/{x}/{y}.png`, {
+    L.tileLayer( `https://cartodb-basemaps-{s}.global.ssl.fastly.net/${basemap}/{z}/{x}/{y}.png?key=${CONFIG?.carto_api_key}`, {
       attribution: "&copy; <a href='https://www.openstreetmap.org/copyright/'>OpenStreetMap</a> "
         + "contributors, &copy; <a href='https://carto.com/about-carto/'>CARTO</a>"
     } ).addTo( map );
