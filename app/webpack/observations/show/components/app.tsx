@@ -257,7 +257,7 @@ class App extends React.Component<AppProps> {
     const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
     const description = observation.description
       ? (
-        <div className="description">
+        <>
           <h3>
             {
               I18n.t( "notes", {
@@ -266,7 +266,7 @@ class App extends React.Component<AppProps> {
             }
           </h3>
           <UserText text={observation.description} />
-        </div>
+        </>
       )
       : "";
     const qualityGrade = observation.quality_grade === "research"
