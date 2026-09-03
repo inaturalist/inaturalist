@@ -45,6 +45,7 @@ if (
       /* global loadMap3 */
       loadMap3( );
     } )
-    .catch( ( ) => { } )
+    // eslint-disable-next-line no-console
+    .catch( e => console.warn( "Google Maps failed to load", e ) )
     .then( renderApp );
 }

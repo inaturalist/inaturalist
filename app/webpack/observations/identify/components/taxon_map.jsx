@@ -81,6 +81,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { objectToComparable } from "../../../shared/util";
+import { googleMapsIsLoaded } from "../../../shared/google_maps";
 
 class TaxonMap extends React.Component {
   componentDidMount( ) {
@@ -101,15 +102,17 @@ class TaxonMap extends React.Component {
       return;
     }
     this.setMapFromProps( );
-    if ( typeof ( google ) !== "undefined" ) {
-      google.maps.event.trigger( $( ReactDOM.findDOMNode( this ) ).data( "taxonMap" ), "resize" );
+    // There is no map to resize if the Maps API never loaded, e.g. when the
+    // browser blocks requests to Google
+    const map = $( ReactDOM.findDOMNode( this ) ).data( "taxonMap" );
+    if ( map && googleMapsIsLoaded( ) ) {
+      google.maps.event.trigger( map, "resize" );
     }
   }
 
   setMapFromProps( ) {
-    // the taxonMap jQuery plugin is only defined once the Maps API has
-    // loaded, which never happens if the browser blocks requests to Google
-    if ( typeof ( $.fn.taxonMap ) !== "function" ) return;
+    // The plugin itself shows a warning instead of a map when the Maps API
+    // failed to load, e.g. when the browser blocks requests to Google
     $( ReactDOM.findDOMNode( this ) ).taxonMap( this.props );
   }
 

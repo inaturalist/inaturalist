@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import ReactDOMServer from "react-dom/server";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
+import { googleMapsIsLoaded } from "../../../shared/google_maps";
 
 /* global GEO_MODEL_TAXON */
 /* global GEO_MODEL_BOUNDS */
@@ -360,7 +361,7 @@ class App extends React.Component {
             }
           }]}
           gestureHandling="auto"
-          mapType={typeof ( google ) !== "undefined" ? google.maps.MapTypeId.TERRAIN : null}
+          mapType={googleMapsIsLoaded( ) ? google.maps.MapTypeId.TERRAIN : null}
           showLegend
         />
         <div className="container">
