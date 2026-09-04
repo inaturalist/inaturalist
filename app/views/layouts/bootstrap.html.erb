@@ -242,12 +242,5 @@
       <%= javascript_include_tag "webpack/users-confirmation-banner-webpack" %>
     <% end %>
     <%= yield :extrajs %>
-    <% if logged_in? -%>
-      <script type="text/javascript" charset="utf-8">
-        setUpdatesCount(<%= session[:updates_count].to_i %>)
-        setMessagesCount(<%= session[:messages_count].to_i %>)
-        setTimeout( getHeaderCounts, 1000 )
-      </script>
-    <% end -%>
   </body>
 </html>

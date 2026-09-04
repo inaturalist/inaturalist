@@ -50,18 +50,6 @@ export function setMessagesCount( count: number, options: CountOptions = {} ): v
   setHeaderCount( "messages", count, options );
 }
 
-export function getUpdatesCount( ): void {
-  $.getJSON( "/users/updates_count.json", ( data: { count: number } ) => {
-    setUpdatesCount( data.count );
-  } );
-}
-
-export function getMessagesCount( ): void {
-  $.getJSON( "/messages/count.json", ( data: { count: number } ) => {
-    setMessagesCount( data.count );
-  } );
-}
-
 export function getHeaderCounts( ): void {
   $.ajax( {
     url: `${apiUrlV2( )}/users/notification_counts`,
@@ -71,4 +59,18 @@ export function getHeaderCounts( ): void {
       setMessagesCount( data.messages_count );
     }
   } );
+}
+
+// Apply the notification counts the server stamps on #header, then refresh them
+// from the API shortly after load. Absent data attributes mean a logged-out
+// visitor, so there is nothing to show or fetch.
+export function initHeaderCounts( ): void {
+  const header = document.getElementById( "header" );
+  const updates = header?.dataset.updatesCount;
+  const messages = header?.dataset.messagesCount;
+  if ( updates === undefined || messages === undefined ) { return; }
+
+  setUpdatesCount( Number( updates ), { skipAnimation: true } );
+  setMessagesCount( Number( messages ), { skipAnimation: true } );
+  window.setTimeout( getHeaderCounts, 1000 );
 }
