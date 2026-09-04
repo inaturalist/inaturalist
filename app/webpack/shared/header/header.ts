@@ -1,12 +1,8 @@
-// Behavior for the site header rendered by app/views/shared/_header.html.haml.
-
 interface CountOptions {
   skipAnimation?: boolean;
 }
 
-// The header lays out in a single row, so long notification counts can push it
-// wider than the viewport. Dropping the least essential item is preferable to
-// horizontal overflow of the whole page.
+// Enable the "crowded" class when header overflows the viewport
 export function fitHeader( ): void {
   const header = document.getElementById( "header" );
   if ( !header ) { return; }

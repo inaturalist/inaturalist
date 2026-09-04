@@ -2400,10 +2400,8 @@ $header-line-height: 34px;
     margin: 3px 0;
   }
 
-  // Toggled by fitHeader() when the header's contents no longer fit the
-  // viewport, which happens on narrow screens once the notification counts grow
-  // to several digits. The upload button is the first thing to go because the
-  // user menu still offers the same link.
+  // Toggled by fitHeader() when the header's contents no longer fit the viewport
+  // The upload button removed because the user menu still offers access
   &.crowded {
     .add-obs {
       display: none;

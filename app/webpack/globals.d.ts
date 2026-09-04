@@ -34,7 +34,6 @@ interface JQueryStubResult {
   textcompleteUsers: ( ) => void;
   addClass: ( className: string ) => JQueryStubResult;
   removeClass: ( className: string ) => JQueryStubResult;
-  // jQuery UI: animates the transition between the two class sets
   switchClass: ( remove: string, add: string ) => JQueryStubResult;
   html: ( content?: string ) => string;
 }
