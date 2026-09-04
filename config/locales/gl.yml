@@ -21,8 +21,8 @@ gl:
     one: '%{count} Identificación'
     other: '%{count} Identificacións'
   x_languages:
-    one: "%{count} língua"
-    other: "%{count} línguas"
+    one: "%{count} idioma"
+    other: "%{count} idiomas"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     #Count of number of taxa that represent the first addition to a life list
@@ -56,7 +56,7 @@ gl:
     one: "%{count} Observación"
     other: "%{count} Observacións"
   x_observations_html:
-    one: "<span class='count'>1</span> observación"
+    one: "<span class='count'>%{count}</span> observación"
     other: "<span class='count'>%{count}</span> observacións"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observación</a>"
