@@ -235,18 +235,12 @@
       <%= javascript_include_tag "map_bundle" %>
       <%= google_maps_async_js %>
     <% end %>
+    <%= javascript_include_tag "webpack/runtime-webpack" %>
+    <%= javascript_include_tag "webpack/header-webpack" %>
     <% unless @skip_react %>
-      <%= javascript_include_tag "webpack/runtime-webpack" %>
       <%= javascript_include_tag "webpack/react-main-webpack" %>
       <%= javascript_include_tag "webpack/users-confirmation-banner-webpack" %>
     <% end %>
     <%= yield :extrajs %>
-    <% if logged_in? -%>
-      <script type="text/javascript" charset="utf-8">
-        setUpdatesCount(<%= session[:updates_count].to_i %>)
-        setMessagesCount(<%= session[:messages_count].to_i %>)
-        setTimeout( getHeaderCounts, 1000 )
-      </script>
-    <% end -%>
   </body>
 </html>

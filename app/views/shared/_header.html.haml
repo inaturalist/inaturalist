@@ -1,6 +1,7 @@
 - site = @site || CONFIG
 - header_search_open = session[:header_search_open].yesish? || ( logged_in? && session[:header_search_open] != false )
-#header.bootstrap{ class: header_search_open ? "search-open" : nil }
+- header_counts = logged_in? ? { updates_count: session[:updates_count].to_i, messages_count: session[:messages_count].to_i } : {}
+#header.bootstrap{ class: header_search_open ? "search-open" : nil, data: header_counts }
   #narrow-menu.navtabs
     .dropdown
       #header-narrow-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
@@ -175,7 +176,7 @@
           %ul.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-user-menu-dropdown-toggle" } }
             %li= link_to t(:dashboard), home_path
             %li= link_to t(:edit_observations), observations_by_login_path(current_user.login), :class => "observations_link"
-            %li.header-xs.header-sm
+            %li.header-xs.header-sm.add-obs-menu-item
               = link_to t(:add_observations), upload_observations_path
             %li= link_to t(:calendar), calendar_path(current_user.login), :class => "calendar_link"
             %li= link_to t(:identifications), identifications_by_login_path(current_user.login), :class => "identifications_link"
