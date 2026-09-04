@@ -32,14 +32,20 @@ interface JQueryStubResult {
   val: ( value?: string ) => string;
   find: ( selector: string ) => JQueryStubResult;
   textcompleteUsers: ( ) => void;
+  addClass: ( className: string ) => JQueryStubResult;
+  removeClass: ( className: string ) => JQueryStubResult;
+  // jQuery UI: animates the transition between the two class sets
+  switchClass: ( remove: string, add: string ) => JQueryStubResult;
+  html: ( content?: string ) => string;
 }
 interface JQueryDeparam {
   ( str: string ): Record<string, unknown>;
   querystring( ): Record<string, unknown>;
 }
 interface JQueryStub {
-  ( selector: string | Element, context?: Element | null ): JQueryStubResult;
-  ajax( url: string, settings?: Record<string, unknown> ): unknown;
+  ( selector: string | Element | Window, context?: Element | null ): JQueryStubResult;
+  ajax( url: string | Record<string, unknown>, settings?: Record<string, unknown> ): unknown;
+  getJSON( url: string, success: ( data: never ) => void ): unknown;
   each<T>(
     collection: ArrayLike<T> | Record<string, T>,
     callback: ( indexOrKey: number | string, value: T ) => void

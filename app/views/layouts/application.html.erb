@@ -137,6 +137,8 @@
 
   <div id="inat-universal-autocomplete"></div>
   
+  <%= javascript_include_tag "webpack/runtime-webpack" %>
+  <%= javascript_include_tag "webpack/header-webpack" %>
   <% if logged_in? -%>
     <script type="text/javascript" charset="utf-8">
       setUpdatesCount(<%= session[:updates_count].to_i %>)
@@ -149,7 +151,6 @@
       ga('set', 'dimension1', <%=raw logged_in? ? "'true'" : "'false'" %>);
     }
   </script>
-  <%= javascript_include_tag "webpack/runtime-webpack" %>
   <%= javascript_include_tag "webpack/react-main-webpack" %>
   <%= javascript_include_tag "webpack/users-confirmation-banner-webpack" %>
 </body>

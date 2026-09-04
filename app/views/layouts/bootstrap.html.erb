@@ -235,8 +235,10 @@
       <%= javascript_include_tag "map_bundle" %>
       <%= google_maps_async_js %>
     <% end %>
+    <%# The header renders on every page, including the ones that skip React %>
+    <%= javascript_include_tag "webpack/runtime-webpack" %>
+    <%= javascript_include_tag "webpack/header-webpack" %>
     <% unless @skip_react %>
-      <%= javascript_include_tag "webpack/runtime-webpack" %>
       <%= javascript_include_tag "webpack/react-main-webpack" %>
       <%= javascript_include_tag "webpack/users-confirmation-banner-webpack" %>
     <% end %>

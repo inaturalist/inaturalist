@@ -457,8 +457,6 @@ $(document).ready(function() {
   $('.dna').dnaHighlight()
 
   if ( $( "#header" ).length > 0 ) {
-    fitHeader( );
-    $( window ).on( "resize", _.debounce( fitHeader, 100 ) );
     $( "#header .search input" ).universalAutocomplete( );
     function showHeaderSearch() {
       $( "#headersearch" ).addClass( "open" );
@@ -976,92 +974,6 @@ $.fn.naturalHeight = function() {
 }
 
 
-// Beyond this the exact number adds width without adding meaning, and the
-// header has little width to spare on narrow screens.
-var MAX_HEADER_COUNT = 99
-
-function headerCountLabel(count) {
-  return count > MAX_HEADER_COUNT ? MAX_HEADER_COUNT + "+" : count
-}
-
-// The header lays out in a single row, so long notification counts can push it
-// wider than the viewport. Dropping the least essential item is preferable to
-// horizontal overflow of the whole page.
-function fitHeader() {
-  var header = document.getElementById( "header" );
-  if ( !header ) { return; }
-  header.classList.remove( "crowded" );
-  if ( header.scrollWidth > header.clientWidth ) {
-    header.classList.add( "crowded" );
-  }
-}
-
-function setUpdatesCount(count, options) {
-  options = options || {}
-  if (count > 0) {
-    if (options.skipAnimation) {
-      $('#header .updates').addClass('hasupdates')
-    } else {
-      $('#header .updates').switchClass('', 'hasupdates')
-    }
-    $('#header .updates .count').html(headerCountLabel(count))
-  } else {
-    if (options.skipAnimation) {
-      $('#header .updates').removeClass('hasupdates')
-    } else {
-      $('#header .updates').switchClass('hasupdates', '')
-    }
-    $('#header .updates .count').html(0)
-  }
-  fitHeader()
-}
-
-function getUpdatesCount() {
-  $.getJSON('/users/updates_count.json', function(data) {
-    setUpdatesCount(data.count)
-  })
-}
-
-function setMessagesCount(count, options) {
-  options = options || {}
-  if (count > 0) {
-    if (options.skipAnimation) {
-      $('#header .messages').addClass('hasupdates')
-    } else {
-      $('#header .messages').switchClass('', 'hasupdates')
-    }
-    $('#header .messages .count').html(headerCountLabel(count))
-  } else {
-    if (options.skipAnimation) {
-      $('#header .messages').removeClass('hasupdates')
-    } else {
-      $('#header .messages').switchClass('hasupdates', '')
-    }
-    $('#header .messages .count').html(0)
-  }
-  fitHeader()
-}
-
-function getMessagesCount() {
-  $.getJSON('/messages/count.json', function(data) {
-    setMessagesCount(data.count)
-  })
-}
-
-function getHeaderCounts() {
-  var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
-  $.ajax({
-    url: "<%= CONFIG.node_api_url_v2 %>/users/notification_counts",
-    headers: {
-      Authorization: apiToken
-    },
-    success: function( data ) {
-      setUpdatesCount( data.updates_count );
-      setMessagesCount( data.messages_count );
-    }
-  });
-
-}
 
 $.fn.subscriptionSettings = function() {
   var options = $.extend(true, {
