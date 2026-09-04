@@ -61,9 +61,6 @@ export function getHeaderCounts( ): void {
   } );
 }
 
-// Apply the notification counts the server stamps on #header, then refresh them
-// from the API shortly after load. Absent data attributes mean a logged-out
-// visitor, so there is nothing to show or fetch.
 export function initHeaderCounts( ): void {
   const header = document.getElementById( "header" );
   const updates = header?.dataset.updatesCount;
