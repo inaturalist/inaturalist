@@ -61,13 +61,20 @@ export function getHeaderCounts( ): void {
   } );
 }
 
-export function initHeaderCounts( ): void {
+export function readHeaderCounts( ): { updates: number; messages: number } | null {
   const header = document.getElementById( "header" );
   const updates = header?.dataset.updatesCount;
   const messages = header?.dataset.messagesCount;
-  if ( updates === undefined || messages === undefined ) { return; }
+  if ( updates === undefined || messages === undefined ) { return null; }
 
-  setUpdatesCount( Number( updates ), { skipAnimation: true } );
-  setMessagesCount( Number( messages ), { skipAnimation: true } );
+  return { updates: Number( updates ), messages: Number( messages ) };
+}
+
+export function initHeaderCounts( ): void {
+  const counts = readHeaderCounts( );
+  if ( !counts ) { return; }
+
+  setUpdatesCount( counts.updates, { skipAnimation: true } );
+  setMessagesCount( counts.messages, { skipAnimation: true } );
   window.setTimeout( getHeaderCounts, 1000 );
 }

@@ -1,4 +1,4 @@
-import { fitHeader, initHeaderCounts } from "./header";
+import { fitHeader, readHeaderCounts } from "./header";
 
 describe( "fitHeader", ( ) => {
   interface Widths { scrollWidth: number; clientWidth: number }
@@ -44,41 +44,16 @@ describe( "fitHeader", ( ) => {
   } );
 } );
 
-describe( "initHeaderCounts", ( ) => {
-  let countHtml: jest.Mock;
-
-  beforeEach( ( ) => {
-    jest.useFakeTimers( );
-    countHtml = jest.fn( );
-    // Minimal jQuery stand-in: setHeaderCount only needs class toggles and .html
-    const chain = {
-      addClass: jest.fn( ),
-      removeClass: jest.fn( ),
-      switchClass: jest.fn( ),
-      html: countHtml,
-      on: jest.fn( )
-    };
-    ( global as unknown as Record<string, unknown> ).$ = jest.fn( ( ) => chain );
-  } );
-
-  afterEach( ( ) => {
-    jest.useRealTimers( );
-  } );
-
-  it( "applies the counts stamped on #header", ( ) => {
+describe( "readHeaderCounts", ( ) => {
+  it( "reads the counts stamped on #header", ( ) => {
     document.body.innerHTML = "<div id=\"header\" data-updates-count=\"5\" data-messages-count=\"3\"></div>";
 
-    initHeaderCounts( );
-
-    expect( countHtml ).toHaveBeenCalledWith( "5" );
-    expect( countHtml ).toHaveBeenCalledWith( "3" );
+    expect( readHeaderCounts( ) ).toEqual( { updates: 5, messages: 3 } );
   } );
 
-  it( "does nothing when the counts are absent", ( ) => {
+  it( "returns null when the counts are absent", ( ) => {
     document.body.innerHTML = "<div id=\"header\"></div>";
 
-    initHeaderCounts( );
-
-    expect( countHtml ).not.toHaveBeenCalled( );
+    expect( readHeaderCounts( ) ).toBeNull( );
   } );
 } );
