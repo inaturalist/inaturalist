@@ -162,7 +162,7 @@ test.describe( "Header with large notification counts (xs)", () => {
   } );
 
   test( "drops the upload button for the user menu when the counts overflow", async ( { page } ) => {
-    await setCounts( page, 8888 );
+    await setCounts( page, 99999 );
 
     await expect( page.locator( "#header" ) ).toHaveClass( /\bcrowded\b/ );
     await expect( page.locator( "#header .add-obs" ) ).toBeHidden();

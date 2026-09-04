@@ -1,16 +1,4 @@
-import { fitHeader, headerCountLabel } from "./header";
-
-describe( "headerCountLabel", ( ) => {
-  it( "renders a count that fits as itself", ( ) => {
-    expect( headerCountLabel( 0 ) ).toEqual( "0" );
-    expect( headerCountLabel( 99 ) ).toEqual( "99" );
-  } );
-
-  it( "caps a count that would widen the header", ( ) => {
-    expect( headerCountLabel( 100 ) ).toEqual( "99+" );
-    expect( headerCountLabel( 8888 ) ).toEqual( "99+" );
-  } );
-} );
+import { fitHeader } from "./header";
 
 describe( "fitHeader", ( ) => {
   interface Widths { scrollWidth: number; clientWidth: number }

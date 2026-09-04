@@ -4,14 +4,6 @@ interface CountOptions {
   skipAnimation?: boolean;
 }
 
-// Beyond this the exact number adds width without adding meaning, and the
-// header has little width to spare on narrow screens.
-const MAX_HEADER_COUNT = 99;
-
-export function headerCountLabel( count: number ): string {
-  return count > MAX_HEADER_COUNT ? `${MAX_HEADER_COUNT}+` : String( count );
-}
-
 // The header lays out in a single row, so long notification counts can push it
 // wider than the viewport. Dropping the least essential item is preferable to
 // horizontal overflow of the whole page.
@@ -50,7 +42,7 @@ function setHeaderCount(
     $( selector ).switchClass( hasCount ? "" : "hasupdates", hasCount ? "hasupdates" : "" );
   }
 
-  $( `${selector} .count` ).html( hasCount ? headerCountLabel( count ) : "0" );
+  $( `${selector} .count` ).html( String( count ) );
   fitHeader( );
 }
 

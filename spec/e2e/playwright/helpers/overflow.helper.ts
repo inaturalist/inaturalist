@@ -1,5 +1,5 @@
 import { test, expect, Page } from "@playwright/test";
-import { BREAKPOINTS, BreakpointName, VIEWPORTS } from "../../shared/breakpoints";
+import { BREAKPOINT_WIDTHS, BreakpointName, VIEWPORTS } from "../../shared/breakpoints";
 
 async function measureHorizontalOverflow(
   page: Page
@@ -40,7 +40,7 @@ export function expectNoHorizontalOverflow(
         await page.locator( options.waitForSelector || "#header" ).first().waitFor();
 
         const { viewportWidth } = await measureHorizontalOverflow( page );
-        expect( viewportWidth ).toBeGreaterThanOrEqual( BREAKPOINTS[name].minWidth );
+        expect( viewportWidth ).toBeGreaterThanOrEqual( BREAKPOINT_WIDTHS[name] );
 
         await expectWithinViewport( page, `${name} breakpoint` );
       } );
