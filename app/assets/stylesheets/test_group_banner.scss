@@ -1,0 +1,113 @@
+// Styles for the responsive opt-in banner (shared/_test_group_toggle) on legacy
+// application-layout pages, which do not load bootstrap_bundle. The bootstrap
+// base classes the banner needs are cherry-picked here (values from bootstrap.css)
+// and scoped under .bootstrap so nothing leaks onto the surrounding legacy page.
+// The .TestGroupBanner block itself is shared with bootstrap_bundle via the
+// partial imported at the bottom.
+
+.bootstrap {
+  .text-center { text-align: center; }
+  .hidden { display: none !important; }
+
+  .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  .alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+  }
+  .alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+    &:hover,
+    &:focus {
+      color: #333;
+      text-decoration: none;
+    }
+  }
+  .btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: #449d44;
+      border-color: #398439;
+    }
+  }
+  .btn-warning {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: #ec971f;
+      border-color: #d58512;
+    }
+  }
+  .btn-xs {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+  }
+
+  .close {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.2;
+
+    &:hover,
+    &:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+      opacity: 0.5;
+    }
+  }
+  button.close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+  }
+}
+
+@import "shared/test_group_banner";
+
+body:not( .responsive ) .bootstrap .TestGroupBanner.alert.TestGroupBanner--compact {
+  margin-top: -20px;
+  margin-bottom: 10px;
+}

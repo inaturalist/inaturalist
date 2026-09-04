@@ -60,11 +60,12 @@ class UsersController < ApplicationController
     :cache_path => Proc.new {|c|
       c.send(
         :dashboard_updates_url,
-        :user_id => c.instance_variable_get("@current_user").id,
-        :ssl => c.request.ssl?
+        :user_id => c.instance_variable_get( "@current_user" ).id,
+        :ssl => c.request.ssl?,
+        :variant => Array( c.request.variant ).first
       )
     },
-    :if => Proc.new {|c| 
+    :if => Proc.new {|c|
       (c.params.keys - %w(action controller format)).blank?
     }
   cache_sweeper :user_sweeper, :only => [:update]
@@ -238,7 +239,7 @@ class UsersController < ApplicationController
     @recently_active_key = "recently_active_#{I18n.locale}_site_#{@site.id}"
     @updates = @site.users_index_recent_activity
 
-    @leaderboard_key = "leaderboard_#{I18n.locale}_site_#{@site.id}_4"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_site_#{@site.id}_4#{variant_cache_suffix}"
     unless fragment_exist?( @leaderboard_key )
       @most_observations = most_observations( per: "month" )
       @most_species = most_species( per: "month" )
@@ -248,7 +249,7 @@ class UsersController < ApplicationController
       @most_identifications_year = most_identifications( per: "year" )
     end
 
-    @curators_key = "users_index_curators_#{I18n.locale}_site_#{@site.id}_4"
+    @curators_key = "users_index_curators_#{I18n.locale}_site_#{@site.id}_4#{variant_cache_suffix}"
     unless fragment_exist?( @curators_key )
       @curators = User.curators.limit( 500 ).includes( :roles ).order( "updated_at DESC" )
       @curators = @curators.where( "users.site_id = ?", @site ) if @site&.prefers_site_only_users?
@@ -265,6 +266,7 @@ class UsersController < ApplicationController
       end
     end
 
+    @test_group_toggle = "responsive-global"
     respond_to do | format |
       format.html
     end
@@ -275,7 +277,7 @@ class UsersController < ApplicationController
     @month = params[:month].to_i unless params[:month].blank?
     @date = Date.parse("#{@year}-#{@month || '01'}-01")
     @time_unit = params[:month].blank? ? 'year' : 'month'
-    @leaderboard_key = "leaderboard_#{I18n.locale}_site_#{@site.id}_#{@year}_#{@month}"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_site_#{@site.id}_#{@year}_#{@month}#{variant_cache_suffix}"
     unless fragment_exist?(@leaderboard_key)
       if params[:month].blank?
         @most_observations = most_observations(:per => 'year', :year => @year)
@@ -287,6 +289,7 @@ class UsersController < ApplicationController
         @most_identifications = most_identifications(:per => 'month', :year => @year, :month => @month)
       end
     end
+    @test_group_toggle = "responsive-global"
   end
   
   def show
@@ -1088,6 +1091,10 @@ class UsersController < ApplicationController
   end
 
   protected
+
+  def variant_cache_suffix
+    request.variant.responsive? ? "_responsive" : ""
+  end
 
   def add_friend
     error_msg = nil

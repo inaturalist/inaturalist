@@ -211,6 +211,20 @@ describe GuidesController, "search" do
   end
 end
 
+describe GuidesController, "edit" do
+  render_views
+  let( :user ) { User.make! }
+  let( :guide ) { make_published_guide( user: user ) }
+  before do
+    sign_in user
+  end
+  it "renders without raising errors" do
+    expect do
+      get :edit, params: { id: guide.id }
+    end.not_to raise_error
+  end
+end
+
 describe GuidesController, "update" do
   let( :user ) { User.make! }
   let( :guide ) { make_published_guide( user: user ) }

@@ -303,6 +303,7 @@ a.UserImage,
           color: #808080;
           text-align: left;
           & > div {
+            position: relative;
             min-height: 500px;
           }
           & > div > i {
@@ -682,10 +683,6 @@ a.UserImage,
     h4 {
       margin-top: 15px;
     }
-  }
-  .description {
-    font-style: normal;
-    color: inherit;
   }
   @media ( max-width: $sm-max ) {
     .compare-obs-btn {

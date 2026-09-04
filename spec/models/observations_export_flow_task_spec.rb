@@ -465,6 +465,43 @@ describe ObservationsExportFlowTask do
         expect( csv.size ).to eq 2
         expect( csv[1] ).not_to include o.private_latitude.to_s
       end
+      it "should not include private coordinates if the project has a blank " \
+        "observation_requirements_updated_at" do
+        pu = ProjectUser.make!(
+          project: project,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
+        o = Observation.make!(
+          user: pu.user,
+          latitude: place.latitude,
+          longitude: place.longitude,
+          geoprivacy: Observation::PRIVATE
+        )
+        project.update_column( :observation_requirements_updated_at, nil )
+        stub_api_requests_for_observation( o )
+        csv = export_csv_for_project( project )
+        expect( csv.size ).to eq 2
+        expect( csv[1] ).not_to include o.private_latitude.to_s
+      end
+      it "should include private coordinates for a project with a blank " \
+        "observation_requirements_updated_at after the project is saved" do
+        pu = ProjectUser.make!(
+          project: project,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
+        o = Observation.make!(
+          user: pu.user,
+          latitude: place.latitude,
+          longitude: place.longitude,
+          geoprivacy: Observation::PRIVATE
+        )
+        project.update_column( :observation_requirements_updated_at, nil )
+        project.reload.save!
+        stub_api_requests_for_observation( o )
+        csv = export_csv_for_project( project )
+        expect( csv.size ).to eq 2
+        expect( csv[1] ).to include o.private_latitude.to_s
+      end
     end
 
     it "should include private coordinates if the observer trusts the exporter" do
@@ -479,6 +516,36 @@ describe ObservationsExportFlowTask do
       csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
       expect( csv.size ).to eq 2
       expect( csv[1] ).to include o.private_latitude.to_s
+    end
+
+    describe "in JSON exports" do
+      it "should not include private coordinates you can't see" do
+        o = make_private_observation( taxon: Taxon.make! )
+        viewer = User.make!
+        ft = ObservationsExportFlowTask.make( user: viewer, options: { format: "json" } )
+        ft.inputs.build( extra: { query: "taxon_id=#{o.taxon_id}" } )
+        ft.save!
+        ft.run( keep_tmp_files: true )
+        json = JSON.parse( File.read( File.join( ft.work_path, "#{ft.basename}.json" ) ) )
+        expect( json.size ).to eq 1
+        expect( json[0]["id"] ).to eq o.id
+        expect( json[0]["private_latitude"] ).to be_nil
+        expect( json[0]["private_longitude"] ).to be_nil
+        expect( json[0]["private_place_guess"] ).to be_nil
+      end
+      it "should include private coordinates if the observer trusts the exporter" do
+        o = make_private_observation( taxon: Taxon.make! )
+        viewer = User.make!
+        Friendship.make!( user: o.user, friend: viewer, trust: true )
+        expect( o ).to be_coordinates_viewable_by( viewer )
+        ft = ObservationsExportFlowTask.make( user: viewer, options: { format: "json" } )
+        ft.inputs.build( extra: { query: "user_id=#{o.user_id}" } )
+        ft.save!
+        ft.run( keep_tmp_files: true )
+        json = JSON.parse( File.read( File.join( ft.work_path, "#{ft.basename}.json" ) ) )
+        expect( json.size ).to eq 1
+        expect( json[0]["private_latitude"].to_f ).to eq o.private_latitude.to_f
+      end
     end
   end
 

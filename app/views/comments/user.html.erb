@@ -1,9 +1,6 @@
 <%- content_for(:title) do -%>
   <%= @title = "Comments by #{@display_user.login}" %>
 <%- end -%>
-<%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "comments" %>
-<%- end -%>
 
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">
