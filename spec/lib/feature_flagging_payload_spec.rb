@@ -2,14 +2,10 @@
 
 require "spec_helper"
 
-# The inline var CONFIG payload is hand-duplicated across three layouts, with no
-# shared partial ( extracting it is a WEB-1074 follow-up ). These specs hit one
-# real page per layout so a flag map missing from one of them is caught here
-# rather than in the browser.
+# Hand-duplicated CONFIG payload across three layouts; these specs catch missing maps per layout.
 describe "the feature flag payload in layouts", type: :request do
   include Devise::Test::IntegrationHelpers
 
-  # path => the layout it renders
   pages_by_layout = {
     "/observations" => "bootstrap.html.erb",
     "/id_summaries_demo" => "basic.html.haml",

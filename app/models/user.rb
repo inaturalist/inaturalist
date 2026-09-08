@@ -1822,11 +1822,7 @@ class User < ApplicationRecord
     ObservationField.recently_used_by(self).limit(10)
   end
 
-  # Stable identifier used to bucket this user for feature flags and A/B
-  # variants, via lib/feature_flagging.rb. This is flipper's own default format,
-  # pinned here so a gem upgrade cannot silently re-bucket everyone. Changing
-  # this string moves every user in every percentage rollout and invalidates the
-  # actor gates admins have entered by hand.
+  # Pinned format to prevent silent re-bucketing on gem upgrade; changing it invalidates admin gates.
   def flipper_id
     "User;#{id}"
   end

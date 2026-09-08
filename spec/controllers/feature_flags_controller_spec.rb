@@ -2,9 +2,7 @@
 
 require "spec_helper"
 
-# GET /feature_flags is the Rails half of the /v2/feature_flags contract, so
-# these specs pin the response shape as much as the values -- mobile and the
-# Node proxy are built against it.
+# Specs pin response shape; mobile and Node API are built against it.
 describe "GET /feature_flags", type: :request do
   include Devise::Test::IntegrationHelpers
 
@@ -34,8 +32,7 @@ describe "GET /feature_flags", type: :request do
       expect( body["experiments"].values ).to all( be_nil )
     end
 
-    # A per-actor payload in a shared cache would serve one user's flags to
-    # everyone, so this header is a correctness requirement, not a tuning knob.
+    # Per-actor payload in shared cache would expose user A's flags to user B; correctness requirement.
     it "marks the response as privately cacheable only" do
       get "/feature_flags"
       expect( response.headers["Cache-Control"] ).to include "private"
@@ -114,11 +111,7 @@ describe "GET /feature_flags", type: :request do
     end
   end
 
-  # The regression for the bug that made this endpoint worth hardening before
-  # shipping. An application-level token authenticates as a single shared
-  # User.new( id: -1 ), so if that were treated as a real actor the entire
-  # logged-out mobile population would share one bucket and a percentage gate
-  # would resolve to 0% or 100% of it.
+  # Regression guard: application token authenticates as shared User;-1 that must not be bucketed with real actors.
   describe "a caller with an application JWT" do
     let( :app_headers ) do
       { "HTTP_AUTHORIZATION" => JsonWebToken.applicationToken }

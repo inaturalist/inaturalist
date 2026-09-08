@@ -1814,11 +1814,7 @@ module ApplicationHelper
     URI.join( site.url.to_s, url.to_s ).to_s
   end
 
-  # WEB-1074: resolved feature-flag map for the inline var CONFIG payload in the
-  # layouts, so JS and React can read flags without an extra request. Only
-  # FeatureFlagging::CLIENT_FLAGS are included, and the values are plain
-  # booleans keyed by flag names we chose to expose, so to_json is safe here.
-  # The payload is per-user, so pages carrying it must not be shared-cached.
+  # Inline per-user flags into CONFIG payload so JS can read without extra request.
   def feature_flags_json
     FeatureFlagging.flags_for( current_user ).to_json.html_safe
   end

@@ -53,14 +53,7 @@ RSpec.configure do | config |
     make_default_site
     CONFIG.has_subscribers = :disabled
     CONFIG.content_creation_restriction_days = nil
-    # A fresh in-memory Flipper per example. Feature-flag state otherwise lives
-    # in process memory, which neither DatabaseCleaner's transaction rollback
-    # nor Rails.cache clearing would reset. Assigning a new instance IS the
-    # reset. The production storage stack is exercised explicitly in
-    # spec/lib/feature_flagging_spec.rb and feature_flagging_adapter_stack_spec.rb.
-    # The instrumenter is the one the flipper engine configures, so the
-    # feature_operation.flipper notifications FeatureFlagging::Telemetry counts
-    # fire in specs too.
+    # Fresh instance resets in-process state; production stack tested separately; instrumenter enables telemetry.
     Flipper.instance = Flipper.new( Flipper::Adapters::Memory.new, instrumenter: ActiveSupport::Notifications )
   end
 

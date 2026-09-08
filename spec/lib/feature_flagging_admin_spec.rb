@@ -2,9 +2,6 @@
 
 require "spec_helper"
 
-# The WEB-1074 pilot readout on the admin dashboard. This is the one
-# server-rendered FeatureFlagging call site, and it is admin-only via
-# AdminController's admin_required filter.
 describe "the admin feature flag readout", type: :request do
   include Devise::Test::IntegrationHelpers
 
@@ -48,19 +45,11 @@ describe "the admin feature flag readout", type: :request do
   end
 end
 
-# The readout is gated by AdminController's existing admin_required filter. That
-# has to be exercised as a controller spec: only_admins_failure_state ends in
-# `throw :abort`, which escapes as an UncaughtThrowError through the full
-# integration stack.
+# Controller spec required; admin_required filter's throw :abort escapes integration stack as UncaughtThrowError.
 describe AdminController, type: :controller do
   render_views
 
-  # The catch is not incidental: only_admins_failure_state redirects and then
-  # calls `throw :abort` ( application_controller.rb ), and that throw escapes
-  # the callback chain rather than halting it, so an uncaught version surfaces
-  # as UncaughtThrowError in specs. Pre-existing behaviour shared by every admin
-  # page, not something this readout introduces -- catching it here keeps the
-  # assertion about the readout rather than about the halt mechanism.
+  # Catch required; throw :abort escapes callback chain as UncaughtThrowError (pre-existing admin filter behavior).
   it "does not show the flag readout to non-admins" do
     sign_in User.make!
     catch( :abort ) { get :index }

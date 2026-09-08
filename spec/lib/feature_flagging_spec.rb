@@ -7,7 +7,6 @@ describe FeatureFlagging do
   let( :experiment ) { :hello_world }
   let( :actor ) { User.make! }
 
-  # Cheap stand-ins for bucketing tests, so we don't insert hundreds of users
   def fake_actors( count )
     klass = Struct.new( :flipper_id )
     ( 1..count ).map {| i | klass.new( "User;#{i}" ) }
@@ -91,11 +90,7 @@ describe FeatureFlagging do
       expect( FeatureFlagging.enabled?( flag, make_admin ) ).to be true
     end
 
-    # Devise::Strategies::ApplicationJsonWebToken hands ApplicationController a
-    # User.new( id: -1 ) for application-token requests, which is how a
-    # logged-out mobile client arrives. It has a flipper_id ( "User;-1" ), so
-    # without an explicit guard the entire logged-out mobile population would
-    # share one bucket and a percentage gate would resolve to 0% or 100% of it.
+    # Logged-out mobile shares User(id: -1); guards prevent percentage gate misfires.
     describe "the shared anonymous user" do
       let( :anonymous_user ) do
         User.new( id: Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID,
@@ -186,11 +181,7 @@ describe FeatureFlagging do
       counts.each_value {| n | expect( n ).to be_between( 400, 600 ) }
     end
 
-    # Regression test. The parity target groups in Announcement put the same
-    # users in the same bucket for every test, which this is meant to avoid.
-    # An earlier CRC32 implementation failed this catastrophically -- because
-    # CRC32 is linear, agreement was 0 of 500: every actor assigned "control"
-    # here was assigned "treatment" there. Any correlated hash fails this.
+    # Regression: CRC32 linearity caused perfect anti-correlation (0% cross-test agreement).
     it "assigns variants independently of other experiments" do
       other = :hello_world_two
       stub_const_experiments( other => %w(control treatment) )
@@ -251,10 +242,7 @@ describe FeatureFlagging do
     end
   end
 
-  # Everything above runs against the memory adapter configured in spec_helper.
-  # This proves the migration in db/structure.sql actually backs it.
-  # The production storage stack over the real tables, minus the memcached
-  # layer ( see feature_flagging_adapter_stack_spec.rb for that ).
+  # Memory adapter tested above; this verifies production storage stack over real tables.
   describe "the ActiveRecord adapter" do
     let( :ar_flipper ) { Flipper.new( FeatureFlagging.build_adapter( cache: nil ) ) }
 

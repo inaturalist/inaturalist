@@ -2,16 +2,13 @@
 
 require "spec_helper"
 
-# Flipper::UI is a Rack app mounted in config/routes.rb, so
-# ApplicationController's admin_required filter does not apply to it -- the
-# route constraint is the only thing guarding it. These specs are that guard.
+# Rack app needs route constraint; ApplicationController's admin_required filter doesn't apply.
 describe "the Flipper admin UI mount", type: :request do
   include Devise::Test::IntegrationHelpers
 
   let( :path ) { "/admin/feature_flags" }
 
-  # show_exceptions is false in the test environment, so a route that does not
-  # match raises rather than rendering a 404 page.
+  # show_exceptions false in test env; route mismatch raises not 404.
   describe "access" do
     it "is not routable for anonymous visitors" do
       expect { get path }.to raise_error ActionController::RoutingError
@@ -30,8 +27,7 @@ describe "the Flipper admin UI mount", type: :request do
     it "is routable for admins" do
       sign_in make_admin
       get path
-      # Flipper::UI redirects its root to the feature list. The redirect keeps
-      # the mount prefix, which is what would break if SCRIPT_NAME were mishandled.
+      # Redirect keeps mount prefix; SCRIPT_NAME mishandling would break this.
       expect( response ).to redirect_to "#{path}/features"
     end
 
@@ -69,11 +65,7 @@ describe "the Flipper admin UI mount", type: :request do
     end
   end
 
-  # Flipper::UI does its own CSRF checking with Rack::Protection rather than
-  # Rails' protect_from_forgery, reading and writing rack.session directly.
-  # Rack::Protection swallows any error and answers 403, so if our
-  # activerecord-session_store session were not reaching it, every form in the
-  # admin UI would fail with no useful message. These specs are the canary.
+  # Rack::Protection does CSRF checking; silent failures if session doesn't reach Flipper::UI.
   describe "form submission" do
     before { sign_in make_admin }
 

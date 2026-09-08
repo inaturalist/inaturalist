@@ -2,26 +2,14 @@
 
 require "digest"
 
-# Thin wrapper over the flipper gem. Every feature-flag read in app code goes
-# through here rather than calling Flipper directly, so the engine underneath
-# can be replaced without touching call sites. See WEB-1074 and
-# doc/feature_flags_ab_options.md.
-#
-# Reads are fail-closed on purpose: if the flipper tables are missing or a DB
-# read fails, every flag reports off rather than raising. That is what keeps
-# pages rendering in the window between a deploy and its migration.
-#
+# Facade over flipper gem enables engine replacement without touching app code.
+# Reads fail-closed: keeps pages rendering during deploy→migration window.
 #   FeatureFlagging.enabled?( :some_flag, current_user )
 #   FeatureFlagging.flags_for( current_user )       # => { some_flag: false }
 #   FeatureFlagging.variant( :some_experiment, current_user )  # => "treatment"
-#
-# Flags are managed by admins at /admin/feature_flags. Nothing here reads
-# targeting rules from the client, and only CLIENT_FLAGS are sent to browsers.
+# Only CLIENT_FLAGS sent to browsers; server doesn't read client targeting rules.
 module FeatureFlagging
-  # Every flag the app is allowed to read, with a one-line description of what
-  # it gates. Listing a key here does not enable it anywhere. Reading a key that
-  # is not listed raises, so typos and flags deleted from the admin UI surface
-  # immediately instead of silently evaluating false forever.
+  # Registry of known flags; unlisted keys raise to prevent silent failures.
   KNOWN_FLAGS = {
     flipper_smoke_test: "WEB-1074 pilot flag. Gates nothing; proves the flag pipeline end to end.",
     exp_hello_world: "WEB-1074 pilot experiment. Gates eligibility for the hello_world variant split.",
@@ -30,60 +18,37 @@ module FeatureFlagging
       "path. Enable for named actors only; delete with the demo elements once a real flag ships."
   }.freeze
 
-  # The subset of KNOWN_FLAGS whose resolved values are sent to clients, in the
-  # inline JS payload today and via GET /v2/feature_flags later. Server-only
-  # flags stay out of this list so unannounced feature names do not appear in
-  # page source.
+  # Subset sent to browsers; keeps unannounced feature names from page source.
   CLIENT_FLAGS = [
     :flipper_smoke_test,
     :demo_banner
   ].freeze
 
-  # A/B experiments, as experiment key => ordered list of variant names. Each
-  # experiment needs a matching `exp_<name>` flag in KNOWN_FLAGS, which controls
-  # who is eligible; the variant split then applies only to eligible actors.
-  # Assignment is a deterministic hash, so a variant can be re-derived for any
-  # actor after the fact and no assignment table is needed.
+  # Experiments with variant assignment per eligible actor; deterministic (no table).
   KNOWN_EXPERIMENTS = {
     hello_world: %w(control treatment)
   }.freeze
 
-  # Seconds a flag's gates may be served from memcached. Toggles made through
-  # flipper delete the affected keys, so this only bounds staleness for writes
-  # that bypass the adapter ( raw SQL ) or a read that refilled the cache from a
-  # lagging replica.
+  # Cache TTL bounds staleness for raw SQL writes or lagging replica reads.
   CACHE_TTL = 10
 
   class UnknownFlagError < StandardError; end
   class UnknownExperimentError < StandardError; end
 
   class << self
-    # The storage stack behind Flipper.instance:
-    #
-    #   fail_closed -> [ instrumented -> cache -> ] instrumented -> base
-    #
-    # Built lazily by config/initializers/flipper.rb and directly by specs. The
-    # flipper engine wraps the result in its ActorLimit adapter and the
-    # per-request Memoizable. FailClosedAdapter is outermost so a failure
-    # anywhere below it, memcached included, reads as "all flags off". The
-    # Instrumented layers are what FeatureFlagging::Telemetry counts.
+    # Stack: fail_closed → instrumented → [cache →] instrumented → base; failures = all-flags-off.
     def build_adapter( base: Flipper::Adapters::ActiveRecord.new, cache: shared_cache, ttl: CACHE_TTL )
       adapter = Flipper::Adapters::Instrumented.new( base, instrumenter: ActiveSupport::Notifications )
       if cache
-        # Production sets no Rails.cache namespace; the prefix keeps environments
-        # that share a memcached from reading each other's gates.
+        # Prefix keeps environments sharing memcached separate.
         adapter = Flipper::Adapters::ActiveSupportCacheStore.new( adapter, cache, ttl, prefix: "#{Rails.env}:" )
         adapter = Flipper::Adapters::Instrumented.new( adapter, instrumenter: ActiveSupport::Notifications )
       end
-      # Fully qualified: inside `class << self` a bare constant would be looked up
-      # on the singleton class, which the classic autoloader cannot resolve.
+      # Fully qualified: bare constant in `class << self` not resolved by classic autoloader.
       FeatureFlagging::FailClosedAdapter.new( adapter )
     end
 
-    # Only a shared network cache earns its round trip. The file store staging
-    # runs with ( RAILS_ENV=development ) and the test memory store are
-    # per-process, so a toggle on one server could never invalidate another's
-    # copy, and neither is faster than one indexed read of a tiny table.
+    # Only memcached is shared; file/memory stores per-process, not faster than one indexed read.
     def shared_cache( store = Rails.cache )
       store if store.is_a?( ActiveSupport::Cache::MemCacheStore )
     end
@@ -96,27 +61,13 @@ module FeatureFlagging
       evaluate( key, resolve_actor( actor ) )
     end
 
-    # Resolved flag map for the inline JS payload and, later, for
-    # GET /v2/feature_flags. Values are always booleans.
+    # Boolean map for inline JS payload and GET /v2/feature_flags endpoint.
     def flags_for( actor = nil )
       resolved = resolve_actor( actor )
       CLIENT_FLAGS.index_with {| key | evaluate( key, resolved ) }
     end
 
-    # The variant this actor is assigned in an experiment, or nil if they are
-    # not eligible. Hashing the experiment name in with the actor id means
-    # assignment is independent between experiments -- unlike
-    # Announcement::TARGET_GROUPS, where the same users land in the same
-    # bucket in every test.
-    #
-    # MD5 rather than the CRC32 flipper uses internally, and not for security.
-    # CRC32 is linear, so two keys differing only by a fixed substring produce
-    # outputs differing by a constant XOR. Taking that modulo a small variant
-    # count exposes the low bits directly, which made two 2-variant experiments
-    # perfectly anti-correlated: every actor in "control" for one was in
-    # "treatment" for the other. ( Flipper's own percentage gate is not affected
-    # in practice -- its threshold test is modulo 100_000, which masks the
-    # structure; measured cross-flag overlap is within ~10% of independent. )
+    # MD5 bucketing ensures independent experiment assignments; CRC32 linearity fails.
     def variant( experiment, actor = nil )
       experiment = experiment.to_sym
       variants = KNOWN_EXPERIMENTS[experiment]
@@ -141,8 +92,7 @@ module FeatureFlagging
 
     private
 
-    # Deterministic 32-bit bucket for a key. Stable across processes, releases,
-    # and Ruby versions, so a variant can be re-derived later for analysis.
+    # MD5 bucket stable across releases for analysis.
     def bucket( key )
       Digest::MD5.hexdigest( key )[0, 8].to_i( 16 )
     end
@@ -158,20 +108,7 @@ module FeatureFlagging
       false
     end
 
-    # With no actor, actor and percentage-of-actors gates evaluate false and
-    # only a boolean ( fully enabled ) gate applies, so anonymous visitors see
-    # flags off. Giving logged-out traffic a stable actor is a follow-up.
-    #
-    # The anonymous? check is load-bearing, not defensive. When a client sends
-    # an application-level JWT -- how a logged-out mobile user reaches Rails --
-    # Devise::Strategies::ApplicationJsonWebToken sets current_user to
-    # User.new( id: -1, login: "anonymous" ). That object is truthy, is not
-    # blank?, and its flipper_id is "User;-1", so without this guard every
-    # logged-out mobile user would be the same actor: a percentage_of_actors
-    # gate at 50% would resolve to 0% or 100% of that whole population
-    # depending on where one fixed string happens to hash, while looking
-    # perfectly healthy in the admin UI. Duck-typed to keep this file free of
-    # app constants under the classic autoloader.
+    # Logged-out mobile shares User(id: -1); guard prevents percentage gates misfire.
     def resolve_actor( actor )
       return nil if actor.blank?
       return nil if actor.respond_to?( :anonymous? ) && actor.anonymous?

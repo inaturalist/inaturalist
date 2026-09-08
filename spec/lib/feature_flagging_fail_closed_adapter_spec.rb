@@ -52,8 +52,7 @@ describe FeatureFlagging::FailClosedAdapter do
     let( :adapter ) { described_class.new( raising_adapter ) }
     let( :flipper ) { Flipper.new( adapter ) }
 
-    # An admin toggling a flag while storage is broken should see the error,
-    # not a success page for a change that never happened.
+    # Writes re-raise so admins see failures.
     it "re-raises from enable, disable, add and remove" do
       expect { flipper.enable( flag ) }.to raise_error ActiveRecord::StatementInvalid
       expect { flipper.disable( flag ) }.to raise_error ActiveRecord::StatementInvalid

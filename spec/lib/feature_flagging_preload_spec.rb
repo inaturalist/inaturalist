@@ -2,9 +2,7 @@
 
 require "spec_helper"
 
-# Preloading runs in Flipper::Middleware::Memoizer, before any controller code,
-# so it is the one flag read that FeatureFlagging.evaluate's rescue cannot
-# protect. These specs pin what makes it safe to leave on.
+# Preload runs before controller code, outside evaluate's rescue; these specs pin safety.
 describe "flipper preloading", type: :request do
   include Devise::Test::IntegrationHelpers
 
@@ -53,8 +51,7 @@ describe "flipper preloading", type: :request do
       expect( base.count( :get ) ).to eq 0
     end
 
-    # Preload only covers rows in flipper_features, so a declared flag nobody
-    # has registered still costs a read of its own. Keep KNOWN_FLAGS registered.
+    # Preload covers only registered flags; unregistered flags cost extra reads.
     it "reads an unregistered flag once per request" do
       ( FeatureFlagging::KNOWN_FLAGS.keys - [flag] ).each {| key | Flipper.add( key ) }
       get "/observations"

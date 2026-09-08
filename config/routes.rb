@@ -607,11 +607,7 @@ Rails.application.routes.draw do
 
   resources :flags
 
-  # WEB-1074. Flipper ships its own Rack app, so ApplicationController's
-  # admin_required filter does not apply to it and this constraint is the auth.
-  # Non-admins get a plain 404 rather than a redirect that advertises the path.
-  # Mounting the Flipper module rather than a captured instance so specs can
-  # swap Flipper.instance per example.
+  # Route constraint required; ApplicationController's admin_required filter doesn't apply to Flipper's Rack app.
   mount Flipper::UI.app( Flipper ) => "/admin/feature_flags",
     as: "admin_feature_flags",
     constraints: ->( request ) { request.env["warden"]&.user&.is_admin? }
@@ -671,10 +667,7 @@ Rails.application.routes.draw do
   get "build_info", to: "build_info#index"
   get "admin/app_build_info", to: "build_info#app_build_info", as: "admin_app_build_info"
 
-  # WEB-1074. Resolved feature flags for the caller, for non-web clients. Web
-  # pages get the same map inlined in the CONFIG payload instead. Distinct from
-  # the Flipper::UI mount at /admin/feature_flags, which is where flags are
-  # managed.
+  # For non-web clients; web pages get flags inlined in CONFIG payload.
   get "feature_flags", to: "feature_flags#index"
 
   resource :stats do

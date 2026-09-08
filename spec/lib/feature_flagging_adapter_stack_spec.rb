@@ -9,8 +9,7 @@ describe "FeatureFlagging.build_adapter" do
   let( :base ) { counting_adapter }
   let( :cache ) { ActiveSupport::Cache::MemoryStore.new }
 
-  # Non-memoizing, so every read reaches the stack the way one read per request
-  # would in production.
+  # Non-memoizing so every read reaches the full stack.
   def flipper_over( adapter )
     Flipper.new( adapter, memoize: false )
   end
@@ -59,8 +58,7 @@ describe "FeatureFlagging.build_adapter" do
   it "serves reads from the cache until the entry expires" do
     flipper = flipper_over( FeatureFlagging.build_adapter( base: base, cache: cache ) )
     expect( flipper.enabled?( flag ) ).to be false
-    # A write that bypasses the stack ( raw SQL in production ) stays invisible
-    # until the cached entry expires
+    # Raw SQL bypass stays invisible until cache expires.
     Flipper.new( base ).enable( flag )
     expect( flipper.enabled?( flag ) ).to be false
     cache.clear
@@ -102,7 +100,7 @@ end
 
 describe "FeatureFlagging.shared_cache" do
   it "returns a memcached store" do
-    # Dalli connects lazily, so no memcached is needed to construct this
+    # Lazy connection; no memcached needed to construct.
     store = ActiveSupport::Cache::MemCacheStore.new( "localhost" )
     expect( FeatureFlagging.shared_cache( store ) ).to eq store
   end

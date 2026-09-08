@@ -2,10 +2,6 @@
 
 require "spec_helper"
 
-# The WEB-1074 demo elements: a badge in the site footer and a banner on
-# observation pages, both driven by the single demo_banner flag so one toggle is
-# visible through the server-rendered path and the client-side path at once.
-# Delete this file with the demo.
 describe "the feature flag demo elements", type: :request do
   include Devise::Test::IntegrationHelpers
 
