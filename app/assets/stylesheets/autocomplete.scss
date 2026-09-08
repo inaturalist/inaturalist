@@ -268,6 +268,14 @@ $label-start: 7px;
 .ac-chooser {
   position: relative;
 }
+// iOS Safari zooms the viewport when a field with a font smaller than 16px
+// takes focus, which shifts the JS-positioned autocomplete menu off screen
+@media ( hover: none ) and ( pointer: coarse ) {
+  .ac-chooser input.form-control {
+    font-size: 16px;
+    height: auto;
+  }
+}
 .ac-chooser .searchclear.glyphicon {
   position: absolute;
   right: 10px;

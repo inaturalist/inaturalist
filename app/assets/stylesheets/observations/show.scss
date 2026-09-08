@@ -581,6 +581,17 @@ a.UserImage,
       li:first-child {
         margin-left: 15px;
       }
+      .tab-label-short {
+        display: none;
+      }
+      @media ( max-width: $xs-max ) {
+        .tab-label-full {
+          display: none;
+        }
+        .tab-label-short {
+          display: inline;
+        }
+      }
       a {
         color: #666;
         outline: none;
