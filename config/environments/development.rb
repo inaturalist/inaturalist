@@ -57,5 +57,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.hosts << "host.docker.internal"
+  # any mDNS hostname, e.g. a Mac reachable at <machine-name>.local on the LAN
+  config.hosts << ".local"
 end
 
