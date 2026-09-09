@@ -114,7 +114,7 @@ body.responsive {
 
   @media ( max-width: $sm-max ) {
     .ui-autocomplete {
-      max-width: calc( 100vw - 40px );
+      max-width: calc( 100vw - 50px );
     }
   }
 }
