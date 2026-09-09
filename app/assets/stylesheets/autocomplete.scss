@@ -71,16 +71,12 @@ body.responsive {
   // iOS Safari zooms the viewport when a field with a font smaller than 16px
   // takes focus, which shifts the JS-positioned autocomplete menu off screen
   @media ( hover: none ) and ( pointer: coarse ) {
-    // the height Bootstrap pins is sized for a smaller font
     .ac-chooser input.form-control {
       font-size: 16px;
       height: auto;
     }
   }
 
-  // A menu is only as wide as the input it hangs off, while its rows carry wide
-  // minimum widths, so the rows have to shrink and clip on a narrow screen or
-  // they overflow the menu and run off the side of the viewport
   @media ( max-width: $md-max ) {
     .ui-autocomplete {
       max-width: calc( 100vw - 70px );
