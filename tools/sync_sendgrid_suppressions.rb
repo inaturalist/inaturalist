@@ -53,7 +53,7 @@ begin
         end
         json = JSON.parse( response )
         records << json
-      rescue *errors
+      rescue *potential_errors
         success = false
       end
       i += 1
