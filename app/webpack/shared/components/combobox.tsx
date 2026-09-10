@@ -4,11 +4,13 @@ import React, {
   useCallback, useEffect, useMemo, useRef, useState
 } from "react";
 import {
+  DismissButton,
+  Overlay,
   useComboBox,
-  useInteractOutside,
   useListBox,
   useListBoxSection,
-  useOption
+  useOption,
+  usePopover
 } from "react-aria";
 import { Item, Section, useComboBoxState } from "react-stately";
 import type { AriaListBoxOptions } from "react-aria";
@@ -48,7 +50,6 @@ export interface ComboboxProps {
   placeholder?: string;
   minLength?: number;
   delay?: number;
-  keepMenuOnBlur?: boolean;
   className?: string;
   inputClassName?: string;
   inputName?: string;
@@ -123,6 +124,36 @@ const ListBox = ( {
   );
 };
 
+interface PopoverProps {
+  state: ComboBoxState<ComboboxOption>;
+  triggerRef: React.RefObject<HTMLElement>;
+  popoverRef: React.RefObject<HTMLDivElement>;
+  children: React.ReactNode;
+}
+
+const Popover = ( {
+  state, triggerRef, popoverRef, children
+}: PopoverProps ) => {
+  const { popoverProps } = usePopover( {
+    triggerRef,
+    popoverRef,
+    isNonModal: true,
+    placement: "bottom start",
+    offset: 4,
+    containerPadding: 0
+  }, state );
+  const style = { ...popoverProps.style, width: triggerRef.current?.offsetWidth };
+  return (
+    <Overlay>
+      <div {...popoverProps} ref={popoverRef} className={css.popup} style={style}>
+        <DismissButton onDismiss={state.close} />
+        { children }
+        <DismissButton onDismiss={state.close} />
+      </div>
+    </Overlay>
+  );
+};
+
 const Combobox = ( {
   label,
   options,
@@ -140,7 +171,6 @@ const Combobox = ( {
   placeholder,
   minLength = 1,
   delay = 250,
-  keepMenuOnBlur = false,
   className = "",
   inputClassName = "",
   inputName,
@@ -149,9 +179,9 @@ const Combobox = ( {
   const inputRef = useRef<HTMLInputElement>( null );
   const listBoxRef = useRef<HTMLUListElement>( null );
   const popoverRef = useRef<HTMLDivElement>( null );
-  const wrapperRef = useRef<HTMLDivElement>( null );
+  const fieldRef = useRef<HTMLDivElement>( null );
   const searchTimer = useRef<ReturnType<typeof setTimeout> | null>( null );
-  const suppressSearch = useRef( false );
+  const stateRef = useRef<ComboBoxState<ComboboxOption> | null>( null );
   const [selectedKey, setSelectedKey] = useState<React.Key | null>( null );
 
   const optionsByKey = useMemo(
@@ -191,11 +221,11 @@ const Combobox = ( {
     const option = key === null ? undefined : optionsByKey.get( String( key ) );
     if ( !option ) { return; }
     onInputChange( option.textValue );
-    if ( !option.keepMenuOpenOnSelect ) {
-      suppressSearch.current = true;
-      inputRef.current?.blur( );
-    }
     onSelect( option );
+    // Selection closes the menu; reopen it for options that kick off a follow-up search.
+    if ( option.keepMenuOpenOnSelect ) {
+      requestAnimationFrame( ( ) => stateRef.current?.open( ) );
+    }
   };
 
   const sharedProps = {
@@ -207,11 +237,11 @@ const Combobox = ( {
     onChange: handleSelectionChange,
     allowsEmptyCollection: true,
     allowsCustomValue: true,
-    shouldCloseOnBlur: !keepMenuOnBlur,
     menuTrigger: "focus" as const
   };
 
   const state = useComboBoxState<ComboboxOption>( { ...sharedProps, children } );
+  stateRef.current = state;
   const { inputProps, listBoxProps, labelProps } = useComboBox<ComboboxOption>( {
     ...sharedProps,
     name: inputName,
@@ -220,33 +250,24 @@ const Combobox = ( {
     popoverRef
   }, state );
 
-  useInteractOutside( {
-    ref: wrapperRef,
-    onInteractOutside: ( ) => {
-      state.close( );
-      state.setFocused( false );
-    }
-  } );
-
   const hasPopupContent = options.length > 0 || !!header || !!message || !!footer;
 
   return (
-    <div className={`${css.combobox} ${className}`} ref={wrapperRef}>
+    <div className={`${css.combobox} ${className}`}>
       <label {...labelProps} className={css.srOnly}>{ label }</label>
-      <div className={css.field}>
+      <div className={css.field} ref={fieldRef}>
         { startAddon && <div className={css.addon}>{ startAddon }</div> }
         <input
           {...inputProps}
           ref={inputRef}
           className={`${css.input} ${inputClassName}`}
           onChange={event => {
-            suppressSearch.current = false;
             search( event.target.value, false );
             inputProps.onChange?.( event );
           }}
           onFocus={event => {
             inputProps.onFocus?.( event );
-            if ( !suppressSearch.current ) { search( inputValue, true ); }
+            search( inputValue, true );
           }}
           onKeyDown={event => {
             inputProps.onKeyDown?.( event );
@@ -259,7 +280,6 @@ const Combobox = ( {
             className={css.clear}
             aria-label={clearLabel || label}
             onClick={( ) => {
-              suppressSearch.current = false;
               setSelectedKey( null );
               state.close( );
               onClear( );
@@ -270,7 +290,7 @@ const Combobox = ( {
         ) }
       </div>
       { state.isOpen && hasPopupContent && (
-        <div className={css.popup} ref={popoverRef}>
+        <Popover state={state} triggerRef={fieldRef} popoverRef={popoverRef}>
           { header && <div className={css.message}>{ header }</div> }
           <ListBox
             listBoxProps={listBoxProps}
@@ -280,7 +300,7 @@ const Combobox = ( {
           />
           { message && <div className={css.message}>{ message }</div> }
           { footer && <div className={css.footer}>{ footer }</div> }
-        </div>
+        </Popover>
       ) }
     </div>
   );

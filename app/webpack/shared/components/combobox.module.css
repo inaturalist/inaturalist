@@ -51,13 +51,8 @@
 }
 
 .popup {
-  position: absolute;
-  inset-inline-start: 0;
-  top: 100%;
   z-index: 1000;
-  min-width: 100%;
   max-width: 500px;
-  max-height: 60vh;
   overflow-y: auto;
   background: #fff;
   border: 1px solid #ddd;

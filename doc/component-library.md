@@ -43,15 +43,18 @@ options supplied by the caller, who owns fetching.
 - `options` are `{ key, textValue, content }`; `content` is arbitrary JSX. `groups` render as
   listbox sections whose titles are headings — visible, but not options, so they are skipped by
   the arrow keys and excluded from the announced result count.
-- `keepMenuOnBlur` leaves the menu up when the input loses focus, so a mobile keyboard dismissal
-  does not take the results with it. Selecting an option or interacting outside the field still
-  closes it.
-- After a selection the field will not search again until the user types, so a filled-in name is
-  not immediately searched back at them.
+- The listbox lives in a `usePopover` overlay (`Overlay` + `DismissButton`, non-modal), so
+  positioning, outside-press dismissal, and keeping DOM focus on the input while the listbox is
+  scrolled/touched are react-aria's job — not ours. This is what fixes the mobile bug where
+  scrolling the suggestions blurred the input and closed the list (WEB-1262).
 - `header`, `message` and `footer` render outside the listbox — use them for loading and
   empty states and for controls like a "show more" toggle, which do not belong inside a listbox.
-- Options must not contain focusable elements (WCAG: no nested interactive controls).
+- `keepMenuOpenOnSelect` on an option keeps the menu up after it is chosen (react-aria otherwise
+  closes on selection) — for rows that trigger a follow-up search rather than pick a value.
+- Options must not contain focusable elements (WCAG: no nested interactive controls). A per-row
+  link therefore has no home inside the listbox; put such affordances on the field instead.
 
 `shared/components/taxon_combobox.tsx` builds the taxon field on it: computer-vision suggestions
-for an empty query, taxon autocomplete for a typed one, an external-name-provider search, a
-thumbnail of the selection, and a hidden `taxon_id` input for non-React forms.
+for an empty query, taxon autocomplete for a typed one, an external-name-provider search, and a
+hidden `taxon_id` input for non-React forms. The selection's thumbnail doubles as the link to its
+taxon page — the per-result "view" link relocated out of the listbox to keep the options clean.

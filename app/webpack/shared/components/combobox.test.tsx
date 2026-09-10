@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import {
+  fireEvent, render, screen, waitFor
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import Combobox, { ComboboxGroup, ComboboxOption } from "./combobox";
@@ -28,7 +30,6 @@ interface HarnessProps {
   groups?: ComboboxGroup[];
   onSearch?: ( query: string ) => void;
   onSelect?: ( option: ComboboxOption ) => void;
-  keepMenuOnBlur?: boolean;
   minLength?: number;
   message?: React.ReactNode;
 }
@@ -38,7 +39,6 @@ const Harness = ( {
   groups,
   onSearch = ( ) => undefined,
   onSelect = ( ) => undefined,
-  keepMenuOnBlur = false,
   minLength = 1,
   message
 }: HarnessProps ) => {
@@ -52,7 +52,6 @@ const Harness = ( {
       onInputChange={setInputValue}
       onSearch={onSearch}
       onSelect={onSelect}
-      keepMenuOnBlur={keepMenuOnBlur}
       minLength={minLength}
       message={message}
       delay={0}
@@ -107,32 +106,24 @@ describe( "Combobox", ( ) => {
     expect( screen.queryByRole( "listbox" ) ).not.toBeInTheDocument( );
   } );
 
-  it( "does not re-search after a selection until the user types again", async ( ) => {
-    const onSearch = jest.fn( );
-    render( <Harness onSearch={onSearch} minLength={0} /> );
+  // WEB-1262: on mobile the list vanished because touching/scrolling it blurred the input.
+  // react-aria keeps virtual focus on the input, so interacting with the listbox must not close it.
+  it( "keeps the menu open and the input focused when interacting with the listbox", async ( ) => {
+    render( <Harness minLength={0} /> );
     const input = screen.getByRole( "combobox" );
     await userEvent.click( input );
-    await userEvent.click( screen.getByText( "Vulpes lagopus" ) );
-    onSearch.mockClear( );
-    await userEvent.click( input );
-    expect( onSearch ).not.toHaveBeenCalled( );
-    await userEvent.type( input, "a" );
-    await waitFor( ( ) => expect( onSearch ).toHaveBeenCalled( ) );
-  } );
-
-  it( "keeps the menu open on blur when keepMenuOnBlur is set", async ( ) => {
-    render( <Harness keepMenuOnBlur /> );
-    const input = screen.getByRole( "combobox" );
-    await userEvent.click( input );
-    expect( screen.getByRole( "listbox" ) ).toBeInTheDocument( );
-    input.blur( );
+    const listbox = screen.getByRole( "listbox" );
+    expect( input ).toHaveFocus( );
+    fireEvent.mouseDown( screen.getAllByRole( "option" )[0] );
+    fireEvent.scroll( listbox );
+    expect( input ).toHaveFocus( );
     expect( screen.getByRole( "listbox" ) ).toBeInTheDocument( );
   } );
 
   it( "closes the menu on an interaction outside the field", async ( ) => {
     render(
       <div>
-        <Harness keepMenuOnBlur />
+        <Harness />
         <button type="button">elsewhere</button>
       </div>
     );

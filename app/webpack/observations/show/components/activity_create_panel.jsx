@@ -82,7 +82,6 @@ class ActivityCreatePanel extends React.Component {
           config={config}
           perPage={6}
           searchExternal
-          keepMenuOnBlur
           visionParams={visionParams}
           onSelect={taxon => { this.selectedTaxon = taxon; }}
           onKeyDown={onEnter}

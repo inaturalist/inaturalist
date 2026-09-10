@@ -51,7 +51,6 @@ const setup = ( props: Partial<React.ComponentProps<typeof TaxonCombobox>> = { }
     onSelect={props.onSelect || ( ( ) => undefined )}
     visionParams={{ observationID: 7 }}
     searchExternal
-    keepMenuOnBlur
     {...props}
   />
 );
@@ -84,13 +83,12 @@ describe( "TaxonCombobox", ( ) => {
     expect( screen.getByRole( "combobox" ) ).toHaveValue( "Vulpes lagopus" );
   } );
 
-  it( "keeps suggestions up when the input loses focus", async ( ) => {
+  it( "links the selected taxon chip to its taxon page", async ( ) => {
     setup( );
-    const input = screen.getByRole( "combobox" );
-    await userEvent.click( input );
-    await screen.findAllByRole( "option" );
-    input.blur( );
-    expect( screen.getByRole( "listbox" ) ).toBeInTheDocument( );
+    await userEvent.type( screen.getByRole( "combobox" ), "vulpes" );
+    await waitFor( ( ) => expect( screen.getAllByRole( "option" ) ).toHaveLength( 3 ) );
+    await userEvent.click( screen.getByText( "Vulpes lagopus" ) );
+    expect( screen.getByRole( "link", { name: "view" } ) ).toHaveAttribute( "href", "/taxa/43" );
   } );
 
   it( "closes the suggestions once a taxon is chosen", async ( ) => {
@@ -117,6 +115,14 @@ describe( "TaxonCombobox", ( ) => {
     const { container } = setup( );
     await userEvent.click( screen.getByRole( "combobox" ) );
     await screen.findAllByRole( "option" );
+    expect( await axe( container ) ).toHaveNoViolations( );
+  } );
+
+  it( "has no axe violations after a taxon is chosen (chip link is outside the listbox)", async ( ) => {
+    const { container } = setup( );
+    await userEvent.type( screen.getByRole( "combobox" ), "vulpes" );
+    await waitFor( ( ) => expect( screen.getAllByRole( "option" ) ).toHaveLength( 3 ) );
+    await userEvent.click( screen.getByText( "Vulpes lagopus" ) );
     expect( await axe( container ) ).toHaveNoViolations( );
   } );
 } );

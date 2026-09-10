@@ -54,7 +54,6 @@ export interface TaxonComboboxProps {
   perPage?: number;
   searchExternal?: boolean;
   placeholder?: string;
-  keepMenuOnBlur?: boolean;
   onKeyDown?: ( event: React.KeyboardEvent<HTMLInputElement> ) => void;
 }
 
@@ -147,7 +146,6 @@ const TaxonCombobox = ( {
   perPage = 10,
   searchExternal = false,
   placeholder,
-  keepMenuOnBlur = false,
   onKeyDown
 }: TaxonComboboxProps ) => {
   const [inputValue, setInputValue] = useState( "" );
@@ -351,18 +349,29 @@ const TaxonCombobox = ( {
   };
 
   const selectedPhoto = selected && photoOf( selected );
-  const thumb = (
-    <div
-      className={css.thumb}
-      style={selectedPhoto?.square_url
-        ? { backgroundImage: `url('${selectedPhoto.square_url}')` }
-        : undefined}
-    >
-      { !selectedPhoto?.square_url && ( selected
-        ? iconicIcon( selected )
-        : <i className="glyphicon glyphicon-search" /> ) }
-    </div>
-  );
+  const thumbStyle = selectedPhoto?.square_url
+    ? { backgroundImage: `url('${selectedPhoto.square_url}')` }
+    : undefined;
+  const thumbInner = !selectedPhoto?.square_url && ( selected
+    ? iconicIcon( selected )
+    : <i className="glyphicon glyphicon-search" /> );
+  // The per-result view link would nest a control in a listbox option (a11y violation), so the
+  // view affordance lives on the selected chip instead.
+  const thumb = selected
+    ? (
+      <a
+        className={css.thumb}
+        style={thumbStyle}
+        href={`/taxa/${selected.id}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={I18n.t( "view" )}
+        title={I18n.t( "view" )}
+      >
+        { thumbInner }
+      </a>
+    )
+    : <div className={css.thumb} style={thumbStyle}>{ thumbInner }</div>;
 
   const footer = useMemo( ( ) => {
     if ( inputValue || counts.nearby === 0 || counts.nearby === counts.suggested ) { return null; }
@@ -391,7 +400,6 @@ const TaxonCombobox = ( {
         inputClassName={`form-control ${css.input}`}
         clearLabel={I18n.t( "clear" )}
         minLength={0}
-        keepMenuOnBlur={keepMenuOnBlur}
         options={options}
         groups={groups}
         header={header}
