@@ -161,20 +161,11 @@ class ActivityCreatePanel extends React.Component {
                 : null
             }
             config={config}
+            keepMenuOnBlur
             onKeyDown={e => {
               const key = e.keyCode || e.which;
-              if ( key !== 13 ) { return; }
-              const ac = $( ".id_tab input[name='taxon_name']" ).data( "uiAutocomplete" );
-              if ( ac?.selectedItem ) {
+              if ( key === 13 ) {
                 this.postIdentification( );
-                return;
-              }
-              // return key blurs the mobile keyboard; keep the suggestion list
-              // open and the term in place instead of clearing on blur
-              e.preventDefault( );
-              if ( ac ) {
-                ac.keepOpen = true;
-                setTimeout( ( ) => { ac.keepOpen = false; }, 300 );
               }
             }}
           />

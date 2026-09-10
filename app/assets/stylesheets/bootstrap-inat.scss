@@ -287,6 +287,11 @@ input[type="color"]:focus,
 .ac-select-thumb {
   line-height: 33px;
 }
+.ac-select-thumb.input-group-addon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .ui-autocomplete-input {
   flex: 2;
   min-width: 100px; // apparently required for IE
