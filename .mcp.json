@@ -6,6 +6,10 @@
       "headers": {
         "Authorization": "Bearer ${LINEAR_API_KEY}"
       }
+    },
+    "React Aria": {
+      "command": "npx",
+      "args": ["@react-aria/mcp@latest"]
     }
   }
 }

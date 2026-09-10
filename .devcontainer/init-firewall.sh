@@ -5,7 +5,8 @@ IFS=$'\n\t'       # Stricter word splitting
 # Egress allowlist for the Claude Code sandbox.
 #
 # Forked from anthropics/claude-code .devcontainer/init-firewall.sh with:
-#   - api.figma.com added to the allowed domain list
+#   - api.figma.com and the React Aria docs hosts added to the allowed domain
+#     list (the latter are fetched live by the @react-aria/mcp server)
 #   - an explicit host.docker.internal gateway allowance (so the container can
 #     reach the host-run Rails/API servers and backing services pg/redis/es/
 #     memcached). The upstream default-route /24 rule covers this on Linux, but
@@ -15,7 +16,7 @@ IFS=$'\n\t'       # Stricter word splitting
 # connections, the host network/gateway, GitHub's published ranges, and the
 # resolved IPs of the allowed domains. Everything else is REJECTed.
 #
-# NOTE: this allowlists by IP. CDN-backed hosts (figma/npm/anthropic/claude.ai) rotate
+# NOTE: this allowlists by IP. CDN-backed hosts (figma/npm/anthropic/claude.ai/adobe) rotate
 # IPs and publish no ranges, so they're resolved at start and can go stale —
 # rebuild/restart to re-resolve. See README.md "What this sandbox stops".
 
@@ -91,6 +92,8 @@ for domain in \
     "claude.ai" \
     "api.figma.com" \
     "mcp.linear.app" \
+    "react-aria.adobe.com" \
+    "react-spectrum.adobe.com" \
     "sentry.io" \
     "statsig.anthropic.com" \
     "statsig.com" \
