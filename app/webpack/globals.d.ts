@@ -25,6 +25,7 @@ interface JQueryStubResult {
   carousel: ( command: string ) => void;
   tab: ( command: string ) => void;
   data: ( key: string ) => unknown;
+  prop: ( name: string, value?: unknown ) => unknown;
   get: ( index: number ) => Element | undefined;
   taxonMap: ( options?: unknown ) => void;
   animate: ( properties: Record<string, unknown>, duration?: number ) => JQueryStubResult;

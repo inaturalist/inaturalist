@@ -19,7 +19,7 @@ import { trustUser, untrustUser, setConfig } from "../../../shared/ducks/config"
 import { showModeratorActionForm } from "../../../shared/ducks/moderator_actions";
 import { updateEditorContent } from "../../shared/ducks/text_editors";
 import { performOrOpenConfirmationModal } from "../../../shared/ducks/user_confirmation";
-import { setNominateOnSubmit } from "../ducks/comment_id_panel";
+import { setNominateOnSubmit, setSuggestedTaxon } from "../ducks/comment_id_panel";
 
 function mapStateToProps( state ) {
   const observation = Object.assign( {}, state.observation, {
@@ -29,7 +29,8 @@ function mapStateToProps( state ) {
     observation,
     config: state.config,
     content: state.textEditor.activity,
-    nominate: state.commentIDPanel.nominate
+    nominate: state.commentIDPanel.nominate,
+    suggestedTaxon: state.commentIDPanel.suggestedTaxon
   };
 }
 
@@ -81,7 +82,8 @@ function mapDispatchToProps( dispatch ) {
     ),
     voteIdentification: ( id, vote ) => { dispatch( voteIdentification( id, vote ) ); },
     unvoteIdentification: id => { dispatch( unvoteIdentification( id ) ); },
-    setNominateOnSubmit: nominate => { dispatch( setNominateOnSubmit( nominate ) ); }
+    setNominateOnSubmit: nominate => { dispatch( setNominateOnSubmit( nominate ) ); },
+    setSuggestedTaxon: taxon => { dispatch( setSuggestedTaxon( taxon ) ); }
   };
 }
 

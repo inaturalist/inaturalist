@@ -64,15 +64,21 @@ class Activity extends React.Component {
       content,
       updateEditorContent,
       nominate,
-      setNominateOnSubmit
+      setNominateOnSubmit,
+      suggestedTaxon,
+      setSuggestedTaxon
     } = this.props;
     const input = $( ".id_tab input[name='taxon_name']" );
-    const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
+    const autocomplete = input.data( "uiAutocomplete" );
+    const selectedTaxon = suggestedTaxon || ( autocomplete && autocomplete.selectedItem );
     if ( selectedTaxon ) {
       addID( selectedTaxon, { body: content, nominate } );
-      input.trigger( "resetSelection" );
-      input.val( "" );
-      input.data( "uiAutocomplete" ).selectedItem = null;
+      if ( autocomplete ) {
+        input.trigger( "resetSelection" );
+        input.val( "" );
+        autocomplete.selectedItem = null;
+      }
+      if ( setSuggestedTaxon ) { setSuggestedTaxon( null ); }
 
       updateEditorContent( "activity", "" );
       setNominateOnSubmit( false );
@@ -220,7 +226,9 @@ Activity.propTypes = {
   showHidden: PropTypes.func,
   performOrOpenConfirmationModal: PropTypes.func,
   setNominateOnSubmit: PropTypes.func,
-  nominate: PropTypes.bool
+  nominate: PropTypes.bool,
+  suggestedTaxon: PropTypes.object,
+  setSuggestedTaxon: PropTypes.func
 };
 
 export default Activity;
