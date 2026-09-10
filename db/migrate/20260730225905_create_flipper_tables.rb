@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Generator's `length: { value: 255 }` index option removed (MySQL-specific; app is Postgres only).
 class CreateFlipperTables < ActiveRecord::Migration[6.1]
   def up
     create_table :flipper_features do | t |
