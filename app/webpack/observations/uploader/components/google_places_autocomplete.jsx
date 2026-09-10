@@ -10,6 +10,7 @@ class GooglePlacesAutocomplete extends React.Component {
   }
 
   componentDidMount( ) {
+    if ( typeof ( google ) === "undefined" ) return;
     this.placesAutocomplete = new google.maps.places.Autocomplete(
       this.input.current,
       {
