@@ -1,0 +1,128 @@
+.combobox {
+  position: relative;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.field {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.addon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+}
+
+.clear {
+  position: absolute;
+  inset-inline-end: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  padding: 0 5px;
+  border: 0;
+  background: #fff;
+  color: #ddd;
+  line-height: 1;
+}
+
+.clear:hover,
+.clear:focus {
+  color: #666;
+}
+
+.popup {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 100%;
+  z-index: 1000;
+  min-width: 100%;
+  max-width: 500px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+@media (max-width: 991px) {
+  .popup {
+    max-width: calc(100vw - 70px);
+  }
+}
+
+@media (max-width: 767px) {
+  .popup {
+    max-width: calc(100vw - 30px);
+  }
+}
+
+.list,
+.sectionList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.option {
+  cursor: pointer;
+  outline: none;
+}
+
+.option + .option,
+.section + .option,
+.option + .section {
+  border-top: 1px solid #d8d8d8;
+}
+
+.optionFocused {
+  background: #f2f2f2;
+}
+
+.category {
+  padding: 5px 10px;
+  color: #666;
+  background: #eee;
+  cursor: default;
+}
+
+.category::after {
+  content: ":";
+}
+
+.message {
+  padding: 5px 10px;
+  color: #666;
+  background: #eee;
+}
+
+.footer {
+  border-top: 1px solid #ddd;
+}
+
+.footer button {
+  width: 100%;
+  padding: 5px 10px;
+  border: 0;
+  background: #fff;
+  text-align: center;
+}

@@ -7,12 +7,15 @@ import {
   Tabs
 } from "react-bootstrap";
 import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
+import TaxonCombobox from "../../../shared/components/taxon_combobox";
 import TextEditor from "../../../shared/components/text_editor";
+import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 
 class ActivityCreatePanel extends React.Component {
   constructor( ) {
     super( );
     this.setUpMentionsAutocomplete = this.setUpMentionsAutocomplete.bind( this );
+    this.selectedTaxon = null;
   }
 
   componentDidMount( ) {
@@ -46,16 +49,57 @@ class ActivityCreatePanel extends React.Component {
       setNominateOnSubmit
     } = this.props;
     const input = $( ".id_tab input[name='taxon_name']" );
-    const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
+    const autocomplete = input.data( "uiAutocomplete" );
+    const selectedTaxon = this.selectedTaxon || ( autocomplete && autocomplete.selectedItem );
     if ( selectedTaxon ) {
       addID( selectedTaxon, { body: content } );
-      input.trigger( "resetSelection" );
-      input.val( "" );
-      input.data( "uiAutocomplete" ).selectedItem = null;
+      this.selectedTaxon = null;
+      if ( autocomplete ) {
+        input.trigger( "resetSelection" );
+        input.val( "" );
+        autocomplete.selectedItem = null;
+      }
 
       updateEditorContent( "activity", "" );
       setNominateOnSubmit( false );
     }
+  }
+
+  responsive( ) {
+    const { config } = this.props;
+    return RESPONSIVE_TEST_GROUPS.some( group => config?.currentUser?.isInTestGroup( group ) );
+  }
+
+  taxonField( visionParams ) {
+    const { config, observation } = this.props;
+    const onEnter = e => {
+      if ( ( e.keyCode || e.which ) === 13 ) { this.postIdentification( ); }
+    };
+    if ( this.responsive( ) ) {
+      return (
+        <TaxonCombobox
+          key={`taxon-combobox-${observation.id}-${_.size( observation.identifications )}`}
+          config={config}
+          perPage={6}
+          searchExternal
+          keepMenuOnBlur
+          visionParams={visionParams}
+          onSelect={taxon => { this.selectedTaxon = taxon; }}
+          onKeyDown={onEnter}
+        />
+      );
+    }
+    return (
+      <TaxonAutocomplete
+        bootstrap
+        searchExternal
+        perPage={6}
+        resetOnChange={false}
+        visionParams={visionParams}
+        config={config}
+        onKeyDown={onEnter}
+      />
+    );
   }
 
   commentContent( ) {
@@ -150,24 +194,11 @@ class ActivityCreatePanel extends React.Component {
       } ) );
       return (
         <div>
-          <TaxonAutocomplete
-            bootstrap
-            searchExternal
-            perPage={6}
-            resetOnChange={false}
-            visionParams={
-              visionEligiblePhotos.length > 0
-                ? { observationID: observation.id, observationUUID: observation.uuid }
-                : null
-            }
-            config={config}
-            onKeyDown={e => {
-              const key = e.keyCode || e.which;
-              if ( key === 13 ) {
-                this.postIdentification( );
-              }
-            }}
-          />
+          { this.taxonField(
+            visionEligiblePhotos.length > 0
+              ? { observationID: observation.id, observationUUID: observation.uuid }
+              : null
+          ) }
           <div className="form-group">
             <TextEditor
               key={`comment-editor-${observation.id}-${_.size( observation.identifications )}`}

@@ -3,3 +3,4 @@
 // *.test.tsx files. The repo references ambient @types the same way in globals.d.ts.
 /// <reference types="jest" />
 /// <reference types="@testing-library/jest-dom" />
+/// <reference types="jest-axe" />

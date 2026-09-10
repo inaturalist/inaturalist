@@ -72,3 +72,36 @@ declare module "react-bootstrap";
 declare module "react-redux";
 // no types available on npm
 declare module "react-lazy-load";
+
+// github-hosted, ships no types
+declare module "inaturalistjs";
+
+// A taxon as returned by the taxa autocomplete/vision endpoints and wrapped by iNatModels.Taxon
+interface INatTaxonRecord {
+  id: number;
+  name?: string;
+  rank?: string;
+  rank_level?: number;
+  preferred_common_name?: string;
+  preferred_common_names?: { name: string }[];
+  iconic_taxon_name?: string;
+  matched_term?: string;
+  default_photo?: { id?: number; url?: string; square_url?: string };
+  representative_photo?: { id?: number; url?: string; square_url?: string };
+  iconicTaxonName?: ( ) => string;
+  preferredCommonName?: ( options?: object ) => string;
+}
+
+// Rails-injected inaturalistjs model classes
+declare const iNatModels: {
+  Taxon: {
+    new ( attrs: object ): INatTaxonRecord;
+    titleCaseName( name?: string | null ): string;
+  };
+};
+
+// Rails-injected in the layout from the viewer's place preference
+declare const PREFERRED_PLACE: { id: number } | undefined;
+
+// Rails-injected site configuration
+declare const CONFIG: { content_freeze_enabled?: boolean } | undefined;

@@ -1,0 +1,112 @@
+.thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  padding: 0 6px;
+  border: 1px solid #ccc;
+  border-inline-end: 0;
+  border-radius: 4px 0 0 4px;
+  background-color: #eee;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: #555;
+  font-size: 14px;
+}
+
+[dir="rtl"] .thumb {
+  border-radius: 0 4px 4px 0;
+}
+
+.thumb i {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.input {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+
+.result {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  text-align: start;
+}
+
+.resultThumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 46px;
+}
+
+.resultThumb img {
+  width: 40px;
+  height: 40px;
+  margin: 3px;
+  display: block;
+}
+
+.resultThumb i {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  padding: 3px 0 3px 7px;
+  line-height: 18px;
+}
+
+.label > div {
+  min-width: 0;
+  width: 100%;
+}
+
+.title,
+.subtitle {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title {
+  font-size: 1.1em;
+}
+
+.subtitle {
+  font-size: 0.9em;
+  color: #727272;
+  line-height: 14px;
+  margin-top: 1px;
+}
+
+.visionSubtitle {
+  display: block;
+  font-size: 0.9em;
+  line-height: 14px;
+  margin-top: 1px;
+  color: #74ac00;
+}
+
+.vision .resultThumb {
+  width: 55px;
+}
+
+.vision .resultThumb img {
+  width: 50px;
+  height: 50px;
+}
+
+.warning {
+  color: #a94442;
+}

@@ -1,4 +1,7 @@
 import "@testing-library/jest-dom";
+import { toHaveNoViolations } from "jest-axe";
+
+expect.extend( toHaveNoViolations );
 
 // I18n is a Rails-injected global; return the raw key so assertions match the
 // key string without translation coupling.
@@ -19,6 +22,14 @@ import "@testing-library/jest-dom";
     cc_by_nc_sa: {},
     cc_by_nc_nd: {}
   }
+};
+
+// iNatModels is a Rails-injected global holding the inaturalistjs model classes.
+function TaxonModel( this: Record<string, unknown>, attrs: Record<string, unknown> ) {
+  return { iconicTaxonName: ( ) => "Animalia", ...attrs };
+}
+( global as unknown as Record<string, unknown> ).iNatModels = {
+  Taxon: Object.assign( TaxonModel, { titleCaseName: ( name?: string ) => name } )
 };
 
 // jsdom does not implement ResizeObserver (carousel.tsx instantiates one on mount).

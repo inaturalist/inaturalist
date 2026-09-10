@@ -77,10 +77,14 @@ export interface CurrentUser {
   login?: string;
   roles?: string[];
   content_creation_restrictions?: boolean;
+  prefers_scientific_name_first?: boolean;
+  prefers_not_nearby_suggestions?: boolean;
 }
 
 export interface Config {
   currentUser?: CurrentUser;
+  testingApiV2?: boolean;
+  testFeature?: string;
 }
 
 export interface Place {
