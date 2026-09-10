@@ -1607,6 +1607,12 @@ time {
       content: '';
       margin: 0;
     }
+    @media ( max-width: $sm-max ) {
+      .community-id-about-btn:before {
+        content: '';
+        margin: 0;
+      }
+    }
   }
   .opted_out {
     font-size: 14px;
