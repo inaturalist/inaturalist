@@ -9,6 +9,8 @@ describe "the feature flag demo elements", type: :request do
   # Renders the bootstrap layout, which renders shared/_footer
   let( :path ) { "/observations" }
 
+  before { Flipper.add( :client_demo_banner ) }
+
   describe "the footer badge" do
     it "renders nothing while the flag is off" do
       get path
@@ -26,7 +28,7 @@ describe "the feature flag demo elements", type: :request do
     end
 
     it "emits exactly one extra link and separator when on" do
-      Flipper.enable( :demo_banner )
+      Flipper.enable( :client_demo_banner )
       get path
       expect( response.body.scan( "footer-link-separator" ).size ).to eq 3
       expect( response.body.scan( "label-info" ).size ).to eq 1
@@ -34,27 +36,27 @@ describe "the feature flag demo elements", type: :request do
 
     it "appears for an actor the flag is enabled for" do
       user = User.make!
-      Flipper.enable_actor( :demo_banner, user )
+      Flipper.enable_actor( :client_demo_banner, user )
       sign_in user
       get path
       expect( response.body ).to include badge_text
     end
 
     it "stays hidden from other logged-in users" do
-      Flipper.enable_actor( :demo_banner, User.make! )
+      Flipper.enable_actor( :client_demo_banner, User.make! )
       sign_in User.make!
       get path
       expect( response.body ).not_to include badge_text
     end
 
     it "stays hidden from anonymous visitors while gated to an actor" do
-      Flipper.enable_actor( :demo_banner, User.make! )
+      Flipper.enable_actor( :client_demo_banner, User.make! )
       get path
       expect( response.body ).not_to include badge_text
     end
 
     it "appears for everyone once fully enabled" do
-      Flipper.enable( :demo_banner )
+      Flipper.enable( :client_demo_banner )
       get path
       expect( response.body ).to include badge_text
     end
@@ -67,15 +69,15 @@ describe "the feature flag demo elements", type: :request do
   describe "the flag map the React banner reads" do
     it "carries the demo flag to the browser" do
       get path
-      expect( response.body ).to include %("demo_banner":false)
+      expect( response.body ).to include %("client_demo_banner":false)
     end
 
     it "carries the resolved value per actor" do
       user = User.make!
-      Flipper.enable_actor( :demo_banner, user )
+      Flipper.enable_actor( :client_demo_banner, user )
       sign_in user
       get path
-      expect( response.body ).to include %("demo_banner":true)
+      expect( response.body ).to include %("client_demo_banner":true)
     end
   end
 end

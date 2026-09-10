@@ -34,8 +34,9 @@ module FeatureFlaggingHelpers
     Flipper::Adapters::OperationLogger.new( Flipper::Adapters::Memory.new )
   end
 
-  def register_known_flags( flipper = Flipper )
-    FeatureFlagging::KNOWN_FLAGS.each_key {| key | flipper.add( key ) }
+  # Shared fixture vocabulary: one flag of each kind. Nothing is declared in app code.
+  def add_test_flags( flipper = Flipper )
+    %i[client_smoke_test server_smoke_test exp_hello_world].each {| key | flipper.add( key ) }
   end
 end
 

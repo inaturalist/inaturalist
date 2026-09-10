@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe FeatureFlagging::Telemetry do
-  let( :flag ) { :flipper_smoke_test }
+  let( :flag ) { :client_smoke_test }
   let( :actor ) { User.make! }
 
   def install( base:, cache: nil, memoize: true )
@@ -26,6 +26,8 @@ describe FeatureFlagging::Telemetry do
   end
 
   describe "checks" do
+    before { Flipper.add( flag ) }
+
     it "counts enabled? checks" do
       3.times { FeatureFlagging.enabled?( flag, actor ) }
       expect( described_class.payload[:feature_flag_checks] ).to eq 3
@@ -39,10 +41,19 @@ describe FeatureFlagging::Telemetry do
   end
 
   describe "reads" do
+    # Unmemoized, each check is a feature-list read plus a gate read.
     it "counts reads that reach the database" do
       install( base: Flipper::Adapters::ActiveRecord.new, memoize: false )
+      Flipper.add( flag )
       2.times { FeatureFlagging.enabled?( flag, actor ) }
-      expect( described_class.payload ).to include( feature_flag_db_reads: 2, feature_flag_cache_reads: 0 )
+      expect( described_class.payload ).to include( feature_flag_db_reads: 4, feature_flag_cache_reads: 0 )
+    end
+
+    it "counts only the feature list read for a flag that does not exist" do
+      allow( Rails.logger ).to receive( :warn )
+      install( base: Flipper::Adapters::ActiveRecord.new, memoize: false )
+      FeatureFlagging.enabled?( :not_a_real_flag, actor )
+      expect( described_class.payload ).to include( feature_flag_checks: 0, feature_flag_db_reads: 1 )
     end
 
     it "counts cache reads separately from the database reads they miss to" do
@@ -51,8 +62,9 @@ describe FeatureFlagging::Telemetry do
         cache: ActiveSupport::Cache::MemoryStore.new,
         memoize: false
       )
+      Flipper.add( flag )
       2.times { FeatureFlagging.enabled?( flag, actor ) }
-      expect( described_class.payload ).to include( feature_flag_db_reads: 1, feature_flag_cache_reads: 2 )
+      expect( described_class.payload ).to include( feature_flag_db_reads: 2, feature_flag_cache_reads: 4 )
     end
 
     it "does not count writes" do
@@ -63,6 +75,7 @@ describe FeatureFlagging::Telemetry do
 
     it "records the time spent in storage in milliseconds" do
       install( base: Flipper::Adapters::ActiveRecord.new )
+      Flipper.add( flag )
       FeatureFlagging.enabled?( flag, actor )
       expect( described_class.payload[:feature_flag_runtime] ).to be > 0
     end
@@ -73,7 +86,8 @@ describe FeatureFlagging::Telemetry do
 
     before do
       install( base: Flipper::Adapters::ActiveRecord.new )
-      register_known_flags
+      add_test_flags
+      Flipper.add( :client_demo_banner )
       @subscription = ActiveSupport::Notifications.subscribe( "process_action.action_controller" ) do | event |
         payloads << event.payload
       end

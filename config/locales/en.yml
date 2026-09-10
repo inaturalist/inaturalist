@@ -2286,6 +2286,24 @@ en:
   # Text of a small temporary badge in the site footer, shown only to staff while they are
   # demonstrating how staff can turn parts of the site on and off without a code release
   feature_flag_demo_footer_badge: Feature flag demo
+  # Heading of the feature flag panel on the admin page and the admin nav link to the flag management UI
+  feature_flags: Feature flags
+  # Label shown before the current admin's on/off value for a flag on the admin page
+  feature_flags_enabled_for_you: "Enabled for you:"
+  # Kind label on the admin page for a feature flag that is sent to web and mobile clients
+  feature_flags_kind_client: Client-visible flag
+  # Kind label on the admin page for a feature flag that gates enrollment in an A/B experiment
+  feature_flags_kind_experiment: Experiment
+  # Kind label on the admin page for a feature flag that only server code reads
+  feature_flags_kind_server: Server-only flag
+  # Link text on the admin page leading to the feature flag management UI
+  feature_flags_manage: manage
+  # Shown on the admin page when no feature flags exist yet; %{url} is the address of the flag management UI
+  feature_flags_none_html: No feature flags exist yet. <a href="%{url}">Create one</a> and it will appear here.
+  # Shown on the admin page when the current admin is not enrolled in an A/B experiment
+  feature_flags_not_enrolled: not enrolled
+  # Label shown before the current admin's assigned variant on the admin page; %{experiment} is the experiment name
+  feature_flags_your_variant: "Your variant in %{experiment}:"
   feature_this_project_: "Feature This Project"
   featured: Featured
   # Title for a button or section describing the "featured" status of a project

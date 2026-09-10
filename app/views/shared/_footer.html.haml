@@ -67,7 +67,7 @@
             &nbsp;
           .footer-link
             =t :documentation_for_developers_html
-          - if FeatureFlagging.enabled?( :demo_banner, current_user )
+          - if FeatureFlagging.enabled?( :client_demo_banner, current_user )
             .footer-link-separator
               &nbsp;
               |

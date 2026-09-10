@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe FeatureFlagging::FailClosedAdapter do
-  let( :flag ) { :flipper_smoke_test }
+  let( :flag ) { :client_smoke_test }
   let( :memory ) { Flipper::Adapters::Memory.new }
   let( :feature ) { Flipper::Feature.new( flag, memory ) }
 

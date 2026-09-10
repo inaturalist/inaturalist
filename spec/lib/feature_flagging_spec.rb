@@ -3,32 +3,51 @@
 require "spec_helper"
 
 describe FeatureFlagging do
-  let( :flag ) { :flipper_smoke_test }
+  let( :flag ) { :client_smoke_test }
   let( :experiment ) { :hello_world }
   let( :actor ) { User.make! }
+
+  before { add_test_flags }
 
   def fake_actors( count )
     klass = Struct.new( :flipper_id )
     ( 1..count ).map {| i | klass.new( "User;#{i}" ) }
   end
 
-  describe "the declared flags" do
-    it "includes the pilot flag" do
-      expect( FeatureFlagging::KNOWN_FLAGS ).to have_key flag
+  describe "classification by key prefix" do
+    it "treats a client_ key as client-visible" do
+      expect( FeatureFlagging.kind_of( "client_thing" ) ).to eq :client
+      expect( FeatureFlagging.kind_of( :client_thing ) ).to eq :client
     end
 
-    it "sends the pilot flag to clients" do
-      expect( FeatureFlagging::CLIENT_FLAGS ).to include flag
+    it "treats an exp_ key as an experiment" do
+      expect( FeatureFlagging.kind_of( "exp_thing" ) ).to eq :experiment
     end
 
-    it "only sends declared flags to clients" do
-      expect( FeatureFlagging::CLIENT_FLAGS - FeatureFlagging::KNOWN_FLAGS.keys ).to be_empty
+    it "treats any other key as server-only, without normalizing case" do
+      expect( FeatureFlagging.kind_of( "thing" ) ).to eq :server
+      expect( FeatureFlagging.kind_of( "Client_thing" ) ).to eq :server
     end
 
-    it "declares a flag for every experiment" do
-      FeatureFlagging::KNOWN_EXPERIMENTS.each_key do | key |
-        expect( FeatureFlagging::KNOWN_FLAGS ).to have_key FeatureFlagging.experiment_flag( key )
-      end
+    it "treats a bare prefix as server-only" do
+      expect( FeatureFlagging.kind_of( "client_" ) ).to eq :server
+      expect( FeatureFlagging.kind_of( "exp_" ) ).to eq :server
+    end
+
+    it "derives the experiment name from its flag and back" do
+      expect( FeatureFlagging.experiment_name( "exp_hello_world" ) ).to eq :hello_world
+      expect( FeatureFlagging.experiment_flag( :hello_world ) ).to eq :exp_hello_world
+    end
+
+    it "describes each kind for the admin UI" do
+      descriptions = %w(client_a exp_b c).map {| key | FeatureFlagging.description_for( key ) }
+      expect( descriptions.uniq.size ).to eq 3
+      expect( descriptions[1] ).to include "experiments.b"
+    end
+
+    it "lists every existing flag sorted by key" do
+      Flipper.add( :aaa )
+      expect( FeatureFlagging.feature_keys ).to eq %w(aaa client_smoke_test exp_hello_world server_smoke_test)
     end
   end
 
@@ -42,9 +61,35 @@ describe FeatureFlagging do
       expect( FeatureFlagging.enabled?( flag.to_s, actor ) ).to be true
     end
 
-    it "raises for a flag that has not been declared" do
-      expect { FeatureFlagging.enabled?( :not_a_real_flag, actor ) }.
-        to raise_error FeatureFlagging::UnknownFlagError
+    it "reads a server-only flag" do
+      Flipper.enable( :server_smoke_test )
+      expect( FeatureFlagging.enabled?( :server_smoke_test, actor ) ).to be true
+    end
+
+    it "is false for a flag that does not exist" do
+      allow( Rails.logger ).to receive( :warn )
+      expect( FeatureFlagging.enabled?( :not_a_real_flag ) ).to be false
+    end
+
+    it "warns once per process for a flag that does not exist" do
+      allow( Rails.logger ).to receive( :warn )
+      expect( Rails.logger ).to receive( :warn ).with( /not_a_real_flag/ ).once
+      2.times { FeatureFlagging.enabled?( :not_a_real_flag ) }
+    end
+
+    it "warns again after the warnings are reset" do
+      allow( Rails.logger ).to receive( :warn )
+      expect( Rails.logger ).to receive( :warn ).with( /not_a_real_flag/ ).twice
+      FeatureFlagging.enabled?( :not_a_real_flag )
+      FeatureFlagging.reset_unknown_key_warnings
+      FeatureFlagging.enabled?( :not_a_real_flag )
+    end
+
+    it "sees a flag created at runtime" do
+      allow( Rails.logger ).to receive( :warn )
+      expect( FeatureFlagging.enabled?( :client_new ) ).to be false
+      Flipper.enable( :client_new )
+      expect( FeatureFlagging.enabled?( :client_new ) ).to be true
     end
 
     it "raises for an actor that cannot be bucketed" do
@@ -127,10 +172,16 @@ describe FeatureFlagging do
   end
 
   describe "flags_for" do
-    it "returns a boolean for every client flag" do
+    it "returns a boolean for every client flag, sorted by key" do
+      Flipper.add( :client_zzz )
+      Flipper.add( :client_aaa )
       map = FeatureFlagging.flags_for( actor )
-      expect( map.keys ).to eq FeatureFlagging::CLIENT_FLAGS
+      expect( map.keys ).to eq %i[client_aaa client_smoke_test client_zzz]
       expect( map.values ).to all( be false )
+    end
+
+    it "excludes server-only and experiment flags" do
+      expect( FeatureFlagging.flags_for( actor ).keys ).to eq [flag]
     end
 
     it "reflects an enabled flag" do
@@ -139,10 +190,20 @@ describe FeatureFlagging do
       expect( FeatureFlagging.flags_for( nil )[flag] ).to be false
     end
 
+    it "sees a flag created at runtime" do
+      expect( FeatureFlagging.flags_for( actor ) ).not_to have_key :client_new
+      Flipper.add( :client_new )
+      expect( FeatureFlagging.flags_for( actor ) ).to have_key :client_new
+    end
+
+    it "is empty when no client flags exist" do
+      Flipper.remove( flag )
+      expect( FeatureFlagging.flags_for( actor ) ).to eq( {} )
+    end
+
     it "serializes to a JSON object of booleans" do
       parsed = JSON.parse( FeatureFlagging.flags_for( actor ).to_json )
-      expect( parsed.keys ).to eq FeatureFlagging::CLIENT_FLAGS.map( &:to_s )
-      expect( parsed.values ).to all( be false )
+      expect( parsed ).to eq( "client_smoke_test" => false )
     end
   end
 
@@ -154,9 +215,8 @@ describe FeatureFlagging do
       expect( FeatureFlagging.variant( experiment, actor ) ).to be_nil
     end
 
-    it "returns one of the declared variants" do
-      expect( FeatureFlagging::KNOWN_EXPERIMENTS[experiment] ).
-        to include FeatureFlagging.variant( experiment, actor )
+    it "returns one of the variants" do
+      expect( FeatureFlagging::VARIANTS ).to include FeatureFlagging.variant( experiment, actor )
     end
 
     it "is stable for the same actor" do
@@ -168,23 +228,23 @@ describe FeatureFlagging do
       expect( FeatureFlagging.variant( experiment, nil ) ).to be_nil
     end
 
-    it "raises for an experiment that has not been declared" do
-      expect { FeatureFlagging.variant( :not_a_real_experiment, actor ) }.
-        to raise_error FeatureFlagging::UnknownExperimentError
+    it "is nil and warns for an experiment whose flag does not exist" do
+      allow( Rails.logger ).to receive( :warn )
+      expect( FeatureFlagging.variant( :not_a_real_experiment, actor ) ).to be_nil
+      expect( Rails.logger ).to have_received( :warn ).with( /exp_not_a_real_experiment/ )
     end
 
     it "splits actors roughly evenly across variants" do
       counts = fake_actors( 1000 ).
         map {| a | FeatureFlagging.variant( experiment, a ) }.
         tally
-      expect( counts.keys ).to match_array FeatureFlagging::KNOWN_EXPERIMENTS[experiment]
+      expect( counts.keys ).to match_array FeatureFlagging::VARIANTS
       counts.each_value {| n | expect( n ).to be_between( 400, 600 ) }
     end
 
     # Regression: CRC32 linearity caused perfect anti-correlation (0% cross-test agreement).
     it "assigns variants independently of other experiments" do
       other = :hello_world_two
-      stub_const_experiments( other => %w(control treatment) )
       Flipper.enable( FeatureFlagging.experiment_flag( other ) )
       actors = fake_actors( 1000 )
       agreements = actors.count do | a |
@@ -195,15 +255,42 @@ describe FeatureFlagging do
   end
 
   describe "experiments_for" do
-    it "returns a variant per declared experiment" do
+    it "returns a variant per experiment flag, keyed by experiment name" do
       Flipper.enable( FeatureFlagging.experiment_flag( experiment ) )
       map = FeatureFlagging.experiments_for( actor )
-      expect( map.keys ).to eq FeatureFlagging::KNOWN_EXPERIMENTS.keys
+      expect( map.keys ).to eq [experiment]
       expect( map[experiment] ).to be_present
     end
 
     it "returns nil variants when the experiment flags are off" do
       expect( FeatureFlagging.experiments_for( actor ).values ).to all( be_nil )
+    end
+
+    it "sees an experiment created at runtime" do
+      Flipper.add( :exp_brand_new )
+      expect( FeatureFlagging.experiments_for( actor ).keys ).to eq %i[brand_new hello_world]
+    end
+
+    it "is empty when no experiments exist" do
+      Flipper.remove( FeatureFlagging.experiment_flag( experiment ) )
+      expect( FeatureFlagging.experiments_for( actor ) ).to eq( {} )
+    end
+  end
+
+  describe "under adapter failure" do
+    before do
+      allow( Rails.logger ).to receive( :error )
+      allow( Rails.logger ).to receive( :warn )
+      Flipper.instance = Flipper.new( FeatureFlagging::FailClosedAdapter.new( raising_adapter ) )
+    end
+
+    it "reads every flag as off" do
+      expect( FeatureFlagging.enabled?( flag, actor ) ).to be false
+    end
+
+    it "sends no flags or experiments rather than raising" do
+      expect( FeatureFlagging.flags_for( actor ) ).to eq( {} )
+      expect( FeatureFlagging.experiments_for( actor ) ).to eq( {} )
     end
   end
 
@@ -277,22 +364,5 @@ describe FeatureFlagging do
       keys = ActiveRecord::Base.connection.select_values( "SELECT key FROM flipper_features" )
       expect( keys ).to eq [flag.to_s]
     end
-  end
-
-  private
-
-  # Temporarily add experiments without mutating the frozen constant
-  def stub_const_experiments( extra )
-    stub_const(
-      "FeatureFlagging::KNOWN_EXPERIMENTS",
-      FeatureFlagging::KNOWN_EXPERIMENTS.merge( extra ).freeze
-    )
-    stub_const(
-      "FeatureFlagging::KNOWN_FLAGS",
-      FeatureFlagging::KNOWN_FLAGS.merge(
-        extra.keys.index_with {| k | "test experiment #{k}" }.
-          transform_keys {| k | FeatureFlagging.experiment_flag( k ) }
-      ).freeze
-    )
   end
 end

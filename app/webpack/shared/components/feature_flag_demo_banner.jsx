@@ -3,7 +3,7 @@ import featureFlagEnabled from "../feature_flags";
 
 // Check flag at runtime; return null when off and let server gate enrollment.
 const FeatureFlagDemoBanner = ( ) => {
-  if ( !featureFlagEnabled( "demo_banner" ) ) {
+  if ( !featureFlagEnabled( "client_demo_banner" ) ) {
     return null;
   }
   return (

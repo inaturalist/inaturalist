@@ -10,7 +10,10 @@ flipper_config = Rails.application.config.flipper
 # One gate read per flag per request instead of one per check.
 flipper_config.memoize = true
 
-# Preload one get_all per request (safe via FailClosedAdapter); unregistered flags cost extra reads.
+# One get_all per request (safe via FailClosedAdapter); the feature set it loads is also the flag registry.
+flipper_config.preload = true
+
+# App-side checks treat unknown keys as off with a warning; see FeatureFlagging.enabled?.
 flipper_config.strict = false
 
 flipper_config.log = false
@@ -30,9 +33,15 @@ unless Flipper.group_exists?( :admins )
   end
 end
 
+# English literals below: Flipper::UI is an untranslated third-party admin app.
 Flipper::UI.configure do | config |
-  config.banner_text = "#{Rails.env} — flag changes take effect on the next request"
+  config.banner_text = "#{Rails.env} — flag changes take effect on the next request. " \
+    "Name a flag <code>client_…</code> to send it to web and mobile, <code>exp_…</code> to run a " \
+    "control/treatment experiment; any other name is read by server code only."
   config.banner_class = "danger"
+
+  config.descriptions_source = ->( keys ) { keys.index_with {| key | FeatureFlagging.description_for( key ) } }
+  config.show_feature_description_in_list = true
 
   config.confirm_fully_enable = true
   config.feature_removal_enabled = true

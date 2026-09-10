@@ -22,18 +22,24 @@ describe "flipper initializer" do
     expect( klasses.index( Makara::Middleware ) ).to be < klasses.index( Flipper::Middleware::Memoizer )
   end
 
+  it "describes flags in the UI from their key prefix" do
+    ui = Flipper::UI.configuration
+    expect( ui.show_feature_description_in_list ).to be true
+    expect( ui.descriptions_source.call( %w(client_a exp_b c) ).values.uniq.size ).to eq 3
+  end
+
   it "adds no cache layer for the test cache store" do
     expect( FeatureFlagging.shared_cache ).to be_nil
   end
 
   it "feeds flag checks into the telemetry" do
     expect( FeatureFlagging::Telemetry ).to receive( :record_feature_operation )
-    Flipper.enabled?( :flipper_smoke_test )
+    Flipper.enabled?( :client_smoke_test )
   end
 
   it "feeds storage reads into the telemetry" do
     expect( FeatureFlagging::Telemetry ).to receive( :record_adapter_operation )
     Flipper.new( FeatureFlagging.build_adapter( base: Flipper::Adapters::Memory.new, cache: nil ) ).
-      enabled?( :flipper_smoke_test )
+      enabled?( :client_smoke_test )
   end
 end

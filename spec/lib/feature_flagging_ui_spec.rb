@@ -42,16 +42,38 @@ describe "the Flipper admin UI mount", type: :request do
     before { sign_in make_admin }
 
     it "lists a feature that exists" do
-      Flipper.enable( :flipper_smoke_test )
+      Flipper.enable( :client_smoke_test )
       get "#{path}/features"
-      expect( response.body ).to include "flipper_smoke_test"
+      expect( response.body ).to include "client_smoke_test"
     end
 
     it "renders a feature detail page" do
-      Flipper.enable( :flipper_smoke_test )
-      get "#{path}/features/flipper_smoke_test"
+      Flipper.enable( :client_smoke_test )
+      get "#{path}/features/client_smoke_test"
       expect( response.response_code ).to eq 200
-      expect( response.body ).to include "flipper_smoke_test"
+      expect( response.body ).to include "client_smoke_test"
+    end
+
+    it "explains the naming conventions in the banner" do
+      get "#{path}/features"
+      expect( response.body ).to include "client_"
+      expect( response.body ).to include "exp_"
+    end
+
+    it "describes each flag from its prefix in the list" do
+      Flipper.add( :client_smoke_test )
+      Flipper.add( :exp_hello_world )
+      Flipper.add( :server_smoke_test )
+      get "#{path}/features"
+      expect( response.body ).to include "Client-visible flag"
+      expect( response.body ).to include "experiments.hello_world"
+      expect( response.body ).to include "Server-only flag"
+    end
+
+    it "describes a flag on its detail page" do
+      Flipper.add( :exp_hello_world )
+      get "#{path}/features/exp_hello_world"
+      expect( response.body ).to include "Experiment"
     end
 
     it "serves its own assets" do
@@ -81,28 +103,28 @@ describe "the Flipper admin UI mount", type: :request do
     it "accepts a form post carrying that token" do
       get "#{path}/features/new"
       post "#{path}/features", params: {
-        value: "flipper_smoke_test",
+        value: "client_smoke_test",
         authenticity_token: csrf_token_from( response.body )
       }
       expect( response.response_code ).not_to eq 403
-      expect( Flipper.features.map( &:key ) ).to include "flipper_smoke_test"
+      expect( Flipper.features.map( &:key ) ).to include "client_smoke_test"
     end
 
     it "rejects a form post with no token" do
       get "#{path}/features/new"
-      post "#{path}/features", params: { value: "flipper_smoke_test" }
+      post "#{path}/features", params: { value: "client_smoke_test" }
       expect( response.response_code ).to eq 403
     end
 
     it "persists a percentage gate submitted through the UI" do
-      Flipper.add( :flipper_smoke_test )
-      get "#{path}/features/flipper_smoke_test"
-      post "#{path}/features/flipper_smoke_test/percentage_of_actors", params: {
+      Flipper.add( :client_smoke_test )
+      get "#{path}/features/client_smoke_test"
+      post "#{path}/features/client_smoke_test/percentage_of_actors", params: {
         value: "10",
         authenticity_token: csrf_token_from( response.body )
       }
       expect( response.response_code ).not_to eq 403
-      expect( Flipper[:flipper_smoke_test].percentage_of_actors_value ).to eq 10
+      expect( Flipper[:client_smoke_test].percentage_of_actors_value ).to eq 10
     end
   end
 end

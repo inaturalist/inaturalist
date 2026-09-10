@@ -6,7 +6,12 @@ require "spec_helper"
 describe "GET /feature_flags", type: :request do
   include Devise::Test::IntegrationHelpers
 
-  let( :flag ) { :demo_banner }
+  let( :flag ) { :client_demo_banner }
+
+  before do
+    add_test_flags
+    Flipper.add( flag )
+  end
 
   def body
     JSON.parse( response.body )
@@ -21,15 +26,33 @@ describe "GET /feature_flags", type: :request do
 
     it "returns a boolean for every client flag" do
       get "/feature_flags"
-      expect( body["flags"].keys ).to match_array FeatureFlagging::CLIENT_FLAGS.map( &:to_s )
+      expect( body["flags"].keys ).to match_array %w(client_demo_banner client_smoke_test)
       expect( body["flags"].values ).to all( be_in( [true, false] ) )
+    end
+
+    it "omits server-only flags" do
+      get "/feature_flags"
+      expect( body["flags"] ).not_to have_key "server_smoke_test"
     end
 
     it "returns a key for every experiment, null when unenrolled" do
       get "/feature_flags"
-      expect( body["experiments"].keys ).
-        to match_array FeatureFlagging::KNOWN_EXPERIMENTS.keys.map( &:to_s )
+      expect( body["experiments"].keys ).to match_array %w(hello_world)
       expect( body["experiments"].values ).to all( be_nil )
+    end
+
+    it "includes a flag created at runtime on the next request" do
+      get "/feature_flags"
+      expect( body["flags"] ).not_to have_key "client_brand_new"
+      Flipper.add( :client_brand_new )
+      get "/feature_flags"
+      expect( body["flags"] ).to include( "client_brand_new" => false )
+    end
+
+    it "returns empty maps when no flags exist" do
+      Flipper.instance = Flipper.new( Flipper::Adapters::Memory.new )
+      get "/feature_flags"
+      expect( body ).to eq( "flags" => {}, "experiments" => {} )
     end
 
     # Per-actor payload in shared cache would expose user A's flags to user B; correctness requirement.

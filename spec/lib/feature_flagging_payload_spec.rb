@@ -26,6 +26,8 @@ describe "the feature flag payload in layouts", type: :request do
 
   pages_by_layout.each do | path, layout |
     context "#{path} ( #{layout} )" do
+      before { Flipper.add( :client_smoke_test ) }
+
       it "still renders that layout" do
         # Guards the assumption these specs rest on. If a page changes layout,
         # fix the mapping rather than deleting the example.
@@ -35,15 +37,15 @@ describe "the feature flag payload in layouts", type: :request do
       it "includes the flag map for anonymous visitors" do
         get path
         expect( response.body ).to include "feature_flags: {"
-        expect( response.body ).to include %("flipper_smoke_test":false)
+        expect( response.body ).to include %("client_smoke_test":false)
       end
 
       it "resolves the flag map per user" do
         user = User.make!
-        Flipper.enable_actor( :flipper_smoke_test, user )
+        Flipper.enable_actor( :client_smoke_test, user )
         sign_in user
         get path
-        expect( response.body ).to include %("flipper_smoke_test":true)
+        expect( response.body ).to include %("client_smoke_test":true)
       end
 
       it "leaves the existing config keys in place" do

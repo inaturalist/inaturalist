@@ -5,7 +5,7 @@ require "spec_helper"
 describe "FeatureFlagging.build_adapter" do
   include ActiveSupport::Testing::TimeHelpers
 
-  let( :flag ) { :flipper_smoke_test }
+  let( :flag ) { :client_smoke_test }
   let( :base ) { counting_adapter }
   let( :cache ) { ActiveSupport::Cache::MemoryStore.new }
 

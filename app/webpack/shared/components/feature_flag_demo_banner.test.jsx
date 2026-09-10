@@ -16,13 +16,13 @@ describe( "FeatureFlagDemoBanner", ( ) => {
   } );
 
   it( "renders when the flag is on for this visitor", ( ) => {
-    setFlags( { demo_banner: true } );
+    setFlags( { client_demo_banner: true } );
     render( <FeatureFlagDemoBanner /> );
     expect( screen.getByText( "translated:feature_flag_demo_banner" ) ).toBeInTheDocument( );
   } );
 
   it( "renders nothing when the flag is off", ( ) => {
-    setFlags( { demo_banner: false } );
+    setFlags( { client_demo_banner: false } );
     const { container } = render( <FeatureFlagDemoBanner /> );
     expect( container ).toBeEmptyDOMElement( );
   } );
