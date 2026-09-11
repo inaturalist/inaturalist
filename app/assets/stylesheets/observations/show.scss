@@ -1607,6 +1607,12 @@ time {
       content: '';
       margin: 0;
     }
+    @media ( max-width: $sm-max ) {
+      .community-id-about-btn:before {
+        content: '';
+        margin: 0;
+      }
+    }
   }
   .opted_out {
     font-size: 14px;
@@ -1879,11 +1885,13 @@ time {
     .modal-content {
       max-height: none;
       height: 100%;
-      padding-bottom: 65px;
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
     }
     .modal-body {
-      height: 100%;
+      flex: 1;
+      min-height: 0;
       overflow-y: auto;
       overflow-x: hidden;
       max-height: none;
@@ -1898,10 +1906,8 @@ time {
 .CommunityIDModal.no-taxon.modal {
   .modal-dialog {
     .modal-content {
-      max-height: none;
       height: auto;
       max-height: 100%;
-      padding-bottom: 0px;
     }
   }
 }
