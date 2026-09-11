@@ -26,6 +26,9 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
   config.cache_store = :memory_store
 
+  # Per-spec Flipper instance lets spec/initializers/flipper_spec.rb check production storage.
+  config.flipper.test_help = false
+
   # Raise exceptions instead of rendering exception templates
   config.action_dispatch.show_exceptions = false
 

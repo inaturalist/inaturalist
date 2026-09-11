@@ -931,6 +931,7 @@ class ApplicationController < ActionController::Base
   def append_info_to_payload(payload)
     super
     payload.merge!(Logstasher.payload_from_request( request ))
+    payload.merge!( FeatureFlagging::Telemetry.payload )
     payload.merge!( { session: session } )
     sec_rule = response.get_header( "X-Sec-Rule" )
     sec_rule_uid = response.get_header( "X-Sec-Rule-Marker-Uid" )

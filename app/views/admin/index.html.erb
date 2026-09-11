@@ -1,1 +1,41 @@
 <h2><%=t :admin_tools %></h2>
+
+<% feature_keys = FeatureFlagging.feature_keys %>
+<% kind_labels = {
+  client: t( :feature_flags_kind_client ),
+  experiment: t( :feature_flags_kind_experiment ),
+  server: t( :feature_flags_kind_server )
+} %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong><%= t :feature_flags %></strong> &mdash;
+    <%= link_to t( :feature_flags_manage ), admin_feature_flags_path %>
+  </div>
+  <% if feature_keys.empty? %>
+    <div class="panel-body text-muted">
+      <%= t( :feature_flags_none_html, url: admin_feature_flags_path ) %>
+    </div>
+  <% else %>
+    <table class="table">
+      <tbody>
+        <% feature_keys.each do |key| %>
+          <% kind = FeatureFlagging.kind_of( key ) %>
+          <tr>
+            <td><code><%= key %></code></td>
+            <td class="text-muted"><%= kind_labels[kind] %></td>
+            <td>
+              <% if kind == :experiment %>
+                <% experiment = FeatureFlagging.experiment_name( key ) %>
+                <%= t( :feature_flags_your_variant, experiment: experiment ) %>
+                <strong><%= FeatureFlagging.variant( experiment, current_user ) || t( :feature_flags_not_enrolled ) %></strong>
+              <% else %>
+                <%= t :feature_flags_enabled_for_you %>
+                <strong><%= FeatureFlagging.enabled?( key, current_user ) %></strong>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
