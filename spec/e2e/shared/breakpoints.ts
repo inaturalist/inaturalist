@@ -1,26 +1,23 @@
-export type BreakpointName = "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
+export type BreakpointName = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
 
-export interface Breakpoint {
-  infix: string | null;
-  minWidth: number;
-}
-
-export const BREAKPOINTS: Record<BreakpointName, Breakpoint> = {
-  xs: { infix: null, minWidth: 0 },
-  sm: { infix: "sm", minWidth: 576 },
-  md: { infix: "md", minWidth: 768 },
-  lg: { infix: "lg", minWidth: 992 },
-  xl: { infix: "xl", minWidth: 1200 },
-  xxl: { infix: "xxl", minWidth: 1400 }
+export const BREAKPOINT_WIDTHS: Record<BreakpointName, number> = {
+  xxs: 360,
+  xs: 430,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+  xxl: 1400
 };
 
 const VIEWPORT_HEIGHT = 900;
 
 export const VIEWPORTS: Record<BreakpointName, { width: number; height: number }> = {
-  xs: { width: 375, height: VIEWPORT_HEIGHT },
-  sm: { width: BREAKPOINTS.sm.minWidth, height: VIEWPORT_HEIGHT },
-  md: { width: BREAKPOINTS.md.minWidth, height: VIEWPORT_HEIGHT },
-  lg: { width: BREAKPOINTS.lg.minWidth, height: VIEWPORT_HEIGHT },
-  xl: { width: BREAKPOINTS.xl.minWidth, height: VIEWPORT_HEIGHT },
-  xxl: { width: BREAKPOINTS.xxl.minWidth, height: VIEWPORT_HEIGHT }
+  xxs: { width: BREAKPOINT_WIDTHS.xxs, height: VIEWPORT_HEIGHT },
+  xs: { width: BREAKPOINT_WIDTHS.xs, height: VIEWPORT_HEIGHT },
+  sm: { width: BREAKPOINT_WIDTHS.sm, height: VIEWPORT_HEIGHT },
+  md: { width: BREAKPOINT_WIDTHS.md, height: VIEWPORT_HEIGHT },
+  lg: { width: BREAKPOINT_WIDTHS.lg, height: VIEWPORT_HEIGHT },
+  xl: { width: BREAKPOINT_WIDTHS.xl, height: VIEWPORT_HEIGHT },
+  xxl: { width: BREAKPOINT_WIDTHS.xxl, height: VIEWPORT_HEIGHT }
 };
