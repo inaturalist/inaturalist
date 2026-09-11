@@ -143,19 +143,13 @@
 
   <div id="inat-universal-autocomplete"></div>
   
-  <% if logged_in? -%>
-    <script type="text/javascript" charset="utf-8">
-      setUpdatesCount(<%= session[:updates_count].to_i %>)
-      setMessagesCount(<%= session[:messages_count].to_i %>)
-      setTimeout( getHeaderCounts, 1000 )
-    </script>
-  <% end -%>
+  <%= javascript_include_tag "webpack/runtime-webpack" %>
+  <%= javascript_include_tag "webpack/header-webpack" %>
   <script type="text/javascript">
     if (typeof(ga) != 'undefined') {
       ga('set', 'dimension1', <%=raw logged_in? ? "'true'" : "'false'" %>);
     }
   </script>
-  <%= javascript_include_tag "webpack/runtime-webpack" %>
   <%= javascript_include_tag "webpack/react-main-webpack" %>
   <%= javascript_include_tag "webpack/users-confirmation-banner-webpack" %>
 </body>
