@@ -868,3 +868,30 @@ nav.dashboard-pagination {
   justify-content: space-between;
   margin-bottom: 20px;
 }
+
+a.scroll-to-top {
+  display: none;
+
+  @media ( max-width: $md-max ) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: white;
+    color: #286090;
+    z-index: 1000;
+    box-shadow: 0 1px 4px rgba( 0, 0, 0, 0.3 );
+    font-size: 18px;
+
+    .glyphicon {
+      top: 0;
+      left: 1px;
+      line-height: 1;
+    }
+  }
+}

@@ -362,3 +362,5 @@
           %p= t :show_off_your_recent_observations
           %p
             = link_to t(:learn_more), { controller: "observations", action: "widget" }, class: "btn btn-default btn-md"
+  %a.scroll-to-top{ href: "#header", "aria-label" => t(:scroll_to_top, default: "Scroll to top") }
+    %span.glyphicon.glyphicon-chevron-up
