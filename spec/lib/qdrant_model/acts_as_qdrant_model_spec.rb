@@ -339,6 +339,19 @@ describe ActsAsQdrantModel do
         expect( TaxonPhoto.qdrant_count ).to eq 1
         expect( TaxonPhoto.count ).to eq 5
       end
+
+      it "can index only missing records" do
+        taxon_photo = TaxonPhoto.make!
+        TaxonPhoto.make!
+        TaxonPhoto.qdrant_delete_by_ids!( [taxon_photo.id] )
+        expect( TaxonPhoto.qdrant_count ).to eq 1
+        expect( TaxonPhoto.count ).to eq 2
+        expect( TaxonPhoto ).to receive( "qdrant_index!" ).
+          with( ids: [taxon_photo.id] ).and_call_original
+        TaxonPhoto.qdrant_sync( only_index_missing: true )
+        expect( TaxonPhoto.qdrant_count ).to eq 2
+        expect( TaxonPhoto.count ).to eq 2
+      end
     end
 
     describe "disabled" do
