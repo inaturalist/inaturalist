@@ -646,6 +646,8 @@ class Taxon < ApplicationRecord
       update_stats_for_observations_of( id )
     TaxonPhoto.elastic_delete_by_ids!( taxon_photos.pluck( :id ) )
     TaxonPhoto.elastic_index!( ids: taxon_photos.pluck( :id ), delay: true )
+    TaxonPhoto.qdrant_delete_by_ids!( taxon_photos.pluck( :id ) )
+    TaxonPhoto.qdrant_index!( ids: taxon_photos.pluck( :id ), delay: true )
     true
   end
 
