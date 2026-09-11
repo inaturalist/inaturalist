@@ -44,8 +44,8 @@ body.responsive {
   padding-top: 15px;
 
   .tab-content .loading.status {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    width: fit-content;
+    margin: 20px auto;
   }
 }
 
@@ -860,5 +860,11 @@ a.icon_container,
 }
 
 #obsbutton {
+  margin-bottom: 20px;
+}
+
+nav.dashboard-pagination {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
