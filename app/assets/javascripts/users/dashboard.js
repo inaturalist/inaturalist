@@ -1,11 +1,12 @@
-/* eslint-disable */
+/* global DASHBOARD_FROM, DASHBOARD_TAB, I18n, updateSession */
 
 var DASHBOARD = {
-  fromIDs: { }
+  fromIDs: { },
+  fromPage: { }
 };
 
 // hide the flash message after 5 seconds
-setTimeout( function( ) {
+setTimeout( function ( ) {
   $( "#flash" ).fadeOut( 1000 );
 }, 5000 );
 
@@ -14,33 +15,34 @@ if ( DASHBOARD_FROM ) {
   DASHBOARD.fromIDs[DASHBOARD_TAB] = DASHBOARD_FROM;
 }
 
-window.onpopstate = function( event ) {
+window.onpopstate = function ( event ) {
   // set the tab's current `from` param based on the popped state
   DASHBOARD.fromIDs[event.state.type] = event.state.fromID;
   // show the tab and fetch the content
   DASHBOARD.loadTab( event.state.type, { noState: true } );
 };
 
-DASHBOARD.loadTab = function( tabName, options ) {
-  var tab = $("a[data-tab='" + tabName + "']")
-  $( "body" ).scrollTop( 0 );
+DASHBOARD.loadTab = function ( tabName, options ) {
+  var tab = $( "a[data-tab='" + tabName + "']" );
   // hide all other tabs
   $( ".tab-content > div" ).hide( );
-  $( ".dashboard_tab_row a").removeClass( "active" );
+  $( ".dashboard_tab_row a" ).removeClass( "active" );
   // show this one
   tab.addClass( "active" );
   $( tab.data( "targetEl" ) ).show( );
   var type = tab.data( "tab" );
   var tabSettings = DASHBOARD.tabSettings( type );
-  $( tabSettings.target ).html( "<div class='loading status'>" + I18n.t( "loading" ) + "</div>" )
+  DASHBOARD.startPanelLoading( tabSettings.target );
   // set the browser state and URL
   DASHBOARD.setState( type, tabSettings.params, options );
   // make an API call to fetch the tab's content
   DASHBOARD.fetchContent( tabSettings.fetchURL, type, tabSettings.target );
 };
 
-DASHBOARD.tabSettings = function( type ) {
-  var fetchURL, target, params = { };
+DASHBOARD.tabSettings = function ( type ) {
+  var fetchURL;
+  var target;
+  var params = { };
   // prepare the API path and params
   if ( type === "comments" ) {
     fetchURL = "/comments";
@@ -62,133 +64,141 @@ DASHBOARD.tabSettings = function( type ) {
   if ( DASHBOARD.fromIDs[type] ) {
     params.from = DASHBOARD.fromIDs[type];
   }
+  if ( DASHBOARD.fromPage[type] ) {
+    params.page = DASHBOARD.fromPage[type];
+  }
   if ( Object.keys( params ).length > 0 ) {
     fetchURL += "?" + $.param( params );
   }
   return { fetchURL: fetchURL, params: params, target: target };
 };
 
-DASHBOARD.fetchContent = function( fetchURL, type, target ) {
+DASHBOARD.fetchContent = function ( fetchURL, type, target ) {
   $.ajax( {
     type: "GET",
     url: fetchURL,
-    error: function( data ) {
+    error: function ( ) {
       console.log( "There was a problem" );
     },
-    success: function( data ) {
-      if ( type === "comments" ) {
-        // the coments partial renders <li>s, so wrap in a ul.timeline
-        data = $("<ul/>").addClass( "timeline" ).append( data );
+    success: function ( data ) {
+      var content = type === "comments"
+        ? $( "<ul/>" ).addClass( "timeline" ).append( data )
+        : data;
+      DASHBOARD.finishPanelLoading( target );
+      $( target ).html( content );
+      // enable jQuery click events on loaded pagination buttons
+      if ( $( "body" ).hasClass( "responsive" ) ) {
+        DASHBOARD.enablePageButtonClickEvents( target );
+      } else {
+        DASHBOARD.enableMoreButtonClickEvents( target );
       }
-      // show the content
-      $( target ).html( data );
-      // enable jQuery click events on loaded `more` buttons
-      DASHBOARD.enableMoreButtonClickEvents( target );
       if ( type !== "comments" ) {
         $( ".subscriptionsettings" ).subscriptionSettings( );
       }
     }
-  });
+  } );
 };
 
-DASHBOARD.enableMoreButtonClickEvents = function( target ) {
+DASHBOARD.enableMoreButtonClickEvents = function ( target ) {
   $( target ).find( "#more_pagination" ).unbind( "click" );
-  $( target ).find( "#more_pagination" ).bind( "click", function( e ) {
+  $( target ).find( "#more_pagination" ).bind( "click", function ( e ) {
     e.preventDefault( );
-    var tab = $( e.target ).parents( ".tab-pane:first" ).data( "tab" )
+    var tab = $( e.target ).parents( ".tab-pane:first" ).data( "tab" );
     DASHBOARD.fromIDs[tab] = $( this ).data( "from" );
     DASHBOARD.loadTab( tab );
-  });
-}
+  } );
+};
 
-DASHBOARD.setState = function( type, params, options ) {
-  var options = options || { };
+DASHBOARD.enablePageButtonClickEvents = function ( target ) {
+  $( target ).find( ".page_button" ).unbind( "click" );
+  $( target ).find( ".page_button" ).bind( "click", function ( e ) {
+    e.preventDefault( );
+    if ( $( this ).hasClass( "disabled" ) ) { return; }
+    var tab = $( e.target ).parents( ".tab-pane:first" ).data( "tab" );
+    DASHBOARD.fromPage[tab] = $( this ).data( "page" );
+    DASHBOARD.loadTab( tab );
+  } );
+};
+
+DASHBOARD.setState = function ( type, params, options ) {
+  var opts = options || { };
   var state = { type: type, fromID: DASHBOARD.fromIDs[type] };
   // on page load, just replace the empty state with the default params
-  if ( options.replaceState ) {
-    history.replaceState( state, "" );
-  }
-  // with onpopstate, noState will be set since we're popping not pushing
-  else if ( !options.noState ) {
+  if ( opts.replaceState ) {
+    window.history.replaceState( state, "" );
+  } else if ( !opts.noState ) {
     var dashboardParams = { tab: type };
     // store this tab's current `from` param in state
-    if ( DASHBOARD.fromIDs[type]) { dashboardParams.from = DASHBOARD.fromIDs[type]; }
+    if ( DASHBOARD.fromIDs[type] ) { dashboardParams.from = DASHBOARD.fromIDs[type]; }
     // stores the state and changes the browser URL
-    history.pushState( state, "", "/home?" + $.param( dashboardParams ) );
+    window.history.pushState( state, "", "/home?" + $.param( dashboardParams ) );
   }
 };
 
-DASHBOARD.loadingPanel = function( selector ) {
-  $( "body" ).scrollTop( 0 );
-  $( selector ).html( "<div class='loading status'>" + I18n.t( "loading" ) + "</div>" );
+DASHBOARD.startPanelLoading = function ( selector ) {
+  var target = $( selector );
+  window.scrollTo( 0, 0 );
+  target.attr( "aria-busy", true );
+  target.html( "<div class='loading status'>" + I18n.t( "loading" ) + "</div>" );
 };
 
-DASHBOARD.closePanel = function( element, panelType ) {
-  $( "#" + panelType + "_panel" ).fadeOut( );
-  var pref = { };
-  pref[ "prefers_hide_" + panelType + "_onboarding" ] = true;
-  updateSession( pref );
+DASHBOARD.finishPanelLoading = function ( selector ) {
+  $( selector ).attr( "aria-busy", false );
 };
 
-$( function( ) {
+$( function ( ) {
   // load the default tab from a variable set in the view
   // make sure to replaceState and not setState as this is the initial load
   DASHBOARD.loadTab( DASHBOARD_TAB, { replaceState: true } );
 
   // prepare the click events for the tab labels
-  $( ".dashboard_tab_row a" ).on( "click", function( e ) {
+  $( ".dashboard_tab_row a" ).on( "click", function ( e ) {
     e.preventDefault( );
     DASHBOARD.loadTab( $( e.target ).data( "tab" ) );
-  });
+  } );
 
   $( "abbr.timeago" ).timeago( );
-  var dayInSeconds = 24 * 60 * 60,
-      now = new Date( ),
-      monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+  var now = new Date( );
+  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   var elt = $( "abbr.compact.date:first" );
   if ( elt.length > 0 ) {
-    var dateString = $( elt ).attr( "title" ).split( "T" )[0],
-        timeString = $( elt ).attr( "title" ).split( "T" )[1],
-        d = new Date( Date.parse( $( elt ).attr( "title" )));
-
-    $( "abbr.compact.date" ).each( function( ) {
-      var dateString = $( this ).attr( "title" ).split( "T" )[0],
-          timeString = $( this ).attr( "title" ).split( "T" )[1],
-          d = new Date( Date.parse( $( elt ).attr( "title" )));
-      if ( !timeString.indexOf( ":" ) || typeof( d ) != "object" ) { return; }
-      if ( now.getFullYear( ) == d.getFullYear( ) &&
-           now.getMonth( ) == d.getMonth( ) &&
-           now.getDate( ) == d.getDate( ) ) {
+    $( "abbr.compact.date" ).each( function ( ) {
+      var timeString = $( this ).attr( "title" ).split( "T" )[1];
+      var d = new Date( Date.parse( $( elt ).attr( "title" ) ) );
+      if ( !timeString.indexOf( ":" ) || typeof ( d ) !== "object" ) { return; }
+      if ( now.getFullYear( ) === d.getFullYear( )
+           && now.getMonth( ) === d.getMonth( )
+           && now.getDate( ) === d.getDate( ) ) {
         return;
       }
       $( this ).html( monthNames[d.getMonth( )] + " " + d.getDate( ) );
-    })
+    } );
   }
 
-  $( "#subscribeModal" ).on( "show.bs.modal", function( e ) {
+  $( "#subscribeModal" ).on( "show.bs.modal", function ( ) {
     var that = $( this );
-    taxonLabel = that.find( "#subscribeTaxonLabel" );
-    subscribe_type = ( taxonLabel.css( "display" ) == "none" ) ? "place" : "taxon";
-    subscribe_url = "/subscriptions/new?type=" + subscribe_type +
-      "&partial=form&authenticity_token=" + $( "meta[name=csrf-token]" ).attr( "content" );
+    var taxonLabel = that.find( "#subscribeTaxonLabel" );
+    var subscribeType = ( taxonLabel.css( "display" ) === "none" ) ? "place" : "taxon";
+    var subscribeUrl = "/subscriptions/new?type=" + subscribeType
+      + "&partial=form&authenticity_token=" + $( "meta[name=csrf-token]" ).attr( "content" );
     $.ajax( {
-      url: subscribe_url,
+      url: subscribeUrl,
       cache: false,
-      success: function( html ) {
+      success: function ( html ) {
         that.find( ".modal-body" ).append( html );
       }
-    });
-  });
+    } );
+  } );
 
-  $( "#subscribeModal" ).on( "hide.bs.modal", function( e ) {
+  $( "#subscribeModal" ).on( "hide.bs.modal", function ( ) {
     $( this ).find( ".modal-body" ).children( "form" ).remove( );
-  });
+  } );
 
-  $( "a[data-subscribe-type]" ).click( function( e ) {
-    subscribeType = $( this ).data( "subscribe-type" );
-    if ( subscribeType == "taxon" ) {
+  $( "a[data-subscribe-type]" ).click( function ( ) {
+    var subscribeType = $( this ).data( "subscribe-type" );
+    if ( subscribeType === "taxon" ) {
       $( "#subscribeTaxonLabel" ).show( );
       $( "#subscribePlaceLabel" ).hide( );
       $( "#subscribeTaxonBody" ).show( );
@@ -199,101 +209,87 @@ $( function( ) {
       $( "#subscribePlaceBody" ).show( );
       $( "#subscribeTaxonBody" ).hide( );
     }
-  });
+  } );
 
-  $( "a[data-panel-type]" ).click( function( e ) {
-    // If a specific handler exists, skip the generic one
-    if ( this.id === "close_gaps_obs_pilot_panel" ||
-         this.id === "close_needs_id_pilot_panel" ||
-         this.id === "close_gaps_id_pilot_panel" ) {
-      return;
-    }
+  $( ".dashboard_tab" ).click( function ( ) {
+    $( ".dashboard_tab" ).removeClass( "active" );
+    $( this ).addClass( "active" );
+  } );
 
-    e.preventDefault( );
-    panelType = $( this ).data( "panel-type" );
-    DASHBOARD.closePanel( this, panelType );
-  });
-
-  $( ".dashboard_tab" ).click( function( ) {
-     $( ".dashboard_tab" ).removeClass( "active" );
-     $( this ).addClass( "active" );
-  });
-
-  $( "#forum-topics" ).on( "show.bs.collapse", function( e ) {
+  $( "#forum-topics" ).on( "show.bs.collapse", function ( ) {
     $( "#forum .panel-heading .pull-right i.fa" ).removeClass( "fa-caret-left" ).addClass( "fa-caret-down" );
     updateSession( { prefers_forum_topics_on_dashboard: true } );
   } );
-  $( "#forum-topics" ).on( "hide.bs.collapse", function( e ) {
+  $( "#forum-topics" ).on( "hide.bs.collapse", function ( ) {
     $( "#forum .panel-heading .pull-right i.fa" ).removeClass( "fa-caret-down" ).addClass( "fa-caret-left" );
     updateSession( { prefers_forum_topics_on_dashboard: false } );
   } );
 
-  $( "#close_needs_id_pilot_panel" ).on( "click", function( e ) {
+  $( "#close_needs_id_pilot_panel" ).on( "click", function ( e ) {
     e.preventDefault( );
     $( "#needs_id_pilot_panel" ).hide( );
     updateSession( { prefers_needs_id_pilot: false } );
   } );
 
-  $( "#participate_button" ).on( "click", function( e ) {
+  $( "#participate_button" ).on( "click", function ( e ) {
     e.preventDefault( );
     updateSession( { prefers_needs_id_pilot: true } );
     $( "#participate_section" ).hide( );
     $( "#stop_participating_section" ).show( );
     $( "#close_needs_id_pilot_panel" ).hide( );
-  });
+  } );
 
-  $( "#stop_participating_link" ).on( "click", function( e ) {
+  $( "#stop_participating_link" ).on( "click", function ( e ) {
     e.preventDefault( );
     updateSession( { prefers_needs_id_pilot: null } );
     $( "#stop_participating_section" ).hide( );
     $( "#participate_section" ).show( );
     $( "#close_needs_id_pilot_panel" ).show( );
-  });
+  } );
 
   // gaps obs
-  $( "#close_gaps_obs_pilot_panel" ).on( "click", function( e ) {
+  $( "#close_gaps_obs_pilot_panel" ).on( "click", function ( e ) {
     e.preventDefault( );
     $( "#gaps_obs_pilot_panel" ).hide( );
     updateSession( { prefers_gaps_obs_pilot: false } );
   } );
 
-  $( "#gaps_obs_participate_button" ).on( "click", function( e ) {
+  $( "#gaps_obs_participate_button" ).on( "click", function ( e ) {
     e.preventDefault( );
     updateSession( { prefers_gaps_obs_pilot: true } );
     $( "#gaps_obs_participate_section" ).hide( );
     $( "#gaps_obs_stop_participating_section" ).show( );
     $( "#close_gaps_obs_pilot_panel" ).hide( );
-  });
+  } );
 
-  $( "#gaps_obs_stop_participating_link" ).on( "click", function( e ) {
+  $( "#gaps_obs_stop_participating_link" ).on( "click", function ( e ) {
     e.preventDefault( );
     updateSession( { prefers_gaps_obs_pilot: null } );
     $( "#gaps_obs_stop_participating_section" ).hide( );
     $( "#gaps_obs_participate_section" ).show( );
     $( "#close_gaps_obs_pilot_panel" ).show( );
-  });
+  } );
 
   // gaps id
-    $( "#close_gaps_id_pilot_panel" ).on( "click", function( e ) {
+  $( "#close_gaps_id_pilot_panel" ).on( "click", function ( e ) {
     e.preventDefault( );
     $( "#gaps_id_pilot_panel" ).hide( );
     updateSession( { prefers_gaps_id_pilot: false } );
   } );
 
-  $( "#gaps_id_participate_button" ).on( "click", function( e ) {
+  $( "#gaps_id_participate_button" ).on( "click", function ( e ) {
     e.preventDefault( );
     updateSession( { prefers_gaps_id_pilot: true } );
     $( "#gaps_id_participate_section" ).hide( );
     $( "#gaps_id_stop_participating_section" ).show( );
     $( "#close_gaps_id_pilot_panel" ).hide( );
+  } );
 
-  });
-
-  $( "#gaps_id_stop_participating_link" ).on( "click", function( e ) {
+  $( "#gaps_id_stop_participating_link" ).on( "click", function ( e ) {
     e.preventDefault( );
     updateSession( { prefers_gaps_id_pilot: null } );
     $( "#gaps_id_stop_participating_section" ).hide( );
     $( "#gaps_id_participate_section" ).show( );
     $( "#close_gaps_id_pilot_panel" ).show( );
-  });
-});
+  } );
+} );

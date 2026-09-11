@@ -449,7 +449,7 @@ class UsersController < ApplicationController
     end
 
     @pagination_updates = current_user.recent_notifications(
-      filters: filters, per_page: 50
+      filters: filters, per_page: 50, page: params[:page]
     )
     @updates = UpdateAction.load_all_update_actions_for_updated_resources_for_user(
       @pagination_updates,
