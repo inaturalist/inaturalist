@@ -62,5 +62,6 @@
             - rescue ActionView::MissingTemplate, Errno::ENOENT
               = "#{resource_type} #{notification}"
   %nav.dashboard-pagination{ "aria-label" => t(:pagination) }
+    = link_to t(:first, default: "First"), url_for_params( page: 1 ), data: { page: 1 }, class: "btn btn-sm btn-default page_button #{'disabled' unless @pagination_updates.previous_page }"
     = link_to t(:back), url_for_params( page: @pagination_updates.previous_page ), data: { page: @pagination_updates.previous_page }, class: "btn btn-sm btn-default page_button #{'disabled' unless @pagination_updates.previous_page }"
     = link_to t(:next), url_for_params( page: @pagination_updates.next_page ), data: { page: @pagination_updates.next_page }, class: "btn btn-sm btn-default page_button #{'disabled' unless @pagination_updates.next_page }"
