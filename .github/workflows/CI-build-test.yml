@@ -19,7 +19,8 @@ jobs:
           --no-error-on-unmatched-pattern \
           app/webpack/computer_vision/language \
           "app/webpack/**/*.tsx" \
-          "app/webpack/**/*.ts"
+          "app/webpack/**/*.ts" \
+          app/assets/javascripts/users/dashboard.js
     - name: Run TypeScript type check
       run: npm run typecheck
 
