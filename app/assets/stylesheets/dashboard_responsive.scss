@@ -529,6 +529,11 @@ li.observation_multiple_added > .timeline-panel > .timeline-body > .dashboard-ob
   margin-right: -5px;
   margin-left: -5px;
 
+  &.collapse > ul,
+  &.collapsing > ul {
+    padding-top: 10px;
+  }
+
   > ul {
     display: flex;
     flex-wrap: wrap;

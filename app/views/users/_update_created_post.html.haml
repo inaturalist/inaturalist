@@ -14,7 +14,8 @@
     %button{:type => "button", :class => 'btn btn-sm btn-default btn_expand collapsed pull-right', "data-toggle" => "collapse", "data-target" => "#expand#{target_id}"}
       %span.expand_inactive
         %i.glyphicon.glyphicon-collapse-down
-        Show More...
+        = succeed "..." do
+          = t(:show_more)
       %span.expand_active
         %i.glyphicon.glyphicon-collapse-up
-        Show Less
+        = t(:show_less)
