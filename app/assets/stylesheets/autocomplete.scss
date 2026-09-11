@@ -64,35 +64,54 @@ $label-start: 7px;
 }
 .ui-autocomplete.taxon-autocomplete {
   max-width: 500px;
+}
+// Only the layouts that adapt to the viewport, marked by the body class the
+// responsive test groups set, want the rules below
+body.responsive {
+  // iOS Safari zooms the viewport when a field with a font smaller than 16px
+  // takes focus, which shifts the JS-positioned autocomplete menu off screen
+  @media ( hover: none ) and ( pointer: coarse ) {
+    .ac-chooser input.form-control {
+      font-size: 16px;
+      height: auto;
+    }
+  }
 
   @media ( max-width: $md-max ) {
-    max-width: calc( 100vw - 70px );
+    .ui-autocomplete {
+      max-width: calc( 100vw - 70px );
 
-    .ac {
-      min-width: 0;
-    }
-
-    .ac-label {
-      min-width: 0;
-      overflow: hidden;
-
-      > div {
+      .ac,
+      &.projects .ac,
+      &.user-autocomplete .ac {
         min-width: 0;
-        overflow: hidden;
         width: 100%;
       }
-    }
 
-    .ac-label .title,
-    .ac-label .subtitle {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      .ac-label {
+        min-width: 0;
+        overflow: hidden;
+
+        > div {
+          min-width: 0;
+          overflow: hidden;
+          width: 100%;
+        }
+      }
+
+      .ac-label .title,
+      .ac-label .subtitle {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 
   @media ( max-width: $sm-max ) {
-    max-width: calc( 100vw - 90px );
+    .ui-autocomplete {
+      max-width: calc( 100vw - 50px );
+    }
   }
 }
 .ac-message[data-type='message'] {

@@ -254,7 +254,16 @@ class ActivityCreatePanel extends React.Component {
         <Tab eventKey="comment" title={I18n.t( "comment_" )} className="comment_tab">
           { this.commentContent( ) }
         </Tab>
-        <Tab eventKey="add_id" title={I18n.t( "suggest_an_identification" )} className="id_tab">
+        <Tab
+          eventKey="add_id"
+          title={(
+            <>
+              <span className="tab-label-full">{I18n.t( "suggest_an_identification" )}</span>
+              <span className="tab-label-short">{I18n.t( "identify" )}</span>
+            </>
+          )}
+          className="id_tab"
+        >
           { this.idContent( ) }
         </Tab>
       </Tabs>
