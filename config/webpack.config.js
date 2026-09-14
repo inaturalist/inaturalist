@@ -16,6 +16,10 @@ const config = {
       import: "./kml/webpack-entry",
       runtime: "runtime"
     },
+    "header": {
+      import: "./shared/header/webpack-entry",
+      runtime: "runtime"
+    },
     "computer-vision": {
       import: "./computer_vision/demo/webpack-entry",
       dependOn: ["react-main", "react-dropzone"]
