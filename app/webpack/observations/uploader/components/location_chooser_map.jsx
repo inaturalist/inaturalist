@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import _ from "lodash";
 import util from "../models/util";
 import { objectToComparable } from "../../../shared/util";
-import PhotoMarkerOverlayView from "./photo_marker_overlay_view";
+import definePhotoMarkerOverlayView from "./photo_marker_overlay_view";
 import GooglePlacesAutocomplete from "./google_places_autocomplete";
 
 let lastCenterChange = new Date().getTime();
@@ -64,6 +64,8 @@ class LocationChooserMap extends React.Component {
       updateState,
       zoom
     } = this.props;
+
+    if ( typeof ( google ) === "undefined" ) return;
     const domNode = ReactDOM.findDOMNode( this );
     const map = iNaturalist.Map.createMap( {
       ...iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS,
@@ -227,6 +229,8 @@ class LocationChooserMap extends React.Component {
       radius
     } = this.props;
 
+    if ( typeof ( google ) === "undefined" || !this.map ) return;
+
     // Determine if we should re-render the overlays
     const comparableKeys = [
       "show",
@@ -286,10 +290,11 @@ class LocationChooserMap extends React.Component {
     }
 
     // Add new markers for obs cards
+    const PhotoMarkerOverlayView = definePhotoMarkerOverlayView( );
     _.each( obsCards, card => {
       if ( card.latitude && !( currentCard && currentCard.id === card.id ) ) {
         const cardImage = $( `[data-id=${card.id}] .carousel-inner img:first` );
-        if ( cardImage.length > 0 ) {
+        if ( PhotoMarkerOverlayView && cardImage.length > 0 ) {
           const overlay = new PhotoMarkerOverlayView(
             cardImage[0].src,
             { lat: card.latitude, lng: card.longitude }
@@ -424,10 +429,12 @@ class LocationChooserMap extends React.Component {
     return (
       <div className="LocationChooserMap map">
         <div className="map-inner" />
-        <GooglePlacesAutocomplete
-          bounds={bounds}
-          onPlacesChanged={this.handlePlacesChanged}
-        />
+        { typeof ( google ) !== "undefined" && (
+          <GooglePlacesAutocomplete
+            bounds={bounds}
+            onPlacesChanged={this.handlePlacesChanged}
+          />
+        ) }
       </div>
     );
   }

@@ -128,8 +128,23 @@ module ActsAsQdrantModel
       response["result"]
     end
 
+    def scroll( options = {} )
+      return unless enabled?
+
+      scroll_options = {
+        with_payload: true,
+        limit: 100
+      }.merge( options )
+      response = client.points.scroll(
+        **scroll_options,
+        collection_name: collection_name
+      )
+      response["result"]
+    end
+
     def delete( ids )
       return unless enabled?
+      return if ids.blank?
 
       client.points.delete(
         collection_name: collection_name,
