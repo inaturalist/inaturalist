@@ -1675,7 +1675,7 @@ class User < ApplicationRecord
       inverse_filters: options[:inverse_filters],
       per_page: options[:per_page],
       sort: { created_at: :desc },
-      page: options[:page] || 1
+      page: options[:page]
     )
   end
 

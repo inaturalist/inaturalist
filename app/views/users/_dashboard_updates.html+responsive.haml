@@ -61,7 +61,12 @@
               = render partial: "#{resource_type.underscore.pluralize}/update_#{notification}", object: resource, locals: { updates: updates, resource: resource }
             - rescue ActionView::MissingTemplate, Errno::ENOENT
               = "#{resource_type} #{notification}"
-  %nav.dashboard-pagination{ "aria-label" => t(:pagination) }
-    = link_to t(:first), url_for_params( page: 1 ), data: { page: 1 }, class: "btn btn-sm btn-default page_button #{'disabled' unless @pagination_updates.previous_page }"
-    = link_to t(:back), url_for_params( page: @pagination_updates.previous_page ), data: { page: @pagination_updates.previous_page }, class: "btn btn-sm btn-default page_button #{'disabled' unless @pagination_updates.previous_page }"
-    = link_to t(:next), url_for_params( page: @pagination_updates.next_page ), data: { page: @pagination_updates.next_page }, class: "btn btn-sm btn-default page_button #{'disabled' unless @pagination_updates.next_page }"
+  - if @pagination_updates.respond_to?( :previous_page )
+    - previous_page = @pagination_updates.previous_page
+    - next_page = @pagination_updates.next_page if @pagination_updates.current_page < UsersController::DASHBOARD_MAX_PAGE
+    %nav.dashboard-pagination{ "aria-label" => t(:pagination) }
+      - { t(:first) => ( 1 if previous_page ), t(:back) => previous_page, t(:next) => next_page }.each do | label, page |
+        - if page
+          = link_to label, url_for_params( page: page ), data: { page: page }, class: "btn btn-sm btn-default page_button"
+        - else
+          %span.btn.btn-sm.btn-default.disabled{ "aria-disabled" => "true" }= label

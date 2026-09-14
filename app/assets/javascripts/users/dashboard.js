@@ -1,4 +1,4 @@
-/* global DASHBOARD_FROM, DASHBOARD_TAB, I18n, updateSession */
+/* global DASHBOARD_FROM, DASHBOARD_PAGE, DASHBOARD_TAB, I18n, updateSession */
 
 var DASHBOARD = {
   fromIDs: { },
@@ -14,10 +14,16 @@ setTimeout( function ( ) {
 if ( DASHBOARD_FROM ) {
   DASHBOARD.fromIDs[DASHBOARD_TAB] = DASHBOARD_FROM;
 }
+if ( typeof DASHBOARD_PAGE !== "undefined" && DASHBOARD_PAGE ) {
+  DASHBOARD.fromPage[DASHBOARD_TAB] = DASHBOARD_PAGE;
+}
 
 window.onpopstate = function ( event ) {
-  // set the tab's current `from` param based on the popped state
+  // fragment links (#header) push entries with no state
+  if ( !event.state ) { return; }
+  // set the tab's current `from` and `page` params based on the popped state
   DASHBOARD.fromIDs[event.state.type] = event.state.fromID;
+  DASHBOARD.fromPage[event.state.type] = event.state.page;
   // show the tab and fetch the content
   DASHBOARD.loadTab( event.state.type, { noState: true } );
 };
@@ -113,7 +119,6 @@ DASHBOARD.enablePageButtonClickEvents = function ( target ) {
   $( target ).find( ".page_button" ).unbind( "click" );
   $( target ).find( ".page_button" ).bind( "click", function ( e ) {
     e.preventDefault( );
-    if ( $( this ).hasClass( "disabled" ) ) { return; }
     var tab = $( e.target ).parents( ".tab-pane:first" ).data( "tab" );
     DASHBOARD.fromPage[tab] = $( this ).data( "page" );
     DASHBOARD.loadTab( tab );
@@ -122,7 +127,7 @@ DASHBOARD.enablePageButtonClickEvents = function ( target ) {
 
 DASHBOARD.setState = function ( type, params, options ) {
   var opts = options || { };
-  var state = { type: type, fromID: DASHBOARD.fromIDs[type] };
+  var state = { type: type, fromID: DASHBOARD.fromIDs[type], page: DASHBOARD.fromPage[type] };
   // on page load, just replace the empty state with the default params
   if ( opts.replaceState ) {
     window.history.replaceState( state, "" );
@@ -130,6 +135,8 @@ DASHBOARD.setState = function ( type, params, options ) {
     var dashboardParams = { tab: type };
     // store this tab's current `from` param in state
     if ( DASHBOARD.fromIDs[type] ) { dashboardParams.from = DASHBOARD.fromIDs[type]; }
+    // store this tab's current `page` param in state
+    if ( DASHBOARD.fromPage[type] ) { dashboardParams.page = DASHBOARD.fromPage[type]; }
     // stores the state and changes the browser URL
     window.history.pushState( state, "", "/home?" + $.param( dashboardParams ) );
   }
@@ -144,6 +151,13 @@ DASHBOARD.startPanelLoading = function ( selector ) {
 
 DASHBOARD.finishPanelLoading = function ( selector ) {
   $( selector ).attr( "aria-busy", false );
+};
+
+DASHBOARD.closePanel = function ( panelType ) {
+  $( "#" + panelType + "_panel" ).fadeOut( );
+  var pref = { };
+  pref["prefers_hide_" + panelType + "_onboarding"] = true;
+  updateSession( pref );
 };
 
 $( function ( ) {
@@ -209,6 +223,18 @@ $( function ( ) {
       $( "#subscribePlaceBody" ).show( );
       $( "#subscribeTaxonBody" ).hide( );
     }
+  } );
+
+  $( "a[data-panel-type]" ).click( function ( e ) {
+    // If a specific handler exists, skip the generic one
+    if ( this.id === "close_gaps_obs_pilot_panel"
+         || this.id === "close_needs_id_pilot_panel"
+         || this.id === "close_gaps_id_pilot_panel" ) {
+      return;
+    }
+
+    e.preventDefault( );
+    DASHBOARD.closePanel( $( this ).data( "panel-type" ) );
   } );
 
   $( ".dashboard_tab" ).click( function ( ) {
