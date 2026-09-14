@@ -2400,6 +2400,17 @@ $header-line-height: 34px;
     margin: 3px 0;
   }
 
+  // Toggled by fitHeader() when the header's contents no longer fit the viewport
+  // The upload button removed because the user menu still offers access
+  &.crowded {
+    .add-obs {
+      display: none;
+    }
+    .dropdown-menu .add-obs-menu-item {
+      display: block;
+    }
+  }
+
   .communitytab {
     .dropdown-menu {
       img {
