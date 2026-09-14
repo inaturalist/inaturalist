@@ -350,6 +350,23 @@ h2.timeline-title { /* fix - added h2 */
 
 /* PANEL CONTENT > MEDIA ************************************* */
 
+.timeline-body .media {
+  display: flex;
+  align-items: flex-start;
+
+  > .media-left {
+    display: block;
+    flex: 0 0 auto;
+  }
+
+  > .media-body {
+    display: block;
+    flex: 1;
+    min-width: 0;
+    width: auto;
+  }
+}
+
 .media-body > p > button {
   margin: 0 10px 0 0;
 }
@@ -669,6 +686,16 @@ ul.timeline_observation > li > .timeline-panel > .timeline-heading > .timeline-t
 .timeline-panel a.update-settings {
   margin-top:-2px;
   color: gray;
+}
+ul.timeline_observation > li > .timeline-panel > .timeline-body > .media > .media-body {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+
+  > h3.dashboard_id {
+    flex: 1;
+    min-width: 0;
+  }
 }
 ul.timeline_observation > li > .timeline-panel .btn_agree {
   float: right;
