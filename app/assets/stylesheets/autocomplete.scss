@@ -75,6 +75,10 @@ body.responsive {
       font-size: 16px;
       height: auto;
     }
+
+    .ac-select-thumb {
+      height: auto;
+    }
   }
 
   @media ( max-width: $md-max ) {
