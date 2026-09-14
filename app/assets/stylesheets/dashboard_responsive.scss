@@ -355,15 +355,12 @@ h2.timeline-title { /* fix - added h2 */
   align-items: flex-start;
 
   > .media-left {
-    display: block;
     flex: 0 0 auto;
   }
 
   > .media-body {
-    display: block;
     flex: 1;
     min-width: 0;
-    width: auto;
   }
 }
 
