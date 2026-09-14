@@ -18,20 +18,27 @@ const serverPayload = SERVER_PAYLOAD;
 const taxon = new Taxon( serverPayload.taxon );
 sharedStore.dispatch( setTaxon( taxon ) );
 
-google.maps.importLibrary( "maps" ).then( ( ) => (
-  google.maps.importLibrary( "drawing" )
-) ).then( ( ) => (
-  google.maps.importLibrary( "geometry" )
-) ).then( ( ) => (
-  google.maps.importLibrary( "places" )
-) )
-  .then( ( ) => {
-    /* global loadMap3 */
-    loadMap3( );
-    render(
-      <Provider store={sharedStore}>
-        <AppContainer />
-      </Provider>,
-      document.getElementById( "app" )
-    );
-  } );
+const renderApp = ( ) => render(
+  <Provider store={sharedStore}>
+    <AppContainer />
+  </Provider>,
+  document.getElementById( "app" )
+);
+
+const loadGoogleMaps = ( ) => {
+  if (
+    typeof ( google ) === "undefined"
+    || !google.maps
+    || !google.maps.importLibrary
+  ) {
+    return Promise.resolve( );
+  }
+  return google.maps.importLibrary( "maps" )
+    .then( ( ) => google.maps.importLibrary( "drawing" ) )
+    .then( ( ) => google.maps.importLibrary( "geometry" ) )
+    .then( ( ) => google.maps.importLibrary( "places" ) )
+    .then( ( ) => loadMap3( ) )
+    .catch( e => console.warn( "Google Maps failed to load", e ) );
+};
+
+loadGoogleMaps( ).then( renderApp );
