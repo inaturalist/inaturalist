@@ -453,8 +453,15 @@ li > .thumbnail.first {
   text-overflow: ellipsis;
   min-width: 0;
 
+  // This text is the expand button's only accessible name; hide it visually, not from AT.
   @media ( max-width: 420px ) {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    clip: rect( 0, 0, 0, 0 );
+    border: 0;
   }
 }
 
