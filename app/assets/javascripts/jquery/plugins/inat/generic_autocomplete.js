@@ -194,9 +194,9 @@ $.fn.genericAutocomplete = function ( acOptions ) {
   };
   ac._close = function ( event ) {
     if ( this.keepOpen ) { return; }
-    // keep suggestions up when the mobile keyboard closes mid-search, so the
-    // user can still tap a result (outside-tap and selection still close it)
-    if ( options.keepMenuOnBlur && event && event.type === "blur" && field.val( ) ) {
+    // keep suggestions up when the mobile keyboard closes, so the user can
+    // still tap a result (outside-tap and selection still close it)
+    if ( options.keepMenuOnBlur && event && event.type === "blur" ) {
       return;
     }
     if ( this.menu.element.is( ":visible" ) ) {
