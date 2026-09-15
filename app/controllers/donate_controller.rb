@@ -32,12 +32,8 @@ class DonateController < ApplicationController
     # Ensure utm_source is set to the site domain, defaulting to the default
     # site's domain. Note that donorbox will not save *any* utm_ values unless
     # utm_source is not blank
-    utm_source = begin
-      URI.parse( @site.domain )&.host || @site.domain
-    rescue URI::InvalidURIError
-      nil
-    end
-    utm_source ||= URI.parse( Site.default.domain )&.host || Site.default.domain
+    utm_source = @site.domain_host
+    utm_source ||= Site.default.domain_host
     default_site_uri = URI.parse( Site.default.url )
     if Site.default && @site && @site.id != Site.default.id
       {
@@ -45,6 +41,7 @@ class DonateController < ApplicationController
         host: default_site_uri.host,
         port: default_site_uri.port,
         utm_source: utm_source,
+        utm_medium: "web",
         redirect: true
       }.merge( request.query_parameters.reject {| k, _v | k.to_s == "inat_site_id" } )
     elsif params[:utm_source].blank?
