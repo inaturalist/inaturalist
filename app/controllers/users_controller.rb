@@ -1,6 +1,8 @@
 #encoding: utf-8
 
 class UsersController < ApplicationController
+  DASHBOARD_MAX_PAGE = 30
+
   before_action -> { doorkeeper_authorize! :login, :write },
     only: [:edit],
     if: -> { authenticate_with_oauth? }
@@ -449,7 +451,7 @@ class UsersController < ApplicationController
     end
 
     @pagination_updates = current_user.recent_notifications(
-      filters: filters, per_page: 50
+      filters: filters, per_page: 50, page: params[:page].to_i.clamp( 1, DASHBOARD_MAX_PAGE )
     )
     @updates = UpdateAction.load_all_update_actions_for_updated_resources_for_user(
       @pagination_updates,
