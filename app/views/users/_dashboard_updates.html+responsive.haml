@@ -51,11 +51,12 @@
                 %button.btn.btn-sm.btn-default.btn_expand.collapsed{ "aria-pressed" => "false", "data-target" => ".expand#{target_id}", "data-toggle" => "collapse", type: "button" }
                   %span.expand_inactive
                     %i.glyphicon.glyphicon-collapse-down
-                    = succeed "..." do
-                      = t(:show_more)
+                    %span.btn_expand_label
+                      = succeed "..." do
+                        = t(:show_more)
                   %span.expand_active
                     %i.glyphicon.glyphicon-collapse-up
-                    = t(:show_less)
+                    %span.btn_expand_label= t(:show_less)
           - else
             - begin
               = render partial: "#{resource_type.underscore.pluralize}/update_#{notification}", object: resource, locals: { updates: updates, resource: resource }
