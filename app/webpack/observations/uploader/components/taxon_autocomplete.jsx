@@ -283,7 +283,6 @@ class TaxonAutocomplete extends React.Component {
     };
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
-    this.inputElement( ).on( "input", ( ) => { this.suppressMenu = false; } );
     this.inputElement( ).bind( "assignSelection", ( e, t, options ) => {
       if ( !t.title ) {
         t.title = this.resultTitle( t );
@@ -562,12 +561,6 @@ class TaxonAutocomplete extends React.Component {
   }
 
   source( request, callback ) {
-    // after a selection, stay closed until the user types again rather than
-    // re-searching the filled-in name and showing it back to them
-    if ( this.suppressMenu ) {
-      callback( [] );
-      return;
-    }
     if ( !request.term ) {
       this.visionAutocompleteSource( callback );
     } else if ( request.term ) {
@@ -635,11 +628,6 @@ class TaxonAutocomplete extends React.Component {
       return false;
     }
     this.updateWithSelection( ui.item );
-    this.suppressMenu = true;
-    // keepMenuOnBlur holds the menu open through the tap's blur, so close it
-    // explicitly once a result is chosen
-    this.autocomplete( ).close( );
-    this.inputElement( ).blur( );
     return false;
   }
 

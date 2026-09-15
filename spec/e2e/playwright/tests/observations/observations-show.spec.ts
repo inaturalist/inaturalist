@@ -186,6 +186,8 @@ test.describe( "Observation detail page", () => {
       const result = page.locator( `${MENU} li.ac-result`, { hasText: "Suggested Species" } );
       await page.locator( INPUT ).click();
       await expect( result ).toBeVisible();
+      // let the debounced search settle, so a late re-open cannot mask the close
+      await page.waitForTimeout( 1000 );
       await page.locator( "#ObservationShow" ).click( { position: { x: 5, y: 5 } } );
       await expect( result ).toBeHidden();
     } );
