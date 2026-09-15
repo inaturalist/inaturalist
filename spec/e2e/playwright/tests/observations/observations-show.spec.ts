@@ -191,5 +191,23 @@ test.describe( "Observation detail page", () => {
       await page.locator( "#ObservationShow" ).click( { position: { x: 5, y: 5 } } );
       await expect( result ).toBeHidden();
     } );
+
+    test( "stays closed when the field is re-selected, until the text changes", async ( { page } ) => {
+      const suggestion = page.locator( `${MENU} li.ac-result`, { hasText: "Suggested Species" } );
+      const typed = page.locator( `${MENU} li.ac-result`, { hasText: "Typed Species" } );
+      await page.locator( INPUT ).click();
+      await expect( suggestion ).toBeVisible();
+      // let the debounced search settle, so a late re-open cannot mask the close
+      await page.waitForTimeout( 1000 );
+      await page.locator( "#ObservationShow" ).click( { position: { x: 5, y: 5 } } );
+      await expect( suggestion ).toBeHidden();
+
+      await page.locator( INPUT ).click();
+      await page.waitForTimeout( 1000 );
+      await expect( suggestion ).toBeHidden();
+
+      await page.locator( INPUT ).pressSequentially( "Typed" );
+      await expect( typed ).toBeVisible();
+    } );
   } );
 } );
