@@ -606,6 +606,12 @@ Rails.application.routes.draw do
   end
 
   resources :flags
+
+  # Route constraint required; ApplicationController's admin_required filter doesn't apply to Flipper's Rack app.
+  mount Flipper::UI.app( Flipper ) => "/admin/feature_flags",
+    as: "admin_feature_flags",
+    constraints: ->( request ) { request.env["warden"]&.user&.is_admin? }
+
   resource :admin, only: :index, controller: :admin do
     collection do
       get :index
@@ -660,6 +666,9 @@ Rails.application.routes.draw do
 
   get "build_info", to: "build_info#index"
   get "admin/app_build_info", to: "build_info#app_build_info", as: "admin_app_build_info"
+
+  # For non-web clients; web pages get flags inlined in CONFIG payload.
+  get "feature_flags", to: "feature_flags#index"
 
   resource :stats do
     collection do

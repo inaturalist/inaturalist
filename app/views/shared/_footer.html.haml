@@ -67,6 +67,13 @@
             &nbsp;
           .footer-link
             =t :documentation_for_developers_html
+          - if FeatureFlagging.enabled?( :client_demo_banner, current_user )
+            .footer-link-separator
+              &nbsp;
+              |
+              &nbsp;
+            .footer-link
+              %span.label.label-info= t :feature_flag_demo_footer_badge
         #footer-locale-chooser.btn-group.dropup.pull-right
           %button.btn.btn-default.dropdown-toggle{ data: { toggle: "dropdown" }, "aria-haspopup" => true, "aria-expanded" => false }
             %i.icon-ios-world

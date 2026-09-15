@@ -18,6 +18,7 @@ require File.expand_path( "#{File.dirname( __FILE__ )}/helpers/example_helpers" 
 require File.expand_path( "#{File.dirname( __FILE__ )}/../lib/eol_service.rb" )
 require File.expand_path( "#{File.dirname( __FILE__ )}/../lib/meta_service.rb" )
 require File.expand_path( "#{File.dirname( __FILE__ )}/../lib/flickr_cache.rb" )
+require "flipper/adapters/memory"
 
 # rubocop:disable Style/MixinUsage
 include MakeHelpers
@@ -52,6 +53,9 @@ RSpec.configure do | config |
     make_default_site
     CONFIG.has_subscribers = :disabled
     CONFIG.content_creation_restriction_days = nil
+    # Fresh instance resets in-process state; production stack tested separately; instrumenter enables telemetry.
+    Flipper.instance = Flipper.new( Flipper::Adapters::Memory.new, instrumenter: ActiveSupport::Notifications )
+    FeatureFlagging.reset_unknown_key_warnings
   end
 
   config.after( :each ) do

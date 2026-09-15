@@ -216,7 +216,8 @@
       var CONTROLLER_ACTION = "<%= controller.class.to_s %>::<%= action_name %>";
       var CONFIG = {
         content_freeze_enabled: <%= !!CONFIG.content_freeze_enabled %>,
-        carto_api_key: <%= CONFIG.carto&.api_key.to_json.html_safe %>
+        carto_api_key: <%= CONFIG.carto&.api_key.to_json.html_safe %>,
+        feature_flags: <%= feature_flags_json %>
       };
     </script>
     <%= javascript_include_tag "bootstrap_bundle" %>
