@@ -35,7 +35,7 @@
           <span style="font-weight:normal; color:gray">
             <%-
               name_link = link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user))
-              avatar_link = link_to(user_image(user, size: "mini", class: "timeline-badge-mini"), person_path(user))
+              avatar_link = link_to(user_image(user, size: "thumb", no_inline_dimensions: true, class: "timeline-badge-mini"), person_path(user))
               title = no_thumb ? name_link : safe_join([avatar_link, name_link], " ")
             %>
             <%- if item.is_a? Identification %>

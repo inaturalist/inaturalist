@@ -211,13 +211,19 @@ body.responsive {
   background-color: #ffffff !important;
 }
 
+.timeline-badge-mini {
+  width: 34px;
+  height: 34px;
+  margin-right: 4px;
+}
+
 /* Panel Content************************************* */
 
 .panel > .panel-footer > .btn {
   margin-right: 15px;
 }
 
-h2.timeline-title { /* fix - added h2 */
+h2.timeline-title {
   font-weight: normal;
   margin: 0;
   color: inherit;
@@ -271,6 +277,7 @@ h2.timeline-title { /* fix - added h2 */
 
 .timeline-heading > h2.timeline-title {
   flex: 1;
+  align-items: center;
   min-width: 0;
 }
 .timeline-body {
