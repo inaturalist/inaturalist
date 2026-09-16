@@ -161,7 +161,7 @@ class ActivityCreatePanel extends React.Component {
                 : null
             }
             config={config}
-            keepMenuOnBlur
+            keepMenuOnBlur={!window.matchMedia( "(hover: hover) and (pointer: fine)" ).matches}
             onKeyDown={e => {
               const key = e.keyCode || e.which;
               if ( key === 13 ) {
