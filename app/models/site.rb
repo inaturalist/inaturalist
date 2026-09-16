@@ -499,6 +499,14 @@ class Site < ApplicationRecord
     url.sub( %r{https?://}, "" ).sub( %r{/$}, "" )
   end
 
+  def domain_host
+    begin
+      URI.parse( domain )&.host || domain
+    rescue URI::InvalidURIError
+      nil
+    end
+  end
+
   # We can't use OAuth to authenticate a user with Google unless our OAuth
   # authentication page has been approved by Google with the domain that is
   # showing this button, and in order to do so, we need that domain to be

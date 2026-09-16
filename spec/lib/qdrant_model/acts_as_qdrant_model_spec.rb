@@ -186,6 +186,38 @@ describe ActsAsQdrantModel do
       end
     end
 
+    describe "qdrant_scroll" do
+      it "returns a hash of points and next_page_offset" do
+        taxon_photo = TaxonPhoto.make!( photo: Photo.make!( file_updated_at: Time.now ) )
+        TaxonPhoto.make!( photo: Photo.make!( file_updated_at: Time.now ) )
+        scroll_response = TaxonPhoto.qdrant_scroll( {
+          limit: 1,
+          filter: {
+            must: [{
+              key: "id",
+              range: {
+                gte: taxon_photo.id
+              }
+            }]
+          }
+        } )
+        expect( scroll_response ).to be_a( Hash )
+        expect( scroll_response["points"] ).to be_a( Array )
+        expect( scroll_response["next_page_offset"] ).to be_a( Integer )
+
+        point = scroll_response["points"][0]
+        expect( point ).to be_a( Hash )
+        expect( point["id"] ).to eq taxon_photo.id
+        # vector is not returned by scroll
+        expect( point ).not_to have_key( "vector" )
+        expect( point["payload"]["id"] ).to eq taxon_photo.id
+        expect( point["payload"]["taxon_id"] ).to eq taxon_photo.taxon_id
+        expect( point["payload"]["photo_id"] ).to eq taxon_photo.photo_id
+        expect( point["payload"]["photo_file_updated_at"] ).to eq taxon_photo.photo.file_updated_at.to_s
+        expect( point["payload"]["ancestor_ids"] ).to eq taxon_photo.taxon.self_and_ancestor_ids
+      end
+    end
+
     describe "qdrant_delete_by_ids!" do
       it "deletes all documents with ids in the provided array" do
         taxon_photo = TaxonPhoto.make!
@@ -194,6 +226,11 @@ describe ActsAsQdrantModel do
         expect( TaxonPhoto.qdrant_count ).to eq 0
         # the DB record still exists, but the Qdrant point has been deleted
         expect( TaxonPhoto.find( taxon_photo.id ) ).to be_a( TaxonPhoto )
+      end
+
+      it "does nothing if ids is empty or nil" do
+        expect( TaxonPhoto.qdrant_delete_by_ids!( [] ) ).to be_nil
+        expect( TaxonPhoto.qdrant_delete_by_ids!( nil ) ).to be_nil
       end
     end
 
@@ -252,6 +289,71 @@ describe ActsAsQdrantModel do
       end
     end
 
+    describe "qdrant_sync" do
+      it "adds points represented in the DB that are not in Qdrant" do
+        taxon_photo = TaxonPhoto.make!
+        TaxonPhoto.qdrant_delete_by_ids!( [taxon_photo.id] )
+        expect( TaxonPhoto.qdrant_count ).to eq 0
+        TaxonPhoto.qdrant_sync
+        expect( TaxonPhoto.qdrant_count ).to eq 1
+      end
+
+      it "can skip indexing anything" do
+        taxon_photo = TaxonPhoto.make!
+        TaxonPhoto.qdrant_delete_by_ids!( [taxon_photo.id] )
+        expect( TaxonPhoto.qdrant_count ).to eq 0
+        TaxonPhoto.qdrant_sync( index_records: false )
+        expect( TaxonPhoto.qdrant_count ).to eq 0
+      end
+
+      it "removes points represented in Qdrant that are not in the DB" do
+        taxon_photo = TaxonPhoto.make!
+        TaxonPhoto.make!
+        taxon_photo.delete
+        expect( TaxonPhoto.qdrant_count ).to eq 2
+        expect( TaxonPhoto.count ).to eq 1
+        TaxonPhoto.qdrant_sync
+        expect( TaxonPhoto.qdrant_count ).to eq 1
+      end
+
+      it "can skip removing orphans" do
+        taxon_photo = TaxonPhoto.make!
+        TaxonPhoto.make!
+        taxon_photo.delete
+        expect( TaxonPhoto.qdrant_count ).to eq 2
+        expect( TaxonPhoto.count ).to eq 1
+        TaxonPhoto.qdrant_sync( remove_orphans: false )
+        expect( TaxonPhoto.qdrant_count ).to eq 2
+      end
+
+      it "accepts start_id and end_id options" do
+        TaxonPhoto.make!
+        TaxonPhoto.make!
+        taxon_photo = TaxonPhoto.make!
+        TaxonPhoto.make!
+        TaxonPhoto.make!
+        TaxonPhoto.qdrant_delete_by_ids!( TaxonPhoto.all.pluck( :id ) )
+        expect( TaxonPhoto.qdrant_count ).to eq 0
+        expect( TaxonPhoto.count ).to eq 5
+        TaxonPhoto.qdrant_sync( start_id: taxon_photo.id, end_id: taxon_photo.id )
+        expect( TaxonPhoto.qdrant_count ).to eq 1
+        expect( TaxonPhoto.count ).to eq 5
+      end
+
+      it "can index only missing records" do
+        taxon_photo = TaxonPhoto.make!
+        TaxonPhoto.make!
+        TaxonPhoto.qdrant_delete_by_ids!( [taxon_photo.id] )
+        expect( TaxonPhoto.qdrant_count ).to eq 1
+        expect( TaxonPhoto.count ).to eq 2
+        expect( TaxonPhoto ).to receive( "qdrant_index!" ).
+          with( ids: [taxon_photo.id] ).and_call_original
+        TaxonPhoto.qdrant_sync( only_index_missing: true )
+        expect( TaxonPhoto.qdrant_count ).to eq 2
+        expect( TaxonPhoto.count ).to eq 2
+      end
+    end
+
     describe "disabled" do
       before do
         allow( TaxonPhoto.__qdrant__ ).to receive( :client ).and_return( nil )
@@ -285,6 +387,23 @@ describe ActsAsQdrantModel do
         end
       end
 
+      describe "qdrant_scroll" do
+        it "returns nil when disabled" do
+          taxon_photo = TaxonPhoto.make!
+          expect( TaxonPhoto.qdrant_scroll( {
+            limit: 1,
+            filter: {
+              must: [{
+                key: "id",
+                range: {
+                  gte: taxon_photo.id
+                }
+              }]
+            }
+          } ) ).to be_nil
+        end
+      end
+
       describe "qdrant_delete_by_ids!" do
         it "returns nil when disabled" do
           taxon_photo = TaxonPhoto.make!
@@ -309,6 +428,16 @@ describe ActsAsQdrantModel do
           expect( TaxonPhoto ).not_to receive( :load_for_qdrant_index )
           expect( TaxonPhoto ).not_to receive( :embeddings_for_taxon_photos )
           TaxonPhoto.qdrant_index!
+        end
+      end
+
+      describe "qdrant_sync" do
+        it "returns nil when disabled" do
+          taxon_photo = TaxonPhoto.make!
+          TaxonPhoto.qdrant_delete_by_ids!( [taxon_photo.id] )
+          expect( TaxonPhoto.qdrant_count ).to eq 0
+          expect( TaxonPhoto.qdrant_sync ).to be_nil
+          expect( TaxonPhoto.qdrant_count ).to eq 0
         end
       end
     end

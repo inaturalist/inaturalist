@@ -75,6 +75,10 @@ module ActsAsQdrantModel
       __qdrant__.get_all( ids )
     end
 
+    def qdrant_scroll( options = {} )
+      __qdrant__.scroll( options )
+    end
+
     def qdrant_delete_by_ids!( ids )
       __qdrant__.delete( ids )
     end
@@ -124,6 +128,67 @@ module ActsAsQdrantModel
           Rails.logger.info "[INFO #{Time.now}] Starting to index #{name} :: #{batch[0].id}"
         end
         bulk_qdrant_index( batch )
+      end
+    end
+
+    def qdrant_sync( opts = {} )
+      return unless __qdrant__.enabled?
+
+      options = opts.clone
+      options[:index_records] = true unless options.include?( :index_records )
+      options[:only_index_missing] = false unless options.include?( :index_records )
+      options[:remove_orphans] = true unless options.include?( :remove_orphans )
+      if options[:index_records] == false && !options[:remove_orphans]
+        return
+      end
+
+      batch_start_id = options[:start_id] || 1
+      maximum_id = options[:end_id] || maximum( :id )
+      batch_size = options[:batch_size] || 1_000
+      start_time = Time.now
+      while batch_start_id <= maximum_id
+        run_time = ( Time.now - start_time ).round( 2 )
+        Rails.logger.debug "Loop starting at #{batch_start_id}; time: #{run_time}"
+        batch_id_below = [batch_start_id + batch_size, maximum_id + 1].min
+        ids_from_db = where( "id >= ?", batch_start_id ).
+          where( "id < ?", batch_id_below ).pluck( :id )
+        scroll_response = __qdrant__.scroll(
+          limit: 1000,
+          with_payload: false,
+          filter: {
+            must: [{
+              key: "id",
+              range: {
+                gte: batch_start_id,
+                lt: batch_id_below
+              }
+            }]
+          }
+        )
+        raise Error, "scroll response is empty" unless scroll_response
+
+        ids_from_qdrant = scroll_response["points"].map {| point | point["id"].to_i }
+        if options[:index_records]
+          ids_to_index = if options[:only_index_missing]
+            ids_from_db - ids_from_qdrant
+          else
+            ids_from_db
+          end
+
+          unless ids_to_index.empty?
+            Rails.logger.debug "[DEBUG] Indexing #{ids_to_index.size} records"
+            qdrant_index!( ids: ids_to_index )
+          end
+        end
+
+        if options[:remove_orphans]
+          ids_only_in_qdrant = ids_from_qdrant - ids_from_db
+          unless ids_only_in_qdrant.empty?
+            Rails.logger.debug "[DEBUG] Deleting vestigial docs in Qdrant: #{ids_only_in_qdrant}"
+            qdrant_delete_by_ids!( ids_only_in_qdrant )
+          end
+        end
+        batch_start_id += batch_size
       end
     end
 

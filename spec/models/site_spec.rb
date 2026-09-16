@@ -54,4 +54,21 @@ describe Site do
       expect( site.updated_at ).to_not eq original_updated_at
     end
   end
+
+  describe "domain_host" do
+    it "returns the domain host" do
+      site = Site.make!( domain: "https://example.com" )
+      expect( site.domain_host ).to eq "example.com"
+    end
+
+    it "returns the domain directly if it lacks a protocol" do
+      site = Site.make!( domain: "example.com" )
+      expect( site.domain_host ).to eq "example.com"
+    end
+
+    it "returns nil for invalid URIs" do
+      site = Site.make!( domain: nil )
+      expect( site.domain_host ).to be_nil
+    end
+  end
 end
