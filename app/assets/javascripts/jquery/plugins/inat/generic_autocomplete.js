@@ -174,7 +174,6 @@ $.fn.genericAutocomplete = function ( acOptions ) {
   field.on( "autocompleteclose", function ( ) {
     $( ac.menu.element ).removeClass( "open" );
     $( document ).off( ".acKeepMenuOpen" );
-    ac.dismissedValue = field.val( );
   } );
   if ( options.menuClass && ac.menu && ac.menu.element ) {
     $( ac.menu.element ).addClass( options.menuClass );
@@ -269,24 +268,20 @@ $.fn.genericAutocomplete = function ( acOptions ) {
       }
     }
   } );
-  var dismissedFor = function ( value ) {
-    return options.keepMenuOnBlur && ac.dismissedValue === value;
-  };
   // show the results anytime the text field gains focus
   field.bind( "focus", function ( ) {
     var that = this;
     // set a small delay before showing the results menu
     setTimeout( function () {
       // don't redo the search if there are results being shown
-      if ( genericAutocomplete.menuClosed( ) && $( that ).data( "uiAutocomplete" )
-        && !dismissedFor( $( that ).val( ) ) ) {
+      if ( genericAutocomplete.menuClosed( ) && $( that ).data( "uiAutocomplete" ) ) {
         $( that ).autocomplete( "search", $( that ).val( ) );
       }
     }, 100 );
   } );
   field.bind( "click", function ( ) {
     // don't redo the search if there are results being shown
-    if ( genericAutocomplete.menuClosed( ) && !dismissedFor( $( this ).val( ) ) ) {
+    if ( genericAutocomplete.menuClosed( ) ) {
       $( this ).autocomplete( "search", $( this ).val( ) );
     }
   } );
