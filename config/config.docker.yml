@@ -118,6 +118,13 @@ base: &base
 
     vpn_ips_url: <%= ENV.fetch("INAT_VPN_IPS_URL") {} %>
 
+    carto:
+        api_key: <%= ENV.fetch("INAT_CARTO_API_KEY") { "carto_api_key" } %>
+
+    qdrant:
+        url: <%= ENV.fetch("INAT_QDRANT_URL") { "http://localhost:6333" } %>
+        api_key: <%= ENV.fetch("INAT_QDRANT_API_KEY") { "qdrant_api_key" } %>
+
 development:
     <<: *base
 
