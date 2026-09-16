@@ -1468,7 +1468,7 @@ th:
     #displayed next to an identification indicating which user nominated it as an ID tip
     user_nominated_this_as_an_id_tip_html: "%{user} เสนอให้คำอธิบายนี้เป็นแนวทางจำแนกชนิด"
     #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
-    nominate_as_an_id_tip_with_explanation: เสนอเป็นแนวทางจำแนกชนิด (ฉันเห็นว่าคำอธิบายนี้จะช่วยให้ผู้อื่นเรียนรู้วิธีจำแนกสิ่งมีชีวิตนี้ได้) #Notice when an identification has been unhidden by moderators
+    nominate_as_an_id_tip_with_explanation: เสนอเป็นแนวทางจำแนกชนิด (คำอธิบายนี้น่าจะช่วยให้ผู้อื่นเรียนรู้วิธีจำแนกสิ่งมีชีวิตนี้ได้) #Notice when an identification has been unhidden by moderators
   #Notification when an identification has been updated
   identification_updated: อัปเดตการจำแนกแล้ว!
   #Notification when an identification has been withdrawn
@@ -1789,6 +1789,7 @@ th:
   managers_can_do: ผู้จัดการสามารถทำได้ทุกอย่างเช่นเดียวกับผู้ดูแล รวมถึงแก้ไขการตั้งค่าและเขียนโพสต์วารสารโครงการได้
   map: แผนที่
   map_legend: คำอธิบายสัญลักษณ์
+  map_marker_size: ขนาดหมุด
   map_of_observations: แผนที่แสดงพิกัดการสังเกต
   maps:
     overlays:

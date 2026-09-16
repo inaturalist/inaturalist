@@ -502,7 +502,7 @@ pt-BR:
     birds: Aves
     chromista: Algas Pardas e Afins
     fungi: Fungos
-    fungi_including_lichens: Fungos, incluindo Líquenes
+    fungi_including_lichens: Fungos, incluindo Líquens
     insects: Insetos
     mammals: Mamíferos
     mollusks: Moluscos
@@ -635,9 +635,19 @@ pt-BR:
     pelo menos 2 meses e deve ter feito pelo menos 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">Melhorando as identificações</a> no último mês. Podemos pedir acompanhamento
     perguntas sobre o seu plano e nos reservamos o direito de recusar inscrições por qualquer motivo.
+  app_owner_application_about_p2_2_html: |
+    Desde 2022, exigimos aprovação manual para usuários que desejam criar clientes de API.
+    Para criar aplicativos de terceiros, você deve primeiro enviar uma inscrição para se tornar
+    um "proprietário de aplicativo". Essa inscrição deve descrever a funcionalidade do aplicativo proposto
+    e como você planeja usá-lo. Para enviar uma inscrição, sua conta deve ter
+    pelo menos 2 meses e você deve ter feito pelo menos 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">melhorias em identificações</a> <i>para outros usuários</i> no último mês. Podemos fazer perguntas adicionais sobre o seu plano e nos reservamos o direito de recusar inscrições por qualquer motivo.
   app_owner_application_inelligible: |
     Para enviar uma solicitação, sua conta deve ter pelo menos 2 meses e você
     ter feito pelo menos 10 sugestões de melhoria de identificações no mês passado.
+  app_owner_application_inelligible2_html: |
+    Para enviar uma inscrição, sua conta deve ter pelo menos 2 meses e você deve ter feito pelo menos 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">melhorias em identificações</a> <i>para outros usuários</i> no último mês.
   app_owner_application_fields_explanation_html: Descreva a funcionalidade do seu aplicativo e como você planeja usá-la.
   app_owner_application_success: Candidatura para dono de aplicativo enviada
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -838,6 +848,9 @@ pt-BR:
     other: |
       Baseado em uma amostra de %{percent}% dessas IDs, estimamos que isso irá
       resultar em <strong>%{count} desacordos não intencionais</strong> com IDs de %{child}.
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Com base nas evidências, o Táxon Comunitário pode ser melhorado?
   batch: Grupo
   batch_edit: Editar em grupo
   #Where x is the title of a list of taxa
@@ -906,6 +919,9 @@ pt-BR:
   card: Identificação
   casual: casual
   casual_: Casual
+  #Label for the Casual quality grade, but indicating it only includes observations that are marked
+  #casual because they have a quality assessment vote that they are non-wild
+  casual_non_wild_only_: Casual (somente não selvagem)
   casual_tooltip_html: 'Observações "casuais" não possuem mídia, localização ou data, ou não atendem aos requisitos dos níveis de qualidade "Pesquisa" ou "Precisa de ID" por outras razões <a href="https://www.inaturalist.org/pages/help#quality">Saiba mais sobre os níveis de qualidade</a>'
   casual_tooltip_html2: 'Nas observações "casuais" faltam mídia, localização ou data, ou não atendem aos requisitos das classificações de qualidade "Pesquisa" ou "Precisa de ID" por outros motivos. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Saiba mais sobre notas de qualidade</a>'
   categories: Categorias
@@ -1348,6 +1364,8 @@ pt-BR:
   create_a_new_place: Crie um novo lugar
   create_a_new_taxon: Crie uma nova espécie ou grupo
   create_a_query: Crie um questionário
+  #Button on announcement show page to duplicate the announcement as a linked targeted variant
+  create_a_targeted_variant: Crie uma Variante Direcionada
   create_an_account: Crie uma nova conta
   create_an_atlas: Criar um Atlas
   create_export: Criar Exportação
@@ -1529,10 +1547,22 @@ pt-BR:
   dashboard_pilots:
     #button asking to participate in a pilot
     pilot_participate: "Sim! Eu gostaria de participar."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Parar de participar"
+    #link to a blog post
+    pilot_read_more: "Leia mais em nosso blog."
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Piloto de lacunas de identificação: Precisa identificar espécies desejadas"
     #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
     gaps_id_pilot_intro: "Ajude-nos a preencher lacunas se inscrevendo para receber um link diário para observações:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Ainda não incluído no Modelo de Visão Computacional"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Achamos que você pode identificar"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Aqui está um link para observações de espécies ainda não incluídas no Modelo de Visão Computacional que achamos que você pode identificar."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Volte amanhã para um link de observações de espécies ainda não incluídas no Modelo de Visão Computacional que pensamos que você pode identificar. Você verá espécies nas quais você fez pelo menos 3 identificações do tipo \"Melhorando\"."
     #instructions once people have participated if the list of observaitons is not ready explaining why
     gaps_id_pilot_check_back_body: "Se não tiver um link, pode não haver observações que correspondam a esses critérios que precisam de ID. Haverá uma verificação uma vez por dia."
     #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
@@ -1549,6 +1579,8 @@ pt-BR:
     gaps_obs_pilot_body: "Observando estas espécies, você ajudará a melhorar o modelo e preencher as lacunas de dados da biodiversidade. Esta lista será atualizada quando atualizar o Modelo. Você pode optar por sair a qualquer momento."
     #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
     gaps_obs_pilot_current_intro: "Aqui está sua lista atual de espécies que:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Ainda não incluído no Modelo de Visão Computacional"
     #instructions once people have participated explaining the list of observations, the second condition for observations in the list
     gaps_obs_pilot_current_condition_2: "Foram observadas perto do seu último local nesta estação"
     #instructions showing the benefit of participating in the pilot
@@ -1625,6 +1657,10 @@ pt-BR:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1} - %{d2}"
+  #Express a single date with a time range. Better to use a flexible form
+  #here, e.g. not something like "start_time to end_time" if "to" might be
+  #translated differently for different values of start_time and end_time
+  date_time_to_time: "%{date}, %{start_time} - %{end_time}"
   date_updated: Data atualizada
   day: Dia
   decrease_brightness: Diminuir o brilho
@@ -1705,9 +1741,14 @@ pt-BR:
         para confirmar sua conta.
       user:
         suspended: Sua conta foi suspensa
+        #Error message for suspended users telling them how to appeal and providing them with a link.
+        suspended_appeal: Se você pensa que isso foi um erro e gostaria de recorrer, por favor <a href="https://help.inaturalist.org/support/tickets/new">entre em contato com o suporte.</a>
         #Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
         #with a variable containing relative time (e.g. 1 day, 1 week.)
         suspended_until: "Sua suspensão será levantada em %{until}."
+        #Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        #an arbitrary string.
+        suspension_reason: "Motivo: %{reason}"
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: O token de redefinição de senha é inválido. Use o link no e-mail de redefinição de senha enviado mais recentemente ou <a href="%{url}">Solicite um novo</a>.
     sessions:
@@ -1772,6 +1813,7 @@ pt-BR:
   devise_unlock_instructions_unlock: Desbloqueie Sua Conta
   #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Descobrir
+  discover_nature_around_you: Descubra a natureza ao seu redor
   discoveries: Descobertas
   did_you_mean: 'Você quis dizer'
   did_you_photos_flickr?: Você incluiu alguma foto no Flickr?
@@ -1827,6 +1869,7 @@ pt-BR:
     <a href="/observations/import?project_id=%{project_id}#csv_import">carregador múltiplo</a>
   download_csv: Baixar CSV
   download_csv_template: Baixar modelo CSV
+  download_inaturalist_app: Baixe o iNaturalist na App Store
   download_kml: Baixar KML
   downstream_coverage_rank: Classificação da cobertura descendente
   downstream_coverage_colon_rank: "Cobertura descendente: classificação %{rank}"
@@ -2021,6 +2064,7 @@ pt-BR:
   external_taxon_including_children: Táxon externo (incluindo crianças)
   extinct: extinto
   extinct_in_the_wild: Extinto na natureza
+  provisional_taxon: Provisório
   extra_properties: Propriedades extras
   evidence_accurately_depicts_organism_or_scene: A evidência retrata com precisão o organismo ou a cena
   evidence_of_organism: Evidência de organismo
@@ -2111,6 +2155,8 @@ pt-BR:
   flag_deleted: Marcação apagada
   flag_description: Sinalizar este conteúdo para que os coordenadores saibam que algo está errado.
   flag_comment_description: Adicione um comentário opcional a este sinalizador que explica mais o porquê de você estar adicionando-o e fornece links para evidências.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Sinalizadores que citam uma fonte têm maior probabilidade de serem resolvidos rapidamente por nossos curadores voluntários.
   flag_for_check_list_title_html: |
     Sinalização para Lista de Verificação: %{title}
   flag_for_comment_id_html: Sinalização para <a href="%{url}">Comentário%{id}</a>
@@ -2144,6 +2190,7 @@ pt-BR:
   flag_marked_as_unresolved_html: '<span class="meta">Sinalização marcada como</span> <strong>não resolvida.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Item
+  flag_reason2: "Estou sinalizando esse/a %{record} porque"
   flag_resolution: Resolução
   flag_saved: Sinalização Salva
   flag_saved_thanks_html: Sinalização salva. Obrigado! <a href="%{url}" class="readmore">Ver sinalização</a>
@@ -2419,6 +2466,15 @@ pt-BR:
   identification_saved: "Identificação salva!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Identificação ocultada
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: Indicar
+    #Label for a menu option to remove a nomination on an identification
+    remove_nomination: Remover indicação
+    #displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} indicou isso como dica de ID"
+    #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation: Indicar como dica de ID (características diagnósticas que ensinam outras pessoas a identificar este organismo) #Notice when an identification has been unhidden by moderators
   identification_unhidden: Identificação reexibida
   #Notification when an identification has been updated
   identification_updated: Identificação atualizada!
@@ -2484,6 +2540,14 @@ pt-BR:
   inappropriate: Inadequado
   #Name of the newer version of iNaturalist's mobile app, called iNatNext
   inat_next: iNatNext
+  #Chart series and legend label on the stats page
+  inat_classic_android_temp: Android
+  #Chart series and legend label on the stats page
+  inat_classic_ios: iOS clássico
+  #Chart series and legend label on the stats page
+  inat_next_android_temp: iNatNext Android
+  #Chart series and legend label on the stats page
+  inat_next_ios: iOS
   inaturalist_network: Rede iNaturalist
   inaturalist_network_affiliation: Filiação da Rede iNaturalist
   #Label for messages you've received
@@ -2581,6 +2645,10 @@ pt-BR:
   jobs: Trabalhos
   join: Faça parte
   join_and_add_an_observation_to_project_html: Junte-se e Adicione uma Observação a %{project}
+  #Shown after dismissing a banner that invites you to join, or lets you
+  #leave, a test of a new feature, pointing at the other place to do both
+  join_or_leave_this_test_in_account_settings_html: |
+    Você pode participar ou sair deste teste a qualquer momento usando suas <a href="%{url}">Configurações da conta</a>.
   join_project: Entre neste projeto
   #Prompt to join a specific project
   join_project?: Juntar-se a %{project}?
@@ -2638,9 +2706,9 @@ pt-BR:
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Camadas
   layout: Disposição
-  leaderboard: Colaboradores mais ativos
-  leaderboard_for_x: "Ranking para %{x}"
-  leaderboards: Colaboradores mais ativos
+  leaderboard: Classificações
+  leaderboard_for_x: "Classificações para %{x}"
+  leaderboards: Classificações
   leaderboard_most:
     species_in_month_year: Mais espécies em %{month_year}
     species_in_year: Mais espécies em %{year}
@@ -2861,6 +2929,7 @@ pt-BR:
     de: Alemão
     el: Grego
     en: Inglês
+    en-CA: Inglês (Canadá)
     en-GB: Inglês (Reino Unido)
     eo: Esperanto
     es: Espanhol
@@ -3071,9 +3140,14 @@ pt-BR:
   #Label shown when a date has not been entered
   missing_date: Data faltando
   mobile: Móvel
+  #Name of the test group for the responsive, mobile-friendly redesign of the
+  #site, matching the wording of the banner that prompts you to join it
+  mobile_friendly_mode: Modo Amigável para Dispositivos Móveis
   moderation_history_for_user_html: Histórico de moderação para %{user}
   moderation_history_desc_html: |
     Isto inclui ações de moderadores (por exemplo, ocultar ou exibir comentários), notas, e sinalizações em tudo que este usuário criou além de táxons. Isso é <strong>visível apenas para os curadores</strong> e <strong>curadores não podem ver seu próprio histórico</strong>, então notas sobre uma pessoa nunca devem ser visíveis para essa pessoa.
+  #Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Suspensão expirada
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Ocultar
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -3127,6 +3201,10 @@ pt-BR:
     date_long_without_year: "D [de] MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_with_zone: "LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_without_zone: "LT"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -3201,6 +3279,7 @@ pt-BR:
   mute_removed: Silenciador removido
   muted_users: Usuários silenciados
   muting_description: Silenciar pessoas impede que você seja notificado sobre qualquer atividade delas, incluindo menções "@", mensagens ou comentários e identificações de suas observações.
+  my_site: Meu site
   n_ago: "há %{n}"
   n_people_agrees: "%{amount} pessoas concordam"
   n_people_disagrees: "%{amount} pessoas discordam"
@@ -4776,6 +4855,13 @@ pt-BR:
     not_external: não externo
     not_internal: não interno
     error: erro
+  #button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Desbloquear a conta
+  #heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: Desbloquear %{user}
+  #instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Por favor, explique por que você está desbloqueando essa conta.
   relationships_user_settings: Relações
   relationship_html: "Relação: %{link}"
   reload_from_observations: Atualizar a partir das observações
@@ -4848,6 +4934,14 @@ pt-BR:
   resolved_by: Solucionado por
   resolved_by_user_on_date_html: Resolvido por %{user} em %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} disse,</span> "%{x}"'
+  #Prompt to join a test of the responsive, mobile-friendly redesign of the
+  #site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Testar o novo layout responsivo amigável para celular?
+    Note que nem todas as páginas foram convertidas ainda.
+  #Message displayed when you have joined the test of the responsive,
+  #mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Atualmente no modo amigável para celular.
   restart: Reiniciar
   restore: Restaurar
   restoring: Restaurando...
@@ -4953,6 +5047,8 @@ pt-BR:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "Sua %{noun}"
+  #link above the suspension form that opens the account's moderation history
+  see_moderation_history: Ver histórico de moderação
   see_something_wrong_with_taxon: Você visualizou algo errado com este táxon? Avise aos coordenadores.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5017,6 +5113,8 @@ pt-BR:
   show_running_total: Mostrar total acumulado
   show_taxa_from_both: (exibir táxons de ambas as listas)
   show_taxa_from_everywhere: "Exibir táxons de todas as localidades"
+  #Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Mostrar táxons provisórios
   show_taxa_from_place: "Exibir táxons de %{place}"
   show_total_counts: Mostrar as contagens totais
   show_uncountable_species: Mostrar as espécies incontáveis
@@ -5183,6 +5281,7 @@ pt-BR:
   sorry_you_need_to_be_signed_in_and: Desculpe, é preciso estar logado e ter uma conta do Flickr vinculada para postar marcações diretamente do Flickr.
   sort: Ordenar
   sort_by: Ordenar por
+  sort_included_projects_on_leaderboard_by: Ordenar projetos incluídos nas classificações por
   sorting_by: Classificando por
   soundcloud_needs_to_confirm: "SoundCloud esta requisitando uma confirmação para vincular sua conta ao site %{site_name}."
   sounds:
@@ -5221,7 +5320,7 @@ pt-BR:
     inaturalist: iNaturalist
     new_zeland_organisms_register: Registro de organismos da Nova Zelândia
     nzbrn_birds: NZBRN Aves
-    nzbrn_fungi: NZBRN Fungos
+    nzbrn_fungi: Fungos do NZBRN
     nzbrn_herpetofauna: NZBRN Herpetofauna
     nzbrn_invertebrates: NZBRN Invertebrados
     nzbrn_mammals: NZBRN Mamíferos
@@ -5330,10 +5429,93 @@ pt-BR:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Adequado para Wikipédia e outros projetos da Fundação Wikimedia
   summary: Resumo
   supporting: Concordante
+  #label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Duração da suspensão
+  #label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Duração da suspensão (%{link_start_tag}veja diretrizes%{link_end_tag})
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 dia
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 dias
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 semana
+  #a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2 semanas
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 mês
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 meses
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Indefinido
+  #a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Personalizado
+  #label for the suspension reason dropdown
+  suspension_reason_label: Motivo da suspensão
+  #option for entering a custom suspension reason
+  suspension_reason_custom: Personalizado
+  #note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: Por favor, note que este motivo será exibido ao usuário suspenso.
+  #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Por favor, observe que este motivo será exibido na conta suspensa.
+  #note displayed when a curator is editing a suspension
+  suspension_reason_edit_note: Por favor, atualize o motivo e explique por que está mudando a suspensão do usuário.
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Motivo da edição
+  #label for the edit reason field in the moderation history table
+  edit_reason: Motivo da edição
+  #predefined reasons for user suspension which are listed to curators in the user suspension form
+  suspension_reasons:
+    #reason displayed to users who have been suspended for posting hate speech
+    hate_speech: Discurso de ódio
+    #reason displayed to users who have been suspended for posting of insults or threats
+    insults_or_threats: Insultos ou ameaças
+    #reason displayed to users who have been suspended for posting sexually explicit content
+    #REPLACED with posting_sexually_explicit_human_content below
+    sexually_explicit_content: Conteúdo sexualmente explícito
+    #reason displayed to users who have been suspended for posting sexually explicit content of humans
+    posting_sexually_explicit_human_content: Postando conteúdo humano sexualmente explícito
+    #reason displayed to users who are creating false accounts to circumvent suspensions,
+    #https://en.wikipedia.org/wiki/Sock_puppet_account
+    #REPLACED with misusing_a_second_account below
+    sockpuppet_accounts: Contas fantoches
+    #reason displayed to users who are creating false accounts to circumvent suspensions or confirm their own identifications
+    misusing_a_second_account: Uso indevido de uma segunda conta, como para confirmar suas próprias identificações
+    #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    #REPLACED with intentionally_adding_false_data below
+    false_ids_or_dqa_votes: Adicionando intencionalmente identificações falsas ou votos no AQD
+    #reason displayed to users who have been suspended for intentionally adding false data
+    intentionally_adding_false_data: Adicionando intencionalmente dados falsos, como observações, identificações ou votos da Avaliação de Qualidade dos Dados
+    #reason displayed to users who have been suspended for posting machine generated content
+    #REPLACED with adding_machine_generated_content below
+    machine_generated_content: Observações, identificações e comentários gerados por máquinas
+    #reason displayed to users who have been suspended for posting machine generated content
+    adding_machine_generated_content: Adicionando conteúdo gerado por máquinas
+    #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    #REPLACED with continued_posting_media_without_owners_permission_after_warning below
+    continued_copyright_infringement_after_warning: Violação contínua de direitos autorais (após aviso)
+    #reason displayed to users who have continued to post media to the platform without the media owner's permission after being warned not to
+    continued_posting_media_without_owners_permission_after_warning: Continuou publicando mídias sem a permissão do proprietário (após advertência)
+    #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
+    continued_posting_of_artificially_generated_media_after_warning: Continuou postando mídia gerada artificialmente (após aviso)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
+    continued_reduction_of_data_quality_after_warning: Redução contínua da qualidade dos dados (após aviso)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning: Redução contínua da qualidade dos dados, como a adição de identificações incorretas (após advertência)
+  #the time at which a users suspension ends
+  suspend_until: Suspender até
+  #a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Data e hora no fuso horário local do seu navegador.
+  #button/menu label for suspending an account
+  suspend_account: Suspender conta
   suspend_user: Suspender usuário
   suspend_user_html: Suspender %{user}
   suspend_user_reason_instructions_html: |
     Explique porque está suspendendo esta conta e cite quaisquer violações das %{link_start_tag}Diretrizes da Comunidade%{link_end_tag}. Por favor, evite adicionar opiniões pessoais.
+  #a label on a field showing when a user is suspended until
+  suspended_until: Suspenso até
+  #a string on the moderation history page showing that a user has been suspended indefinitely
+  suspended_indefinitely: Suspenso por tempo indeterminado
   sw_lat: Lat. S.O.
   sw_lon: Lon. S.O.
   sync: Sincronizar
@@ -5350,6 +5532,8 @@ pt-BR:
   take_me_flickr!: Sim, acesse o Flickr!
   target_list_alert: Você tem certeza de que tentou observar todas as espécies cobertas pela sua lista de alvos? Lembre-se de que qualquer coisa abrangida pela sua lista de segmentação que você não tenha observado será interpretada como uma ausência, por isso é muito importante que sua lista de segmentações reflita com precisão o conjunto de espécies que você tentou detectar
   target_list_warning: Lembre-se de que qualquer coisa coberta pela sua lista de alvos que você não tenha observado dentro do raio e duração desta viagem será interpretada como uma ausência. É muito importante que sua lista de segmentações reflita com precisão o conjunto de espécies que você tentou detectar. Se você não tentou detectar uma espécie na sua lista de alvos ou todas as espécies cobertas por um grupo na sua lista de alvos, remova-a.
+  #Section heading on announcement show page listing linked announcement variants
+  targeted_variants: Variantes Direcionadas
   task_deleted: Tarefa excluída
   taxa: Táxons
   taxa_show_obs_photo_search_tip: |
@@ -5395,8 +5579,8 @@ pt-BR:
     one: "%{taxon} é um %{rank} de aracnídeos com 1 observação"
     other: "%{taxon} é um %{rank} de aracnídeos com %{count} observações"
   taxon_is_a_rank_of_fungi_with_x_observations:
-    one: "%{taxon} é um %{rank} de fungi com 1 observação"
-    other: "%{taxon} é um %{rank} de fungi com %{count} observações"
+    one: "%{taxon} é um %{rank} de fungos com 1 observação"
+    other: "%{taxon} é um %{rank} de fungos com %{count} observações"
   taxon_is_a_rank_of_protozoa_with_x_observations:
     one: "%{taxon} é um %{rank} de protozoários com 1 observação"
     other: "%{taxon} é um %{rank} de protozoários com %{count} observações"
@@ -5540,6 +5724,9 @@ pt-BR:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Botões de formatação de texto
   text_editing_controls: Botões de edição de texto
+  #Heading for the account settings section where you join or leave tests of
+  #new features
+  test_groups: Grupos de Teste
   thank_you!: Obrigado!
   thanks!: Obrigado!
   thanks_from_all_of_us_here_at: Obrigado por todos nós aqui em
@@ -5553,6 +5740,10 @@ pt-BR:
   that_role_doesnt_exist: Esta regra não existe
   that_was_the_last_observation_matching_the_current_filters: Esta foi a última observação que coincide aos filtros atuais.
   thats_not_a_real_date: Esta não é uma data real!
+  #flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "A conta %{user} foi suspensa"
+  #flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "A conta %{user} foi desbloqueada"
   the_admin_is_the_person_who: |
     O administrador é a pessoa que criou o projeto. Eles podem fazer tudo que o moderador e o coordenador fazem, assim como deletar o projeto.
   the_below_items_are_needed_to_achieve: |
@@ -5626,7 +5817,7 @@ pt-BR:
   this_is_the_primary_listing: Esta é a lista de espécie principal
   this_is_your_observation: Esta é a sua observação
   this_is_your_observation_desc: Você sempre pode ver as coordenadas de suas próprias observações.
-  this_job_failed_to_run: Este processo falhou. Por favor entre em contato %{email}
+  this_job_failed_to_run: Este processo falhou. Por favor contate %{email}
   this_list_is_empty!: Esta lista está vazia!
   this_list_only_accepts_taxa_that_are_species: Esta lista só aceita táxons que são espécies
   this_list_only_accepts_taxa_that_are_species_or_lower: Esta lista só aceita táxons que são espécies ou inferiores
@@ -5651,6 +5842,8 @@ pt-BR:
   this_taxon_name_was_originally_imported: "O nome deste táxon foi inicialmente importado de um provedor externo de nomes:"
   this_taxon_was_originally_imported_from: "Este táxon foi originalmente importado de um provedor externo de nomes:"
   this_user_has_been_suspended: Este(a) usuário(a) foi suspenso(a)
+  #The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: Esta conta foi suspensa
   this_user_has_been_suspended_message: |
     Se esta for a sua conta e, você acredita que isto foi feito por engano, por favor <a href="mailto:%{email}">entre em contato conosco</a>.
   this_will_add_listed_taxa: Isto irá adicionar táxons listados a partir das suas observações. Isto pode levar um tempo, então por favor utilize com moderação e em pequenas listas de verificação
@@ -5943,6 +6136,7 @@ pt-BR:
   url_identifier_of_a_project_derived_from: "URL / identificador de um projeto exportado de provedores externos"
   url_of_this_taxon_on_the_source_website: O link deste táxon no site que é fonte
   usage_stats: Estatísticas de uso
+  use_app: Use o aplicativo
   use_name_as_a_placeholder: |
     Use <span class='ac-placeholder'>"%{name}"</span> como um marcador de posição
   use_this_form_to_create_a_new: |
@@ -6054,6 +6248,10 @@ pt-BR:
   user_trusts_you_with_their_private_coordinates_desc: |
     O observador escolheu confiar em você com as coordenadas ocultadas de todas as suas observações.
   user_updated_an_observation_field_html: '%{user} atualizou um valor para "%{field_name}" em uma observação de %{owner}'
+  #An email subject line for an email informing a user that their account has been suspended.
+  user_suspended_email_subject: "%{prefix} Sua conta foi suspensa"
+  #An email subject line for an email informing a user that their account has been unsuspended.
+  user_unsuspended_email_subject: "%{prefix} Sua conta foi desbloqueada"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> escreveu,
   username: Nome de usuário
   username_description: Este é o nome de usuário que você usará para fazer login, e outros usuários podem usá-lo para identificá-lo no iNaturalist
@@ -6135,8 +6333,8 @@ pt-BR:
   view_site_year_in_review: Veja a Revisão do Ano de %{year} do %{site}
   view_site_year_in_review_caps: VEJA A REVISÃO DO ANO DE %{year} DO %{site}
   view_journal: Ver Boletim
-  view_leaderboard_from_last_month: Ver ranking do último mês
-  view_leaderboard_from_last_year: Ver ranking para o último ano
+  view_leaderboard_from_last_month: Ver classificações do último mês
+  view_leaderboard_from_last_year: Ver classificação do último ano
   view_license: Ver licença
   view_lists: Ver listas
   view_listing: Ver listas
@@ -6167,7 +6365,11 @@ pt-BR:
   view_post: Ver publicação
   view_projects_from_place: "Ver projetos do %{place}"
   view_sample: Visualizar amostra
+  #Label for a link that opens the external source of a conservation status
+  view_source: Ver Fonte
   view_stats: Veja as estatisticas
+  #Text for a link that takes the user to the relevant taxon details page
+  view_taxon: Ver Táxon
   view_taxon_change: Veja as mudanças do Táxon
   view_taxon_changes: Veja as mudanças do Táxon
   view_taxon_framework_relationship: Veja o relacionamento da estrutura do taxon
@@ -6274,6 +6476,12 @@ pt-BR:
     Este artigo usa material do artigo da Wikipédia
     <a href="%{url}">"%{title}"</a>, que é lançado sob a
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licença Creative Commons Attribution-Share-Alike 3.0</a>. Conteúdo talvez tenha sido omitido do original, mas nenhum conteúdo foi alterado ou estendido.
+  #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: O resumo da Wikipédia não pôde ser obtido agora. Por favor, tente novamente em 30 minutos.
+  #Specifies that missing articles will display this message, with a link to the wikipedia page. Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled_html: |
+    O resumo da Wikipédia não pôde ser obtido agora, ou não existe.
+    Por favor, tente novamente em %{minutes} minutos ou verifique se o artigo existe na <a href="%{url}">Wikipédia</a>.
   with: com
   #Filter for observations not in a particular taxon
   without_taxon: Não está no táxon
@@ -6468,6 +6676,8 @@ pt-BR:
   you_didnt_select_any_photos_to_tag: Você não marcou nenhuma foto para marcar!
   you_dont_have_permission_to_do_that: Você não tem permissão para fazer isso.
   you_dont_have_permission_to_edit_that_observation: "Você não tem permissão para editar esta observação."
+  #Error message shown when a site admin tries to edit an announcement that is not targeted to their site
+  you_dont_have_permission_to_edit_that_announcement: Você não tem permissão para editar esse aviso.
   you_dont_have_permission_to_edit_that_project: Você não tem permissão para editar este projeto.
   you_dont_have_permission_to_edit_that_taxon: |
     Você não tem permissão para editar esse táxon. Entre em contato com um dos curadores do táxon ou sinalize o táxon para solicitar alterações.
@@ -6574,11 +6784,21 @@ pt-BR:
       observation_oauth_application_ids_desc: |
         Clique em CMD ou SHIFT para selecionar vários. Selecionar "Todos" ou não selecionar mostrará o anúncio
         a todos os usuários, sem considerar app.
+      #Tooltip for the global announcement select when editing an announcement that already has variants
+      parent_announcement_disabled_desc: Este anúncio tem variações direcionadas e não pode ser atribuído a um anúncio global.
+      #Tooltip for the global announcement select field on the announcement form
+      parent_announcement_desc: Selecione um anúncio que esse anúncio deva substituir para usuários que atendam às regras de direcionamento.
       site_ids_desc: |
         Clique em CMD ou SHIFT para selecionar vários. Selecionar "Todos" ou não selecionar mostrará o anúncio
         a todos os usuários, independentemente do site de afiliação.
       start_desc: |
         Tempo no seu fuso horário em que este anúncio passará a ser exibido. Se aplica a todos os fusos horários, de modo que iniciará a exibição do anúncio simultaneamente, independentemente do fuso horário local.
+      include_virtuous_tags_desc: |
+        Clique com CMD ou SHIFT pressionado para selecionar vários. Selecionar "Todos" ou não selecionar mostrará o anúncio
+        a todos os usuários, independentemente das tags virtuosas.
+      exclude_virtuous_tags_desc: |
+        Clique com CMD ou SHIFT pressionado para selecionar vários. Selecionar "Todos" ou não selecionar mostrará o anúncio
+        a todos os usuários, independentemente das tags virtuosas.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Direcionar usuários de acordo com comportamento de doação
@@ -6759,6 +6979,8 @@ pt-BR:
         flaggable_content: Conteúdo Sinalizável
         flaggable_content_desc: |
           O conteúdo sinalizável é o atributo do texto principal do objeto sinalizado na hora que a sinalização foi criada. Apenas curadores e a equipe podem ver isto. Para mensagens, apenas a equipe pode ver.
+        flags_that_should_not_be_resolved_desc2_html: |
+          Por favor, resolva sinalizações de <code>spam</code>, <code>infração de direitos autorais</code> e <code>conteúdo gerado artificialmente</code> somente se o conteúdo não for spam, ou não for infração de direitos autorais ou não ter sido gerado artificialmente, respectivamente.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -7071,6 +7293,9 @@ pt-BR:
       #to keep it under 20 characters
       help_us_improve: Ajude-nos a melhorar
       to_help_us_improve: Para nos ajudar a melhorar este modelo, gostaríamos de saber quais das imagens desta página são relevantes para a sua pesquisa &quot;%{searched_term}&quot;. Marque cada imagem como relevante %{thumbs_up_icon} se corresponder à sua pesquisa e não relevante %{thumbs_down_icon} se não corresponder. Quando terminar, clique em enviar. #text for a button where a user can mark images as relevant to their search term
+      mark_as_relevant: Marcar como relevante
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_as_not_relevant: Marcar como não relevante
       #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Marcar o restante como relevante
       #text for a button where a user can mark images as not relevant to their search term
@@ -7348,6 +7573,9 @@ pt-BR:
           Identificador universal único para a observação. Veja
           https://datatracker.ietf.org/doc/html/rfc9562
       identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          Aprenda a usar esta página e contribua com identificações no iNaturalist!
         review_all_tooltip: "Marcar todas as observações desta página como revisadas"
         you_reviewed_message: "Você revisou %{reviewed} de %{pageTotal} observações nesta página de %{total} observações correspondentes."
         unreview_all_tooltip: "Remover status revisto para todas as observações na página"
@@ -7627,6 +7855,26 @@ pt-BR:
       user_unsuspended:
         #A line in an email telling a user their account suspension is being lifted lifted.
         message: Sua conta em %{site_name} foi reabilitada e você pode usar o site novamente.
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message_2: Sua conta em %{site_name} foi restabelecida e você pode entrar novamente.
+        #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
+        reason: "Sua conta foi suspensa pelo seguinte motivo: %{reason}"
+        #A message included in account unsuspension emails requesting that users abide by guidelines and warning of
+        #longer future suspensions.
+        please_abide_html: 'Por favor, siga as <a href="%{community_guidelines_url}">Diretrizes da Comunidade iNaturalist</a> e os <a href="%{terms_of_use_url}">Termos de Uso</a>. Violações futuras podem resultar em suspensões mais longas.'
+        #A message in account reinstatement emails telling users how to contact support, with a link.
+        contact_us_html: 'Se você tiver dúvidas ou preocupações, pode <a href="%{contact_us_url}">entrar em contato conosco</a>.'
+        #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
+        login_prompt: '<a href="%{login_url}">Faça login na sua conta</a> para continuar usando o site.'
+      user_suspended:
+        #A message in a suspension notification email for timed suspensions, with the reason and relative time until the suspension is lifted.
+        message_timed: "Sua conta iNaturalist foi suspensa pelo seguinte motivo: %{reason}. Sua suspensão será encerrada em %{duration}."
+        #A message in a suspension notification email for indefinite suspensions, with the reason.
+        message_indefinite: "Sua conta iNaturalist foi suspensa indefinidamente pelo seguinte motivo: %{reason}."
+        #A paragraph in a suspension notification email telling users how to appeal and warning about sockpuppet accounts, with a link to support.
+        appeal_html: 'Se você acredita que essa suspensão foi feita por engano ou gostaria de recorrer, por favor <a href="%{contact_us_url}">contate o suporte do iNaturalist</a>. Lembre-se de que usar outras contas para evitar suspensão resultará na suspensão das outras contas e na remoção do conteúdo público delas.'
+        #A paragraph in a suspension notification email asking users to follow community guidelines and terms of use, with links.
+        abide_html: 'Todos os membros da comunidade do iNaturalist são solicitados a seguir as <a href="%{community_guidelines_url}">Diretrizes da Comunidade</a> e os <a href="%{terms_of_use_url}">Termos de Uso</a>.'
       users_updates_suspended:
         message: |
           Você esteve inativo em %{site_name} por algum tempo, por este motivo suspendemos suas inscrições. Para receber o resumo de atualizações neste local, por favor <a href="%{login_url}">se conecte a sua conta</a> novamente.
@@ -7705,11 +7953,21 @@ pt-BR:
         end_time_desc: "Hora de término da sua bioblitz. Deve ser menos que um ano depois do horário de início."
         event_url_desc: |
           URL de um serviço de registro de eventos que você está utilizando para sua bioblitz. Se for um URL Eventbrite que inclui uma identificação numérica, nós iremos incluir um widget na página do seu projeto até que a bioblitz comece.
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Esconder Classificações
         icon_desc: "Será recortado em um quadrado"
         it_looks_like_this_project_can_be_converted: |
           Parece que este projeto pode ser convertido para um novo <a href="%{url}">Projeto de coleção</a>.
         last_aggregated_at_desc: |
           Momento quando o observador acabou de adicionar observações a este projeto
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Classificações
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          O painel de classificações exibe os usuários com mais observações, usuários com mais espécies, e as espécies mais observadas. Pode ser opcionalmente escondido.
         #Label for button to make another user the owner of a project
         make_owner: Tornar proprietário
         no_curators: |
@@ -7817,8 +8075,18 @@ pt-BR:
         custom_banner_icon_and_project_description: Banner personalizado, ícone e descrição do projeto
         data_visualizations: Visualizações de dados
         date_pickers:
+          #Label for a form field for a project's exact date
+          date: Data
+          #Label for a form field for a project's starting date
+          start_date: Data de início
+          #Label for a form field for a project's end date
+          end_date: Data de Término
+          #Label for a form field for a project's starting time
+          start_time: Horário de Início
           #Label for a form field for a project's end time
           end_time: Hora de término
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Incluir Horários
           #Label for a form select field allowing the editor to choose calendar months
           select_months: Selecionar meses
         delete_project: Apagar Projeto
@@ -7830,6 +8098,15 @@ pt-BR:
         end_date_must_be_after_start_date: A data de término deve ser posterior à data de início
         #validation error when a project's end time is earlier than its start time
         end_time_must_be_after_start_time: O horário de término deve ser posterior ao horário de início
+        #description for a form option that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_casual_except_captive: |
+          Exclua observações casuais por qualquer motivo que não seja estar marcada como cativa
+        #label for a form field that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_all_casual_except_captive: Excluir todos os casuais, exceto cativos.
         include_annotated_observations: |
           Inclua apenas observações anotadas com um atributo em particular (por exemplo, fase de vida), ou um atributo e valor específicos (por exemplo, estágio de vida = adulto).
           Existe um limite de um filtro de anotação por projeto.
@@ -8004,6 +8281,16 @@ pt-BR:
         avg_ttcid: Avg TTCID
         avg_ttid: Avg TTCID
         identifiers_desc: Adicionada uma identificação à observação de alguém neste dia
+        #Chart series and legend label on the stats page
+        inat_classic_android_desc_temp_html: Criado via <a href="%{url}">iNaturalist (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_classic_ios_desc_html: Criado via <a href="%{url}">iNaturalist Classic (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_temp_html: Criado via <a href="%{url}">iNatNext (Android)</a>
+        #Chart series and legend label on the stats page
+        inat_next_ios_desc_html: Criado via <a href="%{url}">iNaturalist (iOS)</a>
+        #Chart series and legend label on the stats page
+        inat_next_android_desc_html: Criado via <a href="%{url}">aplicativo iNatNext para Android</a>
         inat_next_desc_html: Criado via <a href="%{url}">iNatNext</a>
         iphone_desc_html: Criado pelo <a href="%{url}">aplicativo iNaturalist para iPhone</a>
         med_ttcid: Med TTCID
@@ -8027,6 +8314,20 @@ pt-BR:
         recent_w_7_obs_desc: Conectado nos últimos 7 dias e adicionado> = 7 observações
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: Criado via <a href="%{url}">Seek</a>
+        today_identified_by_others: Observações Identificadas por Outros (1 dia)
+        today_identified_by_others_by_iconic_taxon: Observações Identificadas por Outros (1 dia)
+        observations_unknown: Observações desconhecidas após 30 dias
+        observations_total_unknown_ratio: Razão de Observações Desconhecidas (30 dias)
+        observations_total_unknown_ratio_desc: Razão de observações desconhecidas em relação a todas as observações
+        for_others: Para outros
+        ids_last_7_days: Identificações (7 dias)
+        ids_last_7_days_desc: Identificações feitas nos últimos 7 dias
+        ids_today: Identificações (1 dia)
+        ids_today_desc: Identificações criadas em um único dia
+        ids_last_7_days_for_others: Identificações para outros (7 dias)
+        ids_last_7_days_for_others_desc: Identificações adicionadas às observações de outras pessoas durante os últimos 7 dias
+        ids_today_for_others: Identificações para outros (1 dia)
+        ids_today_for_others_desc: Identificações adicionadas às observações de outras pessoas em um único dia
         time_to_id_desc: Tempo para identificação (horas, janela de 1 semana)
         TTCID: TTCID
         TTCID_desc: Hora de receber uma identificação de alguém que é semelhante ao grupo indicado pela comunidade.
@@ -8230,6 +8531,41 @@ pt-BR:
         complete_taxon_desc: |
           Os táxons "Completos" possuem todos os seus táxons descendentes e existentes de uma certa categoria taxonômica presente no banco de dados do site. Quando um táxon é completo até espécie, por exemplo, podemos dizer quantas de suas espécies já foram observados e quantas ainda precisam ser observadas. As contagens de espécies em táxons "completos" até espécie não incluem espécies "não contáveis", como espécies extintas ou espécies inativas, e incluem apenas espécies, e não táxons infraespecíficos como subespécie ou variedades.
         discoveries_desc: "As espécies identificadas mais recentemente neste táxon"
+        identifications:
+          #Label for a a taxon page tab that displays Identifications with remarks
+          #that make them useful information or advice for how to identify the organism
+          identification_tips: Dicas de identificação
+          #Placeholder text for a search field allowing users to search on identification
+          #bodies, or search on usernames of who added the identifications
+          search_identifications: Pesquisar Identificações por texto ou nome de usuário
+          #Empty state message saying there are no identifications to show because
+          #none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            Não há identificações indicadas e votadas positivamente para este organismo
+            agora, por favor, volte em breve!
+          sort:
+            #sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Ordenar: do maior para menor número de votos"
+            #sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Ordenar: do menor ao maior número de votos"
+            #sort option for displaying the newest results first
+            newest_to_oldest: "Ordenar: do mais recente ao mais antigo"
+            #sort option for displaying the oldest results first
+            oldest_to_newest: "Ordenar: do mais antigo ao mais recente"
+            #sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Ordenar: do mais longo ao mais curto"
+          #label for a subtab that displays only IDs that have been upvoted
+          upvoted: Votadas positivamente
+          #label for a subtab that displays only IDs that have been downvoted, and
+          #as a result are not visible to most users
+          downvoted_and_hidden: Votadas negativamente (oculto)
+          #label for a subtab that displays only IDs that have not received any votes
+          no_votes: Sem votos
+          #label for a subtab that displays only IDs that have not yet been nominated
+          not_nominated: Não indicadas
+          #label for a link to view an identification in the context of its associated
+          #observation so users can view other remarks relevant to the conversation
+          view_full_conversation: Ver conversa completa
         frequency:
           research: Nível de Pesquisa
           verifiable: Verificável
@@ -8322,6 +8658,10 @@ pt-BR:
       no_votes_yet: Ainda sem votos
       #message when taxon change is committed
       taxon_change_committed: Alteração de táxon em vigor! Registros que podem ser atualizados automaticamente serão alterados em breve.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Essa alteração de táxon está pendente. É necessária a aprovação por 1 curador para poder efetivá-la."
+        other: "Essa alteração de táxon está pendente. É necessária a aprovação por %{count} curadores para poder efetivá-la."
       #message when someone tries to commit a taxon change with active children
       input_taxon_cannot_have_active_children: |
         O táxon de entrada não pode ter filhos ativos, movê-los primeiro ou selecionar a opção 'Mover filhos para a saída?'
@@ -8758,21 +9098,31 @@ pt-BR:
           #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
           moth_body: >
             O %{moth_common_name} A mariposa não era vista há décadas e já foi considerada extinta — até que um turista na Nova Zelândia a avistou por acaso.
+          #Alt text for the frosted phoenix moth story image
+          frosted_phoenix_img_alt: "Mariposa \"Frosted Phoenix\""
           #Heading for the story about a new-to-science mantis species
           mantis_heading: Descobrindo espécies novas para a ciência
           #Body text for the mantis discovery story
           mantis_body_html: >
             <span class="italic">Inimia nat</span> — abreviado para <span class="italic">I. nat</span> — é uma espécie de louva-a-deus nova na ciência encontrada por uma mulher na Austrália que caminhava em seu bairro.
+          #Alt text for the praying mantis story image
+          inat_img_alt: "Louva-a-deus"
           #Heading for the story about volunteers protecting amphibians
           amphibian_heading: Proteção dos ecossistemas locais
           #Body text for the amphibian protection story
           amphibian_body: >
             Um grupo de voluntários locais na Califórnia se uniu por meio do iNaturalist para proteger anfíbios migratórios que atravessavam uma estrada movimentada.
+          #Alt text for the California newt story image
+          california_newt_img_alt: "Tritão da Califórnia"
           #Link below the stories to read more community science stories
           read_more: Leia mais histórias
         observation:
           #Heading for the sample observation section
           heading: Cada observação conta uma história
+          #Alt text for the sample observation photo
+          photo_alt: "Sapo verde na folha"
+          #Alt text for the map showing the observation location
+          map_alt: "Mapa mostrando a localização da observação com um grande marcador e outras observações por meio de células de grade"
         stats:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
@@ -8850,6 +9200,8 @@ pt-BR:
           #Social proof label showing total app downloads
           #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
           count_label: "%{count}+ Downloads"
+          #Alt text for the iNaturalist app phone screenshot
+          phone_alt: "iNat em duas telas de celular, mostrando observações de beija-flor e de papoulas-da-califórnia"
         explore:
           #Heading for the explore species section; species cards generated from static JSON exported from iNat
           heading: Explore espécies ao redor do mundo
@@ -8863,6 +9215,8 @@ pt-BR:
           #Review count social proof label for the app
           #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
           review_tagline: "%{count}+ Avaliações 5 Estrelas"
+          #Alt text for the Seek app phone screenshot
+          phone_alt: "O aplicativo Seek ativo em dois celulares, mostrando uma insígnia de tucano e o menu de \"Esperado nas Proximidades\""
         newsletter:
           #Heading inviting users to subscribe to the monthly newsletter
           heading: Receba nossa newsletter mensal!
@@ -9010,6 +9364,18 @@ pt-BR:
       x_seconds:
         one: "1 segundo"
         other: '%{count} segundos'
+      #the number of hours for distance in time from now
+      x_hours:
+        #a singular hour
+        one: "%{count} hora"
+        #multiple hours (plural)
+        other: "%{count} horas"
+      #the number of years for distance in time from now
+      x_years:
+        #a singular year
+        one: "%{count} ano"
+        #multiple years (plural)
+        other: "%{count} anos"
     countdown_x_days:
       one: DIA
       other: DIAS
@@ -9061,6 +9427,11 @@ pt-BR:
         #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      #Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "B"
       decimal_units:
         format: '%n %u'
         units:
@@ -9155,6 +9526,8 @@ pt-BR:
         exclude_donor_start_date: Exclui data de início do doador
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Exclui data de término do doador
+        #Column header for countries excluded by IP address
+        exclude_ip_countries: Excluir Países pelo IP
         excludes_non_site: Ocultar outros anúncios neste canal que não têm ID do site
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
@@ -9180,6 +9553,8 @@ pt-BR:
         max_observations: Máximo de observações
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Mínimo de observações
+        #A selection dropdown to choose the global announcement that this targeted announcement variant is based on
+        parent_announcement_id: Anúncio Global (opcional)
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Posicionamento
         #Preference for an announcement that is only shown to the user who created the announcement
@@ -9190,6 +9565,8 @@ pt-BR:
         user_created_start_date: Data de inscrição do usuário mais remota
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Data de inscrição do usuário mais recente
+        #Describes a setting on inaturalist announcements to enable embedded widgets from the fundraiseup fundraising platform
+        prefers_embed_fru: Permitir widgets incorporados da plataforma Fundraise UP
       assessment:
         description: Descrição
       assessment_section:
@@ -9228,6 +9605,8 @@ pt-BR:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: 'Motivo:'
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Motivo da edição
       observation:
         description: Anotações
         geo_x: Deslocando-se ao leste
@@ -9437,6 +9816,13 @@ pt-BR:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: devem ser válidos para uma localização específica
+            parent_announcement_id:
+              #Error shown when an announcement's global announcement field references itself
+              cannot_reference_self: não pode se referenciar
+              #Error shown when an announcement's global announcement is itself a variant of another announcement
+              cannot_reference_variant: não pode referenciar um anúncio que seja uma variante (apenas um nível de aninhamento permitido)
+              #Error shown when trying to set an global announcement on an announcement that already has variants
+              cannot_have_variants: não pode ser definido em um anúncio que já tenha variantes (apenas um nível de aninhamento é permitido)
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
@@ -9494,6 +9880,9 @@ pt-BR:
               staff_cannot_be_suspended: Funcionários do site não podem ser suspensos
             user_id:
               must_be_a_curator: deve ser um curador
+            suspended_until:
+              #Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Deve ser no futuro
         moderator_note:
           attributes:
             user:
@@ -9568,6 +9957,11 @@ pt-BR:
             user:
               must_be_on_site_long_enough: |
                 Deve ter feito o registro há mais de 24 horas para publicar. Nós temos muitos casos de spam, e esta foi uma maneira que encontramos para lidar com isso. Você ainda pode salvar um rascunho, e se você voltar ao site em um dia, já poderá efetivar a publicação.
+        project:
+          attributes:
+            base:
+              #Error message indicating a project start date must be before its end date
+              start_date_must_be_before_end_date: A data de início deve ser anterior à data de término
         project_fave:
           attributes:
             base:
@@ -9625,6 +10019,8 @@ pt-BR:
               bad_format: |
                 só pode conter caracteres latinos, hífens, espaços e
                 ×; note que táxons putativos e cultivares não são permitidos
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "mudanças de nome não são permitidas para vírus, bactérias ou clados enxertados"
               #Error message trying to change name for a taxon coarser than species
               coarser_than_species: "alterações de nome não são permitidas para níveis mais elevados que espécie"
               #Error message trying to change name like this Taricha torosa x granulosa
@@ -9637,6 +10033,16 @@ pt-BR:
               genus_cannot_change: "gênero não pode mudar"
               #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
               nonstandard_species_marker_only: "nome de espécie fora do padrão: só é permitido remover 'x'/'×' ou adicionar '×'"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "epíteto específico deve ser semelhante (somente pequenos erros de grafia/gênero)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "epíteto infraespecífico necessário para esse nível"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "apenas o epíteto infraespecífico pode mudar em classificações infraespecíficas"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "epíteto infraespecífico deve ser semelhante (somente pequenos erros de grafia/gênero)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "primeira letra de qualquer epíteto não pode ser mudada."
         taxon_change:
           attributes:
             base:
@@ -9885,32 +10291,98 @@ pt-BR:
         Protozoa: Protozoários
         Mollusca: Moluscos
         Chromista: Algas Pardas e Afins
+  id_summary_dqa:
+    public_metrics:
+      true: "Afirmação verdadeira"
+      identification: "Útil para identificação"
+      references: "Apoiado por referências"
+      distinct: "Distinto de outros resumos"
+      clear: "Curto, coloquial e claramente escrito"
   id_summary_reference_dqa:
     public_metrics:
+      relevant: "O comentário é relevante para o resumo"
+      true: "O comentário é uma afirmação verdadeira"
       matches_taxon: "O comentário se refere a %{taxon}"
   id_summaries:
     demo:
       app:
+        header_link: "Demo de Resumos de ID"
         info_line_one: "Este demo explora o uso de IA para resumir comentários no iNaturalist com o objetivo de"
         info_line_two: "Tornando a habilidade em identificação mais acessível."
+        blog_link_text: "Saiba mais em nosso blog"
+        missing_identifier: "Resumo de identificação deste táxon ausente"
         service_unavailable: "Detalhes do resumo de identificação estão temporariamente indisponíveis."
+        no_summary_data: "Nenhum dado de resumo encontrado para esse táxon."
+        load_failed: "Falha ao carregar o resumo do táxon"
+      filters:
+        active_only: "Mostrar apenas resumos ativos"
+        run_label: "Nome da execução"
+        run_placeholder: "Selecione uma execução"
+        run_loading: "Carregando execuções..."
+        photo_tips_toggle: "Mostrar dicas de foto"
+        language_label: "Idioma"
       summary_list:
+        loading: "Carregando resumos de ID..."
         empty: "Não há resumos de identificações disponíveis para esta espécie."
         refreshing: "Atualizando resumos..."
         heading: "Resumos de identificação"
+        feedback_toggle: "Feedback sobre Resumos de ID"
+        feedback_unavailable: "O feedback não está disponível para este resumo."
         sign_in_required: "Faça login para votar no feedback do resumo de identificação."
+        service_unavailable: "O serviço de feedback não está disponível no momento."
         submit_failed: "Falha ao enviar feedback."
+      summary_feedback:
+        loading: "Carregando feedback..."
+        explainer: "Seu feedback será usado para ajudar a melhorar os resumos de identificação no futuro"
+        sign_in_tooltip: "Faça login para votar neste resumo"
+        submitting_tooltip: "Enviando feedback..."
+        aria_helpful: "%{label}: útil"
+        aria_not_helpful: "%{label}: não é útil"
       summary_item:
+        disclaimer: "Este resumo dos comentários dos usuários do iNaturalist foi gerado por IA e pode estar incorreto. Você pode nos ajudar a melhorar este resumo fornecendo feedback."
+        default_label: "RESUMO"
+        default_title: "Resumo"
+        copy_link: "Copiar o link deste resumo"
+        photo_tip_label: "DICA DE FOTO"
+        photo_tip_aria: "Dica de foto: %{tip}"
+        references_toggle: "Referências de comentários de usuários do iNaturalist"
+        user_fallback: "Usuário do iNaturalist"
         reference_commented: "comentou"
+        view_comment: "Ver comentário"
+        view_reference_feedback: "Exibir feedback sobre a referência"
       reference_feedback:
         loading: "Carregando feedback da referência..."
         sign_in_required: "Faça login para votar nos comentários da referência."
+        unavailable: "O feedback de referência não está disponível no momento."
         service_unavailable: "O serviço de feedback de referências não está disponível no momento."
+        submit_failed: "Falha ao enviar feedback da referência."
+        sign_in_tooltip: "Faça login para votar nesta referência"
+        submitting_tooltip: "Enviando feedback..."
+        aria_helpful: "%{label}: útil"
+        aria_not_helpful: "%{label}: não é útil"
+      taxon_detail:
+        select_species: "Selecione uma espécie para visualizar os resumos de ID."
+        last_updated: "Última atualização"
+        no_image: "Nenhuma imagem disponível"
+        photo_tips_heading: "Dicas de foto"
+        summary_uuid: "UUID de resumo de ID de táxon"
       taxa_list:
         group_labels:
+          animalia: "Outros animais"
+          actinopterygii: "Peixes com nadadeiras raiadas"
+          aves: "Aves"
+          reptilia: "Répteis"
+          amphibia: "Anfíbios"
+          mammalia: "Mamíferos"
+          arachnida: "Aracnídeos"
+          insecta: "Insetos"
           plantae: "Plantas"
           fungi: "Fungos"
+          protozoa: "Protozoários"
+          mollusca: "Moluscos"
+          chromista: "Algas-pardas e afins"
         other_group: "Outros"
+        empty: "Nenhuma espécie disponível."
   #Title of a section warning the user about something
   warning_title: Atenção
   wikimedia: Wikimedia
