@@ -162,6 +162,7 @@ class ActivityCreatePanel extends React.Component {
             }
             config={config}
             keepMenuOnBlur={!window.matchMedia( "(hover: hover) and (pointer: fine)" ).matches}
+            afterSelect={() => $( ".id_tab input[name='taxon_name']" ).trigger( "blur" )}
             onKeyDown={e => {
               const key = e.keyCode || e.which;
               if ( key === 13 ) {
