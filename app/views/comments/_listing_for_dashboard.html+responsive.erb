@@ -29,40 +29,42 @@
         <%- end -%>
       </div>
       <h2 class="timeline-title">
+        <span class="tagline">
+          <%- if parent.class.to_s == "Observation" -%>
+              <%= raw t( "new_comment_on_a_parent_by_user_link",
+                parent: translate_with_consistent_case(
+                  parent.class.name.parameterize.underscore,
+                  default: t(
+                    parent.class.name,
+                    scope: [:activerecord, :models]
+                  )
+                ),
+                user_link:  link_to( parent.user.login, parent.user ),
+                vow_or_con: parent.class.to_s.first.downcase ) %>
+          <%- elsif parent.class.to_s == "Post" -%>
+              <%= raw t( "new_comment_on_a_parent_by_user_link",
+                parent: translate_with_consistent_case(
+                  :journal_post,
+                  default: t( "Post", scope: [:activerecord, :models] )
+                ),
+                user_link:  link_to( parent.user.login, parent.user ),
+                vow_or_con: parent.class.to_s.first.downcase ) %>
+          <%- elsif parent.user %>
+              <%= raw t( "new_comment_on_a_parent_by_user_link",
+                parent: translate_with_consistent_case(
+                  parent.class.name.parameterize.underscore,
+                  default: t(
+                    parent.class.name,
+                    scope: [:activerecord, :models]
+                  )
+                ),
+                user_link:  link_to( parent.user.login, parent.user ),
+                vow_or_con: parent.class.to_s.first.downcase ) %>
+          <%- end -%>
+        </span>
         <span class="comment_time">
           <i class="glyphicon glyphicon-time"></i> <%=t :time_ago, :time => time_ago_in_words(comment.created_at) %>
         </span>
-        <%- if parent.class.to_s == "Observation" -%>
-            <%= raw t( "new_comment_on_a_parent_by_user_link",
-              parent: translate_with_consistent_case(
-                parent.class.name.parameterize.underscore,
-                default: t(
-                  parent.class.name,
-                  scope: [:activerecord, :models]
-                )
-              ),
-              user_link:  link_to( parent.user.login, parent.user ),
-              vow_or_con: parent.class.to_s.first.downcase ) %>
-        <%- elsif parent.class.to_s == "Post" -%>
-            <%= raw t( "new_comment_on_a_parent_by_user_link",
-              parent: translate_with_consistent_case(
-                :journal_post,
-                default: t( "Post", scope: [:activerecord, :models] )
-              ),
-              user_link:  link_to( parent.user.login, parent.user ),
-              vow_or_con: parent.class.to_s.first.downcase ) %>
-        <%- elsif parent.user %>
-            <%= raw t( "new_comment_on_a_parent_by_user_link",
-              parent: translate_with_consistent_case(
-                parent.class.name.parameterize.underscore,
-                default: t(
-                  parent.class.name,
-                  scope: [:activerecord, :models]
-                )
-              ),
-              user_link:  link_to( parent.user.login, parent.user ),
-              vow_or_con: parent.class.to_s.first.downcase ) %>
-        <%- end -%>
       </h2>
     </div>
     <div class="timeline-body">

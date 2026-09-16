@@ -28,9 +28,6 @@
   <div class="timeline-panel">
     <div class="timeline-heading">
       <h2 class="timeline-title">
-        <span class="time">
-          <%= compact_date( posted_at, obscured: item.is_a?( Observation ) && !item.coordinates_viewable_by?( current_user ) ) %>
-        </span>
         <%- unless user.blank? || ( item.is_a?( Flag ) && item.resolver && user == item.resolver ) -%>
           <span style="font-weight:normal; color:gray">
             <%-
@@ -51,6 +48,9 @@
             <%- end -%>
           </span>
         <%- end -%>
+        <span class="time">
+          <%= compact_date( posted_at, obscured: item.is_a?( Observation ) && !item.coordinates_viewable_by?( current_user ) ) %>
+        </span>
       </h2>
     </div>
     <div class="timeline-body">

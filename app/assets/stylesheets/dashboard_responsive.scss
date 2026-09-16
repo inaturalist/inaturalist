@@ -224,14 +224,19 @@ body.responsive {
 }
 
 h2.timeline-title {
+  display: flex;
+  align-items: center;
   font-weight: normal;
   margin: 0;
   color: inherit;
   font-size: 1em;
   padding: 15px 0;
 }
+.timeline-title > .tagline {
+  min-width: 0;
+}
 .timeline-title .btn_subscription_settings {
-  float: right
+  flex-shrink: 0;
 }
 .timeline-title > a.btn_subscription_settings > .glyphicon {
   font-size: 1em;
@@ -239,20 +244,23 @@ h2.timeline-title {
   color: #777;
 }
 .timeline-title > .time {
-  float: right!important;
+  flex-shrink: 0;
+  margin-left: auto;
   color: #777;
   font-size: 75%;
   padding-left: 10px;
 }
 
 .timeline-title > .update-settings {
+  flex-shrink: 0;
   padding-left: 10px;
   border-left: 1px solid #ddd;
   margin-left: 10px;
 }
 
 .timeline-title > .comment_time {
-  float: right!important;
+  flex-shrink: 0;
+  margin-left: auto;
   color: #777;
   font-size: 75%;
   padding-right: 10px;
@@ -681,7 +689,6 @@ ul.timeline_observation > li > .timeline-panel > .timeline-heading {
   margin-right:0;
 }
 ul.timeline_observation > li > .timeline-panel > .timeline-heading > h2.timeline-title {
-  padding-bottom: 10px;
   margin-right: 0;
   padding-right:0;
 }
