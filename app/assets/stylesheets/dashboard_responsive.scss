@@ -160,10 +160,12 @@ body.responsive {
 /* Badge************************************* */
 
 .timeline-badge {
+  flex-shrink: 0;
   color: #fff;
-  width: 50px;
-  height: 50px;
-  font-size: 1.4em;
+  width: 34px;
+  height: 34px;
+  margin: 7px 0;
+  font-size: 1em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -172,6 +174,9 @@ body.responsive {
 }
 .timeline-badge > .glyphicon {
   position: static;
+}
+.timeline-title .timeline-badge {
+  margin-right: 4px;
 }
 .timeline-badge > a {
   width: 100%;
@@ -209,12 +214,6 @@ body.responsive {
 }
 .timeline-badge.plain {
   background-color: #ffffff !important;
-}
-
-.timeline-badge-mini {
-  width: 34px;
-  height: 34px;
-  margin-right: 4px;
 }
 
 /* Panel Content************************************* */
@@ -273,14 +272,6 @@ h2.timeline-title {
   align-items: center;
   gap: 10px;
   padding: 0 15px 0 8px;
-}
-
-.timeline-heading > .timeline-badge {
-  flex-shrink: 0;
-  width: 34px;
-  height: 34px;
-  margin: 7px 0;
-  font-size: 1em;
 }
 
 .timeline-heading > h2.timeline-title {
