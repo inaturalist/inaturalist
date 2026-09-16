@@ -663,6 +663,7 @@ h3.dashboard_id{
 h3.dashboard_id > .taxon > .comname,
 h3.dashboard_id > .taxon > a > .sciname {
   display: block;
+  width: fit-content;
 }
 
 .glyphicon-cog {
