@@ -442,6 +442,12 @@ li > .thumbnail.first {
   min-width: 0;
 }
 
+// Hide the single-item summary while expanded so the latest isn't shown twice. Keying off the
+// button's `.collapsed` (toggled synchronously on click) hides/shows from frame one, both ways.
+.timeline-panel:has( .btn_expand:not( .collapsed ) ) .dashboard-collapse-summary {
+  display: none;
+}
+
 .timeline-footer > button.btn_expand .expand_inactive,
 .timeline-footer > button.btn_expand .expand_active {
   min-width: 0;

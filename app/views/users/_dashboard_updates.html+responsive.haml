@@ -38,17 +38,17 @@
                 - observations = [updates[0].resource]
                 = render partial: 'observations/observations_component_for_dashboard', locals: { for_idents: true, observations: observations }
               - target_id = bootstrap_target_id
-              .collapse.out{:class => "expand#{target_id}"}
+              .collapse.out{ id: "expand#{target_id}" }
                 %ul.timeline.timeline_observation
                   - for u in updates
                     = render partial: "shared/activity_item_for_dashboard", object: u.notifier, locals: { no_thumb: (is_mention && u.notifier.is_a?( Post ) ), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil }
-              .collapse.in{:class => "expand#{target_id}"}
+              .collapse.in.dashboard-collapse-summary
                 %ul.timeline.timeline_observation
                   = render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?( Post ) ), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil }
             .timeline-footer
               = link_to t( "view_#{resource_type.downcase}".to_sym, default: "View" ), resource, class: "btn btn-sm btn-primary"
               - if updates.count > 1
-                %button.btn.btn-sm.btn-default.btn_expand.collapsed{ "aria-pressed" => "false", "data-target" => ".expand#{target_id}", "data-toggle" => "collapse", type: "button" }
+                %button.btn.btn-sm.btn-default.btn_expand.collapsed{ "aria-pressed" => "false", "data-target" => "#expand#{target_id}", "data-toggle" => "collapse", type: "button" }
                   %span.expand_inactive
                     %i.glyphicon.glyphicon-collapse-down
                     %span.btn_expand_label
