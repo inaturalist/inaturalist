@@ -117,43 +117,41 @@ class BulkObservationFile
   def import_file
     row_count = 1
     observations = []
-    ActiveRecord::Base.transaction do
-      CSV.foreach( @observation_file, encoding: "iso-8859-1:utf-8", headers: true ) do | row |
-        next if skip_row?( row )
+    CSV.foreach( @observation_file, encoding: "iso-8859-1:utf-8", headers: true ) do | row |
+      next if skip_row?( row )
 
-        # Add the observation file name as a tag for identification purposes.
-        tags = row[6].blank? ? [] : row[6].split( "," )
-        tags << File.basename( @observation_file )
-        row[6] = tags.join( "," )
+      # Add the observation file name as a tag for identification purposes.
+      tags = row[6].blank? ? [] : row[6].split( "," )
+      tags << File.basename( @observation_file )
+      row[6] = tags.join( "," )
 
-        obs = new_observation( row )
-        # Not sure why but without this the OFVs won't save as of Rails 6 ~~~kueda 20211028
-        obs.observation_field_values.to_a
-        begin
-          # Try to save the observation
-          obs.save!
+      obs = new_observation( row )
+      # Not sure why but without this the OFVs won't save as of Rails 6 ~~~kueda 20211028
+      obs.observation_field_values.to_a
+      begin
+        # Try to save the observation
+        obs.save!
 
-          # Add this observation to a list for later importing to the project.
-          observations << obs
+        # Add this observation to a list for later importing to the project.
+        observations << obs
 
-          # Increment the row count so we can tell them where any errors are.
-          row_count += 1
-        rescue ActiveRecord::RecordInvalid
-          raise BulkObservationException.new( "Invalid record encountered", row_count )
-        end
+        # Increment the row count so we can tell them where any errors are.
+        row_count += 1
+      rescue ActiveRecord::RecordInvalid
+        raise BulkObservationException.new( "Invalid record encountered", row_count )
+      end
+    end
+
+    # Add all of the observations to the project if a project was specified
+    if project
+      observations.each do | obs |
+        project.project_observations.create( observation: obs )
       end
 
-      # Add all of the observations to the project if a project was specified
-      if project
-        observations.each do | obs |
-          project.project_observations.create( observation: obs )
-        end
-
-        # Manually update counter caches.
-        ProjectUser.update_observations_counter_cache_from_project_and_user( project.id, user.id )
-        ProjectUser.update_taxa_counter_cache_from_project_and_user( project.id, user.id )
-        Project.update_observed_taxa_count( project.id )
-      end
+      # Manually update counter caches.
+      ProjectUser.update_observations_counter_cache_from_project_and_user( project.id, user.id )
+      ProjectUser.update_taxa_counter_cache_from_project_and_user( project.id, user.id )
+      Project.update_observed_taxa_count( project.id )
     end
     Observation.elastic_index!( ids: observations.map( &:id ), wait_for_index_refresh: true )
   end
