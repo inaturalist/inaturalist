@@ -2122,8 +2122,8 @@ $header-line-height: 34px;
     .dropdown-menu {
       .header-xs { display: block; }
     }
+    // Squares up the button once it is icon-only
     .btn-focus {
-      font-size: 15px !important;
       padding: 6px 7px !important;
     }
   }
@@ -2132,12 +2132,9 @@ $header-line-height: 34px;
     .dropdown-menu {
       .header-sm { display: block; }
     }
-    .btn-focus {
-      font-size: 15px !important;
-      padding: 6px 7px !important;
-    }
     &.search-open {
       .header-sm { display: none; }
+      .add-obs .header-sm { display: inline-block; }
       .header-xs { display: inline-block; }
       .dropdown-menu {
         .header-xs { display: block; }
@@ -2180,7 +2177,7 @@ $header-line-height: 34px;
     opacity: 1;
   }
   .navtabs {
-    margin-right: 20px;
+    margin-right: 10px;
     padding: 10px 0px;
     line-height: 27px;
     .navtab {
@@ -2330,6 +2327,9 @@ $header-line-height: 34px;
     .signedout > span {
       padding: 0;
     }
+    li.navtab > * {
+      padding-inline: 4px;
+    }
   }
   .dropdown-toggle {
     cursor: pointer;
@@ -2386,28 +2386,44 @@ $header-line-height: 34px;
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    margin-right: 15px;
+    margin-right: 5px;
   }
   .btn-focus {
     background-color: $inat-green;
     border-color: $inat-green;
     color: white;
     i { color: white; }
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-size: 14px;
     font-weight: 600;
-    padding: 6px 10px 7px;
+    padding: 6px 10px;
     line-height: 15px;
     margin: 3px 0;
   }
 
-  // Toggled by fitHeader() when the header's contents no longer fit the viewport
-  // The upload button removed because the user menu still offers access
-  &.crowded {
+  // Below $xs nothing else fits; the user menu carries the upload link instead
+  @media (max-width: $xs-max) {
     .add-obs {
       display: none;
     }
     .dropdown-menu .add-obs-menu-item {
       display: block;
+    }
+  }
+
+  // .long-counts is set by setHeaderCount() once either badge passes two digits
+  @media (max-width: 379.98px) {
+    &.long-counts {
+      #messagesnav .count,
+      #updatesnav .count {
+        display: none;
+      }
+      #usernav #messagesnav > *,
+      #usernav #updatesnav > * {
+        padding-inline: 9px;
+      }
     }
   }
 
@@ -2613,9 +2629,6 @@ body:not(.responsive) {
       }
       .add-obs, .donate-cta {
         margin-right: 4px;
-      }
-      #usernav li.navtab>* {
-        padding-inline: 4px;
       }
       #usernav #auth-or {
         padding-inline: 1px;

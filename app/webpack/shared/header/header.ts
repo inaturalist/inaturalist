@@ -2,15 +2,14 @@ interface CountOptions {
   skipAnimation?: boolean;
 }
 
-// Enable the "crowded" class when header overflows the viewport
-export function fitHeader( ): void {
-  const header = document.getElementById( "header" );
-  if ( !header ) { return; }
+const MAX_HEADER_COUNT = 999;
+const MAX_NARROW_HEADER_COUNT = 99;
 
-  header.classList.remove( "crowded" );
-  if ( header.scrollWidth > header.clientWidth ) {
-    header.classList.add( "crowded" );
-  }
+const headerCounts = { updates: 0, messages: 0 };
+
+// The badge width is what keeps the header inside narrow viewports
+export function formatHeaderCount( count: number ): string {
+  return count > MAX_HEADER_COUNT ? `${MAX_HEADER_COUNT}+` : String( count );
 }
 
 function apiUrlV2( ): string {
@@ -38,8 +37,14 @@ function setHeaderCount(
     $( selector ).switchClass( hasCount ? "" : "hasupdates", hasCount ? "hasupdates" : "" );
   }
 
-  $( `${selector} .count` ).html( String( count ) );
-  fitHeader( );
+  $( `${selector} .count` ).html( formatHeaderCount( count ) );
+
+  headerCounts[nav] = count;
+  document.getElementById( "header" )?.classList.toggle(
+    "long-counts",
+    headerCounts.updates > MAX_NARROW_HEADER_COUNT
+      || headerCounts.messages > MAX_NARROW_HEADER_COUNT
+  );
 }
 
 export function setUpdatesCount( count: number, options: CountOptions = {} ): void {
