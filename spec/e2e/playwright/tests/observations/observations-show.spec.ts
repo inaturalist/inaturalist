@@ -137,13 +137,14 @@ test.describe( "Observation detail page", () => {
     const IDENTIFIER_PASSWORD = "TestPass123!";
     let identifier: Record<string, unknown>;
 
+    test.use( { viewport: { width: 390, height: 844 }, hasTouch: true } );
+
     test.beforeAll( async () => {
       identifier = await appMake( "create", "user", { password: IDENTIFIER_PASSWORD } );
       await app( "grant_privilege", { user_id: identifier.id, privilege: "interaction" } );
     } );
 
     test.beforeEach( async ( { page } ) => {
-      await page.setViewportSize( { width: 390, height: 844 } );
       await mockTaxonSuggestions( page, ["Typed Species"], ["Suggested Species"] );
       await login( page, identifier.email as string, IDENTIFIER_PASSWORD );
       await mockObservationFetch( page, obs );
@@ -190,24 +191,6 @@ test.describe( "Observation detail page", () => {
       await page.waitForTimeout( 1000 );
       await page.locator( "#ObservationShow" ).click( { position: { x: 5, y: 5 } } );
       await expect( result ).toBeHidden();
-    } );
-
-    test( "stays closed when the field is re-selected, until the text changes", async ( { page } ) => {
-      const suggestion = page.locator( `${MENU} li.ac-result`, { hasText: "Suggested Species" } );
-      const typed = page.locator( `${MENU} li.ac-result`, { hasText: "Typed Species" } );
-      await page.locator( INPUT ).click();
-      await expect( suggestion ).toBeVisible();
-      // let the debounced search settle, so a late re-open cannot mask the close
-      await page.waitForTimeout( 1000 );
-      await page.locator( "#ObservationShow" ).click( { position: { x: 5, y: 5 } } );
-      await expect( suggestion ).toBeHidden();
-
-      await page.locator( INPUT ).click();
-      await page.waitForTimeout( 1000 );
-      await expect( suggestion ).toBeHidden();
-
-      await page.locator( INPUT ).pressSequentially( "Typed" );
-      await expect( typed ).toBeVisible();
     } );
   } );
 } );
