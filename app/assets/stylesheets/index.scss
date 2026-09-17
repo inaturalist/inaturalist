@@ -2386,7 +2386,7 @@ $header-line-height: 34px;
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    margin-right: 5px;
+    margin-right: 8px;
   }
   .btn-focus {
     background-color: $inat-green;
@@ -2628,7 +2628,7 @@ body:not(.responsive) {
         }
       }
       .add-obs, .donate-cta {
-        margin-right: 4px;
+        margin-right: 8px;
       }
       #usernav #auth-or {
         padding-inline: 1px;
