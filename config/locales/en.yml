@@ -2335,6 +2335,7 @@ en:
   find_your_current_location: Find your current location
   finished: Finished
   finished_with_page: Finished With Page
+  # Label for a pagination button that goes to the first page of results
   first: First
   first_confirmed_inat_observation: "First confirmed %{site_name} observation"
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
@@ -4182,6 +4183,7 @@ en:
   overlapping_atlases: Overlapping atlases
   overlapping_downstream_taxon_frameworks_html: "Overlapping downstream Taxon Frameworks: %{count}"
   owner: Owner
+  # Accessible label for a set of pagination controls
   pagination: Pagination
   # One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Parent
@@ -5323,6 +5325,7 @@ en:
   schemes_including: Schemes including
   # E.g. "Homo sapiens" instead of "human"
   scientific_name: Scientific Name
+  # Accessible label for a button that scrolls the page back to the top
   scroll_to_top: Scroll to top
   search: Search
   search_all_fields: search all fields
