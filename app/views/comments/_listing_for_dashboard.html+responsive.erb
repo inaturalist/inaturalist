@@ -101,7 +101,7 @@
     </div>
     <div class="timeline-footer">
       <%= link_to t( "view_#{parent.class.to_s.underscore}", default: t(:view_x, x: t( parent.class.to_s.underscore, default: parent.class.to_s ) ) ), parent, :class => "btn btn-sm btn-primary" %>
-      <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#<%= "#{target_id}" %>" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> <%=t :show_more %></span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> <%=t :show_less %> </span></button>
+      <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#<%= "#{target_id}" %>" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> <span class="btn_expand_label"><%=t :show_more %></span></span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> <span class="btn_expand_label"><%=t :show_less %></span> </span></button>
     </div>
   </div>
 </li>
