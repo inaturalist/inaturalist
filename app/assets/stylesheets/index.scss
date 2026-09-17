@@ -2312,6 +2312,7 @@ $header-line-height: 34px;
     display: -ms-flexbox;
     display: flex;
     margin-right: 0;
+    gap: 4px;
     .usericon {
       width: $header-line-height - 2 !important;
       height: $header-line-height - 2 !important;
@@ -2387,6 +2388,9 @@ $header-line-height: 34px;
     -ms-flex-align: center;
     align-items: center;
     margin-right: 8px;
+  }
+  .add-obs {
+    margin-right: 11px;
   }
   .btn-focus {
     background-color: $inat-green;
