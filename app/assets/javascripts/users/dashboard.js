@@ -142,9 +142,14 @@ DASHBOARD.setState = function ( type, params, options ) {
   }
 };
 
+DASHBOARD.scrollToHeader = function ( ) {
+  var header = $( ".logged-in-user-image" ).closest( "h3" );
+  window.scrollTo( 0, header.length > 0 ? header.offset( ).top : 0 );
+};
+
 DASHBOARD.startPanelLoading = function ( selector ) {
   var target = $( selector );
-  window.scrollTo( 0, 0 );
+  DASHBOARD.scrollToHeader( );
   target.attr( "aria-busy", true );
   target.html( "<div class='loading status'>" + I18n.t( "loading" ) + "</div>" );
 };
