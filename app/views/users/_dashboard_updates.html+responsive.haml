@@ -22,16 +22,17 @@
               .timeline-badge.plain
                 = link_to update_image_for( notifying_update, no_inline_dimensions: true ), resource
             %h2.timeline-title
-              - if is_mention
-                = link_to generic_edit_user_url( anchor: "activity-settings" ), class: "pull-right update-settings", target: "_blank", rel: "noopener noreferrer" do
-                  %span.glyphicon.glyphicon-cog
-              - elsif !is_me?( resource_owner ) && !resource.is_a?( TaxonChange ) && !resource.is_a?( Project )
-                = link_to edit_subscription_by_resource_path( resource_type, resource_id ), class: "pull-right update-settings subscriptionsettings" do
-                  %span.glyphicon.glyphicon-cog
+              %span.tagline
+                = update_tagline_for( notifying_update, count: updates.size )
               %span.time{ title: notifying_update.sort_by_date.iso8601 }
                 %i.glyphicon.glyphicon-time
                 = compact_date( notifying_update.sort_by_date, obscured: notifier.class.name == "Observation" && !notifier.coordinates_viewable_by?( current_user ) )
-              = update_tagline_for( notifying_update, count: updates.size )
+              - if is_mention
+                = link_to generic_edit_user_url( anchor: "activity-settings" ), class: "update-settings", target: "_blank", rel: "noopener noreferrer" do
+                  %span.glyphicon.glyphicon-cog
+              - elsif !is_me?( resource_owner ) && !resource.is_a?( TaxonChange ) && !resource.is_a?( Project )
+                = link_to edit_subscription_by_resource_path( resource_type, resource_id ), class: "update-settings subscriptionsettings" do
+                  %span.glyphicon.glyphicon-cog
           - if notification == "activity" || is_mention
             .timeline-body
               - if updates[0].resource_type == 'Observation'
