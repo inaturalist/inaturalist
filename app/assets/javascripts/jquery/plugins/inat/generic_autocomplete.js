@@ -159,10 +159,21 @@ $.fn.genericAutocomplete = function ( acOptions ) {
       if ( options.selectFirstMatch ) {
         menu.focus( null, $( menu.element ).children( ".ui-menu-item" ).first( ) );
       }
+      // keepMenuOnBlur keeps the menu up when the keyboard closes, so it needs
+      // its own outside-tap handler to close on taps beyond the field and menu
+      if ( options.keepMenuOnBlur ) {
+        $( document ).off( ".acKeepMenuOpen" ).on( "touchstart.acKeepMenuOpen mousedown.acKeepMenuOpen", function ( e ) {
+          var inField = field.wrappingDiv && $( e.target ).closest( field.wrappingDiv ).length;
+          if ( inField || $( e.target ).closest( ac.menu.element ).length ) { return; }
+          ac.keepOpen = false;
+          ac.close( );
+        } );
+      }
     }
   } ).data( "uiAutocomplete" );
   field.on( "autocompleteclose", function ( ) {
     $( ac.menu.element ).removeClass( "open" );
+    $( document ).off( ".acKeepMenuOpen" );
   } );
   if ( options.menuClass && ac.menu && ac.menu.element ) {
     $( ac.menu.element ).addClass( options.menuClass );
@@ -183,6 +194,11 @@ $.fn.genericAutocomplete = function ( acOptions ) {
   };
   ac._close = function ( event ) {
     if ( this.keepOpen ) { return; }
+    // keep suggestions up when the mobile keyboard closes, so the user can
+    // still tap a result (outside-tap and selection still close it)
+    if ( options.keepMenuOnBlur && event && event.type === "blur" ) {
+      return;
+    }
     if ( this.menu.element.is( ":visible" ) ) {
       var that = this;
       that.menu.blur( );

@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { ObservationDetailPage } from "../../page-objects/observation-detail.page";
 import { mockObservationFetch } from "../../fixtures/observation-response";
+import { mockTaxonSuggestions } from "../../fixtures/taxon-suggestions";
 import { app, appMake } from "../../support/on-rails";
 import { login } from "../../helpers/auth.helper";
 import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
@@ -127,6 +128,69 @@ test.describe( "Observation detail page", () => {
         await login( page, curator.email as string, CURATOR_PASSWORD );
         await mockObservationFetch( page, obs );
       }
+    } );
+  } );
+
+  test.describe( "suggest an identification", () => {
+    const MENU = "ul.taxon-autocomplete";
+    const INPUT = "input[name='taxon_name']";
+    const IDENTIFIER_PASSWORD = "TestPass123!";
+    let identifier: Record<string, unknown>;
+
+    test.use( { viewport: { width: 390, height: 844 }, hasTouch: true } );
+
+    test.beforeAll( async () => {
+      identifier = await appMake( "create", "user", { password: IDENTIFIER_PASSWORD } );
+      await app( "grant_privilege", { user_id: identifier.id, privilege: "interaction" } );
+    } );
+
+    test.beforeEach( async ( { page } ) => {
+      await mockTaxonSuggestions( page, ["Typed Species"], ["Suggested Species"] );
+      await login( page, identifier.email as string, IDENTIFIER_PASSWORD );
+      await mockObservationFetch( page, obs );
+      await new ObservationDetailPage( page ).goto( obs.id as number );
+      await page.locator( "#comment-id-tabs-tab-add_id" ).click();
+    } );
+
+    test( "keeps the typed results up when the keyboard closes", async ( { page } ) => {
+      const result = page.locator( `${MENU} li.ac-result`, { hasText: "Typed Species" } );
+      await page.locator( INPUT ).fill( "Typed" );
+      await expect( result ).toBeVisible();
+      // let the debounced search settle, so a late re-open cannot mask the blur
+      await page.waitForTimeout( 1000 );
+      await page.locator( INPUT ).blur();
+      await page.waitForTimeout( 500 );
+      await expect( result ).toBeVisible();
+    } );
+
+    test( "keeps the vision suggestions up when the keyboard closes", async ( { page } ) => {
+      const result = page.locator( `${MENU} li.ac-result`, { hasText: "Suggested Species" } );
+      await page.locator( INPUT ).click();
+      await expect( result ).toBeVisible();
+      // let the debounced search settle, so a late re-open cannot mask the blur
+      await page.waitForTimeout( 1000 );
+      await page.locator( INPUT ).blur();
+      await page.waitForTimeout( 500 );
+      await expect( result ).toBeVisible();
+    } );
+
+    test( "closes the suggestions once a result is chosen", async ( { page } ) => {
+      const result = page.locator( `${MENU} li.ac-result`, { hasText: "Suggested Species" } );
+      await page.locator( INPUT ).click();
+      await expect( result ).toBeVisible();
+      await result.click();
+      await expect( page.locator( INPUT ) ).toHaveValue( /Suggested Species/ );
+      await expect( result ).toBeHidden();
+    } );
+
+    test( "closes the vision suggestions on a tap outside the field", async ( { page } ) => {
+      const result = page.locator( `${MENU} li.ac-result`, { hasText: "Suggested Species" } );
+      await page.locator( INPUT ).click();
+      await expect( result ).toBeVisible();
+      // let the debounced search settle, so a late re-open cannot mask the close
+      await page.waitForTimeout( 1000 );
+      await page.locator( "#ObservationShow" ).click( { position: { x: 5, y: 5 } } );
+      await expect( result ).toBeHidden();
     } );
   } );
 } );

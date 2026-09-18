@@ -760,6 +760,8 @@ TaxonAutocomplete.propTypes = {
   placeholder: PropTypes.string,
   // eslint-disable-next-line react/no-unused-prop-types
   resetOnChange: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
+  keepMenuOnBlur: PropTypes.bool,
   searchExternal: PropTypes.bool,
   showPlaceholder: PropTypes.bool,
   // eslint-disable-next-line react/no-unused-prop-types
