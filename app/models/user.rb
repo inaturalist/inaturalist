@@ -1822,6 +1822,11 @@ class User < ApplicationRecord
     ObservationField.recently_used_by(self).limit(10)
   end
 
+  # Pinned format to prevent silent re-bucketing on gem upgrade; changing it invalidates admin gates.
+  def flipper_id
+    "User;#{id}"
+  end
+
   def test_groups_array
     test_groups.to_s.split( "|" )
   end
