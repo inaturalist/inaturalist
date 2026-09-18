@@ -148,6 +148,7 @@ class ActivityCreatePanel extends React.Component {
         }
         return null;
       } ) );
+      const coarsePointer = !window.matchMedia( "(hover: hover) and (pointer: fine)" ).matches;
       return (
         <div>
           <TaxonAutocomplete
@@ -161,8 +162,10 @@ class ActivityCreatePanel extends React.Component {
                 : null
             }
             config={config}
-            keepMenuOnBlur={!window.matchMedia( "(hover: hover) and (pointer: fine)" ).matches}
-            afterSelect={() => $( ".id_tab input[name='taxon_name']" ).trigger( "blur" )}
+            keepMenuOnBlur={coarsePointer}
+            afterSelect={coarsePointer
+              ? ( ) => $( "input[name='taxon_name']", ReactDOM.findDOMNode( this ) ).trigger( "blur" )
+              : undefined}
             onKeyDown={e => {
               const key = e.keyCode || e.which;
               if ( key === 13 ) {
