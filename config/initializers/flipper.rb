@@ -10,8 +10,8 @@ flipper_config = Rails.application.config.flipper
 # One gate read per flag per request instead of one per check.
 flipper_config.memoize = true
 
-# One get_all per request (safe via FailClosedAdapter); the feature set it loads is also the flag registry.
-flipper_config.preload = true
+# Do not preload flags at boot; preload is done on the first request instead, so that migrations can run first.
+flipper_config.preload = false
 
 # App-side checks treat unknown keys as off with a warning; see FeatureFlagging.enabled?.
 flipper_config.strict = false
