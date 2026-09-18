@@ -87,7 +87,6 @@ describe FeatureFlagging::Telemetry do
     before do
       install( base: Flipper::Adapters::ActiveRecord.new )
       add_test_flags
-      Flipper.add( :client_demo_banner )
       @subscription = ActiveSupport::Notifications.subscribe( "process_action.action_controller" ) do | event |
         payloads << event.payload
       end
@@ -98,7 +97,7 @@ describe FeatureFlagging::Telemetry do
     it "adds the counters to the request payload Logstasher writes" do
       get "/observations"
       expect( payloads.last ).to include( feature_flag_db_reads: 1, feature_flag_cache_reads: 0 )
-      expect( payloads.last[:feature_flag_checks] ).to be >= 2
+      expect( payloads.last[:feature_flag_checks] ).to be >= 1
       expect( payloads.last[:feature_flag_runtime] ).to be > 0
     end
 

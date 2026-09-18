@@ -47,7 +47,6 @@ describe "flipper preloading", type: :request do
     # The preloaded feature set doubles as the registry, so existence checks are free too.
     it "preloads every created flag in one read" do
       add_test_flags
-      Flipper.add( :client_demo_banner )
       get "/observations"
       expect( base.count( :get_all ) ).to eq 1
       expect( base.count( :get ) ).to eq 0

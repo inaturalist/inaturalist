@@ -6,12 +6,9 @@ require "spec_helper"
 describe "GET /feature_flags", type: :request do
   include Devise::Test::IntegrationHelpers
 
-  let( :flag ) { :client_demo_banner }
+  let( :flag ) { :client_smoke_test }
 
-  before do
-    add_test_flags
-    Flipper.add( flag )
-  end
+  before { add_test_flags }
 
   def body
     JSON.parse( response.body )
@@ -26,7 +23,7 @@ describe "GET /feature_flags", type: :request do
 
     it "returns a boolean for every client flag" do
       get "/feature_flags"
-      expect( body["flags"].keys ).to match_array %w(client_demo_banner client_smoke_test)
+      expect( body["flags"].keys ).to match_array %w(client_smoke_test)
       expect( body["flags"].values ).to all( be_in( [true, false] ) )
     end
 
