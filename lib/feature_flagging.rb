@@ -157,7 +157,7 @@ module FeatureFlagging
       return unless UNKNOWN_KEY_WARNINGS.put_if_absent( key.to_sym, true ).nil?
 
       Rails.logger.warn "[FeatureFlagging] unknown feature flag #{key}, treating as off; " \
-        "create it at /admin/feature_flags"
+        "create it at /admin/feature_flags/flipper"
     end
 
     def evaluate( key, resolved_actor )

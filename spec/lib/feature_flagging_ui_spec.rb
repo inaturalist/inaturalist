@@ -6,7 +6,7 @@ require "spec_helper"
 describe "the Flipper admin UI mount", type: :request do
   include Devise::Test::IntegrationHelpers
 
-  let( :path ) { "/admin/feature_flags" }
+  let( :path ) { "/admin/feature_flags/flipper" }
 
   # show_exceptions false in test env; route mismatch raises not 404.
   describe "access" do
