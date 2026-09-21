@@ -7,8 +7,139 @@ $max-width: 1170px;
   margin-bottom: 0;
 }
 
-#carousel-container {
-  margin-top: 20px;
+#hero-container {
+  @include container-padding( $container-max-narrow );
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 1px solid #ddd;
+
+    @media ( min-width: $md ) { grid-template-columns: 2fr 1fr; }
+  }
+
+  .hero-feature {
+    position: relative;
+    background-color: $inat-green;
+  }
+
+  .photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-image: url( image_path( "project_blank_banner_bg.png" ) );
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    @media ( min-width: $md ) {
+      aspect-ratio: auto;
+      height: 320px;
+    }
+  }
+
+  .hero-labels,
+  .project-caption h2 .title {
+    color: white;
+    background-color: rgba( 0, 0, 0, 0.7 );
+
+    a {
+      color: white;
+    }
+  }
+
+  .hero-labels {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+
+    > * {
+      padding: 5px 10px;
+    }
+
+    .in-progress {
+      background-color: #f22844;
+      text-transform: uppercase;
+    }
+  }
+
+  .project-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+
+    h2 {
+      display: flex;
+      margin: 0;
+      font-size: 20px;
+      line-height: 36px;
+
+      .icon {
+        background-color: black;
+      }
+
+      img {
+        height: 38px;
+      }
+
+      .title {
+        padding: 0 15px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+      }
+
+      @media ( min-width: $md ) {
+        font-size: 26px;
+        line-height: 43px;
+
+        img {
+          height: 45px;
+        }
+      }
+    }
+  }
+
+  #about-projects {
+    height: auto;
+    background-color: black;
+    color: white;
+    padding: 20px;
+
+    h1 {
+      color: white;
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 8;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+    }
+
+    .btn {
+      font-size: 16px;
+    }
+
+    @media ( min-width: $md ) {
+      height: 320px;
+    }
+  }
 }
 
 #tools-container {
