@@ -15,10 +15,13 @@ $lg-max:  991.98px;
 $xl-max:  1199.98px;
 $xxl-max: 1399.98px;
 
-@mixin container-padding {
+$container-max:        $xl + ( 60px * 2 );
+$container-max-narrow: 950px;
+
+@mixin container-padding( $max-width: $container-max ) {
   padding-left: 60px;
   padding-right: 60px;
-  max-width: $xl + ( 60px * 2 );
+  max-width: $max-width;
   margin-inline: auto;
 
   @media ( max-width: $lg-max ) {

@@ -1,6 +1,14 @@
 @import "index";
 @import "../breakpoints";
 
+#header {
+  margin-bottom: 0;
+}
+
+#carousel-container {
+  margin-top: 20px;
+}
+
 #tools-container {
   .tools-bar {
     display: flex;
@@ -77,6 +85,8 @@
 }
 
 #main-container {
+  @include container-padding( $container-max-narrow );
+
   .section-header {
     margin-top: 20px;
     display: flex;
