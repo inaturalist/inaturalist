@@ -442,6 +442,12 @@ li > .thumbnail.first {
   min-width: 0;
 }
 
+// Hide the single-item summary while expanded so the latest isn't shown twice. Keying off the
+// button's `.collapsed` (toggled synchronously on click) hides/shows from frame one, both ways.
+.timeline-panel:has( .btn_expand:not( .collapsed ) ) .dashboard-collapse-summary {
+  display: none;
+}
+
 .timeline-footer > button.btn_expand .expand_inactive,
 .timeline-footer > button.btn_expand .expand_active {
   min-width: 0;
@@ -468,8 +474,15 @@ li > .thumbnail.first {
   text-overflow: ellipsis;
   min-width: 0;
 
+  // This text is the expand button's only accessible name; hide it visually, not from AT.
   @media ( max-width: 420px ) {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    clip: rect( 0, 0, 0, 0 );
+    border: 0;
   }
 }
 
@@ -543,6 +556,11 @@ li.taxon_change > timeline-body > div {
 li.observation_multiple_added > .timeline-panel > .timeline-body > .dashboard-obs-grid {
   margin-right: -5px;
   margin-left: -5px;
+
+  &.collapse > ul,
+  &.collapsing > ul {
+    padding-top: 10px;
+  }
 
   > ul {
     display: flex;
