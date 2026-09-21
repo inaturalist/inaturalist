@@ -36,26 +36,25 @@
               = link_to t(:start_a_project), new_project_path, class: "btn btn-primary btn-inat"
 
 #tools-container
-  .container
-    .tools-bar
-      = form_tag( project_search_path, method: :get, class: "project-search" ) do
-        %input{ name: "q", type: "text", placeholder: t(:search) }
-        %button.btn.btn-primary{ type: "submit" }=t :go
-      - if logged_in? && !@started.blank? || !@joined.blank?
-        %details.ProjectsMenu
-          %summary
-            %i.fa.fa-gear
-            =t :manage_your_projects
-          %ul
-            - unless @started.blank?
-              %li.menu-header=t :your_projects
-              - @started.each do |project|
-                %li= link_to project.title, project
-            - unless @joined.blank?
-              %li.menu-header=t :joined_projects
-              - @joined.each do |project|
-                %li= link_to project.title, project
-            %li= link_to t(:view_all), projects_by_login_path( current_user.login )
+  .tools-content
+    = form_tag( project_search_path, method: :get, class: "project-search" ) do
+      %input{ name: "q", type: "text", placeholder: t(:search) }
+      %button.btn.btn-primary{ type: "submit" }=t :go
+    - if logged_in? && !@started.blank? || !@joined.blank?
+      %details.ProjectsMenu
+        %summary
+          %i.fa.fa-gear
+          =t :manage_your_projects
+        %ul
+          - unless @started.blank?
+            %li.menu-header=t :your_projects
+            - @started.each do |project|
+              %li= link_to project.title, project
+          - unless @joined.blank?
+            %li.menu-header=t :joined_projects
+            - @joined.each do |project|
+              %li= link_to project.title, project
+          %li= link_to t(:view_all), projects_by_login_path( current_user.login )
 
 #main-container
   .projects-content
