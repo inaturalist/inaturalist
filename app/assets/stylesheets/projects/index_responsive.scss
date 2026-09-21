@@ -21,8 +21,7 @@ $max-width: 1170px;
   
     .project-search {
       display: flex;
-      flex: 0 0 300px;
-      // gap: 5px;
+      width: 300px;
     
       input {
         flex: 1;
@@ -90,7 +89,6 @@ $max-width: 1170px;
     }
   }
 }
-
 
 #main-container {
   .projects-content {
