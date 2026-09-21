@@ -35,7 +35,7 @@
               %p=t :projects_description, site_name: @site.name
               = link_to t(:start_a_project), new_project_path, class: "btn btn-primary btn-inat"
 
-#tools-container.container-fluid
+#tools-container
   .container
     .tools-bar
       = form_tag( project_search_path, method: :get, class: "project-search" ) do
@@ -57,8 +57,8 @@
                 %li= link_to project.title, project
             %li= link_to t(:view_all), projects_by_login_path( current_user.login )
 
-#main-container.container-fluid
-  .container
+#main-container
+  .projects-content
     - unless @featured.blank?
       %h2=t :featured
       .ProjectCardGrid

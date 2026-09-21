@@ -85,7 +85,9 @@
 }
 
 #main-container {
-  @include container-padding( $container-max-narrow );
+  .projects-content {
+    @include container-padding( $container-max-narrow );
+  }
 
   .section-header {
     margin-top: 20px;
