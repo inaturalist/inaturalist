@@ -3,37 +3,27 @@
 - content_for :extracss do
   = stylesheet_link_tag "projects/index_responsive"
 
-#carousel-container.container-fluid
-  .row
-    .col-xs-12
-      .container
-        .row.no-gutters
-          .col-xs-8
-            - carousel_projects = @carousel.blank? ? [@recent].flatten.compact[0..5] : @carousel
-            #featured-carousel.carousel.slide{ data: { ride: "carousel" } }
-              %ol.carousel-indicators
-                - carousel_projects.each_with_index do |project,i|
-                  %li{ class: i == 0 ? "active" : nil, data: { slide_to: i, target: "#featured-carousel" } }
-              .carousel-inner{:role => "listbox"}
-                - carousel_projects.each_with_index do |project,i|
-                  .item{ class: i == 0 ? "active" : nil }
-                    .carousel-title
-                      %span=t :new_and_noteworthy
-                      - if project.event_in_progress?
-                        %span.in-progress=t :event_in_progress
-                    = link_to "", project, class: "photo", style: project.cover? ? "background-size: #{project.prefers_banner_contain? ? "contain" : "cover"}; background-image: url('#{project.cover.url}');" : "background-size: cover;"
-                    - unless project.prefers_hide_title?
-                      .project-caption
-                        %h2
-                          - if project.icon?
-                            = link_to image_tag( project.icon.url( :span2 ) ), project, class: "icon"
-                          = link_to project.title , project, class: "title"
-
-          .col-xs-4
-            #about-projects
-              %h1=t :projects
-              %p=t :projects_description, site_name: @site.name
-              = link_to t(:start_a_project), new_project_path, class: "btn btn-primary btn-inat"
+#hero-container
+  - hero_candidates = @carousel.presence || [@recent].flatten.compact
+  - hero_project = hero_candidates[Time.now.to_i / 1.hour % hero_candidates.size] if hero_candidates.any?
+  .hero
+    - if hero_project
+      .hero-feature
+        .hero-labels
+          %span=t :new_and_noteworthy
+          - if hero_project.event_in_progress?
+            %span.in-progress=t :event_in_progress
+        = link_to "", hero_project, class: "photo", style: hero_project.cover? ? "background-size: #{hero_project.prefers_banner_contain? ? "contain" : "cover"}; background-image: url('#{hero_project.cover.url}');" : "background-size: cover;"
+        - unless hero_project.prefers_hide_title?
+          .project-caption
+            %h2
+              - if hero_project.icon?
+                = link_to image_tag( hero_project.icon.url( :span2 ) ), hero_project, class: "icon"
+              = link_to hero_project.title, hero_project, class: "title"
+    #about-projects
+      %h1=t :projects
+      %p=t :projects_description, site_name: @site.name
+      = link_to t(:start_a_project), new_project_path, class: "btn btn-primary btn-inat"
 
 #tools-container
   .tools-content
