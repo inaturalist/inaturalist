@@ -16,7 +16,6 @@ $xl-max:  1199.98px;
 $xxl-max: 1399.98px;
 
 $container-max:        $xl + ( 60px * 2 );
-$container-max-narrow: 950px;
 
 @mixin container-padding( $max-width: $container-max ) {
   padding-left: 60px;

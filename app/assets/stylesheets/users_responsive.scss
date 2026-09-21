@@ -3,7 +3,7 @@
 
 body.responsive #wrapper.container {
   width: auto;
-  @include container-padding( $container-max-narrow );
+  @include container-padding( 950px );
 }
 
 body.responsive #header {
