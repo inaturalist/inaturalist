@@ -12,10 +12,10 @@ let searchInProgress;
 const TAXON_FIELDS = {
   ancestor_ids: true,
   default_photo: {
-    url: true
+    square_url: true
   },
   representative_photo: {
-    url: true
+    square_url: true
   },
   iconic_taxon_id: true,
   iconic_taxon_name: true,
