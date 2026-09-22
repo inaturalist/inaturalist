@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Flag < ApplicationRecord
+  # Declared rather than derived from the catalog, for the inat staging views
+  self.primary_key = "id"
+
   include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  # Declared rather than derived from the catalog, for the inat staging views
+  self.primary_key = "id"
+
   include ActsAsSpammable::User
   acts_as_elastic_model
   include ActsAsUUIDable
