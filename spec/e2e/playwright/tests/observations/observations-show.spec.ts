@@ -183,6 +183,22 @@ test.describe( "Observation detail page", () => {
       await expect( result ).toBeHidden();
     } );
 
+    test( "stays closed after a result is chosen with the keyboard closed", async ( { page } ) => {
+      const result = page.locator( `${MENU} li.ac-result`, { hasText: "Suggested Species" } );
+      await page.locator( INPUT ).click();
+      await expect( result ).toBeVisible();
+      // let the debounced search settle, so a late re-open cannot mask the blur
+      await page.waitForTimeout( 1000 );
+      await page.locator( INPUT ).blur();
+      await expect( result ).toBeVisible();
+      await result.tap();
+      await expect( page.locator( INPUT ) ).toHaveValue( /Suggested Species/ );
+      await expect( page.locator( MENU ) ).toBeHidden();
+      // a re-search on the refocus would reopen the menu a beat later
+      await page.waitForTimeout( 1000 );
+      await expect( page.locator( MENU ) ).toBeHidden();
+    } );
+
     test( "closes the vision suggestions on a tap outside the field", async ( { page } ) => {
       const result = page.locator( `${MENU} li.ac-result`, { hasText: "Suggested Species" } );
       await page.locator( INPUT ).click();

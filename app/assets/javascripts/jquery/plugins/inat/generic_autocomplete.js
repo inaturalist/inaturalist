@@ -273,6 +273,8 @@ $.fn.genericAutocomplete = function ( acOptions ) {
     var that = this;
     // set a small delay before showing the results menu
     setTimeout( function () {
+      // jQuery UI refocuses the field when you select from a blurred menu; that must not re-search
+      if ( that !== document.activeElement ) { return; }
       // don't redo the search if there are results being shown
       if ( genericAutocomplete.menuClosed( ) && $( that ).data( "uiAutocomplete" ) ) {
         $( that ).autocomplete( "search", $( that ).val( ) );
