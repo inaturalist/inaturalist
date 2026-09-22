@@ -8,7 +8,7 @@ $max-width: 1170px;
 }
 
 #hero-container {
-  @include container-padding( $container-max-narrow );
+  @include container-padding( $max-width );
   background-color: white;
   padding-top: 20px;
   padding-bottom: 20px;
