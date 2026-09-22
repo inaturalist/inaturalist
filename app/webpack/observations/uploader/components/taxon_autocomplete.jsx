@@ -12,10 +12,10 @@ let searchInProgress;
 const TAXON_FIELDS = {
   ancestor_ids: true,
   default_photo: {
-    url: true
+    square_url: true
   },
   representative_photo: {
-    url: true
+    square_url: true
   },
   iconic_taxon_id: true,
   iconic_taxon_name: true,
@@ -760,6 +760,8 @@ TaxonAutocomplete.propTypes = {
   placeholder: PropTypes.string,
   // eslint-disable-next-line react/no-unused-prop-types
   resetOnChange: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
+  keepMenuOnBlur: PropTypes.bool,
   searchExternal: PropTypes.bool,
   showPlaceholder: PropTypes.bool,
   // eslint-disable-next-line react/no-unused-prop-types
