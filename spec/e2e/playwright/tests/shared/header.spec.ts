@@ -1,12 +1,64 @@
 import { test, expect, Page } from "@playwright/test";
 import { login } from "../../helpers/auth.helper";
 import { app, appMake } from "../../support/on-rails";
-import { VIEWPORTS } from "../../../shared/breakpoints";
+import { BreakpointName, VIEWPORTS } from "../../../shared/breakpoints";
 import { expectNoHorizontalOverflow, expectWithinViewport } from "../../helpers/overflow.helper";
 
 const TEST_PASSWORD = "TestPass123!";
 
 let testEmail: string;
+
+type HeaderItem = "narrow-menu" | "logonav" | "headersearch" | "mainnav"
+  | "add-obs" | "upload label" | "messagenav" | "updatesnav" | "user menutab";
+
+const HEADER_ITEMS: Record<HeaderItem, string> = {
+  "narrow-menu": "#header #narrow-menu",
+  logonav: "#header #logonav",
+  headersearch: "#header #headersearch",
+  mainnav: "#header #mainnav",
+  "add-obs": "#header .add-obs",
+  "upload label": "#header .add-obs .btn-inat span",
+  messagenav: "#header #messagesnav",
+  updatesnav: "#header #updatesnav",
+  "user menutab": "#header .navtab.user.menutab"
+};
+
+const ALWAYS: HeaderItem[] = ["logonav", "messagenav", "updatesnav", "user menutab"];
+const UPLOAD: HeaderItem[] = ["add-obs", "upload label"];
+
+// #narrow-menu and #mainnav are alternatives, never both
+const RESPONSIVE_INVENTORY: Record<BreakpointName, HeaderItem[]> = {
+  xxs: ["narrow-menu", ...ALWAYS],
+  xs: ["narrow-menu", ...ALWAYS, "add-obs"],
+  sm: ["narrow-menu", ...ALWAYS, "add-obs"],
+  md: ["narrow-menu", ...ALWAYS, ...UPLOAD, "headersearch"],
+  lg: ["narrow-menu", ...ALWAYS, ...UPLOAD, "headersearch"],
+  xl: [...ALWAYS, ...UPLOAD, "headersearch", "mainnav"],
+  xxl: [...ALWAYS, ...UPLOAD, "headersearch", "mainnav"]
+};
+
+const LEGACY_INVENTORY: HeaderItem[] = [
+  "logonav", "headersearch", "mainnav", ...UPLOAD, "messagenav", "updatesnav", "user menutab"
+];
+
+async function expectHeaderItems( page: Page, visible: HeaderItem[] ): Promise<void> {
+  const entries = Object.entries( HEADER_ITEMS ) as [HeaderItem, string][];
+
+  for ( const [item, selector] of entries ) {
+    const locator = page.locator( selector );
+    const shouldShow = visible.includes( item );
+    await expect(
+      locator,
+      `${item} should be ${shouldShow ? "visible" : "hidden"}`
+    )[shouldShow ? "toBeVisible" : "toBeHidden"]( );
+  }
+}
+
+async function gotoHeader( page: Page, breakpoint: BreakpointName ): Promise<void> {
+  await page.setViewportSize( VIEWPORTS[breakpoint] );
+  await page.goto( "/" );
+  await page.locator( "#header" ).waitFor( );
+}
 
 async function menuLabels( page: Page ): Promise<{ mainnav: string[]; hamburger: string[] }> {
   return page.evaluate( () => {
@@ -36,14 +88,13 @@ test.beforeAll( async () => {
   await app( "add_test_group", { user_id: user.id, test_groups: "responsive-header" } );
 } );
 
-test.beforeEach( async ( { page } ) => {
-  await login( page, testEmail, TEST_PASSWORD );
+expectNoHorizontalOverflow( "/", {
+  setup: page => login( page, testEmail, TEST_PASSWORD )
 } );
-
-expectNoHorizontalOverflow( "/" );
 
 test.describe( "Header search bar (desktop)", () => {
   test.beforeEach( async ( { page } ) => {
+    await login( page, testEmail, TEST_PASSWORD );
     await page.setViewportSize( VIEWPORTS.xl );
     await page.goto( "/" );
     await page.locator( "#headersearch" ).waitFor();
@@ -74,6 +125,7 @@ test.describe( "Header search bar (desktop)", () => {
 
 test.describe( "Header navigation parity (desktop)", () => {
   test.beforeEach( async ( { page } ) => {
+    await login( page, testEmail, TEST_PASSWORD );
     await page.setViewportSize( VIEWPORTS.xl );
     await page.goto( "/" );
     await page.locator( "#mainnav" ).waitFor();
@@ -102,69 +154,38 @@ test.describe( "Header navigation parity (desktop)", () => {
   } );
 } );
 
-test.describe( "Header at the sm breakpoint (logged in)", () => {
-  test.beforeEach( async ( { page } ) => {
-    await page.setViewportSize( VIEWPORTS.sm );
-    await page.goto( "/" );
-    await page.locator( "#header .add-obs" ).waitFor();
-  } );
-
-  test( "upload button text is not visible", async ( { page } ) => {
-    await expect( page.locator( "#header .add-obs .btn-inat span" ) ).toBeHidden();
-  } );
-} );
-
-test.describe( "Header at the md breakpoint (logged in)", () => {
-  test.beforeEach( async ( { page } ) => {
-    await page.setViewportSize( VIEWPORTS.md );
-    await page.goto( "/" );
-    await page.locator( "#header" ).waitFor();
-  } );
-
-  test( "the navtabs collapse into the hamburger menu while the search bar stays", async ( { page } ) => {
-    // The desktop navtabs collapse into the hamburger menu...
-    await expect( page.locator( "#mainnav" ) ).toBeHidden();
-    await expect( page.locator( "#narrow-menu" ) ).toBeVisible();
-
-    // ...but the search bar still displays in the header.
-    await expect( page.locator( "#headersearch" ) ).toBeVisible();
-  } );
-} );
-
-test.describe( "Header at the lg breakpoint (logged in)", () => {
-  test.beforeEach( async ( { page } ) => {
-    await page.setViewportSize( VIEWPORTS.lg );
-    await page.goto( "/" );
-    await page.locator( "#header .add-obs" ).waitFor();
-  } );
-
-  test( "upload button text is visible", async ( { page } ) => {
-    await expect( page.locator( "#header .add-obs .btn-inat span" ) ).toBeVisible();
-  } );
-} );
-
-test.describe( "Header with large notification counts (xs)", () => {
+test.describe( "Header with large notification counts", () => {
   const setCounts = ( page: Page, count: number ) => page.evaluate( c => {
     ( window as any ).setUpdatesCount( c, { skipAnimation: true } );
     ( window as any ).setMessagesCount( c, { skipAnimation: true } );
   }, count );
 
   test.beforeEach( async ( { page } ) => {
-    await page.setViewportSize( VIEWPORTS.xs );
-    await page.goto( "/" );
-    await page.locator( "#header .add-obs" ).waitFor();
+    await login( page, testEmail, TEST_PASSWORD );
   } );
 
-  test( "keeps the upload button while the counts are small", async ( { page } ) => {
-    await setCounts( page, 1 );
-    await expect( page.locator( "#header .add-obs" ) ).toBeVisible();
-    await expect( page.locator( "#header" ) ).not.toHaveClass( /\bcrowded\b/ );
+  test( "drops the badges below 380px once either passes two digits", async ( { page } ) => {
+    await gotoHeader( page, "xxs" );
+
+    await setCounts( page, 99 );
+    await expect( page.locator( "#header #updatesnav .count" ) ).toBeVisible();
+
+    await setCounts( page, 100 );
+    await expect( page.locator( "#header #updatesnav .count" ) ).toBeHidden();
+    await expect( page.locator( "#header #messagesnav .count" ) ).toBeHidden();
+
+    // The icons take over the space the badges gave up, so they stay easy to hit.
+    const padding = await page.locator( "#header #updatesnav > *" )
+      .evaluate( el => getComputedStyle( el ).paddingInlineStart );
+    expect( padding ).toBe( "9px" );
+
+    await expectWithinViewport( page, "xxs breakpoint" );
   } );
 
-  test( "drops the upload button for the user menu when the counts overflow", async ( { page } ) => {
+  test( "offers the upload link in the user menu at the xxs breakpoint", async ( { page } ) => {
+    await gotoHeader( page, "xxs" );
     await setCounts( page, 99999 );
 
-    await expect( page.locator( "#header" ) ).toHaveClass( /\bcrowded\b/ );
     await expect( page.locator( "#header .add-obs" ) ).toBeHidden();
 
     // The user menu keeps offering the upload link, so nothing becomes unreachable.
@@ -173,6 +194,49 @@ test.describe( "Header with large notification counts (xs)", () => {
     ).evaluate( el => getComputedStyle( el ).display );
     expect( menuItemDisplay ).not.toBe( "none" );
 
-    await expectWithinViewport( page, "xs breakpoint" );
+    await expectWithinViewport( page, "xxs breakpoint" );
+  } );
+} );
+
+test.describe( "Header item inventory (responsive-global)", () => {
+  let responsiveEmail: string;
+
+  test.beforeAll( async () => {
+    const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
+    responsiveEmail = user.email as string;
+    await app( "add_test_group", { user_id: user.id, test_groups: "responsive-global" } );
+  } );
+
+  test.beforeEach( async ( { page } ) => {
+    await login( page, responsiveEmail, TEST_PASSWORD );
+  } );
+
+  ( Object.entries( RESPONSIVE_INVENTORY ) as [BreakpointName, HeaderItem[]][] ).forEach(
+    ( [breakpoint, items] ) => {
+      test( `shows ${items.join( ", " )} at the ${breakpoint} breakpoint (${VIEWPORTS[breakpoint].width}px)`, async ( { page } ) => {
+        await gotoHeader( page, breakpoint );
+
+        await expectHeaderItems( page, items );
+      } );
+    }
+  );
+} );
+
+test.describe( "Header item inventory (no test group)", () => {
+  let legacyEmail: string;
+
+  test.beforeAll( async () => {
+    const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
+    legacyEmail = user.email as string;
+  } );
+
+  test.beforeEach( async ( { page } ) => {
+    await login( page, legacyEmail, TEST_PASSWORD );
+  } );
+
+  test( "shows every header item except the hamburger menu at the md breakpoint", async ( { page } ) => {
+    await gotoHeader( page, "md" );
+
+    await expectHeaderItems( page, LEGACY_INVENTORY );
   } );
 } );

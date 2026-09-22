@@ -2,7 +2,7 @@ export type BreakpointName = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
 
 export const BREAKPOINT_WIDTHS: Record<BreakpointName, number> = {
   xxs: 360,
-  xs: 430,
+  xs: 420,
   sm: 576,
   md: 768,
   lg: 992,
