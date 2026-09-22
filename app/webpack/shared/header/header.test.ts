@@ -1,46 +1,14 @@
-import { fitHeader, readHeaderCounts } from "./header";
+import { formatHeaderCount, readHeaderCounts } from "./header";
 
-describe( "fitHeader", ( ) => {
-  interface Widths { scrollWidth: number; clientWidth: number }
-
-  const renderHeader = ( { scrollWidth, clientWidth }: Widths ) => {
-    document.body.innerHTML = "<div id=\"header\"></div>";
-    const header = document.getElementById( "header" ) as HTMLElement;
-    // jsdom lays nothing out, so both widths are 0 without this
-    Object.defineProperty( header, "scrollWidth", { value: scrollWidth } );
-    Object.defineProperty( header, "clientWidth", { value: clientWidth } );
-    return header;
-  };
-
-  it( "leaves a header that fits alone", ( ) => {
-    const header = renderHeader( { scrollWidth: 375, clientWidth: 375 } );
-
-    fitHeader( );
-
-    expect( header.classList.contains( "crowded" ) ).toBe( false );
+describe( "formatHeaderCount", ( ) => {
+  it( "renders counts up to the cap verbatim", ( ) => {
+    expect( formatHeaderCount( 0 ) ).toBe( "0" );
+    expect( formatHeaderCount( 999 ) ).toBe( "999" );
   } );
 
-  it( "marks a header whose contents overflow", ( ) => {
-    const header = renderHeader( { scrollWidth: 383, clientWidth: 375 } );
-
-    fitHeader( );
-
-    expect( header.classList.contains( "crowded" ) ).toBe( true );
-  } );
-
-  it( "clears the mark once the header fits again", ( ) => {
-    const header = renderHeader( { scrollWidth: 375, clientWidth: 375 } );
-    header.classList.add( "crowded" );
-
-    fitHeader( );
-
-    expect( header.classList.contains( "crowded" ) ).toBe( false );
-  } );
-
-  it( "does nothing on a page with no header", ( ) => {
-    document.body.innerHTML = "";
-
-    expect( ( ) => fitHeader( ) ).not.toThrow( );
+  it( "caps anything larger", ( ) => {
+    expect( formatHeaderCount( 1000 ) ).toBe( "999+" );
+    expect( formatHeaderCount( 99999 ) ).toBe( "999+" );
   } );
 } );
 

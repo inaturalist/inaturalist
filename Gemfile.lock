@@ -194,8 +194,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
-    acts-as-taggable-on (8.1.0)
-      activerecord (>= 5.0, < 6.2)
+    acts-as-taggable-on (10.0.0)
+      activerecord (>= 6.1, < 7.2)
     acts_as_votable (0.13.1)
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
@@ -403,7 +403,7 @@ GEM
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     httpclient (2.8.3)
-    i18n (1.14.8)
+    i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     i18n-inflector (2.6.7)
       i18n (>= 0.4.1)
@@ -446,7 +446,7 @@ GEM
       rake
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (6.0.5)
+    minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
     multi_json (1.15.0)
@@ -769,7 +769,7 @@ GEM
     ya2yaml (0.31)
     yajl-ruby (1.4.3)
     yui-compressor (0.12.0)
-    zeitwerk (2.7.5)
+    zeitwerk (2.8.3)
 
 PLATFORMS
   arm64-darwin
@@ -784,7 +784,7 @@ DEPENDENCIES
   actionpack-page_caching
   activerecord-postgis-adapter
   activerecord-session_store (= 2.1.0)
-  acts-as-taggable-on
+  acts-as-taggable-on (= 10.0.0)
   acts_as_votable
   ancestry
   angular-rails-templates (= 1.4.0)

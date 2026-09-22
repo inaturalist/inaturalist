@@ -28,14 +28,11 @@
   <div class="timeline-panel">
     <div class="timeline-heading">
       <h2 class="timeline-title">
-        <span class="time">
-          <%= compact_date( posted_at, obscured: item.is_a?( Observation ) && !item.coordinates_viewable_by?( current_user ) ) %>
-        </span>
         <%- unless user.blank? || ( item.is_a?( Flag ) && item.resolver && user == item.resolver ) -%>
           <span style="font-weight:normal; color:gray">
             <%-
               name_link = link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user))
-              avatar_link = link_to(user_image(user, size: "mini", class: "timeline-badge-mini"), person_path(user))
+              avatar_link = link_to(user_image(user, size: "thumb", no_inline_dimensions: true, class: "timeline-badge"), person_path(user))
               title = no_thumb ? name_link : safe_join([avatar_link, name_link], " ")
             %>
             <%- if item.is_a? Identification %>
@@ -51,6 +48,9 @@
             <%- end -%>
           </span>
         <%- end -%>
+        <span class="time">
+          <%= compact_date( posted_at, obscured: item.is_a?( Observation ) && !item.coordinates_viewable_by?( current_user ) ) %>
+        </span>
       </h2>
     </div>
     <div class="timeline-body">
