@@ -25,6 +25,10 @@
           %li.subitem{ class: ("active" if action_name == "replica") }
             %a{ href: replica_admin_queries_path }
               Replica
+          - if inat_queries_enabled?
+            %li.subitem{ class: ("active" if action_name == "inat") }
+              %a{ href: inat_admin_queries_path }
+                iNat
           %li{ class: ("active" if %w(users user_detail).include?( action_name ) ) }
             = link_to t(:users), users_admin_path
           %li{ class: ("active" if action_name == "deleted_users") }
