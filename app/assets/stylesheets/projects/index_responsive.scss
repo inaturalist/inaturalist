@@ -139,6 +139,17 @@ $max-width: 1170px;
     @media ( min-width: $md ) {
       height: 320px;
     }
+
+    @media ( min-width: $md ) and ( max-width: $lg-max ) {
+      h1 {
+        font-size: 22px;
+      }
+
+      p,
+      .btn {
+        font-size: 14px;
+      }
+    }
   }
 }
 
