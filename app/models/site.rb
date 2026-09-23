@@ -73,7 +73,7 @@ class Site < ApplicationRecord
     has_attached_file :logo,
       path: ":rails_root/public/attachments/sites/:id-logo.:extension",
       url: "/attachments/sites/:id-logo.:extension",
-      default_url: "logo-small.gif"
+      default_url: "/assets/logo-small.gif"
   end
   validates_attachment_content_type :logo, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/],
     message: "must be JPG, PNG, SVG, or GIF"
