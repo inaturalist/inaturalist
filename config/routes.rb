@@ -628,6 +628,8 @@ Rails.application.routes.draw do
         get :index
         get :primary
         get :replica
+        get :inat
+        post "kill/:pid", action: :kill, as: :kill
       end
     end
     resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
