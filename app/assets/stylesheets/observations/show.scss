@@ -573,6 +573,11 @@ a.UserImage,
     border: 1px solid $border-grey;
     margin-inline-start: 60px;
     margin-bottom: 15px;
+    .ac-select-thumb.input-group-addon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     ul.nav-tabs {
       background-color: #f5f5f5;
       margin-bottom: -5px;
