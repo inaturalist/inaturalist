@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ModeratorAction < ApplicationRecord
+  # Declared rather than derived from the catalog, for the inat staging views
+  self.primary_key = "id"
+
   HIDE = "hide"
   RENAME = "rename"
   UNHIDE = "unhide"
