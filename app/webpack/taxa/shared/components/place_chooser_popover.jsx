@@ -96,7 +96,7 @@ class PlaceChooserPopover extends React.Component {
   }
 
   handlePlacesResponse( response ) {
-    let newPlaces = response.results;
+    let newPlaces = _.map( response.results, "place" );
     if (
       this.props.defaultPlace
       && this.props.place
@@ -134,16 +134,15 @@ class PlaceChooserPopover extends React.Component {
   }
 
   searchPlaces( text ) {
-    const { config } = this.props;
-    const { testingApiV2 } = config;
-    const searchEndpoint = testingApiV2 ? inatjs.places.search : inatjs.places.autocomplete;
-    const params = { q: text };
-    if ( this.props.withBoundaries ) {
-      params.geo = true;
-    }
-    if ( testingApiV2 ) {
-      params.fields = PLACE_SEARCH_FIELDS;
-    }
+    const searchEndpoint = inatjs.search;
+    const params = {
+      q: text,
+      sources: ["places"],
+      fields: { all: true }
+    };
+    params.locale = I18n.locale;
+    params.preferred_place_id = PREFERRED_PLACE ? PREFERRED_PLACE.id : null;
+    params.per_page = 10;
     searchEndpoint( params )
       .then( response => this.handlePlacesResponse( response ) );
   }
