@@ -71,9 +71,8 @@
         - @recent.each do |project|
           = render "thumbnail", project: project
     - unless @created.blank?
-      .section-header
-        %h2=t :recently_created
-        = link_to t(:browse_all_projects), browse_projects_path, class: "btn btn-primary btn-inat"
+      %h2=t :recently_created
       .ProjectCardGrid
         - @created.each do |project|
           = render "thumbnail", project: project
+      = link_to t(:browse_all_projects), browse_projects_path, class: "btn btn-primary btn-inat"

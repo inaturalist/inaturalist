@@ -22,6 +22,10 @@ $max-width: 1170px;
     .project-search {
       display: flex;
       width: 300px;
+
+      @media ( max-width: $md-max ) {
+        width: 100%;
+      }
     
       input {
         flex: 1;
@@ -95,26 +99,20 @@ $max-width: 1170px;
     @include container-padding( $max-width );
   }
 
-  .section-header {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-
-    h2 {
-      margin: 0;
-    }
-  }
-
   .ProjectCardGrid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 30px 20px;
     margin: 20px 0;
 
-    @media ( min-width: $sm ) { grid-template-columns: repeat( 2, 1fr ); }
+    .thumbnail {
+      margin: 0;
+    }
+
+    @media ( min-width: $sm ) {
+      grid-template-columns: repeat( 2, 1fr );
+      row-gap: 40px;
+    }
     @media ( min-width: $md ) { grid-template-columns: repeat( 3, 1fr ); }
     @media ( min-width: $lg ) { grid-template-columns: repeat( 4, 1fr ); }
   }
