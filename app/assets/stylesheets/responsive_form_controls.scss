@@ -1,0 +1,20 @@
+body.responsive {
+  // iOS Safari zooms the viewport when a field with a font smaller than 16px takes focus
+  @media ( hover: none ) and ( pointer: coarse ) {
+    input[type="text"],
+    input[type="search"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="url"],
+    textarea,
+    textarea.form-control {
+      font-size: 16px;
+    }
+
+    input.form-control {
+      height: auto;
+    }
+  }
+}

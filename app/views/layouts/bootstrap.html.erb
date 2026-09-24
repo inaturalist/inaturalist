@@ -22,6 +22,7 @@
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
     <%= stylesheet_link_tag 'bootstrap-rtl' if @rtl %>
+    <%= stylesheet_link_tag "responsive_form_controls" if responsive? %>
     <% # Bump font size so Safari doesn't auto-zoom on input selection. %>
     <% if is_inatrn_app? %>
       <style type="text/css">
