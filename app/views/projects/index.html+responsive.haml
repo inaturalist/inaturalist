@@ -2,28 +2,33 @@
   = @title = t(:projects)
 - content_for :extracss do
   = stylesheet_link_tag "projects/index_responsive"
+- content_for :extrajs do
+  = javascript_include_tag "webpack/carousel-webpack"
 
 #hero-container
-  - hero_candidates = @carousel.presence || [@recent].flatten.compact
-  - hero_project = hero_candidates[Time.now.to_i / 1.hour % hero_candidates.size] if hero_candidates.any?
+  - hero_projects = @carousel.presence || [@recent].flatten.compact[0..5]
   .hero
-    - if hero_project
+    - if hero_projects.many?
+      .hero-feature.Carousel{ role: "region", "aria-roledescription": "carousel", "aria-label": t(:featured), data: { carousel_root: true, carousel_autoplay: 5000 } }
+        .Carousel-controls
+          %button.Carousel-rotation{ type: "button", data: { carousel_rotation: true, label_start: t(:start_slide_rotation), label_stop: t(:stop_slide_rotation) } }
+            %span.Carousel-rotation-icon{ "aria-hidden": "true" }
+            %span.sr-only{ data: { carousel_rotation_label: true } }=t :stop_slide_rotation
+          .Carousel-dots
+            - hero_projects.each_index do |i|
+              %button.Carousel-dot{ type: "button", "aria-label": t(:slide_x, x: i + 1), "aria-current": i.zero?.to_s, data: { carousel_dot: i } }
+        .Carousel-track{ "aria-live": "off", tabindex: -1, data: { carousel_track: true } }
+          - hero_projects.each_with_index do |project, i|
+            .Carousel-slide{ role: "group", "aria-roledescription": "slide", "aria-label": t(:x_of_y, x: i + 1, y: hero_projects.size), data: { carousel_slide: true } }
+              = render "hero_slide", project: project, noteworthy: @noteworthy_ids.include?( project.id )
+    - elsif hero_projects.one?
       .hero-feature
-        .hero-labels
-          %span=t :new_and_noteworthy
-          - if hero_project.event_in_progress?
-            %span.in-progress=t :event_in_progress
-        = link_to "", hero_project, class: "photo", style: hero_project.cover? ? "background-size: #{hero_project.prefers_banner_contain? ? "contain" : "cover"}; background-image: url('#{hero_project.cover.url}');" : "background-size: cover;"
-        - unless hero_project.prefers_hide_title?
-          .project-caption
-            %h2
-              - if hero_project.icon?
-                = link_to image_tag( hero_project.icon.url( :span2 ) ), hero_project, class: "icon"
-              = link_to hero_project.title, hero_project, class: "title"
+        = render "hero_slide", project: hero_projects.first, noteworthy: @noteworthy_ids.include?( hero_projects.first.id )
     #about-projects
-      %h1=t :projects
-      %p=t :projects_description, site_name: @site.name
-      = link_to t(:start_a_project), new_project_path, class: "btn btn-primary btn-inat"
+      .about-projects-content
+        %h1=t :projects
+        %p=t :projects_description, site_name: @site.name
+        = link_to t(:start_a_project), new_project_path, class: "btn btn-primary btn-inat"
 
 #tools-container
   .tools-content

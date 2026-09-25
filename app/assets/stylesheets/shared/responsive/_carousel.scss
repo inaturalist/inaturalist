@@ -1,0 +1,97 @@
+@import "../../colors";
+
+$carousel-control-size: 44px;
+$carousel-control-color: white;
+
+.Carousel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.Carousel-track {
+  flex: 1;
+  position: relative;
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.Carousel-slide {
+  position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.Carousel-controls {
+  order: 1;
+  display: flex;
+  align-items: center;
+  padding-right: $carousel-control-size;
+  background-color: black;
+}
+
+.Carousel-dots {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.Carousel-rotation,
+.Carousel-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $carousel-control-size;
+  height: $carousel-control-size;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: -4px;
+  }
+}
+
+.Carousel-rotation-icon {
+  color: $carousel-control-color;
+}
+
+.Carousel-rotation-icon::before {
+  font-family: "FontAwesome";
+  content: "\f04c";
+}
+
+.Carousel[data-state="stopped"] .Carousel-rotation-icon::before {
+  content: "\f04b";
+}
+
+.Carousel-dot::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: $carousel-control-color;
+
+  @media ( prefers-reduced-motion: no-preference ) {
+    transition: width 0.2s, background-color 0.2s;
+  }
+}
+
+.Carousel-dot[aria-current="true"]::before {
+  width: 24px;
+  background-color: $inat-green;
+}
