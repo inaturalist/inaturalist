@@ -278,3 +278,48 @@ describe ProjectsController, "stats_slideshow" do
     end.not_to raise_error
   end
 end
+
+describe ProjectsController, "index hero" do
+  render_views
+  let( :user ) { User.make!( test_groups: "responsive-global" ) }
+
+  def api_results( projects )
+    {
+      status: 200,
+      body: { results: projects.map {| p | { id: p.id } } }.to_json,
+      headers: { "Content-Type" => "application/json" }
+    }
+  end
+
+  def stub_projects( noteworthy: [], featured: [] )
+    stub_request( :get, /#{INatAPIService::ENDPOINT}/ ).to_return( api_results( [] ) )
+    stub_request( :get, /#{INatAPIService::ENDPOINT}.*featured=true/ ).to_return( api_results( featured ) )
+    stub_request( :get, /#{INatAPIService::ENDPOINT}.*noteworthy=true/ ).to_return( api_results( noteworthy ) )
+  end
+
+  before { sign_in user }
+
+  it "labels only noteworthy projects as new and noteworthy" do
+    noteworthy = Project.make!
+    featured = Project.make!
+    stub_projects( noteworthy: [noteworthy], featured: [featured] )
+    get :index
+    expect( response.body ).to have_tag( "[data-carousel-slide]", count: 2 )
+    expect( response.body ).to have_tag( "[data-carousel-slide]:nth-of-type(1) .hero-labels", text: /New & Noteworthy/ )
+    expect( response.body ).not_to have_tag( "[data-carousel-slide]:nth-of-type(2) .hero-labels" )
+  end
+
+  it "renders a single project without carousel controls" do
+    stub_projects( noteworthy: [Project.make!] )
+    get :index
+    expect( response.body ).to have_tag( ".hero-feature a.photo" )
+    expect( response.body ).not_to have_tag( "[data-carousel-root]" )
+  end
+
+  it "renders only the about panel without projects" do
+    stub_projects
+    get :index
+    expect( response.body ).to have_tag( "#about-projects" )
+    expect( response.body ).not_to have_tag( ".hero-feature" )
+  end
+end

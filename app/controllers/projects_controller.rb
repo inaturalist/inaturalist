@@ -65,6 +65,7 @@ class ProjectsController < ApplicationController
 
         carousel_ids = ( carousel_r ? carousel_r.results : [] ).map{ |p| p["id"] }
         @carousel = Project.where(id: carousel_ids).to_a
+        @noteworthy_ids = @carousel.map( &:id )
 
         featured_r = INatAPIService.projects( base_params.merge(
           featured: true,
