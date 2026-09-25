@@ -24,4 +24,12 @@ describe ObservationsHelper do
       expect( observation_image_url( observation ) ).to be_nil
     end
   end
+
+  describe "observation_place_guess" do
+    it "stips tags" do
+      allow_any_instance_of( ObservationsHelper ).to receive( :current_user ).and_return( nil )
+      o = Observation.make!( place_guess: "Test <a>Link</a>" )
+      expect( observation_place_guess( o ) ).to include "Test Link"
+    end
+  end
 end

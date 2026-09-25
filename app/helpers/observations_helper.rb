@@ -61,6 +61,7 @@ module ObservationsHelper
       display_lat = observation.private_latitude
       display_lon = observation.private_longitude
     end
+    display_place_guess = strip_tags( display_place_guess )
 
     google_coords_link = link_to(
       "Google",
