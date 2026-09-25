@@ -20,6 +20,10 @@ const config = {
       import: "./shared/header/webpack-entry",
       runtime: "runtime"
     },
+    "carousel": {
+      import: "./shared/carousel/webpack-entry",
+      runtime: "runtime"
+    },
     "computer-vision": {
       import: "./computer_vision/demo/webpack-entry",
       dependOn: ["react-main", "react-dropzone"]

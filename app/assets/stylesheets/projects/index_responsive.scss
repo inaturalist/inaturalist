@@ -1,5 +1,6 @@
 @import "index";
 @import "../breakpoints";
+@import "../shared/responsive/carousel";
 
 $max-width: 1170px;
 
@@ -23,6 +24,7 @@ $max-width: 1170px;
 
   .hero-feature {
     position: relative;
+    min-width: 0;
     background-color: $inat-green;
   }
 
@@ -41,6 +43,25 @@ $max-width: 1170px;
     @media ( min-width: $md ) {
       aspect-ratio: auto;
       height: 320px;
+    }
+  }
+
+  .Carousel .photo {
+    @media ( min-width: $md ) {
+      height: 100%;
+    }
+  }
+
+  .photo,
+  .project-caption a {
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid white;
+      outline-offset: -2px;
+      box-shadow: inset 0 0 0 4px black;
     }
   }
 
@@ -115,21 +136,26 @@ $max-width: 1170px;
     background-color: black;
     color: white;
     padding: 20px;
+    display: flex;
+    align-items: center;
 
-    h1 {
-      color: white;
-      font-size: 24px;
-    }
-
-    p {
-      font-size: 16px;
-      font-weight: 400;
-      margin-bottom: 20px;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 8;
-      -webkit-box-orient: vertical;
-      text-overflow: ellipsis;
+    .about-projects-content {
+      h1 {
+        margin-top: 0;
+        color: white;
+        font-size: 24px;
+      }
+  
+      p {
+        font-size: 16px;
+        font-weight: 400;
+        margin-bottom: 10px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 8;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+      }
     }
 
     .btn {
@@ -138,17 +164,6 @@ $max-width: 1170px;
 
     @media ( min-width: $md ) {
       height: 320px;
-    }
-
-    @media ( min-width: $md ) and ( max-width: $lg-max ) {
-      h1 {
-        font-size: 22px;
-      }
-
-      p,
-      .btn {
-        font-size: 14px;
-      }
     }
   }
 }
