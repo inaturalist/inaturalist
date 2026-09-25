@@ -3,8 +3,7 @@
 
 body.responsive #wrapper.container {
   width: auto;
-  @include container-padding;
-  max-width: 950px;
+  @include container-padding( 950px );
 }
 
 body.responsive #header {

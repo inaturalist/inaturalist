@@ -1,0 +1,119 @@
+@import "index";
+@import "../breakpoints";
+
+$max-width: 1170px;
+
+#header {
+  margin-bottom: 0;
+}
+
+#carousel-container {
+  margin-top: 20px;
+}
+
+#tools-container {
+  .tools-content {
+    @include container-padding( $max-width );
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  
+    .project-search {
+      display: flex;
+      width: 300px;
+
+      @media ( max-width: $md-max ) {
+        width: 100%;
+      }
+    
+      input {
+        flex: 1;
+        min-width: 0;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        color: #555;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-right: 0px;
+        border-radius: 4px 0 0 4px;
+      }
+
+      button {
+        border-radius: 0 4px 4px 0;
+      }
+    }
+    
+    .ProjectsMenu {
+      position: relative;
+    
+      summary {
+        cursor: pointer;
+        list-style: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: white;
+    
+        &::-webkit-details-marker {
+          display: none;
+        }
+    
+        i {
+          color: $inat-green;
+          margin-right: 5px;
+        }
+      }
+    
+      ul {
+        position: absolute;
+        left: 0;
+        z-index: 10;
+        width: 190px;
+        margin: 2px 0 0;
+        padding: 5px 0;
+        list-style: none;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 6px 12px rgba( 0, 0, 0, 0.175 );
+      }
+    
+      li {
+        padding: 3px 20px;
+        overflow-wrap: break-word;
+      }
+    
+      .menu-header {
+        font-size: 12px;
+        color: #777;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+#main-container {
+  .projects-content {
+    @include container-padding( $max-width );
+  }
+
+  .ProjectCardGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px 20px;
+    margin: 20px 0;
+
+    .thumbnail {
+      margin: 0;
+    }
+
+    @media ( min-width: $sm ) {
+      grid-template-columns: repeat( 2, 1fr );
+      row-gap: 40px;
+    }
+    @media ( min-width: $md ) { grid-template-columns: repeat( 3, 1fr ); }
+    @media ( min-width: $lg ) { grid-template-columns: repeat( 4, 1fr ); }
+  }
+}
