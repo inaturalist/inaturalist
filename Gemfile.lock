@@ -689,7 +689,7 @@ GEM
     ruby-openid (2.9.2)
     ruby-progressbar (1.13.0)
     ruby_dig (0.0.2)
-    rubyzip (2.3.2)
+    rubyzip (3.4.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -898,7 +898,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-rails
   rubocop-rspec
-  rubyzip (~> 2.3.0)
+  rubyzip (~> 3.4.0)
   sass-rails
   shoulda-matchers
   simplecov
