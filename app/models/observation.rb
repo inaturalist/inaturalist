@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Observation < ApplicationRecord
+  # Declared rather than derived from the catalog, for the inat staging views
+  self.primary_key = "id"
 
   acts_as_elastic_model
   include ObservationSearch

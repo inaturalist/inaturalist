@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Message < ApplicationRecord
+  # Declared rather than derived from the catalog, for the inat staging views
+  self.primary_key = "id"
+
   acts_as_spammable fields: [:subject, :body],
     user: :from_user
 
