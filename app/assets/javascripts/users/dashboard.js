@@ -39,10 +39,9 @@ DASHBOARD.loadTab = function ( tabName, options ) {
   var type = tab.data( "tab" );
   var tabSettings = DASHBOARD.tabSettings( type );
   DASHBOARD.startPanelLoading( tabSettings.target );
-  // pushState before scrolling so the scroll lands on the new entry; back-nav then
-  // restores the prior entry's position instead of the scrolled-to header.
+  // set the browser state and URL
   DASHBOARD.setState( type, tabSettings.params, options );
-  if ( options && options.scroll ) { DASHBOARD.scrollToTop( ); }
+  if ( options && options.scrollToTop ) { DASHBOARD.scrollToTop( ); }
   // make an API call to fetch the tab's content
   DASHBOARD.fetchContent( tabSettings.fetchURL, type, tabSettings.target );
 };
@@ -113,7 +112,7 @@ DASHBOARD.enableMoreButtonClickEvents = function ( target ) {
     e.preventDefault( );
     var tab = $( e.target ).parents( ".tab-pane:first" ).data( "tab" );
     DASHBOARD.fromIDs[tab] = $( this ).data( "from" );
-    DASHBOARD.loadTab( tab, { scroll: true } );
+    DASHBOARD.loadTab( tab, { scrollToTop: true } );
   } );
 };
 
@@ -123,7 +122,7 @@ DASHBOARD.enablePageButtonClickEvents = function ( target ) {
     e.preventDefault( );
     var tab = $( e.target ).parents( ".tab-pane:first" ).data( "tab" );
     DASHBOARD.fromPage[tab] = $( this ).data( "page" );
-    DASHBOARD.loadTab( tab, { scroll: true } );
+    DASHBOARD.loadTab( tab, { scrollToTop: true } );
   } );
 };
 
