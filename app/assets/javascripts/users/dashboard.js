@@ -39,8 +39,10 @@ DASHBOARD.loadTab = function ( tabName, options ) {
   var type = tab.data( "tab" );
   var tabSettings = DASHBOARD.tabSettings( type );
   DASHBOARD.startPanelLoading( tabSettings.target );
-  // set the browser state and URL
+  // pushState before scrolling so the scroll lands on the new entry; back-nav then
+  // restores the prior entry's position instead of the scrolled-to header.
   DASHBOARD.setState( type, tabSettings.params, options );
+  if ( options && options.scroll ) { DASHBOARD.scrollToTop( ); }
   // make an API call to fetch the tab's content
   DASHBOARD.fetchContent( tabSettings.fetchURL, type, tabSettings.target );
 };
@@ -111,7 +113,7 @@ DASHBOARD.enableMoreButtonClickEvents = function ( target ) {
     e.preventDefault( );
     var tab = $( e.target ).parents( ".tab-pane:first" ).data( "tab" );
     DASHBOARD.fromIDs[tab] = $( this ).data( "from" );
-    DASHBOARD.loadTab( tab );
+    DASHBOARD.loadTab( tab, { scroll: true } );
   } );
 };
 
@@ -121,7 +123,7 @@ DASHBOARD.enablePageButtonClickEvents = function ( target ) {
     e.preventDefault( );
     var tab = $( e.target ).parents( ".tab-pane:first" ).data( "tab" );
     DASHBOARD.fromPage[tab] = $( this ).data( "page" );
-    DASHBOARD.loadTab( tab );
+    DASHBOARD.loadTab( tab, { scroll: true } );
   } );
 };
 
@@ -142,14 +144,13 @@ DASHBOARD.setState = function ( type, params, options ) {
   }
 };
 
-DASHBOARD.scrollToHeader = function ( ) {
+DASHBOARD.scrollToTop = function ( ) {
   var header = $( ".logged-in-user-image" ).closest( "h3" );
   window.scrollTo( 0, header.length > 0 ? header.offset( ).top : 0 );
 };
 
 DASHBOARD.startPanelLoading = function ( selector ) {
   var target = $( selector );
-  DASHBOARD.scrollToHeader( );
   target.attr( "aria-busy", true );
   target.html( "<div class='loading status'>" + I18n.t( "loading" ) + "</div>" );
 };

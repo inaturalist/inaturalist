@@ -143,6 +143,63 @@ test.describe( "dashboard tab interactions", () => {
     expect( request.url() ).toContain( "page=2" );
   } );
 
+  test.describe( "scrolling to the username header", () => {
+    const scrollY = ( page: Page ) => page.evaluate( () => window.scrollY );
+    const headerTop = ( page: Page ) => page.locator( "h3:has(.logged-in-user-image)" )
+      .evaluate( el => Math.round( el.getBoundingClientRect().top + window.scrollY ) );
+
+    test.beforeEach( async ( { page } ) => {
+      await page.setViewportSize( VIEWPORTS.xs );
+      await page.goto( "/home" );
+      await expect( page.locator( "#updates_target #mock-update" ) ).toBeVisible();
+    } );
+
+    test( "does not scroll on initial load", async ( { page } ) => {
+      expect( await headerTop( page ) ).toBeGreaterThan( 0 );
+      expect( await scrollY( page ) ).toBe( 0 );
+    } );
+
+    test( "scrolls on pagination", async ( { page } ) => {
+      await page.evaluate( () => window.scrollTo( 0, 0 ) );
+      await page.locator( "#updates_target .page_button" ).click();
+      const top = await headerTop( page );
+      await expect.poll( () => scrollY( page ) ).toBeGreaterThan( 0 );
+      expect( Math.abs( await scrollY( page ) - top ) ).toBeLessThanOrEqual( 1 );
+    } );
+
+    test( "does not scroll on tab switch", async ( { page } ) => {
+      // dispatchEvent, since click() scrolls the tab into view on its own
+      await page.locator( "a[data-tab='yours']" ).dispatchEvent( "click" );
+      await expect( page.locator( "#updates_by_you_target #mock-update" ) ).toBeVisible();
+      expect( await scrollY( page ) ).toBe( 0 );
+    } );
+
+    test( "does not scroll on browser back or forward", async ( { page } ) => {
+      await page.locator( "a[data-tab='yours']" ).dispatchEvent( "click" );
+      await expect( page.locator( "#updates_by_you_target #mock-update" ) ).toBeVisible();
+      await expect( page ).toHaveURL( /tab=yours/ );
+
+      await page.goBack();
+      await expect( page.locator( "a[data-tab='updates']" ) ).toHaveClass( /\bactive\b/ );
+      expect( await scrollY( page ) ).toBe( 0 );
+
+      await page.goForward();
+      await expect( page.locator( "a[data-tab='yours']" ) ).toHaveClass( /\bactive\b/ );
+      expect( await scrollY( page ) ).toBe( 0 );
+    } );
+
+    test( "does not stay scrolled after paginating then going back", async ( { page } ) => {
+      await page.evaluate( () => window.scrollTo( 0, 0 ) );
+      await page.locator( "#updates_target .page_button" ).click();
+      await expect( page ).toHaveURL( /page=2/ );
+      await expect.poll( () => scrollY( page ) ).toBeGreaterThan( 0 );
+
+      await page.goBack();
+      await expect( page ).not.toHaveURL( /page=2/ );
+      await expect.poll( () => scrollY( page ) ).toBe( 0 );
+    } );
+  } );
+
   test( "toggles subscribe modal labels by type", async ( { page } ) => {
     await page.goto( "/home" );
     const modal = page.locator( "#subscribeModal" );
