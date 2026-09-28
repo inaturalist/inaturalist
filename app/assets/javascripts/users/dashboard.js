@@ -18,6 +18,12 @@ if ( typeof DASHBOARD_PAGE !== "undefined" && DASHBOARD_PAGE ) {
   DASHBOARD.fromPage[DASHBOARD_TAB] = DASHBOARD_PAGE;
 }
 
+// loadTab async-rebuilds tab content on every popstate, so the browser's saved
+// scroll positions are stale; let this page manage scroll instead of restoring.
+if ( "scrollRestoration" in window.history ) {
+  window.history.scrollRestoration = "manual";
+}
+
 window.onpopstate = function ( event ) {
   // fragment links (#header) push entries with no state
   if ( !event.state ) { return; }
