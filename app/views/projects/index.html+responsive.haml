@@ -41,7 +41,7 @@
       %input{ name: "q", type: "text", placeholder: t(:search) }
       %button.btn.btn-primary{ type: "submit" }=t :go
     - if logged_in? && !@started.blank? || !@joined.blank?
-      %details.ProjectsMenu
+      %details.ProjectsMenu{ data: { details_menu: true } }
         %summary
           %i.fa.fa-gear
           =t :manage_your_projects
@@ -50,10 +50,12 @@
             %li.menu-header=t :your_projects
             - @started.each do |project|
               %li= link_to project.title, project
+            %li.divider{ role: "separator" }
           - unless @joined.blank?
             %li.menu-header=t :joined_projects
             - @joined.each do |project|
               %li= link_to project.title, project
+            %li.divider{ role: "separator" }
           %li= link_to t(:view_all), projects_by_login_path( current_user.login )
 
 #main-container
@@ -76,3 +78,6 @@
         - @created.each do |project|
           = render "thumbnail", project: project
       = link_to t(:browse_all_projects), browse_projects_path, class: "btn btn-primary btn-inat"
+
+- content_for :extrajs do
+  = javascript_include_tag "webpack/details-menu-webpack"

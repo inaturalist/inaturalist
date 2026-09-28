@@ -56,6 +56,11 @@ $max-width: 1170px;
         border-radius: 4px;
         background-color: white;
     
+        &:hover {
+          background-color: #e6e6e6;
+          border-color: #adadad;
+        }
+
         &::-webkit-details-marker {
           display: none;
         }
@@ -70,7 +75,8 @@ $max-width: 1170px;
         position: absolute;
         left: 0;
         z-index: 10;
-        width: 190px;
+        min-width: 190px;
+        max-width: 87vw;
         margin: 2px 0 0;
         padding: 5px 0;
         list-style: none;
@@ -78,17 +84,48 @@ $max-width: 1170px;
         border: 1px solid #ccc;
         border-radius: 4px;
         box-shadow: 0 6px 12px rgba( 0, 0, 0, 0.175 );
+
+        @media (min-width: $md) {
+          left: auto;
+          right: 0;
+        }
       }
     
-      li {
+      &[open] summary {
+        background-color: #e6e6e6;
+        border-color: #adadad;
+        box-shadow: inset 0 3px 5px rgba( 0, 0, 0, 0.125 );
+      }
+    
+      li a,
+      .menu-header {
+        display: block;
         padding: 3px 20px;
+        line-height: 1.42857143;
         overflow-wrap: break-word;
       }
-    
+
+      li a {
+        color: #333;
+
+        &:hover,
+        &:focus {
+          color: #262626;
+          text-decoration: none;
+          background-color: #f5f5f5;
+        }
+      }
+
       .menu-header {
         font-size: 12px;
         color: #777;
-        text-transform: uppercase;
+      }
+
+      .divider {
+        height: 1px;
+        margin: 9px 0;
+        overflow: hidden;
+        background-color: #e5e5e5;
       }
     }
   }
