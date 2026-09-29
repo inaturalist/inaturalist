@@ -14,12 +14,12 @@ GIT
 
 GIT
   remote: https://github.com/inaturalist/irwi.git
-  revision: 543b794722294107a00a41964697486f90af9ca7
-  ref: ruby3
+  revision: 60ebafe1aa360184276862cae102c995eba3308a
+  ref: 60ebafe1aa360184276862cae102c995eba3308a
   specs:
     irwi (0.5.0)
       actionpack (>= 4.0)
-      activerecord (>= 4.0)
+      activerecord (>= 5.0)
       activesupport (>= 4.0)
       diff-lcs (>= 1.1.2)
       rails_autolink (>= 1.0)
