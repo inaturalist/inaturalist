@@ -31,7 +31,8 @@ expectNoHorizontalOverflow( "/home" );
 // and content-injection are deterministic without a live iNaturalistAPI. The
 // updates fragment carries a responsive .page_button so pagination can be driven;
 // the comments fragment is bare <li>s so fetchContent's ul.timeline wrap shows.
-const UPDATES_HTML = `<ul class="timeline"><li id="mock-update">mock update</li></ul>
+const MOCK_UPDATES = Array.from( { length: 20 }, ( _, i ) => `<li id="mock-update-${i}">mock update ${i}</li>` ).join( "" );
+const UPDATES_HTML = `<ul class="timeline">${MOCK_UPDATES}</ul>
   <nav class="dashboard-pagination">
     <a class="btn btn-sm btn-default page_button" data-page="2" href="#">Next</a>
   </nav>`;
@@ -64,7 +65,7 @@ test.describe( "dashboard tab interactions", () => {
     expect( request.url() ).not.toContain( "filter=" );
 
     await expect( page.locator( "a[data-tab='updates']" ) ).toHaveClass( /\bactive\b/ );
-    await expect( page.locator( "#updates_target #mock-update" ) ).toBeVisible();
+    await expect( page.locator( "#updates_target #mock-update-1" ) ).toBeVisible();
     await expect( page.locator( "#updates_target" ) ).toHaveAttribute( "aria-busy", "false" );
   } );
 
@@ -77,7 +78,7 @@ test.describe( "dashboard tab interactions", () => {
   tabCases.forEach( ( { tab, url, param, target } ) => {
     test( `clicking the ${tab} tab activates it, fetches the right URL, and updates history`, async ( { page } ) => {
       await page.goto( "/home" );
-      await expect( page.locator( "#updates_target #mock-update" ) ).toBeVisible();
+      await expect( page.locator( "#updates_target #mock-update-1" ) ).toBeVisible();
 
       const [request] = await Promise.all( [
         page.waitForRequest( url ),
@@ -94,7 +95,7 @@ test.describe( "dashboard tab interactions", () => {
 
   test( "toggles aria-busy on the target while loading", async ( { page } ) => {
     await page.goto( "/home" );
-    await expect( page.locator( "#updates_target #mock-update" ) ).toBeVisible();
+    await expect( page.locator( "#updates_target #mock-update-1" ) ).toBeVisible();
 
     // Hold the "yours" fetch open so the busy state is observable, then release it.
     let release: () => void = () => {};
@@ -119,7 +120,7 @@ test.describe( "dashboard tab interactions", () => {
 
   test( "restores the previous tab on browser back", async ( { page } ) => {
     await page.goto( "/home" );
-    await expect( page.locator( "#updates_target #mock-update" ) ).toBeVisible();
+    await expect( page.locator( "#updates_target #mock-update-1" ) ).toBeVisible();
 
     await page.locator( "a[data-tab='yours']" ).click();
     await expect( page ).toHaveURL( /tab=yours/ );
@@ -134,13 +135,70 @@ test.describe( "dashboard tab interactions", () => {
 
   test( "loads the next page via the responsive pagination button", async ( { page } ) => {
     await page.goto( "/home" );
-    await expect( page.locator( "#updates_target #mock-update" ) ).toBeVisible();
+    await expect( page.locator( "#updates_target #mock-update-1" ) ).toBeVisible();
 
     const [request] = await Promise.all( [
       page.waitForRequest( "**/users/dashboard_updates**" ),
       page.locator( "#updates_target .page_button:not(.disabled)" ).click()
     ] );
     expect( request.url() ).toContain( "page=2" );
+  } );
+
+  test.describe( "scrolling to the username header", () => {
+    const scrollY = ( page: Page ) => page.evaluate( () => window.scrollY );
+    const headerTop = ( page: Page ) => page.locator( "h3:has(.logged-in-user-image)" )
+      .evaluate( el => Math.round( el.getBoundingClientRect().top + window.scrollY ) );
+
+    test.beforeEach( async ( { page } ) => {
+      await page.setViewportSize( VIEWPORTS.xs );
+      await page.goto( "/home" );
+      await expect( page.locator( "#updates_target #mock-update-1" ) ).toBeVisible();
+    } );
+
+    test( "does not scroll on initial load", async ( { page } ) => {
+      expect( await headerTop( page ) ).toBeGreaterThan( 0 );
+      expect( await scrollY( page ) ).toBe( 0 );
+    } );
+
+    test( "scrolls on pagination", async ( { page } ) => {
+      await page.evaluate( () => window.scrollTo( 0, 0 ) );
+      await page.locator( "#updates_target .page_button" ).click();
+      const top = await headerTop( page );
+      await expect.poll( () => scrollY( page ) ).toBeGreaterThan( 0 );
+      expect( Math.abs( await scrollY( page ) - top ) ).toBeLessThanOrEqual( 1 );
+    } );
+
+    test( "does not scroll on tab switch", async ( { page } ) => {
+      // dispatchEvent, since click() scrolls the tab into view on its own
+      await page.locator( "a[data-tab='yours']" ).dispatchEvent( "click" );
+      await expect( page.locator( "#updates_by_you_target #mock-update-1" ) ).toBeVisible();
+      expect( await scrollY( page ) ).toBe( 0 );
+    } );
+
+    test( "does not scroll on browser back or forward", async ( { page } ) => {
+      await page.locator( "a[data-tab='yours']" ).dispatchEvent( "click" );
+      await expect( page.locator( "#updates_by_you_target #mock-update-1" ) ).toBeVisible();
+      await expect( page ).toHaveURL( /tab=yours/ );
+
+      await page.goBack();
+      await expect( page.locator( "a[data-tab='updates']" ) ).toHaveClass( /\bactive\b/ );
+      expect( await scrollY( page ) ).toBe( 0 );
+
+      await page.goForward();
+      await expect( page.locator( "a[data-tab='yours']" ) ).toHaveClass( /\bactive\b/ );
+      expect( await scrollY( page ) ).toBe( 0 );
+    } );
+
+    test( "does not stay scroll to top after paginating then going back", async ( { page } ) => {
+      await page.evaluate( () => window.scrollTo( 0, 0 ) );
+      await page.locator( "#updates_target .page_button" ).click();
+      await expect( page ).toHaveURL( /page=2/ );
+      await page.evaluate( () => window.scrollTo( 0, 100 ) );
+
+      await page.goBack();
+      await expect( page ).not.toHaveURL( /page=2/ );
+      await expect.poll( () => scrollY( page ) ).toBe( 100 );
+    } );
   } );
 
   test( "toggles subscribe modal labels by type", async ( { page } ) => {
