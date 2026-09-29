@@ -1,0 +1,28 @@
+%h2.sub-header
+  = "iNat Queries (#{@queries.count})"
+  %small= " #{CONFIG.inat_usename}@#{CONFIG.inat_client_addr} on the primary"
+
+- if flash[:notice]
+  .alert.alert-success= flash[:notice]
+- if flash[:error]
+  .alert.alert-danger= flash[:error]
+
+- if @queries.blank?
+  .nocontent No running queries
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th{ style: "width: 210px; white-space: nowrap" } Started
+        %th{ style: "width: 150px; white-space: nowrap" } Running time
+        %th Query
+        %th{ style: "width: 110px" }
+    %tbody
+      - @queries.each do |query|
+        %tr
+          %td{ style: "white-space: nowrap" }= query["query_start"]
+          %td{ style: "white-space: nowrap" }= human_duration( query["duration"] ) if query["duration"]
+          %td
+            %pre{ style: "margin: 0; white-space: pre-wrap; word-break: break-word" }= query["query"]
+          %td
+            = button_to "Kill", kill_admin_queries_path( pid: query["pid"] ), method: :post, class: "btn btn-danger", data: { confirm: "Kill query #{query['pid']}?" }

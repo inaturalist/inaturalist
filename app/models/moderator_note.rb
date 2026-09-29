@@ -1,4 +1,7 @@
 class ModeratorNote < ApplicationRecord
+  # Declared rather than derived from the catalog, for the inat staging views
+  self.primary_key = "id"
+
   belongs_to :user
   belongs_to :subject_user, class_name: "User"
 

@@ -2035,6 +2035,8 @@ id:
   find_your_current_location: Cari lokasi Anda saat ini
   finished: Selesai
   finished_with_page: Selesai Dengan Halaman
+  #Label for a pagination button that goes to the first page of results
+  first: Pertama
   first_confirmed_inat_observation: "Pengamatan %{site_name} yang pertama kali dikonfirmasi"
   first_connect_your_provider_account_to_your_site: "Pertama, hubungkan akun %{provider} Anda ke %{site_name}:"
   first_inat_observation: "Pengamatan %{site_name} pertama"
@@ -3778,6 +3780,8 @@ id:
   overlapping_atlases: Atlas yang tumpang tindih
   overlapping_downstream_taxon_frameworks_html: "Framework Takson hilir yang tumpang tindih: %{count}"
   owner: 'Pemilik:'
+  #Accessible label for a set of pagination controls
+  pagination: Paginasi
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Induk
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
@@ -4848,6 +4852,8 @@ id:
   schemes_including: Skema termasuk
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Nama Ilmiah
+  #Accessible label for a button that scrolls the page back to the top
+  scroll_to_top: Gulir ke atas
   search: Cari
   search_all_fields: cari semua bidang
   search_by_name_or_email: Cari berdasarkan nama atau email

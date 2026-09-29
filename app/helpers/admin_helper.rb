@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module AdminHelper
+  # The iNat Queries page exists only where the sessions it lists exist, which
+  # in practice means staging. Leaving these unset hides it entirely
+  def inat_queries_enabled?
+    CONFIG.inat_usename.present? && CONFIG.inat_client_addr.present?
+  end
+
   def human_duration( duration_ms )
     if duration_ms < 1000
       "#{duration_ms.round} ms"
