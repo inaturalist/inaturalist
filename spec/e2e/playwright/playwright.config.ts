@@ -29,7 +29,11 @@ export default defineConfig( {
     baseURL: envConfig.baseUrl,
     trace: "on-first-retry",
     screenshot: "only-on-failure",
-    headless: envConfig.headless
+    headless: envConfig.headless,
+    // Slow it down
+    // launchOptions: {
+    //   slowMo: 1000,
+    // },
   },
   outputDir: "./test-results",
   projects: [

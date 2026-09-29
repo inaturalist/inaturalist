@@ -44,7 +44,8 @@ gem "devise-encryptable"
 gem "devise-i18n"
 gem "devise_suspendable"
 gem "diffy"
-gem "dm_preferences", git: "https://github.com/inaturalist/preferences.git", ref: "inat-patches"
+gem "dm_preferences", git: "https://github.com/inaturalist/preferences.git",
+  ref: "0d005879433d3a3433e4aca0450c3a8e85277a3e"
 gem "doorkeeper"
 gem "dynamic_form", git: "https://github.com/GoodMeasuresLLC/dynamic_form.git"
 gem "elasticsearch", "~> 8"
@@ -64,7 +65,8 @@ gem "i18n-inflector-rails", git: "https://github.com/siefca/i18n-inflector-rails
   ref: "99726dc44e166f6fb794caec9d3244795e7ee79b"
 gem "i18n-js", git: "https://github.com/fnando/i18n-js.git", tag: "v3.7.0"
 gem "icalendar", require: ["icalendar", "icalendar/tzinfo"]
-gem "irwi", git: "https://github.com/inaturalist/irwi.git", ref: "ruby3"
+gem "irwi", git: "https://github.com/inaturalist/irwi.git",
+  ref: "60ebafe1aa360184276862cae102c995eba3308a"
 gem "json"
 gem "jwt", "~> 2.10.3"
 gem "kt-paperclip", git: "https://github.com/inaturalist/kt-paperclip.git", ref: "reset-original-content-type"

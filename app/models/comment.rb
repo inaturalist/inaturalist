@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Comment < ApplicationRecord
+  # Declared rather than derived from the catalog, for the inat staging views
+  self.primary_key = "id"
+
   acts_as_spammable fields: [:body],
     comment_type: "comment"
   acts_as_votable
