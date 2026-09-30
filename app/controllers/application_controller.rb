@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
   before_action :check_preferred_site
   before_action :sign_out_spammers
   before_action :set_session_oauth_application_id
+  before_action :skip_session_storage_for_node_api_website_request
 
   # /ping should skip all before filters and just render
   skip_before_action *_process_action_callbacks.map(&:filter), only: :ping, raise: false
@@ -855,6 +856,19 @@ class ApplicationController < ActionController::Base
         session["oauth_application_id"] = oauth_application_id
       end
     end
+  end
+
+  # The Node API forwards the website's calls here with the user's JWT but
+  # without the browser's cookies, so persisting a session creates a new,
+  # never reused row per call. The in-memory session is still available for
+  # this request; it's just not written to the sessions table and no session
+  # cookie is set. This relies on Devise::Strategies::JsonWebToken#store? being
+  # false for the same requests, otherwise Warden's session renew inserts a row
+  # before skip applies.
+  def skip_session_storage_for_node_api_website_request
+    return unless Devise::Strategies::JsonWebToken.node_api_website_request?( request )
+
+    request.session_options[:skip] = true
   end
 
   # Encapsulates common pattern for actions that start a bg task get called 
