@@ -1,7 +1,13 @@
 @import "breakpoints";
+@import "../shared/responsive/scroll_to_top";
+
+#header {
+  margin-bottom: 0;
+}
 
 .post-page {
   @include container-padding;
+  margin-top: 20px;
 
   .post-breadcrumb {
     display: flex;
@@ -66,6 +72,10 @@
       h1 {
         margin-top: 0;
         overflow-wrap: anywhere;
+
+        @media ( max-width: $sm-max ) {
+          font-size: 2rem;
+        }
       }
     }
 
