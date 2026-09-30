@@ -259,11 +259,20 @@ describe PostsController, "show" do
         expect( response.body ).not_to include "href=\"#description\""
       end
 
-      it "renders the comments link in both the side and inline navs" do
+      it "renders the comments link with its count in both the side and inline navs" do
+        2.times { Comment.make!( parent: journal_post ) }
         get :show, params: { id: journal_post.id }
         html = Nokogiri::HTML( response.body )
-        expect( html.css( ".post-nav-side a[href='#comments']" ) ).not_to be_empty
-        expect( html.css( ".post-nav-inline a[href='#comments']" ) ).not_to be_empty
+        %w(.post-nav-side .post-nav-inline).each do | nav |
+          expect( html.css( "#{nav} a[href='#comments']" ).text ).to eq "2 comments"
+        end
+      end
+
+      it "omits the navs when there is nothing to link to" do
+        get :show, params: { id: journal_post.id }
+        html = Nokogiri::HTML( response.body )
+        expect( html.css( "a[href='#comments']" ) ).to be_empty
+        expect( html.css( ".post-nav" ) ).to be_empty
       end
 
       it "links to observations when the post has some" do
@@ -275,6 +284,7 @@ describe PostsController, "show" do
 
       it "renders the responsive variant for a blog post" do
         site_post = Post.make!( parent: Site.make!, user: user )
+        Comment.make!( parent: site_post )
         get :show, params: { id: site_post.id }
         expect( response ).to be_successful
         expect( Nokogiri::HTML( response.body ).css( ".post-nav-inline" ) ).not_to be_empty

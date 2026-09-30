@@ -61,10 +61,13 @@
       %li= link_to t( :target_list ), "#target_list"
     - unless @trip.observations.blank?
       %li= link_to t(:observations), "#observations"
-    %li= link_to t(:comments), "#comments"
+    - comments_count = @trip.comments.size
+    - if comments_count.positive?
+      %li= link_to t( :x_comments, count: comments_count ), "#comments"
   .post-layout.upstacked
-    %nav.post-nav.post-nav-side
-      %ul= nav_links
+    - if nav_links.present?
+      %nav.post-nav.post-nav-side
+        %ul= nav_links
     .post-content
       %section{:id => "summary"}
         .post-title-row
@@ -73,8 +76,9 @@
             = link_to @trip.is_a?(Trip) ? edit_trip_path(@trip) : edit_post_path(@trip), :class => "btn btn-default" do
               %i.fa.fa-edit
               = t(:edit)
-        %nav.post-nav.post-nav-inline
-          %ul= nav_links
+        - if nav_links.present?
+          %nav.post-nav.post-nav-inline
+            %ul= nav_links
         - if @trip.is_a?(Trip)
           .subtitle.text-muted
             = l(@trip.start_time, :format => :long) if @trip.start_time
