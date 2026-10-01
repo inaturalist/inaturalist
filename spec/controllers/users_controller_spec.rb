@@ -21,6 +21,20 @@ describe UsersController, "dashboard" do
       expect( request.variant ).to include( :responsive )
     end
 
+    describe "rendering" do
+      render_views
+
+      it "renders the responsive by-login header for a responsive-global member" do
+        user = User.make!
+        user.update_column( :test_groups, "responsive-global" )
+        sign_in user
+        get :dashboard
+        doc = Nokogiri::HTML( response.body )
+        expect( doc.at_css( "h3 .logged-in-user-image" ) ).not_to be_nil
+        expect( doc.at_css( "#UserSubnavTabDrawer" ) ).not_to be_nil
+      end
+    end
+
     it "does not set the responsive variant for a user in no test group" do
       user = User.make!
       expect( user.test_groups ).to be_blank
@@ -507,6 +521,21 @@ describe UsersController, "show" do
       get :show, params: { id: u.id }
       elt = Nokogiri::HTML( response.body ).at_css( "a[href='https://www.evil.com']" )
       expect( elt[:target] ).to be_nil
+    end
+  end
+
+  describe "for a responsive-global member" do
+    render_views
+
+    it "renders the legacy by-login header" do
+      viewer = User.make!
+      viewer.update_column( :test_groups, "responsive-global" )
+      sign_in viewer
+      get :show, params: { id: User.make!.login }
+      doc = Nokogiri::HTML( response.body )
+      expect( doc.at_css( ".logged-in-user-image" ) ).to be_nil
+      expect( doc.at_css( "#UserSubnavTabDrawer" ) ).to be_nil
+      expect( doc.at_css( ".col-md-12 > h1 .user_image" ) ).not_to be_nil
     end
   end
 end

@@ -13,7 +13,7 @@
   - if ( announcements = @announcements.select{|a| a.placement == "users/dashboard"} ) && !announcements.blank?
     - announcements.each do |announcement|
       = render "announcements/announcement", announcement: announcement
-  = render partial: "shared/by_login_header_bootstrap", locals: { user: current_user }
+  = render partial: "shared/by_login_header", locals: { user: current_user }
   .dashboard-columns
     .dashboard-main
       .tabbable
