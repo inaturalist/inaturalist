@@ -20,6 +20,15 @@ module Devise
         end
       end
 
+      # Our mobile apps send the JWT on every request, so there's no need to
+      # store the user in the session. Storing also makes Warden renew the
+      # session, which inserts a new sessions row on every request.
+      def store?
+        return false if OauthApplication.skips_session_storage?( claims.to_h["oauth_application_id"] )
+
+        super
+      end
+
       private
 
       def claims
