@@ -142,15 +142,22 @@ module ActsAsQdrantModel
       response["result"]
     end
 
-    def delete( ids )
+    def delete( ids, options = {} )
       return unless enabled?
       return if ids.blank?
 
-      client.points.delete(
-        collection_name: collection_name,
-        points: ids,
-        wait: true
-      )
+      begin
+        client.points.delete(
+          collection_name: collection_name,
+          points: ids,
+          wait: true
+        )
+      rescue Faraday::ConnectionFailed => e
+        raise e unless options[:ignore_connection_failure]
+
+        Rails.logger.warn "[WARN] Qdrant #{collection_name}.delete failed to connect: #{e.message}"
+        nil
+      end
     end
   end
 
@@ -175,10 +182,10 @@ module ActsAsQdrantModel
       class_proxy.upsert_points( [qdrant_json] )
     end
 
-    def delete_point
+    def delete_point( options = {} )
       return unless enabled?
 
-      class_proxy.delete( [@target.id] )
+      class_proxy.delete( [@target.id], options )
     end
   end
 end

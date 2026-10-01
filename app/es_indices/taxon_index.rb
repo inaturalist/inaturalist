@@ -243,7 +243,7 @@ class Taxon < ApplicationRecord
         taxon_photos: taxon_photos.reject do | tp |
           tp.photo.blank? || tp.photo.flagged? || tp.photo.hidden?
         end.map do | tp |
-          tp.as_indexed_json( for_taxon: true )
+          tp.as_indexed_json
         end,
         atlas_id: atlas.try( :id ),
         complete_species_count: complete_species_count,

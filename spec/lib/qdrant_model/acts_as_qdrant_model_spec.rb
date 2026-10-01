@@ -65,6 +65,24 @@ describe ActsAsQdrantModel do
         expect( TaxonPhoto.qdrant_count ).to eq( 0 )
       end
 
+      it "does not raise an error on destroy if qdrant cannot connect" do
+        expect( TaxonPhoto.qdrant_count ).to eq( 0 )
+        tp = TaxonPhoto.make!
+        expect( TaxonPhoto.qdrant_count ).to eq( 1 )
+        point = TaxonPhoto.qdrant_get( tp.id )
+        expect_point_matches_json( point, tp.as_qdrant_json )
+
+        expect( TaxonPhoto.__qdrant__.client.points ).to receive( :delete ).
+          at_least( :once ).and_raise( Faraday::ConnectionFailed )
+        tp.destroy
+        # the document will remain because there was a failure to connect during delete.
+        # This is a tradeoff. We are allowing the Qdrant index to be partially out of sync
+        # as we run processes to ensure eventual consistency, rather than allow Qdrant
+        # connection flakiness to raise errors during model lifecycles
+        expect( TaxonPhoto.qdrant_count ).to eq( 1 )
+        expect( TaxonPhoto.exists?( tp.id ) ).to be false
+      end
+
       it "properly updates the document on update" do
         expect( TaxonPhoto.qdrant_count ).to eq( 0 )
         tp = TaxonPhoto.make!
@@ -467,6 +485,26 @@ describe ActsAsQdrantModel do
         expect( TaxonPhoto.qdrant_count ).to eq 1
         taxon_photo.qdrant_delete!
         expect( TaxonPhoto.qdrant_count ).to eq 0
+      end
+
+      it "raises an error if the connection has failed" do
+        expect( TaxonPhoto.__qdrant__.client.points ).to receive( :delete ).
+          and_raise( Faraday::ConnectionFailed )
+        taxon_photo = TaxonPhoto.make!
+        expect( TaxonPhoto.qdrant_count ).to eq 1
+        expect do
+          taxon_photo.qdrant_delete!
+        end.to raise_error( Faraday::ConnectionFailed )
+        expect( TaxonPhoto.qdrant_count ).to eq 1
+      end
+
+      it "does not raise an error if ignore_connection_failure set" do
+        expect( TaxonPhoto.__qdrant__.client.points ).to receive( :delete ).
+          and_raise( Faraday::ConnectionFailed )
+        taxon_photo = TaxonPhoto.make!
+        expect( TaxonPhoto.qdrant_count ).to eq 1
+        expect( taxon_photo.qdrant_delete!( ignore_connection_failure: true ) ).to be_nil
+        expect( TaxonPhoto.qdrant_count ).to eq 1
       end
     end
 

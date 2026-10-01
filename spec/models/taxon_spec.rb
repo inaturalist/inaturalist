@@ -472,49 +472,6 @@ describe Taxon, "updating" do
     expect( Delayed::Job.where( "handler LIKE '%update_stats_for_observations_of%- #{t.id}%'" ).count ).to eq 3
   end
 
-  describe "indexed taxon_photos in elasticsearch" do
-    let( :embedding ) { Array.new( 2048 ) { rand } }
-    elastic_models( TaxonPhoto )
-
-    it "removes indexed taxon photos when is_active changes" do
-      taxon_photo = TaxonPhoto.make!
-      allow( TaxonPhoto ).to receive( :embeddings_for_taxon_photos ) do
-        { taxon_photo.id.to_s => embedding }
-      end
-      expect( TaxonPhoto.elastic_search.results.size ).to eq 0
-      taxon_photo.elastic_index!
-      expect( TaxonPhoto.elastic_search.results.size ).to eq 1
-      taxon_photo.taxon.update( is_active: false )
-      expect( TaxonPhoto.elastic_search.results.size ).to eq 0
-    end
-
-    it "queues a taxon photo indexing job when is_active changes" do
-      taxon_photo = TaxonPhoto.make!
-      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%elastic_index!%'" ).count ).to eq 0
-      taxon_photo.taxon.update( is_active: false )
-      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%elastic_index!%'" ).count ).to eq 1
-    end
-
-    it "does not index taxon photos for inactive taxa" do
-      taxon_photo = TaxonPhoto.make!
-      allow( TaxonPhoto ).to receive( :embeddings_for_taxon_photos ) do
-        { taxon_photo.id.to_s => embedding }
-      end
-      expect( TaxonPhoto.elastic_search.results.size ).to eq 0
-      taxon_photo.elastic_index!
-      expect( TaxonPhoto.elastic_search.results.size ).to eq 1
-      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%elastic_index!%'" ).count ).to eq 0
-
-      taxon_photo.taxon.update( is_active: false )
-      expect( TaxonPhoto.elastic_search.results.size ).to eq 0
-      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%elastic_index!%'" ).count ).to eq 1
-
-      Delayed::Worker.new.work_off
-      expect( TaxonPhoto.elastic_search.results.size ).to eq 0
-      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%elastic_index!%'" ).count ).to eq 0
-    end
-  end
-
   describe "indexed taxon_photos in qdrant" do
     let( :embedding ) { Array.new( 2048 ) { rand } }
     qdrant_models( TaxonPhoto )
@@ -528,14 +485,15 @@ describe Taxon, "updating" do
       taxon_photo.qdrant_index!
       expect( TaxonPhoto.qdrant_count ).to eq 1
       taxon_photo.taxon.update( is_active: false )
+      Delayed::Worker.new.work_off
       expect( TaxonPhoto.qdrant_count ).to eq 0
     end
 
-    it "queues a taxon photo indexing job when is_active changes" do
+    it "queues a taxon photo reindexing job when is_active changes" do
       taxon_photo = TaxonPhoto.make!
-      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%qdrant_index!%'" ).count ).to eq 0
+      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%qdrant_reindex_by_ids%'" ).count ).to eq 0
       taxon_photo.taxon.update( is_active: false )
-      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%qdrant_index!%'" ).count ).to eq 1
+      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%qdrant_reindex_by_ids%'" ).count ).to eq 1
     end
 
     it "does not index taxon photos for inactive taxa" do
@@ -546,15 +504,34 @@ describe Taxon, "updating" do
       expect( TaxonPhoto.qdrant_count ).to eq 0
       taxon_photo.qdrant_index!
       expect( TaxonPhoto.qdrant_count ).to eq 1
-      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%qdrant_index!%'" ).count ).to eq 0
+      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%qdrant_reindex_by_ids%'" ).count ).to eq 0
 
       taxon_photo.taxon.update( is_active: false )
-      expect( TaxonPhoto.qdrant_count ).to eq 0
-      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%qdrant_index!%'" ).count ).to eq 1
-
+      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%qdrant_reindex_by_ids%'" ).count ).to eq 1
       Delayed::Worker.new.work_off
       expect( TaxonPhoto.qdrant_count ).to eq 0
-      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%qdrant_index!%'" ).count ).to eq 0
+      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%qdrant_reindex_by_ids%'" ).count ).to eq 0
+    end
+
+    it "indexes taxon photos when a taxon becomes active" do
+      taxon = Taxon.make!( is_active: false )
+      taxon_photo = TaxonPhoto.make!( taxon: taxon )
+      allow( TaxonPhoto ).to receive( :embeddings_for_taxon_photos ) do
+        { taxon_photo.id.to_s => embedding }
+      end
+      expect( TaxonPhoto.qdrant_count ).to eq 0
+
+      taxon.update( is_active: true )
+      expect( TaxonPhoto.qdrant_count ).to eq 0
+      Delayed::Worker.new.work_off
+      expect( TaxonPhoto.qdrant_get( taxon_photo.id ) ).not_to be_nil
+    end
+
+    it "does not queue a reindexing job for a taxon without photos" do
+      taxon = Taxon.make!
+      Delayed::Job.delete_all
+      taxon.update( is_active: false )
+      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%qdrant_reindex_by_ids%'" ).count ).to eq 0
     end
   end
 
