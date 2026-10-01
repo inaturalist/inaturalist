@@ -1,7 +1,19 @@
 # frozen_string_literal: true
 
 class TaxonPhoto < ApplicationRecord
-  scope :load_for_qdrant_index, -> { load_for_index }
+  attr_accessor :calculated_embedding
+
+  scope :load_for_qdrant_index, lambda {
+    includes(
+      :taxon,
+      photo: [
+        :flags,
+        :file_extension,
+        :file_prefix,
+        :moderator_actions
+      ]
+    )
+  }
 
   qdrant_collection_settings(
     collection_parameters: {
@@ -55,7 +67,14 @@ class TaxonPhoto < ApplicationRecord
   end
 
   def self.prepare_batch_for_qdrant_index( taxon_photos )
-    prepare_batch_for_index( taxon_photos )
+    taxon_photos.in_groups_of( 50, false ) do | taxon_photos_group |
+      embeddings_json = embeddings_for_taxon_photos( taxon_photos_group )
+      next if embeddings_json.blank?
+
+      taxon_photos_group.each do | taxon_photo |
+        taxon_photo.calculated_embedding = embeddings_json[taxon_photo.id.to_s] || {}
+      end
+    end
   end
 
   def self.prune_batch_for_qdrant_index( batch )
@@ -82,5 +101,42 @@ class TaxonPhoto < ApplicationRecord
 
         true
       end
+  end
+
+  def self.embeddings_for_taxon_photos( taxon_photos, options = {} )
+    # many tests will create taxa, which in turn will create taxon photos, which will want
+    # to be indexed and call the API to generate embeddings. Instead of mocking an API response
+    # for all those tests, do not allow this method to run in specs
+    return {} if Rails.env.test? && !options[:enable_in_test_env]
+
+    5.times do
+      begin
+        Timeout.timeout( 20 ) do
+          uri = URI.parse( "#{CONFIG.vision_api_url}/embeddings_for_photos" )
+          http = Net::HTTP.new( uri.host, uri.port )
+          http.use_ssl = true if uri.scheme == "https"
+          request = Net::HTTP::Post.new(
+            uri.request_uri,
+            "Content-Type": "application/json"
+          )
+          request.body = {
+            photos: taxon_photos.map do | tp |
+              {
+                id: tp.id,
+                url: tp.photo&.medium_url
+              }
+            end
+          }.to_json
+          response = http.request( request )
+          if response.code == "200"
+            return JSON.parse( response.body )
+          end
+        end
+      rescue StandardError => e
+        Rails.logger.debug "[DEBUG] TaxonPhoto.embeddings_for_taxon_photos failed: #{e}"
+        sleep( 1 )
+      end
+    end
+    nil
   end
 end
