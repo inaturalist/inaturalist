@@ -1,0 +1,9 @@
+<div class="UserWithIcon">
+  <div class="icon">
+    <%= link_to_user user, content_text: user_image( user, size: "thumb", no_inline_dimensions: true ) %>
+  </div>
+  <div class="title-subtitle">
+    <div class="title"><%= link_to_user user %></div>
+    <div class="subtitle"><%= yield %></div>
+  </div>
+</div>
