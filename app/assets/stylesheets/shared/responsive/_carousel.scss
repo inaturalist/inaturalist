@@ -2,6 +2,7 @@
 
 $carousel-control-size: 44px;
 $carousel-control-color: white;
+$carousel-controls-background: #222;
 
 .Carousel {
   display: flex;
@@ -26,6 +27,7 @@ $carousel-control-color: white;
 .Carousel-slide {
   position: relative;
   flex: 0 0 100%;
+  min-width: 0;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
@@ -35,7 +37,7 @@ $carousel-control-color: white;
   display: flex;
   align-items: center;
   padding-right: $carousel-control-size;
-  background-color: black;
+  background-color: $carousel-controls-background;
 }
 
 .Carousel-dots {

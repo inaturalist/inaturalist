@@ -31,7 +31,7 @@ $max-width: 1170px;
   .photo {
     display: block;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 760 / 320;
     background-image: url( image_path( "project_blank_banner_bg.png" ) );
     background-repeat: no-repeat;
     background-position: center;
@@ -39,17 +39,10 @@ $max-width: 1170px;
     &:hover {
       opacity: 1;
     }
-
-    @media ( min-width: $md ) {
-      aspect-ratio: auto;
-      height: 320px;
-    }
   }
 
   .Carousel .photo {
-    @media ( min-width: $md ) {
-      height: 100%;
-    }
+    min-height: 100%;
   }
 
   .photo,
@@ -108,7 +101,8 @@ $max-width: 1170px;
       }
 
       img {
-        height: 38px;
+        display: block;
+        height: 36px;
       }
 
       .title {
@@ -125,14 +119,13 @@ $max-width: 1170px;
         line-height: 43px;
 
         img {
-          height: 45px;
+          height: 43px;
         }
       }
     }
   }
 
   #about-projects {
-    height: auto;
     background-color: black;
     color: white;
     padding: 20px;
@@ -160,10 +153,6 @@ $max-width: 1170px;
 
     .btn {
       font-size: 16px;
-    }
-
-    @media ( min-width: $md ) {
-      height: 320px;
     }
   }
 }

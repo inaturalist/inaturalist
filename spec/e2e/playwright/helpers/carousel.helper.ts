@@ -4,6 +4,7 @@ import path from "path";
 import { expect, Page } from "@playwright/test";
 
 const LONG_TITLE = "The Extraordinarily Long Named Community Biodiversity Survey of the Greater Metropolitan Watershed";
+const ICON = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
 const PUBLIC_ASSETS = path.resolve( __dirname, "../../../../public/assets" );
 
 function slideHtml( i: number, count: number ): string {
@@ -15,7 +16,7 @@ function slideHtml( i: number, count: number ): string {
       </div>
       <a class="photo" aria-label="${LONG_TITLE} ${i}" href="/projects/fixture-${i}" style="background-size: cover;"></a>
       <div class="project-caption">
-        <h2><a class="title" href="/projects/fixture-${i}">${LONG_TITLE} ${i}</a></h2>
+        <h2><a class="icon" aria-hidden="true" tabindex="-1" href="/projects/fixture-${i}"><img alt="" src="${ICON}"></a><a class="title" href="/projects/fixture-${i}">${LONG_TITLE} ${i}</a></h2>
       </div>
     </div>
   `;
