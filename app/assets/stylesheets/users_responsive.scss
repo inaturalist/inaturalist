@@ -44,7 +44,8 @@ body.responsive #header {
   }
 }
 
-#pageheader.leaderboard-header {
+#pageheader.leaderboard-header,
+#friendship-users #pageheader {
   display: block;
 
   .breadcrumbs {
@@ -84,6 +85,16 @@ body.responsive #header {
   @media ( min-width: $md ) { width: calc( 25% - 10px ); }
 }
 
+#friendship-users {
+  @include container-padding;
+}
+
+#friendship-users .CardGrid > * {
+  width: calc( 100% - 10px );
+  @media ( min-width: $sm ) { width: calc( 50% - 10px ); }
+  @media ( min-width: $lg ) { width: calc( 33.333% - 10px ); }
+}
+
 // Recently-active tiles: square, image fills, blurb overlays the bottom.
 .usercol {
   position: relative;
@@ -114,8 +125,17 @@ body.responsive #header {
 }
 .usercol .user_image { width: 100% !important; height: 100% !important; }
 
+$user-with-icon-size: 48px;
+$user-with-icon-offset: 3px;
+
 .UserWithIcon {
   margin-bottom: 10px;
+  align-items: flex-start;
+}
+
+.UserWithIcon .title-subtitle {
+  min-height: $user-with-icon-size + 2 * $user-with-icon-offset;
+  justify-content: center;
 }
 
 .UserWithIcon .subtitle {
@@ -124,8 +144,9 @@ body.responsive #header {
 }
 
 .UserWithIcon .icon .user_image {
-  width: 48px;
-  height: 48px;
+  width: $user-with-icon-size;
+  height: $user-with-icon-size;
+  margin-top: $user-with-icon-offset;
   margin-inline-end: 10px;
   margin-left: 5px;
 }
@@ -152,6 +173,7 @@ body.responsive #header {
 .empty { color: #888; text-align: center; }
 
 #curators .UserWithIcon .title a,
-#leaderboard .UserWithIcon .title a {
+#leaderboard .UserWithIcon .title a,
+#friendship-users .UserWithIcon .title a {
   color: #337ab7;
 }
