@@ -12,7 +12,7 @@
   .CardGrid
     - @users.each do |person|
       = render layout: "shared/user_with_icon", locals: { user: person } do
-        %div= person.name
+        .meta= person.name
         %div
           %i.fa.fa-binoculars
           = link_to t(:x_observations_html, count: number_with_delimiter(person.observations_count)), observations_path( user_id: person.login )
