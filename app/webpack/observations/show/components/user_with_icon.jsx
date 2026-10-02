@@ -45,6 +45,12 @@ const UserWithIcon = ( {
         { !hideSubtitle && (
           <div className="subtitle">{ subtitleLink }</div>
         ) }
+        { user.suspended && (
+          <div class="alert alert-warning">
+            <strong>This user has been suspended</strong>
+            <p class="unstacked">If this is your account and you think this was done by mistake, please <a href="mailto:help@inaturalist.org">contact us</a>.</p>
+          </div>
+        ) }
       </div>
     </div>
   );
