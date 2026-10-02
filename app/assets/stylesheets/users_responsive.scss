@@ -44,7 +44,8 @@ body.responsive #header {
   }
 }
 
-#pageheader.leaderboard-header {
+#pageheader.leaderboard-header,
+#friendship-users #pageheader {
   display: block;
 
   .breadcrumbs {
@@ -82,6 +83,16 @@ body.responsive #header {
 #curators .CardGrid > * {
   @media ( min-width: $sm ) { width: calc( 33.333% - 10px ); }
   @media ( min-width: $md ) { width: calc( 25% - 10px ); }
+}
+
+#friendship-users {
+  @include container-padding;
+}
+
+#friendship-users .CardGrid > * {
+  width: calc( 100% - 10px );
+  @media ( min-width: $sm ) { width: calc( 50% - 10px ); }
+  @media ( min-width: $lg ) { width: calc( 33.333% - 10px ); }
 }
 
 // Recently-active tiles: square, image fills, blurb overlays the bottom.
@@ -152,6 +163,7 @@ body.responsive #header {
 .empty { color: #888; text-align: center; }
 
 #curators .UserWithIcon .title a,
-#leaderboard .UserWithIcon .title a {
+#leaderboard .UserWithIcon .title a,
+#friendship-users .UserWithIcon .title a {
   color: #337ab7;
 }
