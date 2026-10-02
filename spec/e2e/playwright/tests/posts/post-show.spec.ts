@@ -57,7 +57,7 @@ test.describe( "post navigation", () => {
     const inlineNav = page.locator( ".post-nav-inline" );
     await expect( inlineNav ).toBeVisible();
     await expect( page.locator( ".post-nav-side" ) ).toBeHidden();
-    await expect( inlineNav.getByRole( "link" ) ).toHaveText( ["Observations", "Comments"] );
+    await expect( inlineNav.getByRole( "link" ) ).toHaveText( ["Observations", "1 comment"] );
 
     const pageBox = await page.locator( ".post-layout" ).boundingBox();
     const contentBox = await page.locator( ".post-content" ).boundingBox();
@@ -71,6 +71,16 @@ test.describe( "post navigation", () => {
     const sideNav = page.locator( ".post-nav-side" );
     await expect( sideNav ).toBeVisible();
     await expect( page.locator( ".post-nav-inline" ) ).toBeHidden();
-    await expect( sideNav.getByRole( "link" ) ).toHaveText( ["Observations", "Comments"] );
+    await expect( sideNav.getByRole( "link" ) ).toHaveText( ["Observations", "1 comment"] );
+  } );
+
+  test( "is omitted and the body spans the full width when there is nothing to link to", async ( { page } ) => {
+    await page.setViewportSize( VIEWPORTS.xl );
+    await page.goto( blogPostPath );
+
+    await expect( page.locator( ".post-nav" ) ).toHaveCount( 0 );
+    const pageBox = await page.locator( ".post-layout" ).boundingBox();
+    const contentBox = await page.locator( ".post-content" ).boundingBox();
+    expect( contentBox?.width ).toBe( pageBox?.width );
   } );
 } );

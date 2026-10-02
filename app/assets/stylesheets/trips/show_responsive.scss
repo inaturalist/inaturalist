@@ -33,7 +33,8 @@
   .post-nav-side {
     position: sticky;
     top: 20px;
-    flex: 0 0 200px;
+    flex: none;
+    white-space: nowrap;
 
     li a {
       display: block;
