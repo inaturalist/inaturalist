@@ -1814,6 +1814,11 @@ module ApplicationHelper
     URI.join( site.url.to_s, url.to_s ).to_s
   end
 
+  # Inline per-user flags into CONFIG payload so JS can read without extra request.
+  def feature_flags_json
+    FeatureFlagging.flags_for( current_user ).to_json.html_safe
+  end
+
   def fundraise_up_js
     raw <<-HTML
       <script type="text/javascript">
