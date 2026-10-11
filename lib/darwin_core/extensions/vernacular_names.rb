@@ -108,8 +108,8 @@ module DarwinCore
             base_scope.
               where( lexicon: lexicon ).
               includes( :taxon, :source, :creator, :updater, place_taxon_names: :place ).
-              order( "taxon_id" ).
-              find_each do | tn |
+              order( "taxon_id, position" ).
+              each do | tn |
               adapt( tn, core: options[:core] )
               csv << TERMS.map do | field, _uri, _default, method |
                 tn.send( method || field )
