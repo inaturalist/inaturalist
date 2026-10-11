@@ -109,7 +109,7 @@ const SuggestionRow = ( {
           { details && ( details.vision_score || details.frequency_score ) ? (
             <div className="quiet btn btn-label btn-xs">
               { details.vision_score ? I18n.t( "visually_similar" ) : null }
-              { details.vision_score && details.frequency_score ? <span> / </span> : null }
+              { details.vision_score && details.frequency_score ? <span> & </span> : null }
               { details.frequency_score ? I18n.t( "expected_nearby" ) : null }
             </div>
           ) : null }
