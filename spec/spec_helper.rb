@@ -53,8 +53,8 @@ RSpec.configure do | config |
     make_default_site
     CONFIG.has_subscribers = :disabled
     CONFIG.content_creation_restriction_days = nil
-    # Fresh instance resets in-process state; production stack tested separately; instrumenter enables telemetry.
-    Flipper.instance = Flipper.new( Flipper::Adapters::Memory.new, instrumenter: ActiveSupport::Notifications )
+    # Fresh instance resets in-process state; production stack tested separately.
+    Flipper.instance = Flipper.new( Flipper::Adapters::Memory.new )
     FeatureFlagging.reset_unknown_key_warnings
   end
 

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module FeatureFlagging
-  # Reads fail-closed; preload runs before controller rescue. Writes re-raise so admins see failures.
   class FailClosedAdapter < Flipper::Adapters::Wrapper
     READ_DEFAULTS = {
       features: -> { Set.new },

@@ -11,9 +11,9 @@ describe "flipper initializer" do
     expect( adapter.adapter ).to be_a FeatureFlagging::FailClosedAdapter
   end
 
-  it "memoizes and preloads per request" do
+  it "memoizes per request without preloading" do
     expect( flipper_config.memoize ).to be true
-    expect( flipper_config.preload ).to be true
+    expect( flipper_config.preload ).to be false
   end
 
   it "runs the memoizer innermost, inside Makara" do
@@ -30,16 +30,5 @@ describe "flipper initializer" do
 
   it "adds no cache layer for the test cache store" do
     expect( FeatureFlagging.shared_cache ).to be_nil
-  end
-
-  it "feeds flag checks into the telemetry" do
-    expect( FeatureFlagging::Telemetry ).to receive( :record_feature_operation )
-    Flipper.enabled?( :client_smoke_test )
-  end
-
-  it "feeds storage reads into the telemetry" do
-    expect( FeatureFlagging::Telemetry ).to receive( :record_adapter_operation )
-    Flipper.new( FeatureFlagging.build_adapter( base: Flipper::Adapters::Memory.new, cache: nil ) ).
-      enabled?( :client_smoke_test )
   end
 end

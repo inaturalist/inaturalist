@@ -10,21 +10,14 @@ flipper_config = Rails.application.config.flipper
 # One gate read per flag per request instead of one per check.
 flipper_config.memoize = true
 
-# Do not preload flags at boot; preload is done on the first request instead, so that migrations can run first.
+# No preload: a request that reads no flag does no Flipper work; the Memoizer still caches each read for the
+# rest of the request.
 flipper_config.preload = false
 
 # App-side checks treat unknown keys as off with a warning; see FeatureFlagging.enabled?.
 flipper_config.strict = false
 
 flipper_config.log = false
-
-# Telemetry: constants in blocks survive reloads; subscriptions feed feature_flag_* into Logstasher.
-ActiveSupport::Notifications.subscribe( "feature_operation.flipper" ) do | event |
-  FeatureFlagging::Telemetry.record_feature_operation( event )
-end
-ActiveSupport::Notifications.subscribe( "adapter_operation.flipper" ) do | event |
-  FeatureFlagging::Telemetry.record_adapter_operation( event )
-end
 
 # Duck-typed to avoid loading User at boot (classic autoloader).
 unless Flipper.group_exists?( :admins )

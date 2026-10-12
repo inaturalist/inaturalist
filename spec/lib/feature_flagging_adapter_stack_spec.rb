@@ -19,17 +19,6 @@ describe "FeatureFlagging.build_adapter" do
       to be_a FeatureFlagging::FailClosedAdapter
   end
 
-  it "instruments reads of the base adapter" do
-    events = []
-    subscription = ActiveSupport::Notifications.subscribe( "adapter_operation.flipper" ) do | event |
-      events << event
-    end
-    flipper_over( FeatureFlagging.build_adapter( base: Flipper::Adapters::Memory.new, cache: nil ) ).
-      enabled?( flag )
-    ActiveSupport::Notifications.unsubscribe( subscription )
-    expect( events.map {| e | e.payload.values_at( :operation, :adapter_name ) } ).to eq [[:get, :memory]]
-  end
-
   it "adds no cache layer without a cache" do
     flipper = flipper_over( FeatureFlagging.build_adapter( base: base, cache: nil ) )
     2.times { flipper.enabled?( flag ) }

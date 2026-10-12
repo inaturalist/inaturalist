@@ -23,13 +23,12 @@ module FeatureFlagging
   UNKNOWN_KEY_WARNINGS = Concurrent::Map.new
 
   class << self
-    # Stack: fail_closed → instrumented → [cache →] instrumented → base; failures = all-flags-off.
+    # Stack: fail_closed → [cache →] base; failures = all-flags-off.
     def build_adapter( base: Flipper::Adapters::ActiveRecord.new, cache: shared_cache, ttl: CACHE_TTL )
-      adapter = Flipper::Adapters::Instrumented.new( base, instrumenter: ActiveSupport::Notifications )
+      adapter = base
       if cache
         # Prefix keeps environments sharing memcached separate.
         adapter = Flipper::Adapters::ActiveSupportCacheStore.new( adapter, cache, ttl, prefix: "#{Rails.env}:" )
-        adapter = Flipper::Adapters::Instrumented.new( adapter, instrumenter: ActiveSupport::Notifications )
       end
       # Fully qualified: bare constant in `class << self` not resolved by classic autoloader.
       FeatureFlagging::FailClosedAdapter.new( adapter )
@@ -145,7 +144,7 @@ module FeatureFlagging
       Digest::MD5.hexdigest( key )[0, 8].to_i( 16 )
     end
 
-    # Free after preload: the memoizer's get_all also fills the feature list.
+    # One features read per request; the Memoizer middleware caches it.
     def exists?( key )
       Flipper.exist?( key )
     rescue StandardError => e
