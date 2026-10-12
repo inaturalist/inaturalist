@@ -2,8 +2,7 @@
 
 require "spec_helper"
 
-# Memoize is on and preload is off: a request pays only for the flags it reads, and each read
-# happens once. These specs pin that contract.
+# Memoize on, preload off: a request pays only for the flags it reads, once each.
 describe "flag reads during a request", type: :request do
   include Devise::Test::IntegrationHelpers
 

@@ -2,13 +2,11 @@
 
 require "spec_helper"
 
-# Rack app needs route constraint; ApplicationController's admin_required filter doesn't apply.
 describe "the Flipper admin UI mount", type: :request do
   include Devise::Test::IntegrationHelpers
 
   let( :path ) { "/admin/feature_flags/flipper" }
 
-  # show_exceptions false in test env; route mismatch raises not 404.
   describe "access" do
     it "is not routable for anonymous visitors" do
       expect { get path }.to raise_error ActionController::RoutingError
@@ -27,7 +25,6 @@ describe "the Flipper admin UI mount", type: :request do
     it "is routable for admins" do
       sign_in make_admin
       get path
-      # Redirect keeps mount prefix; SCRIPT_NAME mishandling would break this.
       expect( response ).to redirect_to "#{path}/features"
     end
 
@@ -87,7 +84,7 @@ describe "the Flipper admin UI mount", type: :request do
     end
   end
 
-  # Rack::Protection does CSRF checking; silent failures if session doesn't reach Flipper::UI.
+  # Rack::Protection fails silently if the session does not reach Flipper::UI.
   describe "form submission" do
     before { sign_in make_admin }
 

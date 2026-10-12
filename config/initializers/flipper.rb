@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Lazy adapter block: app can boot before db:migrate completes (classic autoloader doesn't preload FeatureFlagging).
+# Lazy block: the app boots before db:migrate runs and before FeatureFlagging autoloads.
 Flipper.configure do | config |
   config.adapter { FeatureFlagging.build_adapter }
 end
@@ -10,8 +10,7 @@ flipper_config = Rails.application.config.flipper
 # One gate read per flag per request instead of one per check.
 flipper_config.memoize = true
 
-# No preload: a request that reads no flag does no Flipper work; the Memoizer still caches each read for the
-# rest of the request.
+# No preload: a request that reads no flag does no Flipper work.
 flipper_config.preload = false
 
 # App-side checks treat unknown keys as off with a warning; see FeatureFlagging.enabled?.

@@ -4,7 +4,6 @@ require "flipper/adapters/operation_logger"
 
 # Test doubles for the storage stack, shared by feature_flagging_*_spec files.
 module FeatureFlaggingHelpers
-  # All operations raise like unmigrated tables.
   class RaisingAdapter
     include Flipper::Adapter
 
@@ -34,7 +33,7 @@ module FeatureFlaggingHelpers
     Flipper::Adapters::OperationLogger.new( Flipper::Adapters::Memory.new )
   end
 
-  # Shared fixture vocabulary: one flag of each kind. Nothing is declared in app code.
+  # One flag of each kind.
   def add_test_flags( flipper = Flipper )
     %i[client_smoke_test server_smoke_test exp_hello_world].each {| key | flipper.add( key ) }
   end

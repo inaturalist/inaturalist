@@ -88,7 +88,7 @@ describe "the admin feature flag readout", type: :request do
   end
 end
 
-# Controller spec required; admin_required filter's throw :abort escapes integration stack as UncaughtThrowError.
+# Controller spec: admin_required's throw :abort escapes the integration stack, so it is caught here.
 describe Admin::FeatureFlagsController, type: :controller do
   render_views
 
@@ -97,7 +97,6 @@ describe Admin::FeatureFlagsController, type: :controller do
     expect( response ).to be_redirect
   end
 
-  # Catch required; throw :abort escapes callback chain as UncaughtThrowError (pre-existing admin filter behavior).
   it "does not show the flag readout to non-admins" do
     sign_in User.make!
     catch( :abort ) { get :index }

@@ -41,10 +41,12 @@ Rails.application.routes.draw do
   get "/giving", to: redirect( "/pages/giving", status: 302 )
   get "/ted", to: redirect( "/pages/ted", status: 302 )
   get "/gifts", to: redirect( "https://giving.inaturalist.org/page/FUNATVAYGEH", status: 302 )
-  get "/supportersurvey", to: redirect( "https://docs.google.com/forms/d/12mSK_93McY60oWaCaWpjBib495PaMSByRpVl1ichCIY/", status: 302 )
+  get "/supportersurvey",
+    to: redirect( "https://docs.google.com/forms/d/12mSK_93McY60oWaCaWpjBib495PaMSByRpVl1ichCIY/", status: 302 )
 
   get "/id_summaries_dashboard", to: "id_summaries_dashboard#index", as: :id_summaries_dashboard
-  get "/id_summaries_feedback_dashboard", to: "id_summaries_feedback_dashboard#index", as: :id_summaries_feedback_dashboard
+  get "/id_summaries_feedback_dashboard", to: "id_summaries_feedback_dashboard#index",
+    as: :id_summaries_feedback_dashboard
   post "/id_summaries_feedback_dashboard/delete_voter_votes",
     to: "id_summaries_feedback_dashboard#delete_voter_votes",
     as: :delete_id_summaries_dashboard_voter_votes
@@ -607,7 +609,7 @@ Rails.application.routes.draw do
 
   resources :flags
 
-  # Route constraint required; ApplicationController's admin_required filter doesn't apply to Flipper's Rack app.
+  # Flipper's Rack app bypasses ApplicationController, so the admin check lives in the constraint.
   mount Flipper::UI.app( Flipper ) => "/admin/feature_flags/flipper",
     as: "admin_feature_flags_flipper",
     constraints: ->( request ) { request.env["warden"]&.user&.is_admin? }
@@ -668,7 +670,6 @@ Rails.application.routes.draw do
   get "build_info", to: "build_info#index"
   get "admin/app_build_info", to: "build_info#app_build_info", as: "admin_app_build_info"
 
-  # For non-web clients; web pages get flags inlined in CONFIG payload.
   get "feature_flags", to: "feature_flags#index"
 
   resource :stats do

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# Unauthenticated endpoint for non-web clients to fetch flags; allows fetching before session is known.
+# Unauthenticated so clients can fetch flags before a session exists.
 class FeatureFlagsController < ApplicationController
   def index
-    # Per-actor payload requires private cache; short max-age lets mobile refresh without reloading every nav.
+    # Per-actor payload: private cache only; short max-age lets mobile refresh without a fetch per screen.
     response.headers["Cache-Control"] = "private, max-age=60"
     render json: {
       flags: FeatureFlagging.flags_for( current_user ),

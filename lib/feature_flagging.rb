@@ -2,14 +2,13 @@
 
 require "digest"
 
-# Facade over flipper gem enables engine replacement without touching app code.
-# Reads fail-closed: keeps pages rendering during deploy→migration window.
+# Facade over the flipper gem; reads fail closed so pages render during the deploy→migration window.
 #   FeatureFlagging.enabled?( :some_flag, current_user )
 #   FeatureFlagging.flags_for( current_user )       # => { client_some_flag: false }
 #   FeatureFlagging.variant( :some_experiment, current_user )  # => "treatment"
 # Flags are created at runtime in Flipper::UI; the key prefix decides exposure (see kind_of).
 module FeatureFlagging
-  # client_* flags are sent to browsers and GET /feature_flags; other names stay out of page source.
+  # client_* flags are exposed through GET /feature_flags; other names stay server-side.
   CLIENT_PREFIX = "client_"
   # exp_<name> gates enrollment in experiment <name>.
   EXPERIMENT_PREFIX = "exp_"
@@ -23,18 +22,14 @@ module FeatureFlagging
   UNKNOWN_KEY_WARNINGS = Concurrent::Map.new
 
   class << self
-    # Stack: fail_closed → [cache →] base; failures = all-flags-off.
     def build_adapter( base: Flipper::Adapters::ActiveRecord.new, cache: shared_cache, ttl: CACHE_TTL )
       adapter = base
       if cache
-        # Prefix keeps environments sharing memcached separate.
         adapter = Flipper::Adapters::ActiveSupportCacheStore.new( adapter, cache, ttl, prefix: "#{Rails.env}:" )
       end
-      # Fully qualified: bare constant in `class << self` not resolved by classic autoloader.
       FeatureFlagging::FailClosedAdapter.new( adapter )
     end
 
-    # Only memcached is shared; file/memory stores per-process, not faster than one indexed read.
     def shared_cache( store = Rails.cache )
       store if store.is_a?( ActiveSupport::Cache::MemCacheStore )
     end
@@ -59,7 +54,7 @@ module FeatureFlagging
       :"#{EXPERIMENT_PREFIX}#{experiment}"
     end
 
-    # Every flag that exists in storage, sorted so payloads are byte-stable; memoized per request.
+    # Every stored flag key, sorted so payloads are byte-stable.
     def feature_keys
       Flipper.features.map( &:key ).sort
     rescue StandardError => e
@@ -91,7 +86,7 @@ module FeatureFlagging
       evaluate( key, resolve_actor( actor ) )
     end
 
-    # Boolean map for inline JS payload and GET /feature_flags.
+    # Client flag map for GET /feature_flags.
     def flags_for( actor = nil )
       resolved = resolve_actor( actor )
       client_keys.to_h {| key | [key.to_sym, evaluate( key.to_sym, resolved )] }
@@ -109,7 +104,7 @@ module FeatureFlagging
       variant_for( experiment, resolve_actor( actor ) )
     end
 
-    # Resolved variant map keyed by experiment name, the documented extension of the flag payload.
+    # Variant map keyed by experiment name for GET /feature_flags.
     def experiments_for( actor = nil )
       resolved = resolve_actor( actor )
       experiment_keys.to_h do | key |
@@ -144,7 +139,6 @@ module FeatureFlagging
       Digest::MD5.hexdigest( key )[0, 8].to_i( 16 )
     end
 
-    # One features read per request; the Memoizer middleware caches it.
     def exists?( key )
       Flipper.exist?( key )
     rescue StandardError => e

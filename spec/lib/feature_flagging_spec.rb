@@ -329,7 +329,6 @@ describe FeatureFlagging do
     end
   end
 
-  # Memory adapter tested above; this verifies production storage stack over real tables.
   describe "the ActiveRecord adapter" do
     let( :ar_flipper ) { Flipper.new( FeatureFlagging.build_adapter( cache: nil ) ) }
 

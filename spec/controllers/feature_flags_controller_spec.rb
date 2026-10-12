@@ -52,7 +52,7 @@ describe "GET /feature_flags", type: :request do
       expect( body ).to eq( "flags" => {}, "experiments" => {} )
     end
 
-    # Per-actor payload in shared cache would expose user A's flags to user B; correctness requirement.
+    # A shared cache would serve one user's flags to another.
     it "marks the response as privately cacheable only" do
       get "/feature_flags"
       expect( response.headers["Cache-Control"] ).to include "private"
@@ -131,7 +131,7 @@ describe "GET /feature_flags", type: :request do
     end
   end
 
-  # Regression guard: application token authenticates as shared User;-1 that must not be bucketed with real actors.
+  # Application tokens authenticate as the shared User;-1, which must never be bucketed.
   describe "a caller with an application JWT" do
     let( :app_headers ) do
       { "HTTP_AUTHORIZATION" => JsonWebToken.applicationToken }

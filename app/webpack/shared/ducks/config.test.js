@@ -107,8 +107,7 @@ describe( "fetchFeatureFlags", ( ) => {
   } );
 } );
 
-// End to end through a real store, the way shared_store wires it: the first flag read on the
-// current user fires the API request, and the response lands back on the same instance.
+// Through a real store, the way shared_store wires it.
 describe( "lazy loading through the store", ( ) => {
   let meta;
   let store;
