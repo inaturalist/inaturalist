@@ -69,6 +69,22 @@ const CurrentUser = class CurrentUser {
   isInTestGroup( testGroup ) {
     return this.testGroups && this.testGroups.indexOf( testGroup ) >= 0;
   }
+
+  // Flags are resolved server-side per actor. The config duck attaches loadFeatureFlags when it
+  // wraps the user; the first read asks it to fetch, and the response is merged back onto this
+  // instance, re-rendering connected components. Until then, and for a missing key, the answer
+  // is off, matching FeatureFlagging.enabled? in Rails.
+  featureFlagEnabled( flag ) {
+    if (
+      _.isUndefined( this.featureFlags )
+      && !this.featureFlagsRequested
+      && _.isFunction( this.loadFeatureFlags )
+    ) {
+      this.featureFlagsRequested = true;
+      this.loadFeatureFlags( );
+    }
+    return !!( _.isPlainObject( this.featureFlags ) && this.featureFlags[flag] );
+  }
 };
 
 export default CurrentUser;

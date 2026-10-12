@@ -101,9 +101,34 @@ export function updateCurrentUser( updates ) {
 
 export function setCurrentUser( currentUser ) {
   return dispatch => {
-    dispatch( setConfig( {
-      currentUser: new CurrentUser( currentUser )
-    } ) );
+    const user = new CurrentUser( currentUser );
+    // Lazy: the first featureFlagEnabled call fires the request; see CurrentUser.
+    // eslint-disable-next-line no-use-before-define
+    user.loadFeatureFlags = ( ) => dispatch( fetchFeatureFlags( ) );
+    dispatch( setConfig( { currentUser: user } ) );
+  };
+}
+
+// Loads the per-actor flag map from API v2 into currentUser. Fired by the first
+// CurrentUser#featureFlagEnabled call rather than at boot, so only pages that read a flag pay
+// for the request. Anonymous visitors get no flags because there is no currentUser to hold them.
+export function fetchFeatureFlags( ) {
+  return ( dispatch, getState ) => {
+    const { currentUser } = getState( ).config;
+    if ( !currentUser || !currentUser.id ) return Promise.resolve( );
+    // Endpoint arrives with inaturalistjs WEB-1168; until node_modules picks it up, stay off.
+    if ( !inatjs.feature_flags ) return Promise.resolve( );
+    const apiV2Url = document
+      .querySelector( "meta[name='config:inaturalist_api_url_v2']" )
+      ?.getAttribute( "content" );
+    if ( !apiV2Url ) return Promise.resolve( );
+    // feature_flags exists only on API v2. The client stays on v2 afterwards: inatjs does not
+    // expose its current URL, and every page that dispatches this must already handle v2.
+    inatjs.setConfig( { apiURL: apiV2Url, writeApiURL: apiV2Url } );
+    return inatjs.feature_flags.get( )
+      .then( response => dispatch( updateCurrentUser( { featureFlags: response.flags || { } } ) ) )
+      // Fail closed like Rails and the Node proxy: an unreachable API reads as everything off
+      .catch( ( ) => dispatch( updateCurrentUser( { featureFlags: { } } ) ) );
   };
 }
 
