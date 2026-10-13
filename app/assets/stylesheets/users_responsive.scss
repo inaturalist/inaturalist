@@ -93,6 +93,7 @@ body.responsive #header {
   width: calc( 100% - 10px );
   @media ( min-width: $sm ) { width: calc( 50% - 10px ); }
   @media ( min-width: $lg ) { width: calc( 33.333% - 10px ); }
+  @media ( min-width: $xl ) { width: calc( 25% - 10px ); }
 }
 
 // Recently-active tiles: square, image fills, blurb overlays the bottom.
