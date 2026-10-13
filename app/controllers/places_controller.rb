@@ -14,7 +14,6 @@ class PlacesController < ApplicationController
     :index,
     :search,
     :show,
-    :taxa,
     :wikipedia
   ]
   before_action :return_here, only: [:show]
@@ -27,7 +26,6 @@ class PlacesController < ApplicationController
     :guide_widget,
     :merge,
     :show,
-    :taxa,
     :update,
     :widget
   ]
@@ -426,45 +424,6 @@ class PlacesController < ApplicationController
     respond_to do | format |
       format.html { render partial: "place_li", collection: @children }
       format.json { render json: @children.to_json }
-    end
-  end
-
-  def taxa
-    per_page = params[:per_page]
-    per_page = 100 if per_page && per_page.to_i > 100
-    conditions = params[:photos_only] ? "photos.id IS NOT NULL" : nil
-    listed_taxa = @place.listed_taxa.paginate(
-      page: params[:page],
-      per_page: per_page,
-      select: "MAX(listed_taxa.id) AS id, listed_taxa.taxon_id",
-      joins: "LEFT OUTER JOIN taxon_photos ON taxon_photos.taxon_id = listed_taxa.taxon_id " \
-        "LEFT OUTER JOIN photos ON photos.id = taxon_photos.photo_id",
-      group: "listed_taxa.taxon_id",
-      order: "id DESC",
-      conditions: conditions
-    )
-    @taxa = Taxon.where( id: listed_taxa.map( &:taxon_id ) ).
-      includes( :iconic_taxon, :photos, :taxon_names )
-
-    respond_to do | format |
-      format.html { redirect_to @place }
-      format.json do
-        @taxa.map! do | taxon |
-          taxon.html = render_to_string( partial: "taxa/taxon", formats: [:html],
-            object: taxon, locals: {
-              image_options: { size: "small" },
-              link_image: true,
-              link_name: true,
-              include_image_attribution: true
-            } )
-          taxon
-        end
-        render json: @taxa.to_json(
-          include: :photos,
-          methods: [:image_url, :default_name, :common_name,
-                    :scientific_name, :html]
-        )
-      end
     end
   end
 
