@@ -65,6 +65,7 @@ class ProjectsController < ApplicationController
 
         carousel_ids = ( carousel_r ? carousel_r.results : [] ).map{ |p| p["id"] }
         @carousel = Project.where(id: carousel_ids).to_a
+        @noteworthy_ids = @carousel.map( &:id )
 
         featured_r = INatAPIService.projects( base_params.merge(
           featured: true,
@@ -112,6 +113,7 @@ class ProjectsController < ApplicationController
             where( "projects.user_id != ?", current_user ).
             order("projects.id desc").limit(5).map(&:project)
         end
+        @test_group_toggle = "responsive-global"
         render layout: "bootstrap"
       end
       format.json do

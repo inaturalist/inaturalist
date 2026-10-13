@@ -258,10 +258,8 @@ def enable_elastic_indexing( *args )
     end
     next if options[:use_transactional_fixtures] == false
 
-    unless klass == TaxonPhoto
-      klass.send :after_save, :elastic_index!
-      klass.send :after_touch, :elastic_index!
-    end
+    klass.send :after_save, :elastic_index!
+    klass.send :after_touch, :elastic_index!
     klass.send :after_destroy, :elastic_delete!
   end
 end
@@ -273,10 +271,8 @@ def disable_elastic_indexing( *args )
   classes = [args].flatten
   classes.each do | klass |
     unless options[:use_transactional_fixtures] == false
-      unless klass == TaxonPhoto
-        klass.send :skip_callback, :save, :after, :elastic_index!
-        klass.send :skip_callback, :touch, :after, :elastic_index!
-      end
+      klass.send :skip_callback, :save, :after, :elastic_index!
+      klass.send :skip_callback, :touch, :after, :elastic_index!
       klass.send :skip_callback, :destroy, :after, :elastic_delete!
     end
     try_and_try_again(
@@ -287,40 +283,6 @@ def disable_elastic_indexing( *args )
     ) do
       klass.__elasticsearch__.client.delete_by_query( index: klass.index_name, body: { query: { match_all: {} } } )
     end
-  end
-end
-
-# Turn on Qdrant indexing for certain models. We do this selectively b/c
-# updating Qdrant slows down the specs.
-def enable_qdrant_indexing( *args )
-  options = args.last.is_a?( Hash ) ? args.pop : {}
-  classes = [args].flatten
-  classes.each do | klass |
-    klass.__qdrant__.create_collection!( force: true )
-    next if options[:use_transactional_fixtures] == false
-
-    unless klass == TaxonPhoto
-      klass.send :after_save, :qdrant_index!
-      klass.send :after_touch, :qdrant_index!
-    end
-    klass.send :after_destroy, :qdrant_delete!
-  end
-end
-
-# Turn off Qdrant indexing for certain models. Make sure to do this after
-# specs if you used enable_qdrant_indexing
-def disable_qdrant_indexing( *args )
-  options = args.last.is_a?( Hash ) ? args.pop : {}
-  classes = [args].flatten
-  classes.each do | klass |
-    unless options[:use_transactional_fixtures] == false
-      unless klass == TaxonPhoto
-        klass.send :skip_callback, :save, :after, :qdrant_index!
-        klass.send :skip_callback, :touch, :after, :qdrant_index!
-      end
-      klass.send :skip_callback, :destroy, :after, :qdrant_delete!
-    end
-    klass.__qdrant__.create_collection!( force: true )
   end
 end
 
@@ -348,14 +310,17 @@ end
 
 # The `test` environment doesn't commit, and we use commit hooks to update model
 # data in Qdrant. Tests also create a ton of data that doesn't need to be
-# indexed. Use this method in specs to temporarily turn the Qdrant-related commit
-# hooks into save/touch/destroy hooks so they work in specs, and clear out test
-# index data
+# indexed. Use this method in specs to temporarily run in truncation mode where
+# commit hooks will trigger, and clear out test index data
 def qdrant_models( *args )
+  classes = [args].flatten
   around( :each ) do | example |
-    enable_qdrant_indexing( *args )
+    DatabaseCleaner.strategy = :truncation, { except: %w(spatial_ref_sys) }
     example.run
-    disable_qdrant_indexing( *args )
+    DatabaseCleaner.strategy = :transaction
+    classes.each do | klass |
+      klass.__qdrant__.create_collection!( force: true )
+    end
   end
 end
 

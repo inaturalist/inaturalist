@@ -644,10 +644,17 @@ class Taxon < ApplicationRecord
 
     Observation.delay( priority: INTEGRITY_PRIORITY, queue: "slow" ).
       update_stats_for_observations_of( id )
-    TaxonPhoto.elastic_delete_by_ids!( taxon_photos.pluck( :id ) )
-    TaxonPhoto.elastic_index!( ids: taxon_photos.pluck( :id ), delay: true )
-    TaxonPhoto.qdrant_delete_by_ids!( taxon_photos.pluck( :id ) )
-    TaxonPhoto.qdrant_index!( ids: taxon_photos.pluck( :id ), delay: true )
+
+    taxon_photo_ids = taxon_photos.pluck( :id )
+    return true if taxon_photo_ids.empty?
+
+    TaxonPhoto.delay(
+      priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: {
+        "TaxonPhoto::qdrant_reindex_by_ids": Digest::MD5.hexdigest( taxon_photo_ids.join( "," ) )
+      },
+      queue: "slow"
+    ).qdrant_reindex_by_ids( taxon_photo_ids )
     true
   end
 

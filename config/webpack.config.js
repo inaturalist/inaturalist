@@ -16,8 +16,16 @@ const config = {
       import: "./kml/webpack-entry",
       runtime: "runtime"
     },
+    "details-menu": {
+      import: "./shared/details_menu/webpack-entry",
+      runtime: "runtime"
+    },
     "header": {
       import: "./shared/header/webpack-entry",
+      runtime: "runtime"
+    },
+    "carousel": {
+      import: "./shared/carousel/webpack-entry",
       runtime: "runtime"
     },
     "computer-vision": {

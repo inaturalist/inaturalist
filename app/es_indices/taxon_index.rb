@@ -242,9 +242,7 @@ class Taxon < ApplicationRecord
         listed_taxa: listed_taxa_with_means_or_statuses.map( &:as_indexed_json ),
         taxon_photos: taxon_photos.reject do | tp |
           tp.photo.blank? || tp.photo.flagged? || tp.photo.hidden?
-        end.map do | tp |
-          tp.as_indexed_json( for_taxon: true )
-        end,
+        end.map( &:as_indexed_json ),
         atlas_id: atlas.try( :id ),
         complete_species_count: complete_species_count,
         wikipedia_url: en_wikipedia_description&.url
