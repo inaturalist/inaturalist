@@ -112,6 +112,7 @@ class ProjectsController < ApplicationController
             where( "projects.user_id != ?", current_user ).
             order("projects.id desc").limit(5).map(&:project)
         end
+        @test_group_toggle = "responsive-global"
         render layout: "bootstrap"
       end
       format.json do
