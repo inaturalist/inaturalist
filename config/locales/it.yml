@@ -2095,6 +2095,8 @@ it:
   find_your_current_location: Trova la tua posizione attuale
   finished: Finito
   finished_with_page: Terminato con la pagina
+  #Label for a pagination button that goes to the first page of results
+  first: Prima
   first_confirmed_inat_observation: "Prima osservazione di %{site_name} confermata"
   first_connect_your_provider_account_to_your_site: "Per prima cosa, connetti il tuo %{provider} account a %{site_name}:"
   first_inat_observation: "Prima osservazione di %{site_name}"
@@ -2865,6 +2867,7 @@ it:
     de: Tedesco
     el: Greco
     en: Inglese
+    en-CA: Inglese (Canada)
     en-GB: Inglese (UK)
     eo: Esperanto
     es: Spagnolo
@@ -3841,6 +3844,8 @@ it:
   overlapping_atlases: Atlanti sovrapposti
   overlapping_downstream_taxon_frameworks_html: "Sovrapposizione di Quadri di Taxon a valle: %{count}"
   owner: Proprietario
+  #Accessible label for a set of pagination controls
+  pagination: Paginazione
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Di Categoria superiore
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
@@ -4903,6 +4908,8 @@ it:
   schemes_including: Schemi che includono
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Nome Scientifico
+  #Accessible label for a button that scrolls the page back to the top
+  scroll_to_top: Scorri all'inizio
   search: Cerca
   search_all_fields: cerca in tutti i campi
   search_by_name_or_email: Cerca per nome o email
