@@ -200,6 +200,34 @@ describe UsersController, "index" do
   end
 end
 
+describe UsersController, "followers and following" do
+  render_views
+  let( :friendship ) { create :friendship }
+
+  { followers: %i[friend user], following: %i[user friend] }.each do | action, ( subject_role, listed_role ) |
+    context action.to_s do
+      let( :subject_user ) { friendship.public_send( subject_role ) }
+      let( :listed_user ) { friendship.public_send( listed_role ) }
+
+      it "renders stacked UserWithIcon cards for a responsive-global member" do
+        viewer = User.make!
+        viewer.update_column( :test_groups, "responsive-global" )
+        sign_in viewer
+        get action, params: { login: subject_user.login }
+        expect( response.body ).to have_css( "#friendship-users .UserWithIcon .title a", text: listed_user.login )
+        expect( response.body ).not_to have_css( "table.table" )
+      end
+
+      it "renders the legacy table outside the test group" do
+        sign_in User.make!
+        get action, params: { login: subject_user.login }
+        expect( response.body ).to have_css( "table.table a", text: listed_user.login )
+        expect( response.body ).not_to have_css( ".UserWithIcon" )
+      end
+    end
+  end
+end
+
 describe UsersController, "leaderboard" do
   elastic_models( Observation )
 

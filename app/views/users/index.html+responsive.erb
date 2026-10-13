@@ -155,19 +155,11 @@
     <% if !@curators.blank? %>
       <div class="CardGrid">
         <% @curators.each do |user| %>
-          <div class="UserWithIcon">
-            <div class="icon">
-              <%= link_to_user( user ) do %><%= user_image user, size: "thumb", no_inline_dimensions: true %><% end %>
-            </div>
-            <div class="title-subtitle">
-              <div class="title"><%= link_to_user user %></div>
-              <div class="subtitle">
-                <div><%=t :x_taxa_curated_html, count: @updated_taxa_counts[user.id].to_i %></div>
-                <div><%=t :x_taxon_changes_added_html, count: @taxon_change_counts[user.id].to_i %></div>
-                <div><%=t :x_flags_resolved_html, count: @resolved_flag_counts[user.id].to_i %></div>
-              </div>
-            </div>
-          </div>
+          <%= render layout: "shared/user_with_icon", locals: { user: user } do %>
+            <div><%=t :x_taxa_curated_html, count: @updated_taxa_counts[user.id].to_i %></div>
+            <div><%=t :x_taxon_changes_added_html, count: @taxon_change_counts[user.id].to_i %></div>
+            <div><%=t :x_flags_resolved_html, count: @resolved_flag_counts[user.id].to_i %></div>
+          <% end %>
         <% end %>
       </div>
     <% else %>
