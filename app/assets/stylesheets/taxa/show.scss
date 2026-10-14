@@ -523,7 +523,7 @@ $photoPreviewThumbGutterTop: 3px;
 
 // Shared two-column tab layout, replaces react-bootstrap Grid/Row/Col.
 // Main content and sidebar sit 2:1 side by side, stacking below the tab bar's
-// breakpoint (where the TabDrawer takes over).
+// breakpoint (where the TabDropdown takes over).
 .tab-row {
   display: flex;
   flex-wrap: wrap;

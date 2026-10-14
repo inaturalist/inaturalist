@@ -1,10 +1,10 @@
 import React from "react";
 import { render } from "react-dom";
-import TabDrawer from "../../shared/components/tab_drawer";
+import TabDropdown from "../../shared/components/tab_dropdown";
 
-const el = document.querySelector( "#UserSubnavTabDrawer" );
+const el = document.querySelector( "#UserSubnavTabDropdown" );
 if ( el ) {
   const items = JSON.parse( el.dataset.items );
   const selectedValue = el.dataset.selectedValue;
-  render( <TabDrawer items={items} selectedValue={selectedValue} />, el );
+  render( <TabDropdown items={items} selectedValue={selectedValue} />, el );
 }

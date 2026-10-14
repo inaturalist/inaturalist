@@ -12,7 +12,7 @@ test.beforeAll( async () => {
   const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
   testEmail = user.email as string;
   // Enable the responsive dashboard. "responsive-global" flips the template
-  // variant (responsive dashboard + subnav drawer); "responsive-header"
+  // variant (responsive dashboard + subnav dropdown); "responsive-header"
   // collapses the nav into a hamburger on narrow viewports. Both are needed for
   // the page-level overflow check to exercise the shipping responsive layout.
   await app( "add_test_group", {

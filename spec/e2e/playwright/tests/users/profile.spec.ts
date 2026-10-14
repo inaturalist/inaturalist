@@ -30,24 +30,24 @@ test.beforeEach( async ( { page } ) => {
 expectNoHorizontalOverflow( () => `/people/${testLogin}` );
 
 test.describe( "subnav", () => {
-  test( "uses the TabDrawer below the md breakpoint", async ( { page } ) => {
+  test( "uses the TabDropdown below the md breakpoint", async ( { page } ) => {
     await page.setViewportSize( VIEWPORTS.xs );
     await page.goto( `/people/${testLogin}` );
-    const toggle = page.locator( "#UserSubnavTabDrawer button[aria-expanded]" );
+    const toggle = page.locator( "#UserSubnavTabDropdown button[aria-expanded]" );
     await expect( toggle ).toBeVisible();
     await expect( toggle ).toHaveText( /Profile/ );
     await expect( page.locator( ".nav-tabs.user-subnav" ) ).toBeHidden();
 
     await toggle.click();
     await expect( toggle ).toHaveAttribute( "aria-expanded", "true" );
-    await page.locator( "#UserSubnavTabDrawer" ).getByRole( "link", { name: "Calendar" } ).click();
+    await page.locator( "#UserSubnavTabDropdown" ).getByRole( "link", { name: "Calendar" } ).click();
     await page.waitForURL( `**/calendar/${testLogin}**` );
   } );
 
-  test( "renders the redesigned TabDrawer toggle", async ( { page } ) => {
+  test( "renders the redesigned TabDropdown toggle", async ( { page } ) => {
     await page.setViewportSize( VIEWPORTS.xs );
     await page.goto( `/people/${testLogin}` );
-    const toggle = page.locator( "#UserSubnavTabDrawer button[aria-expanded]" );
+    const toggle = page.locator( "#UserSubnavTabDropdown button[aria-expanded]" );
     await expect( toggle ).toBeVisible();
     const style = await toggle.evaluate( el => {
       const chevron = el.querySelector( ".fa-chevron-down" ) as Element;
@@ -68,7 +68,7 @@ test.describe( "subnav", () => {
       await page.setViewportSize( VIEWPORTS[name] );
       await page.goto( `/people/${testLogin}` );
       await expect( page.locator( ".nav-tabs.user-subnav" ) ).toBeVisible();
-      await expect( page.locator( "#UserSubnavTabDrawer button[aria-expanded]" ) ).toBeHidden();
+      await expect( page.locator( "#UserSubnavTabDropdown button[aria-expanded]" ) ).toBeHidden();
     } );
   } );
 } );

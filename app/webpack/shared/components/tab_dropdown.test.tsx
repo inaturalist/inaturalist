@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import TabDrawer, { TabItem } from "./tab_drawer";
+import TabDropdown, { TabItem } from "./tab_dropdown";
 
 const items: TabItem[] = [
   { kind: "tab", value: "map", label: "Map" },
@@ -15,28 +15,28 @@ const items: TabItem[] = [
   }
 ];
 
-describe( "TabDrawer", ( ) => {
+describe( "TabDropdown", ( ) => {
   it( "shows the selected item's label on the toggle", ( ) => {
-    render( <TabDrawer selectedValue="map" items={items} /> );
+    render( <TabDropdown selectedValue="map" items={items} /> );
     expect( screen.getByRole( "button", { name: /Map/ } ) ).toHaveAttribute( "aria-expanded", "false" );
   } );
 
-  it( "omits the current selection from the drawer but keeps the others", ( ) => {
-    render( <TabDrawer selectedValue="map" items={items} /> );
-    // "Map" only appears on the toggle, not as a drawer choice
+  it( "omits the current selection from the dropdown but keeps the others", ( ) => {
+    render( <TabDropdown selectedValue="map" items={items} /> );
+    // "Map" only appears on the toggle, not as a dropdown choice
     expect( screen.getAllByText( "Map" ) ).toHaveLength( 1 );
     expect( screen.getByText( "About" ) ).toBeInTheDocument( );
     expect( screen.getByText( "Help" ) ).toBeInTheDocument( );
   } );
 
   it( "renders a link item as an anchor", ( ) => {
-    render( <TabDrawer selectedValue="map" items={items} /> );
+    render( <TabDropdown selectedValue="map" items={items} /> );
     expect( screen.getByText( "Help" ).closest( "a" ) ).toHaveAttribute( "href", "/help" );
   } );
 
   it( "calls onChange with the value when a tab is chosen", async ( ) => {
     const onChange = jest.fn( );
-    render( <TabDrawer selectedValue="map" items={items} onChange={onChange} /> );
+    render( <TabDropdown selectedValue="map" items={items} onChange={onChange} /> );
     await userEvent.click( screen.getByText( "About" ) );
     expect( onChange ).toHaveBeenCalledWith( "about" );
   } );
@@ -49,13 +49,13 @@ describe( "TabDrawer", ( ) => {
         kind: "action", value: "flag", label: "Flag", onClick
       }
     ];
-    render( <TabDrawer selectedValue="map" items={withAction} /> );
+    render( <TabDropdown selectedValue="map" items={withAction} /> );
     await userEvent.click( screen.getByText( "Flag" ) );
     expect( onClick ).toHaveBeenCalledTimes( 1 );
   } );
 
   it( "toggles open state when the toggle is clicked", async ( ) => {
-    render( <TabDrawer selectedValue="map" items={items} /> );
+    render( <TabDropdown selectedValue="map" items={items} /> );
     const toggle = screen.getByRole( "button", { name: /Map/ } );
     expect( toggle ).toHaveAttribute( "aria-expanded", "false" );
     await userEvent.click( toggle );

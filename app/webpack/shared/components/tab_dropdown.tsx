@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import _ from "lodash";
-import css from "./tab_drawer.module.css";
+import css from "./tab_dropdown.module.css";
 
 interface TabItemBase {
   value: string;
@@ -14,18 +14,18 @@ export type TabItem =
   | ( TabItemBase & { kind: "link"; href: string } )
   | ( TabItemBase & { kind: "action"; onClick: ( ) => void } );
 
-interface TabDrawerProps {
+interface TabDropdownProps {
   selectedValue?: string;
   items?: TabItem[];
   onChange?: ( value: string ) => void;
 }
 
-const TabDrawer = ( {
+const TabDropdown = ( {
   selectedValue, items = [], onChange
-}: TabDrawerProps ) => {
+}: TabDropdownProps ) => {
   const [open, setOpen] = useState( false );
-  // Unique per instance so multiple drawers on one page don't collide on the DOM id.
-  const [drawerId] = useState( ( ) => _.uniqueId( "tab-drawer-" ) );
+  // Unique per instance so multiple dropdowns on one page don't collide on the DOM id.
+  const [dropdownId] = useState( ( ) => _.uniqueId( "tab-dropdown-" ) );
 
   const selectedItem = items.find(
     ( item ): item is Exclude<TabItem, { kind: "separator" }> => (
@@ -39,7 +39,7 @@ const TabDrawer = ( {
         type="button"
         className={css.toggle}
         aria-expanded={open}
-        aria-controls={drawerId}
+        aria-controls={dropdownId}
         onClick={() => setOpen( o => !o )}
       >
         <div>
@@ -48,7 +48,7 @@ const TabDrawer = ( {
         </div>
         <i className={`fa fa-chevron-${open ? "up" : "down"} ${css.chevron}`} />
       </button>
-      <ul id={drawerId} className={css.drawer}>
+      <ul id={dropdownId} className={css.dropdown}>
         { items
           .filter( item => item.kind === "separator" || item.value !== selectedValue )
           .map( item => {
@@ -98,4 +98,4 @@ const TabDrawer = ( {
   );
 };
 
-export default TabDrawer;
+export default TabDropdown;

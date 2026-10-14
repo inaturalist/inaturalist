@@ -13,7 +13,7 @@ import HighlightsTabContainer from "../containers/highlights_tab_container";
 import SimilarTabContainer from "../containers/similar_tab_container";
 import IdentificationsTabContainer from "../containers/identifications_tab_container";
 import RecentObservationsContainer from "../containers/recent_observations_container";
-import TabDrawer, { TabItem } from "../../../shared/components/tab_drawer";
+import TabDropdown, { TabItem } from "../../../shared/components/tab_dropdown";
 import { isCuratorOrAdmin } from "../../shared/util";
 import type { Taxon as BaseTaxon, CurrentUser as BaseCurrentUser } from "../../../shared/types";
 
@@ -44,7 +44,7 @@ interface Props {
   showPhotoChooserModal: ( ) => void;
 }
 
-type DrawerItem = TabItem & { visible?: boolean };
+type DropdownItem = TabItem & { visible?: boolean };
 
 const TaxonPageTabs = ( {
   taxon,
@@ -100,7 +100,7 @@ const TaxonPageTabs = ( {
     identifications: I18n.t( "views.taxa.show.identifications.identification_tips" )
   };
 
-  const allTabItems: DrawerItem[] = [
+  const allTabItems: DropdownItem[] = [
     { kind: "tab", value: "map", label: tabLabels.map },
     { kind: "tab", value: "articles", label: tabLabels.articles },
     {
@@ -122,7 +122,7 @@ const TaxonPageTabs = ( {
   ];
   const tabItems = allTabItems.filter( item => item.visible !== false );
 
-  const allCurationItems: DrawerItem[] = currentUser?.privilegedWith( "interaction" ) ? [
+  const allCurationItems: DropdownItem[] = currentUser?.privilegedWith( "interaction" ) ? [
     {
       kind: "separator",
       value: "separator1"
@@ -191,7 +191,7 @@ const TaxonPageTabs = ( {
   ] : [];
   const curationItems = allCurationItems.filter( item => item.visible !== false );
 
-  const drawerItems = [...tabItems, ...curationItems];
+  const dropdownItems = [...tabItems, ...curationItems];
 
   const curationTab = curationItems.length > 0 ? (
     <li className="curation-tab">
@@ -232,13 +232,13 @@ const TaxonPageTabs = ( {
 
   return (
     <div className="TaxonPageTabs" ref={containerRef}>
-      <TabDrawer
+      <TabDropdown
         selectedValue={chosenTab}
-        items={drawerItems}
+        items={dropdownItems}
         onChange={choseTab}
       />
       <ul id="main-tabs" className="nav nav-tabs" role="tablist">
-        { drawerItems
+        { dropdownItems
           .map( item => (
             item.kind === "tab" && MAIN_TAB_VALUES.has( item.value ) && (
               <li key={item.value} role="presentation" className={chosenTab === item.value ? "active" : ""}>
