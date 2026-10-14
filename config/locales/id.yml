@@ -4981,6 +4981,8 @@ id:
   site_year_in_review: "Kilas Balik Satu Tahun %{site} %{year}"
   sizes: Ukuran
   skip_to_next_page: "Lewati ke halaman selanjutnya"
+  #Label for a button that shows a specific slide in a carousel
+  slide_x: "Slide %{x}"
   small: kecil
   site_admin_tools: Peralatan pengelola situs
   #People who administrate a particular iNaturalist Network partner
@@ -5149,6 +5151,8 @@ id:
   start_a_project: Mulai Sebuah Proyek
   start_date_time: Tanggal / Waktu Mulai
   start_one_now: Mulai Satu Sekarang!
+  #Button that resumes automatic rotation of carousel slides
+  start_slide_rotation: Mulai rotasi slide
   start_typing_field_name: Mulailah mengetik nama bidang...
   start_typing_place_name: Mulailah mengetik nama tempat...
   start_typing_taxon_name: Mulailah mengetik nama takson...
@@ -5168,6 +5172,8 @@ id:
   still_working_on_classifying_taxon: Masih mengerjakan pengklasifikasian takson ini. Periksa kembali nanti
   stop_editing: Berhenti Mengubah
   stop_following_user: "Berhenti mengikuti %{user}"
+  #Button that pauses automatic rotation of carousel slides
+  stop_slide_rotation: Hentikan rotasi slide
   stop_testing: Berhenti Menguji
   stop_trusting_this_person_with_your_private_coordinates: Berhenti memercayakan orang ini dengan koordinat tersembunyi milik Anda
   #As in a place to purchase things. We use it as a link to a place where you
