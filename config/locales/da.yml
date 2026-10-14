@@ -5149,6 +5149,8 @@ da:
   site_year_in_review: "%{site}s %{year} år i gennemgang"
   sizes: Størrelser
   skip_to_next_page: "Spring til næste side"
+  #Label for a button that shows a specific slide in a carousel
+  slide_x: "Dias %{x}"
   small: lille
   site_admin_tools: Side admin værktøjer
   #People who administrate a particular iNaturalist Network partner
@@ -5374,6 +5376,8 @@ da:
   start_a_project: Start et projekt
   start_date_time: Start dato / tidspunkt
   start_one_now: Start en nu
+  #Button that resumes automatic rotation of carousel slides
+  start_slide_rotation: Start diasrotation
   start_typing_field_name: Indtast feltnavn ...
   start_typing_place_name: Indtast navn på sted ...
   start_typing_taxon_name: Indtast taksonnavn ...
@@ -5393,6 +5397,8 @@ da:
   still_working_on_classifying_taxon: Arbejder stadig på at klassificere denne takson. Kom tilbage senere
   stop_editing: Stop redigering
   stop_following_user: "Stop med at følge %{user}"
+  #Button that pauses automatic rotation of carousel slides
+  stop_slide_rotation: Stop diasrotation
   stop_testing: Stop test
   stop_trusting_this_person_with_your_private_coordinates: Stol ikke længere på denne person angående dine skjulte koordinater
   #As in a place to purchase things. We use it as a link to a place where you
