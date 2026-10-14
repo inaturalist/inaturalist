@@ -49,10 +49,16 @@ class ApplicationController < ActionController::Base
   MISMATCHED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_user_mismatch"
   # Pages where anonymous visitors without a session cookie don't get a stored
   # session. Rolled out page by page, see
-  # skip_session_storage_for_anonymous_page_view
+  # skip_session_storage_for_anonymous_page_view. A page's own data requests
+  # are listed with it, otherwise they create the session the page skipped.
   SKIP_SESSION_STORAGE_FOR_ANONYMOUS_PAGES = %w(
+    welcome#index
     observations#show
+    observations#taxon_summary
     taxa#show
+    taxa#describe
+    taxa#links
+    taxon_names#index
     photos#show
   ).freeze
 
