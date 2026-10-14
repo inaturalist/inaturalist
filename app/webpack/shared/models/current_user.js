@@ -69,6 +69,20 @@ const CurrentUser = class CurrentUser {
   isInTestGroup( testGroup ) {
     return this.testGroups && this.testGroups.indexOf( testGroup ) >= 0;
   }
+
+  // The config duck attaches loadFeatureFlags; the first read fetches the map and merges it back
+  // onto this instance. Until then, and for a missing key, the flag is off, as in Rails.
+  featureFlagEnabled( flag ) {
+    if (
+      _.isUndefined( this.featureFlags )
+      && !this.featureFlagsRequested
+      && _.isFunction( this.loadFeatureFlags )
+    ) {
+      this.featureFlagsRequested = true;
+      this.loadFeatureFlags( );
+    }
+    return !!( _.isPlainObject( this.featureFlags ) && this.featureFlags[flag] );
+  }
 };
 
 export default CurrentUser;
