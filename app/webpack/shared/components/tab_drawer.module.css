@@ -3,10 +3,12 @@
 
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767.98px) {
     display: block;
     position: relative;
     z-index: 999;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
   }
 }
 
@@ -26,15 +28,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 18px !important;
+  font-size: 20px !important;
   color: black;
-  background: #F2F2F2;
-  border-radius: 8px;
+  background: white;
+  border-block: 1px solid #ddd;
 }
 
 .container.open .toggle {
-  border-radius: 8px 8px 0 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.chevron {
+  color: var(--green);
+  font-size: 20px;
 }
 
 .drawer {
@@ -49,7 +55,6 @@
   right: 0;
   background: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-  border-radius: 0 0 8px 8px;
 }
 
 .open .drawer {

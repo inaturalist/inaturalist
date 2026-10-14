@@ -37,7 +37,6 @@ body.responsive {
 #hero {
   background-color: #f8f8f8;
   border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
   margin-top: 5px;
   .hero-grid {
     display: grid;
@@ -685,7 +684,6 @@ $introducedColor: #E4007C;
 .TaxonPageTabs {
   @media ( max-width: $md-max ) {
     @include container-padding;
-    padding-top: 15px;
   }
 }
 

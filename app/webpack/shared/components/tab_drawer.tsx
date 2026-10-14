@@ -46,7 +46,7 @@ const TabDrawer = ( {
           { selectedItem?.icon && <i className={`${selectedItem.icon} ${css["item-icon"]}`} /> }
           { selectedItem?.label }
         </div>
-        <i className={`fa fa-chevron-${open ? "up" : "down"}`} />
+        <i className={`fa fa-chevron-${open ? "up" : "down"} ${css.chevron}`} />
       </button>
       <ul id={drawerId} className={css.drawer}>
         { items
