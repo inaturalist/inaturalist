@@ -465,14 +465,14 @@ class Announcement < ApplicationRecord
 
     filtered = group.select {| a | a.targeted_to_user?( user ) }
 
-    if ip
-      filtered = if geoip_country.present?
-        pick_best_matches( filtered,
-          ->( a ) { a.ip_countries.present? && a.visible_in_country?( geoip_country ) },
-          ->( a ) { a.ip_countries.blank? && a.visible_in_country?( geoip_country ) } )
-      else
-        filtered.select {| a | a.ip_countries.blank? }
-      end
+    # Without an IP or a resolved country we can't honor ip_countries, so only
+    # show variants that aren't country-targeted
+    filtered = if ip && geoip_country.present?
+      pick_best_matches( filtered,
+        ->( a ) { a.ip_countries.present? && a.visible_in_country?( geoip_country ) },
+        ->( a ) { a.ip_countries.blank? && a.visible_in_country?( geoip_country ) } )
+    else
+      filtered.select {| a | a.ip_countries.blank? }
     end
 
     filtered = if site
