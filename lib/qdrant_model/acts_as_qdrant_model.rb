@@ -43,7 +43,7 @@ module ActsAsQdrantModel
       end
       after_commit on: :destroy do
         unless skip_qdrant_indexing || !self.class.qdrant_lifecycle_callback_enabled( :destroy )
-          qdrant_delete!
+          qdrant_delete!( ignore_connection_failure: true )
         end
       end
       self
@@ -253,8 +253,8 @@ module ActsAsQdrantModel
       __qdrant__.upsert_point
     end
 
-    def qdrant_delete!
-      __qdrant__.delete_point
+    def qdrant_delete!( options = {} )
+      __qdrant__.delete_point( options )
     end
   end
 end

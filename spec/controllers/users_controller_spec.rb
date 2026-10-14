@@ -21,6 +21,20 @@ describe UsersController, "dashboard" do
       expect( request.variant ).to include( :responsive )
     end
 
+    describe "rendering" do
+      render_views
+
+      it "renders the responsive by-login header for a responsive-global member" do
+        user = User.make!
+        user.update_column( :test_groups, "responsive-global" )
+        sign_in user
+        get :dashboard
+        doc = Nokogiri::HTML( response.body )
+        expect( doc.at_css( "h3 .logged-in-user-image" ) ).not_to be_nil
+        expect( doc.at_css( "#UserSubnavTabDrawer" ) ).not_to be_nil
+      end
+    end
+
     it "does not set the responsive variant for a user in no test group" do
       user = User.make!
       expect( user.test_groups ).to be_blank
@@ -183,6 +197,34 @@ describe UsersController, "index" do
     get :index
     expect( response ).to be_successful
     expect( request.variant ).to include( :responsive )
+  end
+end
+
+describe UsersController, "followers and following" do
+  render_views
+  let( :friendship ) { create :friendship }
+
+  { followers: %i[friend user], following: %i[user friend] }.each do | action, ( subject_role, listed_role ) |
+    context action.to_s do
+      let( :subject_user ) { friendship.public_send( subject_role ) }
+      let( :listed_user ) { friendship.public_send( listed_role ) }
+
+      it "renders stacked UserWithIcon cards for a responsive-global member" do
+        viewer = User.make!
+        viewer.update_column( :test_groups, "responsive-global" )
+        sign_in viewer
+        get action, params: { login: subject_user.login }
+        expect( response.body ).to have_css( "#friendship-users .UserWithIcon .title a", text: listed_user.login )
+        expect( response.body ).not_to have_css( "table.table" )
+      end
+
+      it "renders the legacy table outside the test group" do
+        sign_in User.make!
+        get action, params: { login: subject_user.login }
+        expect( response.body ).to have_css( "table.table a", text: listed_user.login )
+        expect( response.body ).not_to have_css( ".UserWithIcon" )
+      end
+    end
   end
 end
 
@@ -507,6 +549,21 @@ describe UsersController, "show" do
       get :show, params: { id: u.id }
       elt = Nokogiri::HTML( response.body ).at_css( "a[href='https://www.evil.com']" )
       expect( elt[:target] ).to be_nil
+    end
+  end
+
+  describe "for a responsive-global member" do
+    render_views
+
+    it "renders the legacy by-login header" do
+      viewer = User.make!
+      viewer.update_column( :test_groups, "responsive-global" )
+      sign_in viewer
+      get :show, params: { id: User.make!.login }
+      doc = Nokogiri::HTML( response.body )
+      expect( doc.at_css( ".logged-in-user-image" ) ).to be_nil
+      expect( doc.at_css( "#UserSubnavTabDrawer" ) ).to be_nil
+      expect( doc.at_css( ".col-md-12 > h1 .user_image" ) ).not_to be_nil
     end
   end
 end

@@ -105,24 +105,8 @@ describe ActsAsQdrantModel do
     end
 
     describe "disabled" do
-      let( :vector_size ) { 2048 }
-      let( :embedding ) { Array.new( vector_size ) { rand } }
-
       before do
         allow( TaxonPhoto.__qdrant__ ).to receive( :client ).and_return( nil )
-      end
-
-      before do | example |
-        next if example.metadata[:skip_spec_overrides]
-
-        # mock the remote fetching of taxon photo embeddings, and return the test embedding
-        allow( TaxonPhoto ).to receive( :embeddings_for_taxon_photos ) do | taxon_photos |
-          taxon_photos.to_h {| tp | [tp.id.to_s, embedding] }
-        end
-        # enable all lifecycle callbacks for TaxonPhoto for: :create, :update, and :destroy
-        allow( TaxonPhoto ).to receive( :qdrant_lifecycle_callback_enabled ) do | action |
-          [:create, :update, :destroy].include?( action )
-        end
       end
 
       let( :taxon_photo ) { TaxonPhoto.make! }

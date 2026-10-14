@@ -139,7 +139,6 @@ def elastic_models
     Taxon => {},
     UpdateAction => { batch_size: 5000 },
     User => {},
-    TaxonPhoto => {},
     ExemplarIdentification => {}
   }
 end

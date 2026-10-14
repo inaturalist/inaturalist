@@ -1,0 +1,13 @@
+- if noteworthy || project.event_in_progress?
+  .hero-labels
+    - if noteworthy
+      %span=t :new_and_noteworthy
+    - if project.event_in_progress?
+      %span.in-progress=t :event_in_progress
+= link_to "", project, class: "photo", "aria-label": project.title, style: project.cover? ? "background-size: #{project.prefers_banner_contain? ? "contain" : "cover"}; background-image: url('#{project.cover.url}');" : "background-size: cover;"
+- unless project.prefers_hide_title?
+  .project-caption
+    %h2
+      - if project.icon?
+        = link_to image_tag( project.icon.url( :span2 ), alt: "" ), project, class: "icon", "aria-hidden": true, tabindex: -1
+      = link_to project.title, project, class: "title"

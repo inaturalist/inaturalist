@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class TaxonPhoto < ApplicationRecord
-  acts_as_elastic_model lifecycle_callbacks: [:destroy]
   acts_as_qdrant lifecycle_callbacks: [:destroy]
 
   audited except: [:taxon_id], associated_with: :taxon
@@ -66,5 +65,25 @@ class TaxonPhoto < ApplicationRecord
     taxon.elastic_index!
     Taxon.delay( priority: INTEGRITY_PRIORITY ).index_taxa( taxon.ancestor_ids )
     true
+  end
+
+  def as_indexed_json( _options = {} )
+    {
+      taxon_id: taxon_id,
+      photo: photo.as_indexed_json(
+        sizes: [:square, :small, :medium, :large, :original],
+        native_page_url: true,
+        native_photo_id: true,
+        type: true,
+        attribution_name: true
+      )
+    }
+  end
+
+  def self.qdrant_reindex_by_ids( ids )
+    return if ids.blank? || !ids.is_a?( Array )
+
+    qdrant_delete_by_ids!( ids )
+    qdrant_index!( ids: ids )
   end
 end
