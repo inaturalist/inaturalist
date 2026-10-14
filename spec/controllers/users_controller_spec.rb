@@ -172,6 +172,52 @@ describe UsersController, "dashboard" do
         get :dashboard
         expect( response.body ).not_to include a.body
       end
+
+      describe "priority sidebar placement" do
+        let( :user ) { create :user }
+        let!( :priority ) { create :announcement, placement: Announcement::USERS_DASHBOARD_PRIORITY_SIDEBAR }
+        let!( :sidebar ) { create :announcement, placement: Announcement::USERS_DASHBOARD_SIDEBAR }
+        let( :doc ) { Nokogiri::HTML( response.body ) }
+        let( :priority_selector ) { "#announcement-#{priority.id}" }
+
+        before { sign_in user }
+
+        def precedes?( first, second )
+          ( first <=> second ) == -1
+        end
+
+        it "renders above sidebar announcements in the legacy sidebar" do
+          get :dashboard
+          expect( doc.css( priority_selector ).size ).to eq 1
+          expect( doc.at_css( ".col-md-4 #{priority_selector}" ) ).not_to be_nil
+          expect( precedes?( doc.at_css( priority_selector ), doc.at_css( "#announcement-#{sidebar.id}" ) ) ).to be true
+        end
+
+        describe "responsive" do
+          before { user.update_column( :test_groups, "responsive-global" ) }
+
+          it "renders above the header for mobile and in the sidebar for desktop" do
+            get :dashboard
+            mobile = doc.at_css( ".dashboard-priority-mobile #{priority_selector}" )
+            expect( mobile ).not_to be_nil
+            expect( precedes?( mobile, doc.at_css( ".dashboard-columns" ) ) ).to be true
+            expect( doc.at_css( ".dashboard-sidebar .dashboard-priority-sidebar.desktop-only #{priority_selector}" ) ).
+              not_to be_nil
+            expect( AnnouncementImpression.where( announcement_id: priority.id ).sum( :impressions_count ) ).to eq 1
+          end
+
+          it "only renders in the sidebar when there is a users/dashboard announcement" do
+            create :announcement, placement: Announcement::USERS_DASHBOARD
+            get :dashboard
+            expect( doc.at_css( ".dashboard-priority-mobile" ) ).to be_nil
+            expect( doc.css( priority_selector ).size ).to eq 1
+            sidebar_copy = doc.at_css( ".dashboard-sidebar .dashboard-priority-sidebar #{priority_selector}" )
+            expect( sidebar_copy ).not_to be_nil
+            expect( doc.at_css( ".dashboard-priority-sidebar.desktop-only" ) ).to be_nil
+            expect( precedes?( sidebar_copy, doc.at_css( "#announcement-#{sidebar.id}" ) ) ).to be true
+          end
+        end
+      end
     end
   end
 end

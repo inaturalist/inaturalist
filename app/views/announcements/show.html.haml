@@ -147,7 +147,7 @@
       %table.table.table-bordered
         %tr
           %th=t :body
-          - width = @announcement.placement == "users/dashboard#sidebar" ? "360px" : "100%"
+          - width = @announcement.placement.end_with?( "sidebar" ) ? "360px" : "100%"
           %td
             - if @announcement.placement =~ /^mobile/
               %iframe{src: url_for( body: true ), style: "width: 100%; border: 0;"}
