@@ -706,7 +706,7 @@ GEM
     ruby-openid (2.9.2)
     ruby-progressbar (1.13.0)
     ruby_dig (0.0.2)
-    rubyzip (2.3.2)
+    rubyzip (3.4.0)
     sanitize (7.0.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.16.8)
@@ -922,7 +922,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-rails
   rubocop-rspec
-  rubyzip (~> 2.3.0)
+  rubyzip (~> 3.4.0)
   sass-rails
   shoulda-matchers
   simplecov
