@@ -102,14 +102,15 @@ export function updateCurrentUser( updates ) {
 export function setCurrentUser( currentUser ) {
   return dispatch => {
     const user = new CurrentUser( currentUser );
-    // Lazy: the first featureFlagEnabled call fires the request; see CurrentUser.
+    // Lazy: the first featureFlagEnabled call fires the request and every call awaits it;
+    // see CurrentUser.
     // eslint-disable-next-line no-use-before-define
     user.loadFeatureFlags = ( ) => dispatch( fetchFeatureFlags( ) );
     dispatch( setConfig( { currentUser: user } ) );
   };
 }
 
-// Loads the per-actor flag map from API v2 into currentUser. Fired by the first
+// Loads the per-actor flag map from API v2 into currentUser. Fired and awaited by the first
 // featureFlagEnabled call, so only pages that read a flag pay for it; no currentUser, no flags.
 export function fetchFeatureFlags( ) {
   return ( dispatch, getState ) => {

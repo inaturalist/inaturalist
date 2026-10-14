@@ -53,7 +53,7 @@ describe( "fetchFeatureFlags", ( ) => {
     ] );
     const next = reducer( state.config, dispatched[0] );
     expect( next.currentUser ).toBeInstanceOf( CurrentUser );
-    expect( next.currentUser.featureFlagEnabled( "client_smoke_test" ) ).toBe( true );
+    expect( await next.currentUser.featureFlagEnabled( "client_smoke_test" ) ).toBe( true );
   } );
 
   it( "does not call the API for an anonymous visitor", async ( ) => {
@@ -80,7 +80,7 @@ describe( "fetchFeatureFlags", ( ) => {
     await fetchFeatureFlags( )( dispatch, getState );
     expect( dispatched ).toEqual( [updateCurrentUser( { featureFlags: { } } )] );
     const next = reducer( state.config, dispatched[0] );
-    expect( next.currentUser.featureFlagEnabled( "client_smoke_test" ) ).toBe( false );
+    expect( await next.currentUser.featureFlagEnabled( "client_smoke_test" ) ).toBe( false );
   } );
 
   it( "defaults to an empty map when the response has no flags key", async ( ) => {
@@ -112,7 +112,6 @@ describe( "lazy loading through the store", ( ) => {
   let meta;
   let store;
 
-  const flushPromises = ( ) => new Promise( resolve => { setTimeout( resolve, 0 ); } );
   const currentUser = ( ) => store.getState( ).config.currentUser;
 
   beforeEach( ( ) => {
@@ -132,38 +131,41 @@ describe( "lazy loading through the store", ( ) => {
     meta.remove( );
   } );
 
-  it( "loads flags from the API the first time one is read", async ( ) => {
+  it( "loads flags from the API the first time one is read, and waits for them", async ( ) => {
     expect( inatjs.feature_flags.get ).not.toHaveBeenCalled( );
-    expect( currentUser( ).featureFlagEnabled( "client_smoke_test" ) ).toBe( false );
+    expect( await currentUser( ).featureFlagEnabled( "client_smoke_test" ) ).toBe( true );
     expect( inatjs.feature_flags.get ).toHaveBeenCalledTimes( 1 );
-    await flushPromises( );
-    expect( currentUser( ).featureFlagEnabled( "client_smoke_test" ) ).toBe( true );
   } );
 
   it( "notifies store subscribers when the flags arrive, so connected components re-render", async ( ) => {
     const listener = jest.fn( );
     store.subscribe( listener );
-    currentUser( ).featureFlagEnabled( "client_smoke_test" );
+    const read = currentUser( ).featureFlagEnabled( "client_smoke_test" );
     expect( listener ).not.toHaveBeenCalled( );
-    await flushPromises( );
+    await read;
     expect( listener ).toHaveBeenCalledTimes( 1 );
   } );
 
   it( "requests the flags only once per user", async ( ) => {
-    currentUser( ).featureFlagEnabled( "client_smoke_test" );
-    currentUser( ).featureFlagEnabled( "client_other" );
-    await flushPromises( );
-    currentUser( ).featureFlagEnabled( "client_smoke_test" );
+    expect( await Promise.all( [
+      currentUser( ).featureFlagEnabled( "client_smoke_test" ),
+      currentUser( ).featureFlagEnabled( "client_other" )
+    ] ) ).toEqual( [true, false] );
+    await currentUser( ).featureFlagEnabled( "client_smoke_test" );
     expect( inatjs.feature_flags.get ).toHaveBeenCalledTimes( 1 );
   } );
 
   it( "keeps the loaded flags through later current user updates", async ( ) => {
-    currentUser( ).featureFlagEnabled( "client_smoke_test" );
-    await flushPromises( );
+    await currentUser( ).featureFlagEnabled( "client_smoke_test" );
     store.dispatch( updateCurrentUser( { name: "Someone" } ) );
     expect( currentUser( ).name ).toBe( "Someone" );
-    expect( currentUser( ).featureFlagEnabled( "client_smoke_test" ) ).toBe( true );
+    expect( await currentUser( ).featureFlagEnabled( "client_smoke_test" ) ).toBe( true );
     expect( inatjs.feature_flags.get ).toHaveBeenCalledTimes( 1 );
+  } );
+
+  it( "is false when the API request fails", async ( ) => {
+    inatjs.feature_flags.get.mockRejectedValue( new Error( "boom" ) );
+    expect( await currentUser( ).featureFlagEnabled( "client_smoke_test" ) ).toBe( false );
   } );
 
   it( "does not request flags for an anonymous visitor", ( ) => {

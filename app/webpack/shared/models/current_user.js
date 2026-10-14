@@ -71,15 +71,16 @@ const CurrentUser = class CurrentUser {
   }
 
   // The config duck attaches loadFeatureFlags; the first read fetches the map and merges it back
-  // onto this instance. Until then, and for a missing key, the flag is off, as in Rails.
-  featureFlagEnabled( flag ) {
-    if (
-      _.isUndefined( this.featureFlags )
-      && !this.featureFlagsRequested
-      && _.isFunction( this.loadFeatureFlags )
-    ) {
-      this.featureFlagsRequested = true;
-      this.loadFeatureFlags( );
+  // onto this instance, and every read waits for that one request. A missing map or key is off,
+  // as in Rails.
+  async featureFlagEnabled( flag ) {
+    if ( _.isUndefined( this.featureFlags ) && _.isFunction( this.loadFeatureFlags ) ) {
+      this.featureFlagsRequest = this.featureFlagsRequest || this.loadFeatureFlags( );
+      try {
+        await this.featureFlagsRequest;
+      } catch ( e ) {
+        // Fail closed: a failed load leaves every flag off.
+      }
     }
     return !!( _.isPlainObject( this.featureFlags ) && this.featureFlags[flag] );
   }
