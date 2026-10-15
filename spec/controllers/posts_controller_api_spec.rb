@@ -10,6 +10,12 @@ shared_examples_for "a PostsController" do
       project = Project.make!
       expect( get: "/projects/#{project.id}/journal.json" ).to be_routable
     end
+
+    it "should route a post ID with a slug to show" do
+      expect( get: "/posts/123-some-title.json" ).to route_to(
+        controller: "posts", action: "show", id: "123-some-title", format: "json"
+      )
+    end
   end
 
   describe "index" do
@@ -20,6 +26,46 @@ shared_examples_for "a PostsController" do
       json = JSON.parse( response.body )
       expect( response.response_code ).to eq 200
       expect( json.detect {| post_json | post_json["id"] == post.id } ).not_to be_blank
+    end
+  end
+
+  describe "show" do
+    it "should return a published post with user and parent" do
+      project = Project.make!
+      post = Post.make!( parent: project, user: project.user, body: "foo\n\nbar" )
+      get :show, format: :json, params: { id: post.id }
+      expect( response.response_code ).to eq 200
+      json = JSON.parse( response.body )
+      expect( json["id"] ).to eq post.id
+      expect( json["user"]["login"] ).to eq post.user.login
+      expect( json["parent"]["title"] ).to eq project.title
+      expect( json["parent"]["icon_url"] ).to eq project.icon_url
+      expect( json["body"] ).to include "<p>"
+    end
+
+    it "should return a site post with the site name" do
+      site = Site.make!
+      post = Post.make!( parent: site )
+      get :show, format: :json, params: { id: post.id }
+      expect( JSON.parse( response.body )["parent"]["name"] ).to eq site.name
+    end
+
+    it "should not include disallowed tags like figure" do
+      post = Post.make!( parent: user, user: user, body: "<figure>foo</figure>" )
+      get :show, format: :json, params: { id: post.id }
+      expect( JSON.parse( response.body )["body"] ).not_to match( /<figure>/ )
+    end
+
+    it "should 404 for another user's unpublished post" do
+      other_user = User.make!
+      post = Post.make!( parent: other_user, user: other_user, published_at: nil )
+      get :show, format: :json, params: { id: post.id }
+      expect( response.response_code ).to eq 404
+    end
+
+    it "should 404 for a nonexistent post" do
+      get :show, format: :json, params: { id: 0 }
+      expect( response.response_code ).to eq 404
     end
   end
 
@@ -173,6 +219,22 @@ end
 
 describe PostsController, "without authentication" do
   elastic_models( Observation )
+  describe "show" do
+    it "should return a published post" do
+      user = User.make!
+      post = Post.make!( parent: user, user: user )
+      get :show, format: :json, params: { id: post.id }
+      expect( JSON.parse( response.body )["user"]["login"] ).to eq post.user.login
+    end
+
+    it "should 404 for an unpublished post" do
+      user = User.make!
+      post = Post.make!( parent: user, user: user, published_at: nil )
+      get :show, format: :json, params: { id: post.id }
+      expect( response.response_code ).to eq 404
+    end
+  end
+
   describe "for_user" do
     it "should return site posts" do
       post = Post.make!( parent: Site.default )
