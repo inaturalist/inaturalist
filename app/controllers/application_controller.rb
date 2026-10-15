@@ -107,9 +107,7 @@ class ApplicationController < ActionController::Base
     return unless request.get? || request.head?
     return if request.session.exists?
     return unless SKIP_SESSION_STORAGE_FOR_ANONYMOUS_PAGES.include?( "#{controller_path}##{action_name}" )
-    # token-authenticated API calls; Basic auth (e.g. in front of staging)
-    # doesn't identify a user, so it doesn't count
-    return if request.authorization.to_s.start_with?( "Bearer" )
+    return if request.authorization.present?
     return if logged_in?
 
     request.session_options[:skip] = true
