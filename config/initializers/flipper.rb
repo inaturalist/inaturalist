@@ -1,0 +1,44 @@
+# frozen_string_literal: true
+
+# Lazy block: the app boots before db:migrate runs and before FeatureFlagging autoloads.
+Flipper.configure do | config |
+  config.adapter { FeatureFlagging.build_adapter }
+end
+
+flipper_config = Rails.application.config.flipper
+
+# One gate read per flag per request instead of one per check.
+flipper_config.memoize = true
+
+# No preload: a request that reads no flag does no Flipper work.
+flipper_config.preload = false
+
+# App-side checks treat unknown keys as off with a warning; see FeatureFlagging.enabled?.
+flipper_config.strict = false
+
+flipper_config.log = false
+
+# Duck-typed to avoid loading User at boot (classic autoloader).
+unless Flipper.group_exists?( :admins )
+  Flipper.register( :admins ) do | actor |
+    actor.respond_to?( :is_admin? ) && actor.is_admin?
+  end
+end
+
+# English literals below: Flipper::UI is an untranslated third-party admin app.
+Flipper::UI.configure do | config |
+  config.banner_text = "#{Rails.env} — flag changes take effect on the next request. " \
+    "Name a flag <code>client_…</code> to send it to web and mobile, <code>exp_…</code> to run a " \
+    "control/treatment experiment; any other name is read by server code only."
+  config.banner_class = "danger"
+
+  config.descriptions_source = ->( keys ) { keys.index_with {| key | FeatureFlagging.description_for( key ) } }
+  config.show_feature_description_in_list = true
+
+  config.confirm_fully_enable = true
+  config.feature_removal_enabled = true
+
+  # Disabled to avoid external script (CSP concern) and cloud advertisement.
+  config.version_check_enabled = false
+  config.cloud_recommendation = false
+end
