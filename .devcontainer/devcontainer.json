@@ -22,6 +22,7 @@
   // credentials (with auto-refresh) rather than a hardcoded API key.
   "mounts": [
     "source=${localWorkspaceFolder}/../iNaturalistAPI,target=/iNaturalistAPI,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/../inaturalistjs,target=/inaturalistjs,type=bind,consistency=cached",
     "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind,consistency=cached"
   ],
 
