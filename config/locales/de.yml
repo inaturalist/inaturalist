@@ -5000,6 +5000,8 @@ de:
   site_year_in_review: "%{year} Jahresrückblick von %{site}"
   sizes: Größe
   skip_to_next_page: "Zur nächsten Seite springen"
+  #Label for a button that shows a specific slide in a carousel
+  slide_x: "Rutsche %{x}"
   small: klein
   site_admin_tools: Tools für Website-Admins
   #People who administrate a particular iNaturalist Network partner
@@ -5187,6 +5189,8 @@ de:
   start_a_project: Ein Projekt beginnen
   start_date_time: Start Datum / Uhrzeit
   start_one_now: Jetzt eins beginnen!
+  #Button that resumes automatic rotation of carousel slides
+  start_slide_rotation: Starte Folienrotation
   start_typing_field_name: Name des Feldes eingeben....
   start_typing_place_name: Gebietsnamen eingeben...
   start_typing_taxon_name: Taxonnamen eingeben...
@@ -5206,6 +5210,8 @@ de:
   still_working_on_classifying_taxon: An der Klassifizierung dieses Taxons wird noch gearbeitet. Schau später wieder vorbei
   stop_editing: Bearbeitung beenden
   stop_following_user: "%{user} nicht mehr folgen"
+  #Button that pauses automatic rotation of carousel slides
+  stop_slide_rotation: Stoppe Folienrotation
   stop_testing: Testen beenden
   stop_trusting_this_person_with_your_private_coordinates: Vertrau dieser Person deine verborgenen Koordinaten nicht mehr an
   #As in a place to purchase things. We use it as a link to a place where you
