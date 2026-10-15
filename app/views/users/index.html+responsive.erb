@@ -16,7 +16,7 @@
   <% if logged_in? -%>
     <%= form_tag( search_path, method: :get, class: "people-search" ) do %>
       <%= hidden_field_tag "source[]", "users" %>
-      <%= text_field_tag :q, @q, class: "text", placeholder: t(:search_by_name_or_email) %>
+      <%= text_field_tag :q, @q, class: "text", placeholder: t(:search_by_name) %>
       <%= submit_tag t(:search), class: "button default" %>
     <% end %>
   <% end -%>
