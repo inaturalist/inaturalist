@@ -41,6 +41,8 @@ module PhotosHelper
   end
 
   def coords_visible?( photo )
+    return false if photo.observations.empty? && current_user != photo.user
+
     photo.observations.detect {| o | !o.coordinates_viewable_by?( current_user ) }.blank?
   end
 end
