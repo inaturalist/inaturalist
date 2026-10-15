@@ -3,7 +3,6 @@
   js_link ||= false
   no_ids ||= false
   image_options ||= {}
-  include_image_attribution ||= false
   hide_child_count ||= true
   hide_wikipedia_summary ||= false
   link_name ||= false
@@ -113,7 +112,7 @@
     
   </div>
   <% if photo -%>
-    <div id="<%= dom_id(photo, "attribution") %>" class="meta attribution <%= photo.license_short.to_s.gsub(/\W/, ' ').strip.gsub(/\s+/, '_') %>" style="<%= 'display: none' unless include_image_attribution %>">
+    <div id="<%= dom_id(photo, "attribution") %>" class="meta attribution <%= photo.license_short.to_s.gsub(/\W/, ' ').strip.gsub(/\s+/, '_') %>" style="<%= 'display: none' %>">
       <%= t(:photo) %> <%= link_to photo.attribution, photo.native_page_url %>
     </div>
   <% end -%>
