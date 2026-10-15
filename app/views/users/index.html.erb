@@ -20,7 +20,8 @@
       <div class="right inline smallbuttons buttonrow">
         <%= form_tag( search_path, method: :get, class: "last" ) do %>
           <%= hidden_field_tag "source[]", "users" %>
-          <%= text_field_tag :q, @q, :class => 'text', :placeholder => t(:search_by_name), :style => "width: 150px;" %>
+          <%# TODO: use t(:search_by_name) once translated; then drop search_by_name_or_email from en.yml %>
+          <%= text_field_tag :q, @q, :class => 'text', :placeholder => I18n.t( :search_by_name, default: :search_by_name_or_email ), :style => "width: 150px;" %>
           <%= submit_tag t(:search), :class => 'last default button' %>
         <% end %>
       </div>
