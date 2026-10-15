@@ -42,10 +42,10 @@ const TabDropdown = ( {
         aria-controls={dropdownId}
         onClick={() => setOpen( o => !o )}
       >
-        <div>
+        <span className={css.label}>
           { selectedItem?.icon && <i className={`${selectedItem.icon} ${css["item-icon"]}`} /> }
           { selectedItem?.label }
-        </div>
+        </span>
         <i className={`fa fa-chevron-${open ? "up" : "down"} ${css.chevron}`} />
       </button>
       <ul id={dropdownId} className={css.dropdown}>

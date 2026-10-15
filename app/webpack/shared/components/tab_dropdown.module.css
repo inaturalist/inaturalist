@@ -28,7 +28,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 20px !important;
+  font-size: 24px !important;
   color: black;
   background: white;
   border-block: 1px solid #ddd;
@@ -38,7 +38,23 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 }
 
+.label {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  position: relative;
+  top: 2px;
+}
+
+.label .item-icon {
+  position: relative;
+  top: -2px;
+  font-size: 20px;
+}
+
 .chevron {
+  position: relative;
+  top: -1.5px;
   color: var(--green);
   font-size: 20px;
 }
