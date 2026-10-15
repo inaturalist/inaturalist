@@ -1165,7 +1165,11 @@ $(document).on('ajax:before', '.project_user_invitation .acceptlink', function()
   $(this).siblings('.status').html(I18n.t('loading')).show().addClass('loading')
 })
 $( document ).on( "ajax:before", ".announcement .dismiss-announcement", function ( ) {
-  $( this ).parents( ".announcement" ).fadeOut( );
+  var id = $( this ).closest( "[id^='announcement-']" ).attr( "id" );
+  var copies = $( "[id='" + id + "']" );
+  // fadeOut skips copies already hidden by CSS, so they'd reappear at another breakpoint
+  copies.filter( ":hidden" ).hide( );
+  copies.fadeOut( );
 } );
 
 function showJoinProjectDialog(projectId, options) {

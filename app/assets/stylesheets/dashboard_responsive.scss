@@ -57,6 +57,14 @@ body.responsive {
   }
 }
 
+.dashboard-priority-mobile {
+  @media ( min-width: $lg ) { display: none; }
+}
+
+.dashboard-priority-sidebar.desktop-only {
+  @media ( max-width: $md-max ) { display: none; }
+}
+
 .dashboard-card-grid {
   display: flex;
   flex-wrap: wrap;

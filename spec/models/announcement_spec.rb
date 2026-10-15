@@ -32,6 +32,13 @@ describe Announcement do
     end.not_to raise_error
   end
 
+  it "allows a dismissible users/dashboard#priority-sidebar placement" do
+    expect( Announcement::DISMISSIBLE_PLACEMENTS ).to include "users/dashboard#priority-sidebar"
+    expect do
+      Announcement.make!( placement: "users/dashboard#priority-sidebar", dismissible: true )
+    end.not_to raise_error
+  end
+
   it "validates target group partitions" do
     expect do
       Announcement.make!( target_group_type: "user_id_parity", target_group_partition: "something new" )
@@ -744,6 +751,15 @@ describe Announcement do
       result_ids = Announcement.active( placement: Announcement::USERS_DASHBOARD ).map( &:id )
       expect( result_ids ).to include( dashboard.id )
       expect( result_ids ).not_to include( sidebar.id )
+    end
+
+    it "keeps the priority sidebar placement separate from the sidebar placement" do
+      priority = create :announcement, placement: Announcement::USERS_DASHBOARD_PRIORITY_SIDEBAR
+      sidebar = create :announcement, placement: Announcement::USERS_DASHBOARD_SIDEBAR
+      priority_ids = Announcement.active_in_placement( Announcement::USERS_DASHBOARD_PRIORITY_SIDEBAR ).map( &:id )
+      sidebar_ids = Announcement.active_in_placement( Announcement::USERS_DASHBOARD_SIDEBAR ).map( &:id )
+      expect( priority_ids ).to eq [priority.id]
+      expect( sidebar_ids ).to eq [sidebar.id]
     end
 
     it "filters by client" do

@@ -548,7 +548,8 @@ class UsersController < ApplicationController
     annc_opts = { site: @site, user: current_user, ip: request_ip }
     @announcements = [
       Announcement.active_in_placement( Announcement::USERS_DASHBOARD, annc_opts ),
-      Announcement.active_in_placement( Announcement::USERS_DASHBOARD_SIDEBAR, annc_opts )
+      Announcement.active_in_placement( Announcement::USERS_DASHBOARD_SIDEBAR, annc_opts ),
+      Announcement.active_in_placement( Announcement::USERS_DASHBOARD_PRIORITY_SIDEBAR, annc_opts )
     ].flatten.compact
     @subscriptions = current_user.subscriptions.includes(:resource).
       where("resource_type in ('Place', 'Taxon')").
@@ -847,7 +848,6 @@ class UsersController < ApplicationController
   def update_session
     allowed_patterns = [
       /^show_quality_metrics$/,
-      /^user-seen-ann*/,
       /^prefers_*/,
       /^preferred_*/,
       /^header_search_open$/
