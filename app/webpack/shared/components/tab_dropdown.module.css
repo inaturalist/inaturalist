@@ -27,7 +27,7 @@
 .toggle {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   font-size: 24px !important;
   color: black;
   background: white;
@@ -40,21 +40,15 @@
 
 .label {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   line-height: 1;
-  position: relative;
-  top: 2px;
 }
 
 .label .item-icon {
-  position: relative;
-  top: -2px;
   font-size: 20px;
 }
 
 .chevron {
-  position: relative;
-  top: -1.5px;
   color: var(--green);
   font-size: 20px;
 }
