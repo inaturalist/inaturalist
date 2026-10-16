@@ -337,6 +337,7 @@ class UsersController < ApplicationController
         @current_suspend_action = ModeratorAction.where(
           resource: @user, action: ModeratorAction::SUSPEND
         ).order( created_at: :desc ).first
+        @test_group_toggle = "responsive-global"
         render layout: "bootstrap"
       end
       opts = User.default_json_options
