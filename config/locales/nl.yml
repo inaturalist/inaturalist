@@ -2130,6 +2130,8 @@ nl:
   find_your_current_location: Zoek je huidige locatie
   finished: Voltooid
   finished_with_page: Eindig met pagina
+  #Label for a pagination button that goes to the first page of results
+  first: Eerste
   first_confirmed_inat_observation: "Eerste bevestigde waarneming op %{site_name}"
   first_connect_your_provider_account_to_your_site: "Om te beginnen, verbind je %{provider}account met %{site_name}"
   first_inat_observation: "Eerste %{site_name} waarneming"
@@ -3919,6 +3921,8 @@ nl:
   overlapping_atlases: Overlappende kaarten
   overlapping_downstream_taxon_frameworks_html: "Overlappende onderliggende taxonkaders: %{count}"
   owner: Eigenaar
+  #Accessible label for a set of pagination controls
+  pagination: Paginering
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Bovenliggende
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
@@ -5003,6 +5007,8 @@ nl:
   schemes_including: Schemes inclusief
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Wetenschappelijke naam
+  #Accessible label for a button that scrolls the page back to the top
+  scroll_to_top: Scroll naar boven
   search: Zoeken
   search_all_fields: Doorzoek alle velden
   search_by_name_or_email: Zoek op naam of e-mail
