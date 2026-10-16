@@ -2280,6 +2280,26 @@ en:
     will appear after refreshing the page.
   favorite_taxa: Favorite Taxa
   favorites: "Favorites"
+  # Heading of the admin feature flags page and the admin nav link to it
+  feature_flags: Feature flags
+  # Label shown before the current admin's on/off value for a flag on the admin feature flags page
+  feature_flags_enabled_for_you: "Enabled for you:"
+  # Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
+  feature_flags_kind_client: Client-visible flag
+  # Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
+  feature_flags_kind_experiment: Experiment
+  # Kind label on the admin feature flags page for a flag that only server code reads
+  feature_flags_kind_server: Server-only flag
+  # Button on the admin feature flags page leading to the Flipper UI where flags are created and edited
+  feature_flags_manage: Manage flags
+  # Shown on the admin feature flags page when no feature flags exist yet; %{url} is the address of the Flipper UI
+  feature_flags_none_html: No feature flags exist yet. <a href="%{url}">Create one</a> and it will appear here.
+  # Shown on the admin feature flags page when the current admin is not enrolled in an A/B experiment
+  feature_flags_not_enrolled: not enrolled
+  # Intro text on the admin feature flags page, above a table listing every flag with the current admin's own value
+  feature_flags_page_description: Every feature flag and experiment, resolved for your account. Create, enable, and roll out flags in the management UI.
+  # Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
+  feature_flags_your_variant: "Your variant in %{experiment}:"
   feature_this_project_: "Feature This Project"
   featured: Featured
   # Title for a button or section describing the "featured" status of a project
@@ -5456,6 +5476,8 @@ en:
   site_year_in_review: "%{site}'s %{year} Year in Review"
   sizes: Sizes
   skip_to_next_page: "Skip to next page"
+  # Label for a button that shows a specific slide in a carousel
+  slide_x: "Slide %{x}"
   small: small
   site_admin_tools: Site admin tools
   # People who administrate a particular iNaturalist Network partner
@@ -5712,6 +5734,8 @@ en:
   start_a_project: Start a Project
   start_date_time: Start Date / Time
   start_one_now: Start One Now!
+  # Button that resumes automatic rotation of carousel slides
+  start_slide_rotation: Start slide rotation
   start_typing_field_name: Start typing field name...
   start_typing_place_name: Start typing place name...
   start_typing_taxon_name: Start typing taxon name...
@@ -5731,6 +5755,8 @@ en:
   still_working_on_classifying_taxon: Still working on classifying this taxon. Check back later
   stop_editing: Stop Editing
   stop_following_user: "Stop following %{user}"
+  # Button that pauses automatic rotation of carousel slides
+  stop_slide_rotation: Stop slide rotation
   stop_testing: Stop Testing
   stop_trusting_this_person_with_your_private_coordinates: Stop trusting this person with your hidden coordinates
   # As in a place to purchase things. We use it as a link to a place where you

@@ -1,0 +1,25 @@
+- content_for(:title) do
+  = @title = action_name == "following" ? t(:people_user_follows, user: @user.login) : t(:people_following_user, user: @user.login )
+- content_for(:extracss) do
+  = stylesheet_link_tag "users_responsive"
+#friendship-users
+  #pageheader
+    .breadcrumbs
+      = link_to is_me?(@user) ? t(:back_to_your_profile) : t(:back_to_possessive_user_profile, possuser: @user.login), person_path(@user), class: "back crumb"
+    %h2= @title
+  - if @users.blank?
+    .empty= t(:no_matching_users)
+  .CardGrid
+    - @users.each do |person|
+      = render layout: "shared/user_with_icon", locals: { user: person } do
+        .meta= person.name
+        %div
+          %i.fa.fa-binoculars
+          = link_to t(:x_observations_html, count: number_with_delimiter(person.observations_count)), observations_path( user_id: person.login )
+        %div
+          %i.fa.fa-leaf
+          = link_to t(:x_species_html, count: number_with_delimiter(@species_counts[person.id].to_i)), lists_by_login_path(person.login)
+        %div
+          %i.fa.fa-book
+          = link_to t(:x_journal_posts_html, count: number_with_delimiter(@post_counts[person.id].to_i)), journal_by_login_path(person.login)
+  = will_paginate @users, renderer: INatLinkRenderer
