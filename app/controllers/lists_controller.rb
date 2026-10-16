@@ -2,7 +2,7 @@ class ListsController < ApplicationController
   include Shared::ListsModule
   include Shared::GuideModule
 
-  before_action :authenticate_user!, :except => [:index, :show, :by_login, :taxa, :guide,
+  before_action :authenticate_user!, :except => [:index, :show, :by_login, :guide,
     :cached_guide, :guide_widget]
   before_action :authenticate_user!, only: [:show], if: Proc.new {|c| [:csv, :json].include?( c.request.format )}
   load_except = [ :index, :new, :create, :by_login ]

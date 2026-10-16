@@ -598,32 +598,6 @@ class ProjectsController < ApplicationController
     end
   end
   
-  def list
-    # TODO this causes a temporary table sort, which == badness
-    @listed_taxa =  ProjectList.where(project_id: @project.id).first.listed_taxa.
-      joins("LEFT OUTER JOIN taxon_photos ON taxon_photos.taxon_id = listed_taxa.taxon_id " +
-        "LEFT OUTER JOIN photos ON photos.id = taxon_photos.photo_id").
-      where("photos.id IS NOT NULL").
-      select("MAX(listed_taxa.id) AS id, listed_taxa.taxon_id").
-      group("listed_taxa.taxon_id").
-      paginate(page: 1, per_page: 11).
-      order("id DESC")
-    @taxa = Taxon.where(id: @listed_taxa.map(&:taxon_id)).
-      includes(:photos, :taxon_names)
-
-    # Load tips HTML
-    @taxa.map! do |taxon|
-      taxon.html = render_to_string(:partial => 'taxa/taxon', :formats => [:html],
-        :object => taxon, :locals => {
-          :image_options => {:size => 'small'},
-          :link_image => true,
-          :link_name => true,
-          :include_image_attribution => true
-      })
-      taxon
-    end
-  end
-
   def change_role
     @project_user = @project.project_users.find_by_id( params[:project_user_id] )
     current_project_user = current_user.project_users.where( project_id: @project.id ).first

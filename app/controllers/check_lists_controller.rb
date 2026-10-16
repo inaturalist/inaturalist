@@ -1,9 +1,9 @@
 class CheckListsController < ApplicationController
   include Shared::ListsModule
   
-  before_action :authenticate_user!, :except => [:index, :show, :taxa]
+  before_action :authenticate_user!, :except => [:index, :show]
   before_action :authenticate_user, only: [:show], if: Proc.new {|c| [:csv, :json].include?( c.request.format )}
-  before_action :load_list, :only => [:show, :edit, :update, :destroy, :compare, :remove_taxon, :add_taxon_batch, :taxa, :batch_edit]
+  before_action :load_list, :only => [:show, :edit, :update, :destroy, :compare, :remove_taxon, :add_taxon_batch, :batch_edit]
   before_action :require_editor, :only => [:edit, :update, :destroy, :remove_taxon]
   before_action :require_listed_taxa_editor, :only => [:batch_edit, :add_taxon_batch]
   before_action :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
