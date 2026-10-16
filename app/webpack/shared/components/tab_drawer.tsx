@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import _ from "lodash";
-import css from "./tab_dropdown.module.css";
+import css from "./tab_drawer.module.css";
 
 interface TabItemBase {
   value: string;
@@ -14,18 +14,18 @@ export type TabItem =
   | ( TabItemBase & { kind: "link"; href: string } )
   | ( TabItemBase & { kind: "action"; onClick: ( ) => void } );
 
-interface TabDropdownProps {
+interface TabDrawerProps {
   selectedValue?: string;
   items?: TabItem[];
   onChange?: ( value: string ) => void;
 }
 
-const TabDropdown = ( {
+const TabDrawer = ( {
   selectedValue, items = [], onChange
-}: TabDropdownProps ) => {
+}: TabDrawerProps ) => {
   const [open, setOpen] = useState( false );
-  // Unique per instance so multiple dropdowns on one page don't collide on the DOM id.
-  const [dropdownId] = useState( ( ) => _.uniqueId( "tab-dropdown-" ) );
+  // Unique per instance so multiple drawers on one page don't collide on the DOM id.
+  const [drawerId] = useState( ( ) => _.uniqueId( "tab-drawer-" ) );
 
   const selectedItem = items.find(
     ( item ): item is Exclude<TabItem, { kind: "separator" }> => (
@@ -39,16 +39,16 @@ const TabDropdown = ( {
         type="button"
         className={css.toggle}
         aria-expanded={open}
-        aria-controls={dropdownId}
+        aria-controls={drawerId}
         onClick={() => setOpen( o => !o )}
       >
-        <span className={css.label}>
+        <div>
           { selectedItem?.icon && <i className={`${selectedItem.icon} ${css["item-icon"]}`} /> }
           { selectedItem?.label }
-        </span>
-        <i className={`fa fa-chevron-${open ? "up" : "down"} ${css.chevron}`} />
+        </div>
+        <i className={`fa fa-chevron-${open ? "up" : "down"}`} />
       </button>
-      <ul id={dropdownId} className={css.dropdown}>
+      <ul id={drawerId} className={css.drawer}>
         { items
           .filter( item => item.kind === "separator" || item.value !== selectedValue )
           .map( item => {
@@ -98,4 +98,4 @@ const TabDropdown = ( {
   );
 };
 
-export default TabDropdown;
+export default TabDrawer;

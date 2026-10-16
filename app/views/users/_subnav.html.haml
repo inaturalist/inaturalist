@@ -31,7 +31,7 @@
   else
     "observations"
   end
-#UserSubnavTabDropdown{ data: { items: subnav_items.to_json, selected_value: active_value } }
+#UserSubnavTabDrawer{ data: { items: subnav_items.to_json, selected_value: active_value } }
 %ul.nav.nav-tabs.user-subnav
   - subnav_items.each do |item|
     %li{ class: ( "active" if item[:value] == active_value ) }

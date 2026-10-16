@@ -5,7 +5,6 @@ import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
 import { VIEWPORTS } from "../../../shared/breakpoints";
 
 const TEST_PASSWORD = "TestPass123!";
-const INAT_GREEN = "rgb(116, 172, 0)";
 
 let testEmail: string;
 let testLogin: string;
@@ -30,37 +29,18 @@ test.beforeEach( async ( { page } ) => {
 expectNoHorizontalOverflow( () => `/people/${testLogin}` );
 
 test.describe( "subnav", () => {
-  test( "uses the TabDropdown below the md breakpoint", async ( { page } ) => {
+  test( "uses the TabDrawer below the md breakpoint", async ( { page } ) => {
     await page.setViewportSize( VIEWPORTS.xs );
     await page.goto( `/people/${testLogin}` );
-    const toggle = page.locator( "#UserSubnavTabDropdown button[aria-expanded]" );
+    const toggle = page.locator( "#UserSubnavTabDrawer button[aria-expanded]" );
     await expect( toggle ).toBeVisible();
     await expect( toggle ).toHaveText( /Profile/ );
     await expect( page.locator( ".nav-tabs.user-subnav" ) ).toBeHidden();
 
     await toggle.click();
     await expect( toggle ).toHaveAttribute( "aria-expanded", "true" );
-    await page.locator( "#UserSubnavTabDropdown" ).getByRole( "link", { name: "Calendar" } ).click();
+    await page.locator( "#UserSubnavTabDrawer" ).getByRole( "link", { name: "Calendar" } ).click();
     await page.waitForURL( `**/calendar/${testLogin}**` );
-  } );
-
-  test( "renders the redesigned TabDropdown toggle", async ( { page } ) => {
-    await page.setViewportSize( VIEWPORTS.xs );
-    await page.goto( `/people/${testLogin}` );
-    const toggle = page.locator( "#UserSubnavTabDropdown button[aria-expanded]" );
-    await expect( toggle ).toBeVisible();
-    const style = await toggle.evaluate( el => {
-      const chevron = el.querySelector( ".fa-chevron-down" ) as Element;
-      return {
-        width: el.getBoundingClientRect().width,
-        fontSize: getComputedStyle( el ).fontSize,
-        chevronColor: getComputedStyle( chevron ).color
-      };
-    } );
-    const viewportWidth = await page.evaluate( () => document.documentElement.clientWidth );
-    expect( style.width ).toBeCloseTo( viewportWidth, 0 );
-    expect( style.fontSize ).toBe( "24px" );
-    expect( style.chevronColor ).toBe( INAT_GREEN );
   } );
 
   ( ["md", "lg"] as const ).forEach( name => {
@@ -68,7 +48,7 @@ test.describe( "subnav", () => {
       await page.setViewportSize( VIEWPORTS[name] );
       await page.goto( `/people/${testLogin}` );
       await expect( page.locator( ".nav-tabs.user-subnav" ) ).toBeVisible();
-      await expect( page.locator( "#UserSubnavTabDropdown button[aria-expanded]" ) ).toBeHidden();
+      await expect( page.locator( "#UserSubnavTabDrawer button[aria-expanded]" ) ).toBeHidden();
     } );
   } );
 } );

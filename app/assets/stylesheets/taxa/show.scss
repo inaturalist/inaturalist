@@ -37,6 +37,7 @@ body.responsive {
 #hero {
   background-color: #f8f8f8;
   border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   margin-top: 5px;
   .hero-grid {
     display: grid;
@@ -523,7 +524,7 @@ $photoPreviewThumbGutterTop: 3px;
 
 // Shared two-column tab layout, replaces react-bootstrap Grid/Row/Col.
 // Main content and sidebar sit 2:1 side by side, stacking below the tab bar's
-// breakpoint (where the TabDropdown takes over).
+// breakpoint (where the TabDrawer takes over).
 .tab-row {
   display: flex;
   flex-wrap: wrap;
@@ -684,6 +685,7 @@ $introducedColor: #E4007C;
 .TaxonPageTabs {
   @media ( max-width: $md-max ) {
     @include container-padding;
+    padding-top: 15px;
   }
 }
 

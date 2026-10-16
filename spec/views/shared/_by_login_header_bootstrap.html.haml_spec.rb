@@ -14,6 +14,6 @@ describe "shared/_by_login_header_bootstrap" do
     render partial: "shared/by_login_header_bootstrap", locals: { user: user }, variants: [:responsive]
     expect( rendered ).to have_tag( ".col-md-12 > h1 .user_image" )
     expect( rendered ).not_to have_tag( ".logged-in-user-image" )
-    expect( rendered ).not_to have_tag( "#UserSubnavTabDropdown" )
+    expect( rendered ).not_to have_tag( "#UserSubnavTabDrawer" )
   end
 end
