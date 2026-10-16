@@ -152,7 +152,8 @@ const windowStateForTaxon = ( taxon, { localePrefix } = {} ) => {
       rank_level: taxon.rank_level,
       rank: taxon.rank,
       is_active: taxon.is_active,
-      ancestor_ids: taxon.ancestor_ids
+      ancestor_ids: taxon.ancestor_ids,
+      taxon_changes_count: taxon.taxon_changes_count
     }
   };
 
