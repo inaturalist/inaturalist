@@ -1,6 +1,7 @@
 services:
   pg:
     container_name: pg
+    platform: linux/amd64
     image: postgis/postgis:17-3.6-alpine
     environment:
       POSTGRES_USER: inaturalist
