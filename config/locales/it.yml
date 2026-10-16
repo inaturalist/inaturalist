@@ -2042,6 +2042,26 @@ it:
     apparirà dopo l'aggiornamento della pagina.
   favorite_taxa: Taxa preferiti
   favorites: "Preferiti"
+  #Heading of the admin feature flags page and the admin nav link to it
+  feature_flags: Contrassegni di funzionalità
+  #Label shown before the current admin's on/off value for a flag on the admin feature flags page
+  feature_flags_enabled_for_you: "Abilitato per te:"
+  #Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
+  feature_flags_kind_client: Contrassegno visibile per il client
+  #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
+  feature_flags_kind_experiment: Esperimento
+  #Kind label on the admin feature flags page for a flag that only server code reads
+  feature_flags_kind_server: Contrassegno solo-server
+  #Button on the admin feature flags page leading to the Flipper UI where flags are created and edited
+  feature_flags_manage: Gestisci i contrassegni
+  #Shown on the admin feature flags page when no feature flags exist yet; %{url} is the address of the Flipper UI
+  feature_flags_none_html: Non esistono ancora contrassegni di funzionalità. <a href="%{url}">Creane uno</a> e apparirà qui.
+  #Shown on the admin feature flags page when the current admin is not enrolled in an A/B experiment
+  feature_flags_not_enrolled: Non iscritto
+  #Intro text on the admin feature flags page, above a table listing every flag with the current admin's own value
+  feature_flags_page_description: Ogni contrassegno di funzionalità ed esperimenti, risolto per il tuo profilo. Crea, abilita e distribuisci contrassegni nell'interfaccia di gestione.
+  #Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
+  feature_flags_your_variant: "La tua variante in %{experiment}:"
   feature_this_project_: "Evidenzia questo progetto"
   featured: In evidenza
   #Title for a button or section describing the "featured" status of a project
@@ -4912,6 +4932,8 @@ it:
   scroll_to_top: Scorri all'inizio
   search: Cerca
   search_all_fields: cerca in tutti i campi
+  #Placeholder for a search bar where the user can search for another user
+  search_by_name: Cerca per nome
   search_by_name_or_email: Cerca per nome o email
   search_by_taxon_name_or_observation_id: Cerca per nome del taxon o ID dell'osservazione
   search_by_taxon_name_or_flickr_photo_id: Cerca per nome del taxon o ID della foto Flickr
@@ -5037,6 +5059,8 @@ it:
   site_year_in_review: "Rassegna dell'Anno %{year} %{site}"
   sizes: Dimensioni
   skip_to_next_page: "Passa alla pagina successiva"
+  #Label for a button that shows a specific slide in a carousel
+  slide_x: "Slide %{x}"
   small: piccola
   site_admin_tools: Strumenti amministratore del sito
   #People who administrate a particular iNaturalist Network partner
@@ -5214,6 +5238,8 @@ it:
   start_a_project: Avvia un progetto
   start_date_time: Data/ora di inizio
   start_one_now: Avviane uno ora!
+  #Button that resumes automatic rotation of carousel slides
+  start_slide_rotation: Avvia la rotazione delle slide
   start_typing_field_name: Inizia a digitare il nome del campo...
   start_typing_place_name: Inizia a digitare il nome di un luogo...
   start_typing_taxon_name: Inizia a digitare il nome del taxon...
@@ -5233,6 +5259,8 @@ it:
   still_working_on_classifying_taxon: Stiamo ancora lavorando nella classificazione di questo taxon. Controlla più tardi
   stop_editing: Termina la modifica
   stop_following_user: "Smetti di seguire %{user}"
+  #Button that pauses automatic rotation of carousel slides
+  stop_slide_rotation: Ferma rotazione slide
   stop_testing: Termina il test
   stop_trusting_this_person_with_your_private_coordinates: Smetti di rivelare a questa persona le tue coordinate nascoste
   #As in a place to purchase things. We use it as a link to a place where you
