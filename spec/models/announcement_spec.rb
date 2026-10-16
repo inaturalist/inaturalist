@@ -829,6 +829,20 @@ describe Announcement do
         end
         expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } ) ).not_to include annc
       end
+
+      it "excludes announcements with ip_countries when no IP is given" do
+        annc = create :announcement, ip_countries: ["US"]
+        expect( INatAPIService ).not_to receive( :geoip_lookup )
+        expect( Announcement.active_in_placement( "users/dashboard#sidebar" ) ).not_to include annc
+      end
+
+      it "falls back to the global variant in a family when no IP is given" do
+        parent = create :announcement
+        child_us = create :announcement, ip_countries: ["US"], parent_announcement_id: parent.id
+        result = Announcement.active_in_placement( "users/dashboard#sidebar" )
+        expect( result ).to include parent
+        expect( result ).not_to include child_us
+      end
     end
 
     describe "ip_country with exclude_ip_countries" do
