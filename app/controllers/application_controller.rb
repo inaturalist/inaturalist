@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery with: :exception, if: -> { request.headers["Authorization"].blank? }
   prepend_before_action :reject_invalid_signed_in_traffic_cookie
+  prepend_before_action :skip_session_storage_for_anonymous_page_view
   before_action :permit_params
   around_action :set_time_zone
   around_action :logstash_catchall
@@ -46,6 +47,20 @@ class ApplicationController < ActionController::Base
   INVALID_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_invalid_payload"
   UNAUTHENTICATED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_without_authenticated_session"
   MISMATCHED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_user_mismatch"
+  # Pages where anonymous visitors without a session cookie don't get a stored
+  # session. Rolled out page by page, see
+  # skip_session_storage_for_anonymous_page_view. A page's own data requests
+  # are listed with it, otherwise they create the session the page skipped.
+  SKIP_SESSION_STORAGE_FOR_ANONYMOUS_PAGES = %w(
+    welcome#index
+    observations#show
+    observations#taxon_summary
+    taxa#show
+    taxa#describe
+    taxa#links
+    taxon_names#index
+    photos#show
+  ).freeze
 
   alias :logged_in? :user_signed_in?
 
@@ -79,6 +94,37 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  # Every HTML page writes _csrf_token and often return_to into the session, so
+  # each page view from a visitor without a session cookie (mostly crawlers)
+  # creates a new, never reused sessions row. On the pages listed in
+  # SKIP_SESSION_STORAGE_FOR_ANONYMOUS_PAGES those visitors get an in-memory
+  # session instead: values written during the request can be read back later
+  # in it, but they aren't saved to the sessions table and no session cookie
+  # is set (unless authenticate_user! turns the skip off, see below).
+  #
+  # The decision only looks at cookies and headers, because reading the real
+  # session (even through logged_in?) makes activerecord-session_store insert
+  # an empty row for a new visitor straight away.
+  #
+  # The CSRF token rendered on those pages isn't stored, so an anonymous POST
+  # from them fails verification. authenticate_user! turns the skip off so
+  # redirect-to-login keeps its return_to.
+  def skip_session_storage_for_anonymous_page_view
+    return unless request.get? || request.head?
+    return unless SKIP_SESSION_STORAGE_FOR_ANONYMOUS_PAGES.include?( "#{controller_path}##{action_name}" )
+    return if request.cookies[Rails.application.config.session_options[:key]].present?
+    # Devise remember-me: the visitor gets logged in and needs a real session
+    return if request.cookies["remember_user_token"].present?
+    # API tokens (with or without "Bearer"); Basic auth (e.g. in front of
+    # staging) doesn't identify a user
+    authorization = request.authorization.to_s
+    return if authorization.present? && !authorization.start_with?( "Basic " )
+
+    request.session_options[:skip] = true
+    request.session = ActionController::RequestForgeryProtection::ProtectionMethods::NullSession::NullSessionHash.
+      new( request )
+  end
 
   def reject_invalid_signed_in_traffic_cookie
     # No marker cookie: let anonymous traffic pass, recreate for authenticated users.
@@ -794,6 +840,8 @@ class ApplicationController < ActionController::Base
   # redirect.
   def authenticate_user!(*args)
     if request.get? && !logged_in?
+      # must persist, see skip_session_storage_for_anonymous_page_view
+      request.session_options[:skip] = false
       session[:return_to] = request.fullpath
       session[:return_to_for_new_user] = request.fullpath
     end
