@@ -10,7 +10,7 @@
   .browse-top
     .browse-content
       .browse-header
-        = link_to t(:back_to_projects), projects_path, class: "back-link"
+        = link_to t(:back_to_projects), projects_path, class: "back crumb"
         - if @place
           - place_name = t( "places_name.#{@place.name.parameterize.underscore}", default: @place.name )
           - everywhere = t( :everywhere, default: "everywhere" )
@@ -28,7 +28,7 @@
           %button.btn{ type: "submit" }=t :go
         = form_tag url_for, method: :get, class: "project-order" do
           = label_tag :order, t(:order_by)
-          = select_tag :order, options_for_select( ProjectsController::ORDERS.map {| o | [t( o, default: o ).downcase, o] }, @order ), onchange: "this.form.submit()"
+          = select_tag :order, options_for_select( ProjectsController::ORDERS.map {| o | [t( o, default: o ).titleize, o] }, @order ), onchange: "this.form.submit()"
         = link_to t(:start_a_new_project), new_project_path, class: "btn btn-inat"
   .browse-main
     .browse-content

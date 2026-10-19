@@ -354,6 +354,10 @@ describe ProjectsController, "browse" do
       expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
     end
 
+    it "is returned to after toggling the test group" do
+      expect( session[:return_to] ).to eq "/projects/browse"
+    end
+
     it "renders a thumbnail card per project" do
       expect( response.body ).to have_tag( ".ProjectCardGrid .thumbnail", count: 1 )
       expect( response.body ).to have_tag( ".ProjectCardGrid a", with: { href: project_path( project ) } )
