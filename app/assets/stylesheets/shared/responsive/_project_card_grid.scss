@@ -18,6 +18,9 @@
     position: relative;
     margin: 0;
     font-size: 16px;
+    background-color: white;
+    border-radius: 4px;
+    overflow: hidden;
 
     // Must outrank `.bootstrap .thumbnail.borderless { border: 0 }` from bootstrap-inat
     &.borderless {

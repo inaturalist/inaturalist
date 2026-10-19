@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, Page } from "@playwright/test";
 import { login } from "../../helpers/auth.helper";
 import { app, appMake } from "../../support/on-rails";
 import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
@@ -29,8 +29,21 @@ expectNoHorizontalOverflow( "/projects/browse", {
   waitForSelector: ".ProjectCardGrid .thumbnail"
 } );
 
-test( "renders without Blueprint", async ( { page } ) => {
+// Header and @font-face still depend on Blueprint CSS, so measure page-relative, in whole pixels
+async function layoutBoxes( page: Page ) {
   await page.goto( "/projects/browse" );
-  await expect( page.locator( "link[href*='blueprint']" ) ).toHaveCount( 0 );
-  await expect( page.locator( ".ProjectCardGrid .thumbnail" ).first( ) ).toBeVisible( );
-} );
+  const [root, ...boxes] = await Promise.all(
+    ["#projects-browse", ".browse-tools", ".project-search", ".browse-tools .btn-inat", ".ProjectCardGrid .thumbnail"]
+      .map( selector => page.locator( selector ).first( ).boundingBox( ) )
+  );
+  return boxes.map( box => [box!.x, box!.y - root!.y, box!.width, box!.height].map( Math.round ) );
+}
+
+for ( const width of [375, 1280] ) {
+  test( `lays out identically without Blueprint stylesheets at ${width}px`, async ( { page } ) => {
+    await page.setViewportSize( { width, height: 900 } );
+    const withBlueprint = await layoutBoxes( page );
+    await page.route( /blueprint[^/]*\.css/, route => route.abort( ) );
+    expect( await layoutBoxes( page ) ).toEqual( withBlueprint );
+  } );
+}

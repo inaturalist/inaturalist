@@ -7,9 +7,17 @@
   margin-bottom: 0;
 }
 
+#wrapper {
+  width: auto;
+  margin: 0;
+}
+
 #projects-browse {
+  font-size: 14px;
+
   .browse-content {
     @include container-padding( 1170px );
+    box-sizing: border-box;
   }
 
   .browse-top,
@@ -39,6 +47,8 @@
 
     h2 {
       margin: 0;
+      font-size: 30px;
+      font-weight: 500;
     }
   }
 
@@ -59,6 +69,44 @@
         font-weight: normal;
         white-space: nowrap;
       }
+
+      select {
+        height: 34px;
+        margin: 0;
+        padding: 6px 12px;
+        font-size: 14px;
+        color: #555;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+    }
+
+    .btn {
+      float: none;
+      display: inline-block;
+      margin: 0;
+      padding: 6px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 20px;
+      color: white;
+      background-color: $inat-green;
+      border: 1px solid darken( $inat-green, 5% );
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        color: white;
+        text-decoration: none;
+        background-color: darken( $inat-green, 8% );
+      }
+    }
+
+    .project-search .btn {
+      border-radius: 0 4px 4px 0;
     }
 
     .btn-inat {

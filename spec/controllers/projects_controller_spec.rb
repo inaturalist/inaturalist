@@ -344,9 +344,10 @@ describe ProjectsController, "browse" do
       get :browse
     end
 
-    it "renders the responsive variant in the bootstrap layout" do
+    it "renders the responsive variant" do
       expect( request.variant ).to include( :responsive )
-      expect( response ).to render_template( layout: "bootstrap" )
+      expect( response ).to render_template( "browse" )
+      expect( response.body ).to have_tag( "#projects-browse" )
     end
 
     it "offers the responsive test group toggle" do
@@ -358,10 +359,10 @@ describe ProjectsController, "browse" do
       expect( response.body ).to have_tag( ".ProjectCardGrid a", with: { href: project_path( project ) } )
     end
 
-    it "does not use Blueprint" do
-      expect( response.body ).not_to match( /blueprint/ )
-      expect( response.body ).not_to have_tag( "[class*='span-']" )
-      expect( response.body ).not_to have_tag( ".column" )
+    it "does not use Blueprint grid or button classes" do
+      %w([class*='span-'] .column .last .clear .buttonrow .button).each do | selector |
+        expect( response.body ).not_to have_tag( "#projects-browse #{selector}" )
+      end
     end
   end
 end

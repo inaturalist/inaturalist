@@ -25,11 +25,11 @@
       .browse-tools
         = form_tag( project_search_path, method: :get, class: "project-search" ) do
           %input{ name: "q", type: "text", placeholder: t(:search) }
-          %button.btn.btn-primary{ type: "submit" }=t :go
+          %button.btn{ type: "submit" }=t :go
         = form_tag url_for, method: :get, class: "project-order" do
           = label_tag :order, t(:order_by)
-          = select_tag :order, options_for_select( ProjectsController::ORDERS.map {| o | [t( o, default: o ).downcase, o] }, @order ), class: "form-control", onchange: "this.form.submit()"
-        = link_to t(:start_a_new_project), new_project_path, class: "btn btn-primary btn-inat"
+          = select_tag :order, options_for_select( ProjectsController::ORDERS.map {| o | [t( o, default: o ).downcase, o] }, @order ), onchange: "this.form.submit()"
+        = link_to t(:start_a_new_project), new_project_path, class: "btn btn-inat"
   .browse-main
     .browse-content
       - if @projects.blank?
