@@ -1,0 +1,176 @@
+@import "breakpoints";
+@import "../shared/responsive/scroll_to_top";
+
+#header {
+  margin-bottom: 0;
+}
+
+.post-page {
+  @include container-padding;
+  margin-top: 20px;
+
+  .post-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+
+    .post-prevnext {
+      margin-inline-start: auto;
+    }
+  }
+
+  .post-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .post-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .post-nav-side {
+    position: sticky;
+    top: 20px;
+    flex: none;
+    white-space: nowrap;
+
+    li a {
+      display: block;
+      margin-bottom: -1px;
+      padding: 8px 14px;
+      border: 1px solid #e5e5e5;
+    }
+
+    li:first-child a {
+      border-radius: 6px 6px 0 0;
+    }
+
+    li:last-child a {
+      border-radius: 0 0 6px 6px;
+    }
+
+    li:only-child a {
+      border-radius: 6px;
+    }
+
+    @media ( max-width: $md-max ) {
+      display: none;
+    }
+  }
+
+  .post-content {
+    flex: 1;
+    min-width: 0;
+
+    .post-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+
+      @media ( max-width: $sm-max ) {
+        flex-direction: column-reverse;
+        align-items: stretch;
+
+        .btn {
+          align-self: flex-end;
+        }
+      }
+
+      h1 {
+        margin-top: 0;
+        overflow-wrap: anywhere;
+
+        @media ( max-width: $sm-max ) {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    .post-nav-inline {
+      margin-bottom: 15px;
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 8px;
+      }
+
+      li + li::before {
+        content: "·";
+        margin-right: 8px;
+        color: #999;
+      }
+
+      @media ( min-width: $md ) {
+        display: none;
+      }
+    }
+
+    .post-attribution {
+      padding-top: 10px;
+    }
+
+    .post-target-list {
+      columns: 2;
+      column-gap: 30px;
+
+      li {
+        break-inside: avoid;
+      }
+
+      @media ( max-width: $sm-max ) {
+        columns: 1;
+      }
+    }
+
+    .post-observations {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      column-gap: 10px;
+
+      > * {
+        flex-basis: 100%;
+      }
+
+      .observation-header {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+
+      .observations.medium.grid {
+        display: flex;
+        flex-wrap: wrap;
+
+        .observation,
+        .photos,
+        .icon {
+          width: 170px;
+          height: 170px;
+        }
+      }
+    }
+
+    .comment_activity_item {
+      display: flex;
+      gap: 10px;
+
+      .item_user {
+        float: none;
+        margin-right: 0;
+      }
+
+      .item_content {
+        float: none;
+        width: auto;
+        flex: 1;
+        min-width: 0;
+      }
+    }
+  }
+}

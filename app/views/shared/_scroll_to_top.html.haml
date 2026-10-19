@@ -1,0 +1,16 @@
+- content_for :extrajs do
+  :javascript
+    ( function( ) {
+      var button = document.querySelector( "a.scroll-to-top" );
+      var update = function( ) {
+        button.classList.toggle( "visible", window.scrollY > window.innerHeight );
+      };
+      window.addEventListener( "scroll", update, { passive: true } );
+      button.addEventListener( "click", function( e ) {
+        e.preventDefault( );
+        window.scrollTo( 0, 0 );
+      } );
+      update( );
+    } )( );
+%a.scroll-to-top{ href: "#header", "aria-label" => t(:scroll_to_top) }
+  %span.glyphicon.glyphicon-chevron-up

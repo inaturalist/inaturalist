@@ -1,0 +1,40 @@
+@import "../../breakpoints";
+
+a.scroll-to-top {
+  display: none;
+
+  @media ( max-width: $md-max ) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: white;
+    color: #286090;
+    z-index: 1000;
+    box-shadow: 0 1px 4px rgba( 0, 0, 0, 0.3 );
+    font-size: 18px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+
+    @media ( prefers-reduced-motion: reduce ) {
+      transition: none;
+    }
+
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .glyphicon {
+      top: 0;
+      left: 1px;
+      line-height: 1;
+    }
+  }
+}

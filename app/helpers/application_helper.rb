@@ -444,10 +444,6 @@ module ApplicationHelper
     image_tag( user.icon.url( size ), options.merge( style: style, class: css_class ) )
   end
 
-  def user_seen_announcement?( announcement )
-    session[announcement.session_key]
-  end
-
   def observation_image( observation, options = {} )
     style = options[:style]
     url = observation_image_url( observation, options )

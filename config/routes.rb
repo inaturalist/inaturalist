@@ -423,8 +423,6 @@ Rails.application.routes.draw do
       get :icon_preview
     end
   end
-  get "lists/:id/taxa" => "lists#taxa", :as => :list_taxa
-  get "lists/:id/taxa.:format" => "lists#taxa", :as => :formatted_list_taxa
   get "lists/:id.:view_type.:format" => "lists#show",
     :as => "list_show_formatted_view",
     :requirements => { id: id_param_pattern }
@@ -589,7 +587,6 @@ Rails.application.routes.draw do
   post "/places/find_external" => "places#find_external", :as => :find_external
   get "/places/search" => "places#search", :as => :place_search
   get "/places/:id/children" => "places#children", :as => :place_children
-  get "places/:id/taxa.:format" => "places#taxa", :as => :place_taxa
   get "places/geometry/:id.:format" => "places#geometry", :as => :place_geometry
   get "places/guide/:id" => "places#guide", :as => :place_guide
   get "places/guide" => "places#guide", :as => :idendotron_guide

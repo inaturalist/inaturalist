@@ -9,10 +9,16 @@
     DASHBOARD_PAGE = "#{params[:page]}";
   = javascript_include_tag "map_bundle", "d3.min", "observations/observation_fields", "users/dashboard"
   = javascript_include_tag "webpack/users-subnav-webpack"
+- top_announcements = @announcements.select{|a| a.placement == "users/dashboard"}
+- priority_announcements = @announcements.select{|a| a.placement == "users/dashboard#priority-sidebar"}
+- priority_on_top = top_announcements.blank? && !priority_announcements.blank?
 .dashboard-container
-  - if ( announcements = @announcements.select{|a| a.placement == "users/dashboard"} ) && !announcements.blank?
-    - announcements.each do |announcement|
-      = render "announcements/announcement", announcement: announcement
+  - top_announcements.each do |announcement|
+    = render "announcements/announcement", announcement: announcement
+  - if priority_on_top
+    .dashboard-priority-mobile
+      - priority_announcements.each do |announcement|
+        = render "announcements/announcement", announcement: announcement
   = render partial: "shared/by_login_header", locals: { user: current_user }
   .dashboard-columns
     .dashboard-main
@@ -121,12 +127,15 @@
       = link_to upload_observations_path, id: "obsbutton", class: "btn btn-default btn-lg nav-justified" do
         %span.glyphicon.glyphicon-plus
         = t(:add_observations)
+      - unless priority_announcements.blank?
+        .upstacked.dashboard-priority-sidebar{ class: priority_on_top && "desktop-only" }
+          - priority_announcements.each do |announcement|
+            = render "announcements/announcement", announcement: announcement, skip_impression: priority_on_top
       - announcements = @announcements.select{|a| a.placement == "users/dashboard#sidebar"}
       - unless announcements.blank?
         .upstacked
           - announcements.each do |announcement|
-            - unless user_seen_announcement?( announcement )
-              = render "announcements/announcement", announcement: announcement
+            = render "announcements/announcement", announcement: announcement
 
       - if ObservationAccuracyExperiment.user_eligible_for_needs_id_pilot?( current_user )
         #needs_id_pilot_panel.panel.panel-default
@@ -363,5 +372,4 @@
           %p= t :show_off_your_recent_observations
           %p
             = link_to t(:learn_more), { controller: "observations", action: "widget" }, class: "btn btn-default btn-md"
-  %a.scroll-to-top{ href: "#header", "aria-label" => t(:scroll_to_top) }
-    %span.glyphicon.glyphicon-chevron-up
+  = render "shared/scroll_to_top"

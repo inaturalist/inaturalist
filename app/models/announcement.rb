@@ -3,6 +3,7 @@
 class Announcement < ApplicationRecord
   PLACEMENTS = %w(
     users/dashboard#sidebar
+    users/dashboard#priority-sidebar
     users/dashboard
     welcome/index
     mobile/home
@@ -16,7 +17,8 @@ class Announcement < ApplicationRecord
   DISMISSIBLE_PLACEMENTS = [
     MOBILE_HOME,
     USERS_DASHBOARD,
-    USERS_DASHBOARD_SIDEBAR
+    USERS_DASHBOARD_SIDEBAR,
+    USERS_DASHBOARD_PRIORITY_SIDEBAR
   ].freeze
 
   INAT_IOS = "inat-ios"
@@ -137,10 +139,6 @@ class Announcement < ApplicationRecord
     return unless persisted? && child_announcements.exists?
 
     errors.add( :parent_announcement_id, :cannot_have_variants )
-  end
-
-  def session_key
-    "user-seen-ann-#{id}"
   end
 
   def body_preview( length = 60 )

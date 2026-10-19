@@ -1,5 +1,4 @@
-# encoding: UTF-8
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+require File.dirname( __FILE__ ) + "/../spec_helper.rb"
 
 describe "routes" do
   describe "/observations/:id" do

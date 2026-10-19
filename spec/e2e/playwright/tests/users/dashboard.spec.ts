@@ -1,4 +1,6 @@
-import { test, expect, Page } from "@playwright/test";
+import {
+  test, expect, Locator, Page
+} from "@playwright/test";
 import { login } from "../../helpers/auth.helper";
 import { app, appMake } from "../../support/on-rails";
 import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
@@ -217,5 +219,58 @@ test.describe( "dashboard tab interactions", () => {
     await page.locator( "a[data-subscribe-type='taxon']" ).click();
     await expect( page.locator( "#subscribeTaxonLabel" ) ).toBeVisible();
     await expect( page.locator( "#subscribePlaceLabel" ) ).toBeHidden();
+  } );
+} );
+
+test.describe( "priority sidebar announcements", () => {
+  const PRIORITY = "users/dashboard#priority-sidebar";
+  const annc = ( page: Page, placement: string ) => page.locator( `[id^='announcement-']:visible:has-text('${placement} annc')` );
+  const top = ( locator: Locator ) => locator.first().evaluate( el => el.getBoundingClientRect().top );
+
+  // target_creator keeps these announcements from showing up for other tests' users
+  async function visitWithAnnouncements( page: Page, placements: string[], viewport: keyof typeof VIEWPORTS ) {
+    const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
+    await app( "add_test_group", { user_id: user.id, test_groups: ["responsive-global"] } );
+    await Promise.all( placements.map( placement => appMake( "create", "announcement", {
+      placement,
+      body: `${placement} annc`,
+      user_id: user.id,
+      target_creator: true,
+      dismissible: true
+    } ) ) );
+    await mockDashboardEndpoints( page );
+    await page.context().clearCookies();
+    await login( page, user.email as string, TEST_PASSWORD );
+    await page.setViewportSize( VIEWPORTS[viewport] );
+    await page.goto( "/home" );
+  }
+
+  test( "shows above the timeline on mobile without a users/dashboard announcement", async ( { page } ) => {
+    await visitWithAnnouncements( page, [PRIORITY], "xs" );
+    await expect( annc( page, PRIORITY ) ).toHaveCount( 1 );
+    expect( await top( annc( page, PRIORITY ) ) ).toBeLessThan( await top( page.locator( "#updates_target" ) ) );
+  } );
+
+  test( "shows below the timeline on mobile with a users/dashboard announcement", async ( { page } ) => {
+    await visitWithAnnouncements( page, [PRIORITY, "users/dashboard"], "xs" );
+    await expect( annc( page, PRIORITY ) ).toHaveCount( 1 );
+    expect( await top( annc( page, PRIORITY ) ) ).toBeGreaterThan( await top( page.locator( "#updates_target" ) ) );
+  } );
+
+  test( "shows at the top of the sidebar on desktop", async ( { page } ) => {
+    await visitWithAnnouncements( page, [PRIORITY, "users/dashboard#sidebar"], "xl" );
+    await expect( annc( page, PRIORITY ) ).toHaveCount( 1 );
+    await expect( page.locator( ".dashboard-sidebar" ).locator( annc( page, PRIORITY ) ) ).toHaveCount( 1 );
+    expect( await top( annc( page, PRIORITY ) ) ).toBeLessThan( await top( annc( page, "users/dashboard#sidebar" ) ) );
+  } );
+
+  test( "dismissing the mobile copy also hides the desktop copy", async ( { page } ) => {
+    await visitWithAnnouncements( page, [PRIORITY], "xs" );
+    const dismissed = page.waitForRequest( req => req.url().includes( "/dismiss" ) );
+    await annc( page, PRIORITY ).locator( ".dismiss-announcement-link" ).click();
+    await dismissed;
+    await expect( annc( page, PRIORITY ) ).toHaveCount( 0 );
+    await page.setViewportSize( VIEWPORTS.xl );
+    await expect( annc( page, PRIORITY ) ).toHaveCount( 0 );
   } );
 } );

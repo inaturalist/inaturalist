@@ -71,7 +71,7 @@
                   %iframe{src: announcement_url( announcement, body: true ), style: "width: 100%; border: 0;"}
                   %p
                     = link_to "View in new window", announcement_url( announcement, body: true ), class: "readmore"
-                - elsif announcement.placement === "users/dashboard#sidebar"
+                - elsif announcement.placement.end_with?( "sidebar" )
                   %div.sidebar-body
                     = render "announcements/announcement", announcement: announcement, preview: true
                 - else
