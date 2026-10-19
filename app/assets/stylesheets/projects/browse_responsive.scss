@@ -1,0 +1,75 @@
+@import "../colors";
+@import "../breakpoints";
+@import "../shared/responsive/project_card_grid";
+@import "../shared/responsive/project_search";
+
+#header {
+  margin-bottom: 0;
+}
+
+#projects-browse {
+  .browse-content {
+    @include container-padding( 1170px );
+  }
+
+  .browse-top,
+  .browse-main {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .browse-top {
+    background-color: white;
+    border-bottom: 1px solid $border-grey;
+  }
+
+  .browse-main {
+    background-color: $page-background-grey;
+  }
+
+  .browse-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 5px 15px;
+
+    .back-link {
+      flex-basis: 100%;
+    }
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .browse-tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 20px;
+    margin-top: 20px;
+
+    .project-order {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      label {
+        margin: 0;
+        font-weight: normal;
+        white-space: nowrap;
+      }
+    }
+
+    .btn-inat {
+      margin-left: auto;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+}

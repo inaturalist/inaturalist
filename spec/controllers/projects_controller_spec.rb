@@ -323,3 +323,45 @@ describe ProjectsController, "index hero" do
     expect( response.body ).not_to have_tag( ".hero-feature" )
   end
 end
+
+describe ProjectsController, "browse" do
+  render_views
+  elastic_models( Project )
+
+  let!( :project ) { Project.make! }
+
+  it "renders the legacy grid" do
+    get :browse
+    expect( response ).to be_successful
+    expect( response.body ).not_to have_tag( ".ProjectCardGrid" )
+  end
+
+  describe "for a responsive-global member" do
+    let( :user ) { User.make!( test_groups: "responsive-global" ) }
+
+    before do
+      sign_in user
+      get :browse
+    end
+
+    it "renders the responsive variant in the bootstrap layout" do
+      expect( request.variant ).to include( :responsive )
+      expect( response ).to render_template( layout: "bootstrap" )
+    end
+
+    it "offers the responsive test group toggle" do
+      expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
+    end
+
+    it "renders a thumbnail card per project" do
+      expect( response.body ).to have_tag( ".ProjectCardGrid .thumbnail", count: 1 )
+      expect( response.body ).to have_tag( ".ProjectCardGrid a", with: { href: project_path( project ) } )
+    end
+
+    it "does not use Blueprint" do
+      expect( response.body ).not_to match( /blueprint/ )
+      expect( response.body ).not_to have_tag( "[class*='span-']" )
+      expect( response.body ).not_to have_tag( ".column" )
+    end
+  end
+end

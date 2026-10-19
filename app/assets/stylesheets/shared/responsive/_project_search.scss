@@ -1,0 +1,27 @@
+@import "../../breakpoints";
+
+.project-search {
+  display: flex;
+  width: 300px;
+
+  @media ( max-width: $md-max ) {
+    width: 100%;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-right: 0px;
+    border-radius: 4px 0 0 4px;
+  }
+
+  button {
+    border-radius: 0 4px 4px 0;
+  }
+}

@@ -181,9 +181,10 @@ class ProjectsController < ApplicationController
       sort: sort,
       page: params[:page]
     )
+    @test_group_toggle = "responsive-global"
 
     respond_to do |format|
-      format.html
+      format.html { render layout: "bootstrap" if request.variant.responsive? }
     end
   end
 

@@ -1,0 +1,41 @@
+- content_for :title do
+  = t(:browse_projects)
+  - if @projects.current_page > 1
+    = "(page #{@projects.current_page})"
+  - @title = t(:browse_projects)
+- content_for :extracss do
+  = stylesheet_link_tag "projects/browse_responsive"
+
+#projects-browse
+  .browse-top
+    .browse-content
+      .browse-header
+        = link_to t(:back_to_projects), projects_path, class: "back-link"
+        - if @place
+          - place_name = t( "places_name.#{@place.name.parameterize.underscore}", default: @place.name )
+          - everywhere = t( :everywhere, default: "everywhere" )
+          %h2= t :projects_from_place, place: place_name, vow_or_con: place_name[0].downcase
+          = link_to t( :view_projects_from_place, place: everywhere, vow_or_con: everywhere[0].downcase ), url_for_params( everywhere: true )
+        - elsif @site_place
+          - site_place_name = t( "places_name.#{@site_place.name.parameterize.underscore}", default: @site_place.name )
+          %h2= t :browse_projects
+          = link_to t( :view_projects_from_place, place: site_place_name, vow_or_con: site_place_name[0].downcase ), url_for_params( everywhere: false )
+        - else
+          %h2= t( :browse_projects ).titleize
+      .browse-tools
+        = form_tag( project_search_path, method: :get, class: "project-search" ) do
+          %input{ name: "q", type: "text", placeholder: t(:search) }
+          %button.btn.btn-primary{ type: "submit" }=t :go
+        = form_tag url_for, method: :get, class: "project-order" do
+          = label_tag :order, t(:order_by)
+          = select_tag :order, options_for_select( ProjectsController::ORDERS.map {| o | [t( o, default: o ).downcase, o] }, @order ), class: "form-control", onchange: "this.form.submit()"
+        = link_to t(:start_a_new_project), new_project_path, class: "btn btn-primary btn-inat"
+  .browse-main
+    .browse-content
+      - if @projects.blank?
+        .nocontent= t :no_projects_yet
+      - else
+        .ProjectCardGrid
+          - @projects.each do |project|
+            = render "thumbnail", project: project
+      = will_paginate @projects, renderer: INatLinkRenderer, skip_right: true

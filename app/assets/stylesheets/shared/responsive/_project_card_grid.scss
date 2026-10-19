@@ -1,0 +1,72 @@
+@import "../../colors";
+@import "../../breakpoints";
+
+.ProjectCardGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px 20px;
+  margin: 20px 0;
+
+  @media ( min-width: $sm ) {
+    grid-template-columns: repeat( 2, 1fr );
+    row-gap: 40px;
+  }
+  @media ( min-width: $md ) { grid-template-columns: repeat( 3, 1fr ); }
+  @media ( min-width: $lg ) { grid-template-columns: repeat( 4, 1fr ); }
+
+  .thumbnail {
+    position: relative;
+    margin: 0;
+    font-size: 16px;
+
+    // Must outrank `.bootstrap .thumbnail.borderless { border: 0 }` from bootstrap-inat
+    &.borderless {
+      border: 1px solid $border-grey;
+    }
+
+    .photo {
+      display: block;
+      height: 100px;
+      background-color: #aaa;
+      background-image: url( image_path( "project_blank_banner_bg.png" ) );
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    a {
+      color: black;
+      overflow: hidden;
+      height: 44px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      overflow-wrap: anywhere;
+    }
+
+    .project-icon {
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 80px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background-size: cover;
+      background-color: $border-grey;
+      border: 2px solid #f8f8f8;
+      box-shadow: 0 0 0 1px #ccc;
+
+      i {
+        font-size: 20px;
+        color: white;
+      }
+    }
+
+    .caption {
+      padding: 20px 70px 20px 20px;
+    }
+  }
+}
