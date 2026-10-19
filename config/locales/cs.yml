@@ -758,9 +758,21 @@ cs:
     ve věku nejméně 2 měsíců a musí mít za sebou alespoň 10 let <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">zlepšení identifikace</a> v posledním měsíci. Můžeme požádat o následnou kontrolu
     otázky týkající se vašeho plánu a vyhrazujeme si právo odmítnout žádosti z jakéhokoli důvodu.
+  app_owner_application_about_p2_2_html: |
+    Od roku 2022 vyžadujeme ruční schválení u uživatelů, kteří chtějí vytvářet API klienty.
+    Chcete-li vytvářet aplikace třetích stran, musíte nejprve podat žádost o status
+    „vlastníka aplikace“. V této žádosti byste měli popsat funkčnost navrhované aplikace
+    a způsob, jakým ji plánujete využívat. Abyste mohli žádost podat, musí být váš účet starý alespoň 2 měsíce a musí mít za poslední měsíc na kontě alespoň 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">vylepšení identifikací</a>
+    <i>pro ostatní uživatele</i> za poslední měsíc. Můžeme vám položit doplňující otázky ohledně vašeho plánu
+    a vyhrazujeme si právo žádosti z jakéhokoli důvodu zamítnout.
   app_owner_application_inelligible: |
     Aby bylo možné podat žádost, musí být váš účet nejméně 2 měsíce starý a
     musí za poslední měsíc zlepšit aspoň 10 identifikací.
+  app_owner_application_inelligible2_html: |
+    Pokud chcete přihlásit aplikaci, musí být váš účet starý alespoň 2 měsíce a musíte provést alespoň 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">vylepšených identifikací</a>
+    <i>pro ostatní uživatele</i> za poslední měsíc.
   app_owner_application_fields_explanation_html: Popište funkci, kterou bude mít aplikace a jak ji plánujete využívat.
   app_owner_application_success: Žádost vlastníka aplikace byla odeslána
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -967,6 +979,9 @@ cs:
     other: |
       Na základě vzorku %{percent} % těchto ID odhadujeme, že to povede
       k <strong>%{count} nezamýšleným neshodám </strong> s ID %{child}.
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Dá se komunitní taxon zlepšit na základě dostupných důkazů?
   batch: Série
   batch_edit: Upravit sérii
   #Where x is the title of a list of taxa
@@ -1462,12 +1477,18 @@ cs:
   couldnt_change_your_password: "Nelze změnit vaše heslo: %{e}"
   couldnt_find_a_user_matching_x_param: "Nebyl nalezen odpovídající uživatel %{id}"
   couldnt_find_that_taxon: Tento taxon nebyl nalezen.
+  #Sort option allowing users to sort results by count of chosen attribute from highest to lowest.
+  count_descending: Seřadit sestupně
+  #Sort option allowing users to sort results by count of chosen attribute from lowest to highest.
+  count_ascending: Seřadit vzestupně
   create: Vytvořit
   create_a_guide: Vytvořit průvodce
   create_a_new_field: Vytvořit nové pole
   create_a_new_place: Vytvořit nové místo
   create_a_new_taxon: Vytvořit nový taxon
   create_a_query: Vytvořit dotaz
+  #Button on announcement show page to duplicate the announcement as a linked targeted variant
+  create_a_targeted_variant: Vytvořit cílenou variantu
   create_an_account: Vytvořit účet
   create_an_atlas: Vytvořit atlas
   create_export: Vytvořit export
@@ -1491,6 +1512,7 @@ cs:
   curating: Spravování
   curation: Spravování
   curator: Kurátor
+  curators_with_most_ids_of_the_input_taxon: "Kurátoři s největším počtem ID daného taxonu"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist kurátoři stránek jsou důvěryhodní dobrovolníci, kteří mají možnost
