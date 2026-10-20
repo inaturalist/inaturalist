@@ -2,7 +2,8 @@ import { request } from "@playwright/test";
 import { envConfig } from "../shared/env.config";
 
 /**
- * Aborts the suite before any tests run if the Rails server isn't in test mode.
+ * Aborts the suite before any tests run if the Rails server isn't in test mode,
+ * then resets the test DB and ES indexes, which other local suites share.
  */
 async function globalSetup() {
   const context = await request.newContext( { baseURL: envConfig.baseUrl } );
@@ -24,6 +25,15 @@ async function globalSetup() {
         `Rails server is running in "${railsEnv}" mode. ` +
         `E2E tests must target a test-mode server to avoid corrupting real data.\n\n` +
         `Restart with:  RAILS_ENV=test bundle exec rails server -p 3001\n`
+      );
+    }
+    const resetResponse = await context.post( "/__e2e__/command", {
+      data: { name: "reset_test_state" }
+    } );
+    if ( !resetResponse.ok() ) {
+      throw new Error(
+        `Failed to reset the test DB and ES indexes (HTTP ${resetResponse.status()}): ` +
+        `${await resetResponse.text()}`
       );
     }
   } finally {

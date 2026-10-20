@@ -4,6 +4,7 @@ require "database_cleaner-active_record"
 require "machinist/active_record"
 require "faker"
 require Rails.root.join( "spec", "blueprints" )
+require Rails.root.join( "spec", "helpers", "elasticsearch_helpers" )
 
 # Adapter that lets cypress-on-rails' SmartFactoryWrapper drive Machinist blueprints.
 module MachinistFactory
