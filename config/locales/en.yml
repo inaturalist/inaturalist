@@ -2282,8 +2282,18 @@ en:
   favorites: "Favorites"
   # Heading of the admin feature flags page and the admin nav link to it
   feature_flags: Feature flags
+  # Note under a flag's kind on the admin feature flags page when the flag assigns app users by their app installation rather than their account, so logging in does not change it
+  feature_flags_by_installation: Bucketed by app installation
   # Label shown before the current admin's on/off value for a flag on the admin feature flags page
   feature_flags_enabled_for_you: "Enabled for you:"
+  # Label before the on/off value or variant a logged-out mobile app installation would get, in a column of the admin feature flags page
+  feature_flags_for_installation: "This installation, logged out:"
+  # Help text under the app installation ID field on the admin feature flags page
+  feature_flags_installation_id_help: Paste an app installation ID (the X-Installation-ID header) to see what that installation would get while logged out.
+  # Label for a text field on the admin feature flags page where an admin enters a mobile app installation ID
+  feature_flags_installation_id_label: App installation ID
+  # Warning on the admin feature flags page when the entered app installation ID is not a UUID
+  feature_flags_invalid_installation_id: That is not a valid installation ID. Installation IDs are UUIDs.
   # Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
   feature_flags_kind_client: Client-visible flag
   # Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
@@ -2298,6 +2308,8 @@ en:
   feature_flags_not_enrolled: not enrolled
   # Intro text on the admin feature flags page, above a table listing every flag with the current admin's own value
   feature_flags_page_description: Every feature flag and experiment, resolved for your account. Create, enable, and roll out flags in the management UI.
+  # Button on the admin feature flags page that shows flag values for the entered app installation ID
+  feature_flags_preview: Preview
   # Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
   feature_flags_your_variant: "Your variant in %{experiment}:"
   feature_this_project_: "Feature This Project"

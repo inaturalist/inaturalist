@@ -29,7 +29,9 @@ end
 Flipper::UI.configure do | config |
   config.banner_text = "#{Rails.env} — flag changes take effect on the next request. " \
     "Name a flag <code>client_…</code> to send it to web and mobile, <code>exp_…</code> to run a " \
-    "control/treatment experiment; any other name is read by server code only."
+    "control/treatment experiment; any other name is read by server code only. Add " \
+    "<code>install_</code> after either prefix (<code>exp_install_…</code>) to bucket by app installation, so " \
+    "logged-out app users are included and keep their result after logging in."
   config.banner_class = "danger"
 
   config.descriptions_source = ->( keys ) { keys.index_with {| key | FeatureFlagging.description_for( key ) } }

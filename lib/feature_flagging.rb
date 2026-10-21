@@ -6,14 +6,23 @@ require "digest"
 #   FeatureFlagging.enabled?( :some_flag, current_user )
 #   FeatureFlagging.flags_for( current_user )       # => { client_some_flag: false }
 #   FeatureFlagging.variant( :some_experiment, current_user )  # => "treatment"
-# Flags are created at runtime in Flipper::UI; the key prefix decides exposure (see kind_of).
+#   FeatureFlagging.flags_for( current_user, installation_id: request.headers["X-Installation-ID"] )
+# Flags are created at runtime in Flipper::UI; the key prefix decides exposure (see kind_of)
+# and install_ after it buckets by app installation instead of user (see install_scoped?).
 module FeatureFlagging
   # client_* flags are exposed through GET /feature_flags; other names stay server-side.
   CLIENT_PREFIX = "client_"
   # exp_<name> gates enrollment in experiment <name>.
   EXPERIMENT_PREFIX = "exp_"
+  # client_install_* / exp_install_* bucket by installation, so logging in keeps the assignment.
+  INSTALL_MARKER = "install_"
+  # Apps send a uuid; anything else is ignored rather than becoming an actor.
+  INSTALLATION_ID_PATTERN = /\A\h{8}-\h{4}-\h{4}-\h{4}-\h{12}\z/
   # Fixed equal split; changing order or length reshuffles every actor.
   VARIANTS = %w(control treatment).freeze
+
+  # The identities a request can bucket by; each key uses exactly one (see actor_for_key).
+  Actors = Struct.new( :user, :installation )
 
   # Cache TTL bounds staleness for raw SQL writes or lagging replica reads.
   CACHE_TTL = 10
@@ -46,6 +55,19 @@ module FeatureFlagging
       end
     end
 
+    # True for client_install_<name> and exp_install_<name>; case-sensitive like kind_of.
+    def install_scoped?( key )
+      prefix = { client: CLIENT_PREFIX, experiment: EXPERIMENT_PREFIX }[kind_of( key )]
+      return false unless prefix
+
+      rest = key.to_s.delete_prefix( prefix )
+      rest.start_with?( INSTALL_MARKER ) && rest.length > INSTALL_MARKER.length
+    end
+
+    def valid_installation_id?( installation_id )
+      installation_id.is_a?( String ) && INSTALLATION_ID_PATTERN.match?( installation_id )
+    end
+
     def experiment_name( key )
       key.to_s.delete_prefix( EXPERIMENT_PREFIX ).to_sym
     end
@@ -64,7 +86,7 @@ module FeatureFlagging
 
     # Shown in Flipper::UI so admins can see what a prefix does.
     def description_for( key )
-      case kind_of( key )
+      description = case kind_of( key )
       when :client
         "Client-visible flag: sent to web and apps as flags.#{key}"
       when :experiment
@@ -73,27 +95,29 @@ module FeatureFlagging
       else
         "Server-only flag: read by Rails code only"
       end
+      install_scoped?( key ) ? "#{description}; buckets by app installation, logged out or in" : description
     end
 
     # actor: a User, nil, or anything else responding to #flipper_id
-    def enabled?( key, actor = nil )
+    # installation_id: the app's X-Installation-ID; only install_ flags use it
+    def enabled?( key, actor = nil, installation_id: nil )
       key = key.to_sym
       unless exists?( key )
         warn_unknown( key )
         return false
       end
 
-      evaluate( key, resolve_actor( actor ) )
+      evaluate( key, resolve_actors( actor, installation_id ) )
     end
 
     # Client flag map for GET /feature_flags.
-    def flags_for( actor = nil )
-      resolved = resolve_actor( actor )
-      client_keys.to_h {| key | [key.to_sym, evaluate( key.to_sym, resolved )] }
+    def flags_for( actor = nil, installation_id: nil )
+      actors = resolve_actors( actor, installation_id )
+      client_keys.to_h {| key | [key.to_sym, evaluate( key.to_sym, actors )] }
     end
 
     # MD5 bucketing ensures independent experiment assignments; CRC32 linearity fails.
-    def variant( experiment, actor = nil )
+    def variant( experiment, actor = nil, installation_id: nil )
       experiment = experiment.to_sym
       flag = experiment_flag( experiment )
       unless exists?( flag )
@@ -101,15 +125,15 @@ module FeatureFlagging
         return nil
       end
 
-      variant_for( experiment, resolve_actor( actor ) )
+      variant_for( experiment, resolve_actors( actor, installation_id ) )
     end
 
     # Variant map keyed by experiment name for GET /feature_flags.
-    def experiments_for( actor = nil )
-      resolved = resolve_actor( actor )
+    def experiments_for( actor = nil, installation_id: nil )
+      actors = resolve_actors( actor, installation_id )
       experiment_keys.to_h do | key |
         name = experiment_name( key )
-        [name, variant_for( name, resolved )]
+        [name, variant_for( name, actors )]
       end
     end
 
@@ -127,11 +151,13 @@ module FeatureFlagging
       feature_keys.select {| key | kind_of( key ) == :experiment }
     end
 
-    def variant_for( experiment, resolved_actor )
-      return nil if resolved_actor.nil?
-      return nil unless evaluate( experiment_flag( experiment ), resolved_actor )
+    def variant_for( experiment, actors )
+      flag = experiment_flag( experiment )
+      actor = actor_for_key( flag, actors )
+      return nil if actor.nil?
+      return nil unless evaluate( flag, actors )
 
-      VARIANTS[bucket( "#{experiment}:#{resolved_actor.flipper_id}" ) % VARIANTS.size]
+      VARIANTS[bucket( "#{experiment}:#{actor.flipper_id}" ) % VARIANTS.size]
     end
 
     # MD5 bucket stable across releases for analysis.
@@ -153,15 +179,36 @@ module FeatureFlagging
         "create it at /admin/feature_flags/flipper"
     end
 
-    def evaluate( key, resolved_actor )
-      if resolved_actor
-        Flipper.enabled?( key, resolved_actor )
+    def evaluate( key, actors )
+      actor = actor_for_key( key, actors )
+      if actor
+        Flipper.enabled?( key, actor ) || user_targeted?( key, actor )
       else
         Flipper.enabled?( key )
       end
     rescue StandardError => e
       Rails.logger.error "[FeatureFlagging] #{key} evaluation failed, treating as off: #{e.message}"
       false
+    end
+
+    # Passing the user alongside the installation would change the percentage hash at login,
+    # so install_ flags evaluate the installation alone and check the user's actor gate here.
+    def user_targeted?( key, actor )
+      return false unless actor.is_a?( FeatureFlagging::InstallationActor ) && actor.user
+
+      Flipper[key].actors_value.include?( actor.user.flipper_id )
+    end
+
+    def resolve_actors( actor, installation_id )
+      user = resolve_actor( actor )
+      return Actors.new( user, nil ) unless valid_installation_id?( installation_id )
+
+      # Downcased so a pasted uppercase id lands in the same bucket as the app's.
+      Actors.new( user, FeatureFlagging::InstallationActor.new( installation_id.downcase, user ) )
+    end
+
+    def actor_for_key( key, actors )
+      install_scoped?( key ) ? actors.installation : actors.user
     end
 
     # Logged-out mobile shares User(id: -1); guard prevents percentage gates misfire.
