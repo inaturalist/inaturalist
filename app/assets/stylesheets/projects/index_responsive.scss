@@ -1,6 +1,8 @@
 @import "index";
 @import "../breakpoints";
 @import "../shared/responsive/carousel";
+@import "../shared/responsive/project_card_grid";
+@import "../shared/responsive/project_search";
 
 $max-width: 1170px;
 
@@ -164,33 +166,7 @@ $max-width: 1170px;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;
-  
-    .project-search {
-      display: flex;
-      width: 300px;
 
-      @media ( max-width: $md-max ) {
-        width: 100%;
-      }
-    
-      input {
-        flex: 1;
-        min-width: 0;
-        height: 34px;
-        padding: 6px 12px;
-        font-size: 14px;
-        color: #555;
-        background-color: white;
-        border: 1px solid #ccc;
-        border-right: 0px;
-        border-radius: 4px 0 0 4px;
-      }
-
-      button {
-        border-radius: 0 4px 4px 0;
-      }
-    }
-    
     .ProjectsMenu {
       position: relative;
     
@@ -280,23 +256,5 @@ $max-width: 1170px;
 #main-container {
   .projects-content {
     @include container-padding( $max-width );
-  }
-
-  .ProjectCardGrid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px 20px;
-    margin: 20px 0;
-
-    .thumbnail {
-      margin: 0;
-    }
-
-    @media ( min-width: $sm ) {
-      grid-template-columns: repeat( 2, 1fr );
-      row-gap: 40px;
-    }
-    @media ( min-width: $md ) { grid-template-columns: repeat( 3, 1fr ); }
-    @media ( min-width: $lg ) { grid-template-columns: repeat( 4, 1fr ); }
   }
 }
