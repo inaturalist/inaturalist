@@ -1,7 +1,5 @@
 - content_for :title do
   = t(:browse_projects)
-  - if @projects.current_page > 1
-    = "(page #{@projects.current_page})"
   - @title = t(:browse_projects)
 - content_for :extracss do
   = stylesheet_link_tag "projects/browse_responsive"
@@ -15,11 +13,15 @@
           - place_name = t( "places_name.#{@place.name.parameterize.underscore}", default: @place.name )
           - everywhere = t( :everywhere, default: "everywhere" )
           %h2= t :projects_from_place, place: place_name, vow_or_con: place_name[0].downcase
-          = link_to t( :view_projects_from_place, place: everywhere, vow_or_con: everywhere[0].downcase ), url_for_params( everywhere: true )
+          %span
+            = surround "(", ")" do
+              = link_to t( :view_projects_from_place, place: everywhere, vow_or_con: everywhere[0].downcase ), url_for_params( everywhere: true, without: :place_id )
         - elsif @site_place
           - site_place_name = t( "places_name.#{@site_place.name.parameterize.underscore}", default: @site_place.name )
           %h2= t :browse_projects
-          = link_to t( :view_projects_from_place, place: site_place_name, vow_or_con: site_place_name[0].downcase ), url_for_params( everywhere: false )
+          %span
+            = surround "(", ")" do
+              = link_to t( :view_projects_from_place, place: site_place_name, vow_or_con: site_place_name[0].downcase ), url_for_params( everywhere: false )
         - else
           %h2= t( :browse_projects ).titleize
       .browse-tools

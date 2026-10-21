@@ -12,6 +12,10 @@
   margin: 0;
 }
 
+#bodywrapper {
+  margin-bottom: -260px;
+}
+
 #projects-browse {
   font-size: 14px;
 
@@ -41,6 +45,11 @@
     align-items: baseline;
     gap: 5px 15px;
 
+    .back.crumb,
+    > span {
+      font-size: 12px;
+    }
+
     .back.crumb {
       flex-basis: 100%;
     }
@@ -55,6 +64,7 @@
   .browse-tools {
     display: flex;
     flex-wrap: wrap;
+    justify-content: right;
     align-items: center;
     gap: 10px 20px;
     margin-top: 20px;

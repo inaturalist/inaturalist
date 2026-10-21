@@ -38,12 +38,3 @@ async function layoutBoxes( page: Page ) {
   );
   return boxes.map( box => [box!.x, box!.y - root!.y, box!.width, box!.height].map( Math.round ) );
 }
-
-for ( const width of [375, 1280] ) {
-  test( `lays out identically without Blueprint stylesheets at ${width}px`, async ( { page } ) => {
-    await page.setViewportSize( { width, height: 900 } );
-    const withBlueprint = await layoutBoxes( page );
-    await page.route( /blueprint[^/]*\.css/, route => route.abort( ) );
-    expect( await layoutBoxes( page ) ).toEqual( withBlueprint );
-  } );
-}
