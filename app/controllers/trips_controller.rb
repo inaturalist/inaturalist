@@ -132,6 +132,7 @@ class TripsController < ApplicationController
           @target_list_set << { taxon: tlt, observations: tlt_observations }
         end
         @responsive = true
+        render "posts/show"
       end
       format.json do
         @trip = Trip.includes(:trip_taxa => {:taxon => [:taxon_names, {:taxon_photos => :photo}]}, :trip_purposes => {}).where(:id => @trip.id).first
