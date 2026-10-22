@@ -236,13 +236,12 @@ describe UsersController, "index" do
     expect( response ).to be_successful
   end
 
-  it "renders the responsive variant for a responsive-global member" do
-    user = User.make!
-    user.update_column( :test_groups, "responsive-global" )
-    sign_in user
+  it "renders responsively without a test group" do
     get :index
     expect( response ).to be_successful
-    expect( request.variant ).to include( :responsive )
+    expect( assigns( :responsive ) ).to be true
+    expect( request.variant ).to be_blank
+    expect( assigns( :test_group_toggle ) ).to be_nil
   end
 end
 
@@ -255,20 +254,12 @@ describe UsersController, "followers and following" do
       let( :subject_user ) { friendship.public_send( subject_role ) }
       let( :listed_user ) { friendship.public_send( listed_role ) }
 
-      it "renders stacked UserWithIcon cards for a responsive-global member" do
-        viewer = User.make!
-        viewer.update_column( :test_groups, "responsive-global" )
-        sign_in viewer
-        get action, params: { login: subject_user.login }
-        expect( response.body ).to have_css( "#friendship-users .UserWithIcon .title a", text: listed_user.login )
-        expect( response.body ).not_to have_css( "table.table" )
-      end
-
-      it "renders the legacy table outside the test group" do
+      it "renders stacked UserWithIcon cards without a test group" do
         sign_in User.make!
         get action, params: { login: subject_user.login }
-        expect( response.body ).to have_css( "table.table a", text: listed_user.login )
-        expect( response.body ).not_to have_css( ".UserWithIcon" )
+        expect( assigns( :responsive ) ).to be true
+        expect( response.body ).to have_css( "#friendship-users .UserWithIcon .title a", text: listed_user.login )
+        expect( response.body ).not_to have_css( "table.table" )
       end
     end
   end
@@ -283,13 +274,13 @@ describe UsersController, "leaderboard" do
     expect( response ).to be_successful
   end
 
-  it "renders the responsive variant for a responsive-global member" do
-    user = User.make!
-    user.update_column( :test_groups, "responsive-global" )
-    sign_in user
+  it "renders responsively without a test group" do
+    sign_in User.make!
     get :leaderboard
     expect( response ).to be_successful
-    expect( request.variant ).to include( :responsive )
+    expect( assigns( :responsive ) ).to be true
+    expect( request.variant ).to be_blank
+    expect( assigns( :test_group_toggle ) ).to be_nil
   end
 end
 
