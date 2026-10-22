@@ -1,4 +1,3 @@
-@import "../../colors";
 @import "../../breakpoints";
 
 .project-search {
@@ -17,7 +16,7 @@
     margin: 0;
     padding: 6px 12px;
     font-size: 14px;
-    color: $text-greyer;
+    color: #555;
     background-color: white;
     border: 1px solid #ccc;
     border-right: 0px;
