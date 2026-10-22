@@ -239,56 +239,54 @@ describe PostsController, "show" do
 
     let( :journal_post ) { Post.make!( parent: user ) }
 
-    it "renders the legacy sidenav for non-members" do
+    it "renders the responsive layout for a signed-in user" do
+      sign_in user
       get :show, params: { id: journal_post.id }
-      expect( request.variant ).not_to include( :responsive )
-      expect( response.body ).to include "id=\"sidenav\""
-      expect( response.body ).to include "href=\"#summary\""
+      expect( assigns( :responsive ) ).to be_truthy
+      expect( Nokogiri::HTML( response.body ).css( ".post-layout" ) ).not_to be_empty
     end
 
-    describe "for a responsive-global member" do
-      before do
-        user.update_column( :test_groups, "responsive-global" )
-        sign_in user
-      end
+    it "renders the responsive layout for a logged-out viewer" do
+      get :show, params: { id: journal_post.id }
+      expect( assigns( :responsive ) ).to be_truthy
+      expect( Nokogiri::HTML( response.body ).css( ".post-layout" ) ).not_to be_empty
+    end
 
-      it "drops the summary and description links" do
-        get :show, params: { id: journal_post.id }
-        expect( request.variant ).to include( :responsive )
-        expect( response.body ).not_to include "href=\"#summary\""
-        expect( response.body ).not_to include "href=\"#description\""
-      end
+    it "drops the summary and description links" do
+      get :show, params: { id: journal_post.id }
+      expect( response.body ).not_to include "href=\"#summary\""
+      expect( response.body ).not_to include "href=\"#description\""
+    end
 
-      it "renders the comments link with its count in both the side and inline navs" do
-        2.times { Comment.make!( parent: journal_post ) }
-        get :show, params: { id: journal_post.id }
-        html = Nokogiri::HTML( response.body )
-        %w(.post-nav-side .post-nav-inline).each do | nav |
-          expect( html.css( "#{nav} a[href='#comments']" ).text ).to eq "2 comments"
-        end
+    it "renders the comments link with its count in both the side and inline navs" do
+      2.times { Comment.make!( parent: journal_post ) }
+      get :show, params: { id: journal_post.id }
+      html = Nokogiri::HTML( response.body )
+      %w(.post-nav-side .post-nav-inline).each do | nav |
+        expect( html.css( "#{nav} a[href='#comments']" ).text ).to eq "2 comments"
       end
+    end
 
-      it "omits the navs when there is nothing to link to" do
-        get :show, params: { id: journal_post.id }
-        html = Nokogiri::HTML( response.body )
-        expect( html.css( "a[href='#comments']" ) ).to be_empty
-        expect( html.css( ".post-nav" ) ).to be_empty
-      end
+    it "omits the navs when there is nothing to link to" do
+      get :show, params: { id: journal_post.id }
+      html = Nokogiri::HTML( response.body )
+      expect( html.css( "a[href='#comments']" ) ).to be_empty
+      expect( html.css( ".post-nav" ) ).to be_empty
+    end
 
-      it "links to observations when the post has some" do
-        journal_post.observations << Observation.make!( user: user )
-        get :show, params: { id: journal_post.id }
-        html = Nokogiri::HTML( response.body )
-        expect( html.css( ".post-nav-inline a[href='#observations']" ) ).not_to be_empty
-      end
+    it "links to observations when the post has some" do
+      journal_post.observations << Observation.make!( user: user )
+      get :show, params: { id: journal_post.id }
+      html = Nokogiri::HTML( response.body )
+      expect( html.css( ".post-nav-inline a[href='#observations']" ) ).not_to be_empty
+    end
 
-      it "renders the responsive variant for a blog post" do
-        site_post = Post.make!( parent: Site.make!, user: user )
-        Comment.make!( parent: site_post )
-        get :show, params: { id: site_post.id }
-        expect( response ).to be_successful
-        expect( Nokogiri::HTML( response.body ).css( ".post-nav-inline" ) ).not_to be_empty
-      end
+    it "renders the responsive layout for a blog post" do
+      site_post = Post.make!( parent: Site.make!, user: user )
+      Comment.make!( parent: site_post )
+      get :show, params: { id: site_post.id }
+      expect( response ).to be_successful
+      expect( Nokogiri::HTML( response.body ).css( ".post-nav-inline" ) ).not_to be_empty
     end
   end
 end

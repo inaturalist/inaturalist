@@ -18,21 +18,10 @@ describe TripsController, "show" do
     expect( response ).to be_successful
   end
 
-  describe "for a responsive-global member" do
-    before do
-      user.update_column( :test_groups, "responsive-global" )
-      sign_in user
-    end
-
-    it "renders a trip with no radius" do
-      get :show, params: { id: trip.id }
-      expect( request.variant ).to include( :responsive )
-      expect( response ).to be_successful
-    end
-
-    it "offers the responsive test group toggle" do
-      get :show, params: { id: trip.id }
-      expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
-    end
+  it "renders the responsive layout for a signed-in user" do
+    sign_in user
+    get :show, params: { id: trip.id }
+    expect( assigns( :responsive ) ).to be_truthy
+    expect( Nokogiri::HTML( response.body ).css( ".post-layout" ) ).not_to be_empty
   end
 end

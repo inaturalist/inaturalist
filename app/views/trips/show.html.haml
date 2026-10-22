@@ -4,7 +4,7 @@
   = stylesheet_link_tag "trips/show"
 - content_for :extrajs do
   :javascript
-    $('.observationcontrols').observationControls()
+    $('.observationcontrols').observationControls({ div: $('#observations .observations') })
     $("#comment_body").textcompleteUsers( );
     $( ".emailConfirmationModalTrigger, #flag_this, a.flaglink" ).click( function( e ) {
       if ( $( "#emailConfirmationModalButton.lacking-interaction" ).length === 1 ) {
@@ -24,10 +24,10 @@
   %meta{ name: "DC.creator", content: @trip.user.published_name }
   %meta{ name: "DC.publisher", content: @site.name }
   %meta{ name: "DCTERMS.issued", content: @trip.published_at }
-.container
+.post-page
   - if @trip.published_at.nil?
     .alert.alert-warning.upstacked= t(:preview)
-  %ul.breadcrumb.clearfix
+  %ul.breadcrumb.post-breadcrumb
     %li
       - if @trip.parent.is_a?(Project)
         - if @trip.parent.is_new_project?
@@ -46,7 +46,7 @@
       - if @trip.is_a?(Trip)
         = surround '(', ')' do
           =t :trip
-    %li.pull-right.prevnext
+    %li.prevnext.post-prevnext
       - if @prev
         = link_to @prev do
           %i.fa.fa-chevron-left
@@ -56,25 +56,29 @@
         = link_to @next do
           = truncate @next.title
           %i.fa.fa-chevron-right
-  .row.upstacked
-    .col-xs-3
-      %ul#sidenav.sidenav.nav.nav-list{:data => {:spy => "affix"}}
-        %li= link_to t(:summary), "#summary"
-        - unless @trip.body.blank?
-          %li= link_to t(:description), "#description"
-        - if @trip.is_a?( Trip ) && !@target_list_set.blank?
-          %li= link_to t( :target_list ), "#target_list"
-        - unless @trip.observations.blank?
-          %li= link_to t(:observations), "#observations"
-        %li= link_to t(:comments), "#comments"
-    .col-xs-9
+  - nav_links = capture do
+    - if @trip.is_a?( Trip ) && !@target_list_set.blank?
+      %li= link_to t( :target_list ), "#target_list"
+    - unless @trip.observations.blank?
+      %li= link_to t(:observations), "#observations"
+    - comments_count = @trip.comments.size
+    - if comments_count.positive?
+      %li= link_to t( :x_comments, count: comments_count ), "#comments"
+  .post-layout.upstacked
+    - if nav_links.present?
+      %nav.post-nav.post-nav-side
+        %ul= nav_links
+    .post-content
       %section{:id => "summary"}
-        - if @trip.editable_by?(current_user)
-          .btn-group.pull-right
+        .post-title-row
+          %h1= @title
+          - if @trip.editable_by?(current_user)
             = link_to @trip.is_a?(Trip) ? edit_trip_path(@trip) : edit_post_path(@trip), :class => "btn btn-default" do
               %i.fa.fa-edit
               = t(:edit)
-        %h1= @title
+        - if nav_links.present?
+          %nav.post-nav.post-nav-inline
+            %ul= nav_links
         - if @trip.is_a?(Trip)
           .subtitle.text-muted
             = l(@trip.start_time, :format => :long) if @trip.start_time
@@ -103,7 +107,7 @@
       - unless @trip.body.blank?
         %section.stacked.post{:id => "description"}
           = formatted_user_text(@trip.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (@trip.preferred_formatting == Post::FORMATTING_NONE))
-          .small.text-muted.stacked
+          .post-attribution.small.text-muted.stacked
             = render "posts/attribution", post: @trip
       - if @trip.is_a?(Trip)
         - unless @target_list_set.blank?
@@ -111,28 +115,23 @@
             %h2
               =t :target_list
               %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => t(:trip_target_list_info), "data-placement" => "top", "data-toggle" => "popover" }
-            - 2.times do |i|
-              - if i==0
-                - st = @target_list_set[0..@target_list_set.count/2]
-              - else
-                - st = @target_list_set[(@target_list_set.count/2+1)..@target_list_set.count]
-              .col-xs-6
-                %ul.taxon_links.plain
-                - for element in st
-                  %li
-                    = render "shared/taxon", :taxon => element[:taxon], :link_url => element[:taxon]
-                    - if element[:observations].count > 0
-                      - element[:observations][0..7].each do |o|
-                        = link_to observation_path( :id => o["id"] )  do
-                          %svg{ :height => "10", :width => "10" }
-                            %title= o["taxon"]["name"]
-                            %circle{ :cx => "5", :cy => "5", :r => "5", :stroke => "black", :stroke-width => "3", :fill => "#337ab7" }
-                      - if element[:observations].count > 8
-                        ="..."
+            %ul.taxon_links.plain.post-target-list
+              - @target_list_set.each do |element|
+                %li
+                  = render "shared/taxon", :taxon => element[:taxon], :link_url => element[:taxon]
+                  - if element[:observations].count > 0
+                    - element[:observations][0..7].each do |o|
+                      = link_to observation_path( :id => o["id"] )  do
+                        %svg{ :height => "10", :width => "10" }
+                          %title= o["taxon"]["name"]
+                          %circle{ :cx => "5", :cy => "5", :r => "5", :stroke => "black", :stroke-width => "3", :fill => "#337ab7" }
+                    - if element[:observations].count > 8
+                      ="..."
       - unless @trip_observations.blank? && @trip.observations.blank?
-        %section{:id => "observations"}
-          .observationcontrols.pull-right
-          %h2=t :observations
+        %section.post-observations{:id => "observations"}
+          .observation-header
+            %h2=t :observations
+            .observationcontrols
           - if @trip.is_a?(Trip)
             .observations.medium.grid
               - compact do
@@ -165,3 +164,4 @@
             = render "subscriptions/subscription", resource: @trip.becomes( Post )
         .upstacked
           = render :partial => "shared/flagging", :locals => { :instance => @post }
+  = render "shared/scroll_to_top"

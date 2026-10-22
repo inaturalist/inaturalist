@@ -122,7 +122,7 @@ class PostsController < ApplicationController
           helpers.image_url( @post.parent.logo_square.url )
         end
         @shareable_description = helpers.shareable_description( @post.body ) if @post.body
-        @test_group_toggle = "responsive-global"
+        @responsive = true
 
         # TODO: Move from trips to a generic posts/show, or render seperate templates for each type.
         # Using the trips template for all posts is very strange.
