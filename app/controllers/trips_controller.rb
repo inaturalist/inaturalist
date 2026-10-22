@@ -131,7 +131,8 @@ class TripsController < ApplicationController
           tlt_observations ||= []
           @target_list_set << { taxon: tlt, observations: tlt_observations }
         end
-        @test_group_toggle = "responsive-global"
+        @responsive = true
+        render "posts/show"
       end
       format.json do
         @trip = Trip.includes(:trip_taxa => {:taxon => [:taxon_names, {:taxon_photos => :photo}]}, :trip_purposes => {}).where(:id => @trip.id).first
