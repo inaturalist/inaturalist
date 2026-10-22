@@ -344,6 +344,11 @@ describe FeatureFlagging do
       Array.new( count ) { SecureRandom.uuid }
     end
 
+    # What an admin types into Flipper UI's actor field.
+    def installation_actor( id )
+      Flipper::Actor.new( "Installation;#{id}" )
+    end
+
     describe "classification" do
       it "recognizes the install_ marker after the client_ or exp_ prefix" do
         expect( FeatureFlagging.install_scoped?( "client_install_thing" ) ).to be true
@@ -383,9 +388,16 @@ describe FeatureFlagging do
         end
       end
 
-      it "buckets by a pinned flipper_id" do
-        expect( FeatureFlagging::InstallationActor.new( installation_id ).flipper_id ).
-          to eq "Installation;#{installation_id}"
+      it "buckets by pinned flipper_ids" do
+        request = FeatureFlagging::RequestActor.new( actor, installation_id )
+        expect( request.bucketed_by( :installation ).flipper_id ).to eq "Installation;#{installation_id}"
+        expect( request.bucketed_by( :user ).flipper_id ).to eq "User;#{actor.id}"
+        expect( request.flipper_ids ).to eq ["User;#{actor.id}", "Installation;#{installation_id}"]
+      end
+
+      it "has no bucketing actor for a missing identity" do
+        expect( FeatureFlagging::RequestActor.new( nil, installation_id ).bucketed_by( :user ) ).to be_nil
+        expect( FeatureFlagging::RequestActor.new( actor, nil ).bucketed_by( :installation ) ).to be_nil
       end
     end
 
@@ -398,7 +410,7 @@ describe FeatureFlagging do
       end
 
       it "picks up an actor gate on its installation" do
-        Flipper.enable_actor( install_flag, FeatureFlagging::InstallationActor.new( installation_id ) )
+        Flipper.enable_actor( install_flag, installation_actor( installation_id ) )
         expect( FeatureFlagging.enabled?( install_flag, nil, installation_id: installation_id ) ).to be true
         expect( FeatureFlagging.enabled?( install_flag, nil, installation_id: SecureRandom.uuid ) ).to be false
       end
@@ -476,6 +488,64 @@ describe FeatureFlagging do
           expect( FeatureFlagging.variant( experiment, actor, installation_id: id ) ).
             to eq FeatureFlagging.variant( experiment, actor )
         end
+      end
+    end
+
+    # Flipper only sees the key's bucketing id, so the other identity is matched separately.
+    describe "targeting the identity a key does not bucket by" do
+      it "enables a user-scoped flag for a targeted installation, logged in or out" do
+        Flipper.enable_actor( flag, installation_actor( installation_id ) )
+        expect( FeatureFlagging.enabled?( flag, nil, installation_id: installation_id ) ).to be true
+        expect( FeatureFlagging.enabled?( flag, actor, installation_id: installation_id ) ).to be true
+        expect( FeatureFlagging.enabled?( flag, nil, installation_id: SecureRandom.uuid ) ).to be false
+        expect( FeatureFlagging.enabled?( flag, actor ) ).to be false
+      end
+
+      it "enables an install-scoped flag for a targeted user without the app header" do
+        Flipper.enable_actor( install_flag, actor )
+        expect( FeatureFlagging.enabled?( install_flag, actor ) ).to be true
+        expect( FeatureFlagging.flags_for( actor )[install_flag] ).to be true
+        expect( FeatureFlagging.enabled?( install_flag, User.make! ) ).to be false
+      end
+
+      it "enables an install-scoped flag for admins without the app header" do
+        Flipper.enable_group( install_flag, :admins )
+        expect( FeatureFlagging.enabled?( install_flag, make_admin ) ).to be true
+        expect( FeatureFlagging.enabled?( install_flag, actor ) ).to be false
+      end
+
+      it "enrolls a targeted installation in a user experiment but only assigns a variant when signed in" do
+        Flipper.enable_actor( FeatureFlagging.experiment_flag( experiment ), installation_actor( installation_id ) )
+        expect( FeatureFlagging.variant( experiment, nil, installation_id: installation_id ) ).to be_nil
+        assigned = FeatureFlagging.variant( experiment, actor, installation_id: installation_id )
+        expect( FeatureFlagging::VARIANTS ).to include assigned
+        Flipper.enable( FeatureFlagging.experiment_flag( experiment ) )
+        expect( assigned ).to eq FeatureFlagging.variant( experiment, actor )
+      end
+
+      it "enrolls a targeted user in an installation experiment but only assigns a variant with the header" do
+        Flipper.enable_actor( FeatureFlagging.experiment_flag( install_experiment ), actor )
+        expect( FeatureFlagging.variant( install_experiment, actor ) ).to be_nil
+        expect( FeatureFlagging.variant( install_experiment, nil, installation_id: installation_id ) ).to be_nil
+        assigned = FeatureFlagging.variant( install_experiment, actor, installation_id: installation_id )
+        expect( FeatureFlagging::VARIANTS ).to include assigned
+        Flipper.enable( FeatureFlagging.experiment_flag( install_experiment ) )
+        expect( assigned ).to eq FeatureFlagging.variant( install_experiment, nil, installation_id: installation_id )
+      end
+
+      it "enrolls admins in an installation experiment but only assigns a variant with the header" do
+        Flipper.enable_group( FeatureFlagging.experiment_flag( install_experiment ), :admins )
+        admin = make_admin
+        expect( FeatureFlagging.variant( install_experiment, admin ) ).to be_nil
+        expect( FeatureFlagging::VARIANTS ).
+          to include FeatureFlagging.variant( install_experiment, admin, installation_id: installation_id )
+      end
+
+      it "does not let a targeted identity widen a percentage gate" do
+        Flipper.enable_percentage_of_actors( flag, 100 )
+        Flipper.enable_percentage_of_actors( install_flag, 100 )
+        expect( FeatureFlagging.enabled?( flag, nil, installation_id: installation_id ) ).to be false
+        expect( FeatureFlagging.enabled?( install_flag, actor ) ).to be false
       end
     end
 

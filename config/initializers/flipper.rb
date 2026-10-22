@@ -18,7 +18,8 @@ flipper_config.strict = false
 
 flipper_config.log = false
 
-# Duck-typed to avoid loading User at boot (classic autoloader).
+# Duck-typed to avoid loading User at boot (classic autoloader). FeatureFlagging passes group
+# blocks a FeatureFlagging::RequestActor, which exposes #user and #installation_id on every key.
 unless Flipper.group_exists?( :admins )
   Flipper.register( :admins ) do | actor |
     actor.respond_to?( :is_admin? ) && actor.is_admin?

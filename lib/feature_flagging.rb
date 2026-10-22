@@ -21,9 +21,6 @@ module FeatureFlagging
   # Fixed equal split; changing order or length reshuffles every actor.
   VARIANTS = %w(control treatment).freeze
 
-  # The identities a request can bucket by; each key uses exactly one (see actor_for_key).
-  Actors = Struct.new( :user, :installation )
-
   # Cache TTL bounds staleness for raw SQL writes or lagging replica reads.
   CACHE_TTL = 10
 
@@ -107,13 +104,13 @@ module FeatureFlagging
         return false
       end
 
-      evaluate( key, resolve_actors( actor, installation_id ) )
+      evaluate( key, resolve_request( actor, installation_id ) )
     end
 
     # Client flag map for GET /feature_flags.
     def flags_for( actor = nil, installation_id: nil )
-      actors = resolve_actors( actor, installation_id )
-      client_keys.to_h {| key | [key.to_sym, evaluate( key.to_sym, actors )] }
+      request = resolve_request( actor, installation_id )
+      client_keys.to_h {| key | [key.to_sym, evaluate( key.to_sym, request )] }
     end
 
     # MD5 bucketing ensures independent experiment assignments; CRC32 linearity fails.
@@ -125,15 +122,15 @@ module FeatureFlagging
         return nil
       end
 
-      variant_for( experiment, resolve_actors( actor, installation_id ) )
+      variant_for( experiment, resolve_request( actor, installation_id ) )
     end
 
     # Variant map keyed by experiment name for GET /feature_flags.
     def experiments_for( actor = nil, installation_id: nil )
-      actors = resolve_actors( actor, installation_id )
+      request = resolve_request( actor, installation_id )
       experiment_keys.to_h do | key |
         name = experiment_name( key )
-        [name, variant_for( name, actors )]
+        [name, variant_for( name, request )]
       end
     end
 
@@ -151,11 +148,11 @@ module FeatureFlagging
       feature_keys.select {| key | kind_of( key ) == :experiment }
     end
 
-    def variant_for( experiment, actors )
+    def variant_for( experiment, request )
       flag = experiment_flag( experiment )
-      actor = actor_for_key( flag, actors )
+      actor = actor_for_key( flag, request )
       return nil if actor.nil?
-      return nil unless evaluate( flag, actors )
+      return nil unless evaluate( flag, request )
 
       VARIANTS[bucket( "#{experiment}:#{actor.flipper_id}" ) % VARIANTS.size]
     end
@@ -179,36 +176,42 @@ module FeatureFlagging
         "create it at /admin/feature_flags/flipper"
     end
 
-    def evaluate( key, actors )
-      actor = actor_for_key( key, actors )
-      if actor
-        Flipper.enabled?( key, actor ) || user_targeted?( key, actor )
-      else
-        Flipper.enabled?( key )
-      end
+    def evaluate( key, request )
+      actor = actor_for_key( key, request )
+      return true if actor ? Flipper.enabled?( key, actor ) : Flipper.enabled?( key )
+
+      targeted?( key, request, groups_checked: !actor.nil? )
     rescue StandardError => e
       Rails.logger.error "[FeatureFlagging] #{key} evaluation failed, treating as off: #{e.message}"
       false
     end
 
-    # Passing the user alongside the installation would change the percentage hash at login,
-    # so install_ flags evaluate the installation alone and check the user's actor gate here.
-    def user_targeted?( key, actor )
-      return false unless actor.is_a?( FeatureFlagging::InstallationActor ) && actor.user
+    # Passing both identities would change the percentage hash at login, so Flipper only saw the
+    # key's bucketing id; an actor gate or group naming the request's other identity counts too.
+    def targeted?( key, request, groups_checked: )
+      ids = request.flipper_ids
+      return false if ids.empty?
 
-      Flipper[key].actors_value.include?( actor.user.flipper_id )
+      values = Flipper[key].gate_values
+      return true if ids.any? {| id | values.actors.include?( id ) }
+      return false if groups_checked || values.groups.empty?
+
+      context = Flipper::FeatureCheckContext.new(
+        feature_name: key,
+        values: values,
+        actors: [Flipper::Types::Actor.wrap( request )]
+      )
+      Flipper::Gates::Group.new.open?( context )
     end
 
-    def resolve_actors( actor, installation_id )
-      user = resolve_actor( actor )
-      return Actors.new( user, nil ) unless valid_installation_id?( installation_id )
-
+    def resolve_request( actor, installation_id )
       # Downcased so a pasted uppercase id lands in the same bucket as the app's.
-      Actors.new( user, FeatureFlagging::InstallationActor.new( installation_id.downcase, user ) )
+      installation_id = valid_installation_id?( installation_id ) ? installation_id.downcase : nil
+      FeatureFlagging::RequestActor.new( resolve_actor( actor ), installation_id )
     end
 
-    def actor_for_key( key, actors )
-      install_scoped?( key ) ? actors.installation : actors.user
+    def actor_for_key( key, request )
+      request.bucketed_by( install_scoped?( key ) ? :installation : :user )
     end
 
     # Logged-out mobile shares User(id: -1); guard prevents percentage gates misfire.
