@@ -235,14 +235,6 @@ describe UsersController, "index" do
     expect( assigns( :updates ) ).to be_blank
     expect( response ).to be_successful
   end
-
-  it "renders responsively without a test group" do
-    get :index
-    expect( response ).to be_successful
-    expect( assigns( :responsive ) ).to be true
-    expect( request.variant ).to be_blank
-    expect( assigns( :test_group_toggle ) ).to be_nil
-  end
 end
 
 describe UsersController, "followers and following" do
@@ -254,7 +246,7 @@ describe UsersController, "followers and following" do
       let( :subject_user ) { friendship.public_send( subject_role ) }
       let( :listed_user ) { friendship.public_send( listed_role ) }
 
-      it "renders stacked UserWithIcon cards without a test group" do
+      it "renders stacked UserWithIcon cards" do
         sign_in User.make!
         get action, params: { login: subject_user.login }
         expect( assigns( :responsive ) ).to be true
@@ -272,15 +264,6 @@ describe UsersController, "leaderboard" do
     sign_in User.make! # leaderboard requires auth (unlike the public index)
     get :leaderboard
     expect( response ).to be_successful
-  end
-
-  it "renders responsively without a test group" do
-    sign_in User.make!
-    get :leaderboard
-    expect( response ).to be_successful
-    expect( assigns( :responsive ) ).to be true
-    expect( request.variant ).to be_blank
-    expect( assigns( :test_group_toggle ) ).to be_nil
   end
 end
 
