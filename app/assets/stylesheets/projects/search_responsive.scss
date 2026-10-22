@@ -1,0 +1,50 @@
+@import "../shared/responsive/project_search";
+@import "../shared/responsive/projects_page";
+
+#projects-search {
+  @include projects-page;
+
+  .browse-tools {
+    justify-content: space-between;
+  }
+
+  .search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .search-result {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background-color: white;
+    border: 1px solid $border-grey;
+    border-radius: 4px;
+
+    img {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+    }
+
+    .search-result-body {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    h4 {
+      margin: 0 0 5px;
+      font-size: 16px;
+    }
+
+    .meta {
+      color: #666;
+    }
+  }
+
+  .nocontent {
+    color: #666;
+  }
+}

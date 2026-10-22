@@ -1,0 +1,29 @@
+- content_for :title do
+  = @title = t(:search_projects)
+- content_for :extracss do
+  = stylesheet_link_tag "projects/search_responsive"
+
+#projects-search
+  .browse-top
+    .browse-content
+      .browse-header
+        = link_to t(:back_to_projects), projects_path, class: "back crumb"
+        %h2= t :search_projects
+      .browse-tools
+        = render "project_search_form", q: @q
+        - unless @projects.blank? || @projects.compact.blank?
+          = render "shared/page_results", page_results: @projects
+  .browse-main
+    .browse-content
+      - unless @q.blank?
+        - if @projects.blank?
+          .nocontent= t :no_matching_projects
+        - else
+          .search-results
+            - @projects.compact.each do | project |
+              .search-result
+                = link_to image_tag( project.icon.url( :span2 ), alt: "" ), project
+                .search-result-body
+                  %h4= link_to project.title, project
+                  .meta= truncate strip_tags( project.description ), length: 300
+          = will_paginate @projects, renderer: INatLinkRenderer

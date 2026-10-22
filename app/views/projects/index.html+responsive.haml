@@ -33,9 +33,7 @@
 
 #tools-container
   .tools-content
-    = form_tag( project_search_path, method: :get, class: "project-search" ) do
-      %input{ name: "q", type: "text", placeholder: t(:search) }
-      %button.btn.btn-primary{ type: "submit" }=t :go
+    = render "project_search_form", button_class: "btn-primary"
     - if logged_in? && !@started.blank? || !@joined.blank?
       %details.ProjectsMenu{ data: { details_menu: true } }
         %summary

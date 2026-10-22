@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
 
   before_action :admin_or_this_site_admin_required, only: [ :feature, :unfeature ]
   before_action :return_here,
-    only: [ :index, :browse, :show, :contributors, :members, :show_contributor, :terms, :invite ]
+    only: [ :index, :browse, :search, :show, :contributors, :members, :show_contributor, :terms, :invite ]
   load_except = [ :create, :index, :search, :new_traditional, :by_login, :map, :browse, :calendar, :new ]
   before_action :load_project, except: load_except
   blocks_spam except: load_except, instance: :project
@@ -1037,6 +1037,7 @@ class ProjectsController < ApplicationController
         pager.replace( response.results.map{|r| projects[r["record"]["id"]]} )
       end
     end
+    @test_group_toggle = "responsive-global"
     respond_to do |format|
       format.html
       format.json do
