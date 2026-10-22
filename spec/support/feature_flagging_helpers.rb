@@ -37,6 +37,11 @@ module FeatureFlaggingHelpers
   def add_test_flags( flipper = Flipper )
     %i[client_smoke_test server_smoke_test exp_hello_world].each {| key | flipper.add( key ) }
   end
+
+  # One client flag and one experiment bucketed by installation.
+  def add_install_test_flags( flipper = Flipper )
+    %i[client_install_smoke_test exp_install_hello_world].each {| key | flipper.add( key ) }
+  end
 end
 
 RSpec.configure do | config |
