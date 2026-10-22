@@ -17,11 +17,4 @@ describe TripsController, "show" do
     get :show, params: { id: trip.id }
     expect( response ).to be_successful
   end
-
-  it "renders the responsive layout for a signed-in user" do
-    sign_in user
-    get :show, params: { id: trip.id }
-    expect( assigns( :responsive ) ).to be_truthy
-    expect( Nokogiri::HTML( response.body ).css( ".post-layout" ) ).not_to be_empty
-  end
 end

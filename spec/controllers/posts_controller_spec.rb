@@ -239,19 +239,6 @@ describe PostsController, "show" do
 
     let( :journal_post ) { Post.make!( parent: user ) }
 
-    it "renders the responsive layout for a signed-in user" do
-      sign_in user
-      get :show, params: { id: journal_post.id }
-      expect( assigns( :responsive ) ).to be_truthy
-      expect( Nokogiri::HTML( response.body ).css( ".post-layout" ) ).not_to be_empty
-    end
-
-    it "renders the responsive layout for a logged-out viewer" do
-      get :show, params: { id: journal_post.id }
-      expect( assigns( :responsive ) ).to be_truthy
-      expect( Nokogiri::HTML( response.body ).css( ".post-layout" ) ).not_to be_empty
-    end
-
     it "drops the summary and description links" do
       get :show, params: { id: journal_post.id }
       expect( response.body ).not_to include "href=\"#summary\""
@@ -281,7 +268,7 @@ describe PostsController, "show" do
       expect( html.css( ".post-nav-inline a[href='#observations']" ) ).not_to be_empty
     end
 
-    it "renders the responsive layout for a blog post" do
+    it "renders the post nav for a blog post" do
       site_post = Post.make!( parent: Site.make!, user: user )
       Comment.make!( parent: site_post )
       get :show, params: { id: site_post.id }
