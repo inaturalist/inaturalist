@@ -1,0 +1,137 @@
+@import "../colors";
+@import "../breakpoints";
+@import "../shared/responsive/project_card_grid";
+@import "../shared/responsive/project_search";
+
+#header {
+  margin-bottom: 0;
+}
+
+#bodywrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: -260px;
+}
+
+#wrapper {
+  flex: 1;
+  width: auto;
+  margin: 0;
+  background-color: $page-background-grey;
+}
+
+#projects-browse {
+  font-size: 14px;
+
+  .browse-content {
+    @include container-padding( 1170px );
+    box-sizing: border-box;
+  }
+
+  .browse-top,
+  .browse-main {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .browse-top {
+    background-color: white;
+    border-bottom: 1px solid $border-grey;
+  }
+
+  .browse-main {
+    background-color: $page-background-grey;
+  }
+
+  .browse-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 5px 15px;
+
+    .back.crumb,
+    > span {
+      font-size: 12px;
+    }
+
+    .back.crumb {
+      flex-basis: 100%;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 500;
+    }
+  }
+
+  .browse-tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    align-items: center;
+    gap: 10px 20px;
+    margin-top: 20px;
+
+    .project-order {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      label {
+        margin: 0;
+        font-weight: normal;
+        white-space: nowrap;
+      }
+
+      select {
+        height: 34px;
+        margin: 0;
+        padding: 6px 12px;
+        font-size: 14px;
+        color: #555;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+    }
+
+    .btn {
+      float: none;
+      display: inline-block;
+      margin: 0;
+      padding: 6px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 20px;
+      color: white;
+      background-color: $inat-green;
+      border: 1px solid darken( $inat-green, 5% );
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        color: white;
+        text-decoration: none;
+        background-color: darken( $inat-green, 8% );
+      }
+    }
+
+    .project-search .btn {
+      border-radius: 0 4px 4px 0;
+    }
+
+    .btn-inat {
+      margin-left: auto;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+}
