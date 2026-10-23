@@ -57,6 +57,7 @@ RUN apt-get update \
       git libssl-dev libreadline-dev zlib1g-dev \
       autoconf bison build-essential libyaml-dev libpq-dev shared-mime-info \
       libncurses5-dev libffi-dev libgdbm-dev libgdbm-compat-dev \
+      libgeos-dev libgeos++-dev libproj-dev proj-bin libimage-exiftool-perl ffmpeg \
  && rm -rf /var/lib/apt/lists/*
 
 # PostgreSQL 18 client for pg_dump — Noble's default postgresql-client is 16,
