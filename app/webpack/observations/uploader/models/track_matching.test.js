@@ -1,0 +1,62 @@
+import { cardTimeItems, cardTimeMs } from "./track_matching";
+
+jest.mock( "./util", ( ) => ( {
+  parsableDatetimeFormat: ( ) => "YYYY/MM/DD h:mm A"
+} ) );
+
+const t = iso => Date.parse( iso );
+const timeZone = "America/Los_Angeles";
+
+describe( "cardTimeMs", ( ) => {
+  it( "uses the EXIF offset regardless of the fallback zone", ( ) => {
+    const card = { id: 1, date: "2024/06/01 10:00 AM" };
+    const files = {
+      10: {
+        cardID: 1,
+        metadata: {
+          date: "2024/06/01 10:00 AM",
+          exifDateTime: "2024-06-01 10:00:30",
+          exifOffset: "+09:00"
+        }
+      }
+    };
+    expect( cardTimeMs( card, files, { timeZone } ) ).toBe( t( "2024-06-01T01:00:30Z" ) );
+  } );
+
+  it( "uses the fallback zone for EXIF without an offset", ( ) => {
+    const card = { id: 1 };
+    const files = {
+      10: { cardID: 1, metadata: { date: "2024/06/01 10:00 AM", exifDateTime: "2024-06-01 10:00:30" } }
+    };
+    expect( cardTimeMs( card, files, { timeZone } ) ).toBe( t( "2024-06-01T17:00:30Z" ) );
+  } );
+
+  it( "prefers a date the user changed over EXIF", ( ) => {
+    const card = { id: 1, date: "2024/06/01 11:00 AM" };
+    const files = {
+      10: {
+        cardID: 1,
+        metadata: { date: "2024/06/01 10:00 AM", exifDateTime: "2024-06-01 10:00:30", exifOffset: "-07:00" }
+      }
+    };
+    expect( cardTimeMs( card, files, { timeZone } ) ).toBe( t( "2024-06-01T18:00:00Z" ) );
+  } );
+
+  it( "applies the clock offset", ( ) => {
+    const card = { id: 1, date: "2024/06/01 10:00 AM" };
+    expect( cardTimeMs( card, {}, { timeZone, clockOffsetMs: 60000 } ) ).toBe( t( "2024-06-01T17:01:00Z" ) );
+  } );
+
+  it( "returns null without a date", ( ) => {
+    expect( cardTimeMs( { id: 1 }, {}, { timeZone } ) ).toBeNull( );
+  } );
+} );
+
+describe( "cardTimeItems", ( ) => {
+  it( "returns items for cards with a resolvable time", ( ) => {
+    const obsCards = { 1: { id: 1, date: "2024/06/01 10:00 AM" }, 2: { id: 2 } };
+    expect( cardTimeItems( obsCards, {}, { timeZone } ) ).toEqual( [
+      { id: 1, timeMs: t( "2024-06-01T17:00:00Z" ) }
+    ] );
+  } );
+} );

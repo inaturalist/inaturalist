@@ -6,6 +6,7 @@ import DragDropZone from "../components/drag_drop_zone";
 import actions from "../actions/actions";
 import { createSavedLocation, removeSavedLocation } from "../ducks/saved_locations";
 import { updateCurrentUser } from "../../../shared/ducks/config";
+import { trackFormatFromFileName } from "../../../shared/geotrack";
 
 const mapStateToProps = state => {
   return Object.assign(
@@ -18,8 +19,16 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ( {
   onDrop: ( droppedFiles, rejectedFiles ) => {
-    if ( rejectedFiles.length > 0 ) {
-      dispatch( actions.onRejectedFiles( rejectedFiles ) );
+    // Track files fail the dropzone's media type filter, so pick them out
+    const [trackFiles, otherRejectedFiles] = _.partition(
+      rejectedFiles,
+      f => trackFormatFromFileName( f.name )
+    );
+    if ( otherRejectedFiles.length > 0 ) {
+      dispatch( actions.onRejectedFiles( otherRejectedFiles ) );
+    }
+    if ( trackFiles.length > 0 ) {
+      dispatch( actions.onTrackFileDrop( trackFiles[0] ) );
     }
     dispatch( actions.onFileDrop( droppedFiles ) );
   },
@@ -103,17 +112,20 @@ const mapDispatchToProps = dispatch => ( {
   duplicateSelected: ( ) => {
     dispatch( actions.duplicateSelected( ) );
   },
-  onGpxFileDrop: file => {
-    dispatch( actions.onGpxFileDrop( file ) );
+  onTrackFileDrop: file => {
+    dispatch( actions.onTrackFileDrop( file ) );
   },
-  applyGpxLocations: options => {
-    dispatch( actions.applyGpxLocations( options ) );
+  applyTrackLocations: options => {
+    dispatch( actions.applyTrackLocations( options ) );
   },
-  revertGpxLocation: obsCard => {
-    dispatch( actions.revertGpxLocation( obsCard ) );
+  setTrackClockOffset: clockOffsetMs => {
+    dispatch( actions.setTrackClockOffset( clockOffsetMs ) );
   },
-  removeGpxTrack: ( ) => {
-    dispatch( actions.setState( { gpxTrack: null } ) );
+  revertTrackLocation: obsCard => {
+    dispatch( actions.revertTrackLocation( obsCard ) );
+  },
+  removeGpsTrack: ( ) => {
+    dispatch( actions.setState( { gpsTrack: null } ) );
   }
 } );
 

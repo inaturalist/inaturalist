@@ -14,10 +14,11 @@ import PhotoViewer from "./photo_viewer";
 import RemoveModal from "./remove_modal";
 import StatusModal from "./status_modal";
 import TopMenu from "./top_menu";
-import GpxStatusBar from "./gpx_status_bar";
+import TrackStatusBar from "./track_status_bar";
 import HeaderUserMenu from "./header_user_menu";
 import InsertionDropTarget from "./insertion_drop_target";
 import { ACCEPTED_FILE_TYPES, MAX_FILE_SIZE } from "../models/util";
+import { TRACK_FILE_EXTENSIONS } from "../../../shared/geotrack";
 
 const fileTarget = {
   drop( props, monitor ) {
@@ -94,7 +95,8 @@ class DragDropZone extends Component {
   constructor( props, context ) {
     super( props, context );
     this.fileChooser = this.fileChooser.bind( this );
-    this.gpxFileChooser = this.gpxFileChooser.bind( this );
+    this.trackFileChooser = this.trackFileChooser.bind( this );
+    this.trackInput = React.createRef( );
     this.selectObsCards = this.selectObsCards.bind( this );
     this.unselectAll = this.unselectAll.bind( this );
     this.selectCard = this.selectCard.bind( this );
@@ -157,8 +159,8 @@ class DragDropZone extends Component {
     this.refs.dropzone.open( );
   }
 
-  gpxFileChooser( ) {
-    this.refs.gpxInput.click( );
+  trackFileChooser( ) {
+    this.trackInput.current.click( );
   }
 
   selectObsCards( e ) {
@@ -241,10 +243,11 @@ class DragDropZone extends Component {
       observationFieldSelectedDate,
       observationFieldValue,
       onDrop,
-      onGpxFileDrop,
-      gpxTrack,
-      applyGpxLocations,
-      removeGpxTrack,
+      onTrackFileDrop,
+      gpsTrack,
+      applyTrackLocations,
+      removeGpsTrack,
+      setTrackClockOffset,
       photoViewer,
       obsPositions,
       removeModal,
@@ -362,17 +365,18 @@ class DragDropZone extends Component {
             reactKey={`topMenu${cardCount}${countSelected}`}
             selectNone={this.selectNone}
             fileChooser={this.fileChooser}
-            gpxFileChooser={this.gpxFileChooser}
+            trackFileChooser={this.trackFileChooser}
             countTotal={cardCount}
             countSelected={countSelected}
             countSelectedPending={countSelectedPending}
             countPending={countPending}
             {...this.props}
           />
-          <GpxStatusBar
-            gpxTrack={gpxTrack}
-            removeGpxTrack={removeGpxTrack}
-            applyGpxLocations={applyGpxLocations}
+          <TrackStatusBar
+            gpsTrack={gpsTrack}
+            removeGpsTrack={removeGpsTrack}
+            applyTrackLocations={applyTrackLocations}
+            setTrackClockOffset={setTrackClockOffset}
           />
           <Grid fluid>
             <div className="row-fluid">
@@ -437,13 +441,13 @@ class DragDropZone extends Component {
           </Grid>
         </Dropzone>
         <input
-          ref="gpxInput"
+          ref={this.trackInput}
           type="file"
-          accept=".gpx,application/gpx+xml"
+          accept={TRACK_FILE_EXTENSIONS.join( "," )}
           style={{ display: "none" }}
           onChange={e => {
             if ( e.target.files[0] ) {
-              onGpxFileDrop( e.target.files[0] );
+              onTrackFileDrop( e.target.files[0] );
             }
             e.target.value = null;
           }}
@@ -476,7 +480,7 @@ class DragDropZone extends Component {
 }
 
 DragDropZone.propTypes = {
-  applyGpxLocations: PropTypes.func,
+  applyTrackLocations: PropTypes.func,
   commandKeyPressed: PropTypes.bool,
   config: PropTypes.object,
   confirmModal: PropTypes.object,
@@ -485,7 +489,7 @@ DragDropZone.propTypes = {
   draggingProps: PropTypes.object,
   fileIsOver: PropTypes.bool,
   files: PropTypes.object,
-  gpxTrack: PropTypes.object,
+  gpsTrack: PropTypes.object,
   locationChooser: PropTypes.object,
   newCardFromMedia: PropTypes.func,
   obsCards: PropTypes.object,
@@ -493,9 +497,10 @@ DragDropZone.propTypes = {
   observationFieldSelectedDate: PropTypes.string,
   observationFieldValue: PropTypes.any,
   onDrop: PropTypes.func.isRequired,
-  onGpxFileDrop: PropTypes.func,
+  onTrackFileDrop: PropTypes.func,
   photoViewer: PropTypes.object,
-  removeGpxTrack: PropTypes.func,
+  removeGpsTrack: PropTypes.func,
+  setTrackClockOffset: PropTypes.func,
   removeModal: PropTypes.object,
   removeObsCard: PropTypes.func,
   saveStatus: PropTypes.string,

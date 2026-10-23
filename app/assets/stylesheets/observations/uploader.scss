@@ -1175,27 +1175,47 @@ $tickmark: 6px;
   }
 }
 
-.gpx-status-bar {
+.gps-track-status-bar {
   margin: 0 15px;
   padding: 8px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  .gpx-info {
+  .gps-track-info {
     i.fa-road {
       margin-right: 4px;
     }
   }
 
-  .gpx-actions {
+  .gps-track-actions {
+    display: flex;
+    align-items: center;
+
+    .gps-track-clock-offset {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      font-weight: normal;
+
+      input {
+        width: 70px;
+        margin-left: 5px;
+      }
+    }
+
+    .gps-track-help {
+      margin: 0 10px 0 5px;
+      cursor: help;
+    }
+
     .btn + .btn {
       margin-left: 5px;
     }
   }
 }
 
-.gpx-badge {
+.gps-track-badge {
   color: #1E90FF;
   cursor: pointer;
 
@@ -1204,7 +1224,7 @@ $tickmark: 6px;
   }
 }
 
-.gpx-time-label {
+.gps-track-time-label {
   margin-top: -28px !important;
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }

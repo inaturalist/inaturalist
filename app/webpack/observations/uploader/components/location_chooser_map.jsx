@@ -111,18 +111,18 @@ class LocationChooserMap extends React.Component {
       "center",
       "bounds"
     ];
-    const { obsCards, gpxTrack } = this.props;
+    const { obsCards, gpsTrack } = this.props;
     const comparable = objectToComparable( {
       ..._.filter( this.props, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
       obsCards: _.keys( obsCards ),
-      gpxTrackFile: gpxTrack ? gpxTrack.fileName : null,
-      gpxTrackLen: gpxTrack ? gpxTrack.points.length : 0
+      gpsTrackFile: gpsTrack ? gpsTrack.fileName : null,
+      gpsTrackLen: gpsTrack ? gpsTrack.points.length : 0
     } );
     const nextComparable = objectToComparable( {
       ..._.filter( nextProps, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
       obsCards: _.keys( nextProps.obsCards ),
-      gpxTrackFile: nextProps.gpxTrack ? nextProps.gpxTrack.fileName : null,
-      gpxTrackLen: nextProps.gpxTrack ? nextProps.gpxTrack.points.length : 0
+      gpsTrackFile: nextProps.gpsTrack ? nextProps.gpsTrack.fileName : null,
+      gpsTrackLen: nextProps.gpsTrack ? nextProps.gpsTrack.points.length : 0
     } );
     return comparable !== nextComparable;
   }
@@ -227,7 +227,7 @@ class LocationChooserMap extends React.Component {
   // Remove existing overlays and repopulate them based on the props
   overlaysFromProps( prevProps = {} ) {
     const {
-      gpxTrack,
+      gpsTrack,
       lat,
       lng,
       obsCard: currentCard,
@@ -247,12 +247,12 @@ class LocationChooserMap extends React.Component {
     const comparable = objectToComparable( {
       ..._.filter( this.props, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
       obsCards: _.keys( obsCards ),
-      gpxTrackFile: gpxTrack ? gpxTrack.fileName : null
+      gpsTrackFile: gpsTrack ? gpsTrack.fileName : null
     } );
     const prevComparable = objectToComparable( {
       ..._.filter( prevProps, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
       obsCards: _.keys( prevProps.obsCards ),
-      gpxTrackFile: prevProps.gpxTrack ? prevProps.gpxTrack.fileName : null
+      gpsTrackFile: prevProps.gpsTrack ? prevProps.gpsTrack.fileName : null
     } );
     if ( comparable === prevComparable ) {
       return;
@@ -330,9 +330,9 @@ class LocationChooserMap extends React.Component {
       this.overlays.push( marker );
     }
 
-    // Add GPX track polyline
-    if ( this.map && gpxTrack && gpxTrack.points.length > 0 ) {
-      const path = gpxTrack.points.map( pt => ( { lat: pt.lat, lng: pt.lng } ) );
+    // Add GPS track polyline
+    if ( this.map && gpsTrack && gpsTrack.points.length > 0 ) {
+      const path = gpsTrack.points.map( pt => ( { lat: pt.lat, lng: pt.lng } ) );
       const polyline = new google.maps.Polyline( {
         path,
         geodesic: true,
@@ -343,8 +343,8 @@ class LocationChooserMap extends React.Component {
       } );
       this.overlays.push( polyline );
 
-      const startPt = gpxTrack.points[0];
-      const endPt = gpxTrack.points[gpxTrack.points.length - 1];
+      const startPt = gpsTrack.points[0];
+      const endPt = gpsTrack.points[gpsTrack.points.length - 1];
       const timeFormat = "h:mm A";
 
       const startMarker = new google.maps.Marker( {
@@ -359,19 +359,19 @@ class LocationChooserMap extends React.Component {
           strokeWeight: 2
         },
         label: {
-          text: startPt.time ? moment( startPt.time ).format( timeFormat ) : I18n.t( "start" ),
+          text: startPt.timeMs ? moment( startPt.timeMs ).format( timeFormat ) : I18n.t( "start" ),
           color: "#28a745",
           fontWeight: "bold",
           fontSize: "12px",
-          className: "gpx-time-label"
+          className: "gps-track-time-label"
         },
-        title: startPt.time
-          ? `${I18n.t( "start" )}: ${moment( startPt.time ).format( "YYYY/MM/DD h:mm A" )}`
+        title: startPt.timeMs
+          ? `${I18n.t( "start" )}: ${moment( startPt.timeMs ).format( "YYYY/MM/DD h:mm A" )}`
           : I18n.t( "start" )
       } );
       this.overlays.push( startMarker );
 
-      if ( gpxTrack.points.length > 1 ) {
+      if ( gpsTrack.points.length > 1 ) {
         const endMarker = new google.maps.Marker( {
           map: this.map,
           position: { lat: endPt.lat, lng: endPt.lng },
@@ -384,37 +384,37 @@ class LocationChooserMap extends React.Component {
             strokeWeight: 2
           },
           label: {
-            text: endPt.time ? moment( endPt.time ).format( timeFormat ) : I18n.t( "end" ),
+            text: endPt.timeMs ? moment( endPt.timeMs ).format( timeFormat ) : I18n.t( "end" ),
             color: "#dc3545",
             fontWeight: "bold",
             fontSize: "12px",
-            className: "gpx-time-label"
+            className: "gps-track-time-label"
           },
-          title: endPt.time
-            ? `${I18n.t( "end" )}: ${moment( endPt.time ).format( "YYYY/MM/DD h:mm A" )}`
+          title: endPt.timeMs
+            ? `${I18n.t( "end" )}: ${moment( endPt.timeMs ).format( "YYYY/MM/DD h:mm A" )}`
             : I18n.t( "end" )
         } );
         this.overlays.push( endMarker );
       }
 
-      if ( !newCenter && gpxTrack.bounds ) {
+      if ( !newCenter && gpsTrack.bounds ) {
         const trackBounds = new google.maps.LatLngBounds(
-          { lat: gpxTrack.bounds.south, lng: gpxTrack.bounds.west },
-          { lat: gpxTrack.bounds.north, lng: gpxTrack.bounds.east }
+          { lat: gpsTrack.bounds.south, lng: gpsTrack.bounds.west },
+          { lat: gpsTrack.bounds.north, lng: gpsTrack.bounds.east }
         );
         this.map.fitBounds( trackBounds );
       }
 
       const cardId = currentCard && currentCard.id;
-      const matched = gpxTrack.matchedLocations && gpxTrack.matchedLocations[cardId];
+      const matched = gpsTrack.matchedLocations && gpsTrack.matchedLocations[cardId];
       if ( matched ) {
-        const gpxMarker = new google.maps.Marker( {
+        const trackMarker = new google.maps.Marker( {
           map: this.map,
           position: { lat: matched.lat, lng: matched.lng },
           icon: { ...markerSVG, fillColor: "#1E90FF", scale: 0.025 },
-          title: I18n.t( "gpx_matched_location" )
+          title: I18n.t( "gps_track_matched_location" )
         } );
-        this.overlays.push( gpxMarker );
+        this.overlays.push( trackMarker );
       }
     }
   }
@@ -540,7 +540,7 @@ LocationChooserMap.propTypes = {
   show: PropTypes.bool,
   obsCard: PropTypes.object,
   obsCards: PropTypes.object,
-  gpxTrack: PropTypes.object,
+  gpsTrack: PropTypes.object,
   updateState: PropTypes.func,
   lat: PropTypes.any,
   lng: PropTypes.any,

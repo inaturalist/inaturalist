@@ -88,7 +88,21 @@ const DroppedFile = class DroppedFile {
             if ( momentDate.isValid( ) ) {
               metadata.date = momentDate.format( parsableDatetimeFormat( ) );
               metadata.selected_date = metadata.date;
+              // Raw values for matching against GPS tracks, which need the
+              // seconds and the UTC offset that metadata.date drops
+              metadata.exifDateTime = dt;
+              const offset = exif.OffsetTimeOriginal?.description || exif.OffsetTime?.description;
+              if ( offset ) {
+                // eslint-disable-next-line no-control-regex
+                metadata.exifOffset = _.trim( offset.replace( /\u0000/g, "" ) );
+              }
             }
+          }
+          if ( exif.GPSDateStamp?.description && exif.GPSTimeStamp?.value?.length === 3 ) {
+            const time = exif.GPSTimeStamp.value
+              .map( ( [num, den] ) => _.padStart( Math.floor( num / den ), 2, "0" ) )
+              .join( ":" );
+            metadata.gpsDateTime = `${exif.GPSDateStamp.description} ${time}`;
           }
           if ( Math.abs( metadata.latitude ) > 90 || Math.abs( metadata.longitude ) > 180 ) {
             metadata.latitude = null;

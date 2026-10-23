@@ -2527,24 +2527,47 @@ en:
     access like an Internet Service Provider.
   got_it!: Got it!
   got_your_data_somewhere_else?: Got your data somewhere else?  We can help.
-  # Menu item label for uploading a GPX track file in the observation uploader
-  gpx_track: GPX Track
-  # Shown when a GPX file is parsed but contains no trackpoints with timestamps
-  gpx_no_trackpoints: The GPX file contains no trackpoints with timestamps.
-  # Shown when a GPX file cannot be parsed
-  gpx_parse_error: Could not read the GPX file. Please ensure it is a valid GPX format.
-  # Shown in the GPX status bar indicating how many track points were loaded
-  gpx_x_trackpoints: "%{count} trackpoints"
-  # Shown in the GPX status bar indicating how many observations matched the track
-  gpx_x_observations_matched: "%{count} observations matched"
-  # Button to apply GPX track coordinates to all observations, overriding photo geotags
-  gpx_apply_to_all: Apply GPX locations to all observations
-  # Button to remove the loaded GPX track
-  gpx_remove_track: Remove track
-  # Tooltip shown on observation cards whose location was set from a GPX track
-  gpx_location_from_track: Location matched from GPX track. Click to revert to photo geotag.
-  # Title for the GPX-matched location marker on the map
-  gpx_matched_location: GPX-matched location
+  # Button that sets locations from the loaded GPS track on all observations
+  # in the uploader, replacing locations from photo metadata or entered by hand
+  gps_track_apply_to_all: Apply track locations to all observations
+  # Label next to a number field in the observation uploader's GPS track bar.
+  # The number is minutes to add to photo times when the camera's clock was
+  # set wrong
+  gps_track_camera_clock_offset: Camera clock offset (minutes)
+  # Menu item in the observation uploader's Add menu for loading a GPS track
+  # file (GPX, TCX or FIT, e.g. exported from a fitness watch or app)
+  gps_track_file: GPS Track (GPX, TCX, FIT)
+  # Tooltip in the observation uploader's GPS track bar explaining where track
+  # files come from and how photos are matched
+  gps_track_help: Export a GPX, TCX, or FIT file of your activity from Garmin Connect, Strava, or another app. Photos are placed where you were on the track when they were taken.
+  # Tooltip on an observation card in the uploader whose location was set from
+  # a GPS track. Clicking the icon restores the location from the photo
+  gps_track_location_from_track: Location set from GPS track. Click to use the photo's location instead.
+  # Title of the map marker in the uploader showing where an observation was
+  # placed on the GPS track
+  gps_track_matched_location: Location from GPS track
+  # Error in the observation uploader when a GPS track file has no points with
+  # both a location and a time
+  gps_track_no_points: This track file has no points with both a location and a time.
+  # Error in the observation uploader when a GPS track file can't be read
+  gps_track_parse_error: Could not read this track file. Please check that it is a valid GPX, TCX, or FIT file.
+  # Shown in the uploader's GPS track bar. time_zone is a time zone name like
+  # America/Los_Angeles used for photos that don't record their own UTC offset
+  gps_track_photo_times_in_zone: Photo times in %{time_zone}
+  # Button in the observation uploader that removes the loaded GPS track
+  gps_track_remove: Remove track
+  # Error in the observation uploader when a dropped file isn't a supported
+  # GPS track format
+  gps_track_unsupported_format: Track files must be GPX, TCX, or FIT.
+  # Shown in the uploader's GPS track bar: how many observations got a
+  # location from the track
+  gps_track_x_observations_matched:
+    one: "%{count} observation matched"
+    other: "%{count} observations matched"
+  # Shown in the uploader's GPS track bar: how many points the loaded track has
+  gps_track_x_points:
+    one: "%{count} point"
+    other: "%{count} points"
   graft: Graft
   graft_taxon: Graft %{taxon}
   grafting_attemps_to_insert_this_taxon: Grafting attempts to insert this taxon into our taxonomic tree, finding an existing parent taxon or creating all the necessary in-between taxa in order to attach it to an existing higher level taxon.

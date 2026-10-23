@@ -19,7 +19,7 @@ const TopMenu = ( {
   duplicateSelected,
   trySubmitObservations,
   fileChooser,
-  gpxFileChooser,
+  trackFileChooser,
   countTotal,
   countSelected,
   selectNone,
@@ -63,7 +63,7 @@ const TopMenu = ( {
               { I18n.t( "observation_without_media" ) }
             </MenuItem>
             <MenuItem divider />
-            <MenuItem onClick={gpxFileChooser}>{ I18n.t( "gpx_track" ) }</MenuItem>
+            <MenuItem onClick={trackFileChooser}>{ I18n.t( "gps_track_file" ) }</MenuItem>
           </NavDropdown>
         </OverlayTrigger>
         <OverlayTrigger
@@ -161,7 +161,7 @@ TopMenu.propTypes = {
   createBlankObsCard: PropTypes.func,
   duplicateSelected: PropTypes.func,
   fileChooser: PropTypes.func,
-  gpxFileChooser: PropTypes.func,
+  trackFileChooser: PropTypes.func,
   scrolledPastToolbar: PropTypes.bool,
   selectAll: PropTypes.func,
   selectNone: PropTypes.func,

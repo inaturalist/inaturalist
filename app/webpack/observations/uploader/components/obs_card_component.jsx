@@ -166,7 +166,7 @@ class ObsCardComponent extends Component {
       fileIsOver,
       obsCard,
       onCardDrop,
-      revertGpxLocation,
+      revertTrackLocation,
       selectCard,
       setState,
       updateObsCard,
@@ -380,20 +380,29 @@ class ObsCardComponent extends Component {
                 placeholder={I18n.t( "location" )}
                 readOnly
               />
-              { obsCard.gpxOverridden && (
+              { obsCard.trackOverridden && (
                 <OverlayTrigger
                   placement="top"
                   overlay={(
-                    <Tooltip id={`gpx-tip-${obsCard.id}`}>
-                      { I18n.t( "gpx_location_from_track" ) }
+                    <Tooltip id={`gps-track-tip-${obsCard.id}`}>
+                      { I18n.t( "gps_track_location_from_track" ) }
                     </Tooltip>
                   )}
                 >
                   <span
-                    className="input-group-addon input-sm gpx-badge"
+                    className="input-group-addon input-sm gps-track-badge"
+                    role="button"
+                    tabIndex={0}
+                    aria-label={I18n.t( "gps_track_location_from_track" )}
                     onClick={e => {
                       e.stopPropagation( );
-                      revertGpxLocation( obsCard );
+                      revertTrackLocation( obsCard );
+                    }}
+                    onKeyDown={e => {
+                      if ( e.key !== "Enter" && e.key !== " " ) return;
+                      e.preventDefault( );
+                      e.stopPropagation( );
+                      revertTrackLocation( obsCard );
                     }}
                   >
                     <i className="fa fa-road" />
@@ -433,7 +442,7 @@ ObsCardComponent.propTypes = {
   onCardDrop: PropTypes.func,
   fileDropTarget: PropTypes.func,
   fileIsOver: PropTypes.bool,
-  revertGpxLocation: PropTypes.func,
+  revertTrackLocation: PropTypes.func,
   selectCard: PropTypes.func,
   selectedSpeciesGuess: PropTypes.string,
   setState: PropTypes.func,
