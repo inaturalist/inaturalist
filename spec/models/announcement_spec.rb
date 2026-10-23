@@ -827,6 +827,31 @@ describe Announcement do
         expect( result ).to include parent
         expect( result ).not_to include child_us
       end
+
+      it "does not look up the IP country when no announcement is country-targeted" do
+        annc = create :announcement, placement: "users/dashboard#sidebar"
+        expect( INatAPIService ).not_to receive( :geoip_lookup )
+        expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: "1.2.3.4" } ) ).to include annc
+      end
+
+      it "looks up the IP country when an announcement has only exclude_ip_countries" do
+        annc = create :announcement, exclude_ip_countries: ["US"], ip_countries: []
+        expect( INatAPIService ).to receive( :geoip_lookup ).
+          and_return( OpenStruct.new_recursive( results: [{ "country" => "US" }] ) )
+        expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: "1.2.3.4" } ) ).not_to include annc
+      end
+
+      it "bounds the geoip lookup with a short timeout and no retries" do
+        create :announcement, ip_countries: ["US"]
+        allow( INatAPIService ).to receive( :geoip_lookup ) do
+          OpenStruct.new_recursive( results: [{ "country" => "US" }] )
+        end
+        Announcement.active_in_placement( "users/dashboard#sidebar", { ip: "1.2.3.4" } )
+        expect( INatAPIService ).to have_received( :geoip_lookup ).with(
+          hash_including( ip: "1.2.3.4" ),
+          hash_including( v2: true, timeout: Announcement::GEOIP_LOOKUP_TIMEOUT, retries: 0 )
+        )
+      end
     end
 
     describe "ip_country with exclude_ip_countries" do

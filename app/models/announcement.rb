@@ -53,6 +53,10 @@ class Announcement < ApplicationRecord
   ANY = "any"
   YES_NO_ANY = [YES, NO, ANY].freeze
 
+  # Seconds. The geoip result is best-effort (a nil country falls back to
+  # global variants), so a slow Node API must not hold up page renders
+  GEOIP_LOOKUP_TIMEOUT = 2
+
   belongs_to :user
   belongs_to :parent_announcement, class_name: "Announcement", optional: true, inverse_of: :child_announcements
   has_and_belongs_to_many :sites
@@ -430,11 +434,12 @@ class Announcement < ApplicationRecord
     locale_str = I18n.locale.to_s
     lang_only = locale_str.split( "-" ).first
 
-    geoip_country = if options[:ip]
-      geoip_response = INatAPIService.geoip_lookup( { ip: options[:ip], fields: "all" }, v2: true )
-      geoip_result = geoip_response&.results&.first
-      geoip_result && geoip_result["country"]
+    # Only hit the geoip service when some candidate is country-targeted; a nil
+    # country makes filter_family fall back to variants without ip_countries
+    needs_geoip = options[:ip].present? && all_announcements.any? do | a |
+      a.ip_countries.present? || a.exclude_ip_countries.present?
     end
+    geoip_country = needs_geoip ? geoip_country_for_ip( options[:ip] ) : nil
 
     families = all_announcements.group_by {| a | a.parent_announcement_id || a.id }
 
@@ -456,6 +461,16 @@ class Announcement < ApplicationRecord
       ]
     end
   end
+
+  def self.geoip_country_for_ip( ip )
+    geoip_response = INatAPIService.geoip_lookup(
+      { ip: ip, fields: "all" },
+      v2: true, timeout: GEOIP_LOOKUP_TIMEOUT, retries: 0
+    )
+    geoip_result = geoip_response&.results&.first
+    geoip_result && geoip_result["country"]
+  end
+  private_class_method :geoip_country_for_ip
 
   def self.filter_family( group, user:, site:, ip:, geoip_country:, locale_str:, lang_only: )
     # Dismissing any variant hides the entire family. Checked before targeting so

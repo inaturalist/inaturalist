@@ -108,6 +108,7 @@ describe WelcomeController do
     end
 
     it "should look up the country of the request IP" do
+      create :announcement, placement: Announcement::WELCOME_INDEX, ip_countries: ["US"]
       request.env["REMOTE_ADDR"] = "1.2.3.4"
       get :index
       expect( INatAPIService ).to have_received( :geoip_lookup ).with( hash_including( ip: "1.2.3.4" ), anything )
