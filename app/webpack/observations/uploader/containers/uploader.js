@@ -126,7 +126,13 @@ const mapDispatchToProps = dispatch => ( {
   },
   removeGpsTrack: ( ) => {
     dispatch( actions.setState( { gpsTrack: null } ) );
-  }
+  },
+  openGarminImport: ( ) => dispatch( actions.openGarminImport( ) ),
+  closeGarminImport: ( ) => dispatch( actions.closeGarminImport( ) ),
+  connectGarmin: apiKey => dispatch( actions.connectGarmin( apiKey ) ),
+  disconnectGarmin: ( ) => dispatch( actions.disconnectGarmin( ) ),
+  loadGarminActivities: options => dispatch( actions.loadGarminActivities( options ) ),
+  importGarminActivity: activity => dispatch( actions.importGarminActivity( activity ) )
 } );
 
 /* eslint new-cap: [2, { capIsNewExceptions: ["DragDropContext"] }] */

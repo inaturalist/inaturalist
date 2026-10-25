@@ -20,6 +20,8 @@ const TopMenu = ( {
   trySubmitObservations,
   fileChooser,
   trackFileChooser,
+  garmin,
+  openGarminImport,
   countTotal,
   countSelected,
   selectNone,
@@ -64,6 +66,9 @@ const TopMenu = ( {
             </MenuItem>
             <MenuItem divider />
             <MenuItem onClick={trackFileChooser}>{ I18n.t( "gps_track_file" ) }</MenuItem>
+            { garmin && garmin.enabled && (
+              <MenuItem onClick={openGarminImport}>{ I18n.t( "gps_track_garmin_menu" ) }</MenuItem>
+            ) }
           </NavDropdown>
         </OverlayTrigger>
         <OverlayTrigger
@@ -161,6 +166,8 @@ TopMenu.propTypes = {
   createBlankObsCard: PropTypes.func,
   duplicateSelected: PropTypes.func,
   fileChooser: PropTypes.func,
+  garmin: PropTypes.object,
+  openGarminImport: PropTypes.func,
   trackFileChooser: PropTypes.func,
   scrolledPastToolbar: PropTypes.bool,
   selectAll: PropTypes.func,

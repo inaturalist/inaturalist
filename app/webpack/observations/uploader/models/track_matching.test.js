@@ -1,4 +1,4 @@
-import { cardTimeItems, cardTimeMs } from "./track_matching";
+import { cardTimeItems, cardTimeMs, countItemsDuringActivity } from "./track_matching";
 
 jest.mock( "./util", ( ) => ( {
   parsableDatetimeFormat: ( ) => "YYYY/MM/DD h:mm A"
@@ -58,5 +58,24 @@ describe( "cardTimeItems", ( ) => {
     expect( cardTimeItems( obsCards, {}, { timeZone } ) ).toEqual( [
       { id: 1, timeMs: t( "2024-06-01T17:00:00Z" ) }
     ] );
+  } );
+} );
+
+describe( "countItemsDuringActivity", ( ) => {
+  const activity = { startTimeMs: t( "2024-06-01T17:00:00Z" ), durationMs: 60 * 60 * 1000 };
+  const items = [
+    { id: 1, timeMs: t( "2024-06-01T16:40:00Z" ) },
+    { id: 2, timeMs: t( "2024-06-01T17:30:00Z" ) },
+    { id: 3, timeMs: t( "2024-06-01T18:20:00Z" ) },
+    { id: 4, timeMs: t( "2024-06-01T19:00:00Z" ) }
+  ];
+
+  it( "counts items within the activity and the extrapolation window", ( ) => {
+    expect( countItemsDuringActivity( items, activity ) ).toBe( 3 );
+    expect( countItemsDuringActivity( items, activity, 0 ) ).toBe( 1 );
+  } );
+
+  it( "counts nothing for an activity without a start time", ( ) => {
+    expect( countItemsDuringActivity( items, { startTimeMs: NaN } ) ).toBe( 0 );
   } );
 } );

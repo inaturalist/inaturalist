@@ -16,6 +16,16 @@ const defaultState = {
     failed: 0
   },
   gpsTrack: null,
+  garmin: {
+    enabled: false,
+    show: false,
+    token: null,
+    activities: null,
+    hasMore: false,
+    loading: false,
+    importingId: null,
+    error: null
+  },
   locationChooser: { show: false, fitCurrentCircle: false },
   removeModal: { show: false },
   confirmModal: { show: false },

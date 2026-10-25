@@ -1228,3 +1228,19 @@ $tickmark: 6px;
   margin-top: -28px !important;
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
+
+.GarminImportModal {
+  .gps-track-garmin-activities {
+    td {
+      vertical-align: middle;
+    }
+
+    .gps-track-garmin-name {
+      font-weight: bold;
+    }
+
+    .gps-track-garmin-photos {
+      white-space: nowrap;
+    }
+  }
+}

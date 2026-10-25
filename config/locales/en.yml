@@ -2537,6 +2537,43 @@ en:
   # Menu item in the observation uploader's Add menu for loading a GPS track
   # file (GPX, TCX or FIT, e.g. exported from a fitness watch or app)
   gps_track_file: GPS Track (GPX, TCX, FIT)
+  # Label for the field in the observation uploader where people paste the
+  # Personal API key they created in Garmin Connect (Garmin's fitness service)
+  gps_track_garmin_api_key: Garmin Personal API key
+  # Button in the observation uploader that signs in to Garmin Connect with
+  # the entered Personal API key
+  gps_track_garmin_connect: Connect
+  # Error in the observation uploader when Garmin Connect can't be reached or
+  # returns an unexpected error
+  gps_track_garmin_connection_error: Could not reach Garmin Connect. Please try again.
+  # Distance of a Garmin Connect activity in the uploader's activity list.
+  # distance is a number of kilometers, e.g. 5.2
+  gps_track_garmin_distance_km: "%{distance} km"
+  # Link in the observation uploader to the Garmin Connect settings page where
+  # people create a Personal API key
+  gps_track_garmin_get_key: Create a key in Garmin Connect
+  # Error in the observation uploader when an activity's GPS track couldn't be
+  # downloaded from Garmin Connect
+  gps_track_garmin_import_error: Could not import this activity from Garmin Connect. Please try again.
+  # Instructions in the observation uploader's Garmin Connect window. The key
+  # passes through iNaturalist to Garmin, which returns access that lasts 24
+  # hours; iNaturalist does not save the key
+  gps_track_garmin_key_help: Create a Personal API key in Garmin Connect and paste it here to choose one of your recent activities. iNaturalist sends the key to Garmin to sign you in for 24 hours and does not save it.
+  # Error in the observation uploader when Garmin Connect rejects the
+  # Personal API key or the 24-hour access it granted has run out
+  gps_track_garmin_key_rejected: Garmin Connect did not accept this key, or your access expired. Check the key, or create a new one in Garmin Connect.
+  # Menu item in the observation uploader's Add menu that opens a window for
+  # choosing a GPS track from the person's Garmin Connect activities
+  gps_track_garmin_menu: GPS Track from Garmin Connect
+  # Shown in the observation uploader's Garmin Connect window when the account
+  # has no activities
+  gps_track_garmin_no_activities: No activities found in Garmin Connect.
+  # Shown instead of an Import button for a Garmin Connect activity recorded
+  # without GPS, e.g. an indoor workout
+  gps_track_garmin_no_gps: No GPS
+  # Title of the observation uploader's window for choosing a GPS track from
+  # Garmin Connect activities
+  gps_track_garmin_title: Import a GPS Track from Garmin Connect
   # Tooltip in the observation uploader's GPS track bar explaining where track
   # files come from and how photos are matched
   gps_track_help: Export a GPX, TCX, or FIT file of your activity from Garmin Connect, Strava, or another app. Photos are placed where you were on the track when they were taken.

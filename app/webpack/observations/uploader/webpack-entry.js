@@ -8,6 +8,7 @@ import inatjs from "inaturalistjs";
 import reducers from "./reducers";
 import Uploader from "./containers/uploader";
 import { fetchSavedLocations } from "./ducks/saved_locations";
+import actions from "./actions/actions";
 import sharedStore from "../../shared/shared_store";
 import { setConfig } from "../../shared/ducks/config";
 
@@ -30,6 +31,9 @@ if ( defaultApiUrl ) {
     writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
   } );
 }
+
+// After the v2 setConfig above: the flag request goes through inatjs
+sharedStore.dispatch( actions.loadGarminAvailability( ) );
 
 render(
   <Provider store={sharedStore}>

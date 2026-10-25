@@ -15,6 +15,7 @@ import RemoveModal from "./remove_modal";
 import StatusModal from "./status_modal";
 import TopMenu from "./top_menu";
 import TrackStatusBar from "./track_status_bar";
+import GarminImportModal from "./garmin_import_modal";
 import HeaderUserMenu from "./header_user_menu";
 import InsertionDropTarget from "./insertion_drop_target";
 import { ACCEPTED_FILE_TYPES, MAX_FILE_SIZE } from "../models/util";
@@ -248,6 +249,13 @@ class DragDropZone extends Component {
       applyTrackLocations,
       removeGpsTrack,
       setTrackClockOffset,
+      garmin,
+      files,
+      closeGarminImport,
+      connectGarmin,
+      disconnectGarmin,
+      importGarminActivity,
+      loadGarminActivities,
       photoViewer,
       obsPositions,
       removeModal,
@@ -474,6 +482,16 @@ class DragDropZone extends Component {
           {...this.props}
           {...photoViewer}
         />
+        <GarminImportModal
+          garmin={garmin}
+          obsCards={obsCards}
+          files={files}
+          closeGarminImport={closeGarminImport}
+          connectGarmin={connectGarmin}
+          disconnectGarmin={disconnectGarmin}
+          importGarminActivity={importGarminActivity}
+          loadGarminActivities={loadGarminActivities}
+        />
       </div>
     );
   }
@@ -501,6 +519,12 @@ DragDropZone.propTypes = {
   photoViewer: PropTypes.object,
   removeGpsTrack: PropTypes.func,
   setTrackClockOffset: PropTypes.func,
+  garmin: PropTypes.object,
+  closeGarminImport: PropTypes.func,
+  connectGarmin: PropTypes.func,
+  disconnectGarmin: PropTypes.func,
+  importGarminActivity: PropTypes.func,
+  loadGarminActivities: PropTypes.func,
   removeModal: PropTypes.object,
   removeObsCard: PropTypes.func,
   saveStatus: PropTypes.string,

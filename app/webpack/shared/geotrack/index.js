@@ -7,6 +7,7 @@ import fromFit from "./adapters/fit";
 import fromGpx from "./adapters/gpx";
 import fromStravaStreams from "./adapters/strava";
 import fromTcx from "./adapters/tcx";
+import { TRACK_FORMATS, TRACK_FILE_EXTENSIONS, trackFormatFromFileName } from "./formats";
 
 export {
   fromFit,
@@ -17,21 +18,17 @@ export {
 export { computeBounds, normalizeTrack } from "./track";
 export { DEFAULT_MATCH_OPTIONS, matchMany, matchTime } from "./match";
 export { photoTimeMs } from "./time";
-
-export const TRACK_FORMATS = {
-  gpx: { extension: ".gpx", binary: false },
-  tcx: { extension: ".tcx", binary: false },
-  fit: { extension: ".fit", binary: true }
-};
-
-export const TRACK_FILE_EXTENSIONS = Object.values( TRACK_FORMATS ).map( f => f.extension );
-
-export function trackFormatFromFileName( fileName ) {
-  const lower = ( fileName || "" ).toLowerCase( );
-  return Object.keys( TRACK_FORMATS ).find( format => (
-    lower.endsWith( TRACK_FORMATS[format].extension )
-  ) ) || null;
-}
+export {
+  downloadGarminActivityFile,
+  exchangeGarminApiKey,
+  GARMIN_API_KEY_SETTINGS_URL,
+  GARMIN_PERSONAL_API_URL,
+  GarminApiError,
+  garminTokenExpired,
+  normalizeGarminActivity,
+  searchGarminActivities
+} from "./sources/garmin";
+export { TRACK_FORMATS, TRACK_FILE_EXTENSIONS, trackFormatFromFileName };
 
 // content is a string for XML formats and an ArrayBuffer for binary ones.
 // Always returns a Promise of a Track.

@@ -6,15 +6,24 @@ import DroppedFile from "../models/dropped_file";
 import ObsCard from "../models/obs_card";
 import util from "../models/util";
 import { browserTimeZone, cardTimeItems } from "../models/track_matching";
+import { garminRelayOptions } from "../models/garmin_relay";
 import {
   computeBounds,
+  downloadGarminActivityFile,
+  exchangeGarminApiKey,
+  GarminApiError,
+  garminTokenExpired,
   matchMany,
   parseTrack,
+  searchGarminActivities,
   TRACK_FORMATS,
   trackFormatFromFileName
 } from "../../../shared/geotrack";
 import { resizeUpload } from "../../../shared/util";
 import RejectedFilesError from "../../../shared/components/rejected_files_error";
+
+export const GARMIN_FLAG = "client_garmin_personal_api";
+const GARMIN_PAGE_SIZE = 20;
 
 const debounceDispatch = _.debounce( ( dispatch, action ) => dispatch( action ), 250 );
 
@@ -838,6 +847,33 @@ const actions = class actions {
     } );
   }
 
+  // content is a string for XML formats and an ArrayBuffer for binary ones
+  static loadTrack( content, format, fileName ) {
+    return function ( dispatch ) {
+      return parseTrack( content, format ).then( track => {
+        if ( track.points.length === 0 ) {
+          dispatch( actions.showTrackError( I18n.t( "gps_track_no_points" ) ) );
+          return false;
+        }
+        dispatch( actions.setState( {
+          gpsTrack: {
+            fileName,
+            points: track.points,
+            bounds: computeBounds( track.points ),
+            timeZone: browserTimeZone( ),
+            clockOffsetMs: 0,
+            matchedLocations: {}
+          }
+        } ) );
+        dispatch( actions.applyTrackLocations( ) );
+        return true;
+      } ).catch( ( ) => {
+        dispatch( actions.showTrackError( I18n.t( "gps_track_parse_error" ) ) );
+        return false;
+      } );
+    };
+  }
+
   static onTrackFileDrop( file ) {
     return function ( dispatch ) {
       if ( !file ) return;
@@ -848,31 +884,123 @@ const actions = class actions {
       }
       const reader = new FileReader( );
       reader.onload = e => {
-        parseTrack( e.target.result, format ).then( track => {
-          if ( track.points.length === 0 ) {
-            dispatch( actions.showTrackError( I18n.t( "gps_track_no_points" ) ) );
-            return;
-          }
-          dispatch( actions.setState( {
-            gpsTrack: {
-              fileName: file.name,
-              points: track.points,
-              bounds: computeBounds( track.points ),
-              timeZone: browserTimeZone( ),
-              clockOffsetMs: 0,
-              matchedLocations: {}
-            }
-          } ) );
-          dispatch( actions.applyTrackLocations( ) );
-        } ).catch( ( ) => {
-          dispatch( actions.showTrackError( I18n.t( "gps_track_parse_error" ) ) );
-        } );
+        dispatch( actions.loadTrack( e.target.result, format, file.name ) );
       };
       if ( TRACK_FORMATS[format].binary ) {
         reader.readAsArrayBuffer( file );
       } else {
         reader.readAsText( file );
       }
+    };
+  }
+
+  static loadGarminAvailability( ) {
+    return async function ( dispatch, getState ) {
+      const { currentUser } = getState( ).config;
+      if ( !currentUser ) return;
+      const enabled = await currentUser.featureFlagEnabled( GARMIN_FLAG );
+      dispatch( actions.updateState( { garmin: { enabled } } ) );
+    };
+  }
+
+  // Forgets the token after Garmin rejects it, so the key form shows again
+  static garminRequestFailed( error, fallbackMessage ) {
+    if ( error instanceof GarminApiError && error.unauthorized ) {
+      return actions.updateState( {
+        garmin: {
+          token: null,
+          activities: null,
+          loading: false,
+          importingId: null,
+          error: I18n.t( "gps_track_garmin_key_rejected" )
+        }
+      } );
+    }
+    return actions.updateState( {
+      garmin: { loading: false, importingId: null, error: fallbackMessage }
+    } );
+  }
+
+  static openGarminImport( ) {
+    return function ( dispatch, getState ) {
+      const { token, activities } = getState( ).dragDropZone.garmin;
+      if ( garminTokenExpired( token ) ) {
+        dispatch( actions.updateState( {
+          garmin: {
+            show: true,
+            error: null,
+            token: null,
+            activities: null
+          }
+        } ) );
+        return;
+      }
+      dispatch( actions.updateState( { garmin: { show: true, error: null } } ) );
+      if ( !activities ) dispatch( actions.loadGarminActivities( ) );
+    };
+  }
+
+  static closeGarminImport( ) {
+    return actions.updateState( { garmin: { show: false } } );
+  }
+
+  static disconnectGarmin( ) {
+    return actions.updateState( { garmin: { token: null, activities: null, error: null } } );
+  }
+
+  // The key is only passed to Garmin (through the relay) and never stored
+  static connectGarmin( apiKey ) {
+    return function ( dispatch ) {
+      dispatch( actions.updateState( { garmin: { loading: true, error: null } } ) );
+      return exchangeGarminApiKey( apiKey, garminRelayOptions( ) ).then( token => {
+        dispatch( actions.updateState( { garmin: { token, activities: null } } ) );
+        return dispatch( actions.loadGarminActivities( ) );
+      } ).catch( e => {
+        dispatch( actions.garminRequestFailed( e, I18n.t( "gps_track_garmin_connection_error" ) ) );
+      } );
+    };
+  }
+
+  // Most recent first; more appends the next page
+  static loadGarminActivities( { more = false } = {} ) {
+    return function ( dispatch, getState ) {
+      const { token, activities } = getState( ).dragDropZone.garmin;
+      const start = more && activities ? activities.length : 0;
+      dispatch( actions.updateState( { garmin: { loading: true, error: null } } ) );
+      return searchGarminActivities( token, {
+        ...garminRelayOptions( ),
+        start,
+        limit: GARMIN_PAGE_SIZE
+      } ).then( page => {
+        dispatch( actions.updateState( {
+          garmin: {
+            loading: false,
+            activities: more && activities ? activities.concat( page ) : page,
+            hasMore: page.length === GARMIN_PAGE_SIZE
+          }
+        } ) );
+      } ).catch( e => {
+        dispatch( actions.garminRequestFailed( e, I18n.t( "gps_track_garmin_connection_error" ) ) );
+      } );
+    };
+  }
+
+  static importGarminActivity( activity ) {
+    return function ( dispatch, getState ) {
+      const { token } = getState( ).dragDropZone.garmin;
+      dispatch( actions.updateState( { garmin: { importingId: activity.id, error: null } } ) );
+      return downloadGarminActivityFile( token, activity.id, garminRelayOptions( ) )
+        .then( file => dispatch(
+          actions.loadTrack( file.content, file.format, activity.name || file.fileName )
+        ) )
+        .then( loaded => {
+          dispatch( actions.updateState( {
+            garmin: loaded ? { importingId: null, show: false } : { importingId: null }
+          } ) );
+        } )
+        .catch( e => {
+          dispatch( actions.garminRequestFailed( e, I18n.t( "gps_track_garmin_import_error" ) ) );
+        } );
     };
   }
 

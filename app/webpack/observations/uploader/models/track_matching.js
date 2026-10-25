@@ -1,6 +1,6 @@
 import _ from "lodash";
 import moment from "moment";
-import { photoTimeMs } from "../../../shared/geotrack";
+import { DEFAULT_MATCH_OPTIONS, photoTimeMs } from "../../../shared/geotrack";
 import { parsableDatetimeFormat } from "./util";
 
 // Uploader glue for the geotrack library: turns obs cards and their files
@@ -47,4 +47,17 @@ export function cardTimeItems( obsCards, files, options = {} ) {
     const timeMs = cardTimeMs( card, files, options );
     return timeMs === null ? null : { id: card.id, timeMs };
   } ) );
+}
+
+// How many items fall within an activity, allowing for the matcher's
+// extrapolation window at either end
+export function countItemsDuringActivity(
+  items,
+  activity,
+  marginMs = DEFAULT_MATCH_OPTIONS.maxExtrapolationMs
+) {
+  if ( !Number.isFinite( activity.startTimeMs ) ) return 0;
+  const startMs = activity.startTimeMs - marginMs;
+  const endMs = activity.startTimeMs + ( activity.durationMs || 0 ) + marginMs;
+  return items.filter( ( { timeMs } ) => timeMs >= startMs && timeMs <= endMs ).length;
 }

@@ -671,6 +671,9 @@ Rails.application.routes.draw do
 
   get "feature_flags", to: "feature_flags#index"
 
+  # CORS relay for the geotrack library's Garmin Connect Personal API client
+  match "garmin_relay/*path", to: "garmin_relay#relay", via: [:get, :post], format: false
+
   resource :stats do
     collection do
       get :index
