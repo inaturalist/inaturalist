@@ -514,7 +514,7 @@ class UsersController < ApplicationController
             "iNaturalist Next Bug Reports",
             "iNaturalist Next Discussion",
             "Nature Talk",
-            "Third-party Tools and Apps using iNat API"
+            "Third-party Tools and Apps for iNaturalist"
           ]
           discourse_ignored_category_ids = @discourse_data[:categories].values.select do | c |
             discourse_ignored_category_names.include?( c["name"] )
