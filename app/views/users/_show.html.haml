@@ -29,13 +29,6 @@
                   - if @current_suspend_action&.editable_by?( current_user )
                     %li
                       = link_to t(:edit_suspension), edit_moderator_action_path( @current_suspend_action )
-              - if current_user.is_site_admin_of?( @user.site ) && !@user.is_admin?
-                - if @user.is_curator?
-                  %li
-                    = link_to t(:remove_curator_status), remove_role_path(@user, :role => "curator"), :method => :delete
-                - else
-                  %li
-                    = link_to t(:make_curator), add_role_path(@user, :role => "curator"), :method => :post
               - if is_admin?
                 %li
                   = link_to t(:curate_user), user_detail_admin_path( id: @user.id )
