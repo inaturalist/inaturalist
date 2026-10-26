@@ -9473,7 +9473,13 @@ nl:
           quadrillion: Quadriljoen
           thousand: Duizend
           trillion: Biljoen
+          unit: ''
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half" this would be written as
+        #"1,000,002.5" in English, and "," is the delimiter. This should not be
+        #the same as the separator.
+        delimiter: ''
         precision: 3
         significant: true
         strip_insignificant_zeros: true
@@ -9487,6 +9493,12 @@ nl:
           kb: KB
           mb: MB
           tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
   support:
     array:
       last_word_connector: ', en'
