@@ -10,7 +10,16 @@ module MachinistFactory
   def self.create( name, *params )
     attrs = params.last.is_a?( Hash ) ? params.pop : {}
     klass = name.to_s.camelize.constantize
-    klass.make!( attrs )
+    klass.make!( with_associations( klass, attrs ) )
+  end
+
+  # Blueprints set associations like `user { User.make! }`, which would override a passed `user_id`.
+  def self.with_associations( klass, attrs )
+    attrs.to_h do | key, value |
+      reflection = klass.reflect_on_all_associations( :belongs_to ).
+        find {| r | !r.polymorphic? && r.foreign_key.to_s == key.to_s }
+      reflection ? [reflection.name, reflection.klass.find( value )] : [key, value]
+    end
   end
 
   def self.definition_file_paths=( * ); end
