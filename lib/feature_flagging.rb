@@ -205,8 +205,9 @@ module FeatureFlagging
     end
 
     def resolve_request( actor, installation_id )
-      # Downcased so a pasted uppercase id lands in the same bucket as the app's.
-      installation_id = valid_installation_id?( installation_id ) ? installation_id.downcase : nil
+      # Used as sent: an app resends one constant string, and logs and the DB hold that same form,
+      # so an id pasted from either into an actor gate matches without normalization.
+      installation_id = nil unless valid_installation_id?( installation_id )
       FeatureFlagging::RequestActor.new( resolve_actor( actor ), installation_id )
     end
 

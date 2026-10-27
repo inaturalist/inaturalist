@@ -395,6 +395,16 @@ describe FeatureFlagging do
         expect( request.flipper_ids ).to eq ["User;#{actor.id}", "Installation;#{installation_id}"]
       end
 
+      # iOS ids are uppercase, Android ids lowercase; logs and the DB keep each as sent.
+      it "uses the id as sent, so a gate pasted from logs matches and case is not folded" do
+        upper = installation_id.upcase
+        expect( FeatureFlagging::RequestActor.new( nil, upper ).bucketed_by( :installation ).flipper_id ).
+          to eq "Installation;#{upper}"
+        Flipper.enable_actor( install_flag, installation_actor( upper ) )
+        expect( FeatureFlagging.enabled?( install_flag, nil, installation_id: upper ) ).to be true
+        expect( FeatureFlagging.enabled?( install_flag, nil, installation_id: installation_id ) ).to be false
+      end
+
       it "has no bucketing actor for a missing identity" do
         expect( FeatureFlagging::RequestActor.new( nil, installation_id ).bucketed_by( :user ) ).to be_nil
         expect( FeatureFlagging::RequestActor.new( actor, nil ).bucketed_by( :installation ) ).to be_nil

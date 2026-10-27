@@ -7,7 +7,7 @@ module FeatureFlagging
     attr_reader :user, :installation_id, :bucket_by
 
     # user: the signed-in User, or nil when logged out
-    # installation_id: the app's validated, downcased X-Installation-ID, or nil
+    # installation_id: the app's validated X-Installation-ID as sent, or nil
     # bucket_by: :user or :installation once bucketed_by picks one
     def initialize( user, installation_id, bucket_by = nil )
       @user = user
