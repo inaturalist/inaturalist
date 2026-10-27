@@ -2284,6 +2284,8 @@ en:
   feature_flags: Feature flags
   # Note under a flag's kind on the admin feature flags page when the flag assigns app users by their app installation rather than their account, so logging in does not change it
   feature_flags_by_installation: Bucketed by app installation
+  # Button on the admin feature flags page that empties the app installation ID field and its preview column
+  feature_flags_clear: Clear
   # Label shown before the current admin's on/off value for a flag on the admin feature flags page
   feature_flags_enabled_for_you: "Enabled for you:"
   # Label before the on/off value or variant a logged-out mobile app installation would get, in a column of the admin feature flags page

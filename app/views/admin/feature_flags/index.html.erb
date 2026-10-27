@@ -15,6 +15,7 @@
       placeholder: "00000000-0000-0000-0000-000000000000", "data-1p-ignore" => true %>
   </div>
   <%= submit_tag t( :feature_flags_preview ), class: "btn btn-default", name: nil %>
+  <%= link_to t( :feature_flags_clear ), admin_feature_flags_path, class: "btn btn-default" %>
   <p class="help-block"><%= t :feature_flags_installation_id_help %></p>
 <% end %>
 <% if @installation_id && !@installation_id_valid %>

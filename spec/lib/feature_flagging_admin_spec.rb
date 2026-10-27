@@ -92,6 +92,11 @@ describe "the admin feature flag readout", type: :request do
       expect( response.body ).to include %(name="installation_id")
     end
 
+    it "offers a clear button that drops the entered id" do
+      get path, params: { installation_id: installation_id }
+      expect( response.body ).to match( %r{<a[^>]*href="#{path}"[^>]*>#{I18n.t( :feature_flags_clear )}</a>} )
+    end
+
     it "marks install-scoped flags" do
       get path
       expect( response.body ).
