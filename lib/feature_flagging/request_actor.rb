@@ -22,9 +22,9 @@ module FeatureFlagging
       id_for( bucket_by )
     end
 
-    # Every id an actor gate could name for this request.
-    def flipper_ids
-      [id_for( :user ), id_for( :installation )].compact
+    # This request as each actor an actor or group gate could name.
+    def identities
+      [bucketed_by( :user ), bucketed_by( :installation )].compact
     end
 
     def is_admin?

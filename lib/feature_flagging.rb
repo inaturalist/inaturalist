@@ -20,6 +20,8 @@ module FeatureFlagging
   INSTALLATION_ID_PATTERN = /\A\h{8}-\h{4}-\h{4}-\h{4}-\h{12}\z/
   # Fixed equal split; changing order or length reshuffles every actor.
   VARIANTS = %w(control treatment).freeze
+  # The gates a request's other identity may still open; percentage gates are left out on purpose.
+  TARGETING_GATES = [Flipper::Gates::Actor.new, Flipper::Gates::Group.new].freeze
 
   # Cache TTL bounds staleness for raw SQL writes or lagging replica reads.
   CACHE_TTL = 10
@@ -180,33 +182,25 @@ module FeatureFlagging
       actor = actor_for_key( key, request )
       return true if actor ? Flipper.enabled?( key, actor ) : Flipper.enabled?( key )
 
-      targeted?( key, request, groups_checked: !actor.nil? )
+      targeted?( key, request )
     rescue StandardError => e
       Rails.logger.error "[FeatureFlagging] #{key} evaluation failed, treating as off: #{e.message}"
       false
     end
 
-    # Passing both identities would change the percentage hash at login, so Flipper only saw the
-    # key's bucketing id; an actor gate or group naming the request's other identity counts too.
-    def targeted?( key, request, groups_checked: )
-      ids = request.flipper_ids
-      return false if ids.empty?
-
-      values = Flipper[key].gate_values
-      return true if ids.any? {| id | values.actors.include?( id ) }
-      return false if groups_checked || values.groups.empty?
+    # Flipper saw only the bucketing id. An actor or group gate may still name the request's other
+    # identity, so run just those two over both; passing both to Flipper would re-roll percentages at login.
+    def targeted?( key, request )
+      actors = request.identities.map {| identity | Flipper::Types::Actor.wrap( identity ) }
+      return false if actors.empty?
 
       context = Flipper::FeatureCheckContext.new(
-        feature_name: key,
-        values: values,
-        actors: [Flipper::Types::Actor.wrap( request )]
+        feature_name: key, values: Flipper[key].gate_values, actors: actors
       )
-      Flipper::Gates::Group.new.open?( context )
+      TARGETING_GATES.any? {| gate | gate.open?( context ) }
     end
 
     def resolve_request( actor, installation_id )
-      # Used as sent: an app resends one constant string, and logs and the DB hold that same form,
-      # so an id pasted from either into an actor gate matches without normalization.
       installation_id = nil unless valid_installation_id?( installation_id )
       FeatureFlagging::RequestActor.new( resolve_actor( actor ), installation_id )
     end

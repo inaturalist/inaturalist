@@ -388,11 +388,11 @@ describe FeatureFlagging do
         end
       end
 
-      it "buckets by pinned flipper_ids" do
+      it "buckets by pinned flipper ids" do
         request = FeatureFlagging::RequestActor.new( actor, installation_id )
         expect( request.bucketed_by( :installation ).flipper_id ).to eq "Installation;#{installation_id}"
         expect( request.bucketed_by( :user ).flipper_id ).to eq "User;#{actor.id}"
-        expect( request.flipper_ids ).to eq ["User;#{actor.id}", "Installation;#{installation_id}"]
+        expect( request.identities.map( &:flipper_id ) ).to eq ["User;#{actor.id}", "Installation;#{installation_id}"]
       end
 
       # iOS ids are uppercase, Android ids lowercase; logs and the DB keep each as sent.
