@@ -128,7 +128,7 @@ class PostsController < ApplicationController
         # Using the trips template for all posts is very strange.
         render "trips/show"
       end
-      format.json { render json: @post }
+      format.json { render json: posts_json( [@post] ).first }
     end
   end
 
@@ -299,33 +299,37 @@ class PostsController < ApplicationController
     # an error for missing methods. We should only use methods shared by all post parent classes
     respond_to do | format |
       format.json do
-        json = @posts.as_json( include: {
-          user: {
-            only: [:id, :login],
-            methods: [:user_icon_url, :medium_user_icon_url]
-          },
-          parent: {
-            only: [:id, :title, :name],
-            methods: [:icon_url]
-          }
-        } )
-        json.each_with_index do | post, i |
-          ar_post = @posts.detect {| p | p.id == post["id"].to_i }
-          json[i]["body"] = helpers.formatted_user_text(
-            json[i]["body"],
-            scrubber: PostScrubber.new(
-              tags: Post::ALLOWED_TAGS,
-              attributes: Post::ALLOWED_ATTRIBUTES
-            ),
-            skip_simple_format: ( ar_post.preferred_formatting == Post::FORMATTING_NONE )
-          )
-        end
-        render json: json
+        render json: posts_json( @posts )
       end
     end
   end
 
   private
+
+  def posts_json( posts )
+    json = posts.as_json( include: {
+      user: {
+        only: [:id, :login],
+        methods: [:user_icon_url, :medium_user_icon_url]
+      },
+      parent: {
+        only: [:id, :title, :name],
+        methods: [:icon_url]
+      }
+    } )
+    json.each_with_index do | post, i |
+      ar_post = posts.detect {| p | p.id == post["id"].to_i }
+      json[i]["body"] = helpers.formatted_user_text(
+        json[i]["body"],
+        scrubber: PostScrubber.new(
+          tags: Post::ALLOWED_TAGS,
+          attributes: Post::ALLOWED_ATTRIBUTES
+        ),
+        skip_simple_format: ( ar_post.preferred_formatting == Post::FORMATTING_NONE )
+      )
+    end
+    json
+  end
 
   def get_archives( _options = {} )
     scope = @parent.is_a?( User ) ? @parent.journal_posts : @parent.posts
