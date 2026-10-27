@@ -1,0 +1,3 @@
+= form_tag( project_search_path, method: :get, class: "project-search" ) do
+  %input{ name: "q", type: "text", value: local_assigns[:q], placeholder: t(:search) }
+  %button.btn{ type: "submit", class: local_assigns[:button_class] }=t :go
