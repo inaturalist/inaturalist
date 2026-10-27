@@ -26,4 +26,4 @@
                 .search-result-body
                   %h4= link_to project.title, project
                   .meta= truncate strip_tags( project.description ), length: 300
-          = will_paginate @projects, renderer: INatLinkRenderer
+          = will_paginate @projects, renderer: INatLinkRenderer, inner_window: 2, outer_window: 0
