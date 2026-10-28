@@ -81,15 +81,8 @@
       - if flagged_taxa_count > 0
         .flagged_taxa_count
           =t :taxon_framework_flagged_covered_taxa_count_html, count: link_to( flagged_taxa_count, "#" )
-        .flagged_taxa_table
-          %table.table.table-bordered
-            %thead
-              %tr
-                %th= t( :flagged_taxon )
-            %tbody
-              - flagged_taxa.each do |flagged_taxon|
-                %tr
-                  %td= link_to flagged_taxon.name, taxon_path( flagged_taxon )
+          = link_to "#{t( :view_all_flags )} &rarr;".html_safe, flags_path( flaggable_type: "Taxon", taxon_id: taxon.id, resolved: "no" ), class: "view-all-flags"
+        = render partial: "taxa/flagged_taxa_table", object: { flagged_taxa: flagged_taxa, flagged_taxa_count: flagged_taxa_count }
     - unless taxon_framework.description.blank?
       %p=t :label_colon, label: t( :taxon_framework_notes )
       %p= formatted_user_text taxon_framework.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES

@@ -5,7 +5,9 @@ class TaxonFramework < ApplicationRecord
   has_updater
   has_many :taxon_framework_relationships, dependent: :destroy
   has_many :taxon_curators, inverse_of: :taxon_framework, dependent: :destroy
-  
+
+  FLAGGED_TAXA_LIMIT = 100
+
   before_save :check_taxon_framework_relationships
   before_save :check_taxon_curators
   after_save :check_other_taxon_framework_relationships
@@ -161,7 +163,11 @@ class TaxonFramework < ApplicationRecord
     end
     flagged_taxa = Taxon.get_internal_taxa_covered_by( self ).
       joins( "INNER JOIN flags ON taxa.id = flags.flaggable_id AND flags.flaggable_type = 'Taxon'" ).
-      where( "flags.resolved = false#{taxon_clause}").order( "taxa.rank_level desc" ).limit( 10 )
+      where( "flags.resolved = false#{taxon_clause}" ).
+      select( "taxa.*, COUNT( flags.id ) AS open_flags_count" ).
+      group( "taxa.id" ).
+      order( "open_flags_count desc, taxa.rank_level desc" ).
+      limit( FLAGGED_TAXA_LIMIT )
 
     return flagged_taxa
   end

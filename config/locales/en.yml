@@ -134,6 +134,12 @@ en:
     few: '<span class="count">%{count}</span> OBSERVERS'
     many: '<span class="count">%{count}</span> OBSERVERS'
     other: '<span class="count">%{count}</span> OBSERVERS'
+  # Footer below the scrolling list of flagged taxa on taxonomy details pages.
+  # count is the number of unresolved flags on taxa covered by the taxon
+  # framework; the list itself only shows the most-flagged taxa
+  x_open_flags_scroll_for_more:
+    one: "%{count} open flag · scroll for more"
+    other: "%{count} open flags · scroll for more"
   x_others:
     one: "%{count} other"
     other: "%{count} others"
@@ -4149,6 +4155,9 @@ en:
   # Geoprivacy status in which no privacy has been applied
   open_: Open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
+  # Column header for the number of unresolved flags on each taxon in a list
+  # of flagged taxa
+  open_flags: Open flags
   open_street_map: OpenStreetMap
   optional: optional
   options: Options

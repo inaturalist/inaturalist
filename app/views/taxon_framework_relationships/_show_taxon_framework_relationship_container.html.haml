@@ -44,15 +44,8 @@
             .flagged_taxa_count
               =t :label_colon, label: t( :downstream_flagged_covered_taxa )
               = link_to downstream_flagged_taxa_count, "#"
-            .flagged_taxa_table
-              %table.table.table-bordered
-                %thead
-                  %tr
-                    %th= t( :flagged_taxon )
-                %tbody
-                  - downstream_flagged_taxa.each do |flagged_taxon|
-                    %tr
-                      %td= link_to flagged_taxon.name, taxon_path( flagged_taxon )
+              = link_to "#{t( :view_all_flags )} &rarr;".html_safe, flags_path( flaggable_type: "Taxon", taxon_id: taxon.id, resolved: "no" ), class: "view-all-flags"
+            = render partial: "taxa/flagged_taxa_table", object: { flagged_taxa: downstream_flagged_taxa, flagged_taxa_count: downstream_flagged_taxa_count }
       - else
         %p.bg-info.padding
           = t :relationship_x, relationship: t( :unknown ).capitalize

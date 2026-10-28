@@ -44,4 +44,47 @@ describe TaxonFramework do
       end
     end
   end
+
+  describe "get_flagged_taxa" do
+    let( :family ) { Taxon.make!( rank: Taxon::FAMILY ) }
+    let( :taxon_framework ) { TaxonFramework.make!( taxon: family, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] ) }
+    let( :genus ) { Taxon.make!( rank: Taxon::GENUS, parent: family ) }
+    let( :other_genus ) { Taxon.make!( rank: Taxon::GENUS, parent: family ) }
+    let( :species ) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
+
+    it "should return each flagged taxon once with its open flag count" do
+      2.times { Flag.make!( flaggable: genus ) }
+      flagged_taxa = taxon_framework.get_flagged_taxa
+      expect( flagged_taxa.map( &:id ) ).to eq [genus.id]
+      expect( flagged_taxa.first.open_flags_count ).to eq 2
+    end
+
+    it "should not include resolved flags" do
+      Flag.make!( flaggable: genus )
+      Flag.make!( flaggable: genus, resolved: true, resolver: make_curator )
+      Flag.make!( flaggable: other_genus, resolved: true, resolver: make_curator )
+      flagged_taxa = taxon_framework.get_flagged_taxa
+      expect( flagged_taxa.map( &:id ) ).to eq [genus.id]
+      expect( flagged_taxa.first.open_flags_count ).to eq 1
+    end
+
+    it "should order taxa by open flag count" do
+      Flag.make!( flaggable: genus )
+      3.times { Flag.make!( flaggable: species ) }
+      expect( taxon_framework.get_flagged_taxa.map( &:id ) ).to eq [species.id, genus.id]
+    end
+
+    it "should limit results to FLAGGED_TAXA_LIMIT" do
+      stub_const( "TaxonFramework::FLAGGED_TAXA_LIMIT", 1 )
+      Flag.make!( flaggable: genus )
+      Flag.make!( flaggable: other_genus )
+      expect( taxon_framework.get_flagged_taxa.length ).to eq 1
+    end
+
+    it "should only include taxa in the subtree of the taxon option" do
+      Flag.make!( flaggable: species )
+      Flag.make!( flaggable: other_genus )
+      expect( taxon_framework.get_flagged_taxa( taxon: genus ).map( &:id ) ).to eq [species.id]
+    end
+  end
 end

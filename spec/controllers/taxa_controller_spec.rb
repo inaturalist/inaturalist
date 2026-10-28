@@ -17,6 +17,44 @@ describe TaxaController do
     end
   end
 
+  describe "taxonomy_details" do
+    render_views
+    let( :family ) { Taxon.make!( rank: Taxon::FAMILY ) }
+    let!( :taxon_framework ) do
+      TaxonFramework.make!( taxon: family, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+    end
+    let( :genus ) { Taxon.make!( rank: Taxon::GENUS, parent: family ) }
+    let( :species ) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
+
+    def flag_search_path( taxon )
+      flags_path( flaggable_type: "Taxon", taxon_id: taxon.id, resolved: "no" )
+    end
+
+    def response_hrefs
+      Nokogiri::HTML( response.body ).css( "a" ).map {| a | a["href"] }
+    end
+
+    it "links the flagged covered taxa count and each flagged taxon to the flag search" do
+      2.times { Flag.make!( flaggable: genus ) }
+      get :taxonomy_details, params: { id: family.id }
+      expect( response ).to be_successful
+      expect( response_hrefs ).to include flag_search_path( family )
+      expect( response_hrefs ).to include flag_search_path( genus )
+      badge = Nokogiri::HTML( response.body ).at_css( ".flagged_taxa_table .badge" )
+      expect( badge.text.strip ).to eq "2"
+    end
+
+    it "links downstream flagged taxa to the flag search" do
+      tfr = TaxonFrameworkRelationship.make!( taxon_framework: taxon_framework )
+      genus.update( taxon_framework_relationship_id: tfr.id )
+      Flag.make!( flaggable: species )
+      get :taxonomy_details, params: { id: genus.id }
+      expect( response ).to be_successful
+      expect( response_hrefs ).to include flag_search_path( genus )
+      expect( response_hrefs ).to include flag_search_path( species )
+    end
+  end
+
   describe "show" do
     render_views
     let( :taxon ) { Taxon.make! }
