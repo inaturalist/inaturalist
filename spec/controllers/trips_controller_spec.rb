@@ -17,4 +17,14 @@ describe TripsController, "show" do
     get :show, params: { id: trip.id }
     expect( response ).to be_successful
   end
+
+  it "renders observations from the trip area" do
+    obs = Observation.make!( user: user )
+    allow( INatAPIService ).to receive( :observations ).and_return(
+      double( results: [{ "id" => obs.id, "taxon" => { "ancestor_ids" => [] } }] )
+    )
+    trip_with_radius = Trip.make!( latitude: 1, longitude: 1, radius: 1000 )
+    get :show, params: { id: trip_with_radius.id }
+    expect( response.body ).to include observation_path( obs )
+  end
 end
