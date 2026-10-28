@@ -661,7 +661,7 @@ de:
   apply_these_settings_to_all: Diese Einstellungen für alle nachstehenden Beobachtungen übernehmen.
   appropriate?: Geeignet?
   arachnids: Spinnentiere
-  archives: Archive
+  archives: Archiv
   are_you_really_sure_want_delete_this_user: Bist du wirklich, wirklich sicher, dass du diesen Benutzer samt all seiner Inhalte löschen möchtest?
   are_you_sure?: Bist du sicher?
   are_you_sure_no_undo: Bist du sicher? Diese Aktion kann nicht rückgängig gemacht werden.
@@ -4875,6 +4875,8 @@ de:
   scroll_to_top: Zum Seitenanfang
   search: Suchen
   search_all_fields: alle Felder durchsuchen
+  #Placeholder for a search bar where the user can search for another user
+  search_by_name: Nach Namen suchen
   search_by_name_or_email: Nach Namen oder E-Mail suchen
   search_by_taxon_name_or_observation_id: Nach Taxonnamen oder Beobachtungs-ID suchen
   search_by_taxon_name_or_flickr_photo_id: Nach Taxonnamen oder Flickr Foto-ID suchen
@@ -5000,6 +5002,8 @@ de:
   site_year_in_review: "%{year} Jahresrückblick von %{site}"
   sizes: Größe
   skip_to_next_page: "Zur nächsten Seite springen"
+  #Label for a button that shows a specific slide in a carousel
+  slide_x: "Rutsche %{x}"
   small: klein
   site_admin_tools: Tools für Website-Admins
   #People who administrate a particular iNaturalist Network partner
@@ -5187,6 +5191,8 @@ de:
   start_a_project: Ein Projekt beginnen
   start_date_time: Start Datum / Uhrzeit
   start_one_now: Jetzt eins beginnen!
+  #Button that resumes automatic rotation of carousel slides
+  start_slide_rotation: Starte Folienrotation
   start_typing_field_name: Name des Feldes eingeben....
   start_typing_place_name: Gebietsnamen eingeben...
   start_typing_taxon_name: Taxonnamen eingeben...
@@ -5206,6 +5212,8 @@ de:
   still_working_on_classifying_taxon: An der Klassifizierung dieses Taxons wird noch gearbeitet. Schau später wieder vorbei
   stop_editing: Bearbeitung beenden
   stop_following_user: "%{user} nicht mehr folgen"
+  #Button that pauses automatic rotation of carousel slides
+  stop_slide_rotation: Stoppe Folienrotation
   stop_testing: Testen beenden
   stop_trusting_this_person_with_your_private_coordinates: Vertrau dieser Person deine verborgenen Koordinaten nicht mehr an
   #As in a place to purchase things. We use it as a link to a place where you
@@ -6300,7 +6308,7 @@ de:
   x_flagged: "%{x} wurde gemeldet"
   x_flagged_as_flag: "%{x} wurde als %{flag} gemeldet"
   x_journal: "%{user}#s Journal"
-  x_journal_archives_for_y: "Protokoll von %{user} • Archive für"
+  x_journal_archives_for_y: "Journal-Beitrag von %{user} • Archive für"
   x_journal_middot: "%{user}'s Journal •"
   x_journal_new_post: "%{user}'s Journal • Neuer Eintrag"
   x_observations_failed:
@@ -6318,7 +6326,7 @@ de:
     other: "%{x} von %{count} beobachtet"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} von %{y} Leute (mehr als 2/3) sind damit einverstanden"
   x_is_the_root_of_the_tree: "%{rank} %{name} ist die Basis des Stammbaums"
-  x_project_journal: "%{project}'s %{name}"
+  x_project_journal: "%{name} von %{project}"
   x_project_stats: "Statistiken für %{project}"
   x_sent_you_a_new_message_on_y_html: "%{x} hat dir am %{y} eine neue Nachricht gesendet: "
   x_site_is_a_social_network_for_naturalist: |
@@ -8494,6 +8502,8 @@ de:
         block_desc_there_are_two_exceptions: |
           Es gibt zwei Situationen, in denen das Blockieren die Interaktion nicht verhindert:
         block_desc_comments_on_taxon_flags: Kommentare zu von dir erstellten Taxon-Meldungen
+        block_desc_unlike_more_personal: |
+          Im Gegensatz zu persönlicheren Inhalten, wie Beobachtungen und Journal-Beiträgen, werden Taxa von allen geteilt und sollten offen sein für Diskussion von allen. Das Blockieren wird dich trotzdem daran hindern, Benachrichtigungen über Kommentare zu solchen Inhalten zu erhalten, die von der Person, die du blockiert hast, erstellt wurden.
         common_scientific_name_display_order: Reihenfolge für wissenschaftliche/ Trivialnamen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Wenn du deine Meinung änderst, kannst du jederzeit
@@ -9924,6 +9934,7 @@ de:
       filters:
         language_label: "Sprache"
       summary_list:
+        empty: "Keine ID-Zusammenfassungen für diese Art verfügbar."
         feedback_toggle: "Feedback zu ID-Zusammenfassungen"
         sign_in_required: "Melde dich an, um über das Feedback zur ID-Zusammenfassung abzustimmen."
       summary_feedback:

@@ -1934,6 +1934,14 @@ fi:
     tulevat näkyviin sivun päivittämisen jälkeen.
   favorite_taxa: Suosikkitaksonit
   favorites: "Suosikit"
+  #Heading of the admin feature flags page and the admin nav link to it
+  feature_flags: Ominaisuusliput
+  #Button on the admin feature flags page leading to the Flipper UI where flags are created and edited
+  feature_flags_manage: Hallinnoi lippuja
+  #Shown on the admin feature flags page when no feature flags exist yet; %{url} is the address of the Flipper UI
+  feature_flags_none_html: Ominaisuuslippuja ei ole vielä olemassa. <a href="%{url}">Luo sellainen</a> ja se ilmestyy tänne.
+  #Shown on the admin feature flags page when the current admin is not enrolled in an A/B experiment
+  feature_flags_not_enrolled: ei ilmoittautunut
   feature_this_project_: "Nosta tämä projekti esille"
   featured: Esittelyssä
   #Title for a button or section describing the "featured" status of a project
@@ -4478,6 +4486,8 @@ fi:
   scientific_name: Tieteellinen nimi
   search: Hae
   search_all_fields: etsi kaikista kentistä
+  #Placeholder for a search bar where the user can search for another user
+  search_by_name: Haku nimen mukaan
   search_by_name_or_email: Hae nimellä
   search_by_taxon_name_or_observation_id: Hae taksonin nimellä tai havainnon ID:llä
   search_by_taxon_name_or_flickr_photo_id: Hae taksonin nimellä tai Flick-kuvan tunnisteella
