@@ -47,6 +47,10 @@
           <%= label_tag t(:parent_name) %><br/>
           <%= text_field_tag :parent_name, ( parent = taxon.parent rescue nil ) ? parent.name : "", id: "parent_name", class: "text", disabled: !@protected_attributes_editable %>
           <%= link_to_function t( :browse_all_species ), "$('#taxonchooser').jqmShow();" %>
+          <%= link_to new_taxon_path, target: "_blank", rel: "noopener noreferrer", style: "margin-left: 10px;" do %>
+            <%= t( :create_new_taxon ) %>
+            <i class="fa fa-external-link"></i>
+          <% end %>
           <div class="description">
             <%= t( :this_is_more_convenient_way_find_parent ) %>
           </div>

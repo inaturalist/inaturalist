@@ -33,6 +33,14 @@
             = link_to t(:view_moderation_history_for_this_comment), comment_flags_url( comment_id: @object.id )
             &middot;
           = link_to t(:view_all_flags), flags_url
+      - if @object.is_a?( Taxon ) && current_user&.is_curator?
+        .pull-right.btn-toolbar{ style: "margin-top: 20px;" }
+          = link_to edit_taxon_path( @object, flag_id: @flag.id ), class: "btn btn-default", target: "_blank", rel: "noopener noreferrer" do
+            %i.fa.fa-pencil
+            = t(:edit_taxon)
+          = link_to new_taxon_path( parent_id: @object.id, flag_id: @flag.id ), class: "btn btn-default", target: "_blank", rel: "noopener noreferrer" do
+            %i.fa.fa-plus
+            = t(:create_new_taxon)
       %h2= @title
   .row
     .col-xs-12
