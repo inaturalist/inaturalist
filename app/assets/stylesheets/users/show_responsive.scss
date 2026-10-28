@@ -1,0 +1,61 @@
+@import "../breakpoints";
+
+body.responsive #header {
+  margin-bottom: 0;
+}
+
+.profile-container {
+  @include container-padding;
+  background-color: white;
+  padding-top: 20px;
+
+  .nav-tabs.user-subnav {
+    @media ( max-width: $md-max ) { display: none; }
+  }
+}
+
+.profile-header {
+  margin-top: 0;
+  overflow-wrap: anywhere;
+}
+
+.profile-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  @media ( min-width: $lg ) {
+    margin-top: 20px;
+  }
+
+  @media ( min-width: $md ) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.profile-sidebar {
+  min-width: 0;
+
+  @media ( min-width: $md ) { flex: 0 0 calc( ( 100% - 30px ) / 3 ); }
+
+  > .row {
+    margin-inline: 0;
+
+    > .col-md-12 { padding-inline: 0; }
+  }
+}
+
+.profile-main {
+  flex: 1;
+  min-width: 0;
+
+  > h1:first-child { margin-top: 0; }
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: minmax( 0, 1fr );
+  gap: 15px 30px;
+
+  @media ( min-width: $md ) { grid-template-columns: repeat( 4, minmax( 0, 1fr ) ); }
+}

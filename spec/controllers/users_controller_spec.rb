@@ -235,15 +235,6 @@ describe UsersController, "index" do
     expect( assigns( :updates ) ).to be_blank
     expect( response ).to be_successful
   end
-
-  it "renders the responsive variant for a responsive-global member" do
-    user = User.make!
-    user.update_column( :test_groups, "responsive-global" )
-    sign_in user
-    get :index
-    expect( response ).to be_successful
-    expect( request.variant ).to include( :responsive )
-  end
 end
 
 describe UsersController, "followers and following" do
@@ -255,20 +246,12 @@ describe UsersController, "followers and following" do
       let( :subject_user ) { friendship.public_send( subject_role ) }
       let( :listed_user ) { friendship.public_send( listed_role ) }
 
-      it "renders stacked UserWithIcon cards for a responsive-global member" do
-        viewer = User.make!
-        viewer.update_column( :test_groups, "responsive-global" )
-        sign_in viewer
-        get action, params: { login: subject_user.login }
-        expect( response.body ).to have_css( "#friendship-users .UserWithIcon .title a", text: listed_user.login )
-        expect( response.body ).not_to have_css( "table.table" )
-      end
-
-      it "renders the legacy table outside the test group" do
+      it "renders stacked UserWithIcon cards" do
         sign_in User.make!
         get action, params: { login: subject_user.login }
-        expect( response.body ).to have_css( "table.table a", text: listed_user.login )
-        expect( response.body ).not_to have_css( ".UserWithIcon" )
+        expect( assigns( :responsive ) ).to be true
+        expect( response.body ).to have_css( "#friendship-users .UserWithIcon .title a", text: listed_user.login )
+        expect( response.body ).not_to have_css( "table.table" )
       end
     end
   end
@@ -281,15 +264,6 @@ describe UsersController, "leaderboard" do
     sign_in User.make! # leaderboard requires auth (unlike the public index)
     get :leaderboard
     expect( response ).to be_successful
-  end
-
-  it "renders the responsive variant for a responsive-global member" do
-    user = User.make!
-    user.update_column( :test_groups, "responsive-global" )
-    sign_in user
-    get :leaderboard
-    expect( response ).to be_successful
-    expect( request.variant ).to include( :responsive )
   end
 end
 
@@ -598,18 +572,47 @@ describe UsersController, "show" do
     end
   end
 
+  it "offers the responsive-global test group toggle" do
+    get :show, params: { id: User.make!.login }
+    expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
+  end
+
   describe "for a responsive-global member" do
     render_views
 
-    it "renders the legacy by-login header" do
+    it "renders the profile header with the subnav drawer" do
       viewer = User.make!
       viewer.update_column( :test_groups, "responsive-global" )
       sign_in viewer
       get :show, params: { id: User.make!.login }
       doc = Nokogiri::HTML( response.body )
       expect( doc.at_css( ".logged-in-user-image" ) ).to be_nil
+      expect( doc.at_css( "#UserSubnavTabDrawer" ) ).not_to be_nil
+      expect( doc.at_css( ".profile-container h1 .user_image" ) ).not_to be_nil
+    end
+
+    it "does not use the Bootstrap grid" do
+      viewer = User.make!
+      viewer.update_column( :test_groups, "responsive-global" )
+      sign_in viewer
+      get :show, params: { id: viewer.login }
+      doc = Nokogiri::HTML( response.body )
+      grid = doc.css( ".profile-container .row, .profile-container [class*='col-']" ).reject do | elt |
+        elt.ancestors( ".list-group" ).any? || elt.at_css( ".list-group" )
+      end
+      expect( grid ).to be_empty
+    end
+  end
+
+  describe "for a user in no test group" do
+    render_views
+
+    it "renders the legacy header without the subnav drawer" do
+      get :show, params: { id: User.make!.login }
+      doc = Nokogiri::HTML( response.body )
       expect( doc.at_css( "#UserSubnavTabDrawer" ) ).to be_nil
-      expect( doc.at_css( ".col-md-12 > h1 .user_image" ) ).not_to be_nil
+      expect( doc.at_css( ".container .col-md-12 > h1 .user_image" ) ).not_to be_nil
+      expect( doc.at_css( ".nav-tabs.user-subnav" ) ).not_to be_nil
     end
   end
 end
