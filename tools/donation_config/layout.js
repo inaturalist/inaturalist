@@ -16,6 +16,7 @@ const TABS = {
 const H = {
   currencyCode: "Currency code (ISO 4217)",
   currencyName: "Currency name",
+  currencyUsedBy: "Countries using it",
   symbol: "Symbol",
   currencyThousand: "How 1,000.00 should look (default)",
   currencyMillion: "How 1,000,000.00 should look (default)",
@@ -62,7 +63,7 @@ const H = {
 // Row 1 is an intro line, row 2 the headers, row 3 Required/Optional
 const HEADER_ROW = 2;
 const FIRST_ROW = 4;
-const LAST_ROW = 150;
+const LAST_ROW = 200;
 
 const TIERS = ["min", "mid", "max"];
 const FREQUENCIES = ["One-time", "Monthly"];

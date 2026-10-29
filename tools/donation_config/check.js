@@ -10,7 +10,9 @@ const {
   TABS, H, HEADER_ROW, FIRST_ROW, TIERS, FREQUENCIES, TIER_COLUMNS
 } = require( "./layout" );
 const { parseExamples, normalize } = require( "./parse" );
-const { suggest, currencyHome, currencyName } = require( "./seed" );
+const {
+  FRU_CURRENCIES, suggest, currencyHome, currencyName
+} = require( "./seed" );
 const { loadLocales } = require( "./locales" );
 const { restoreValidations } = require( "./xlsx_validations" );
 
@@ -35,8 +37,9 @@ function readTable( ws ) {
     const row = ws.getRow( r );
     const cell = header => ( columns[header] ? row.getCell( columns[header] ) : null );
     const get = header => ( cell( header ) ? cellText( cell( header ) ) : "" );
-    const isBlank = Object.entries( columns ).every( ( [header, col] ) => (
-      header === H.tierAmount || cellText( row.getCell( col ) ) === ""
+    // Formula columns (tier amount, countries using a currency) don't count
+    const isBlank = Object.values( columns ).every( col => (
+      row.getCell( col ).formula || cellText( row.getCell( col ) ) === ""
     ) );
     if ( !isBlank && !/^Example row/.test( get( H.notes ) ) ) {
       rows.push( { row: r, get, cell } );
@@ -113,6 +116,9 @@ function checkWorkbookObject( wb ) {
         return;
       }
       if ( currencies[code] ) error( TABS.currencies, r.row, `${code} is listed more than once` );
+      if ( !FRU_CURRENCIES.includes( code ) ) {
+        error( TABS.currencies, r.row, `${code} isn't a currency FundraiseUp supports` );
+      }
       const home = currencyHome( code );
       const cldr = home ? safeSuggest( home[3][0], home[0], code ) : null;
       if ( !r.get( H.currencyName ) ) {

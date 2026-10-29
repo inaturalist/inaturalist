@@ -8,7 +8,7 @@ const {
   TABS, H, FIRST_ROW, LAST_ROW, TIERS, FREQUENCIES
 } = require( "./layout" );
 const {
-  STARTER, suggest, currencyHome, currencyName
+  STARTER, FRU_CURRENCIES, suggest, currencyHome, currencyName
 } = require( "./seed" );
 const { loadLocales } = require( "./locales" );
 const { writeValidations } = require( "./xlsx_validations" );
@@ -144,7 +144,7 @@ function buildWorkbook( ) {
     [null, null],
     ["Tabs, in order", null],
     [TABS.settings, "Overall settings: fallback country, tier names, FundraiseUp campaign details."],
-    [TABS.currencies, "One row per currency: symbol, default format, and whether it is enabled in the FundraiseUp campaign. The format here is only used when a country leaves its own blank."],
+    [TABS.currencies, "Every currency FundraiseUp supports, with its symbol, default format, and whether it is enabled in the FundraiseUp campaign. The format here is only used when a country leaves its own blank. Only currencies with a count in \"Countries using it\" need checking."],
     [TABS.countries, "One row per country: its currency, the amount for each tier (one-time and monthly), and how amounts look there. Starts with a starter list; delete rows that are out of scope."],
     [TABS.countryLanguages, "Only where a country's amounts should look different in one of its other languages, e.g. Switzerland: CHF 1'000.00 in German, 1'000.00 CHF in French."],
     ["How formats are chosen", "For a viewer in a country using a language: Country by language first, then the country's own format on Countries, then the currency default on Currencies."],
@@ -211,26 +211,30 @@ function buildWorkbook( ) {
   settings.views = [{ state: "frozen", ySplit: 1 }];
 
   // ---------- Currencies ----------
-  const currencyRows = [];
-  STARTER.forEach( ( [, , currency] ) => {
-    if ( currencyRows.some( r => r[0] === currency ) ) return;
+  const currencyRows = FRU_CURRENCIES.map( currency => {
     const [homeCountry, homeName, , homeLangs] = currencyHome( currency );
     const s = suggest( homeLangs[0], homeCountry, currency );
-    currencyRows.push( [currency, currencyName( currency ), s.symbol, s.thousand, s.million,
-      null, null, null, null, `Default from ${homeName} formatting`] );
+    return [currency, currencyName( currency ), null, s.symbol, s.thousand, s.million,
+      null, null, null, null, `Default from ${homeName} formatting`];
   } );
   tableSheet( TABS.currencies,
-    "One row per currency. These are fallbacks: a country's own format on the Countries tab wins. Symbol and examples are pre-filled from the Unicode CLDR standard.",
+    "Every currency FundraiseUp supports. Only those used on the Countries tab need checking. These are fallbacks: a country's own format on the Countries tab wins. Symbol and examples are pre-filled from the Unicode CLDR standard.",
     [
       { header: H.currencyCode, req: "Required", width: 14, ...text },
       { header: H.currencyName, req: "Optional", width: 22 },
+      {
+        header: H.currencyUsedBy,
+        req: "Formula",
+        width: 11,
+        formula: r => `IF(A${r}="","",COUNTIF(${TABS.countries}!$C$${FIRST_ROW}:$C$${LAST_ROW},A${r}))`
+      },
       { header: H.symbol, req: "Required", width: 9, ...text },
       { header: H.currencyThousand, req: "Required", width: 18, ...text },
       { header: H.currencyMillion, req: "Required", width: 20, ...text },
       { header: H.formatChecked, req: "Optional", width: 10, validation: yesNo },
       {
         header: H.fruEnabled,
-        req: "Required",
+        req: "Required if used",
         width: 16,
         validation: list( `${TABS.lists}!$C$2:$C$4`, "Choose Yes, No or Not sure." )
       },
@@ -436,7 +440,7 @@ function buildWorkbook( ) {
     [Y, "fru.custom_fields", "Optional", "Settings", "{ source: announcement }", "Attribution fields; must exist in the campaign."],
     [Y, "fru.utm_defaults", "Optional", "Settings", "{ utm_source: inaturalist }", "Shared with WEB-1389."],
     [Y, "currencies.<ISO>.name", "Optional", "Currencies", "Euro", "Admin preview and docs."],
-    [Y, "currencies.<ISO>.fru_enabled", "Required", "Currencies", "true", "Confirms the currency is enabled in the campaign."],
+    [Y, "currencies.<ISO>.fru_enabled", "Required if used", "Currencies", "true", "Confirms the currency is enabled in the campaign. Only currencies a country uses need it."],
     [Y, "currencies.<ISO>.fru_minimum", "Optional", "Currencies", "{ once: 1, monthly: 1 }", "Tiers are checked against it."],
     [Y, "countries.\"<ISO2>\".currency", "Required", "Countries", "EUR", "Must exist under currencies."],
     [Y, "countries.\"<ISO2>\".tiers.<frequency>.<tier>", "Required", "Countries", "once: { min: 5, mid: 10, max: 25 }", "Whole-number amounts; all frequencies and tiers required."],

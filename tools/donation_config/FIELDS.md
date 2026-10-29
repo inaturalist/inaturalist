@@ -29,10 +29,12 @@ Decisions so far:
 
 ### `currencies.<ISO4217>`
 
+The workbook lists every currency FundraiseUp supports (Stripe's presentment currencies for US accounts, 134 as of 2026-10-29). The YAML only needs the currencies that countries use, plus any staged for later.
+
 | Field | E/O | Example | Purpose |
 |---|---|---|---|
 | formatting fields | E: `symbol`, `format` | see below | Defaults, used when a country sets nothing. |
-| `fru_enabled` | E | `true` | Engagement confirms the currency is enabled in the FundraiseUp campaign. A spec fails if a currency in use is `false`. |
+| `fru_enabled` | E if used | `true` | Engagement confirms the currency is enabled in the FundraiseUp campaign. A spec fails if a currency in use is `false`. |
 | `fru_minimum` | O | `{ once: 1, monthly: 1 }` | FundraiseUp's minimum in this currency. A spec checks every tier is at least this. |
 | `name` | O | `Euro` | Admin preview country picker and docs. |
 
@@ -119,6 +121,7 @@ The workbook collects the symbol plus two written examples. `parse.js` turns the
 - `default_country` exists and is enabled.
 - Every country has every `frequencies` × `tier_names` entry as positive integers, in min ≤ mid ≤ max order.
 - Tiers are ≥ `fru_minimum` when set, and every currency in use has `fru_enabled: true`.
+- Every currency is one FundraiseUp supports.
 - Patterns contain `%n` and use only `%n`, `%u` and `%c`. `delimiter` and `separator` differ.
 - Every override locale is supported and every override tier/frequency is known. The digits in each literal override match the amount.
 - `en` donation labels exist for every frequency and contain `%{amount}`.
