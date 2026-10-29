@@ -572,20 +572,20 @@ describe UsersController, "show" do
     end
   end
 
-  it "offers the responsive-global test group toggle" do
+  it "is responsive without a test group toggle" do
     get :show, params: { id: User.make!.login }
-    expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
+    expect( assigns( :responsive ) ).to be_truthy
+    expect( assigns( :test_group_toggle ) ).to be_nil
   end
 
-  describe "for a responsive-global member" do
+  describe "for a user in no test group" do
     render_views
 
     it "renders the profile header with the subnav drawer" do
-      viewer = User.make!
-      viewer.update_column( :test_groups, "responsive-global" )
-      sign_in viewer
+      sign_in User.make!
       get :show, params: { id: User.make!.login }
       doc = Nokogiri::HTML( response.body )
+      expect( doc.at_css( "meta[name=viewport]" )[:content] ).to include "width=device-width"
       expect( doc.at_css( ".logged-in-user-image" ) ).to be_nil
       expect( doc.at_css( "#UserSubnavTabDrawer" ) ).not_to be_nil
       expect( doc.at_css( ".profile-container h1 .user_image" ) ).not_to be_nil
@@ -593,7 +593,6 @@ describe UsersController, "show" do
 
     it "does not use the Bootstrap grid" do
       viewer = User.make!
-      viewer.update_column( :test_groups, "responsive-global" )
       sign_in viewer
       get :show, params: { id: viewer.login }
       doc = Nokogiri::HTML( response.body )
@@ -602,17 +601,15 @@ describe UsersController, "show" do
       end
       expect( grid ).to be_empty
     end
-  end
 
-  describe "for a user in no test group" do
-    render_views
-
-    it "renders the legacy header without the subnav drawer" do
-      get :show, params: { id: User.make!.login }
-      doc = Nokogiri::HTML( response.body )
-      expect( doc.at_css( "#UserSubnavTabDrawer" ) ).to be_nil
-      expect( doc.at_css( ".container .col-md-12 > h1 .user_image" ) ).not_to be_nil
-      expect( doc.at_css( ".nav-tabs.user-subnav" ) ).not_to be_nil
+    it "does not offer site admins a make curator option" do
+      Site.make! if Site.default.blank?
+      site = Site.make!
+      site_admin = SiteAdmin.make!( site: site )
+      profile_user = User.make!( site: site )
+      sign_in site_admin.user
+      get :show, params: { id: profile_user.login }
+      expect( response.body ).not_to include add_role_path( profile_user, role: "curator" )
     end
   end
 end
