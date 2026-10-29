@@ -7,7 +7,7 @@
 const fs = require( "node:fs" );
 const ExcelJS = require( "exceljs" );
 const {
-  TABS, H, HEADER_ROW, FIRST_ROW, TIERS, FREQUENCIES, TIER_COLUMNS
+  TABS, H, SETTINGS, HEADER_ROW, FIRST_ROW, TIERS, FREQUENCIES, TIER_COLUMNS
 } = require( "./layout" );
 const { parseExamples, normalize } = require( "./parse" );
 const {
@@ -23,6 +23,7 @@ const { restoreValidations } = require( "./xlsx_validations" );
 function cellText( cell ) {
   const { value } = cell;
   if ( value === null || value === undefined ) return "";
+  if ( value instanceof Date ) return value.toISOString( ).slice( 0, 10 );
   if ( typeof value === "object" ) {
     if ( value.richText ) return value.richText.map( r => r.text ).join( "" ).trim( );
     if ( "result" in value ) return String( value.result ?? "" ).trim( );
@@ -50,6 +51,14 @@ function readTable( ws ) {
     }
   }
   return { columns, rows };
+}
+
+// "source=announcement, campaign=fall" as { source: "announcement", ... },
+// or null if any part isn't name=value
+function parseCustomFields( value ) {
+  const pairs = value.split( "," ).map( p => p.trim( ) ).filter( Boolean ).map( p => p.match( /^([^=\s]+)\s*=\s*(\S.*)$/ ) );
+  if ( pairs.some( p => !p ) ) return null;
+  return Object.fromEntries( pairs.map( p => [p[1], p[2]] ) );
 }
 
 const languagesOf = value => value.split( /[,\s]+/ ).filter( Boolean );
@@ -176,8 +185,26 @@ function checkWorkbookObject( wb ) {
       const fields = checkExamples( TABS.currencies, r, { thousand, million }, symbol, code, cldr );
       const amounts = readAmounts( TABS.currencies, r, code );
       checkOrder( TABS.currencies, r, amounts );
+      const fruMinimum = {};
+      [["One-time", H.fruMinOnce], ["Monthly", H.fruMinMonthly]].forEach( ( [freq, header] ) => {
+        const raw = r.get( header );
+        if ( raw === "" ) return;
+        const n = Number( raw );
+        if ( !( n > 0 ) ) {
+          error( TABS.currencies, r.row, `${header} "${raw}" isn't a number above 0` );
+          return;
+        }
+        fruMinimum[freq] = n;
+      } );
       currencies[code] = {
-        row: r.row, symbol, fields, amounts, fruEnabled: r.get( H.fruEnabled )
+        row: r.row,
+        name: r.get( H.currencyName ),
+        symbol,
+        fields,
+        amounts,
+        purchasingPower: r.get( H.purchasingPower ),
+        fruEnabled: r.get( H.fruEnabled ),
+        fruMinimum
       };
     } );
   }
@@ -222,14 +249,25 @@ function checkWorkbookObject( wb ) {
         || currencies[currency]?.symbol;
       const thousand = formatValue( TABS.countries, r, H.countryThousand, cldr?.thousand );
       const million = formatValue( TABS.countries, r, H.countryMillion, cldr?.million );
-      let fields = currencies[currency]?.fields;
-      if ( thousand || million ) {
-        fields = checkExamples( TABS.countries, r, { thousand, million }, symbol, currency, cldr );
-      }
+      // Fields from the country's own examples; null when it has none
+      const ownFields = ( thousand || million )
+        ? checkExamples( TABS.countries, r, { thousand, million }, symbol, currency, cldr )
+        : null;
+      const fields = ownFields || currencies[currency]?.fields;
       if ( enabled ) noteBareSymbol( fields, currency );
 
       countries[code] = {
-        currency, amounts, symbol, enabled
+        row: r.row,
+        name: r.get( H.countryName ),
+        currency,
+        own,
+        amounts,
+        symbol,
+        fields,
+        ownFields,
+        langs,
+        enabled,
+        notes: r.get( H.source )
       };
     } );
   }
@@ -244,19 +282,40 @@ function checkWorkbookObject( wb ) {
     error( TABS.currencies, currency.row, `${REQUIRED_HEADER} missing, and enabled countries using ${code} don't set their own (${list}). Set it here, set it on those countries, or disable them.` );
   } );
 
+  // Tiers can't be below FundraiseUp's minimum in the currency
+  const checkMinimum = ( tabName, row, amounts, currency ) => {
+    const minimum = currencies[currency]?.fruMinimum || {};
+    FREQUENCIES.forEach( freq => {
+      Object.entries( amounts[freq] ).forEach( ( [tier, n] ) => {
+        if ( minimum[freq] && n < minimum[freq] ) {
+          error( tabName, row, `${TIER_COLUMNS[freq][tier]} ${n} is under FundraiseUp's ${freq.toLowerCase( )} minimum of ${minimum[freq]} ${currency}` );
+        }
+      } );
+    } );
+  };
+  Object.entries( currencies ).forEach( ( [code, c] ) => checkMinimum( TABS.currencies, c.row, c.amounts, code ) );
+  Object.values( countries ).forEach( c => checkMinimum( TABS.countries, c.row, c.own, c.currency ) );
+
   // ---------- Settings ----------
+  const settings = {};
   const settingsWs = tab( TABS.settings );
   if ( settingsWs ) {
     for ( let r = 2; r <= settingsWs.rowCount; r += 1 ) {
       const row = settingsWs.getRow( r );
       const setting = cellText( row.getCell( 1 ) );
       const value = cellText( row.getCell( 3 ) );
+      if ( setting ) settings[setting] = value;
       if ( cellText( row.getCell( 2 ) ) === "Required" && !value ) {
         error( TABS.settings, r, `${setting} is blank` );
       }
-      if ( setting === "Fallback country" && value && !countries[value] ) {
+      if ( setting === SETTINGS.customFields && value && !parseCustomFields( value ) ) {
+        error( TABS.settings, r, `${setting} should look like "name=value, name=value"` );
+      }
+      if ( setting === SETTINGS.fallbackCountry && value && !countries[value] ) {
         error( TABS.settings, r, `Fallback country "${value}" isn't on the Countries tab` );
-      } else if ( setting === "Fallback country" && value ) {
+      } else if ( setting === SETTINGS.fallbackCountry && value && !countries[value].enabled ) {
+        error( TABS.settings, r, `Fallback country ${value} is disabled on the Countries tab` );
+      } else if ( setting === SETTINGS.fallbackCountry && value ) {
         const gaps = FREQUENCIES.flatMap( freq => TIERS
           .filter( tier => !countries[value].amounts[freq][tier] )
           .map( tier => TIER_COLUMNS[freq][tier] ) );
@@ -281,6 +340,7 @@ function checkWorkbookObject( wb ) {
   } );
 
   // ---------- Country by language ----------
+  const countryLanguages = [];
   const langWs = tab( TABS.countryLanguages );
   if ( langWs ) {
     const seen = new Set( );
@@ -306,6 +366,7 @@ function checkWorkbookObject( wb ) {
       const million = formatValue( TABS.countryLanguages, r, H.langMillion, cldr?.million );
       const fields = checkExamples( TABS.countryLanguages, r, { thousand, million }, symbol, countryInfo.currency, cldr );
       if ( countryInfo.enabled ) noteBareSymbol( fields, countryInfo.currency );
+      if ( fields ) countryLanguages.push( { country, lang, fields } );
     } );
   }
 
@@ -362,7 +423,15 @@ function checkWorkbookObject( wb ) {
     } );
   }
 
-  return { errors, warnings, fills };
+  return {
+    errors,
+    warnings,
+    fills,
+    // What the checker read, for export_yaml.js
+    model: {
+      currencies, countries, countryLanguages, settings
+    }
+  };
 }
 
 async function readWorkbook( input ) {
@@ -433,5 +502,5 @@ if ( require.main === module ) {
 }
 
 module.exports = {
-  checkWorkbook, fillWorkbook, report, readWorkbook
+  checkWorkbook, fillWorkbook, report, readWorkbook, parseCustomFields
 };

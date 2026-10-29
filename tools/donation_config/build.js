@@ -5,7 +5,7 @@
 const fs = require( "node:fs" );
 const ExcelJS = require( "exceljs" );
 const {
-  TABS, H, FIRST_ROW, LAST_ROW, TIERS, FREQUENCIES, TIER_COLUMNS
+  TABS, H, SETTINGS, DEFAULT_DONATION_URL, FIRST_ROW, LAST_ROW, TIERS, FREQUENCIES, TIER_COLUMNS
 } = require( "./layout" );
 const {
   STARTER, FRU_CURRENCIES, suggestion, currencyHome, currencyName, formatLanguage, allCountries, suggestedTiers,
@@ -152,7 +152,7 @@ function buildWorkbook( ) {
     ["Writing the examples", "Write one thousand and one million, with cents, exactly as people in that country and language would see them, including the currency symbol: 1 000,00 € or ₹10,00,000.00. Buttons use whole amounts, but the cents tell us the decimal separator, and the two examples tell us the thousands separator and how digits are grouped."],
     [null, null],
     ["Tabs, in order", null],
-    [TABS.settings, "Overall settings: fallback country, tier names, FundraiseUp campaign details."],
+    [TABS.settings, "Overall settings: fallback country, tier names, default donation page, FundraiseUp details."],
     [TABS.currencies, "Every currency FundraiseUp supports, with its default amounts, symbol, default format, and whether it is enabled in the FundraiseUp campaign. Amounts and formats here apply to every country using the currency unless the country sets its own. Only currencies with a count in \"Enabled countries using it\" need checking."],
     [TABS.countries, "One row per country using a FundraiseUp currency: its currency, how amounts look there, and any amounts that should differ from its currency's. Disable a country to give viewers there the fallback country's amounts and currency instead."],
     ["How amounts are chosen", "For each tier: the country's own amount, then its currency's on Currencies. Only the one-time min is required for now. A tier with no amount at either level uses the fallback country's amount and currency."],
@@ -192,16 +192,15 @@ function buildWorkbook( ) {
     { header: "What it's for", width: 70 }
   ];
   const settingRows = [
-    ["Fallback country", "Required", null, "US", "Shown when we can't tell the viewer's country, or the country isn't on the Countries tab. Must be on the Countries tab."],
-    ["Tier names", "Required", "min, mid, max", "min, mid, max", "The tiers every country must have. Announcements refer to these names."],
-    ["FundraiseUp campaign page", "Required", null, "https://giving.inaturalist.org/page/supportinaturalist", "Where donation buttons send people. The amount and currency are added to this link."],
-    ["FundraiseUp languages", "Required", null, "en, es, fr, de, it, pt, nl, ja", "Languages the FundraiseUp campaign page supports. Other languages open the page in its default language."],
-    ["FundraiseUp designation ID", "Optional", null, "E12345", "Only if announcement gifts should go to a specific designation."],
-    ["FundraiseUp custom fields", "Optional", null, "source=announcement", "Fields to attach to every announcement donation, for attribution. They must exist in the campaign first."],
-    ["Default UTM source", "Optional", null, "inaturalist", "Added to donation links so FundraiseUp reports show where gifts came from."],
-    ["Default UTM medium", "Optional", null, "announcement", "As above."],
-    ["Last reviewed (date)", "Optional", null, "2026-11-01", "When these amounts were last checked."],
-    ["Reviewed by", "Optional", null, "Engagement team", "Who to ask about these amounts."]
+    [SETTINGS.fallbackCountry, "Required", "US", "US", "Shown when we can't tell the viewer's country, or the country isn't on the Countries tab or is disabled. Must be on the Countries tab."],
+    [SETTINGS.tierNames, "Required", "min, mid, max", "min, mid, max", "The tiers every country must have. Announcements refer to these names."],
+    [SETTINGS.defaultUrl, "Optional", DEFAULT_DONATION_URL, DEFAULT_DONATION_URL, "Where donation buttons send people when the announcement doesn't give its own link. The amount and currency are added to this link. The page opens in the viewer's iNaturalist language."],
+    [SETTINGS.designationId, "Optional", null, "E12345", "Only if announcement gifts should go to a specific designation."],
+    [SETTINGS.customFields, "Optional", null, "source=announcement", "Fields to attach to every announcement donation, for attribution. They must exist in the campaign first."],
+    [SETTINGS.utmSource, "Optional", null, "inaturalist", "Added to donation links so FundraiseUp reports show where gifts came from."],
+    [SETTINGS.utmMedium, "Optional", null, "announcement", "As above."],
+    [SETTINGS.lastReviewed, "Optional", null, "2026-11-01", "When these amounts were last checked."],
+    [SETTINGS.reviewedBy, "Optional", null, "Engagement team", "Who to ask about these amounts."]
   ];
   settingRows.forEach( r => settings.addRow( r ) );
   settings.getRow( 1 ).eachCell( c => {
@@ -467,8 +466,7 @@ function buildWorkbook( ) {
     [Y, "tier_names", "Required", "Settings", "[min, mid, max]", "Fixed tier set. Only once.min is required for now."],
     [Y, "frequencies", "Required", "(fixed)", "{ once: once, monthly: monthly }", "Our frequency name and FundraiseUp's recurring value."],
     [Y, "last_reviewed", "Optional", "Settings", "2026-11-01", "When amounts were last checked."],
-    [Y, "fru.campaign_page_url", "Required", "Settings", "https://giving.inaturalist.org/page/supportinaturalist", "Base URL for [donation-url]."],
-    [Y, "fru.languages", "Required", "Settings", "[en, es, fr, ...]", "Languages FundraiseUp supports for _lang. Omitted if the viewer's language isn't listed."],
+    [Y, "fru.default_url", "Optional", "Settings", DEFAULT_DONATION_URL, "Base URL for [donation-url] when the shortcode doesn't give one. _lang is always the viewer's locale."],
     [Y, "fru.designation_id", "Optional", "Settings", "E12345", "FundraiseUp designation for announcement gifts."],
     [Y, "fru.custom_fields", "Optional", "Settings", "{ source: announcement }", "Attribution fields; must exist in the campaign."],
     [Y, "fru.utm_defaults", "Optional", "Settings", "{ utm_source: inaturalist }", "Shared with WEB-1389."],
@@ -479,7 +477,7 @@ function buildWorkbook( ) {
     [Y, "currencies.<ISO>.purchasing_power_adjusted", "Optional", "Currencies", "false", "Whether the amounts were adjusted for purchasing power or converted at market rates."],
     [Y, "countries.\"<ISO2>\".currency", "Required", "Countries", "EUR", "Must exist under currencies."],
     [Y, "countries.\"<ISO2>\".tiers.<frequency>.<tier>", "Optional", "Countries", "once: { min: 5 }", "Overrides the currency's amount for that tier."],
-    [Y, "countries.\"<ISO2>\".label_overrides", "Optional", TABS.overrides, "fr: { once: { min: \"Donnez 5 €\" } }", "Exact button text; digits must match the amount."],
+    [Y, "countries.\"<ISO2>\".label_overrides (WEB-1362)", "Optional", TABS.overrides, "fr: { once: { min: \"Donnez 5 €\" } }", "Exact button text; digits must match the amount."],
     [Y, "countries.\"<ISO2>\".locales", "Optional", "Countries (languages)", "[fr, en]", "Admin preview options and test coverage."],
     [Y, "countries.\"<ISO2>\".enabled", "Optional", "Countries", "true", "false gives viewers there the fallback country's amounts and currency."],
     [Y, `${LEVELS} .symbol`, "Required on currencies", "Symbol columns", "€, kr., CHF", "The symbol. Also used to find the symbol in the examples."],
@@ -488,8 +486,8 @@ function buildWorkbook( ) {
     [Y, `${LEVELS} .separator`, "Optional", EXAMPLES, "\",\"", "Decimal separator. Stored now; v1 amounts are whole numbers."],
     [Y, `${LEVELS} .group_min_digits`, "Optional", "the 1,000.00 example", "2", "2 = 1000 is written ungrouped (Spain, Portugal); default 1."],
     [Y, `${LEVELS} .grouping`, "Optional", "the 1,000,000.00 example", "indian", "standard (default) or indian (10,00,000)."],
-    [L, "donation_labels.once", "Required (en)", TABS.buttons, "Donnez %{amount}", "One-time button text. Other languages fall back to English."],
-    [L, "donation_labels.monthly", "Required (en)", TABS.buttons, "Donnez %{amount}/mois", "Monthly button text."]
+    [`${L} (WEB-1362)`, "donation_labels.once", "Required (en)", TABS.buttons, "Donnez %{amount}", "One-time button text. Other languages fall back to English."],
+    [`${L} (WEB-1362)`, "donation_labels.monthly", "Required (en)", TABS.buttons, "Donnez %{amount}/mois", "Monthly button text."]
   ].forEach( r => ref.addRow( r ) );
   ref.getRow( 1 ).eachCell( c => {
     c.font = font( { bold: true, color: { argb: C.headerText } } );

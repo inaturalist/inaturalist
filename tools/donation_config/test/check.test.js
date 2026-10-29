@@ -23,11 +23,9 @@ const hasXml = ( xml, fragment ) => assert.ok( xml.includes( fragment ), `expect
 test.before( async ( ) => { await writeWorkbook( built ); } );
 test.after( ( ) => fs.rmSync( tmp, { recursive: true, force: true } ) );
 
-test( "a freshly built workbook only lacks settings", async ( ) => {
+test( "a freshly built workbook has no errors", async ( ) => {
   const { errors } = await checkWorkbook( built );
-  assert.deepStrictEqual( errors.map( e => e.message ), [
-    "Fallback country is blank", "FundraiseUp campaign page is blank", "FundraiseUp languages is blank"
-  ] );
+  assert.deepStrictEqual( errors.map( e => e.message ), [] );
 } );
 
 test( "shared symbols are pre-filled with the currency code, so nothing warns", async ( ) => {
@@ -81,7 +79,6 @@ test( "countries use their currency's amounts unless they set their own", async 
   overrides.getRow( 5 ).values = ["DE", "de", "One-time", "min", "Spende 3 €"];
   overrides.getRow( 6 ).values = ["AT", "de", "One-time", "min", "Spende 4 €"];
   overrides.getRow( 7 ).values = ["FR", "fr", "One-time", "mid", "Donnez 10 €"];
-  wb.getWorksheet( TABS.settings ).getRow( 2 ).getCell( 3 ).value = "US";
 
   const { errors, warnings } = await checkWorkbook( await wb.xlsx.writeBuffer( ) );
   const messages = errors.map( e => `${e.tab} ${e.row}: ${e.message}` );
@@ -167,4 +164,22 @@ test( "mistakes are reported and --fill only fills blank cells", async ( ) => {
   const xml = await zip.file( ( await sheetPaths( zip ) )[TABS.countries] ).async( "string" );
   assert.strictEqual( ( xml.match( /<dataValidations\b/g ) || [] ).length, 1 );
   hasXml( xml, `sqref="A4:A${LAST_ROW}"><formula1>AND(LEN(A4)=2` );
+} );
+
+test( "settings and FundraiseUp minimums are checked", async ( ) => {
+  const wb = await readWorkbook( built );
+  const countries = wb.getWorksheet( TABS.countries );
+  countries.getRow( US ).getCell( 15 ).value = "No";
+  const settings = wb.getWorksheet( TABS.settings );
+  settings.getRow( 6 ).getCell( 3 ).value = "source announcement";
+  const currencies = wb.getWorksheet( TABS.currencies );
+  const header = currencies.getRow( 2 ).values;
+  const eur = currencies.getRow( currencies.getColumn( 1 ).values.indexOf( "EUR" ) );
+  eur.getCell( header.indexOf( "FundraiseUp minimum, one-time" ) ).value = 10;
+
+  const { errors } = await checkWorkbook( await wb.xlsx.writeBuffer( ) );
+  const messages = errors.map( e => `${e.tab} ${e.row}: ${e.message}` );
+  assert.ok( messages.includes( "Settings 2: Fallback country US is disabled on the Countries tab" ), messages.join( "\n" ) );
+  assert.ok( messages.includes( "Settings 6: FundraiseUp custom fields should look like \"name=value, name=value\"" ), messages.join( "\n" ) );
+  assert.ok( messages.some( m => /^Currencies \d+: One-time min 5 is under FundraiseUp's one-time minimum of 10 EUR/.test( m ) ), messages.join( "\n" ) );
 } );

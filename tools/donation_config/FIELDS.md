@@ -1,6 +1,6 @@
 # Donation config fields
 
-Draft for WEB-1399 (parent WEB-1398; spike WEB-1247), last updated 2026-10-29. This is the planned shape of `config/donation_currencies.yml` and the donation button label locale files, and where each field comes from in the engagement workbook.
+Draft for WEB-1399 (parent WEB-1398; spike WEB-1247), last updated 2026-10-29. This is the shape of `config/donation_currencies.yml` and the donation button label locale files, and where each field comes from in the engagement workbook. `export_yaml.js` writes the YAML (WEB-1360); the label files and `label_overrides` come with the shortcodes (WEB-1362).
 
 Decisions so far:
 - Tiers are per currency, with optional per-country overrides, for one-time and monthly giving (2026-10-29). Tier names are a fixed set. Only the one-time `min` is required for now: every enabled country must get one from itself or its currency.
@@ -20,9 +20,10 @@ Decisions so far:
 | `tier_names` | E | `[min, mid, max]` | Fixed tier set. Shortcodes can only use these names. |
 | `frequencies` | E | `{ once: once, monthly: monthly }` | Our key → FundraiseUp `recurring` value. |
 | `last_reviewed` | O | `2026-11-01` | When engagement last checked the amounts. |
-| `fru.campaign_page_url` | E | `https://giving.inaturalist.org/page/supportinaturalist` | Base URL for `[donation-url]`. |
-| `fru.languages` | E | `[en, es, fr, de, it, pt, nl, ja]` | FundraiseUp-supported `_lang` values. `_lang` is left out if the viewer's language doesn't match. |
-| `fru.lang_map` | O | `{ zh-TW: zh, pt-BR: pt }` | Explicit locale → `_lang` mappings, where the language-prefix rule is wrong. |
+| `reviewed_by` | O | `Engagement team` | Who to ask about the amounts. |
+| `rates_updated` | O | `2026-10-29` | Date of the exchange rates the $3 minimum was checked against. |
+| `fru.default_url` | O | `https://giving.inaturalist.org/login?form=supportinaturalist` | Base URL for `[donation-url]` when the shortcode doesn't pass its own. Defaults to this value. |
+| `fru.lang_map` | O | `{ zh-TW: zh, pt-BR: pt }` | Explicit locale → `_lang` mappings, where the language-prefix rule is wrong. `_lang` is always the viewer's iNaturalist locale, even when FundraiseUp doesn't support it, so the language matches the announcement. |
 | `fru.designation_id` | O | `"E1234"` | FundraiseUp designation for announcement gifts. |
 | `fru.custom_fields` | O | `{ source: announcement }` | Static custom fields for attribution. They must exist in FundraiseUp first. |
 | `fru.utm_defaults` | O | `{ utm_source: inaturalist, utm_medium: announcement }` | Shared with WEB-1389. |
@@ -48,7 +49,7 @@ The workbook lists every currency FundraiseUp supports (Stripe's presentment cur
 | `tiers.<frequency>.<tier>` | O | `once: { min: 5 }` | Whole-number amounts that override the currency's, tier by tier. |
 | formatting fields | O | see below | Override the currency's. |
 | `formats.<locale>` | O | `fr: { format: "%n %u", separator: "," }` | Formatting fields for one language within the country. |
-| `label_overrides.<locale>.<frequency>.<tier>` | O | `fr: { once: { min: "Donnez 5 €" } }` | Exact button text; wins over the template. Its digits must match the tier amount. |
+| `label_overrides.<locale>.<frequency>.<tier>` (WEB-1362) | O | `fr: { once: { min: "Donnez 5 €" } }` | Exact button text; wins over the template. Its digits must match the tier amount. |
 | `locales` | O | `[fr, en]` | Languages viewers here use. Drives admin preview options and test coverage. |
 | `enabled` | O | `true` | `false` gives viewers there `default_country`'s amounts and currency. The workbook lists every country using a FundraiseUp currency, all enabled. |
 | `notes` | O | `"Seeded from Wikipedia 2025 asks"` | Where the numbers came from. |
@@ -77,7 +78,7 @@ The same language formats differently by country, which is why country comes fir
 | IN / hi | `₹1,000.00` | `₹10,00,000.00` |
 | DK / da | `1.000,00 kr.` | `1.000.000,00 kr.` |
 
-## File 2: `config/locales/donation_labels/<locale>.yml`
+## File 2: `config/locales/donation_labels/<locale>.yml` (WEB-1362)
 
 Loaded by the existing `config/locales/**/*.yml` glob, and not part of Crowdin's source file. `I18n.t` handles fallbacks (`es-MX` → `es` → `en`) and interpolation.
 
@@ -121,7 +122,7 @@ The workbook collects the symbol plus two written examples. `parse.js` turns the
 ## Validations (spec on the YAML, run in CI)
 
 - Country keys are 2-letter uppercase strings, and each `currency` exists under `currencies`.
-- `default_country` exists and is enabled.
+- `default_country` exists and is enabled. The export always lists every country's `currency` under `currencies`.
 - Every enabled country resolves a `once.min`, from itself or its currency. Every tier that is set is a positive integer.
 - Set tiers are in min ≤ mid ≤ max order, on each currency and on each country combined with its currency's.
 - Every amount is worth at least $3 at market rates. The workbook checker uses a dated snapshot (`usd_rates.json`); the app spec should too, rather than calling a rates API.

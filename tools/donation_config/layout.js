@@ -61,6 +61,22 @@ const H = {
   tierAmount: "Tier amount"
 };
 
+// Setting names on the Settings tab (column A); values are in column C
+const SETTINGS = {
+  fallbackCountry: "Fallback country",
+  tierNames: "Tier names",
+  defaultUrl: "Default donation page",
+  designationId: "FundraiseUp designation ID",
+  customFields: "FundraiseUp custom fields",
+  utmSource: "Default UTM source",
+  utmMedium: "Default UTM medium",
+  lastReviewed: "Last reviewed (date)",
+  reviewedBy: "Reviewed by"
+};
+
+// Where donation buttons go when a shortcode doesn't give its own link
+const DEFAULT_DONATION_URL = "https://giving.inaturalist.org/login?form=supportinaturalist";
+
 // Row 1 is an intro line, row 2 the headers, row 3 Required/Optional
 const HEADER_ROW = 2;
 const FIRST_ROW = 4;
@@ -74,5 +90,5 @@ const TIER_COLUMNS = {
 };
 
 module.exports = {
-  TABS, H, HEADER_ROW, FIRST_ROW, LAST_ROW, TIERS, FREQUENCIES, TIER_COLUMNS
+  TABS, H, SETTINGS, DEFAULT_DONATION_URL, HEADER_ROW, FIRST_ROW, LAST_ROW, TIERS, FREQUENCIES, TIER_COLUMNS
 };

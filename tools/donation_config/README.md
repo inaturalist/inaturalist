@@ -1,6 +1,6 @@
 # Donation config tools
 
-Tools for the workbook that engagement fills in with donation amounts, currency formats and button text for announcements (WEB-1399). The workbook's contents become `config/donation_currencies.yml` and `config/locales/donation_labels/*.yml`. [FIELDS.md](FIELDS.md) describes that format and how each field is derived.
+Tools for the workbook that engagement fills in with donation amounts, currency formats and button text for announcements (WEB-1399). The workbook's contents become `config/donation_currencies.yml` (WEB-1360) and, later, `config/locales/donation_labels/*.yml` (WEB-1362). [FIELDS.md](FIELDS.md) describes that format and how each field is derived.
 
 The tools use Node because its `Intl` API includes the Unicode CLDR locale data, which is used to pre-fill and check formats. They're a self-contained package: the app's `package.json` doesn't depend on them.
 
@@ -42,6 +42,7 @@ node check.js donation-config.xlsx --fill donation-config-filled.xlsx
 - button text without `{amount}`
 - overrides that don't match their tier amount
 - currencies not confirmed as enabled in FundraiseUp
+- tiers under a currency's FundraiseUp minimum, a missing or disabled fallback country, and custom fields that aren't `name=value`
 
 It warns, without failing, about:
 - a fallback country without every tier
@@ -49,6 +50,23 @@ It warns, without failing, about:
 - a symbol such as `$` shown without a code for several currencies
 
 `--fill` writes a copy with blank format cells filled from CLDR, each with a cell note. It never changes a cell that has a value.
+
+## Export to YAML
+
+```sh
+node export_yaml.js donation-config.xlsx
+node export_yaml.js donation-config.xlsx --out some/other.yml
+```
+
+This runs the same checks as `check.js` and writes nothing if there are errors. Otherwise it overwrites `config/donation_currencies.yml` (the default `--out`). The workbook stays the source of truth: change it, check it, and re-export rather than editing the YAML by hand. The output is sorted and has no timestamp, so re-exports diff cleanly.
+
+What it writes:
+- every country on the Countries tab, including disabled ones (`enabled: false`), with only the amounts and formatting it sets itself
+- country formatting fields only where they differ from the currency's, and `formats.<locale>` from Country by language only where they differ from the country's
+- every currency a country uses, with its full format (defaults such as `grouping: standard` left out), amounts and FundraiseUp details
+- the settings as top-level keys. `fru.default_url` falls back to the default donation page.
+
+Button text and exact text overrides aren't exported yet (WEB-1362).
 
 ## Tests
 
