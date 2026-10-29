@@ -17,6 +17,7 @@ const H = {
   currencyCode: "Currency code (ISO 4217)",
   currencyName: "Currency name",
   currencyUsedBy: "Enabled countries using it",
+  purchasingPower: "Purchasing power adjusted?",
   symbol: "Symbol",
   currencyThousand: "How 1,000.00 should look (default)",
   currencyMillion: "How 1,000,000.00 should look (default)",

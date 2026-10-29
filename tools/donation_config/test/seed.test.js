@@ -1,7 +1,7 @@
 const test = require( "node:test" );
 const assert = require( "node:assert" );
 const {
-  FRU_CURRENCIES, niceRound, niceCeil, suggestedTiers, floorAmount
+  FRU_CURRENCIES, niceRound, niceCeil, niceFloor, suggestedTiers, floorAmount, purchasingPowerAdjusted
 } = require( "../seed" );
 
 test( "amounts round to the nearest number in a 1, 1.5, 2, 2.5, 3, 4, 5, 7.5 series", ( ) => {
@@ -14,7 +14,15 @@ test( "suggested tiers are $5, $20 and $100 at the donation form's ratio to USD"
   // DKK 20 : USD 2.75
   assert.deepStrictEqual( suggestedTiers( "DKK" ), { min: 40, mid: 150, max: 750 } );
   assert.deepStrictEqual( suggestedTiers( "COP" ), { min: 20000, mid: 75000, max: 400000 } );
-  assert.strictEqual( suggestedTiers( "THB" ), undefined );
+  assert.ok( purchasingPowerAdjusted( "COP" ) );
+} );
+
+test( "currencies not on the form get only a min: $5 at market rates, rounded down", ( ) => {
+  // usd_rates.json, 2026-10-29: 5 USD is about 168.9 THB and 18.4 AED
+  assert.deepStrictEqual( suggestedTiers( "THB" ), { min: 150 } );
+  assert.deepStrictEqual( suggestedTiers( "AED" ), { min: 15 } );
+  assert.ok( !purchasingPowerAdjusted( "THB" ) );
+  assert.deepStrictEqual( [18.4, 795, 5.5].map( niceFloor ), [15, 750, 5] );
 } );
 
 test( "suggested tiers are raised to at least $3 at market rates", ( ) => {
@@ -25,8 +33,9 @@ test( "suggested tiers are raised to at least $3 at market rates", ( ) => {
   assert.deepStrictEqual( [5.34, 136.8, 285.9, 9.5].map( niceCeil ), [6, 150, 300, 10] );
 } );
 
-test( "every suggested amount is worth at least $3", ( ) => {
+test( "every currency gets a suggested min, and every suggested amount is worth at least $3", ( ) => {
   FRU_CURRENCIES.forEach( code => {
+    assert.ok( suggestedTiers( code )?.min, code );
     Object.values( suggestedTiers( code ) || {} ).forEach( amount => {
       assert.ok( amount >= floorAmount( code ), `${code} ${amount}` );
     } );

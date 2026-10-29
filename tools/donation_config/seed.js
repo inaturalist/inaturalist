@@ -125,21 +125,34 @@ const USD_RATES = require( "./usd_rates.json" );
 // without a market rate
 const floorAmount = currency => ( USD_RATES.rates[currency] ? MIN_USD * USD_RATES.rates[currency] : undefined );
 
-// The smallest whole number at or above x that's a whole number below 10 or
-// in the 1, 1.5, 2, 2.5, 3, 4, 5, 7.5 series, e.g. 5.3 → 6, 137 → 150, 286 → 300
-function niceCeil( x ) {
+// Round numbers near x: whole numbers below 10, and the 1, 1.5, 2, 2.5, 3,
+// 4, 5, 7.5 series at x's order of magnitude
+function niceCandidates( x ) {
   const base = 10 ** Math.floor( Math.log10( x ) );
-  const smallWholes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  return [...smallWholes, ...[1, 1.5, 2, 2.5, 3, 4, 5, 7.5, 10].map( m => m * base )]
-    .filter( n => Number.isInteger( n ) && n >= x )
-    .reduce( ( a, b ) => Math.min( a, b ) );
+  return [1, 2, 3, 4, 5, 6, 7, 8, 9, ...[1, 1.5, 2, 2.5, 3, 4, 5, 7.5, 10].map( m => m * base )]
+    .filter( Number.isInteger );
 }
 
-// Suggested one-time { min, mid, max } for a currency on the donation form,
-// or undefined for one that isn't. Each is SUGGESTED_USD_TIERS at the form's
-// ratio to USD (purchasing power), raised to MIN_USD at market rates if lower.
+// The smallest round number at or above x, e.g. 5.3 → 6, 137 → 150, 286 → 300
+const niceCeil = x => Math.min( ...niceCandidates( x ).filter( n => n >= x ) );
+
+// The largest round number at or below x, e.g. 18.4 → 15, 795 → 750
+const niceFloor = x => Math.max( ...niceCandidates( x ).filter( n => n <= x ) );
+
+// Whether a currency's suggested amounts are adjusted for purchasing power
+// (it's on the donation form) rather than converted at market rates
+const purchasingPowerAdjusted = currency => Boolean( LOWEST_FORM_AMOUNTS[currency] );
+
+// Suggested one-time tiers for a currency. On the donation form: { min, mid,
+// max }, each SUGGESTED_USD_TIERS at the form's ratio to USD (purchasing
+// power), raised to MIN_USD at market rates if lower. Otherwise just { min }:
+// the USD min at market rates, rounded down (never below $3.33, since the
+// candidates are at most 1.5x apart). Undefined without a market rate.
 function suggestedTiers( currency ) {
-  if ( !LOWEST_FORM_AMOUNTS[currency] ) return undefined;
+  if ( !purchasingPowerAdjusted( currency ) ) {
+    const market = USD_RATES.rates[currency];
+    return market ? { min: niceFloor( SUGGESTED_USD_TIERS.min * market ) } : undefined;
+  }
   const rate = LOWEST_FORM_AMOUNTS[currency] / LOWEST_FORM_AMOUNTS.USD;
   const floor = floorAmount( currency );
   const tiers = {};
@@ -306,6 +319,8 @@ module.exports = {
   allCountries,
   niceRound,
   niceCeil,
+  niceFloor,
+  purchasingPowerAdjusted,
   suggestedTiers,
   floorAmount,
   MIN_USD,

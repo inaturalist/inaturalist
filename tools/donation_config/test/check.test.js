@@ -8,7 +8,7 @@ const { writeWorkbook } = require( "../build" );
 const { checkWorkbook, fillWorkbook, readWorkbook } = require( "../check" );
 const { sheetPaths } = require( "../xlsx_validations" );
 const { TABS, LAST_ROW } = require( "../layout" );
-const { FRU_CURRENCIES, STARTER, suggestedTiers } = require( "../seed" );
+const { FRU_CURRENCIES, STARTER } = require( "../seed" );
 
 const tmp = fs.mkdtempSync( path.join( os.tmpdir( ), "donation-config-" ) );
 const built = path.join( tmp, "built.xlsx" );
@@ -23,14 +23,19 @@ const hasXml = ( xml, fragment ) => assert.ok( xml.includes( fragment ), `expect
 test.before( async ( ) => { await writeWorkbook( built ); } );
 test.after( ( ) => fs.rmSync( tmp, { recursive: true, force: true } ) );
 
-test( "a freshly built workbook only lacks currency amounts and settings", async ( ) => {
+test( "a freshly built workbook only lacks settings", async ( ) => {
   const { errors } = await checkWorkbook( built );
-  const unexpected = errors.filter( e => !/^One-time min missing, | is blank$/.test( e.message ) );
-  assert.deepStrictEqual( unexpected, [] );
+  assert.deepStrictEqual( errors.map( e => e.message ), [
+    "Fallback country is blank", "FundraiseUp campaign page is blank", "FundraiseUp languages is blank"
+  ] );
+} );
+
+test( "currency amounts are pre-filled and marked by how they were set", async ( ) => {
   const wb = await readWorkbook( built );
-  const used = new Set( wb.getWorksheet( TABS.countries ).getColumn( 3 ).values.slice( 4 ).filter( Boolean ) );
-  const unpriced = [...used].filter( code => !suggestedTiers( code ) );
-  assert.strictEqual( errors.filter( e => /^One-time min missing/.test( e.message ) ).length, unpriced.length );
+  const currencies = wb.getWorksheet( TABS.currencies );
+  const row = code => Array.from( currencies.getRow( currencies.getColumn( 1 ).values.indexOf( code ) ).values.slice( 4, 11 ) );
+  assert.deepStrictEqual( row( "DKK" ), [40, 150, 750, undefined, undefined, undefined, "Yes"] );
+  assert.deepStrictEqual( row( "THB" ), [150, undefined, undefined, undefined, undefined, undefined, "No"] );
 } );
 
 test( "the Countries tab lists every enabled country using a FundraiseUp currency, starters first", async ( ) => {

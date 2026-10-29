@@ -8,7 +8,8 @@ const {
   TABS, H, FIRST_ROW, LAST_ROW, TIERS, FREQUENCIES, TIER_COLUMNS
 } = require( "./layout" );
 const {
-  STARTER, FRU_CURRENCIES, suggest, currencyHome, currencyName, formatLanguage, allCountries, suggestedTiers
+  STARTER, FRU_CURRENCIES, suggest, currencyHome, currencyName, formatLanguage, allCountries, suggestedTiers,
+  purchasingPowerAdjusted, USD_RATES
 } = require( "./seed" );
 const { loadLocales } = require( "./locales" );
 const { writeValidations } = require( "./xlsx_validations" );
@@ -155,7 +156,7 @@ function buildWorkbook( ) {
     [TABS.currencies, "Every currency FundraiseUp supports, with its default amounts, symbol, default format, and whether it is enabled in the FundraiseUp campaign. Amounts and formats here apply to every country using the currency unless the country sets its own. Only currencies with a count in \"Enabled countries using it\" need checking."],
     [TABS.countries, "One row per country using a FundraiseUp currency: its currency, how amounts look there, and any amounts that should differ from its currency's. Disable a country to give viewers there the fallback country's amounts and currency instead."],
     ["How amounts are chosen", "For each tier: the country's own amount, then its currency's on Currencies. Only the one-time min is required for now. A tier with no amount at either level uses the fallback country's amount and currency."],
-    ["Pre-filled amounts", "Currencies on our donation form have one-time amounts pre-filled: $5, $20 and $100, converted at the ratio between the lowest amounts the form shows in that currency and in USD (e.g. DKK 20 to $2.75), then rounded to a round number. No amount may be worth less than $3 at market exchange rates, so a few are raised (e.g. INR to 300). Change any that look wrong. Other currencies are blank."],
+    ["Pre-filled amounts", "Currencies on our donation form have one-time amounts pre-filled: $5, $20 and $100, converted at the ratio between the lowest amounts the form shows in that currency and in USD (e.g. DKK 20 to $2.75), then rounded to a round number. No amount may be worth less than $3 at market exchange rates, so a few are raised (e.g. INR to 300). Other currencies have only a one-time min: $5 at market rates, rounded down, marked No in \"Purchasing power adjusted?\". Change any that look wrong."],
     [TABS.countryLanguages, "Only where a country's amounts should look different in one of its other languages, e.g. Switzerland: CHF 1'000.00 in German, 1'000.00 CHF in French."],
     ["How formats are chosen", "For a viewer in a country using a language: Country by language first, then the country's own format on Countries, then the currency default on Currencies."],
     [TABS.buttons, "The button text for each language, with {amount} where the amount goes. Each language is listed with our existing translation of \"Donate\" for reference; leave a row blank to fall back to English."],
@@ -225,9 +226,15 @@ function buildWorkbook( ) {
     const [homeCountry, homeName, , homeLangs] = currencyHome( currency );
     const s = suggest( homeLangs[0], homeCountry, currency );
     const tiers = suggestedTiers( currency );
+    const adjusted = purchasingPowerAdjusted( currency );
     const notes = [`Format from ${homeName}.`];
-    if ( tiers ) notes.push( "Amounts are $5, $20 and $100 at the ratio of the lowest amounts on our donation form, rounded, and at least $3 at market rates." );
+    if ( adjusted ) {
+      notes.push( "Amounts are $5, $20 and $100 at the ratio of the lowest amounts on our donation form, rounded, and at least $3 at market rates." );
+    } else if ( tiers ) {
+      notes.push( `One-time min is $5 at market rates (${USD_RATES.updated}), rounded down; not adjusted for purchasing power.` );
+    }
     return [currency, currencyName( currency ), null, tiers?.min, tiers?.mid, tiers?.max, null, null, null,
+      tiers ? ( adjusted ? "Yes" : "No" ) : null,
       s.symbol, s.thousand, s.million, null, null, null, null, notes.join( " " )];
   } );
   tableSheet( TABS.currencies,
@@ -242,6 +249,7 @@ function buildWorkbook( ) {
         formula: r => `IF(A${r}="","",COUNTIFS(${TABS.countries}!$C$${FIRST_ROW}:$C$${LAST_ROW},A${r},${TABS.countries}!$O$${FIRST_ROW}:$O$${LAST_ROW},"<>No"))`
       },
       ...tierColumns( "Required if used" ),
+      { header: H.purchasingPower, req: "Optional", width: 13, validation: yesNo },
       { header: H.symbol, req: "Required", width: 9, ...text },
       { header: H.currencyThousand, req: "Required", width: 18, ...text },
       { header: H.currencyMillion, req: "Required", width: 20, ...text },
@@ -468,6 +476,7 @@ function buildWorkbook( ) {
     [Y, "currencies.<ISO>.fru_enabled", "Required if used", "Currencies", "true", "Confirms the currency is enabled in the campaign. Only currencies a country uses need it."],
     [Y, "currencies.<ISO>.fru_minimum", "Optional", "Currencies", "{ once: 1, monthly: 1 }", "Tiers are checked against it."],
     [Y, "currencies.<ISO>.tiers.<frequency>.<tier>", "once.min required if used", "Currencies", "once: { min: 5, mid: 10, max: 25 }", "Default amounts for countries using the currency."],
+    [Y, "currencies.<ISO>.purchasing_power_adjusted", "Optional", "Currencies", "false", "Whether the amounts were adjusted for purchasing power or converted at market rates."],
     [Y, "countries.\"<ISO2>\".currency", "Required", "Countries", "EUR", "Must exist under currencies."],
     [Y, "countries.\"<ISO2>\".tiers.<frequency>.<tier>", "Optional", "Countries", "once: { min: 5 }", "Overrides the currency's amount for that tier."],
     [Y, "countries.\"<ISO2>\".label_overrides", "Optional", TABS.overrides, "fr: { once: { min: \"Donnez 5 €\" } }", "Exact button text; digits must match the amount."],

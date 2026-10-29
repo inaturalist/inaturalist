@@ -18,7 +18,7 @@ node build.js donation-config.xlsx
 ```
 
 This pre-fills:
-- every currency FundraiseUp supports (`FRU_CURRENCIES` in `seed.js`), with one-time amounts for the 26 on our donation form: $5, $20 and $100 at the ratio of each currency's lowest form amount to USD's (`LOWEST_FORM_AMOUNTS`), rounded by `niceRound`, and raised where needed so none is worth less than $3 at market rates
+- every currency FundraiseUp supports (`FRU_CURRENCIES` in `seed.js`), with one-time amounts for the 26 on our donation form: $5, $20 and $100 at the ratio of each currency's lowest form amount to USD's (`LOWEST_FORM_AMOUNTS`), rounded by `niceRound`, and raised where needed so none is worth less than $3 at market rates. Every other currency gets only a one-time min, $5 at market rates rounded down, marked "No" in the "Purchasing power adjusted?" column
 - every country whose current currency is one of those, from CLDR's currency and language data (`cldr-core`, pinned to the CLDR version Node uses). The 42 starter countries come first. All are enabled; a country without amounts of its own uses its currency's.
 - every currency's and country's symbol and its 1,000.00 and 1,000,000.00 examples, from CLDR
 - each locale's existing translation of "Donate", read from `config/locales`
