@@ -1,0 +1,15 @@
+{
+  "name": "donation-config-tools",
+  "private": true,
+  "description": "Builds and checks the donation amounts and formats workbook used to write config/donation_currencies.yml",
+  "scripts": {
+    "build": "node build.js",
+    "check": "node check.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "exceljs": "4.4.0",
+    "js-yaml": "4.1.1",
+    "jszip": "3.10.1"
+  }
+}
