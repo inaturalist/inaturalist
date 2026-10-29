@@ -11,7 +11,7 @@ const {
 } = require( "./layout" );
 const { parseExamples, normalize } = require( "./parse" );
 const {
-  FRU_CURRENCIES, suggest, currencyHome, currencyName, formatLanguage
+  FRU_CURRENCIES, suggest, currencyHome, currencyName, formatLanguage, floorAmount, MIN_USD, USD_RATES
 } = require( "./seed" );
 const { loadLocales } = require( "./locales" );
 
@@ -110,8 +110,9 @@ function checkWorkbookObject( wb ) {
   };
 
   // A row's tier amounts as { "One-time": { min: 5, ... }, ... }, reporting
-  // any that aren't whole numbers. Blank tiers are left out.
-  const readAmounts = ( tabName, r ) => {
+  // any that aren't whole numbers or are worth less than MIN_USD. Blank tiers
+  // are left out.
+  const readAmounts = ( tabName, r, currency ) => {
     const amounts = {};
     FREQUENCIES.forEach( freq => {
       amounts[freq] = {};
@@ -125,6 +126,11 @@ function checkWorkbookObject( wb ) {
           return;
         }
         amounts[freq][tier] = n;
+        const floor = floorAmount( currency );
+        if ( floor && n < floor ) {
+          const usd = ( n / USD_RATES.rates[currency] ).toFixed( 2 );
+          error( tabName, r.row, `${header} ${n} ${currency} is about $${usd}, under the $${MIN_USD} minimum (at least ${Math.ceil( floor )}; rates from ${USD_RATES.updated})` );
+        }
       } );
     } );
     return amounts;
@@ -168,7 +174,7 @@ function checkWorkbookObject( wb ) {
       const million = formatValue( TABS.currencies, r, H.currencyMillion, cldr?.million );
       if ( !symbol ) error( TABS.currencies, r.row, "Symbol is blank" );
       const fields = checkExamples( TABS.currencies, r, { thousand, million }, symbol, code, cldr );
-      const amounts = readAmounts( TABS.currencies, r );
+      const amounts = readAmounts( TABS.currencies, r, code );
       checkOrder( TABS.currencies, r, amounts );
       currencies[code] = {
         row: r.row, symbol, fields, amounts, fruEnabled: r.get( H.fruEnabled )
@@ -198,7 +204,7 @@ function checkWorkbookObject( wb ) {
 
       // Tier amounts: the country's own, else its currency's. Order is checked
       // on the combination when the country sets any of its own.
-      const own = readAmounts( TABS.countries, r );
+      const own = readAmounts( TABS.countries, r, currency );
       const amounts = {};
       FREQUENCIES.forEach( freq => {
         amounts[freq] = { ...currencies[currency]?.amounts[freq], ...own[freq] };

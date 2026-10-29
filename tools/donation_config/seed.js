@@ -68,6 +68,88 @@ const FRU_CURRENCIES = [
   "ZAR", "ZMW"
 ];
 
+// The lowest amount on iNat's FundraiseUp donation form in each currency
+// (frb.amounts.options7, from Casey 2026-10-29). Only the ratios to USD are
+// used: they set each currency's suggested tiers.
+const LOWEST_FORM_AMOUNTS = {
+  USD: 2.75,
+  CAD: 2.75,
+  AUD: 2.75,
+  NZD: 2.75,
+  GBP: 2.75,
+  EUR: 2.75,
+  DKK: 20,
+  HUF: 500,
+  ILS: 10,
+  INR: 25,
+  JPY: 300,
+  MYR: 10,
+  NOK: 30,
+  PLN: 10,
+  CZK: 50,
+  RON: 10,
+  SEK: 30,
+  UAH: 50,
+  ZAR: 30,
+  BRL: 15,
+  CLP: 2000,
+  COP: 10500,
+  MXN: 50,
+  PEN: 10,
+  UYU: 100,
+  CHF: 5
+};
+
+// One-time tiers suggested in USD, converted at the form amounts' ratio
+const SUGGESTED_USD_TIERS = { min: 5, mid: 20, max: 100 };
+
+// The whole number nearest x (by ratio) in a 1, 1.5, 2, 2.5, 3, 4, 5, 7.5
+// series, e.g. 36 → 40, 545 → 500, 76364 → 75000
+function niceRound( x ) {
+  const base = 10 ** Math.floor( Math.log10( x ) );
+  const distance = n => Math.abs( Math.log( n / x ) );
+  return [1, 1.5, 2, 2.5, 3, 4, 5, 7.5, 10]
+    .map( m => m * base )
+    .filter( Number.isInteger )
+    .reduce( ( best, n ) => ( distance( n ) < distance( best ) ? n : best ) );
+}
+
+// No amount may be worth less than this many USD at market rates
+const MIN_USD = 3;
+
+// Market units of each currency per USD (usd_rates.json; refresh with
+// update_rates.js)
+const USD_RATES = require( "./usd_rates.json" );
+
+// The smallest amount in a currency worth at least MIN_USD, or undefined
+// without a market rate
+const floorAmount = currency => ( USD_RATES.rates[currency] ? MIN_USD * USD_RATES.rates[currency] : undefined );
+
+// The smallest whole number at or above x that's a whole number below 10 or
+// in the 1, 1.5, 2, 2.5, 3, 4, 5, 7.5 series, e.g. 5.3 → 6, 137 → 150, 286 → 300
+function niceCeil( x ) {
+  const base = 10 ** Math.floor( Math.log10( x ) );
+  const smallWholes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  return [...smallWholes, ...[1, 1.5, 2, 2.5, 3, 4, 5, 7.5, 10].map( m => m * base )]
+    .filter( n => Number.isInteger( n ) && n >= x )
+    .reduce( ( a, b ) => Math.min( a, b ) );
+}
+
+// Suggested one-time { min, mid, max } for a currency on the donation form,
+// or undefined for one that isn't. Each is SUGGESTED_USD_TIERS at the form's
+// ratio to USD (purchasing power), raised to MIN_USD at market rates if lower.
+function suggestedTiers( currency ) {
+  if ( !LOWEST_FORM_AMOUNTS[currency] ) return undefined;
+  const rate = LOWEST_FORM_AMOUNTS[currency] / LOWEST_FORM_AMOUNTS.USD;
+  const floor = floorAmount( currency );
+  const tiers = {};
+  Object.entries( SUGGESTED_USD_TIERS ).forEach( ( [tier, usd] ) => {
+    const amount = niceRound( usd * rate );
+    tiers[tier] = floor && amount < floor ? niceCeil( floor ) : amount;
+  } );
+  return tiers;
+}
+
 // [ISO2, language] whose formatting a currency's defaults come from, where the
 // default is wrong: the first starter country using the currency, otherwise
 // the country in the code's first two letters and CLDR's likeliest language
@@ -221,5 +303,11 @@ module.exports = {
   currencyName,
   intlLocale,
   formatLanguage,
-  allCountries
+  allCountries,
+  niceRound,
+  niceCeil,
+  suggestedTiers,
+  floorAmount,
+  MIN_USD,
+  USD_RATES
 };

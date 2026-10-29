@@ -18,7 +18,7 @@ node build.js donation-config.xlsx
 ```
 
 This pre-fills:
-- every currency FundraiseUp supports (`FRU_CURRENCIES` in `seed.js`)
+- every currency FundraiseUp supports (`FRU_CURRENCIES` in `seed.js`), with one-time amounts for the 26 on our donation form: $5, $20 and $100 at the ratio of each currency's lowest form amount to USD's (`LOWEST_FORM_AMOUNTS`), rounded by `niceRound`, and raised where needed so none is worth less than $3 at market rates
 - every country whose current currency is one of those, from CLDR's currency and language data (`cldr-core`, pinned to the CLDR version Node uses). The 42 starter countries come first. All are enabled; a country without amounts of its own uses its currency's.
 - every currency's and country's symbol and its 1,000.00 and 1,000,000.00 examples, from CLDR
 - each locale's existing translation of "Donate", read from `config/locales`
@@ -37,6 +37,7 @@ node check.js donation-config.xlsx --fill donation-config-filled.xlsx
 `check.js` prints a Markdown report and exits with status 1 if there are errors. It reports:
 - examples that don't parse or disagree with each other
 - currencies with no one-time min that enabled countries need, and non-whole or out-of-order amounts
+- any amount worth less than $3 at market rates
 - unknown countries, currencies or languages, and currencies FundraiseUp doesn't support
 - button text without `{amount}`
 - overrides that don't match their tier amount
@@ -56,6 +57,10 @@ node --test
 ```
 
 The round-trip test runs `render_check.rb` with `bundle exec ruby` from the repo root. It checks that the parsed fields, rendered through ActiveSupport as the app will, reproduce CLDR for every country and language on the workbook and every currency's default format.
+
+## Updating exchange rates
+
+The $3 minimum uses market rates from `usd_rates.json`, a snapshot of [Exchange Rate API](https://www.exchangerate-api.com)'s free USD rates. Refresh it with `npm run rates`, then rebuild the workbook and rerun the tests: the suggestion tests pin a few amounts that depend on the rates.
 
 ## Updating the currency list
 

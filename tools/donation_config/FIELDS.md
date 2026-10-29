@@ -33,7 +33,7 @@ The workbook lists every currency FundraiseUp supports (Stripe's presentment cur
 
 | Field | E/O | Example | Purpose |
 |---|---|---|---|
-| `tiers.<frequency>.<tier>` | E: `once.min` if used | `once: { min: 5, mid: 10, max: 25 }` | Default whole-number amounts for every country using the currency. `once.min` is required unless every enabled country using the currency sets its own. Other tiers are optional. |
+| `tiers.<frequency>.<tier>` | E: `once.min` if used | `once: { min: 5, mid: 10, max: 25 }` | Default whole-number amounts for every country using the currency. `once.min` is required unless every enabled country using the currency sets its own. Other tiers are optional. The workbook pre-fills one-time tiers for the 26 currencies on our donation form: $5, $20 and $100 at the ratio of the form's lowest amount in that currency to USD's 2.75, rounded to a 1/1.5/2/2.5/3/4/5/7.5 series, and raised to the next round number where that's worth less than $3 at market rates. |
 | formatting fields | E: `symbol`, `format` | see below | Defaults, used when a country sets nothing. |
 | `fru_enabled` | E if used | `true` | Engagement confirms the currency is enabled in the FundraiseUp campaign. A spec fails if a currency in use is `false`. |
 | `fru_minimum` | O | `{ once: 1, monthly: 1 }` | FundraiseUp's minimum in this currency. A spec checks every tier is at least this. |
@@ -123,6 +123,7 @@ The workbook collects the symbol plus two written examples. `parse.js` turns the
 - `default_country` exists and is enabled.
 - Every enabled country resolves a `once.min`, from itself or its currency. Every tier that is set is a positive integer.
 - Set tiers are in min ≤ mid ≤ max order, on each currency and on each country combined with its currency's.
+- Every amount is worth at least $3 at market rates. The workbook checker uses a dated snapshot (`usd_rates.json`); the app spec should too, rather than calling a rates API.
 - Tiers are ≥ `fru_minimum` when set, and every currency in use has `fru_enabled: true`.
 - Every currency is one FundraiseUp supports.
 - Patterns contain `%n` and use only `%n`, `%u` and `%c`. `delimiter` and `separator` differ.

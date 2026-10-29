@@ -8,7 +8,7 @@ const {
   TABS, H, FIRST_ROW, LAST_ROW, TIERS, FREQUENCIES, TIER_COLUMNS
 } = require( "./layout" );
 const {
-  STARTER, FRU_CURRENCIES, suggest, currencyHome, currencyName, formatLanguage, allCountries
+  STARTER, FRU_CURRENCIES, suggest, currencyHome, currencyName, formatLanguage, allCountries, suggestedTiers
 } = require( "./seed" );
 const { loadLocales } = require( "./locales" );
 const { writeValidations } = require( "./xlsx_validations" );
@@ -155,6 +155,7 @@ function buildWorkbook( ) {
     [TABS.currencies, "Every currency FundraiseUp supports, with its default amounts, symbol, default format, and whether it is enabled in the FundraiseUp campaign. Amounts and formats here apply to every country using the currency unless the country sets its own. Only currencies with a count in \"Enabled countries using it\" need checking."],
     [TABS.countries, "One row per country using a FundraiseUp currency: its currency, how amounts look there, and any amounts that should differ from its currency's. Disable a country to give viewers there the fallback country's amounts and currency instead."],
     ["How amounts are chosen", "For each tier: the country's own amount, then its currency's on Currencies. Only the one-time min is required for now. A tier with no amount at either level uses the fallback country's amount and currency."],
+    ["Pre-filled amounts", "Currencies on our donation form have one-time amounts pre-filled: $5, $20 and $100, converted at the ratio between the lowest amounts the form shows in that currency and in USD (e.g. DKK 20 to $2.75), then rounded to a round number. No amount may be worth less than $3 at market exchange rates, so a few are raised (e.g. INR to 300). Change any that look wrong. Other currencies are blank."],
     [TABS.countryLanguages, "Only where a country's amounts should look different in one of its other languages, e.g. Switzerland: CHF 1'000.00 in German, 1'000.00 CHF in French."],
     ["How formats are chosen", "For a viewer in a country using a language: Country by language first, then the country's own format on Countries, then the currency default on Currencies."],
     [TABS.buttons, "The button text for each language, with {amount} where the amount goes. Each language is listed with our existing translation of \"Donate\" for reference; leave a row blank to fall back to English."],
@@ -223,8 +224,11 @@ function buildWorkbook( ) {
   const currencyRows = FRU_CURRENCIES.map( currency => {
     const [homeCountry, homeName, , homeLangs] = currencyHome( currency );
     const s = suggest( homeLangs[0], homeCountry, currency );
-    return [currency, currencyName( currency ), null, null, null, null, null, null, null,
-      s.symbol, s.thousand, s.million, null, null, null, null, `Default from ${homeName} formatting`];
+    const tiers = suggestedTiers( currency );
+    const notes = [`Format from ${homeName}.`];
+    if ( tiers ) notes.push( "Amounts are $5, $20 and $100 at the ratio of the lowest amounts on our donation form, rounded, and at least $3 at market rates." );
+    return [currency, currencyName( currency ), null, tiers?.min, tiers?.mid, tiers?.max, null, null, null,
+      s.symbol, s.thousand, s.million, null, null, null, null, notes.join( " " )];
   } );
   tableSheet( TABS.currencies,
     "Every currency FundraiseUp supports. Amounts and formats here are defaults for every country using the currency; a country's own on the Countries tab win. Every currency an enabled country uses needs a one-time min, unless all those countries set their own. Symbol and examples are pre-filled from the Unicode CLDR standard.",

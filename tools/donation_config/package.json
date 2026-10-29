@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node build.js",
     "check": "node check.js",
-    "test": "node --test"
+    "test": "node --test",
+    "rates": "node update_rates.js"
   },
   "dependencies": {
     "cldr-core": "48.0.0",

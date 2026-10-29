@@ -8,7 +8,7 @@ const { writeWorkbook } = require( "../build" );
 const { checkWorkbook, fillWorkbook, readWorkbook } = require( "../check" );
 const { sheetPaths } = require( "../xlsx_validations" );
 const { TABS, LAST_ROW } = require( "../layout" );
-const { FRU_CURRENCIES, STARTER } = require( "../seed" );
+const { FRU_CURRENCIES, STARTER, suggestedTiers } = require( "../seed" );
 
 const tmp = fs.mkdtempSync( path.join( os.tmpdir( ), "donation-config-" ) );
 const built = path.join( tmp, "built.xlsx" );
@@ -29,7 +29,8 @@ test( "a freshly built workbook only lacks currency amounts and settings", async
   assert.deepStrictEqual( unexpected, [] );
   const wb = await readWorkbook( built );
   const used = new Set( wb.getWorksheet( TABS.countries ).getColumn( 3 ).values.slice( 4 ).filter( Boolean ) );
-  assert.strictEqual( errors.filter( e => /^One-time min missing/.test( e.message ) ).length, used.size );
+  const unpriced = [...used].filter( code => !suggestedTiers( code ) );
+  assert.strictEqual( errors.filter( e => /^One-time min missing/.test( e.message ) ).length, unpriced.length );
 } );
 
 test( "the Countries tab lists every enabled country using a FundraiseUp currency, starters first", async ( ) => {
@@ -71,13 +72,28 @@ test( "countries use their currency's amounts unless they set their own", async 
   const { errors, warnings } = await checkWorkbook( await wb.xlsx.writeBuffer( ) );
   const messages = errors.map( e => `${e.tab} ${e.row}: ${e.message}` );
   assert.ok( !messages.some( m => /One-time min missing/.test( m ) ), messages.join( "\n" ) );
-  assert.ok( messages.some( m => /^Currencies \d+: One-time amounts aren't in min ≤ mid ≤ max order \(3, 2, -\)/.test( m ) ), messages.join( "\n" ) );
+  assert.ok( messages.some( m => /^Currencies \d+: One-time amounts aren't in min ≤ mid ≤ max order \(3, 2, 100\)/.test( m ) ), messages.join( "\n" ) );
   assert.ok( messages.some( m => m.startsWith( `Countries ${ES}: One-time amounts aren't in min` ) ), messages.join( "\n" ) );
   assert.ok( !messages.some( m => m.startsWith( `Countries ${FR}:` ) ), messages.join( "\n" ) );
   assert.deepStrictEqual( messages.filter( m => m.startsWith( "Exact text overrides" ) ), [
     "Exact text overrides 6: \"Spende 4 €\" doesn't show the tier amount 3"
   ] );
-  assert.ok( warnings.some( w => /Fallback country US has no One-time mid, One-time max, Monthly min/.test( w.message ) ) );
+  assert.ok( warnings.some( w => /Fallback country US has no Monthly min, Monthly mid, Monthly max\./.test( w.message ) ) );
+} );
+
+test( "amounts under $3 at market rates are errors, on currencies and countries", async ( ) => {
+  const wb = await readWorkbook( built );
+  const currencies = wb.getWorksheet( TABS.currencies );
+  const mxn = currencies.getRow( currencies.getColumn( 1 ).values.indexOf( "MXN" ) );
+  mxn.getCell( 4 ).value = 20; // about $1.07
+  mxn.getCell( 7 ).value = 60; // monthly min, about $3.22
+  wb.getWorksheet( TABS.countries ).getRow( ES ).getCell( 7 ).value = 2; // €2 monthly, about $2.23
+  const { errors } = await checkWorkbook( await wb.xlsx.writeBuffer( ) );
+  const under = errors.filter( e => / under the \$3 minimum/.test( e.message ) ).map( e => `${e.tab} ${e.row}: ${e.message}` );
+  assert.deepStrictEqual( under.map( m => m.replace( /\d+:/, "N:" ).replace( / \(at least.*/, "" ) ), [
+    "Currencies N: One-time min 20 MXN is about $1.07, under the $3 minimum",
+    "Countries N: Monthly min 2 EUR is about $2.23, under the $3 minimum"
+  ] );
 } );
 
 test( "the Currencies tab lists every FundraiseUp currency once", async ( ) => {
