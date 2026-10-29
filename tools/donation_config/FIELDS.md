@@ -3,7 +3,7 @@
 Draft for WEB-1399 (parent WEB-1398; spike WEB-1247), last updated 2026-10-29. This is the planned shape of `config/donation_currencies.yml` and the donation button label locale files, and where each field comes from in the engagement workbook.
 
 Decisions so far:
-- Tiers are per country, for one-time and monthly giving. Tier names are a fixed set, and every country needs all of them.
+- Tiers are per currency, with optional per-country overrides, for one-time and monthly giving (2026-10-29). Tier names are a fixed set. Only the one-time `min` is required for now: every enabled country must get one from itself or its currency.
 - The button label is a per-language template plus optional exact-text overrides. Templates live in app-owned locale files.
 - Formatting is resolved country-first: country × language, then country, then currency, then the language's defaults.
 - Separators are collected as written examples (1,000.00 and 1,000,000.00) and parsed into fields. `separator` is stored even though v1 amounts are whole numbers.
@@ -16,7 +16,7 @@ Decisions so far:
 
 | Field | E/O | Example | Purpose |
 |---|---|---|---|
-| `default_country` | E | `"US"` | Used when geoip fails or the country isn't listed. Its tiers and currency apply. |
+| `default_country` | E | `"US"` | Used when geoip fails, the country isn't listed or is disabled, or a tier has no amount. Its tiers and currency apply. Should have every tier; the checker warns if not. |
 | `tier_names` | E | `[min, mid, max]` | Fixed tier set. Shortcodes can only use these names. |
 | `frequencies` | E | `{ once: once, monthly: monthly }` | Our key → FundraiseUp `recurring` value. |
 | `last_reviewed` | O | `2026-11-01` | When engagement last checked the amounts. |
@@ -33,6 +33,7 @@ The workbook lists every currency FundraiseUp supports (Stripe's presentment cur
 
 | Field | E/O | Example | Purpose |
 |---|---|---|---|
+| `tiers.<frequency>.<tier>` | E: `once.min` if used | `once: { min: 5, mid: 10, max: 25 }` | Default whole-number amounts for every country using the currency. `once.min` is required unless every enabled country using the currency sets its own. Other tiers are optional. |
 | formatting fields | E: `symbol`, `format` | see below | Defaults, used when a country sets nothing. |
 | `fru_enabled` | E if used | `true` | Engagement confirms the currency is enabled in the FundraiseUp campaign. A spec fails if a currency in use is `false`. |
 | `fru_minimum` | O | `{ once: 1, monthly: 1 }` | FundraiseUp's minimum in this currency. A spec checks every tier is at least this. |
@@ -43,12 +44,12 @@ The workbook lists every currency FundraiseUp supports (Stripe's presentment cur
 | Field | E/O | Example | Purpose |
 |---|---|---|---|
 | `currency` | E | `EUR` | Must be a key under `currencies`. |
-| `tiers.<frequency>.<tier>` | E | `once: { min: 5, mid: 10, max: 25 }` | Whole-number amounts. Every frequency × tier is required. |
+| `tiers.<frequency>.<tier>` | O | `once: { min: 5 }` | Whole-number amounts that override the currency's, tier by tier. |
 | formatting fields | O | see below | Override the currency's. |
 | `formats.<locale>` | O | `fr: { format: "%n %u", separator: "," }` | Formatting fields for one language within the country. |
 | `label_overrides.<locale>.<frequency>.<tier>` | O | `fr: { once: { min: "Donnez 5 €" } }` | Exact button text; wins over the template. Its digits must match the tier amount. |
 | `locales` | O | `[fr, en]` | Languages viewers here use. Drives admin preview options and test coverage. |
-| `enabled` | O | `true` | Stage a country without turning it on. A disabled country falls back to `default_country`. |
+| `enabled` | O | `true` | `false` gives viewers there `default_country`'s amounts and currency. The workbook lists every country using a FundraiseUp currency, all enabled. |
 | `notes` | O | `"Seeded from Wikipedia 2025 asks"` | Where the numbers came from. |
 
 ### Formatting fields
@@ -101,25 +102,27 @@ The workbook collects the symbol plus two written examples. `parse.js` turns the
 
 ## Rendering an amount
 
-1. Look up the country (geoip), falling back to `default_country`. That gives the currency and the tier amount.
-2. Resolve each formatting field on its own; the first match wins:
+1. Look up the country (geoip), falling back to `default_country` when the lookup fails, the country isn't listed, or it's disabled. That gives the currency.
+2. Resolve the tier amount: `country.tiers[freq][tier]`, then `currency.tiers[freq][tier]`. If neither is set, the whole button uses `default_country`'s amount and currency for that tier instead, so the amount and currency always match. If that's missing too, the shortcode renders nothing and logs a warning. (Only `once.min` is required for now; revisit this when all tiers are.)
+3. Resolve each formatting field on its own; the first match wins:
    1. `country.formats[locale]`, then `country.formats[language]`
    2. `country`
    3. `currency`
    4. rails-i18n `number.format` (`delimiter` and `separator` only); `group_min_digits` defaults to 1, `grouping` to `standard`
-3. Call ActiveSupport's `number_to_currency( amount, unit:, format:, precision: 0, delimiter:, separator:, delimiter_pattern: )`, with `%c` replaced by the ISO code first:
+4. Call ActiveSupport's `number_to_currency( amount, unit:, format:, precision: 0, delimiter:, separator:, delimiter_pattern: )`, with `%c` replaced by the ISO code first:
    - `grouping: indian` passes `delimiter_pattern: /(\d+?)(?=(\d\d)+(\d)(?!\d))/`.
    - `group_min_digits: 2` passes `delimiter: ""` when the integer part has fewer than 5 digits.
 
-   `render_check.rb` is the reference implementation, and `test/roundtrip.test.js` checks it against CLDR for every starter country and language.
-4. Turn spaces into non-breaking spaces, so `5` and `€` never wrap apart. Digits are always Latin; the FundraiseUp URL uses plain ASCII digits.
-5. Label: `country.label_overrides[locale][freq][tier]`, otherwise `I18n.t( "donation_labels.#{freq}", amount: )`.
+   `render_check.rb` is the reference implementation, and `test/roundtrip.test.js` checks it against CLDR for every country and language on the workbook.
+5. Turn spaces into non-breaking spaces, so `5` and `€` never wrap apart. Digits are always Latin; the FundraiseUp URL uses plain ASCII digits.
+6. Label: `country.label_overrides[locale][freq][tier]`, otherwise `I18n.t( "donation_labels.#{freq}", amount: )`.
 
 ## Validations (spec on the YAML, run in CI)
 
 - Country keys are 2-letter uppercase strings, and each `currency` exists under `currencies`.
 - `default_country` exists and is enabled.
-- Every country has every `frequencies` × `tier_names` entry as positive integers, in min ≤ mid ≤ max order.
+- Every enabled country resolves a `once.min`, from itself or its currency. Every tier that is set is a positive integer.
+- Set tiers are in min ≤ mid ≤ max order, on each currency and on each country combined with its currency's.
 - Tiers are ≥ `fru_minimum` when set, and every currency in use has `fru_enabled: true`.
 - Every currency is one FundraiseUp supports.
 - Patterns contain `%n` and use only `%n`, `%u` and `%c`. `delimiter` and `separator` differ.

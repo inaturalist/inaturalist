@@ -11,9 +11,13 @@ const {
 } = require( "./layout" );
 const { parseExamples, normalize } = require( "./parse" );
 const {
-  FRU_CURRENCIES, suggest, currencyHome, currencyName
+  FRU_CURRENCIES, suggest, currencyHome, currencyName, formatLanguage
 } = require( "./seed" );
 const { loadLocales } = require( "./locales" );
+
+// The only tier every enabled country needs, for now
+const REQUIRED_TIER = { freq: "One-time", tier: "min" };
+const REQUIRED_HEADER = TIER_COLUMNS[REQUIRED_TIER.freq][REQUIRED_TIER.tier];
 const { restoreValidations } = require( "./xlsx_validations" );
 
 function cellText( cell ) {
@@ -105,6 +109,37 @@ function checkWorkbookObject( wb ) {
     bareSymbols[fields.symbol].add( currency );
   };
 
+  // A row's tier amounts as { "One-time": { min: 5, ... }, ... }, reporting
+  // any that aren't whole numbers. Blank tiers are left out.
+  const readAmounts = ( tabName, r ) => {
+    const amounts = {};
+    FREQUENCIES.forEach( freq => {
+      amounts[freq] = {};
+      TIERS.forEach( tier => {
+        const header = TIER_COLUMNS[freq][tier];
+        const raw = r.get( header );
+        if ( raw === "" ) return;
+        const n = Number( raw );
+        if ( !Number.isInteger( n ) || n <= 0 ) {
+          error( tabName, r.row, `${header} "${raw}" isn't a whole number above 0` );
+          return;
+        }
+        amounts[freq][tier] = n;
+      } );
+    } );
+    return amounts;
+  };
+  const checkOrder = ( tabName, r, amounts ) => {
+    FREQUENCIES.forEach( freq => {
+      const { min, mid, max } = amounts[freq];
+      const present = [min, mid, max].filter( Boolean );
+      if ( present.some( ( n, i ) => i > 0 && n < present[i - 1] ) ) {
+        error( tabName, r.row, `${freq} amounts aren't in min ≤ mid ≤ max order (${min ?? "-"}, ${mid ?? "-"}, ${max ?? "-"})` );
+      }
+    } );
+  };
+  const hasAny = amounts => FREQUENCIES.some( freq => Object.keys( amounts[freq] ).length > 0 );
+
   // ---------- Currencies ----------
   const currencies = {};
   const currenciesWs = tab( TABS.currencies );
@@ -133,8 +168,10 @@ function checkWorkbookObject( wb ) {
       const million = formatValue( TABS.currencies, r, H.currencyMillion, cldr?.million );
       if ( !symbol ) error( TABS.currencies, r.row, "Symbol is blank" );
       const fields = checkExamples( TABS.currencies, r, { thousand, million }, symbol, code, cldr );
+      const amounts = readAmounts( TABS.currencies, r );
+      checkOrder( TABS.currencies, r, amounts );
       currencies[code] = {
-        row: r.row, symbol, fields, fruEnabled: r.get( H.fruEnabled )
+        row: r.row, symbol, fields, amounts, fruEnabled: r.get( H.fruEnabled )
       };
     } );
   }
@@ -159,38 +196,22 @@ function checkWorkbookObject( wb ) {
         error( TABS.countries, r.row, `Language "${l}" isn't an iNaturalist locale (see Lists)` );
       } );
 
-      // Tier amounts
+      // Tier amounts: the country's own, else its currency's. Order is checked
+      // on the combination when the country sets any of its own.
+      const own = readAmounts( TABS.countries, r );
       const amounts = {};
-      const missing = [];
       FREQUENCIES.forEach( freq => {
-        amounts[freq] = {};
-        TIERS.forEach( tier => {
-          const header = TIER_COLUMNS[freq][tier];
-          const raw = r.get( header );
-          if ( raw === "" ) {
-            missing.push( header );
-            return;
-          }
-          const n = Number( raw );
-          if ( !Number.isInteger( n ) || n <= 0 ) {
-            error( TABS.countries, r.row, `${header} "${raw}" isn't a whole number above 0` );
-            return;
-          }
-          amounts[freq][tier] = n;
-        } );
-        const { min, mid, max } = amounts[freq];
-        if ( min && mid && max && !( min <= mid && mid <= max ) ) {
-          error( TABS.countries, r.row, `${freq} amounts aren't in min ≤ mid ≤ max order (${min}, ${mid}, ${max})` );
-        }
+        amounts[freq] = { ...currencies[currency]?.amounts[freq], ...own[freq] };
       } );
-      if ( missing.length === 6 ) {
-        error( TABS.countries, r.row, "Amounts missing" );
-      } else if ( missing.length > 0 ) {
-        error( TABS.countries, r.row, `Amounts missing: ${missing.join( ", " )}` );
+      if ( hasAny( own ) ) checkOrder( TABS.countries, r, amounts );
+      // Disabled countries fall back to the default country, so need no amounts
+      const enabled = r.get( H.enabled ) !== "No";
+      if ( enabled && !amounts[REQUIRED_TIER.freq][REQUIRED_TIER.tier] && currencies[currency] ) {
+        currencies[currency].unpriced = [...( currencies[currency].unpriced || [] ), code];
       }
 
       // Format: blank examples fall back to the currency, but CLDR can fill them
-      const cldr = safeSuggest( langs[0], code, currency );
+      const cldr = safeSuggest( formatLanguage( code, langs ), code, currency );
       const symbol = formatValue( TABS.countries, r, H.countrySymbol, cldr?.symbol )
         || currencies[currency]?.symbol;
       const thousand = formatValue( TABS.countries, r, H.countryThousand, cldr?.thousand );
@@ -199,13 +220,23 @@ function checkWorkbookObject( wb ) {
       if ( thousand || million ) {
         fields = checkExamples( TABS.countries, r, { thousand, million }, symbol, currency, cldr );
       }
-      noteBareSymbol( fields, currency );
+      if ( enabled ) noteBareSymbol( fields, currency );
 
       countries[code] = {
-        currency, amounts, symbol, enabled: r.get( H.enabled ) !== "No"
+        currency, amounts, symbol, enabled
       };
     } );
   }
+
+  // An enabled country needs a one-time min, from itself or its currency.
+  // Reported once per currency rather than on every country using it.
+  Object.entries( currencies ).forEach( ( [code, currency] ) => {
+    if ( !currency.unpriced ) return;
+    const list = currency.unpriced.length > 8
+      ? `${currency.unpriced.slice( 0, 8 ).join( ", " )} and ${currency.unpriced.length - 8} more`
+      : currency.unpriced.join( ", " );
+    error( TABS.currencies, currency.row, `${REQUIRED_HEADER} missing, and enabled countries using ${code} don't set their own (${list}). Set it here, set it on those countries, or disable them.` );
+  } );
 
   // ---------- Settings ----------
   const settingsWs = tab( TABS.settings );
@@ -219,6 +250,13 @@ function checkWorkbookObject( wb ) {
       }
       if ( setting === "Fallback country" && value && !countries[value] ) {
         error( TABS.settings, r, `Fallback country "${value}" isn't on the Countries tab` );
+      } else if ( setting === "Fallback country" && value ) {
+        const gaps = FREQUENCIES.flatMap( freq => TIERS
+          .filter( tier => !countries[value].amounts[freq][tier] )
+          .map( tier => TIER_COLUMNS[freq][tier] ) );
+        if ( gaps.length > 0 ) {
+          warn( TABS.settings, r, `Fallback country ${value} has no ${gaps.join( ", " )}. Buttons for those tiers show nothing wherever a country has no amount of its own.` );
+        }
       }
     }
   }
@@ -227,7 +265,8 @@ function checkWorkbookObject( wb ) {
   const used = new Set( Object.values( countries ).filter( c => c.enabled ).map( c => c.currency ) );
   used.forEach( code => {
     const currency = currencies[code];
-    if ( !currency ) return;
+    // Unpriced currencies are already errors; confirming FundraiseUp can wait
+    if ( !currency || currency.unpriced ) return;
     if ( currency.fruEnabled === "No" ) {
       error( TABS.currencies, currency.row, `${code} is used by a country but isn't enabled in the FundraiseUp campaign` );
     } else if ( currency.fruEnabled !== "Yes" ) {
@@ -260,7 +299,7 @@ function checkWorkbookObject( wb ) {
       const thousand = formatValue( TABS.countryLanguages, r, H.langThousand, cldr?.thousand );
       const million = formatValue( TABS.countryLanguages, r, H.langMillion, cldr?.million );
       const fields = checkExamples( TABS.countryLanguages, r, { thousand, million }, symbol, countryInfo.currency, cldr );
-      noteBareSymbol( fields, countryInfo.currency );
+      if ( countryInfo.enabled ) noteBareSymbol( fields, countryInfo.currency );
     } );
   }
 

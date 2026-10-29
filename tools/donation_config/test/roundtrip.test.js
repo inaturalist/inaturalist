@@ -1,5 +1,5 @@
-// Parses the CLDR examples for every starter country and language, and every
-// FundraiseUp currency's default format, renders
+// Parses the CLDR examples for every country and language on the workbook,
+// and every FundraiseUp currency's default format, renders
 // whole amounts from the parsed fields with ActiveSupport (as the app will),
 // and checks the result matches CLDR. This shows the stored fields are enough
 // to reproduce each format.
@@ -10,8 +10,9 @@ const path = require( "node:path" );
 const { execFileSync } = require( "node:child_process" );
 const { parseExamples, normalize } = require( "../parse" );
 const {
-  STARTER, FRU_CURRENCIES, suggest, cldrWhole, currencyHome
+  FRU_CURRENCIES, suggest, cldrWhole, currencyHome, formatLanguage, allCountries
 } = require( "../seed" );
+const { loadLocales } = require( "../locales" );
 
 const REPO_ROOT = path.resolve( __dirname, "../../.." );
 const AMOUNTS = [5, 1000, 25000, 1000000];
@@ -27,8 +28,10 @@ test( "parsed CLDR formats render the same through ActiveSupport", ( ) => {
       expected: AMOUNTS.map( a => cldrWhole( lang, country, currency, a ) )
     } );
   };
-  STARTER.forEach( ( [country, , currency, langs] ) => {
-    langs.forEach( lang => addCase( `${country}/${lang}`, lang, country, currency ) );
+  allCountries( new Set( loadLocales( ).map( l => l.code ) ) ).forEach( ( [country, , currency, langs] ) => {
+    new Set( [formatLanguage( country, langs ), ...langs] ).forEach( lang => {
+      addCase( `${country}/${lang}`, lang, country, currency );
+    } );
   } );
   FRU_CURRENCIES.forEach( currency => {
     const [country, , , [lang]] = currencyHome( currency );

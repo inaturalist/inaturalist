@@ -141,6 +141,85 @@ function currencyHome( currency ) {
   return [cc, regionNames.of( cc ), currency, [lang || new Intl.Locale( `und-${cc}` ).maximize( ).language]];
 }
 
+// Language whose CLDR format a country's examples come from: its first listed
+// language when CLDR's likeliest language there is listed, else the first
+// listed language that's official there. Failing both, CLDR's likeliest
+// language if Node has data for it, so local conventions apply even where no
+// iNat locale is spoken (৳ in Bangladesh rather than BDT).
+function formatLanguage( country, langs ) {
+  const base = lang => lang.split( "-" )[0];
+  const likely = new Intl.Locale( `und-${country}` ).maximize( ).language;
+  if ( langs.some( lang => base( lang ) === likely ) ) return langs[0];
+  const { territoryInfo } = require( "cldr-core/supplemental/territoryInfo.json" ).supplemental;
+  const population = territoryInfo[country]?.languagePopulation || {};
+  const official = lang => Object.entries( population ).some( ( [code, p] ) => (
+    code.split( "_" )[0] === base( lang ) && ["official", "de_facto_official"].includes( p._officialStatus )
+  ) );
+  const supported = new Intl.NumberFormat( likely ).resolvedOptions( ).locale.split( "-" )[0] === likely;
+  return langs.find( official ) || ( supported ? likely : langs[0] ) || likely;
+}
+
+// CLDR region codes that aren't ISO 3166-1 countries, so geoip never returns them
+const NOT_COUNTRIES = ["AC", "CP", "DG", "EA", "EU", "EZ", "IC", "QO", "TA", "UN", "ZZ"];
+
+// Stripe still lists the dobra under its pre-2018 code
+const CURRENCY_ALIASES = { STN: "STD" };
+
+// CLDR language codes as iNat locale codes
+function inatLocale( lang, country ) {
+  if ( !lang.startsWith( "zh" ) ) return lang.split( "_" )[0];
+  if ( !lang.includes( "Hant" ) ) return "zh-CN";
+  return ["HK", "MO"].includes( country ) ? "zh-HK" : "zh-TW";
+}
+
+// Every country whose current currency FundraiseUp supports, as
+// [ISO2, name, currency, iNat languages, notes], from CLDR's
+// supplemental data. Starter countries come first with their curated values,
+// then the rest by name. Languages are the iNat locales that are official or
+// spoken by at least a quarter of people, most spoken first, or en if none are.
+function allCountries( localeCodes ) {
+  const { region } = require( "cldr-core/supplemental/currencyData.json" ).supplemental.currencyData;
+  const { territoryInfo } = require( "cldr-core/supplemental/territoryInfo.json" ).supplemental;
+  const others = Object.keys( region )
+    .filter( cc => /^[A-Z]{2}$/.test( cc ) && !NOT_COUNTRIES.includes( cc ) )
+    .filter( cc => !STARTER.some( s => s[0] === cc ) )
+    .map( cc => {
+      const cldrCurrent = region[cc]
+        .map( entry => Object.entries( entry )[0] )
+        .filter( ( [, dates] ) => !dates._to && dates._tender !== "false" )
+        .map( ( [code] ) => code );
+      const current = cldrCurrent.map( code => CURRENCY_ALIASES[code] || code );
+      const supported = current.filter( code => FRU_CURRENCIES.includes( code ) );
+      if ( supported.length === 0 ) return null;
+      const spoken = Object.entries( territoryInfo[cc]?.languagePopulation || {} )
+        .filter( ( [, p] ) => ["official", "de_facto_official"].includes( p._officialStatus )
+          || p._populationPercent >= 25 )
+        .sort( ( a, b ) => b[1]._populationPercent - a[1]._populationPercent )
+        .map( ( [lang] ) => inatLocale( lang, cc ) )
+        .filter( lang => localeCodes.has( lang ) );
+      const langs = spoken.length > 0 ? [...new Set( spoken )] : ["en"];
+      const notes = [];
+      cldrCurrent.filter( code => CURRENCY_ALIASES[code] ).forEach( code => {
+        notes.push( `CLDR has ${code}; Stripe lists it as ${CURRENCY_ALIASES[code]}.` );
+      } );
+      const alsoUses = current.filter( code => code !== supported[0] );
+      if ( alsoUses.length > 0 ) notes.push( `Also uses ${alsoUses.join( ", " )}.` );
+      if ( spoken.length === 0 ) notes.push( "No iNaturalist locale for its languages." );
+      return [cc, regionNames.of( cc ), supported[0], langs, notes.join( " " )];
+    } )
+    .filter( Boolean )
+    .sort( ( a, b ) => a[1].localeCompare( b[1] ) );
+  return [...STARTER.map( s => [...s, null] ), ...others];
+}
+
 module.exports = {
-  STARTER, FRU_CURRENCIES, suggest, cldrWhole, currencyHome, currencyName, intlLocale
+  STARTER,
+  FRU_CURRENCIES,
+  suggest,
+  cldrWhole,
+  currencyHome,
+  currencyName,
+  intlLocale,
+  formatLanguage,
+  allCountries
 };

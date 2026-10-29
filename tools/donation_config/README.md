@@ -18,8 +18,8 @@ node build.js donation-config.xlsx
 ```
 
 This pre-fills:
-- 42 starter countries
 - every currency FundraiseUp supports (`FRU_CURRENCIES` in `seed.js`)
+- every country whose current currency is one of those, from CLDR's currency and language data (`cldr-core`, pinned to the CLDR version Node uses). The 42 starter countries come first. All are enabled; a country without amounts of its own uses its currency's.
 - every currency's and country's symbol and its 1,000.00 and 1,000,000.00 examples, from CLDR
 - each locale's existing translation of "Donate", read from `config/locales`
 
@@ -36,13 +36,14 @@ node check.js donation-config.xlsx --fill donation-config-filled.xlsx
 
 `check.js` prints a Markdown report and exits with status 1 if there are errors. It reports:
 - examples that don't parse or disagree with each other
-- missing, non-whole or out-of-order tier amounts
+- currencies with no one-time min that enabled countries need, and non-whole or out-of-order amounts
 - unknown countries, currencies or languages, and currencies FundraiseUp doesn't support
 - button text without `{amount}`
 - overrides that don't match their tier amount
 - currencies not confirmed as enabled in FundraiseUp
 
 It warns, without failing, about:
+- a fallback country without every tier
 - formats that differ from CLDR
 - a symbol such as `$` shown without a code for several currencies
 
@@ -54,7 +55,7 @@ It warns, without failing, about:
 node --test
 ```
 
-The round-trip test runs `render_check.rb` with `bundle exec ruby` from the repo root. It checks that the parsed fields, rendered through ActiveSupport as the app will, reproduce CLDR for every starter country and language and every currency's default format.
+The round-trip test runs `render_check.rb` with `bundle exec ruby` from the repo root. It checks that the parsed fields, rendered through ActiveSupport as the app will, reproduce CLDR for every country and language on the workbook and every currency's default format.
 
 ## Updating the currency list
 

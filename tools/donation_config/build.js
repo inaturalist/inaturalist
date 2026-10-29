@@ -5,10 +5,10 @@
 const fs = require( "node:fs" );
 const ExcelJS = require( "exceljs" );
 const {
-  TABS, H, FIRST_ROW, LAST_ROW, TIERS, FREQUENCIES
+  TABS, H, FIRST_ROW, LAST_ROW, TIERS, FREQUENCIES, TIER_COLUMNS
 } = require( "./layout" );
 const {
-  STARTER, FRU_CURRENCIES, suggest, currencyHome, currencyName
+  STARTER, FRU_CURRENCIES, suggest, currencyHome, currencyName, formatLanguage, allCountries
 } = require( "./seed" );
 const { loadLocales } = require( "./locales" );
 const { writeValidations } = require( "./xlsx_validations" );
@@ -56,6 +56,14 @@ const amountPlaceholder = col => ( {
   error: "Include {amount} where the amount goes."
 } );
 const text = { numFmt: "@" };
+
+// The six tier amount columns; only the one-time min is ever required
+const tierColumns = minReq => FREQUENCIES.flatMap( freq => TIERS.map( tier => ( {
+  header: TIER_COLUMNS[freq][tier],
+  req: freq === "One-time" && tier === "min" ? minReq : "Optional",
+  width: 10,
+  validation: wholeNumber
+} ) ) );
 
 function buildWorkbook( ) {
   const wb = new ExcelJS.Workbook( );
@@ -144,8 +152,9 @@ function buildWorkbook( ) {
     [null, null],
     ["Tabs, in order", null],
     [TABS.settings, "Overall settings: fallback country, tier names, FundraiseUp campaign details."],
-    [TABS.currencies, "Every currency FundraiseUp supports, with its symbol, default format, and whether it is enabled in the FundraiseUp campaign. The format here is only used when a country leaves its own blank. Only currencies with a count in \"Countries using it\" need checking."],
-    [TABS.countries, "One row per country: its currency, the amount for each tier (one-time and monthly), and how amounts look there. Starts with a starter list; delete rows that are out of scope."],
+    [TABS.currencies, "Every currency FundraiseUp supports, with its default amounts, symbol, default format, and whether it is enabled in the FundraiseUp campaign. Amounts and formats here apply to every country using the currency unless the country sets its own. Only currencies with a count in \"Enabled countries using it\" need checking."],
+    [TABS.countries, "One row per country using a FundraiseUp currency: its currency, how amounts look there, and any amounts that should differ from its currency's. Disable a country to give viewers there the fallback country's amounts and currency instead."],
+    ["How amounts are chosen", "For each tier: the country's own amount, then its currency's on Currencies. Only the one-time min is required for now. A tier with no amount at either level uses the fallback country's amount and currency."],
     [TABS.countryLanguages, "Only where a country's amounts should look different in one of its other languages, e.g. Switzerland: CHF 1'000.00 in German, 1'000.00 CHF in French."],
     ["How formats are chosen", "For a viewer in a country using a language: Country by language first, then the country's own format on Countries, then the currency default on Currencies."],
     [TABS.buttons, "The button text for each language, with {amount} where the amount goes. Each language is listed with our existing translation of \"Donate\" for reference; leave a row blank to fall back to English."],
@@ -214,11 +223,11 @@ function buildWorkbook( ) {
   const currencyRows = FRU_CURRENCIES.map( currency => {
     const [homeCountry, homeName, , homeLangs] = currencyHome( currency );
     const s = suggest( homeLangs[0], homeCountry, currency );
-    return [currency, currencyName( currency ), null, s.symbol, s.thousand, s.million,
-      null, null, null, null, `Default from ${homeName} formatting`];
+    return [currency, currencyName( currency ), null, null, null, null, null, null, null,
+      s.symbol, s.thousand, s.million, null, null, null, null, `Default from ${homeName} formatting`];
   } );
   tableSheet( TABS.currencies,
-    "Every currency FundraiseUp supports. Only those used on the Countries tab need checking. These are fallbacks: a country's own format on the Countries tab wins. Symbol and examples are pre-filled from the Unicode CLDR standard.",
+    "Every currency FundraiseUp supports. Amounts and formats here are defaults for every country using the currency; a country's own on the Countries tab win. Every currency an enabled country uses needs a one-time min, unless all those countries set their own. Symbol and examples are pre-filled from the Unicode CLDR standard.",
     [
       { header: H.currencyCode, req: "Required", width: 14, ...text },
       { header: H.currencyName, req: "Optional", width: 22 },
@@ -226,8 +235,9 @@ function buildWorkbook( ) {
         header: H.currencyUsedBy,
         req: "Formula",
         width: 11,
-        formula: r => `IF(A${r}="","",COUNTIF(${TABS.countries}!$C$${FIRST_ROW}:$C$${LAST_ROW},A${r}))`
+        formula: r => `IF(A${r}="","",COUNTIFS(${TABS.countries}!$C$${FIRST_ROW}:$C$${LAST_ROW},A${r},${TABS.countries}!$O$${FIRST_ROW}:$O$${LAST_ROW},"<>No"))`
       },
+      ...tierColumns( "Required if used" ),
       { header: H.symbol, req: "Required", width: 9, ...text },
       { header: H.currencyThousand, req: "Required", width: 18, ...text },
       { header: H.currencyMillion, req: "Required", width: 20, ...text },
@@ -245,13 +255,15 @@ function buildWorkbook( ) {
     currencyRows );
 
   // ---------- Countries ----------
-  const countryRows = STARTER.map( ( [cc, name, currency, langs] ) => {
-    const s = suggest( langs[0], cc, currency );
+  const countryList = allCountries( new Set( locales.map( l => l.code ) ) );
+  const countryRows = countryList.map( ( [cc, name, currency, langs, notes] ) => {
+    const starter = STARTER.some( st => st[0] === cc );
+    const s = suggest( formatLanguage( cc, langs ), cc, currency );
     return [cc, name, currency, null, null, null, null, null, null, langs.join( ", " ),
-      s.symbol, s.thousand, s.million, null, null, "Starter row; delete if out of scope"];
+      s.symbol, s.thousand, s.million, null, "Yes", starter ? "Starter country" : notes];
   } );
   const countries = tableSheet( TABS.countries,
-    "Starter list of countries; delete rows that are out of scope and add any that are missing. Every country needs all six amounts, as whole numbers in its currency. Format columns are pre-filled from the Unicode CLDR standard for the country's main language: correct anything that's wrong, then set \"Format checked?\" to Yes.",
+    "Every country using a FundraiseUp currency, starter countries first. Amounts are optional here: a blank one uses the currency's amount on the Currencies tab. Fill them in only where a country should differ from others sharing its currency. Set \"Enabled?\" to No for countries that should get the fallback country's amounts and currency instead. Format columns are pre-filled from the Unicode CLDR standard for the country's local language: correct anything that's wrong, then set \"Format checked?\" to Yes.",
     [
       {
         header: H.countryCode,
@@ -273,12 +285,7 @@ function buildWorkbook( ) {
         ...text,
         validation: list( `${TABS.currencies}!$A$${FIRST_ROW}:$A$${LAST_ROW}`, "Add the currency on the Currencies tab first." )
       },
-      { header: H.onceMin, req: "Required", width: 10, validation: wholeNumber },
-      { header: H.onceMid, req: "Required", width: 10, validation: wholeNumber },
-      { header: H.onceMax, req: "Required", width: 10, validation: wholeNumber },
-      { header: H.monthlyMin, req: "Required", width: 10, validation: wholeNumber },
-      { header: H.monthlyMid, req: "Required", width: 10, validation: wholeNumber },
-      { header: H.monthlyMax, req: "Required", width: 10, validation: wholeNumber },
+      ...tierColumns( "Optional" ),
       { header: H.languages, req: "Optional", width: 16 },
       { header: H.countrySymbol, req: "Optional", width: 9, ...text },
       { header: H.countryThousand, req: "Optional", width: 16, ...text },
@@ -309,19 +316,24 @@ function buildWorkbook( ) {
   } );
 
   // ---------- Country by language ----------
-  // Rows only for a country's other languages; its main language is on Countries
+  // Rows only for a country's other languages; its own format is on Countries.
+  // Starter countries get a row for each; other countries only where CLDR's
+  // format differs.
   const countryLanguageRows = [];
-  STARTER.forEach( ( [cc, , currency, langs] ) => {
-    const main = suggest( langs[0], cc, currency );
-    langs.slice( 1 ).forEach( lang => {
+  countryList.forEach( ( [cc, , currency, langs] ) => {
+    const starter = STARTER.some( st => st[0] === cc );
+    const formatLang = formatLanguage( cc, langs );
+    const main = suggest( formatLang, cc, currency );
+    langs.filter( lang => lang !== formatLang ).forEach( lang => {
       const s = suggest( lang, cc, currency );
       const same = s.thousand === main.thousand && s.million === main.million;
+      if ( same && !starter ) return;
       countryLanguageRows.push( [cc, lang, s.symbol === main.symbol ? null : s.symbol, s.thousand, s.million,
         null, same ? "Same as the country's main language; delete unless it needs to differ" : null] );
     } );
   } );
   tableSheet( TABS.countryLanguages,
-    "Only where a country's amounts should look different in one of its other languages, e.g. Switzerland: CHF 1'000.00 in German, 1'000.00 CHF in French. Pre-filled from the Unicode CLDR standard for the starter countries.",
+    "Only where a country's amounts should look different in one of its other languages, e.g. Switzerland: CHF 1'000.00 in German, 1'000.00 CHF in French. Pre-filled from the Unicode CLDR standard: every other language of a starter country, and other countries' languages where CLDR differs.",
     [
       {
         header: H.country,
@@ -375,7 +387,7 @@ function buildWorkbook( ) {
 
   // ---------- Exact text overrides ----------
   tableSheet( TABS.overrides,
-    "Only where the generated button text isn't right. Write the exact text, including the amount. \"Tier amount\" shows the amount from the Countries tab so you can check it matches.",
+    "Only where the generated button text isn't right. Write the exact text, including the amount. \"Tier amount\" shows the amount from the Countries tab, or the currency's on Currencies, so you can check it matches.",
     [
       {
         header: H.country,
@@ -409,7 +421,16 @@ function buildWorkbook( ) {
         header: H.tierAmount,
         req: "Formula",
         width: 12,
-        formula: r => `IF(OR(A${r}="",C${r}="",D${r}=""),"",IFERROR(INDEX(${TABS.countries}!$D$${FIRST_ROW}:$I$${LAST_ROW},MATCH(A${r},${TABS.countries}!$A$${FIRST_ROW}:$A$${LAST_ROW},0),IF(C${r}="Monthly",3,0)+MATCH(D${r},${TABS.lists}!$K$2:$K$4,0)),"Country not found"))`
+        formula: r => {
+          // The country's own amount, else its currency's
+          const range = ( tab, cols ) => `${tab}!$${cols[0]}$${FIRST_ROW}:$${cols[1]}$${LAST_ROW}`;
+          const row = `MATCH(A${r},${range( TABS.countries, "AA" )},0)`;
+          const col = `IF(C${r}="Monthly",3,0)+MATCH(D${r},${TABS.lists}!$K$2:$K$4,0)`;
+          const own = `INDEX(${range( TABS.countries, "DI" )},${row},${col})`;
+          const currencyRow = `MATCH(INDEX(${range( TABS.countries, "CC" )},${row}),${range( TABS.currencies, "AA" )},0)`;
+          const fromCurrency = `INDEX(${range( TABS.currencies, "DI" )},${currencyRow},${col})`;
+          return `IF(OR(A${r}="",C${r}="",D${r}=""),"",IFERROR(IF(${own}<>"",${own},IFERROR(IF(${fromCurrency}<>"",${fromCurrency},"No amount"),"No amount")),"Country not found"))`;
+        }
       }
     ],
     [],
@@ -430,8 +451,8 @@ function buildWorkbook( ) {
   const LEVELS = "currencies.<ISO> / countries.\"<ISO2>\" / countries.\"<ISO2>\".formats.<locale>";
   const EXAMPLES = "the 1,000.00 and 1,000,000.00 examples on Currencies, Countries or Country by language";
   [
-    [Y, "default_country", "Required", "Settings", "\"US\"", "Fallback when geolocation fails or the country isn't listed."],
-    [Y, "tier_names", "Required", "Settings", "[min, mid, max]", "Fixed tier set. Every country must define every tier."],
+    [Y, "default_country", "Required", "Settings", "\"US\"", "Fallback when geolocation fails, the country isn't listed or is disabled, or a tier has no amount. Should have every tier."],
+    [Y, "tier_names", "Required", "Settings", "[min, mid, max]", "Fixed tier set. Only once.min is required for now."],
     [Y, "frequencies", "Required", "(fixed)", "{ once: once, monthly: monthly }", "Our frequency name and FundraiseUp's recurring value."],
     [Y, "last_reviewed", "Optional", "Settings", "2026-11-01", "When amounts were last checked."],
     [Y, "fru.campaign_page_url", "Required", "Settings", "https://giving.inaturalist.org/page/supportinaturalist", "Base URL for [donation-url]."],
@@ -442,11 +463,12 @@ function buildWorkbook( ) {
     [Y, "currencies.<ISO>.name", "Optional", "Currencies", "Euro", "Admin preview and docs."],
     [Y, "currencies.<ISO>.fru_enabled", "Required if used", "Currencies", "true", "Confirms the currency is enabled in the campaign. Only currencies a country uses need it."],
     [Y, "currencies.<ISO>.fru_minimum", "Optional", "Currencies", "{ once: 1, monthly: 1 }", "Tiers are checked against it."],
+    [Y, "currencies.<ISO>.tiers.<frequency>.<tier>", "once.min required if used", "Currencies", "once: { min: 5, mid: 10, max: 25 }", "Default amounts for countries using the currency."],
     [Y, "countries.\"<ISO2>\".currency", "Required", "Countries", "EUR", "Must exist under currencies."],
-    [Y, "countries.\"<ISO2>\".tiers.<frequency>.<tier>", "Required", "Countries", "once: { min: 5, mid: 10, max: 25 }", "Whole-number amounts; all frequencies and tiers required."],
+    [Y, "countries.\"<ISO2>\".tiers.<frequency>.<tier>", "Optional", "Countries", "once: { min: 5 }", "Overrides the currency's amount for that tier."],
     [Y, "countries.\"<ISO2>\".label_overrides", "Optional", TABS.overrides, "fr: { once: { min: \"Donnez 5 €\" } }", "Exact button text; digits must match the amount."],
     [Y, "countries.\"<ISO2>\".locales", "Optional", "Countries (languages)", "[fr, en]", "Admin preview options and test coverage."],
-    [Y, "countries.\"<ISO2>\".enabled", "Optional", "Countries", "true", "Stage a country without turning it on."],
+    [Y, "countries.\"<ISO2>\".enabled", "Optional", "Countries", "true", "false gives viewers there the fallback country's amounts and currency."],
     [Y, `${LEVELS} .symbol`, "Required on currencies", "Symbol columns", "€, kr., CHF", "The symbol. Also used to find the symbol in the examples."],
     [Y, `${LEVELS} .format`, "Required on currencies", EXAMPLES, "\"%n %u\"", "Where the symbol and code go. %n = number, %u = symbol, %c = ISO code."],
     [Y, `${LEVELS} .delimiter`, "Optional", EXAMPLES, "\" \", \".\", \",\", \"'\"", "Thousands separator. Falls back to the language default from rails-i18n."],
