@@ -2107,20 +2107,17 @@ describe Observation, "probably_captive?" do
     let( :place ) { create :place, :with_geom, admin_level: Place::COUNTRY_LEVEL }
     include ElasticStub
 
-    def stub_observations( count = 1, **kwargs )
+    def stub_observations( count = 1, public_places: [place], **kwargs )
       defaults = { captive: false, taxon: species, latitude: place.latitude, longitude: place.longitude }
       elastic_stub_observations( count ) do
         build_stubbed( :observation, defaults.merge( **kwargs ) ) do | obs |
-          allow( obs ).to receive( :public_places ).and_return [place]
+          allow( obs ).to receive( :public_places ).and_return public_places
           obs.update_quality_metrics
           obs.captive = obs.captive_cultivated
         end
       end
     end
 
-    before do | e |
-      allow( Observation ).to receive( :system_places_for_latlon ).and_return [place] unless e.metadata[:skip_before]
-    end
     it "should be false with under 10 captive obs" do
       stub_observations 9, captive_flag: true
 
@@ -2137,10 +2134,37 @@ describe Observation, "probably_captive?" do
 
       expect( stub_observations ).not_to be_probably_captive
     end
-    it "should be false with no coordinates", skip_before: true do
+    it "should be false with no coordinates" do
       stub_observations 11, captive_flag: true
+      o = stub_observations( 1, latitude: nil, longitude: nil )
+      allow( o ).to receive( :public_places ).and_call_original
 
-      expect( stub_observations( 1, latitude: nil, longitude: nil ) ).not_to be_probably_captive
+      expect( o ).not_to be_probably_captive
+    end
+    it "should use the true county rather than the county containing obscured coordinates" do
+      make_place_with_geom( admin_level: Place::COUNTY_LEVEL, user: nil ) # Other County
+      make_place_with_geom(
+        admin_level: Place::COUNTY_LEVEL,
+        user: nil,
+        wkt: "MULTIPOLYGON(((1 0,1 1,2 1,2 0,1 0)))"
+      ) # County containing obs point
+
+      # Make 11 captive obs in Other County
+      11.times { Observation.make!( taxon: species, captive_flag: true, latitude: 0.5, longitude: 1.5 ) }
+
+      o = Observation.make!( taxon: species, latitude: 0.5, longitude: 0.5, geoprivacy: Observation::OBSCURED )
+      o.update_columns( latitude: 0.5, longitude: 1.5 ) # Move obs point to Other County
+
+      expect( o.private_latitude ).to eq 0.5
+      expect( o.private_longitude ).to eq 0.5
+      expect( o ).not_to be_probably_captive
+    end
+    it "should use the smallest admin place" do
+      country = build_stubbed :place, admin_level: Place::COUNTRY_LEVEL, bbox_area: 100
+      county = build_stubbed :place, admin_level: Place::COUNTY_LEVEL, bbox_area: 1
+      stub_observations 11, captive_flag: true, public_places: [country]
+
+      expect( stub_observations( 1, public_places: [country, county] ) ).not_to be_probably_captive
     end
     it "should be false with no taxon" do
       stub_observations 11, captive_flag: true
