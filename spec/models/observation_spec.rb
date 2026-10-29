@@ -2141,12 +2141,23 @@ describe Observation, "probably_captive?" do
 
       expect( o ).not_to be_probably_captive
     end
-    it "should use the true place rather than the place containing obscured coordinates" do
-      obscured_place = create :place, :with_geom, admin_level: Place::COUNTY_LEVEL
-      stub_observations 11, captive_flag: true, public_places: [obscured_place]
-      allow( Observation ).to receive( :system_places_for_latlon ).and_return [obscured_place]
+    it "should use the true county rather than the county containing obscured coordinates" do
+      make_place_with_geom( admin_level: Place::COUNTY_LEVEL, user: nil ) # Other County
+      make_place_with_geom(
+        admin_level: Place::COUNTY_LEVEL,
+        user: nil,
+        wkt: "MULTIPOLYGON(((1 0,1 1,2 1,2 0,1 0)))"
+      ) # County containing obs point
 
-      expect( stub_observations ).not_to be_probably_captive
+      # Make 11 captive obs in Other County
+      11.times { Observation.make!( taxon: species, captive_flag: true, latitude: 0.5, longitude: 1.5 ) }
+
+      o = Observation.make!( taxon: species, latitude: 0.5, longitude: 0.5, geoprivacy: Observation::OBSCURED )
+      o.update_columns( latitude: 0.5, longitude: 1.5 ) # Move obs point to Other County
+
+      expect( o.private_latitude ).to eq 0.5
+      expect( o.private_longitude ).to eq 0.5
+      expect( o ).not_to be_probably_captive
     end
     it "should use the smallest admin place" do
       country = build_stubbed :place, admin_level: Place::COUNTRY_LEVEL, bbox_area: 100
