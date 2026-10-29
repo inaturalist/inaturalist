@@ -572,13 +572,12 @@ describe UsersController, "show" do
     end
   end
 
-  it "is responsive without a test group toggle" do
+  it "is responsive" do
     get :show, params: { id: User.make!.login }
     expect( assigns( :responsive ) ).to be_truthy
-    expect( assigns( :test_group_toggle ) ).to be_nil
   end
 
-  describe "for a user in no test group" do
+  describe "responsive layout" do
     render_views
 
     it "renders the profile header with the subnav drawer" do
