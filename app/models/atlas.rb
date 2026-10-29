@@ -65,7 +65,7 @@ class Atlas < ApplicationRecord
     end
     descendant_place_ids = listed_taxa.select( "listed_taxa.place_id" ).distinct.pluck( :place_id )
     descendants_places = Place.where( id: descendant_place_ids ).
-      where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] )
+      where( "admin_level IN (?)", Place::COUNTRY_STATE_COUNTY_LEVELS )
     place_ancestor_ids = descendants_places.map{ |p| p.ancestor_place_ids || p.id }.
       flatten.compact.uniq
 
@@ -92,7 +92,7 @@ class Atlas < ApplicationRecord
       exploded_place_ids_to_exclude << exploded_atlas_place.place_id
       # Include all admin level descendants of the exploded place
       exploded_place_ids_to_include += exploded_atlas_place.place.children.
-        where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).map( &:id )
+        where( "admin_level IN (?)", Place::COUNTRY_STATE_COUNTY_LEVELS ).map( &:id )
     end
     [exploded_place_ids_to_include, exploded_place_ids_to_exclude]
   end
@@ -100,7 +100,7 @@ class Atlas < ApplicationRecord
   def get_atlas_presence_place_listed_taxa(place_id)
     place = Place.find(place_id)
     place_descendants = [place, Place.find(place_id).descendants.
-      where('admin_level IN (?)',[Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).pluck(:id ) ].
+      where('admin_level IN (?)',Place::COUNTRY_STATE_COUNTY_LEVELS ).pluck(:id ) ].
       compact.flatten
 
     scope = ListedTaxon.joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
@@ -115,7 +115,7 @@ class Atlas < ApplicationRecord
   def relevant_listed_taxon_alterations
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
     scope = ListedTaxonAlteration.joins( :place ).
-      where( "places.admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] )
+      where( "places.admin_level IN (?)", Place::COUNTRY_STATE_COUNTY_LEVELS )
     if taxon.rank_level <= 10
       scope = scope.where( "taxon_id IN (?)", taxon.subtree_ids )
     else
@@ -147,7 +147,7 @@ class Atlas < ApplicationRecord
       where( "listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS ).distinct.pluck( :place_id ) 
 
     descendants_places = Place.where( id: native_place_ids).
-      where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] )
+      where( "admin_level IN (?)", Place::COUNTRY_STATE_COUNTY_LEVELS )
     place_ancestors = descendants_places.map{ |p| p.ancestor_place_ids.nil? ? [p.id] : p.ancestor_place_ids }.
       flatten.compact.uniq
     scope = Place.where( id: place_ancestors )
@@ -165,7 +165,7 @@ class Atlas < ApplicationRecord
     to_exclude = [exploded_place_ids_to_exclude, native_place_ids].flatten.uniq
 
     descendants_places = Place.where( id: introduced_place_ids).
-      where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] )
+      where( "admin_level IN (?)", Place::COUNTRY_STATE_COUNTY_LEVELS )
     place_ancestors = descendants_places.map{ |p| p.ancestor_place_ids.nil? ? [p.id] : p.ancestor_place_ids }.
       flatten.compact.uniq
     scope = Place.where( id: place_ancestors )
