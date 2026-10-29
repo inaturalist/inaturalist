@@ -8,7 +8,7 @@ const {
   TABS, H, FIRST_ROW, LAST_ROW, TIERS, FREQUENCIES, TIER_COLUMNS
 } = require( "./layout" );
 const {
-  STARTER, FRU_CURRENCIES, suggest, currencyHome, currencyName, formatLanguage, allCountries, suggestedTiers,
+  STARTER, FRU_CURRENCIES, suggestion, currencyHome, currencyName, formatLanguage, allCountries, suggestedTiers,
   purchasingPowerAdjusted, USD_RATES
 } = require( "./seed" );
 const { loadLocales } = require( "./locales" );
@@ -148,7 +148,7 @@ function buildWorkbook( ) {
     ["Light gray cells", "Reference only. Filled from data we already have."],
     ["Gray italic row", "Example row showing the expected format. Replace it or leave it; it is not imported."],
     ["Required / Optional", "Row 3 of each tab says whether a column is required for launch. Optional columns help us get formatting right, so fill them where you can."],
-    ["Pre-filled formats", "Symbols and the 1,000.00 and 1,000,000.00 examples are pre-filled from the Unicode CLDR standard (what browsers use). Correct anything that's wrong and set \"Format checked?\" to Yes. Many currencies use a bare $; add the code, e.g. $1,000.00 (CAD), wherever that could be ambiguous."],
+    ["Pre-filled formats", "Symbols and the 1,000.00 and 1,000,000.00 examples are pre-filled from the Unicode CLDR standard (what browsers use). Correct anything that's wrong and set \"Format checked?\" to Yes. Where several currencies share a symbol, such as $, £ or kr, the currency code is added: $1,000.00 (CAD). Remove it only if viewers there won't confuse the currency."],
     ["Writing the examples", "Write one thousand and one million, with cents, exactly as people in that country and language would see them, including the currency symbol: 1 000,00 € or ₹10,00,000.00. Buttons use whole amounts, but the cents tell us the decimal separator, and the two examples tell us the thousands separator and how digits are grouped."],
     [null, null],
     ["Tabs, in order", null],
@@ -224,7 +224,7 @@ function buildWorkbook( ) {
   // ---------- Currencies ----------
   const currencyRows = FRU_CURRENCIES.map( currency => {
     const [homeCountry, homeName, , homeLangs] = currencyHome( currency );
-    const s = suggest( homeLangs[0], homeCountry, currency );
+    const s = suggestion( homeLangs[0], homeCountry, currency );
     const tiers = suggestedTiers( currency );
     const adjusted = purchasingPowerAdjusted( currency );
     const notes = [`Format from ${homeName}.`];
@@ -270,7 +270,7 @@ function buildWorkbook( ) {
   const countryList = allCountries( new Set( locales.map( l => l.code ) ) );
   const countryRows = countryList.map( ( [cc, name, currency, langs, notes] ) => {
     const starter = STARTER.some( st => st[0] === cc );
-    const s = suggest( formatLanguage( cc, langs ), cc, currency );
+    const s = suggestion( formatLanguage( cc, langs ), cc, currency );
     return [cc, name, currency, null, null, null, null, null, null, langs.join( ", " ),
       s.symbol, s.thousand, s.million, null, "Yes", starter ? "Starter country" : notes];
   } );
@@ -335,9 +335,9 @@ function buildWorkbook( ) {
   countryList.forEach( ( [cc, , currency, langs] ) => {
     const starter = STARTER.some( st => st[0] === cc );
     const formatLang = formatLanguage( cc, langs );
-    const main = suggest( formatLang, cc, currency );
+    const main = suggestion( formatLang, cc, currency );
     langs.filter( lang => lang !== formatLang ).forEach( lang => {
-      const s = suggest( lang, cc, currency );
+      const s = suggestion( lang, cc, currency );
       const same = s.thousand === main.thousand && s.million === main.million;
       if ( same && !starter ) return;
       countryLanguageRows.push( [cc, lang, s.symbol === main.symbol ? null : s.symbol, s.thousand, s.million,

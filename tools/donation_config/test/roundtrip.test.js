@@ -10,7 +10,7 @@ const path = require( "node:path" );
 const { execFileSync } = require( "node:child_process" );
 const { parseExamples, normalize } = require( "../parse" );
 const {
-  FRU_CURRENCIES, suggest, cldrWhole, currencyHome, formatLanguage, allCountries
+  FRU_CURRENCIES, suggestion, cldrWhole, currencyHome, formatLanguage, allCountries
 } = require( "../seed" );
 const { loadLocales } = require( "../locales" );
 
@@ -20,12 +20,14 @@ const AMOUNTS = [5, 1000, 25000, 1000000];
 test( "parsed CLDR formats render the same through ActiveSupport", ( ) => {
   const cases = [];
   const addCase = ( label, lang, country, currency ) => {
-    const s = suggest( lang, country, currency );
+    // The suggested format, with the code appended where the symbol is shared
+    const s = suggestion( lang, country, currency );
+    const code = s.thousand.endsWith( ` (${currency})` ) ? ` (${currency})` : "";
     const { fields, errors } = parseExamples( { ...s, code: currency } );
     assert.deepStrictEqual( errors, [], `${label}: ${errors.join( "; " )}` );
     cases.push( {
       label, fields, code: currency, amounts: AMOUNTS,
-      expected: AMOUNTS.map( a => cldrWhole( lang, country, currency, a ) )
+      expected: AMOUNTS.map( a => cldrWhole( lang, country, currency, a ) + code )
     } );
   };
   allCountries( new Set( loadLocales( ).map( l => l.code ) ) ).forEach( ( [country, , currency, langs] ) => {

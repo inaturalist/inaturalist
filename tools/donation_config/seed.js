@@ -307,10 +307,39 @@ function allCountries( localeCodes ) {
   return [...STARTER.map( s => [...s, null] ), ...others];
 }
 
+// Symbols CLDR gives to more than one currency across the workbook's
+// countries and their languages, such as $ and kr. Mirrors check.js's
+// bare-symbol warning.
+let ambiguous;
+function ambiguousSymbols( ) {
+  if ( ambiguous ) return ambiguous;
+  const { loadLocales } = require( "./locales" );
+  const currenciesBySymbol = {};
+  allCountries( new Set( loadLocales( ).map( l => l.code ) ) ).forEach( ( [cc, , currency, langs] ) => {
+    new Set( [formatLanguage( cc, langs ), ...langs] ).forEach( lang => {
+      const { symbol } = suggest( lang, cc, currency );
+      currenciesBySymbol[symbol] = currenciesBySymbol[symbol] || new Set( );
+      currenciesBySymbol[symbol].add( currency );
+    } );
+  } );
+  ambiguous = new Set( Object.keys( currenciesBySymbol ).filter( sym => currenciesBySymbol[sym].size > 1 ) );
+  return ambiguous;
+}
+
+// The format the workbook suggests: CLDR's, with the ISO code appended where
+// the symbol is shared by several currencies, as in $1,000.00 (CAD)
+function suggestion( lang, country, currency ) {
+  const s = suggest( lang, country, currency );
+  if ( !ambiguousSymbols( ).has( s.symbol ) ) return s;
+  return { ...s, thousand: `${s.thousand} (${currency})`, million: `${s.million} (${currency})` };
+}
+
 module.exports = {
   STARTER,
   FRU_CURRENCIES,
   suggest,
+  suggestion,
+  ambiguousSymbols,
   cldrWhole,
   currencyHome,
   currencyName,

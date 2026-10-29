@@ -30,6 +30,15 @@ test( "a freshly built workbook only lacks settings", async ( ) => {
   ] );
 } );
 
+test( "shared symbols are pre-filled with the currency code, so nothing warns", async ( ) => {
+  const { warnings } = await checkWorkbook( built );
+  assert.deepStrictEqual( warnings.filter( w => /without a currency code|Differs from/.test( w.message ) ), [] );
+  const wb = await readWorkbook( built );
+  const countries = wb.getWorksheet( TABS.countries );
+  assert.strictEqual( countries.getRow( US ).getCell( 12 ).value, "$1,000.00 (USD)" );
+  assert.strictEqual( countries.getRow( FR ).getCell( 12 ).value, "1 000,00 €" );
+} );
+
 test( "currency amounts are pre-filled and marked by how they were set", async ( ) => {
   const wb = await readWorkbook( built );
   const currencies = wb.getWorksheet( TABS.currencies );

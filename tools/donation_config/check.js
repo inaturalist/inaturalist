@@ -11,7 +11,7 @@ const {
 } = require( "./layout" );
 const { parseExamples, normalize } = require( "./parse" );
 const {
-  FRU_CURRENCIES, suggest, currencyHome, currencyName, formatLanguage, floorAmount, MIN_USD, USD_RATES
+  FRU_CURRENCIES, suggestion, currencyHome, currencyName, formatLanguage, floorAmount, MIN_USD, USD_RATES
 } = require( "./seed" );
 const { loadLocales } = require( "./locales" );
 
@@ -86,7 +86,7 @@ function checkWorkbookObject( wb ) {
     problems.forEach( p => error( tabName, r.row, p ) );
     notes.forEach( n => warn( tabName, r.row, n ) );
     if ( fields && cldr && ( normalize( thousand ) !== cldr.thousand || normalize( million ) !== cldr.million ) ) {
-      warn( tabName, r.row, `Differs from CLDR, which has "${cldr.thousand}" and "${cldr.million}". Fine if intended.` );
+      warn( tabName, r.row, `Differs from the suggested format (CLDR, with the code added where the symbol is shared): "${cldr.thousand}" and "${cldr.million}". Fine if intended.` );
     }
     return fields;
   };
@@ -94,7 +94,7 @@ function checkWorkbookObject( wb ) {
   const safeSuggest = ( lang, country, currency ) => {
     if ( !lang || !country || !currency ) return null;
     try {
-      return suggest( lang, country, currency );
+      return suggestion( lang, country, currency );
     } catch ( e ) {
       return null;
     }
