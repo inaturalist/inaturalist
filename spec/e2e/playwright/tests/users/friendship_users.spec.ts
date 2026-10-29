@@ -20,10 +20,6 @@ test.beforeAll( async () => {
   friendLogin = friend.login as string;
   await app( "follow", { user_id: user.id, friend_id: friend.id } );
   await app( "follow", { user_id: friend.id, friend_id: user.id } );
-  await app( "add_test_group", {
-    user_id: user.id,
-    test_groups: ["responsive-header", "responsive-global"]
-  } );
 } );
 
 ["followers", "following"].forEach( action => {

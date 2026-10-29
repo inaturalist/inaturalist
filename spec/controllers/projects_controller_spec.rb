@@ -370,3 +370,78 @@ describe ProjectsController, "browse" do
     end
   end
 end
+
+describe ProjectsController, "search" do
+  render_views
+
+  let!( :project ) { Project.make!( description: "<p>A project about <b>moths</b></p>" ) }
+
+  def stub_search( projects )
+    stub_request( :get, /#{INatAPIService::ENDPOINT}/ ).to_return(
+      status: 200,
+      body: {
+        results: projects.map {| p | { record: { id: p.id } } },
+        total_results: projects.size,
+        page: 1,
+        per_page: 30
+      }.to_json,
+      headers: { "Content-Type" => "application/json" }
+    )
+  end
+
+  it "renders the legacy page" do
+    stub_search( [project] )
+    get :search, params: { q: "moths" }
+    expect( response ).to be_successful
+    expect( response.body ).not_to have_tag( "#projects-search" )
+  end
+
+  describe "for a responsive-global member" do
+    let( :user ) { User.make!( test_groups: "responsive-global" ) }
+
+    before { sign_in user }
+
+    describe "with results" do
+      before do
+        stub_search( [project] )
+        get :search, params: { q: "moths" }
+      end
+
+      it "renders the responsive variant" do
+        expect( request.variant ).to include( :responsive )
+        expect( response ).to render_template( "search" )
+        expect( response.body ).to have_tag( "#projects-search" )
+      end
+
+      it "offers the responsive test group toggle" do
+        expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
+      end
+
+      it "is returned to after toggling the test group" do
+        expect( session[:return_to] ).to eq "/projects/search?q=moths"
+      end
+
+      it "prefills the search input" do
+        expect( response.body ).to have_tag( "form.project-search input[name='q']", with: { value: "moths" } )
+      end
+
+      it "renders a row per project" do
+        expect( response.body ).to have_tag( ".search-results .search-result", count: 1 )
+        expect( response.body ).to have_tag( ".search-result h4 a", with: { href: project_path( project ) } )
+        expect( response.body ).to have_tag( ".search-result .meta", text: /A project about moths/ )
+      end
+
+      it "does not use Blueprint grid or button classes" do
+        %w([class*='span-'] .column .last .clear .buttonrow .button).each do | selector |
+          expect( response.body ).not_to have_tag( "#projects-search #{selector}" )
+        end
+      end
+    end
+
+    it "says when nothing matches" do
+      stub_search( [] )
+      get :search, params: { q: "nothing" }
+      expect( response.body ).to have_tag( "#projects-search .nocontent", text: I18n.t( :no_matching_projects ) )
+    end
+  end
+end

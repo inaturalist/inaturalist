@@ -2,47 +2,42 @@
   <%= t(:people) %>
 <% end %>
 <% content_for(:extracss) do %>
-  <%= stylesheet_link_tag 'users' %>
+  <%= stylesheet_link_tag 'users_responsive' %>
 <% end %>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript">
     $(document).ready(function() {
-      $('.userimagelink').imagesLoaded(function() {
-        $('.userimage', this).centerInContainer()
-      })
       $('abbr.timeago').timeago()
     })
   </script>
 <%- end -%>
-<div class="container">  
-  <div id="pageheader" class="column span-24">
-    <% if logged_in? -%>
-      <div class="right inline smallbuttons buttonrow">
-        <%= form_tag( search_path, method: :get, class: "last" ) do %>
-          <%= hidden_field_tag "source[]", "users" %>
-          <%# TODO: use t(:search_by_name) once translated; then drop search_by_name_or_email from en.yml %>
-          <%= text_field_tag :q, @q, :class => 'text', :placeholder => I18n.t( :search_by_name, default: :search_by_name_or_email ), :style => "width: 150px;" %>
-          <%= submit_tag t(:search), :class => 'last default button' %>
-        <% end %>
-      </div>
-    <% end -%>
-    <h2><%= t(:the_people_of_inat, :site_name => @site.name) %></h2>
-  </div>
+<div id="pageheader">
+  <h2><%= t(:the_people_of_inat, :site_name => @site.name) %></h2>
+  <% if logged_in? -%>
+    <%= form_tag( search_path, method: :get, class: "people-search" ) do %>
+      <%= hidden_field_tag "source[]", "users" %>
+      <%# TODO: use t(:search_by_name) once translated; then drop search_by_name_or_email from en.yml %>
+      <%= text_field_tag :q, @q, class: "text", placeholder: I18n.t( :search_by_name, default: :search_by_name_or_email ) %>
+      <%= submit_tag t(:search), class: "button default" %>
+    <% end %>
+  <% end -%>
+</div>
 
-  <div id="recent" class="column span-24 stacked">
-    <h3>
-      <span class="right meta ui small">
-        <%= t :updated %>
-        <%- last_updated = [@updates.first&.created_at, 1.hour.ago].compact.max %>
-        <abbr class="date timeago" title="<%=t :n_ago, :n => time_ago_in_words(last_updated.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(last_updated) %></abbr>
-      </span>
-      <%= t :recently_active %>
-    </h3>
-    <% if @updates.blank? %>
-      <div class="noresults meta"><%= t :no_recent_activity %></div>
-    <% else %>
-      <% @updates.compact.each_with_index do |update,i| %>
-        <div class="usercol column span-6 <%= 'last' if i % 4 == 3 %>">
+<div id="recent">
+  <div class="section-header">
+    <h3><%= t :recently_active %></h3>
+    <div class="updated">
+      <%= t :updated %>
+      <%- last_updated = [@updates.first&.created_at, 1.hour.ago].compact.max %>
+      <abbr class="timeago" title="<%=t :n_ago, :n => time_ago_in_words(last_updated.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(last_updated) %></abbr>
+    </div>
+  </div>
+  <% if @updates.blank? %>
+    <div class="empty"><%= t :no_recent_activity %></div>
+  <% else %>
+    <div class="CardGrid">
+      <% @updates.compact.each do |update| %>
+        <div class="usercol">
           <% if update.user -%>
             <%= link_to user_image( update.user, size: "medium" ), update.user, class: "userimagelink" %>
           <% else %>
@@ -103,76 +98,73 @@
                 <%= raw t 'people_added.comment.without_by', comment_subject_link: comment_subject_link, gender: class_name, vow_or_con: class_name.first.downcase %>
               <% end -%>
             <% end %>
-            <abbr class="date timeago" title="<%=t :n_ago, :n => time_ago_in_words(update.created_at.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(update.created_at) %></abbr>
+            <abbr class="timeago" title="<%=t :n_ago, :n => time_ago_in_words(update.created_at.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(update.created_at) %></abbr>
           </div>
         </div>
-      <% end %>
-    <% end -%>
-  </div>
-
-  <% cache @leaderboard_key, :expires_in => 1.day do %>
-    <div id="leaderboard" class="stacked column span-24">
-      <h3>
-        <div class="right small meta ui">
-          <%= t :updated_daily %>
-          (<abbr class="meta ui stacked date timeago" data-now="<%= Time.now.getutc.iso8601 %>" title="<%=t :n_ago, :n => time_ago_in_words(Time.now.getutc.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(Time.now) %></abbr>)
-        </div>
-        <%= t :leaderboards %>
-      </h3>
-      
-      <div class="column span-24 stacked">
-        <%= render 'leaderboard_column', :noun => 'observation', :noun_plural => 'observations', :time_unit => 'month', :data => @most_observations %>
-        <%= render 'leaderboard_column', :noun => 'species', :noun_plural => 'species', :time_unit => 'month', :data => @most_species %>
-        <%= render 'leaderboard_column', 
-          :noun => 'identification',
-          :noun_plural => 'identifications',
-          :time_unit => 'month', 
-          :data => @most_identifications, 
-          :last => true,
-          :sub => Proc.new {|user, count| link_to( t(:x_identifications_html, count: count ), identifications_by_login_path( user.login, on: Time.now.strftime( "%Y-%m" ) ) )} %>
-        <div class="column span-24">
-          <div class='meta'><%=raw t :observations_observed_this_month %></div>
-          <%- prev_date = Date.today - 1.month -%>
-          <%= link_to t(:view_leaderboard_from_last_month), leaderboard_for_people_path(:year => prev_date.year, :month => prev_date.month), :class => "readmore" %>
-        </div>
-      </div>
-
-      <div class="column span-24">
-        <%= render 'leaderboard_column', :noun => 'observation', :noun_plural => 'observations', :time_unit => 'year', :data => @most_observations_year %>
-        <%= render 'leaderboard_column', :noun => 'species', :noun_plural => 'species', :time_unit => 'year', :data => @most_species_year %>
-        <%= render 'leaderboard_column', 
-          :noun => 'identification',
-          :noun_plural => 'identifications',
-          :time_unit => 'year', 
-          :data => @most_identifications_year, 
-          :last => true,
-          :sub => Proc.new {|user, count| link_to( t(:x_identifications_html, count: count ), identifications_by_login_path( user.login, on: Time.now.strftime( "%Y" ) ) )} %>
-        <div class="column span-24">
-          <%- prev_date = Date.today - 1.year -%>
-          <%= link_to t(:view_leaderboard_from_last_year), leaderboard_for_people_path(:year => prev_date.year), :class => "readmore" %>
-        </div>
-      </div>
-    </div>
-  <% end -%>
-
-  <% cache @curators_key, :expires_in => 1.day do %>
-    <div id="curators" class="column span-24">
-      <h3><%= t :noble_curators, :site => @site.site_name_short %></h3>
-      <p><%= t :these_folks_kindly_volunteer_to %></p>
-      <% if !@curators.blank? %>
-        <% @curators.each_with_index do |user, i| %>
-          <div class="column span-6 <%= 'last' if i % 4 == 3 %>">
-            <%= image_and_content user_image(user, :size => 'thumb'), :class => "stacked left" do %>
-              <div class="large"><%= link_to_user user %></div>
-              <div><%=t :x_taxa_curated_html, count: @updated_taxa_counts[user.id].to_i %></div>
-              <div><%=t :x_taxon_changes_added_html, count: @taxon_change_counts[user.id].to_i %></div>
-              <div><%=t :x_flags_resolved_html, count: @resolved_flag_counts[user.id].to_i %></div>
-            <% end -%>
-          </div>
-        <% end %>
-      <% else %>
-        <div class="nocontent meta"><%= t :no_curators_yet %></div>
       <% end %>
     </div>
   <% end -%>
 </div>
+
+<% cache @leaderboard_key, :expires_in => 1.day do %>
+  <div id="leaderboard">
+    <div class="section-header">
+      <h3><%= t :leaderboards %></h3>
+      <div class="updated">
+        <%= t :updated_daily %>
+        (<abbr class="timeago" data-now="<%= Time.now.getutc.iso8601 %>" title="<%=t :n_ago, :n => time_ago_in_words(Time.now.getutc.iso8601) %>"><%=t :n_ago, :n => time_ago_in_words(Time.now) %></abbr>)
+      </div>
+    </div>
+
+    <div class="CardGrid">
+      <%= render 'leaderboard_column', :noun => 'observation', :noun_plural => 'observations', :time_unit => 'month', :data => @most_observations %>
+      <%= render 'leaderboard_column', :noun => 'species', :noun_plural => 'species', :time_unit => 'month', :data => @most_species %>
+      <%= render 'leaderboard_column',
+        :noun => 'identification',
+        :noun_plural => 'identifications',
+        :time_unit => 'month',
+        :data => @most_identifications,
+        :sub => Proc.new {|user, count| link_to( t(:x_identifications_html, count: count ), identifications_by_login_path( user.login, on: Time.now.strftime( "%Y-%m" ) ) )} %>
+    </div>
+    <div class="leaderboard-readmore">
+      <div class="leaderboard-note"><%=raw t :observations_observed_this_month %></div>
+      <%- prev_date = Date.today - 1.month -%>
+      <%= link_to t(:view_leaderboard_from_last_month), leaderboard_for_people_path(:year => prev_date.year, :month => prev_date.month), :class => "readmore" %>
+    </div>
+
+    <div class="CardGrid">
+      <%= render 'leaderboard_column', :noun => 'observation', :noun_plural => 'observations', :time_unit => 'year', :data => @most_observations_year %>
+      <%= render 'leaderboard_column', :noun => 'species', :noun_plural => 'species', :time_unit => 'year', :data => @most_species_year %>
+      <%= render 'leaderboard_column',
+        :noun => 'identification',
+        :noun_plural => 'identifications',
+        :time_unit => 'year',
+        :data => @most_identifications_year,
+        :sub => Proc.new {|user, count| link_to( t(:x_identifications_html, count: count ), identifications_by_login_path( user.login, on: Time.now.strftime( "%Y" ) ) )} %>
+    </div>
+    <div class="leaderboard-readmore">
+      <%- prev_date = Date.today - 1.year -%>
+      <%= link_to t(:view_leaderboard_from_last_year), leaderboard_for_people_path(:year => prev_date.year), :class => "readmore" %>
+    </div>
+  </div>
+<% end -%>
+
+<% cache @curators_key, :expires_in => 1.day do %>
+  <div id="curators">
+    <h3><%= t :noble_curators, :site => @site.site_name_short %></h3>
+    <p><%= t :these_folks_kindly_volunteer_to %></p>
+    <% if !@curators.blank? %>
+      <div class="CardGrid">
+        <% @curators.each do |user| %>
+          <%= render layout: "shared/user_with_icon", locals: { user: user } do %>
+            <div><%=t :x_taxa_curated_html, count: @updated_taxa_counts[user.id].to_i %></div>
+            <div><%=t :x_taxon_changes_added_html, count: @taxon_change_counts[user.id].to_i %></div>
+            <div><%=t :x_flags_resolved_html, count: @resolved_flag_counts[user.id].to_i %></div>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="empty"><%= t :no_curators_yet %></div>
+    <% end %>
+  </div>
+<% end -%>

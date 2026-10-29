@@ -1,9 +1,6 @@
-- extra ||= nil
-- span ||= 8
-- last ||= false
 - sub ||= nil
 - date ||= @date || Date.today
-%div{:class => "column span-#{span} #{'last' if last}"}
+%div
   %h4
     - if time_unit == 'month'
       =t "leaderboard_most.#{noun_plural.downcase}_in_month_year", month_year: l( date, format: :month_year )
@@ -12,10 +9,8 @@
   %ol
     - if !data.blank?
       - for user, count in data
-        %li.stacked
-          = image_and_content user_image(user, :size => 'thumb') do
-            %div
-              = link_to_user user, :class => "large"
+        %li
+          = render layout: "shared/user_with_icon", locals: { user: user } do
             - if sub
               = sub.call(user, count)
             - else
@@ -26,5 +21,4 @@
               = link_to url do
                 =t "x_#{noun.camelize.parameterize.pluralize}_html", :count => count.to_i
     - else
-      .nocontent.meta=t :no_results_found
-  = extra
+      .empty=t :no_results_found
