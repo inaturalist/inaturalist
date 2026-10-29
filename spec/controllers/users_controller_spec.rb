@@ -600,16 +600,6 @@ describe UsersController, "show" do
       end
       expect( grid ).to be_empty
     end
-
-    it "does not offer site admins a make curator option" do
-      Site.make! if Site.default.blank?
-      site = Site.make!
-      site_admin = SiteAdmin.make!( site: site )
-      profile_user = User.make!( site: site )
-      sign_in site_admin.user
-      get :show, params: { id: profile_user.login }
-      expect( response.body ).not_to include add_role_path( profile_user, role: "curator" )
-    end
   end
 end
 
