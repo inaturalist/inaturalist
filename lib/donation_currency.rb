@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 
-# Picks a viewer's donation currency and amounts by country, and formats
-# amounts the way people there write them. Reads
-# config/donation_currencies.yml, which is generated from the engagement
-# workbook by tools/donation_config/export_yaml.js; FIELDS.md in that directory
-# describes every field.
-#
 #   donation = DonationCurrency.for_country( "FR" )
 #   donation.currency                                   # => "EUR"
 #   donation.amount( tier: :min )                       # => Price( 5, "EUR", "FR" )
