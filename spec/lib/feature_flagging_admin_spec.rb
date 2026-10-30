@@ -81,6 +81,58 @@ describe "the admin feature flag readout", type: :request do
     expect( response.body ).to match( %r{<strong>(control|treatment)</strong>} )
   end
 
+  describe "the installation preview" do
+    let( :installation_id ) { SecureRandom.uuid }
+    let( :label ) { I18n.t( :feature_flags_for_installation ) }
+
+    before { add_install_test_flags }
+
+    it "offers an installation id field" do
+      get path
+      expect( response.body ).to include %(name="installation_id")
+    end
+
+    it "offers a clear button that drops the entered id" do
+      get path, params: { installation_id: installation_id }
+      expect( response.body ).to match( %r{<a[^>]*href="#{path}"[^>]*>#{I18n.t( :feature_flags_clear )}</a>} )
+    end
+
+    it "marks install-scoped flags" do
+      get path
+      expect( response.body ).
+        to match( %r{<code>client_install_smoke_test</code>.*#{I18n.t( :feature_flags_by_installation )}}m )
+    end
+
+    it "shows nothing for an installation until one is entered" do
+      get path
+      expect( response.body ).not_to include I18n.t( :feature_flags_for_installation )
+    end
+
+    it "shows an installation's percentage result" do
+      Flipper.enable_percentage_of_actors( :client_install_smoke_test, 100 )
+      get path, params: { installation_id: installation_id }
+      expect( response.body ).to include I18n.t( :feature_flags_for_installation )
+      expect( response.body ).to match(
+        %r{<code>client_install_smoke_test</code>.*#{label}\s*<strong>true</strong>}m
+      )
+    end
+
+    it "shows the installation's variant, matching the endpoint" do
+      Flipper.enable( :exp_install_hello_world )
+      expected = FeatureFlagging.variant( :install_hello_world, nil, installation_id: installation_id )
+      get path, params: { installation_id: installation_id }
+      expect( response.body ).to match(
+        %r{<code>exp_install_hello_world</code>.*#{label}\s*<strong>#{expected}</strong>}m
+      )
+    end
+
+    it "says when the id is not a uuid" do
+      get path, params: { installation_id: "installation123" }
+      expect( response.body ).to include I18n.t( :feature_flags_invalid_installation_id )
+      expect( response.body ).not_to include I18n.t( :feature_flags_for_installation )
+    end
+  end
+
   it "renders an empty state when no flags exist" do
     Flipper.instance = Flipper.new( Flipper::Adapters::Memory.new )
     get path

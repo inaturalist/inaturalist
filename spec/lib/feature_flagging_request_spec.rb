@@ -67,6 +67,28 @@ describe "flag reads during a request", type: :request do
       read_keys = base.type( :get ).map {| operation | operation.args.first.key }
       expect( read_keys ).to eq %w(client_smoke_test)
     end
+
+    describe "with an installation id" do
+      let( :headers ) { { "HTTP_X_INSTALLATION_ID" => SecureRandom.uuid } }
+
+      before do
+        add_install_test_flags
+        base.reset
+      end
+
+      it "reads installation experiment gates but not user ones when logged out" do
+        sign_out :user
+        get "/feature_flags", headers: headers
+        read_keys = base.type( :get ).map {| operation | operation.args.first.key }
+        expect( read_keys ).to match_array %w(client_install_smoke_test client_smoke_test exp_install_hello_world)
+      end
+
+      # The signed-in user's actor gate check reuses the memoized gate values.
+      it "still reads each gate once when signed in" do
+        get "/feature_flags", headers: headers
+        expect( base.count( :get ) ).to eq 4
+      end
+    end
   end
 
   describe "GET /feature_flags when no flag exists" do
