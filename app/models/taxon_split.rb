@@ -58,7 +58,7 @@ class TaxonSplit < TaxonChange
 
       presence_places_with_ancestries = output_place_ids.map{|row| row[:places].map{|a| a.self_and_ancestor_ids.reverse} }.flatten(1)
       presence_places = presence_places_with_ancestries.map{|row| row[0]}
-      keepers = Place.where("id IN (?) AND admin_level IN (?)",presence_places_with_ancestries.flatten.uniq, [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL]).pluck(:id)
+      keepers = Place.where("id IN (?) AND admin_level IN (?)",presence_places_with_ancestries.flatten.uniq, Place::COUNTRY_STATE_COUNTY_LEVELS).pluck(:id)
       presence_places_plus_atlas_ancestors = presence_places_with_ancestries.map{|row| row & keepers }
       frequency_hash = presence_places_plus_atlas_ancestors.flatten.group_by(&:itself).transform_values!(&:size)
       unique_presence_places_plus_atlas_ancestors = presence_places_plus_atlas_ancestors.map{|a| a.join("_")}.uniq.map{|a| a.split("_").map{|a| a.to_i}}

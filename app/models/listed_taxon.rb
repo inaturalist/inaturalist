@@ -493,7 +493,7 @@ class ListedTaxon < ApplicationRecord
 
   def has_atlas_or_complete_set?(options = {})
     return false unless list.is_a?( CheckList ) && list.is_default?
-    return false unless [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include? place.admin_level
+    return false unless Place::COUNTRY_STATE_COUNTY_LEVELS.include? place.admin_level
     relevant_taxon = taxon
     if options[:taxon_was]
       relevant_taxon = Taxon.where(id: options[:taxon_was]).first
@@ -657,7 +657,7 @@ class ListedTaxon < ApplicationRecord
     place = Place.find_by_id( place ) unless place.is_a?( Place )
     return unless place
     place_descendant_ids = place.descendants.
-      where( "admin_level IN ( ? )", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).pluck( :id )
+      where( "admin_level IN ( ? )", Place::COUNTRY_STATE_COUNTY_LEVELS ).pluck( :id )
     place_with_descendant_ids = [ place.id, place_descendant_ids ].compact.flatten
     lt = ListedTaxon.includes( :place, :taxon ).joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
     where( "listed_taxa.taxon_id IN ( ? )", taxon.subtree_ids ).

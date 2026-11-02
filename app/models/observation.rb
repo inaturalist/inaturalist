@@ -2776,7 +2776,7 @@ class Observation < ApplicationRecord
     candidates = observations_places.map(&:place).compact
     candidates.select do |p|
       p.bbox_privately_contains_observation?( self ) ||
-      [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level ) ||
+      Place::COUNTRY_STATE_COUNTY_LEVELS.include?( p.admin_level ) ||
       Observation.places_without_obscuration_protection.include?( p.id )
     end
   end
@@ -2787,7 +2787,7 @@ class Observation < ApplicationRecord
     candidates = observations_places.map(&:place).compact
     candidates.select do |p|
       p.bbox_publicly_contains_observation?( self ) ||
-      [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level ) ||
+      Place::COUNTRY_STATE_COUNTY_LEVELS.include?( p.admin_level ) ||
       Observation.places_without_obscuration_protection.include?( p.id )
     end
   end
@@ -2796,9 +2796,7 @@ class Observation < ApplicationRecord
     all_places = options[:places] || places_for_latlon( lat, lon, options[:acc] )
     all_places.select do | place |
       place.user_id.blank? && (
-        [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(
-          place.admin_level
-        ) || (
+        Place::COUNTRY_STATE_COUNTY_LEVELS.include?( place.admin_level ) || (
           !options[:skip_open_space] &&
           place.place_type == Place::OPEN_SPACE
         )
@@ -3419,11 +3417,9 @@ class Observation < ApplicationRecord
       return false
     end
 
-    place = system_places.detect do | p |
-      [
-        Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL
-      ].include?( p.admin_level )
-    end
+    place = public_places.
+      select {| p | Place::COUNTRY_STATE_COUNTY_LEVELS.include?( p.admin_level ) }.
+      min_by {| p | p.bbox_area || 0 }
     return false unless place
 
     base_filters = [
