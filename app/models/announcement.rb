@@ -463,9 +463,10 @@ class Announcement < ApplicationRecord
     # caller that already knows the country can pass it as options[:country].
     geoip_country = if options.key?( :country )
       options[:country].presence
-    elsif options[:ip].present? && all_announcements.any? do | a |
-      a.ip_countries.present? || a.exclude_ip_countries.present? || a.donation_shortcodes?
-    end
+    elsif options[:ip].present? &&
+      all_announcements.any? do | a |
+        a.ip_countries.present? || a.exclude_ip_countries.present? || a.donation_shortcodes?
+      end
       geoip_country_for_ip( options[:ip] )
     end
 
