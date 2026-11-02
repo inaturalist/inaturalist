@@ -8,8 +8,9 @@
 #   <a href="[donation-url tier='min' utm_source='announcement']">…</a>
 #   <a href="[donation-url tier='min' url='https://giving.inaturalist.org/page/other']">…</a>
 #
-# Attribute values can use double or single quotes, so a shortcode fits inside
-# a double-quoted href.
+# tier defaults to DEFAULT_TIER and frequency to DEFAULT_FREQUENCY. Attribute
+# values can use double or single quotes, so a shortcode fits inside a
+# double-quoted href.
 class DonationShortcodes
   # Where [donation-url] points when it has no url attribute
   DEFAULT_DONATION_URL = "https://giving.inaturalist.org/login?form=supportinaturalist"
@@ -27,6 +28,8 @@ class DonationShortcodes
   PATTERN = /\[donation-([^\s\]]*)([^\]]*)\]/
 
   ATTRIBUTE_PATTERN = /([\w-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/
+
+  DEFAULT_TIER = "min"
 
   DEFAULT_FREQUENCY = "once"
 
@@ -71,13 +74,11 @@ class DonationShortcodes
       end
 
       config = DonationCurrency.config
-      tier = attributes["tier"]
+      tier = attributes["tier"] || DEFAULT_TIER
       frequency = attributes["frequency"] || DEFAULT_FREQUENCY
       tier_names = config["tier_names"]
       frequencies = config["frequencies"].keys
-      if tier.blank?
-        errors << error.call( :missing_donation_tier, allowed: tier_names.join( ", " ) )
-      elsif !tier_names.include?( tier )
+      unless tier_names.include?( tier )
         errors << error.call( :invalid_donation_tier, value: tier, allowed: tier_names.join( ", " ) )
       end
       unless frequencies.include?( frequency )
@@ -126,7 +127,7 @@ class DonationShortcodes
 
   # Button text such as "Donate $100 (MXN)" in the viewer's locale, or nil if
   # no amount is set for the tier
-  def label( tier:, frequency: DEFAULT_FREQUENCY )
+  def label( tier: DEFAULT_TIER, frequency: DEFAULT_FREQUENCY )
     amount = @currency.formatted_amount( tier: tier, frequency: frequency, locale: locale )
     return unless amount
 
@@ -138,7 +139,7 @@ class DonationShortcodes
 
   # A FundraiseUp checkout URL with the amount, currency, frequency and
   # language preset, or nil if no amount is set for the tier
-  def url( tier:, frequency: DEFAULT_FREQUENCY, url: nil, **utm )
+  def url( tier: DEFAULT_TIER, frequency: DEFAULT_FREQUENCY, url: nil, **utm )
     price = @currency.amount( tier: tier, frequency: frequency )
     return unless price
 

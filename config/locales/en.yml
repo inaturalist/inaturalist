@@ -11201,10 +11201,6 @@ en:
               # text as written.
               unknown_donation_shortcode_attribute: "has a donation shortcode with an unknown attribute %{attribute}: %{shortcode}"
               # Error shown to site admins when a donation shortcode in an
-              # announcement body has no tier attribute. %{allowed} lists the
-              # tier names, e.g. "min, mid, max".
-              missing_donation_tier: "has a donation shortcode without a tier (one of %{allowed}): %{shortcode}"
-              # Error shown to site admins when a donation shortcode in an
               # announcement body names a tier that doesn't exist. %{value} is
               # the tier as written, %{allowed} lists the tier names.
               invalid_donation_tier: "has a donation shortcode with an unknown tier %{value} (one of %{allowed}): %{shortcode}"

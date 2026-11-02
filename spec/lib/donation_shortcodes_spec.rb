@@ -171,6 +171,13 @@ describe DonationShortcodes do
       expect( html ).to eq "Donate $100#{nbsp}(MXN) or Donate $60#{nbsp}(MXN)"
     end
 
+    it "uses DEFAULT_TIER when a shortcode has no tier" do
+      expect( shortcodes.render( "[donation-label]" ) ).to eq shortcodes.render( '[donation-label tier="min"]' )
+      expect( shortcodes.render( "[donation-url]" ) ).to eq shortcodes.render( '[donation-url tier="min"]' )
+      url = CGI.unescapeHTML( shortcodes.render( "[donation-url]" ) )
+      expect( query_params( url ) ).to include( "amount" => "100" )
+    end
+
     it "removes invalid shortcodes instead of raising" do
       expect( shortcodes.render( 'a[donation-label tier="huge"]b[donation-nope]c' ) ).to eq "abc"
     end
@@ -215,8 +222,14 @@ describe DonationShortcodes do
       expect( error_keys( '[donation-url tier="min" utm_foo="a"]' ) ).to eq [:unknown_donation_shortcode_attribute]
     end
 
-    it "rejects a missing tier" do
-      expect( error_keys( "[donation-label]" ) ).to eq [:missing_donation_tier]
+    it "accepts a missing tier, which defaults to DEFAULT_TIER" do
+      expect( DonationShortcodes.validation_errors( "[donation-label] [donation-url]" ) ).to eq []
+    end
+
+    it "rejects a missing tier when DEFAULT_TIER isn't priced for the frequency" do
+      expect( error_keys( '[donation-label frequency="monthly"]' ) ).to eq []
+      stub_const( "DonationShortcodes::DEFAULT_TIER", "max" )
+      expect( error_keys( "[donation-label]" ) ).to eq [:unpriced_donation_tier]
     end
 
     it "rejects an unknown tier" do
