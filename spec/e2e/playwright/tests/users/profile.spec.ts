@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { login } from "../../helpers/auth.helper";
-import { app, appMake } from "../../support/on-rails";
+import { appMake } from "../../support/on-rails";
 import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
 import { VIEWPORTS } from "../../../shared/breakpoints";
 
@@ -13,10 +13,6 @@ test.beforeAll( async () => {
   const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
   testEmail = user.email as string;
   testLogin = user.login as string;
-  await app( "add_test_group", {
-    user_id: user.id,
-    test_groups: ["responsive-header", "responsive-global"]
-  } );
   await Promise.all( Array.from( { length: 5 }, () => appMake( "create", "friendship", { user_id: user.id } ) ) );
   const favorites = await appMake( "create", "list", { user_id: user.id, title: "Favorites" } );
   await Promise.all( Array.from( { length: 5 }, () => appMake( "create", "listed_taxon", { list_id: favorites.id } ) ) );

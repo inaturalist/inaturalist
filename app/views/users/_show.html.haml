@@ -1,7 +1,6 @@
-.row
-  = render :partial => "shared/by_login_header_bootstrap", :locals => { :model_name => "Profile" }
-.row
-  .col-sm-4
+= render "profile_header"
+.profile-columns
+  .profile-sidebar
     - if @selected_user.icon.file?
       %h1.text-center= user_image @user, :size => "large", :class => "img-thumbnail img-responsive", force_img: true
     - if is_me?(@user)
@@ -10,42 +9,40 @@
     = render :partial => 'glance'
     - is_curator_or_site_admin = logged_in? && ( current_user.is_curator? || current_user.is_site_admin_of?( @user.site ) )
     - if logged_in? && ( current_user.is_admin? || is_curator_or_site_admin )
-      .row
-        .col-md-12
-          .dropdown
-            %button#dropdownMenu1.btn.btn-default.dropdown-toggle.nav-justified{"data-toggle" => "dropdown", :style => "text-align:left", :type => "button"}
-              %span.glyphicon.glyphicon-wrench
-              = t :admin_tools, default: 'Admin Tools'
-              %span.caret
-            %ul.dropdown-menu{:style => "width:100%"}
-              - if !@user.is_admin? && !is_me?(@user) && |
-                ((is_curator_or_site_admin && !@user.is_curator?) || current_user.is_admin?) |
-                - if @user.active?
-                  %li
-                    = link_to t(:suspend_account), suspend_user_path(@user)
-                - else
-                  %li
-                    = link_to t(:reinstate_account), unsuspend_user_path(@user)
-                  - if @current_suspend_action&.editable_by?( current_user )
-                    %li
-                      = link_to t(:edit_suspension), edit_moderator_action_path( @current_suspend_action )
-              - if is_admin?
+      .dropdown
+        %button#dropdownMenu1.btn.btn-default.dropdown-toggle.nav-justified{"data-toggle" => "dropdown", :style => "text-align:left", :type => "button"}
+          %span.glyphicon.glyphicon-wrench
+          = t :admin_tools, default: 'Admin Tools'
+          %span.caret
+        %ul.dropdown-menu{:style => "width:100%"}
+          - if !@user.is_admin? && !is_me?(@user) && |
+            ((is_curator_or_site_admin && !@user.is_curator?) || current_user.is_admin?) |
+            - if @user.active?
+              %li
+                = link_to t(:suspend_account), suspend_user_path(@user)
+            - else
+              %li
+                = link_to t(:reinstate_account), unsuspend_user_path(@user)
+              - if @current_suspend_action&.editable_by?( current_user )
                 %li
-                  = link_to t(:curate_user), user_detail_admin_path( id: @user.id )
-              - if is_curator_or_site_admin
-                - unless is_me?(@user) || @user.is_admin? || current_user.is_site_admin_of?( @user.site )
-                  - unless @user.spammer?
-                    %li
-                      = flag_as_spammer_button(@user)
-                  - unless @user.known_non_spammer?
-                    %li
-                      = link_to t(:flag_as_non_spammer), set_spammer_path(@user, spammer: false), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }
-                %li.divider{:role => "separator"}
-                - if is_admin? || !is_me?( @user )
-                  %li
-                    = link_to t(:moderation_history), moderation_person_path( @user )
-                %li= link_to t(:comments), comments_by_login_path( @user.login )
-  .col-sm-8{:style => "background-color:white"}
+                  = link_to t(:edit_suspension), edit_moderator_action_path( @current_suspend_action )
+          - if is_admin?
+            %li
+              = link_to t(:curate_user), user_detail_admin_path( id: @user.id )
+          - if is_curator_or_site_admin
+            - unless is_me?(@user) || @user.is_admin? || current_user.is_site_admin_of?( @user.site )
+              - unless @user.spammer?
+                %li
+                  = flag_as_spammer_button(@user)
+              - unless @user.known_non_spammer?
+                %li
+                  = link_to t(:flag_as_non_spammer), set_spammer_path(@user, spammer: false), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }
+            %li.divider{:role => "separator"}
+            - if is_admin? || !is_me?( @user )
+              %li
+                = link_to t(:moderation_history), moderation_person_path( @user )
+            %li= link_to t(:comments), comments_by_login_path( @user.login )
+  .profile-main
     %h1
       = @user.name.blank? ? @user.login : @user.name
       - admin_site = @user.site_admins.live.first.try(:site)
@@ -116,13 +113,9 @@
     %h3.page-header
       = t(:following_x_people, :count => @user.followees.count)
     - unless @followees.blank?
-      .row
-        - @followees[0..3].each do |friend|
-          = render(:partial => 'followees', :locals => {:friend => friend})
-      - if @followees.count > 4
-        #followee-row.row
-          - @followees[4..7].each do |friend|
-            = render(:partial => 'followees', :locals => {:friend => friend})
+      .profile-grid
+        - @followees[0..7].each do |friend|
+          = render( partial: "followees", locals: { friend: friend, item_class: "profile-grid-item" } )
       %p#view_more_btn_container
         = link_to t(:view_all), following_by_login_path(@user.login), :class => "btn btn-sm btn-default"
     - else
@@ -135,13 +128,9 @@
     - unless @favorite_listed_taxa.blank?
       #favorites
         %h3.page-header= t :favorite_taxa, default: 'Favorite Taxa'
-        .row
-          - for listed_taxon in @favorite_listed_taxa[0..3]
-            = render(:partial => 'favorites', :locals => {:listed_taxon => listed_taxon})
-        - if @favorite_listed_taxa.count > 4
-          .row
-            - for listed_taxon in @favorite_listed_taxa[4..7]
-              = render(:partial => 'favorites', :locals => {:listed_taxon => listed_taxon})
+        .profile-grid
+          - @favorite_listed_taxa[0..7].each do |listed_taxon|
+            = render( partial: "favorites", locals: { listed_taxon: listed_taxon, item_class: "profile-grid-item" } )
         %p#view_more_btn_container
           = link_to t(:view_all), @favorites_list, :class => "btn btn-sm btn-default"
     - if @favorites_list.blank? && is_me?(@selected_user)
