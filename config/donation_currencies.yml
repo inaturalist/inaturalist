@@ -542,7 +542,7 @@ currencies:
   HNL:
     name: "Honduran Lempira"
     symbol: "L"
-    format: "%u %n (HN%u)"
+    format: "%u %n (%c)"
     delimiter: ","
     separator: "."
     tiers:
@@ -974,7 +974,7 @@ currencies:
   PGK:
     name: "Papua New Guinean Kina"
     symbol: "K"
-    format: "%u %n (PG%u)"
+    format: "%u %n (%c)"
     delimiter: ","
     separator: "."
     tiers:
@@ -1793,7 +1793,6 @@ countries:
   "CV":
     name: "Cape Verde"
     currency: "CVE"
-    symbol: "​"
     format: "%n %u"
     delimiter: " "
     separator: "$"
