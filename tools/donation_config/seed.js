@@ -175,7 +175,7 @@ const CURRENCY_HOME = {
   XPF: ["PF"],
   XCD: ["AG"],
   XCG: ["CW", "nl"],
-  // pt-CV's symbol is an invisible zero-width space, with $ as the decimal mark
+  // English, for a symbol people outside Cape Verde can read (see INVISIBLE_SYMBOL)
   CVE: ["CV", "en"],
   ANG: ["SX"],
   HTG: ["HT", "fr"],
@@ -194,19 +194,32 @@ function intlLocale( lang, country ) {
   return `${lang.split( "-" )[0]}-${country}`;
 }
 
-function formatter( lang, country, currency, decimals ) {
+// Symbols that are only invisible characters, like pt-CV's zero-width space
+// for the escudo (Cape Verde writes 1 000$00, with the cifrão as the decimal
+// mark, which a symbol can't express)
+const INVISIBLE_SYMBOL = /^[\s\u200B-\u200F\u2060\uFEFF]*$/;
+
+function formatter( lang, country, currency, decimals, currencyDisplay = "symbol" ) {
   return new Intl.NumberFormat( `${intlLocale( lang, country )}-u-nu-latn`, {
     style: "currency",
     currency,
+    currencyDisplay,
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals
   } );
 }
 
+// Shows the ISO code where CLDR's symbol would be invisible
+function currencyDisplay( lang, country, currency ) {
+  const parts = formatter( lang, country, currency, 2 ).formatToParts( 1000 );
+  const symbol = parts.find( p => p.type === "currency" );
+  return INVISIBLE_SYMBOL.test( symbol.value ) ? "code" : "symbol";
+}
+
 // What CLDR says an amount looks like for a language in a country:
 // the symbol and the two written examples the workbook asks for
 function suggest( lang, country, currency ) {
-  const withCents = formatter( lang, country, currency, 2 );
+  const withCents = formatter( lang, country, currency, 2, currencyDisplay( lang, country, currency ) );
   const symbolPart = withCents.formatToParts( 1000 ).find( p => p.type === "currency" );
   return {
     symbol: normalize( symbolPart.value ),
@@ -217,7 +230,8 @@ function suggest( lang, country, currency ) {
 
 // CLDR rendering of a whole amount, for comparing against what the app renders
 function cldrWhole( lang, country, currency, amount ) {
-  return normalize( formatter( lang, country, currency, 0 ).format( amount ) );
+  const display = currencyDisplay( lang, country, currency );
+  return normalize( formatter( lang, country, currency, 0, display ).format( amount ) );
 }
 
 const currencyNames = new Intl.DisplayNames( ["en"], { type: "currency" } );

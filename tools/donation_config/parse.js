@@ -21,18 +21,22 @@ function splitNumber( example ) {
 }
 
 // Replaces the symbol and the ISO code in the text around the number with
-// %u and %c, so "$" + " (CAD)" becomes "%u" + " (%c)"
+// %u and %c, so "$" + " (CAD)" becomes "%u" + " (%c)". The longer one goes
+// first, so the L in "L 1,000.00 (HNL)" isn't taken from inside the code, and
+// the code isn't taken from inside a symbol like MOP$.
 function affixPattern( text, { symbol, code } ) {
   let out = text;
   let found = false;
-  if ( symbol && out.includes( symbol ) ) {
-    out = out.replace( symbol, "%u" );
-    found = true;
-  }
-  if ( code && code !== symbol && out.includes( code ) ) {
-    out = out.replace( code, "%c" );
-    found = true;
-  }
+  const tokens = [[symbol, "%u"]];
+  if ( code && code !== symbol ) tokens.push( [code, "%c"] );
+  tokens
+    .filter( ( [token] ) => token )
+    .sort( ( a, b ) => b[0].length - a[0].length )
+    .forEach( ( [token, placeholder] ) => {
+      if ( !out.includes( token ) ) return;
+      out = out.replace( token, placeholder );
+      found = true;
+    } );
   return { pattern: out, found };
 }
 

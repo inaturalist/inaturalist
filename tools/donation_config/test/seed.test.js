@@ -1,7 +1,7 @@
 const test = require( "node:test" );
 const assert = require( "node:assert" );
 const {
-  FRU_CURRENCIES, niceRound, niceCeil, niceFloor, suggestedTiers, floorAmount, purchasingPowerAdjusted
+  FRU_CURRENCIES, suggest, niceRound, niceCeil, niceFloor, suggestedTiers, floorAmount, purchasingPowerAdjusted
 } = require( "../seed" );
 
 test( "amounts round to the nearest number in a 1, 1.5, 2, 2.5, 3, 4, 5, 7.5 series", ( ) => {
@@ -40,4 +40,12 @@ test( "every currency gets a suggested min, and every suggested amount is worth 
       assert.ok( amount >= floorAmount( code ), `${code} ${amount}` );
     } );
   } );
+} );
+
+test( "an invisible CLDR symbol is replaced by the ISO code", ( ) => {
+  // pt-CV's escudo symbol is a zero-width space
+  assert.deepStrictEqual( suggest( "pt", "CV", "CVE" ), {
+    symbol: "CVE", thousand: "1000$00 CVE", million: "1 000 000$00 CVE"
+  } );
+  assert.strictEqual( suggest( "pt", "BR", "BRL" ).symbol, "R$" );
 } );

@@ -52,6 +52,17 @@ test( "an ISO code next to the symbol becomes %c", ( ) => {
   assert.strictEqual( fields.format, "%u%n (%c)" );
 } );
 
+test( "a symbol inside the code stays part of the code", ( ) => {
+  const { fields } = parse( "L 1,000.00 (HNL)", "L 1,000,000.00 (HNL)", "L", "HNL" );
+  assert.strictEqual( fields.format, "%u %n (%c)" );
+  assert.strictEqual( parse( "K 1,000.00 (PGK)", "K 1,000,000.00 (PGK)", "K", "PGK" ).fields.format, "%u %n (%c)" );
+} );
+
+test( "a code inside the symbol stays part of the symbol", ( ) => {
+  const { fields } = parse( "MOP$1,000.00", "MOP$1,000,000.00", "MOP$", "MOP" );
+  assert.strictEqual( fields.format, "%u%n" );
+} );
+
 test( "non-breaking and narrow spaces read as plain spaces", ( ) => {
   const { fields } = parse( "1 000,00 €", "1 000 000,00 €", "€", "EUR" );
   assert.strictEqual( fields.delimiter, " " );
