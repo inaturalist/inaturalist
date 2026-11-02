@@ -51,10 +51,7 @@ class DonationCurrency
     country_code == self.class.default_country_code
   end
 
-  # The amount for a tier, as a Price. A tier the country and its currency
-  # don't set comes from the default country, in its currency, so the amount
-  # and currency always match. Returns nil if the default country doesn't set
-  # it either.
+  # Returns localized amount, falls back to USD (or default in donation_currencies.yml).
   def amount( tier:, frequency: :once )
     tier = check_name( tier, config["tier_names"], "tier" )
     frequency = check_name( frequency, config["frequencies"].keys, "frequency" )
@@ -81,6 +78,7 @@ class DonationCurrency
       options[:delimiter] = ""
     end
     options[:delimiter_pattern] = INDIAN_DELIMITER_PATTERN if fields["grouping"] == "indian"
+    # handles currencies where a space is used as the delimiter
     ActiveSupport::NumberHelper.number_to_currency( amount, options.compact ).tr( " ", NBSP )
   end
 
@@ -92,8 +90,8 @@ class DonationCurrency
     self.class.new( price.country_code ).format( price.amount, locale: locale )
   end
 
-  # Each formatting field from the first level that sets it, falling back to
-  # the locale's number format for the separators
+  # Each formatting field falling back from country+locale
+  # to country to currency to general locale formatting.
   def format_fields( locale )
     locale = locale.to_s
     levels = [
