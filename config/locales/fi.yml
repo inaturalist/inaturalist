@@ -1713,6 +1713,8 @@ fi:
   donate: LAHJOITA
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Tee lahjoitus
+  #Label for a button to donate a specific amount, e.g. "Donate $5 (USD)"
+  donate_amount: "Lahjoita %{amount}"
   donate_again_caps: LAHJOITA UUDELLEEN
   donate_again_today_caps: LAHJOITA UUDELLEEN TÄNÄÄN
   #Title for pages and sections that encourage people to donate to iNaturalist
