@@ -78,6 +78,41 @@ describe AnnouncementsController do
       end
     end
 
+    describe "donation shortcodes" do
+      let( :shortcode_body ) { '<p class="donate">[donation-label tier="min"]</p>' }
+
+      def stub_geoip_country( country )
+        allow( INatAPIService ).to receive( :geoip_lookup ) do
+          OpenStruct.new_recursive( results: country ? [{ "country" => country }] : nil )
+        end
+      end
+
+      def expected_label( country )
+        DonationShortcodes.new( country, locale: I18n.locale ).label( tier: "min" )
+      end
+
+      before do
+        create :announcement,
+          placement: Announcement::MOBILE_HOME,
+          start: Time.zone.now,
+          end: 1.day.from_now,
+          body: shortcode_body,
+          clients: [Announcement::CLIENTS[Announcement::MOBILE_HOME].first]
+      end
+
+      [["MX", "MX"], ["DE", "DE"], ["an unknown country", nil]].each do | label, country |
+        it "localizes the body for #{label}" do
+          stub_geoip_country( country )
+          request.env["HTTP_X_FORWARDED_FOR"] = "1.2.3.4, 10.0.0.1"
+          get :active, format: :json
+          expect( INatAPIService ).to have_received( :geoip_lookup ).with( hash_including( ip: "1.2.3.4" ), anything )
+          expect( response.parsed_body.first["body"] ).to eq(
+            "<p class=\"donate\">#{ERB::Util.html_escape( expected_label( country ) )}</p>"
+          )
+        end
+      end
+    end
+
     describe "basic filters" do
       it "only returns announcements that are active" do
         _inactive_announcement = create :announcement, start: 1.day.from_now, end: 2.days.from_now
