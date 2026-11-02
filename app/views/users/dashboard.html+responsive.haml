@@ -346,7 +346,7 @@
           %ul.list-group
             - for taxon in @ungrafted_taxa
               %li.list-group-item
-                = link_to taxon_path( taxon ), class: "pull-right" do
+                = link_to edit_taxon_path( taxon ), class: "pull-right" do
                   %span.glyphicon.glyphicon-edit
                 = link_to_taxon taxon
           .panel-footer

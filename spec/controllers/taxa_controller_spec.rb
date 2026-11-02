@@ -15,6 +15,46 @@ describe TaxaController do
       get :new
       expect( response ).to be_redirect
     end
+
+    describe "with prefilled params" do
+      before { sign_in create( :user, :as_curator ) }
+
+      it "should prefill the parent from parent_id" do
+        parent = Taxon.make!( rank: Taxon::GENUS )
+        get :new, params: { parent_id: parent.id }
+        expect( response.body ).to have_tag( "input#taxon_parent_id[value='#{parent.id}']" )
+        expect( response.body ).to have_tag( "input#parent_name[value='#{parent.name}']" )
+      end
+
+      it "should prefill the audit comment with the URL of a taxon flag" do
+        flag = Flag.make!( flaggable: Taxon.make! )
+        get :new, params: { flag_id: flag.id }
+        expect( response.body ).to have_tag( "textarea#taxon_audit_comment", text: /#{flag_url( flag )}/ )
+      end
+
+      it "should not prefill the audit comment for a flag on something other than a taxon" do
+        flag = Flag.make!( flaggable: Comment.make! )
+        get :new, params: { flag_id: flag.id }
+        expect( response.body ).not_to have_tag( "textarea#taxon_audit_comment", text: /flags/ )
+      end
+    end
+  end
+
+  describe "edit" do
+    render_views
+    let( :taxon ) { Taxon.make!( rank: Taxon::GENUS ) }
+    before { sign_in create( :user, :as_curator ) }
+
+    it "should prefill the audit comment with the URL of a taxon flag" do
+      flag = Flag.make!( flaggable: taxon )
+      get :edit, params: { id: taxon.id, flag_id: flag.id }
+      expect( response.body ).to have_tag( "textarea#taxon_audit_comment", text: /#{flag_url( flag )}/ )
+    end
+
+    it "should link to creating a new taxon in a new tab" do
+      get :edit, params: { id: taxon.id }
+      expect( response.body ).to have_tag( "a[href='#{new_taxon_path}'][target='_blank']" )
+    end
   end
 
   describe "show" do
