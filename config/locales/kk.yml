@@ -651,6 +651,7 @@ kk:
   become_a_donor_caps: ДЕМЕУШІ БОЛЫҢЫЗ
   become_a_donor_today_caps: БҮГІН ДЕМЕУШІ БОЛЫҢЫЗ
   before_importing_photos: фотосуреттерді импорттаудан бұрын
+  bg_color: BG Color
   bio: Био
   bio_description: iNaturalist сайтындағы басқа пайдаланушыларға өзіңіз туралы айтып беріңіз!
   bioblitz: Биоблиц
@@ -883,6 +884,7 @@ kk:
     flower_budding: Гүл бүршіктері
     flowering: Гүлдену
     fruiting: Жеміс беру
+    leaves: Жапырақтар
     life_stage: Өмір кезеңі
     adult: Ересек
     teneral: Түлеген жәндік
@@ -1097,6 +1099,10 @@ kk:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1} - %{d2}"
+  #Express a single date with a time range. Better to use a flexible form
+  #here, e.g. not something like "start_time to end_time" if "to" might be
+  #translated differently for different values of start_time and end_time
+  date_time_to_time: "%{date}, %{start_time} - %{end_time}"
   day: Күн
   default_display_time_zone: Әдепкі уақыт белдеуі
   default_invite_comment: "Керемет фото! Сіз оны %{site_name} сайтында жариялауыңыз керек: {{INVITE_LINK}}"
@@ -1152,6 +1158,9 @@ kk:
         Электрондық поштаңызды тексеріп, аккаунтыңызды растау үшін алынған электрондық поштадағы сілтемені басыңыз.
       user:
         suspended: Аккаунтыңыз уақытша тоқтатылды
+        #Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        #an arbitrary string.
+        suspension_reason: "Себебі: %{reason}"
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Ысыру құпиясөз жетоны жарамсыз. Сілтемені ең соңғы жіберілген ысыру құпиясөз электрондық поштасында пайдалануыңызды сұраймыз немесе <a href="%{url}">жаңасын сұрау</a>.
     passwords:
@@ -1392,6 +1401,7 @@ kk:
   flickr_style: Flickr стилі
   flickr_tags: Flickr тегтері
   followers: Жазылушылар
+  following: Жазылу
   following_x_people:
     one: '1 адамға жазылған'
     other: '%{count} адамға жазылған'
