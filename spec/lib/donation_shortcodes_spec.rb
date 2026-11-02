@@ -129,6 +129,63 @@ describe DonationShortcodes do
     it "returns nil for a tier no one prices" do
       expect( DonationShortcodes.new( "US", locale: :en ).url( tier: "max" ) ).to be_nil
     end
+
+    describe "with the FundraiseUp acquisition link params" do
+      let( :example_url ) do
+        "https://giving.inaturalist.org/login?form=donations&segment=acqmobile26&utm_campaign=2026acqNonen" \
+          "&utm_medium=mobile&utm_source=iosandroid&utm_content=button&utm_term=2685&redirectTo=/"
+      end
+      let( :example_params ) do
+        {
+          "form" => "donations", "segment" => "acqmobile26", "utm_campaign" => "2026acqNonen",
+          "utm_medium" => "mobile", "utm_source" => "iosandroid", "utm_content" => "button",
+          "utm_term" => "2685", "redirectTo" => "/"
+        }
+      end
+
+      it "keeps every param of a base url" do
+        url = DonationShortcodes.new( "MX", locale: :es, utm_term: 99 ).url( url: example_url )
+        expect( url ).to start_with "https://giving.inaturalist.org/login?"
+        expect( query_params( url ) ).to include( example_params )
+        expect( query_params( url ) ).to include( "amount" => "100", "currency" => "MXN" )
+      end
+
+      it "sets each param from an attribute" do
+        url = DonationShortcodes.new( "MX", locale: :es ).url(
+          **example_params.transform_keys( &:to_sym )
+        )
+        expect( url ).to start_with "https://giving.inaturalist.org/login?"
+        expect( query_params( url ) ).to include( example_params )
+      end
+
+      it "replaces the default url's form" do
+        url = DonationShortcodes.new( "US", locale: :en ).url( form: "donations" )
+        expect( query_params( url )["form"] ).to eq "donations"
+      end
+    end
+
+    describe "utm_term" do
+      it "defaults to the given utm_term" do
+        url = DonationShortcodes.new( "US", locale: :en, utm_term: 42 ).url
+        expect( query_params( url )["utm_term"] ).to eq "42"
+      end
+
+      it "uses the author's utm_term attribute instead" do
+        url = DonationShortcodes.new( "US", locale: :en, utm_term: 42 ).url( utm_term: "custom" )
+        expect( query_params( url )["utm_term"] ).to eq "custom"
+      end
+
+      it "uses the utm_term in the author's url instead" do
+        url = DonationShortcodes.new( "US", locale: :en, utm_term: 42 ).url(
+          url: "https://giving.inaturalist.org/page/x?utm_term=custom"
+        )
+        expect( query_params( url )["utm_term"] ).to eq "custom"
+      end
+
+      it "is left out without a default or an author value" do
+        expect( query_params( DonationShortcodes.new( "US", locale: :en ).url ) ).not_to have_key "utm_term"
+      end
+    end
   end
 
   describe "#render" do
@@ -216,6 +273,17 @@ describe DonationShortcodes do
       expect(
         error_keys( '[donation-label tier="min" url="https://example.org" utm_source="a"]' )
       ).to eq [:unknown_donation_shortcode_attribute, :unknown_donation_shortcode_attribute]
+    end
+
+    it "accepts the FundraiseUp params on a url" do
+      body = "[donation-url form='donations' segment='acqmobile26' redirectTo='/' utm_term='2685']"
+      expect( DonationShortcodes.validation_errors( body ) ).to eq []
+    end
+
+    it "rejects the FundraiseUp params on a label" do
+      expect(
+        error_keys( "[donation-label form='donations' segment='acqmobile26' redirectTo='/']" )
+      ).to eq [:unknown_donation_shortcode_attribute] * 3
     end
 
     it "rejects a non-standard utm param" do

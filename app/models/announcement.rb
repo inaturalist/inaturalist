@@ -161,12 +161,13 @@ class Announcement < ApplicationRecord
     body.to_s.include?( "[donation-" )
   end
 
-  # The body with donation shortcodes replaced for viewer_country. A body
-  # without shortcodes is returned as is.
+  # The body with donation shortcodes replaced for viewer_country, with
+  # [donation-url] links tagged utm_term=<id>. A body without shortcodes is
+  # returned as is.
   def localized_body
     return body unless donation_shortcodes?
 
-    DonationShortcodes.new( viewer_country ).render( body )
+    DonationShortcodes.new( viewer_country, utm_term: id ).render( body )
   end
 
   def body_preview( length = 60 )

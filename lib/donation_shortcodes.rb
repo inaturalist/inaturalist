@@ -7,6 +7,10 @@
 #   [donation-label tier="min" frequency="monthly"]
 #   <a href="[donation-url tier='min' utm_source='announcement']">…</a>
 #   <a href="[donation-url tier='min' url='https://giving.inaturalist.org/page/other']">…</a>
+#   <a href="[donation-url form='donations' segment='acqmobile26' redirectTo='/' utm_medium='mobile']">…</a>
+#
+# Every [donation-url] link gets utm_term set to the announcement id unless the
+# author sets utm_term, either as an attribute or in the url's query.
 #
 # tier defaults to DEFAULT_TIER and frequency to DEFAULT_FREQUENCY. Attribute
 # values can use double or single quotes, so a shortcode fits inside a
@@ -17,10 +21,17 @@ class DonationShortcodes
 
   UTM_PARAMS = %w(utm_source utm_medium utm_campaign utm_term utm_content).freeze
 
+  # FundraiseUp URL params [donation-url] passes through: the form to open, the
+  # donor segment, and the page to show after the login step
+  FRU_PARAMS = %w(form segment redirectTo).freeze
+
+  # Attributes of [donation-url] copied into the link's query as written
+  QUERY_PARAMS = ( FRU_PARAMS + UTM_PARAMS ).freeze
+
   # Shortcode name → the attributes it accepts
   SHORTCODES = {
     "label" => %w(tier frequency),
-    "url" => %w(tier frequency url) + UTM_PARAMS
+    "url" => %w(tier frequency url) + QUERY_PARAMS
   }.freeze
 
   # Matches anything that looks like a donation shortcode, valid or not, so
@@ -109,10 +120,12 @@ class DonationShortcodes
   attr_reader :locale
 
   # A blank or unknown country code (geoip failed or found nothing) gets the
-  # default country
-  def initialize( country_code, locale: I18n.locale )
+  # default country. utm_term is the default for [donation-url] links,
+  # normally the announcement id.
+  def initialize( country_code, locale: I18n.locale, utm_term: nil )
     @currency = DonationCurrency.for_country( country_code )
     @locale = locale.to_sym
+    @utm_term = utm_term.presence&.to_s
   end
 
   # The body with every shortcode replaced by HTML-escaped text. Shortcodes
@@ -138,22 +151,26 @@ class DonationShortcodes
   end
 
   # A FundraiseUp checkout URL with the amount, currency, frequency and
-  # language preset, or nil if no amount is set for the tier
-  def url( tier: DEFAULT_TIER, frequency: DEFAULT_FREQUENCY, url: nil, **utm )
+  # language preset, or nil if no amount is set for the tier. The base url's
+  # query is kept; QUERY_PARAMS given here replace params of the same name,
+  # and the amount, currency, frequency and language always come from the
+  # viewer.
+  def url( tier: DEFAULT_TIER, frequency: DEFAULT_FREQUENCY, url: nil, **query )
     price = @currency.amount( tier: tier, frequency: frequency )
     return unless price
 
     uri = URI.parse( url.presence || DEFAULT_DONATION_URL )
     params = Rack::Utils.parse_query( uri.query.to_s )
+    params["utm_term"] ||= @utm_term if @utm_term
+    query.each do | name, value |
+      params[name.to_s] = value if QUERY_PARAMS.include?( name.to_s ) && value.present?
+    end
     params.merge!(
       "amount" => price.amount.to_s,
       "currency" => price.currency,
       "recurring" => DonationCurrency.config["frequencies"][frequency.to_s],
       "_lang" => locale.to_s
     )
-    utm.each do | name, value |
-      params[name.to_s] = value if UTM_PARAMS.include?( name.to_s ) && value.present?
-    end
     uri.query = Rack::Utils.build_query( params )
     uri.to_s
   end
@@ -166,7 +183,7 @@ class DonationShortcodes
     attributes = shortcode.attributes.to_h.transform_keys( &:to_sym )
     case shortcode.name
     when "label" then label( **attributes.slice( :tier, :frequency ) )
-    when "url" then url( **attributes.slice( :tier, :frequency, :url, *UTM_PARAMS.map( &:to_sym ) ) )
+    when "url" then url( **attributes.slice( :tier, :frequency, :url, *QUERY_PARAMS.map( &:to_sym ) ) )
     end
   rescue ArgumentError, URI::InvalidURIError
     nil

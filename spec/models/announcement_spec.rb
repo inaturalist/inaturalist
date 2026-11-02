@@ -959,6 +959,14 @@ describe Announcement do
         expect( annc.localized_body ).to eq "<p>#{ERB::Util.html_escape( us_label )}</p>"
       end
 
+      it "tags donation links with the announcement id as utm_term" do
+        annc = create( :announcement, body: "<a href=\"[donation-url segment='acqmobile26']\">Give</a>" )
+        href = Nokogiri::HTML.fragment( annc.localized_body ).at( "a" )["href"]
+        expect( Rack::Utils.parse_query( URI.parse( href ).query ) ).to include(
+          "utm_term" => annc.id.to_s, "segment" => "acqmobile26"
+        )
+      end
+
       it "is used by body_for_mobile" do
         annc = build( :announcement, body: shortcode_body )
         annc.viewer_country = "MX"
