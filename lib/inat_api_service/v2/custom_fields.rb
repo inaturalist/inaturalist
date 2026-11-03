@@ -27,6 +27,7 @@ module INatAPIService
           **taxon_core_fields,
           flag_counts: "all",
           listed_taxa_count: true,
+          taxon_changes_count: true,
           default_photo: {
             url: true
           },
