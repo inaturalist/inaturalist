@@ -526,4 +526,74 @@ describe ApplicationHelper do
       expect( html ).to include( "background-image:" )
     end
   end
+
+  describe "masked_email" do
+    context "with a typical email address" do
+      it "keeps the first character, adds three stars, and keeps the full domain" do
+        expect( masked_email( "user10@example.org" ) ).to eq( "u***@example.org" )
+      end
+
+      it "keeps subdomains and multi-part suffixes intact" do
+        expect( masked_email( "jane@mail.example.co.uk" ) ).to eq( "j***@mail.example.co.uk" )
+      end
+
+      it "preserves the case of the original address" do
+        expect( masked_email( "Jane.Doe@Example.org" ) ).to eq( "J***@Example.org" )
+      end
+
+      it "does not reveal the rest of the local part" do
+        expect( masked_email( "secretname@example.org" ) ).not_to include( "ecretname" )
+      end
+    end
+
+    context "with local parts of different lengths" do
+      it "uses a fixed number of stars regardless of length" do
+        short = masked_email( "ab@example.org" )
+        long = masked_email( "abcdefghijklmnop@example.org" )
+
+        expect( short ).to eq( "a***@example.org" )
+        expect( long ).to eq( "a***@example.org" )
+      end
+
+      it "handles a single-character local part" do
+        expect( masked_email( "a@x.com" ) ).to eq( "a***@x.com" )
+      end
+    end
+
+    context "with unusual but valid input" do
+      it "strips surrounding whitespace" do
+        expect( masked_email( "  user@example.org\n" ) ).to eq( "u***@example.org" )
+      end
+
+      it "splits on the last @ when the local part contains one" do
+        expect( masked_email( '"a@b"@example.org' ) ).to eq( '"***@example.org' )
+      end
+
+      it "handles a multibyte first character" do
+        expect( masked_email( "émile@example.fr" ) ).to eq( "é***@example.fr" )
+      end
+    end
+
+    context "with invalid input" do
+      it "returns a generic mask when there is no @" do
+        expect( masked_email( "not-an-email" ) ).to eq( "***" )
+      end
+
+      it "returns a generic mask when the local part is empty" do
+        expect( masked_email( "@example.org" ) ).to eq( "***" )
+      end
+
+      it "returns a generic mask for an empty string" do
+        expect( masked_email( "" ) ).to eq( "***" )
+      end
+
+      it "returns a generic mask for nil" do
+        expect( masked_email( nil ) ).to eq( "***" )
+      end
+
+      it "documents current behavior when the domain is missing" do
+        expect( masked_email( "user@" ) ).to eq( "u***@" )
+      end
+    end
+  end
 end
