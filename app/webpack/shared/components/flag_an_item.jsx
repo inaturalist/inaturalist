@@ -58,7 +58,10 @@ const FlagAnItem = ( {
         { I18n.t( "flag_as_inappropriate" ) }
       </button>
     ) : (
-      <a className="linky" href="/login">
+      <a
+        className="linky"
+        href={`/login?return_to=${encodeURIComponent( window.location.pathname + window.location.search )}`}
+      >
         { I18n.t( "flag_as_inappropriate" ) }
       </a>
     );
