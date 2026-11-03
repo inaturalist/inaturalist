@@ -845,6 +845,7 @@ class ApplicationController < ActionController::Base
   def set_session_oauth_application_id
     if doorkeeper_token && doorkeeper_token.accessible? && (a = doorkeeper_token.try(:application))
       session["oauth_application_id"] = a.id
+      skip_session_storage_for_mobile_app_request( a.id )
     elsif ( auth_header = request.headers["Authorization"] ) && ( token = auth_header.split(" ").last )
       jwt_claims = begin
         ::JsonWebToken.decode(token)
@@ -853,8 +854,23 @@ class ApplicationController < ActionController::Base
       end
       if jwt_claims && ( oauth_application_id = jwt_claims["oauth_application_id"] )
         session["oauth_application_id"] = oauth_application_id
+        skip_session_storage_for_mobile_app_request( oauth_application_id )
       end
     end
+  end
+
+  # Our mobile apps authenticate every request with a token and rarely send the
+  # session cookie back, so persisting a session creates a new, almost never
+  # reused row per API call. The in-memory session is still available for this
+  # request (e.g. logstasher reads oauth_application_id from it); it's just
+  # not written to the sessions table and no session cookie is set. For JWT
+  # requests this relies on Devise::Strategies::JsonWebToken#store? being
+  # false, otherwise Warden's session renew inserts a row before skip applies.
+  def skip_session_storage_for_mobile_app_request( oauth_application_id )
+    return if request.session.exists?
+    return unless OauthApplication.skips_session_storage?( oauth_application_id )
+
+    request.session_options[:skip] = true
   end
 
   # Encapsulates common pattern for actions that start a bg task get called 
