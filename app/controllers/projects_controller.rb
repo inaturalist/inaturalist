@@ -113,7 +113,7 @@ class ProjectsController < ApplicationController
             where( "projects.user_id != ?", current_user ).
             order("projects.id desc").limit(5).map(&:project)
         end
-        @test_group_toggle = "responsive-global"
+        @responsive = true
         render layout: "bootstrap"
       end
       format.json do
@@ -181,7 +181,7 @@ class ProjectsController < ApplicationController
       sort: sort,
       page: params[:page]
     )
-    @test_group_toggle = "responsive-global"
+    @responsive = true
 
     respond_to do |format|
       format.html
@@ -1037,7 +1037,7 @@ class ProjectsController < ApplicationController
         pager.replace( response.results.map{|r| projects[r["record"]["id"]]} )
       end
     end
-    @test_group_toggle = "responsive-global"
+    @responsive = true
     respond_to do |format|
       format.html
       format.json do

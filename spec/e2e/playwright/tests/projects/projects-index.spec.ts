@@ -1,6 +1,6 @@
 import { expect, test, Page } from "@playwright/test";
 import { login } from "../../helpers/auth.helper";
-import { app, appMake } from "../../support/on-rails";
+import { appMake } from "../../support/on-rails";
 import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
 import { carouselHtml } from "../../helpers/carousel.helper";
 
@@ -23,7 +23,6 @@ async function injectCarousel( page: Page ): Promise<void> {
 test.beforeAll( async () => {
   const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
   testEmail = user.email as string;
-  await app( "add_test_group", { user_id: user.id, test_groups: "responsive-global" } );
 } );
 
 test.beforeEach( async ( { page } ) => {
