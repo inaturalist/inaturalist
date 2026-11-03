@@ -1823,4 +1823,11 @@ module ApplicationHelper
       </script>
     HTML
   end
+
+  def masked_email( email )
+    local, at, domain = email.to_s.strip.rpartition( "@" )
+    return "***" if at.empty? || local.empty?
+
+    "#{local[0]}***@#{domain}"
+  end
 end
