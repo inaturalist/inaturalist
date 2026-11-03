@@ -44,6 +44,17 @@ describe TaxaController do
       expect( badge.text.strip ).to eq "2"
     end
 
+    it "labels which flag counts and links include descendants" do
+      Flag.make!( flaggable: genus )
+      get :taxonomy_details, params: { id: family.id }
+      html = Nokogiri::HTML( response.body )
+      column_headers = html.css( ".flagged_taxa_table th" ).map {| th | th.text.strip }
+      expect( column_headers ).to include I18n.t( :open_flags_excluding_descendants )
+      expect( column_headers ).to include I18n.t( :all_open_flags_including_descendants )
+      expect( html.at_css( ".flagged_taxa_count a.view-all-flags" ).text ).
+        to include I18n.t( :view_all_flags_including_descendants )
+    end
+
     it "links downstream flagged taxa to the flag search" do
       tfr = TaxonFrameworkRelationship.make!( taxon_framework: taxon_framework )
       genus.update( taxon_framework_relationship_id: tfr.id )

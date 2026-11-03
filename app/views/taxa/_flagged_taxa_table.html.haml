@@ -7,8 +7,8 @@
       %thead
         %tr
           %th= t( :flagged_taxon )
-          %th.text-right= t( :open_flags )
-          %th
+          %th.text-right= t( :open_flags_excluding_descendants )
+          %th.text-right= t( :all_open_flags_including_descendants )
       %tbody
         - flagged_taxa.each do |flagged_taxon|
           %tr

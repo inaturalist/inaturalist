@@ -562,6 +562,10 @@ en:
   all_media_must_be_unhidden: All media must be unhidden
   all_names: All Names
   all_observations: All observations
+  # Column header above links in a list of flagged taxa. Each link opens a
+  # search of unresolved flags on that taxon and all of its descendants
+  # (lower-ranked taxa within it)
+  all_open_flags_including_descendants: All open flags (including descendants)
   all_photos: All photos
   all_places: "All Places"
   all_projects: All Projects
@@ -4156,8 +4160,9 @@ en:
   open_: Open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
   # Column header for the number of unresolved flags on each taxon in a list
-  # of flagged taxa
-  open_flags: Open flags
+  # of flagged taxa. The count only includes flags on that exact taxon, not
+  # flags on its descendants (lower-ranked taxa within it)
+  open_flags_excluding_descendants: Open flags (excluding descendants)
   open_street_map: OpenStreetMap
   optional: optional
   options: Options
@@ -6755,6 +6760,9 @@ en:
   view_all_caps: VIEW ALL
   view_all_fields: View All Fields
   view_all_flags: View All Flags
+  # Link that opens a search of unresolved flags on a taxon and all of its
+  # descendants (lower-ranked taxa within it)
+  view_all_flags_including_descendants: View All Flags (including descendants)
   view_all_members: View All Members
   # As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
