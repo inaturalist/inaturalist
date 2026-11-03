@@ -572,6 +572,32 @@ describe UsersController, "show" do
     end
   end
 
+  describe "ambassador badge" do
+    render_views
+
+    let( :ambassador ) { User.make!( ambassador_since: Date.new( 2026, 8, 15 ) ) }
+
+    def ambassador_text
+      Nokogiri::HTML( response.body ).at_css( "#user-subheader .ambassador" )&.text&.squish
+    end
+
+    it "shows for logged out viewers" do
+      get :show, params: { id: ambassador.login }
+      expect( ambassador_text ).to eq "Ambassador since August 2026"
+    end
+
+    it "shows for logged in viewers" do
+      sign_in User.make!
+      get :show, params: { id: ambassador.login }
+      expect( ambassador_text ).to eq "Ambassador since August 2026"
+    end
+
+    it "does not show for non-ambassadors" do
+      get :show, params: { id: User.make!.login }
+      expect( ambassador_text ).to be_nil
+    end
+  end
+
   it "is responsive" do
     get :show, params: { id: User.make!.login }
     expect( assigns( :responsive ) ).to be_truthy
