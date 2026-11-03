@@ -72,7 +72,7 @@ export async function mountCarousel( page: Page ): Promise<void> {
     </div>
   ` );
   await page.addStyleTag( { path: compiledAsset( "bootstrap_bundle.css" ) } );
-  await page.addStyleTag( { path: compiledAsset( "projects/index_responsive.css" ) } );
+  await page.addStyleTag( { path: compiledAsset( "projects/index.css" ) } );
   await page.addScriptTag( { path: compiledAsset( "webpack/runtime-webpack.js" ) } );
   await page.addScriptTag( { path: compiledAsset( "webpack/carousel-webpack.js" ) } );
   await expectCarouselStarted( page );

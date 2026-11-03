@@ -281,7 +281,7 @@ end
 
 describe ProjectsController, "index hero" do
   render_views
-  let( :user ) { User.make!( test_groups: "responsive-global" ) }
+  let( :user ) { User.make! }
 
   def api_results( projects )
     {
@@ -298,6 +298,16 @@ describe ProjectsController, "index hero" do
   end
 
   before { sign_in user }
+
+  it "is responsive" do
+    stub_projects
+    get :index
+    expect( assigns( :responsive ) ).to be_truthy
+    expect( assigns( :test_group_toggle ) ).to be_nil
+    expect( response.body ).to have_tag( "meta[name=viewport][content*='width=device-width']" )
+    expect( response.body ).to have_tag( "#hero-container" )
+    expect( response.body ).not_to have_tag( "#carousel-container" )
+  end
 
   it "labels only noteworthy projects as new and noteworthy" do
     noteworthy = Project.make!
@@ -330,43 +340,23 @@ describe ProjectsController, "browse" do
 
   let!( :project ) { Project.make! }
 
-  it "renders the legacy grid" do
-    get :browse
-    expect( response ).to be_successful
-    expect( response.body ).not_to have_tag( ".ProjectCardGrid" )
+  before { get :browse }
+
+  it "is responsive" do
+    expect( assigns( :responsive ) ).to be_truthy
+    expect( assigns( :test_group_toggle ) ).to be_nil
+    expect( response.body ).to have_tag( "meta[name=viewport][content*='width=device-width']" )
+    expect( response.body ).to have_tag( "#projects-browse" )
   end
 
-  describe "for a responsive-global member" do
-    let( :user ) { User.make!( test_groups: "responsive-global" ) }
+  it "renders a thumbnail card per project" do
+    expect( response.body ).to have_tag( ".ProjectCardGrid .thumbnail", count: 1 )
+    expect( response.body ).to have_tag( ".ProjectCardGrid a", with: { href: project_path( project ) } )
+  end
 
-    before do
-      sign_in user
-      get :browse
-    end
-
-    it "renders the responsive variant" do
-      expect( request.variant ).to include( :responsive )
-      expect( response ).to render_template( "browse" )
-      expect( response.body ).to have_tag( "#projects-browse" )
-    end
-
-    it "offers the responsive test group toggle" do
-      expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
-    end
-
-    it "is returned to after toggling the test group" do
-      expect( session[:return_to] ).to eq "/projects/browse"
-    end
-
-    it "renders a thumbnail card per project" do
-      expect( response.body ).to have_tag( ".ProjectCardGrid .thumbnail", count: 1 )
-      expect( response.body ).to have_tag( ".ProjectCardGrid a", with: { href: project_path( project ) } )
-    end
-
-    it "does not use Blueprint grid or button classes" do
-      %w([class*='span-'] .column .last .clear .buttonrow .button).each do | selector |
-        expect( response.body ).not_to have_tag( "#projects-browse #{selector}" )
-      end
+  it "does not use Blueprint grid or button classes" do
+    %w([class*='span-'] .column .last .clear .buttonrow .button).each do | selector |
+      expect( response.body ).not_to have_tag( "#projects-browse #{selector}" )
     end
   end
 end
@@ -389,59 +379,39 @@ describe ProjectsController, "search" do
     )
   end
 
-  it "renders the legacy page" do
-    stub_search( [project] )
-    get :search, params: { q: "moths" }
-    expect( response ).to be_successful
-    expect( response.body ).not_to have_tag( "#projects-search" )
+  describe "with results" do
+    before do
+      stub_search( [project] )
+      get :search, params: { q: "moths" }
+    end
+
+    it "is responsive" do
+      expect( assigns( :responsive ) ).to be_truthy
+      expect( assigns( :test_group_toggle ) ).to be_nil
+      expect( response.body ).to have_tag( "meta[name=viewport][content*='width=device-width']" )
+      expect( response.body ).to have_tag( "#projects-search" )
+    end
+
+    it "prefills the search input" do
+      expect( response.body ).to have_tag( "form.project-search input[name='q']", with: { value: "moths" } )
+    end
+
+    it "renders a row per project" do
+      expect( response.body ).to have_tag( ".search-results .search-result", count: 1 )
+      expect( response.body ).to have_tag( ".search-result h4 a", with: { href: project_path( project ) } )
+      expect( response.body ).to have_tag( ".search-result .meta", text: /A project about moths/ )
+    end
+
+    it "does not use Blueprint grid or button classes" do
+      %w([class*='span-'] .column .last .clear .buttonrow .button).each do | selector |
+        expect( response.body ).not_to have_tag( "#projects-search #{selector}" )
+      end
+    end
   end
 
-  describe "for a responsive-global member" do
-    let( :user ) { User.make!( test_groups: "responsive-global" ) }
-
-    before { sign_in user }
-
-    describe "with results" do
-      before do
-        stub_search( [project] )
-        get :search, params: { q: "moths" }
-      end
-
-      it "renders the responsive variant" do
-        expect( request.variant ).to include( :responsive )
-        expect( response ).to render_template( "search" )
-        expect( response.body ).to have_tag( "#projects-search" )
-      end
-
-      it "offers the responsive test group toggle" do
-        expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
-      end
-
-      it "is returned to after toggling the test group" do
-        expect( session[:return_to] ).to eq "/projects/search?q=moths"
-      end
-
-      it "prefills the search input" do
-        expect( response.body ).to have_tag( "form.project-search input[name='q']", with: { value: "moths" } )
-      end
-
-      it "renders a row per project" do
-        expect( response.body ).to have_tag( ".search-results .search-result", count: 1 )
-        expect( response.body ).to have_tag( ".search-result h4 a", with: { href: project_path( project ) } )
-        expect( response.body ).to have_tag( ".search-result .meta", text: /A project about moths/ )
-      end
-
-      it "does not use Blueprint grid or button classes" do
-        %w([class*='span-'] .column .last .clear .buttonrow .button).each do | selector |
-          expect( response.body ).not_to have_tag( "#projects-search #{selector}" )
-        end
-      end
-    end
-
-    it "says when nothing matches" do
-      stub_search( [] )
-      get :search, params: { q: "nothing" }
-      expect( response.body ).to have_tag( "#projects-search .nocontent", text: I18n.t( :no_matching_projects ) )
-    end
+  it "says when nothing matches" do
+    stub_search( [] )
+    get :search, params: { q: "nothing" }
+    expect( response.body ).to have_tag( "#projects-search .nocontent", text: I18n.t( :no_matching_projects ) )
   end
 end
