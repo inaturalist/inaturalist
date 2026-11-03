@@ -340,8 +340,10 @@ describe FeatureFlagging do
 
     before { add_install_test_flags }
 
-    def installation_ids( count )
-      Array.new( count ) { SecureRandom.uuid }
+    # Seeded so the distribution and "includes both results" expectations can't flake.
+    def installation_ids( count, seed: 1396 )
+      random = Random.new( seed )
+      Array.new( count ) { random.uuid }
     end
 
     # What an admin types into Flipper UI's actor field.
