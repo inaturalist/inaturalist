@@ -48,6 +48,31 @@ describe AmbassadorImporter do
     expect( user.reload.ambassador_since ).to be_nil
   end
 
+  describe "with an invalid CSV" do
+    let!( :former ) { User.make!( ambassador_since: Date.new( 2025, 1, 1 ) ) }
+
+    it "raises and changes nothing when a header is missing" do
+      path = csv_file( [] )
+      File.write( path, "userid,login,ambassador_since\n#{user.id},,2026-08-15\n" )
+      expect { AmbassadorImporter.import( path ) }.to raise_error( AmbassadorImporter::InvalidCSV, /user_id/ )
+      expect( former.reload.ambassador_since ).to eq Date.new( 2025, 1, 1 )
+    end
+
+    it "raises and changes nothing when the file is empty" do
+      path = csv_file( [] )
+      File.write( path, "" )
+      expect { AmbassadorImporter.import( path ) }.to raise_error( AmbassadorImporter::InvalidCSV )
+      expect( former.reload.ambassador_since ).to eq Date.new( 2025, 1, 1 )
+    end
+
+    it "raises and changes nothing when no rows can be imported" do
+      path = csv_file( ["0,nobody-by-this-login,2026-08-15", "#{user.id},,not a date"] )
+      expect { AmbassadorImporter.import( path ) }.to raise_error( AmbassadorImporter::InvalidCSV )
+      expect( former.reload.ambassador_since ).to eq Date.new( 2025, 1, 1 )
+      expect( user.reload.ambassador_since ).to be_nil
+    end
+  end
+
   it "changes nothing on a dry run" do
     former = User.make!( ambassador_since: Date.new( 2025, 1, 1 ) )
     result = AmbassadorImporter.import( csv_file( ["#{user.id},,2026-08-15"] ), dry: true )

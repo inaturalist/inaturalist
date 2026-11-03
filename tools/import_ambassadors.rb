@@ -16,7 +16,11 @@ opts = Optimist.options do
   opt :dry, "Dry run, don't actually change anything", type: :boolean
 end
 
-result = AmbassadorImporter.import( opts.file, dry: opts.dry )
+begin
+  result = AmbassadorImporter.import( opts.file, dry: opts.dry )
+rescue AmbassadorImporter::InvalidCSV => e
+  abort "Nothing imported: #{e.message}"
+end
 
 puts "Imported #{result[:imported]} ambassadors#{' (dry run)' if opts.dry}"
 puts "Unmatched rows (#{result[:unmatched].size}):"

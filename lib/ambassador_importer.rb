@@ -3,8 +3,15 @@
 require "csv"
 
 module AmbassadorImporter
+  class InvalidCSV < StandardError; end
+
+  HEADERS = %w(user_id login ambassador_since).freeze
+
   def self.import( path, dry: false )
     rows = CSV.read( path, headers: true, header_converters: ->( h ) { h.strip.downcase } )
+    missing = HEADERS - rows.headers
+    raise InvalidCSV, "Missing headers: #{missing.join( ', ' )}" if missing.any?
+
     result = { imported: 0, unmatched: [], invalid_dates: [] }
     User.transaction do
       User.where.not( ambassador_since: nil ).update_all( ambassador_since: nil )
@@ -18,6 +25,7 @@ module AmbassadorImporter
         user.update_column( :ambassador_since, since )
         result[:imported] += 1
       end
+      raise InvalidCSV, "No rows could be imported" if result[:imported].zero?
       raise ActiveRecord::Rollback if dry
     end
     result
