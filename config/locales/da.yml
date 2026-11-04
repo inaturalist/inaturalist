@@ -2100,8 +2100,20 @@ da:
   favorites: "Favoritter"
   #Heading of the admin feature flags page and the admin nav link to it
   feature_flags: Funktionsflag
+  #Note under a flag's kind on the admin feature flags page when the flag assigns app users by their app installation rather than their account, so logging in does not change it
+  feature_flags_by_installation: Kategoriseret efter app-installation
+  #Button on the admin feature flags page that empties the app installation ID field and its preview column
+  feature_flags_clear: Ryd
   #Label shown before the current admin's on/off value for a flag on the admin feature flags page
   feature_flags_enabled_for_you: "Aktiveret for dig:"
+  #Label before the on/off value or variant a logged-out mobile app installation would get, in a column of the admin feature flags page
+  feature_flags_for_installation: "Denne installation, logget ud:"
+  #Help text under the app installation ID field on the admin feature flags page
+  feature_flags_installation_id_help: Indsæt et app-installations-ID (X-Installations-ID-headeren) for at se, hvad installationen får, mens den logger ud.
+  #Label for a text field on the admin feature flags page where an admin enters a mobile app installation ID
+  feature_flags_installation_id_label: App-installations-ID
+  #Warning on the admin feature flags page when the entered app installation ID is not a UUID
+  feature_flags_invalid_installation_id: Det er ikke et gyldigt installations-ID. Installations-ID'er er UUID'er.
   #Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
   feature_flags_kind_client: Klientsynligt flag
   #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
@@ -2116,6 +2128,8 @@ da:
   feature_flags_not_enrolled: ikke tilmeldt
   #Intro text on the admin feature flags page, above a table listing every flag with the current admin's own value
   feature_flags_page_description: Hvert funktionsflag og eksperiment løst for din konto. Opret, aktivér og udrul flag i håndterings-UI'en.
+  #Button on the admin feature flags page that shows flag values for the entered app installation ID
+  feature_flags_preview: Prævisning
   #Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
   feature_flags_your_variant: "Din variant i %{experiment}:"
   feature_this_project_: "Fremhæv dette projekt"
@@ -2171,6 +2185,8 @@ da:
   find_your_current_location: Find din aktuelle placering
   finished: Afsluttet
   finished_with_page: Færdig med side
+  #Label for a pagination button that goes to the first page of results
+  first: Første
   first_confirmed_inat_observation: "Først bekræftet %{site_name} observation"
   first_connect_your_provider_account_to_your_site: "Forbind først din %{provider} konto til %{site_name}"
   first_inat_observation: "Første %{site_name} observation"
@@ -3953,6 +3969,8 @@ da:
   overlapping_atlases: Overlappende atlaser
   overlapping_downstream_taxon_frameworks_html: "Overlappende downstream Taxon Frameworks: %{count}"
   owner: Ejer
+  #Accessible label for a set of pagination controls
+  pagination: Paginering
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Overordnet
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
@@ -5044,6 +5062,8 @@ da:
   schemes_including: Systemer der inkluderer
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Videnskabeligt navn
+  #Accessible label for a button that scrolls the page back to the top
+  scroll_to_top: Scroll til toppen
   search: Søg
   search_all_fields: søg i alle felter
   #Placeholder for a search bar where the user can search for another user
