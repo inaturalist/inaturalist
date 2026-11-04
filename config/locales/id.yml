@@ -1981,6 +1981,26 @@ id:
     akan muncul setelah menyegarkan halaman.
   favorite_taxa: Taksa Favorit
   favorites: "Favorit"
+  #Heading of the admin feature flags page and the admin nav link to it
+  feature_flags: Bendera fitur
+  #Label shown before the current admin's on/off value for a flag on the admin feature flags page
+  feature_flags_enabled_for_you: "Diaktifkan untuk Anda:"
+  #Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
+  feature_flags_kind_client: Flag terlihat klien
+  #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
+  feature_flags_kind_experiment: Eksperimen
+  #Kind label on the admin feature flags page for a flag that only server code reads
+  feature_flags_kind_server: Flag khusus server
+  #Button on the admin feature flags page leading to the Flipper UI where flags are created and edited
+  feature_flags_manage: Kelola bendera
+  #Shown on the admin feature flags page when no feature flags exist yet; %{url} is the address of the Flipper UI
+  feature_flags_none_html: Belum ada bendera fitur. <a href="%{url}">Buat satu</a> dan ia akan muncul di sini.
+  #Shown on the admin feature flags page when the current admin is not enrolled in an A/B experiment
+  feature_flags_not_enrolled: belum terdaftar
+  #Intro text on the admin feature flags page, above a table listing every flag with the current admin's own value
+  feature_flags_page_description: Setiap bendera fitur dan eksperimen, diselesaikan untuk akun Anda. Buat, aktifkan, dan luncurkan bendera di antarmuka manajemen.
+  #Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
+  feature_flags_your_variant: "Varian Anda untuk %{experiment}:"
   feature_this_project_: "Pamerkan Proyek Ini"
   featured: Sorotan
   #Title for a button or section describing the "featured" status of a project
@@ -4856,6 +4876,8 @@ id:
   scroll_to_top: Gulir ke atas
   search: Cari
   search_all_fields: cari semua bidang
+  #Placeholder for a search bar where the user can search for another user
+  search_by_name: Cari berdasarkan nama
   search_by_name_or_email: Cari berdasarkan nama atau email
   search_by_taxon_name_or_observation_id: Cari berdasarkan nama takson atau ID pengamatan
   search_by_taxon_name_or_flickr_photo_id: Cari berdasarkan nama takson atau ID foto Flickr
@@ -4981,6 +5003,8 @@ id:
   site_year_in_review: "Kilas Balik Satu Tahun %{site} %{year}"
   sizes: Ukuran
   skip_to_next_page: "Lewati ke halaman selanjutnya"
+  #Label for a button that shows a specific slide in a carousel
+  slide_x: "Slide %{x}"
   small: kecil
   site_admin_tools: Peralatan pengelola situs
   #People who administrate a particular iNaturalist Network partner
@@ -5149,6 +5173,8 @@ id:
   start_a_project: Mulai Sebuah Proyek
   start_date_time: Tanggal / Waktu Mulai
   start_one_now: Mulai Satu Sekarang!
+  #Button that resumes automatic rotation of carousel slides
+  start_slide_rotation: Mulai rotasi slide
   start_typing_field_name: Mulailah mengetik nama bidang...
   start_typing_place_name: Mulailah mengetik nama tempat...
   start_typing_taxon_name: Mulailah mengetik nama takson...
@@ -5168,6 +5194,8 @@ id:
   still_working_on_classifying_taxon: Masih mengerjakan pengklasifikasian takson ini. Periksa kembali nanti
   stop_editing: Berhenti Mengubah
   stop_following_user: "Berhenti mengikuti %{user}"
+  #Button that pauses automatic rotation of carousel slides
+  stop_slide_rotation: Hentikan rotasi slide
   stop_testing: Berhenti Menguji
   stop_trusting_this_person_with_your_private_coordinates: Berhenti memercayakan orang ini dengan koordinat tersembunyi milik Anda
   #As in a place to purchase things. We use it as a link to a place where you
