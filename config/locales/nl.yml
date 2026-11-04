@@ -1843,6 +1843,8 @@ nl:
   donate: DONEREN
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Schenken
+  #Label for a button to donate a specific amount, e.g. "Donate $5 (USD)"
+  donate_amount: "Doneer %{amount}"
   donate_again_caps: DONEER OPNIEUW
   donate_again_today_caps: DONEER VANDAAG OPNIEUW
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -2079,8 +2081,12 @@ nl:
   favorites: "Favorieten"
   #Heading of the admin feature flags page and the admin nav link to it
   feature_flags: Feature meldingen
+  #Button on the admin feature flags page that empties the app installation ID field and its preview column
+  feature_flags_clear: Wissen
   #Label shown before the current admin's on/off value for a flag on the admin feature flags page
   feature_flags_enabled_for_you: "Ingeschakeld voor jou:"
+  #Label for a text field on the admin feature flags page where an admin enters a mobile app installation ID
+  feature_flags_installation_id_label: Installatie ID van de app
   #Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
   feature_flags_kind_client: Klantzichtbare melding
   #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
