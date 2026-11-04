@@ -46,6 +46,34 @@ describe UsersController, "dashboard" do
   end
 
   describe "announcements" do
+    describe "donation shortcodes" do
+      render_views
+
+      let( :shortcode_body ) { '<p class="donate">[donation-label tier="min"]</p>' }
+
+      def stub_geoip_country( country )
+        allow( INatAPIService ).to receive( :geoip_lookup ) do
+          # User geocoding on the same request also reads ll
+          OpenStruct.new_recursive( results: country ? [{ "country" => country, "ll" => [0, 0] }] : nil )
+        end
+      end
+
+      def expected_label( country )
+        DonationShortcodes.new( country, locale: I18n.locale ).label( tier: "min" )
+      end
+
+      before { sign_in create( :user ) }
+
+      [["MX", "MX"], ["DE", "DE"], ["an unknown country", nil]].each do | label, country |
+        it "renders the label for #{label}" do
+          stub_geoip_country( country )
+          create :announcement, placement: Announcement::USERS_DASHBOARD_SIDEBAR, body: shortcode_body
+          get :dashboard
+          expect( Nokogiri::HTML( response.body ).at_css( ".donate" ).text ).to eq expected_label( country )
+        end
+      end
+    end
+
     it "should target a site" do
       site = create :site
       annc = create :announcement

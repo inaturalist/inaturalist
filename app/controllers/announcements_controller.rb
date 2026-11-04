@@ -59,7 +59,7 @@ class AnnouncementsController < ApplicationController
     respond_to do | format |
       format.html do
         if params[:body]
-          return render html: "<html><body style='margin: 0'>#{@announcement.body}</body></html>".html_safe
+          return render html: "<html><body style='margin: 0'>#{@announcement.localized_body}</body></html>".html_safe
         end
       end
     end

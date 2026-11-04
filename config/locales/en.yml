@@ -11197,6 +11197,41 @@ en:
               cannot_reference_variant: cannot reference an announcement that is itself a variant (only one level of nesting allowed)
               # Error shown when trying to set an global announcement on an announcement that already has variants
               cannot_have_variants: cannot be set on an announcement that already has variants (only one level of nesting allowed)
+            body:
+              # Error shown to site admins when an announcement body contains a
+              # donation shortcode whose name isn't [donation-label] or
+              # [donation-url]. %{shortcode} is the shortcode text as written,
+              # e.g. [donation-amount tier="min"]. Leave the bracketed shortcode
+              # names untranslated. Shown after the field name, e.g. "Body has
+              # an unknown donation shortcode..."
+              unknown_donation_shortcode: "has an unknown donation shortcode %{shortcode}; use [donation-label] or [donation-url]"
+              # Error shown to site admins when a donation shortcode in an
+              # announcement body has an attribute that can't be read, e.g. an
+              # unquoted value. %{shortcode} is the shortcode text as written.
+              malformed_donation_shortcode: "has a donation shortcode with an unreadable attribute %{shortcode}; quote values like tier=\"min\""
+              # Error shown to site admins when a donation shortcode in an
+              # announcement body has an attribute it doesn't accept.
+              # %{attribute} is the attribute name, %{shortcode} the shortcode
+              # text as written.
+              unknown_donation_shortcode_attribute: "has a donation shortcode with an unknown attribute %{attribute}: %{shortcode}"
+              # Error shown to site admins when a donation shortcode in an
+              # announcement body names a tier that doesn't exist. %{value} is
+              # the tier as written, %{allowed} lists the tier names.
+              invalid_donation_tier: "has a donation shortcode with an unknown tier %{value} (one of %{allowed}): %{shortcode}"
+              # Error shown to site admins when a donation shortcode in an
+              # announcement body names a donation frequency that doesn't exist.
+              # %{value} is the frequency as written, %{allowed} lists the
+              # frequencies, e.g. "once, monthly".
+              invalid_donation_frequency: "has a donation shortcode with an unknown frequency %{value} (one of %{allowed}): %{shortcode}"
+              # Error shown to site admins when a donation shortcode in an
+              # announcement body uses a tier and frequency that has no amount
+              # set for the default country, so some viewers would see nothing.
+              # %{tier} and %{frequency} are as written, e.g. "max" and "once".
+              unpriced_donation_tier: "has a donation shortcode for a tier with no amount set (%{frequency} %{tier}): %{shortcode}"
+              # Error shown to site admins when the url attribute of a
+              # [donation-url] shortcode in an announcement body isn't a full
+              # http:// or https:// web address.
+              invalid_donation_url: "has a donation shortcode whose url must be a full http:// or https:// address: %{shortcode}"
             target_group_partition:
               # Error message shown when an Announcement has a value in the
               # target_group_partition attribute that is not a valid partition in the
