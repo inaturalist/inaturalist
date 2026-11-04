@@ -16,9 +16,6 @@
 # values can use double or single quotes, so a shortcode fits inside a
 # double-quoted href.
 class DonationShortcodes
-  # Where [donation-url] points when it has no url attribute
-  DEFAULT_DONATION_URL = "https://giving.inaturalist.org/login?form=supportinaturalist"
-
   UTM_PARAMS = %w(utm_source utm_medium utm_campaign utm_term utm_content).freeze
 
   # FundraiseUp URL params [donation-url] passes through: the form to open, the
@@ -159,7 +156,7 @@ class DonationShortcodes
     price = @currency.amount( tier: tier, frequency: frequency )
     return unless price
 
-    uri = URI.parse( url.presence || DEFAULT_DONATION_URL )
+    uri = URI.parse( url.presence || DonationCurrency.config["fru"]["default_url"] )
     params = Rack::Utils.parse_query( uri.query.to_s )
     params["utm_term"] ||= @utm_term if @utm_term
     query.each do | name, value |

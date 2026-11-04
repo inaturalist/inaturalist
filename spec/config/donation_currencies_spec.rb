@@ -40,6 +40,10 @@ describe "config/donation_currencies.yml" do
     end
   end
 
+  it "has an http(s) fru.default_url for [donation-url]" do
+    expect( URI.parse( config.dig( "fru", "default_url" ).to_s ) ).to be_a URI::HTTP
+  end
+
   it "has an enabled default country" do
     expect( enabled ).to have_key( config["default_country"] )
   end

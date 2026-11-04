@@ -10,6 +10,7 @@ describe DonationShortcodes do
       "default_country" => "US",
       "tier_names" => %w(min mid max),
       "frequencies" => { "once" => "once", "monthly" => "monthly" },
+      "fru" => { "default_url" => "https://giving.inaturalist.org/login?form=supportinaturalist" },
       "currencies" => {
         "USD" => {
           "symbol" => "$", "format" => "%u%n (%c)", "delimiter" => ",", "separator" => ".",
@@ -90,9 +91,9 @@ describe DonationShortcodes do
   end
 
   describe "#url" do
-    it "defaults to DEFAULT_DONATION_URL" do
+    it "defaults to the config's fru.default_url" do
       url = DonationShortcodes.new( "US", locale: :en ).url( tier: "min" )
-      expect( url ).to start_with DonationShortcodes::DEFAULT_DONATION_URL.split( "?" ).first
+      expect( url ).to start_with "#{config['fru']['default_url'].split( '?' ).first}?"
       expect( query_params( url ) ).to include( "form" => "supportinaturalist" )
     end
 
