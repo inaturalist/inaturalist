@@ -9452,6 +9452,41 @@ id:
               cannot_reference_variant: tidak boleh merujuk kepada pengumuman yang merupakan varian juga (hanya satu tingkat bersarang yang diizinkan)
               #Error shown when trying to set an global announcement on an announcement that already has variants
               cannot_have_variants: tidak dapat diatur pada pengumuman yang sudah memiliki varian (hanya satu tingkat bersarang yang diizinkan)
+            body:
+              #Error shown to site admins when an announcement body contains a
+              #donation shortcode whose name isn't [donation-label] or
+              #[donation-url]. %{shortcode} is the shortcode text as written,
+              #e.g. [donation-amount tier="min"]. Leave the bracketed shortcode
+              #names untranslated. Shown after the field name, e.g. "Body has
+              #an unknown donation shortcode..."
+              unknown_donation_shortcode: "memiliki kode pendek donasi %{shortcode} yang tidak dikenal; gunakan [donation-label] atau [donation-url]"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute that can't be read, e.g. an
+              #unquoted value. %{shortcode} is the shortcode text as written.
+              malformed_donation_shortcode: "memiliki kode pendek donasi %{shortcode} dengan atribut yang tidak dapat dibaca; kutip nilai seperti tier=\"min\""
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute it doesn't accept.
+              #%{attribute} is the attribute name, %{shortcode} the shortcode
+              #text as written.
+              unknown_donation_shortcode_attribute: "memiliki kode pendek donasi %{attribute} dengan atribut yang tidak diketahui: %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a tier that doesn't exist. %{value} is
+              #the tier as written, %{allowed} lists the tier names.
+              invalid_donation_tier: "memiliki kode pendek donasi dengan tingkat %{value} yang tidak dikenal (salah satu dari %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a donation frequency that doesn't exist.
+              #%{value} is the frequency as written, %{allowed} lists the
+              #frequencies, e.g. "once, monthly".
+              invalid_donation_frequency: "memiliki kode pendek donasi dengan frekuensi %{value} yang tidak dikenal (salah satu dari %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body uses a tier and frequency that has no amount
+              #set for the default country, so some viewers would see nothing.
+              #%{tier} and %{frequency} are as written, e.g. "max" and "once".
+              unpriced_donation_tier: "memiliki kode pendek donasi untuk tingkat tanpa jumlah yang diatur (%{frequency} %{tier}): %{shortcode}"
+              #Error shown to site admins when the url attribute of a
+              #[donation-url] shortcode in an announcement body isn't a full
+              #http:// or https:// web address.
+              invalid_donation_url: "memiliki kode pendek donasi yang URL-nya harus berupa alamat http:// atau https:// lengkap: %{shortcode}"
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
