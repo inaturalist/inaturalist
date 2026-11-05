@@ -198,6 +198,28 @@ test.describe( "Header with large notification counts", () => {
   } );
 } );
 
+test.describe( "Header with a wide network logo", () => {
+  const WIDE_LOGO = `data:image/svg+xml,${encodeURIComponent(
+    "<svg xmlns='http://www.w3.org/2000/svg' width='900' height='60'><rect width='900' height='60'/></svg>"
+  )}`;
+
+  test.beforeEach( async ( { page } ) => {
+    await login( page, testEmail, TEST_PASSWORD );
+  } );
+
+  ( Object.keys( VIEWPORTS ) as BreakpointName[] ).forEach( breakpoint => {
+    test( `fits within the viewport at the ${breakpoint} breakpoint (${VIEWPORTS[breakpoint].width}px)`, async ( { page } ) => {
+      await gotoHeader( page, breakpoint );
+      await page.locator( "#header #logonav img" ).evaluate( ( img: HTMLImageElement, src ) => {
+        img.src = src;
+        return img.decode();
+      }, WIDE_LOGO );
+
+      await expectWithinViewport( page, `${breakpoint} breakpoint` );
+    } );
+  } );
+} );
+
 test.describe( "Header item inventory (responsive-global)", () => {
   let responsiveEmail: string;
 

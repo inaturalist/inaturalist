@@ -2607,6 +2607,9 @@ body.responsive {
   #full-width-notice {
     margin-top: 0;
   }
+  #header #logonav img {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: $xl-max) {
