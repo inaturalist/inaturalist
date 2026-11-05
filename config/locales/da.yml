@@ -10277,6 +10277,41 @@ da:
               cannot_reference_variant: kan ikke referere til en bekendtgørelse, der selv er en variant (kun ét indlejringsniveau tilladt)
               #Error shown when trying to set an global announcement on an announcement that already has variants
               cannot_have_variants: kan ikke sættes på en bekendtgørelse, der allerede har varianter (kun ét indlejringsniveau tilladt)
+            body:
+              #Error shown to site admins when an announcement body contains a
+              #donation shortcode whose name isn't [donation-label] or
+              #[donation-url]. %{shortcode} is the shortcode text as written,
+              #e.g. [donation-amount tier="min"]. Leave the bracketed shortcode
+              #names untranslated. Shown after the field name, e.g. "Body has
+              #an unknown donation shortcode..."
+              unknown_donation_shortcode: "har en ukendt donationskode %{shortcode}; Brug [donationsetiket] eller [donations-URL]"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute that can't be read, e.g. an
+              #unquoted value. %{shortcode} is the shortcode text as written.
+              malformed_donation_shortcode: "har en donationskortkode med en ulæselig attribut %{shortcode}; Citationsværdier, såsom tier=\"min\""
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute it doesn't accept.
+              #%{attribute} is the attribute name, %{shortcode} the shortcode
+              #text as written.
+              unknown_donation_shortcode_attribute: "har en donationskortkode med en ukendt attribut %{attribute}: %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a tier that doesn't exist. %{value} is
+              #the tier as written, %{allowed} lists the tier names.
+              invalid_donation_tier: "har en donationskode med ukendt niveau %{value} (en af %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a donation frequency that doesn't exist.
+              #%{value} is the frequency as written, %{allowed} lists the
+              #frequencies, e.g. "once, monthly".
+              invalid_donation_frequency: "har en donationskode med ukendt hyppighed %{value} (en af %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body uses a tier and frequency that has no amount
+              #set for the default country, so some viewers would see nothing.
+              #%{tier} and %{frequency} are as written, e.g. "max" and "once".
+              unpriced_donation_tier: "har en donationskortkode til et niveau uden fastsat beløb (%{frequency} %{tier}): %{shortcode}"
+              #Error shown to site admins when the url attribute of a
+              #[donation-url] shortcode in an announcement body isn't a full
+              #http:// or https:// web address.
+              invalid_donation_url: "har en donationskortkode, hvis URL skal være en fuld http:// eller https:// adresse: %{shortcode}"
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
