@@ -7,16 +7,17 @@
       %thead
         %tr
           %th= t( :flagged_taxon )
-          %th.text-right= t( :open_flags_excluding_descendants )
-          %th.text-right= t( :all_open_flags_including_descendants )
+          %th.text-center= t( :open_flags )
+          %th
       %tbody
         - flagged_taxa.each do |flagged_taxon|
           %tr
             %td= link_to flagged_taxon.name, taxon_path( flagged_taxon )
-            %td.text-right
+            %td.text-center
               %span.badge= flagged_taxon.open_flags_count
             %td.text-right
               = link_to "#{t( :view_all_flags )} &rarr;".html_safe, flags_path( flaggable_type: "Taxon", taxon_id: flagged_taxon.id, resolved: "no" )
-  - if flagged_taxa.length > 10
-    .flagged-taxa-footer.text-muted
-      = t( :x_open_flags_scroll_for_more, count: flagged_taxa_count )
+  .flagged-taxa-footer.text-muted
+    - if flagged_taxa.length > 10
+      %div= t( :x_open_flags_scroll_for_more, count: flagged_taxa_count )
+    %div= t( :flagged_taxa_counts_explanation, open_flags: t( :open_flags ), view_all_flags: t( :view_all_flags ) )

@@ -48,11 +48,16 @@ describe TaxaController do
       Flag.make!( flaggable: genus )
       get :taxonomy_details, params: { id: family.id }
       html = Nokogiri::HTML( response.body )
-      column_headers = html.css( ".flagged_taxa_table th" ).map {| th | th.text.strip }
-      expect( column_headers ).to include I18n.t( :open_flags_excluding_descendants )
-      expect( column_headers ).to include I18n.t( :all_open_flags_including_descendants )
+      expect( html.at_css( ".flagged_taxa_count" ).text ).to include "Open flags on covered taxa"
       expect( html.at_css( ".flagged_taxa_count a.view-all-flags" ).text ).
         to include I18n.t( :view_all_flags_including_descendants )
+      column_headers = html.css( ".flagged_taxa_table th" ).map {| th | th.text.strip }
+      expect( column_headers ).to include I18n.t( :open_flags )
+      expect( html.at_css( ".flagged-taxa-footer" ).text ).to include I18n.t(
+        :flagged_taxa_counts_explanation,
+        open_flags: I18n.t( :open_flags ),
+        view_all_flags: I18n.t( :view_all_flags )
+      )
     end
 
     it "links downstream flagged taxa to the flag search" do
@@ -63,6 +68,8 @@ describe TaxaController do
       expect( response ).to be_successful
       expect( response_hrefs ).to include flag_search_path( genus )
       expect( response_hrefs ).to include flag_search_path( species )
+      count_label = Nokogiri::HTML( response.body ).at_css( ".flagged_taxa_count" ).text
+      expect( count_label ).to include "Open flags on downstream taxa"
     end
   end
 
