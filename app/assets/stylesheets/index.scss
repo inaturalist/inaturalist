@@ -2600,6 +2600,10 @@ body:not(.responsive) {
   }
 }
 
+body.responsive #header #logonav img {
+  max-width: 100%;
+}
+
 @media (max-width: $xl-max) {
   body.responsive #header {
     @include header-narrow-menu;
