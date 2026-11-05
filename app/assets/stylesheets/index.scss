@@ -2600,8 +2600,16 @@ body:not(.responsive) {
   }
 }
 
-body.responsive #header #logonav img {
-  max-width: 100%;
+body.responsive {
+  #header:has( + .bootstrap > #full-width-notice ) {
+    margin-bottom: 0;
+  }
+  #full-width-notice {
+    margin-top: 0;
+  }
+  #header #logonav img {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: $xl-max) {
