@@ -370,6 +370,123 @@ describe AnnouncementsController do
     end
   end
 
+  describe "donation preview" do
+    render_views
+
+    let( :admin ) { make_admin }
+    let( :shortcode_body ) { '<p class="donate">[donation-label]</p><a href="[donation-url]">give</a>' }
+    let( :web_announcement ) { create :announcement, body: shortcode_body }
+    let( :mobile_announcement ) do
+      create :announcement,
+        placement: Announcement::MOBILE_HOME,
+        body: shortcode_body,
+        clients: [Announcement::CLIENTS[Announcement::MOBILE_HOME].first]
+    end
+
+    def expected_label( country, locale: I18n.default_locale )
+      ERB::Util.html_escape( DonationShortcodes.new( country, locale: locale ).label )
+    end
+
+    before { sign_in admin }
+
+    describe "show with body" do
+      def preview_body( params = {} )
+        get :show, params: { id: mobile_announcement.id, body: true }.merge( params )
+        response.body
+      end
+
+      it "renders the default country without a preview country" do
+        expect( preview_body ).to include( expected_label( nil ) )
+        expect( preview_body ).to include( "currency=USD" )
+      end
+
+      it "renders MX amounts for preview_country=MX" do
+        body = preview_body( preview_country: "MX" )
+        expect( body ).to include( expected_label( "MX" ) )
+        expect( body ).to include( "currency=MXN" )
+      end
+
+      it "renders DE amounts for preview_country=DE" do
+        body = preview_body( preview_country: "DE" )
+        expect( body ).to include( expected_label( "DE" ) )
+        expect( body ).to include( "currency=EUR" )
+      end
+
+      it "renders the default country for an unmapped country" do
+        expect( preview_body( preview_country: "ZZ" ) ).to include( "currency=USD" )
+      end
+
+      it "accepts a lowercase country code" do
+        expect( preview_body( preview_country: "mx" ) ).to include( "currency=MXN" )
+      end
+
+      it "ignores a malformed country code" do
+        body = preview_body( preview_country: "M<b>X" )
+        expect( body ).to include( "currency=USD" )
+        expect( body ).not_to include( "M<b>X" )
+      end
+
+      it "renders the label and checkout language for preview_locale" do
+        body = preview_body( preview_country: "MX", preview_locale: "es-MX" )
+        expect( body ).to include( expected_label( "MX", locale: :"es-MX" ) )
+        expect( body ).to include( "_lang=es" )
+      end
+
+      it "ignores an unsupported preview_locale" do
+        body = preview_body( preview_locale: "xx" )
+        expect( body ).to include( expected_label( nil ) )
+      end
+
+      it "does not change the admin's saved locale" do
+        preview_body( preview_locale: "es-MX" )
+        expect( admin.reload.locale ).not_to eq "es-MX"
+      end
+    end
+
+    describe "show" do
+      it "renders the preview selectors when the body has donation shortcodes" do
+        get :show, params: { id: web_announcement.id }
+        expect( response.body ).to include( 'name="preview_country"' )
+        expect( response.body ).to include( 'name="preview_locale"' )
+      end
+
+      it "does not render the preview selectors without donation shortcodes" do
+        announcement = create :announcement, body: "<p>Hello</p>"
+        get :show, params: { id: announcement.id }
+        expect( response.body ).not_to include( 'name="preview_country"' )
+      end
+
+      it "passes the preview params to the mobile preview iframe" do
+        get :show, params: { id: mobile_announcement.id, preview_country: "MX", preview_locale: "es-MX" }
+        iframe = Nokogiri::HTML( response.body ).at_css( "iframe" )
+        expect( iframe["src"] ).to include( "preview_country=MX" )
+        expect( iframe["src"] ).to include( "preview_locale=es-MX" )
+      end
+
+      it "renders the inline preview in the preview country and locale only" do
+        get :show, params: { id: web_announcement.id, preview_country: "MX", preview_locale: "es-MX" }
+        expect( response.body ).to include( expected_label( "MX", locale: :"es-MX" ) )
+        expect( response.body ).to include( I18n.t( :targeted_variants, locale: :en ) )
+      end
+    end
+
+    describe "index" do
+      it "renders inline previews in the preview country and locale" do
+        web_announcement
+        get :index, params: { preview_country: "MX", preview_locale: "es-MX" }
+        expect( response.body ).to include( expected_label( "MX", locale: :"es-MX" ) )
+      end
+
+      it "passes the preview params to mobile preview iframes" do
+        mobile_announcement
+        get :index, params: { preview_country: "MX", preview_locale: "es-MX" }
+        iframe = Nokogiri::HTML( response.body ).at_css( "iframe" )
+        expect( iframe["src"] ).to include( "preview_country=MX" )
+        expect( iframe["src"] ).to include( "preview_locale=es-MX" )
+      end
+    end
+  end
+
   describe "load_parent_announcement_options" do
     let( :site ) { create :site }
     let( :user ) { create :user }

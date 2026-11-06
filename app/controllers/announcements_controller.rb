@@ -8,6 +8,7 @@ class AnnouncementsController < ApplicationController
   before_action :load_sites, only: [:new, :edit, :create, :update, :duplicate]
   before_action :load_oauth_applications, only: [:new, :edit, :create, :update, :duplicate]
   before_action :load_parent_announcement_options, only: [:new, :edit, :create, :update, :duplicate]
+  before_action :load_preview_options, only: [:index, :show]
 
   layout "bootstrap"
 
@@ -28,6 +29,7 @@ class AnnouncementsController < ApplicationController
     @announcements = @announcements.where( "\"end\" > ?", Time.now ) if @active
     @placement = params[:placement] if Announcement::PLACEMENTS.include?( params[:placement] )
     @announcements = @announcements.where( placement: @placement ) unless @placement.blank?
+    @announcements.each {| announcement | announcement.viewer_country = @preview_country }
   end
 
   def active
@@ -56,10 +58,13 @@ class AnnouncementsController < ApplicationController
       @announcement.child_announcements.includes( :sites ).order( :id )
     end
 
+    @announcement.viewer_country = @preview_country
+
     respond_to do | format |
       format.html do
         if params[:body]
-          return render html: "<html><body style='margin: 0'>#{@announcement.localized_body}</body></html>".html_safe
+          body = I18n.with_locale( preview_locale ) { @announcement.localized_body }
+          return render html: "<html><body style='margin: 0'>#{body}</body></html>".html_safe
         end
       end
     end
@@ -194,6 +199,24 @@ class AnnouncementsController < ApplicationController
       @parent_announcement_options.unshift( [parent.dropdown_label, parent.id] ) if parent
     end
   end
+
+  # Admins can preview donation shortcodes as viewed from another country and
+  # in another locale without changing their own locale. Any two-letter code
+  # is accepted so an unlisted one previews the default country.
+  def load_preview_options
+    country = params[:preview_country].to_s.strip.upcase
+    @preview_country = country if country.match?( /\A[A-Z]{2}\z/ )
+    @preview_locale = params[:preview_locale] if I18N_SUPPORTED_LOCALES.include?( params[:preview_locale] )
+  end
+
+  def preview_locale
+    @preview_locale || I18n.locale
+  end
+
+  def preview_params
+    { preview_country: @preview_country, preview_locale: @preview_locale }.compact
+  end
+  helper_method :preview_locale, :preview_params
 
   def user_agent_client
     user_agent = request.headers["User-Agent"]

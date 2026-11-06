@@ -7292,6 +7292,24 @@ en:
       parent_announcement_disabled_desc: This announcement has targeted variants and cannot be assigned a global announcement.
       # Tooltip for the global announcement select field on the announcement form
       parent_announcement_desc: Select an announcement that this announcement should replace for users who meet the targeting rules.
+      # Label for a menu on the announcement admin page that picks which
+      # country's donation amounts and currency to show in the preview
+      preview_as_country: Preview as country
+      # Label for a menu on the announcement admin page that picks which
+      # language to show the donation button and checkout in for the preview
+      preview_in_locale: Preview in language
+      # First option in the preview country menu, used when no country is
+      # chosen, e.g. "Default (United States, USD)". %{country} is a country
+      # name and %{currency} a three-letter currency code
+      preview_default_country: Default (%{country}, %{currency})
+      # First option in the preview language menu, used when no language is
+      # chosen, meaning the language the admin is using the site in
+      preview_your_locale: Your language
+      # Help text under the donation preview menus on the announcement admin page
+      preview_donation_shortcodes_desc: |
+        Shows donation amounts in the currency of the chosen country, and the
+        donation button and checkout in the chosen language. People in
+        countries not listed see the default country's amounts.
       site_ids_desc: |
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
