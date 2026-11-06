@@ -10,7 +10,6 @@ let testEmail: string;
 test.beforeAll( async () => {
   const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
   testEmail = user.email as string;
-  await app( "add_test_group", { user_id: user.id, test_groups: "responsive-global" } );
   const suffix = Math.random( ).toString( 36 ).slice( 2 );
   await app( "create_projects", {
     titles: [

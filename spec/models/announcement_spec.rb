@@ -829,6 +829,45 @@ describe Announcement do
         end
         expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } ) ).not_to include annc
       end
+
+      it "excludes announcements with ip_countries when no IP is given" do
+        annc = create :announcement, ip_countries: ["US"]
+        expect( INatAPIService ).not_to receive( :geoip_lookup )
+        expect( Announcement.active_in_placement( "users/dashboard#sidebar" ) ).not_to include annc
+      end
+
+      it "falls back to the global variant in a family when no IP is given" do
+        parent = create :announcement
+        child_us = create :announcement, ip_countries: ["US"], parent_announcement_id: parent.id
+        result = Announcement.active_in_placement( "users/dashboard#sidebar" )
+        expect( result ).to include parent
+        expect( result ).not_to include child_us
+      end
+
+      it "does not look up the IP country when no announcement is country-targeted" do
+        annc = create :announcement, placement: "users/dashboard#sidebar"
+        expect( INatAPIService ).not_to receive( :geoip_lookup )
+        expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: "1.2.3.4" } ) ).to include annc
+      end
+
+      it "looks up the IP country when an announcement has only exclude_ip_countries" do
+        annc = create :announcement, exclude_ip_countries: ["US"], ip_countries: []
+        expect( INatAPIService ).to receive( :geoip_lookup ).
+          and_return( OpenStruct.new_recursive( results: [{ "country" => "US" }] ) )
+        expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: "1.2.3.4" } ) ).not_to include annc
+      end
+
+      it "bounds the geoip lookup with a short timeout and no retries" do
+        create :announcement, ip_countries: ["US"]
+        allow( INatAPIService ).to receive( :geoip_lookup ) do
+          OpenStruct.new_recursive( results: [{ "country" => "US" }] )
+        end
+        Announcement.active_in_placement( "users/dashboard#sidebar", { ip: "1.2.3.4" } )
+        expect( INatAPIService ).to have_received( :geoip_lookup ).with(
+          hash_including( ip: "1.2.3.4" ),
+          hash_including( v2: true, timeout: Announcement::GEOIP_LOOKUP_TIMEOUT, retries: 0 )
+        )
+      end
     end
 
     describe "ip_country with exclude_ip_countries" do
@@ -865,6 +904,126 @@ describe Announcement do
         expect(
           Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )
         ).to include( annc )
+      end
+    end
+  end
+
+  describe "donation shortcodes" do
+    let( :shortcode_body ) { '<p>[donation-label tier="min"]</p>' }
+
+    def mx_label
+      DonationShortcodes.new( "MX", locale: I18n.locale ).label( tier: "min" )
+    end
+
+    def stub_geoip_country( country )
+      allow( INatAPIService ).to receive( :geoip_lookup ) do
+        OpenStruct.new_recursive( results: country ? [{ "country" => country }] : nil )
+      end
+    end
+
+    describe "validation" do
+      it "allows valid shortcodes" do
+        expect( build( :announcement, body: shortcode_body ) ).to be_valid
+      end
+
+      it "rejects an unknown shortcode with a clear error" do
+        annc = build( :announcement, body: '[donation-amount tier="min"]' )
+        expect( annc ).not_to be_valid
+        expect( annc.errors[:body].join ).to include '[donation-amount tier="min"]'
+      end
+
+      it "rejects an unknown tier" do
+        annc = build( :announcement, body: '[donation-label tier="huge"]' )
+        expect( annc ).not_to be_valid
+        expect( annc.errors.details[:body].map {| d | d[:error] } ).to eq [:invalid_donation_tier]
+      end
+    end
+
+    describe "localized_body" do
+      it "returns a body without shortcodes unchanged" do
+        body = "<p>Hello [world] <style>p { color: red; }</style></p>"
+        annc = build( :announcement, body: body )
+        annc.viewer_country = "MX"
+        expect( annc.localized_body ).to equal annc.body
+      end
+
+      it "substitutes shortcodes for the viewer's country" do
+        annc = build( :announcement, body: shortcode_body )
+        annc.viewer_country = "MX"
+        expect( annc.localized_body ).to eq "<p>#{ERB::Util.html_escape( mx_label )}</p>"
+      end
+
+      it "uses the default country without a viewer country" do
+        annc = build( :announcement, body: shortcode_body )
+        us_label = DonationShortcodes.new( nil, locale: I18n.locale ).label( tier: "min" )
+        expect( annc.localized_body ).to eq "<p>#{ERB::Util.html_escape( us_label )}</p>"
+      end
+
+      it "tags donation links with the announcement id as utm_term" do
+        annc = create( :announcement, body: "<a href=\"[donation-url segment='acqmobile26']\">Give</a>" )
+        href = Nokogiri::HTML.fragment( annc.localized_body ).at( "a" )["href"]
+        expect( Rack::Utils.parse_query( URI.parse( href ).query ) ).to include(
+          "utm_term" => annc.id.to_s, "segment" => "acqmobile26"
+        )
+      end
+
+      it "is used by body_for_mobile" do
+        annc = build( :announcement, body: shortcode_body )
+        annc.viewer_country = "MX"
+        expect( annc.body_for_mobile ).to eq annc.localized_body
+      end
+
+      it "is used inside the FundraiseUp wrapper" do
+        annc = build( :announcement, body: shortcode_body, prefers_embed_fru: true )
+        annc.viewer_country = "MX"
+        expect( annc.body_for_mobile ).to include annc.localized_body
+        expect( annc.body_for_mobile ).not_to include "[donation-"
+      end
+    end
+
+    describe "active" do
+      it "sets viewer_country from the IP country" do
+        annc = create :announcement, body: shortcode_body
+        stub_geoip_country( "MX" )
+        result = Announcement.active_in_placement( annc.placement, { ip: "1.2.3.4" } )
+        expect( result.first.viewer_country ).to eq "MX"
+        expect( result.first.localized_body ).to include ERB::Util.html_escape( mx_label )
+      end
+
+      it "looks up the IP country when a body has a shortcode" do
+        annc = create :announcement, body: shortcode_body
+        stub_geoip_country( "DE" )
+        Announcement.active_in_placement( annc.placement, { ip: "1.2.3.4" } )
+        expect( INatAPIService ).to have_received( :geoip_lookup )
+      end
+
+      it "leaves viewer_country nil when the IP has no country" do
+        annc = create :announcement, body: shortcode_body
+        stub_geoip_country( nil )
+        result = Announcement.active_in_placement( annc.placement, { ip: "1.2.3.4" } )
+        expect( result.first.viewer_country ).to be_nil
+      end
+
+      it "does not look up the IP country when no body has a shortcode" do
+        annc = create :announcement
+        expect( INatAPIService ).not_to receive( :geoip_lookup )
+        result = Announcement.active_in_placement( annc.placement, { ip: "1.2.3.4" } )
+        expect( result.first.viewer_country ).to be_nil
+      end
+
+      it "uses a given country instead of looking one up" do
+        annc = create :announcement, body: shortcode_body
+        expect( INatAPIService ).not_to receive( :geoip_lookup )
+        result = Announcement.active_in_placement( annc.placement, { ip: "1.2.3.4", country: "MX" } )
+        expect( result.first.viewer_country ).to eq "MX"
+      end
+
+      it "targets ip_countries with a given country" do
+        mx_annc = create :announcement, ip_countries: ["MX"]
+        us_annc = create :announcement, ip_countries: ["US"]
+        result = Announcement.active_in_placement( mx_annc.placement, { country: "MX" } )
+        expect( result ).to include mx_annc
+        expect( result ).not_to include us_annc
       end
     end
   end

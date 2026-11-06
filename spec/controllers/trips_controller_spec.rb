@@ -18,21 +18,13 @@ describe TripsController, "show" do
     expect( response ).to be_successful
   end
 
-  describe "for a responsive-global member" do
-    before do
-      user.update_column( :test_groups, "responsive-global" )
-      sign_in user
-    end
-
-    it "renders a trip with no radius" do
-      get :show, params: { id: trip.id }
-      expect( request.variant ).to include( :responsive )
-      expect( response ).to be_successful
-    end
-
-    it "offers the responsive test group toggle" do
-      get :show, params: { id: trip.id }
-      expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
-    end
+  it "renders observations from the trip area" do
+    obs = Observation.make!( user: user )
+    allow( INatAPIService ).to receive( :observations ).and_return(
+      double( results: [{ "id" => obs.id, "taxon" => { "ancestor_ids" => [] } }] )
+    )
+    trip_with_radius = Trip.make!( latitude: 1, longitude: 1, radius: 1000 )
+    get :show, params: { id: trip_with_radius.id }
+    expect( response.body ).to include observation_path( obs )
   end
 end

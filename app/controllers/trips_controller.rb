@@ -109,7 +109,7 @@ class TripsController < ApplicationController
           @target_list_taxa = Taxon.find( trip_purpose_taxon_ids ).sort_by{|t| t.ancestry}.reverse.select{ |t| ( t.ancestor_ids & trip_purpose_taxon_ids ).count == 0 }
         end
         if @trip.radius.blank? || @trip.radius == 0
-          @trip_obsevations = Observation.where("1 = 2")
+          @observations = Observation.none
         else
           observations = INatAPIService.observations( {
             taxon_is_active: true,
@@ -121,7 +121,7 @@ class TripsController < ApplicationController
             user_id: @trip.user_id,
             per_page: 200
           } ).results
-          @trip_obsevations = Observation.where( id: observations.map{ |a| a["id"] } )
+          @observations = Observation.where( id: observations.map{ |a| a["id"] } )
         end
         @target_list_set = []
         @target_list_taxa.each do |tlt|
@@ -131,7 +131,9 @@ class TripsController < ApplicationController
           tlt_observations ||= []
           @target_list_set << { taxon: tlt, observations: tlt_observations }
         end
-        @test_group_toggle = "responsive-global"
+        @post = @trip
+        @responsive = true
+        render "posts/show"
       end
       format.json do
         @trip = Trip.includes(:trip_taxa => {:taxon => [:taxon_names, {:taxon_photos => :photo}]}, :trip_purposes => {}).where(:id => @trip.id).first

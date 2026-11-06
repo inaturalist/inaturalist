@@ -8,7 +8,7 @@
     = javascript_include_tag "fundraise_up/fundraise_up"
   - content_for( :fundraise_up_script, "loaded" )
 
-- scoped_body = Nokogiri::HTML.fragment( announcement.body )
+- scoped_body = Nokogiri::HTML.fragment( announcement.localized_body )
 - scoped_body.css( "style" ).each do |style_tag|
   - style_tag.content = "@scope (`#announcement-#{announcement.id}`) {\n#{style_tag.content}\n}"
 %div{ id: "announcement-#{announcement.id}", class: "announcement" }

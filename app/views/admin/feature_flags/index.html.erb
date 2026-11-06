@@ -8,6 +8,19 @@
   <%= link_to t( :feature_flags_manage ), admin_feature_flags_flipper_path, class: "btn btn-primary pull-right" %>
 </h2>
 <p class="text-muted"><%= t :feature_flags_page_description %></p>
+<%= form_tag admin_feature_flags_path, method: :get, class: "form-inline" do %>
+  <div class="form-group">
+    <%= label_tag :installation_id, t( :feature_flags_installation_id_label ) %>
+    <%= text_field_tag :installation_id, @installation_id, class: "form-control", size: 40,
+      placeholder: "00000000-0000-0000-0000-000000000000", "data-1p-ignore" => true %>
+  </div>
+  <%= submit_tag t( :feature_flags_preview ), class: "btn btn-default", name: nil %>
+  <%= link_to t( :feature_flags_clear ), admin_feature_flags_path, class: "btn btn-default" %>
+  <p class="help-block"><%= t :feature_flags_installation_id_help %></p>
+<% end %>
+<% if @installation_id && !@installation_id_valid %>
+  <div class="alert alert-warning"><%= t :feature_flags_invalid_installation_id %></div>
+<% end %>
 <% if @feature_keys.empty? %>
   <p class="text-muted">
     <%= t( :feature_flags_none_html, url: admin_feature_flags_flipper_path ) %>
@@ -19,7 +32,12 @@
         <% kind = FeatureFlagging.kind_of( key ) %>
         <tr>
           <td><code><%= key %></code></td>
-          <td class="text-muted"><%= kind_labels[kind] %></td>
+          <td class="text-muted">
+            <%= kind_labels[kind] %>
+            <% if FeatureFlagging.install_scoped?( key ) %>
+              <br><%= t :feature_flags_by_installation %>
+            <% end %>
+          </td>
           <td>
             <% if kind == :experiment %>
               <% experiment = FeatureFlagging.experiment_name( key ) %>
@@ -30,6 +48,16 @@
               <strong><%= FeatureFlagging.enabled?( key, current_user ) %></strong>
             <% end %>
           </td>
+          <% if @installation_id_valid %>
+            <td>
+              <%= t :feature_flags_for_installation %>
+              <% if kind == :experiment %>
+                <strong><%= FeatureFlagging.variant( FeatureFlagging.experiment_name( key ), nil, installation_id: @installation_id ) || t( :feature_flags_not_enrolled ) %></strong>
+              <% else %>
+                <strong><%= FeatureFlagging.enabled?( key, nil, installation_id: @installation_id ) %></strong>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

@@ -3,6 +3,12 @@
 require "spec_helper"
 
 describe WelcomeController do
+  before do
+    allow( INatAPIService ).to receive( :geoip_lookup ) do
+      OpenStruct.new_recursive( results: nil )
+    end
+  end
+
   describe "index" do
     it "redirects logged-in users on the default site to home" do
       sign_in User.make!
@@ -99,6 +105,71 @@ describe WelcomeController do
       get :index, params: { locale: "es" }
       expect( assigns( :announcements ) ).to include locale_a
       expect( assigns( :announcements ) ).not_to include a
+    end
+
+    it "should look up the country of the request IP" do
+      create :announcement, placement: Announcement::WELCOME_INDEX, ip_countries: ["US"]
+      request.env["REMOTE_ADDR"] = "1.2.3.4"
+      get :index
+      expect( INatAPIService ).to have_received( :geoip_lookup ).with( hash_including( ip: "1.2.3.4" ), anything )
+    end
+
+    it "should only show country-targeted announcements in the targeted country" do
+      allow( INatAPIService ).to receive( :geoip_lookup ) do
+        OpenStruct.new_recursive( results: [{ "country" => "MX" }] )
+      end
+      mx_annc = create :announcement, placement: Announcement::WELCOME_INDEX, ip_countries: ["MX"]
+      us_annc = create :announcement, placement: Announcement::WELCOME_INDEX, ip_countries: ["US"]
+      get :index
+      expect( assigns( :announcements ) ).to include mx_annc
+      expect( assigns( :announcements ) ).not_to include us_annc
+    end
+
+    it "should not show country-targeted announcements when the country is unknown" do
+      us_annc = create :announcement, placement: Announcement::WELCOME_INDEX, ip_countries: ["US"]
+      global_annc = create :announcement, placement: Announcement::WELCOME_INDEX
+      get :index
+      expect( assigns( :announcements ) ).to include global_annc
+      expect( assigns( :announcements ) ).not_to include us_annc
+    end
+
+    describe "donation shortcodes" do
+      render_views
+
+      let( :shortcode_body ) { '<p class="donate">[donation-label tier="min"]</p>' }
+
+      def stub_geoip_country( country )
+        allow( INatAPIService ).to receive( :geoip_lookup ) do
+          OpenStruct.new_recursive( results: country ? [{ "country" => country }] : nil )
+        end
+      end
+
+      def expected_label( country )
+        DonationShortcodes.new( country, locale: I18n.locale ).label( tier: "min" )
+      end
+
+      %w(MX DE).each do | country |
+        it "renders the label for a viewer in #{country}" do
+          stub_geoip_country( country )
+          create :announcement, placement: Announcement::WELCOME_INDEX, body: shortcode_body
+          get :index
+          expect( assigns( :announcements ).first.viewer_country ).to eq country
+          expect( Nokogiri::HTML( response.body ).at_css( ".donate" ).text ).to eq expected_label( country )
+        end
+      end
+
+      it "renders the default country's label when the country is unknown" do
+        stub_geoip_country( nil )
+        create :announcement, placement: Announcement::WELCOME_INDEX, body: shortcode_body
+        get :index
+        expect( Nokogiri::HTML( response.body ).at_css( ".donate" ).text ).to eq expected_label( nil )
+      end
+
+      it "makes no geoip call when no announcement has shortcodes" do
+        create :announcement, placement: Announcement::WELCOME_INDEX
+        get :index
+        expect( INatAPIService ).not_to have_received( :geoip_lookup )
+      end
     end
   end
 end

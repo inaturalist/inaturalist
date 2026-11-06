@@ -156,4 +156,54 @@ describe "GET /feature_flags", type: :request do
       expect( body["experiments"]["hello_world"] ).to be_nil
     end
   end
+
+  # The app sends X-Installation-ID on every request, logged in or not; Node forwards it.
+  describe "a caller with an installation id" do
+    let( :installation_id ) { SecureRandom.uuid }
+    let( :install_flag ) { "client_install_smoke_test" }
+    let( :install_headers ) { { "HTTP_X_INSTALLATION_ID" => installation_id } }
+
+    before { add_install_test_flags }
+
+    it "lists install-scoped keys like any other" do
+      get "/feature_flags", headers: install_headers
+      expect( body["flags"].keys ).to match_array [flag.to_s, install_flag]
+      expect( body["experiments"].keys ).to match_array %w(hello_world install_hello_world)
+    end
+
+    it "is bucketed for install-scoped flags while logged out" do
+      Flipper.enable_percentage_of_actors( install_flag, 100 )
+      Flipper.enable_percentage_of_actors( flag, 100 )
+      get "/feature_flags", headers: install_headers
+      expect( body["flags"][install_flag] ).to be true
+      expect( body["flags"][flag.to_s] ).to be false
+    end
+
+    it "is bucketed with an application JWT too" do
+      Flipper.enable_percentage_of_actors( install_flag, 100 )
+      get "/feature_flags", headers: install_headers.merge( "HTTP_AUTHORIZATION" => JsonWebToken.applicationToken )
+      expect( body["flags"][install_flag] ).to be true
+    end
+
+    it "keeps its variant through login" do
+      Flipper.enable( :exp_install_hello_world )
+      user = User.make!
+      variants = [
+        {},
+        { "HTTP_AUTHORIZATION" => JsonWebToken.applicationToken },
+        { "HTTP_AUTHORIZATION" => JsonWebToken.encode( user_id: user.id ) }
+      ].map do | auth |
+        get "/feature_flags", headers: install_headers.merge( auth )
+        body["experiments"]["install_hello_world"]
+      end
+      expect( variants.first ).to be_in %w(control treatment)
+      expect( variants.uniq.size ).to eq 1
+    end
+
+    it "ignores a header that is not a uuid" do
+      Flipper.enable_percentage_of_actors( install_flag, 100 )
+      get "/feature_flags", headers: { "HTTP_X_INSTALLATION_ID" => "installation123" }
+      expect( body["flags"][install_flag] ).to be false
+    end
+  end
 end

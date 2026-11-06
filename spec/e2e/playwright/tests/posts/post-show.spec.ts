@@ -14,10 +14,6 @@ let blogPostPath: string;
 test.beforeAll( async () => {
   const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
   testEmail = user.email as string;
-  await app( "add_test_group", {
-    user_id: user.id,
-    test_groups: ["responsive-header", "responsive-global"]
-  } );
   const observation = await appMake( "create", "observation", { user_id: user.id } );
   const journalPost = await app( "create_post", {
     user_id: user.id,

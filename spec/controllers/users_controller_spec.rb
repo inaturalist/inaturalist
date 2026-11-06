@@ -46,6 +46,34 @@ describe UsersController, "dashboard" do
   end
 
   describe "announcements" do
+    describe "donation shortcodes" do
+      render_views
+
+      let( :shortcode_body ) { '<p class="donate">[donation-label tier="min"]</p>' }
+
+      def stub_geoip_country( country )
+        allow( INatAPIService ).to receive( :geoip_lookup ) do
+          # User geocoding on the same request also reads ll
+          OpenStruct.new_recursive( results: country ? [{ "country" => country, "ll" => [0, 0] }] : nil )
+        end
+      end
+
+      def expected_label( country )
+        DonationShortcodes.new( country, locale: I18n.locale ).label( tier: "min" )
+      end
+
+      before { sign_in create( :user ) }
+
+      [["MX", "MX"], ["DE", "DE"], ["an unknown country", nil]].each do | label, country |
+        it "renders the label for #{label}" do
+          stub_geoip_country( country )
+          create :announcement, placement: Announcement::USERS_DASHBOARD_SIDEBAR, body: shortcode_body
+          get :dashboard
+          expect( Nokogiri::HTML( response.body ).at_css( ".donate" ).text ).to eq expected_label( country )
+        end
+      end
+    end
+
     it "should target a site" do
       site = create :site
       annc = create :announcement
@@ -572,20 +600,19 @@ describe UsersController, "show" do
     end
   end
 
-  it "offers the responsive-global test group toggle" do
+  it "is responsive" do
     get :show, params: { id: User.make!.login }
-    expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
+    expect( assigns( :responsive ) ).to be_truthy
   end
 
-  describe "for a responsive-global member" do
+  describe "responsive layout" do
     render_views
 
     it "renders the profile header with the subnav drawer" do
-      viewer = User.make!
-      viewer.update_column( :test_groups, "responsive-global" )
-      sign_in viewer
+      sign_in User.make!
       get :show, params: { id: User.make!.login }
       doc = Nokogiri::HTML( response.body )
+      expect( doc.at_css( "meta[name=viewport]" )[:content] ).to include "width=device-width"
       expect( doc.at_css( ".logged-in-user-image" ) ).to be_nil
       expect( doc.at_css( "#UserSubnavTabDrawer" ) ).not_to be_nil
       expect( doc.at_css( ".profile-container h1 .user_image" ) ).not_to be_nil
@@ -593,7 +620,6 @@ describe UsersController, "show" do
 
     it "does not use the Bootstrap grid" do
       viewer = User.make!
-      viewer.update_column( :test_groups, "responsive-global" )
       sign_in viewer
       get :show, params: { id: viewer.login }
       doc = Nokogiri::HTML( response.body )
@@ -601,18 +627,6 @@ describe UsersController, "show" do
         elt.ancestors( ".list-group" ).any? || elt.at_css( ".list-group" )
       end
       expect( grid ).to be_empty
-    end
-  end
-
-  describe "for a user in no test group" do
-    render_views
-
-    it "renders the legacy header without the subnav drawer" do
-      get :show, params: { id: User.make!.login }
-      doc = Nokogiri::HTML( response.body )
-      expect( doc.at_css( "#UserSubnavTabDrawer" ) ).to be_nil
-      expect( doc.at_css( ".container .col-md-12 > h1 .user_image" ) ).not_to be_nil
-      expect( doc.at_css( ".nav-tabs.user-subnav" ) ).not_to be_nil
     end
   end
 end

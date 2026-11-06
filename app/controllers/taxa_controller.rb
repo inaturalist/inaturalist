@@ -367,7 +367,8 @@ class TaxaController < ApplicationController
   end
 
   def new
-    @taxon = Taxon.new( name: params[:name] )
+    @taxon = Taxon.new( name: params[:name], parent_id: params[:parent_id] )
+    prefill_audit_comment_from_flag
     @protected_attributes_editable = true
     @fungi = Taxon.fungi
   end
@@ -404,6 +405,7 @@ class TaxaController < ApplicationController
 
   def edit
     build_edit_ivars
+    prefill_audit_comment_from_flag
     return if @protected_attributes_editable
 
     flash.now[:notice] ||= t(
@@ -1347,6 +1349,14 @@ class TaxaController < ApplicationController
     @taxon_range = TaxonRange.without_geom.find_by( taxon_id: @taxon.id )
     @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
     @fungi = Taxon.fungi
+  end
+
+  # Curators open the taxon form from a taxon flag, so cite the flag in the edit notes
+  def prefill_audit_comment_from_flag
+    return if params[:flag_id].blank?
+
+    flag = Flag.find_by( id: params[:flag_id], flaggable_type: "Taxon" )
+    @taxon.audit_comment = flag_url( flag ) if flag
   end
 
   def respond_to_merge_error( msg )

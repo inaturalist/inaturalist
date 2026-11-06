@@ -10,6 +10,9 @@ module Admin
 
     def index
       @feature_keys = FeatureFlagging.feature_keys
+      # Previews what a logged-out app with this X-Installation-ID would get.
+      @installation_id = params[:installation_id].to_s.strip.presence
+      @installation_id_valid = FeatureFlagging.valid_installation_id?( @installation_id )
     end
   end
 end
