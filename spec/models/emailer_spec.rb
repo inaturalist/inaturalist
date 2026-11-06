@@ -338,3 +338,27 @@ describe Emailer, "bulk_observation_error" do
     expect( mail.body ).to match( /failed to process/ )
   end
 end
+
+describe Emailer, "year in review" do
+  it "includes a prompt to generate their personal year in review" do
+    year = Date.today.year
+    user = User.make!
+    YearStatistic.create( site: nil, user: nil, year: year )
+    mail = Emailer.year_in_review( user )
+    expect( mail.subject ).to match( /Your #{year} iNaturalist Year in Review/ )
+    expect( mail.html_part.body.decoded ).to match( /generate your personal year in review/ )
+    expect( mail.text_part.body.decoded ).to match( /generate your personal year in review/ )
+  end
+end
+
+describe Emailer, "simplified year in review" do
+  it "does not include a prompt to generate their personal year in review" do
+    year = Date.today.year
+    user = User.make!
+    YearStatistic.create( site: nil, user: nil, year: year )
+    mail = Emailer.year_in_review_simplified( user )
+    expect( mail.subject ).to match( /Your #{year} iNaturalist Year in Review/ )
+    expect( mail.html_part.body.decoded ).not_to match( /generate your personal year in review/ )
+    expect( mail.text_part.body.decoded ).not_to match( /generate your personal year in review/ )
+  end
+end
