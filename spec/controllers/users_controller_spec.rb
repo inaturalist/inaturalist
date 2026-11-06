@@ -701,6 +701,53 @@ describe UsersController, "moderation" do
         "td", text: /Moderator Action.*Identification.*Removed/m
       )
     end
+
+    describe "flags" do
+      let( :flagged_comment ) { create :comment, user: subject_user }
+      let( :flag ) { create :flag, flaggable: flagged_comment, flag: "insulting other users" }
+
+      it "shows a badge linking to the flag with its comment count" do
+        create :comment, parent: flag
+        create :comment, parent: flag
+        get :moderation, params: { id: subject_user.login }
+        expect( response.body ).to have_tag( "a.badge", text: "2", with: { href: flag_path( flag ) } )
+      end
+
+      it "does not show a badge when the flag has no comments" do
+        flag
+        get :moderation, params: { id: subject_user.login }
+        expect( response.body ).not_to have_tag( "a.badge" )
+      end
+
+      it "shows the resolver and resolution note for resolved flags" do
+        resolver = make_curator
+        flag.update!( resolved: true, resolver: resolver, comment: "Warned user, hid photos." )
+        get :moderation, params: { id: subject_user.login }
+        expect( response.body ).to have_tag( ".flag-resolution" ) do
+          with_text( /Resolved by/ )
+          with_tag( "a", text: resolver.login )
+          with_text( /"Warned user, hid photos."/ )
+        end
+      end
+
+      it "shows only the resolver for resolved flags without a note" do
+        resolver = make_curator
+        flag.update!( resolved: true, resolver: resolver )
+        get :moderation, params: { id: subject_user.login }
+        expect( response.body ).to have_tag( ".flag-resolution" ) do
+          with_text( /Resolved by/ )
+          with_tag( "a", text: resolver.login )
+          without_text( /[:"]/ )
+        end
+      end
+
+      it "does not show a resolution for unresolved flags" do
+        flag
+        get :moderation, params: { id: subject_user.login }
+        expect( response.body ).not_to have_tag( ".flag-resolution" )
+        expect( response.body ).not_to include( "Resolved by" )
+      end
+    end
   end
 end
 
