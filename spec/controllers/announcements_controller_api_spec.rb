@@ -487,6 +487,51 @@ describe AnnouncementsController do
     end
   end
 
+  describe "donation shortcode help" do
+    render_views
+
+    let( :admin ) { make_admin }
+    let( :help ) { Nokogiri::HTML( response.body ).at_css( "#donation-shortcode-help" ) }
+
+    before { sign_in admin }
+
+    def priced_tiers_text
+      DonationShortcodes.priced_tiers.reject {| _frequency, tiers | tiers.empty? }.map do | frequency, tiers |
+        "#{frequency}: #{tiers.join( ', ' )}"
+      end.join( "; " )
+    end
+
+    it "renders on the new form" do
+      get :new
+      expect( help ).to be_present
+      expect( help.text ).to include( "[donation-label" )
+      expect( help.text ).to include( "[donation-url" )
+    end
+
+    it "renders on the edit form" do
+      announcement = create :announcement
+      get :edit, params: { id: announcement.id }
+      expect( help ).to be_present
+    end
+
+    it "lists the priced tiers from the donation config" do
+      get :new
+      expect( help.text ).to include( priced_tiers_text )
+    end
+
+    it "lists every attribute the shortcodes accept" do
+      get :new
+      DonationShortcodes::SHORTCODES.values.flatten.uniq.each do | attribute |
+        expect( help.text ).to include( attribute )
+      end
+    end
+
+    it "shows an example label in the default country" do
+      get :new
+      expect( help.text ).to include( DonationShortcodes.new( nil ).label )
+    end
+  end
+
   describe "load_parent_announcement_options" do
     let( :site ) { create :site }
     let( :user ) { create :user }

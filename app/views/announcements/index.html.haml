@@ -53,8 +53,12 @@
             %th.user= t :created_by
         %tbody
           - @announcements.each do |announcement|
+            - show_path = announcement_path( announcement, **preview_params )
+            - body_url = announcement_url( announcement,
+                                           body: true,
+                                           **preview_params )
             %tr
-              %td= link_to announcement.id, announcement_path( announcement, **preview_params )
+              %td= link_to announcement.id, show_path
               %td
                 = h announcement.placement
                 - if announcement.clients.any?
@@ -68,22 +72,26 @@
                   %span.label.label-success=t :active
               %td.announcement-body
                 - if announcement.placement =~ /^mobile/
-                  %iframe{src: announcement_url( announcement, body: true, **preview_params ), style: "width: 100%; border: 0;"}
+                  %iframe{ src: body_url, style: "width: 100%; border: 0;" }
                   %p
-                    = link_to "View in new window", announcement_url( announcement, body: true, **preview_params ), class: "readmore"
+                    = link_to "View in new window", body_url, class: "readmore"
                 - elsif announcement.placement.end_with?( "sidebar" )
                   %div.sidebar-body
                     - I18n.with_locale( preview_locale ) do
-                      = render "announcements/announcement", announcement: announcement, preview: true
+                      = render "announcements/announcement",
+                               announcement: announcement,
+                               preview: true
                 - else
                   %div.general-body
                     - I18n.with_locale( preview_locale ) do
-                      = render "announcements/announcement", announcement: announcement, preview: true
+                      = render "announcements/announcement",
+                               announcement: announcement,
+                               preview: true
               %td.user
                 = link_to( user_image( announcement.user), announcement.user ) if announcement.user
                 = link_to_user announcement.user, missing: t( :unknown )
               %td
-                = link_to announcement_path( announcement, **preview_params ), class: "btn btn-default btn-sm" do
+                = link_to show_path, class: "btn btn-default btn-sm" do
                   %i.fa.fa-eye
                   = t(:show)
               %td

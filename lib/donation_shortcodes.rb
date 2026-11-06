@@ -90,6 +90,15 @@ class DonationShortcodes
       candidates.find {| code | FUNDRAISEUP_LANGUAGES.include?( code ) }
     end
 
+    # Frequency → the tiers the default country has an amount for, e.g.
+    # { "once" => ["min"], "monthly" => [] }. Shortcodes may only use these.
+    def priced_tiers
+      config = DonationCurrency.config
+      config["frequencies"].keys.index_with do | frequency |
+        config["tier_names"].select {| tier | default_priced?( tier, frequency ) }
+      end
+    end
+
     # [error_key, options] pairs for Announcement to add to its body errors.
     # Every option hash includes the offending :shortcode text.
     def validation_errors( body )
