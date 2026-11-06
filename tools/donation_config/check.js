@@ -316,8 +316,12 @@ function checkWorkbookObject( wb ) {
       } else if ( setting === SETTINGS.fallbackCountry && value && !countries[value].enabled ) {
         error( TABS.settings, r, `Fallback country ${value} is disabled on the Countries tab` );
       } else if ( setting === SETTINGS.fallbackCountry && value ) {
+        // Only tiers some currency or country sets: a tier nobody uses
+        // (monthly, for now) shows nothing anywhere anyway
+        const used = ( freq, tier ) => [...Object.values( currencies ), ...Object.values( countries )]
+          .some( c => ( c.own || c.amounts )[freq]?.[tier] );
         const gaps = FREQUENCIES.flatMap( freq => TIERS
-          .filter( tier => !countries[value].amounts[freq][tier] )
+          .filter( tier => used( freq, tier ) && !countries[value].amounts[freq][tier] )
           .map( tier => TIER_COLUMNS[freq][tier] ) );
         if ( gaps.length > 0 ) {
           warn( TABS.settings, r, `Fallback country ${value} has no ${gaps.join( ", " )}. Buttons for those tiers show nothing wherever a country has no amount of its own.` );

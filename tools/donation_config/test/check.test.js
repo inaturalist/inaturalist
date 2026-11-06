@@ -23,9 +23,10 @@ const hasXml = ( xml, fragment ) => assert.ok( xml.includes( fragment ), `expect
 test.before( async ( ) => { await writeWorkbook( built ); } );
 test.after( ( ) => fs.rmSync( tmp, { recursive: true, force: true } ) );
 
-test( "a freshly built workbook has no errors", async ( ) => {
-  const { errors } = await checkWorkbook( built );
+test( "a freshly built workbook has no errors or warnings", async ( ) => {
+  const { errors, warnings } = await checkWorkbook( built );
   assert.deepStrictEqual( errors.map( e => e.message ), [] );
+  assert.deepStrictEqual( warnings.map( w => w.message ), [] );
 } );
 
 test( "shared symbols are pre-filled with the currency code, so nothing warns", async ( ) => {
@@ -89,7 +90,8 @@ test( "countries use their currency's amounts unless they set their own", async 
   assert.deepStrictEqual( messages.filter( m => m.startsWith( "Exact text overrides" ) ), [
     "Exact text overrides 6: \"Spende 4 €\" doesn't show the tier amount 3"
   ] );
-  assert.ok( warnings.some( w => /Fallback country US has no Monthly min, Monthly mid, Monthly max\./.test( w.message ) ) );
+  // Only Spain sets a monthly amount, so only the monthly min is a gap
+  assert.ok( warnings.some( w => /Fallback country US has no Monthly min\./.test( w.message ) ), warnings.map( w => w.message ).join( "\n" ) );
 } );
 
 test( "amounts under $3 at market rates are errors, on currencies and countries", async ( ) => {

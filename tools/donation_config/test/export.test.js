@@ -51,6 +51,7 @@ test( "currencies carry their amounts and full format", ( ) => {
   assert.strictEqual( config.currencies.DKK.purchasing_power_adjusted, true );
   assert.deepStrictEqual( config.currencies.THB.tiers, { once: { min: 150 } } );
   assert.strictEqual( config.currencies.THB.purchasing_power_adjusted, false );
+  assert.strictEqual( config.currencies.THB.fru_enabled, true );
   assert.strictEqual( config.currencies.USD.format, "%u%n (%c)" );
   assert.strictEqual( config.currencies.INR.grouping, "indian" );
   // Defaults are left out

@@ -9,7 +9,7 @@ const {
 } = require( "./layout" );
 const {
   STARTER, FRU_CURRENCIES, suggestion, currencyHome, currencyName, formatLanguage, allCountries, suggestedTiers,
-  purchasingPowerAdjusted, USD_RATES
+  purchasingPowerAdjusted, USD_RATES, FRU_ENABLED_CONFIRMED
 } = require( "./seed" );
 const { loadLocales } = require( "./locales" );
 const { writeValidations } = require( "./xlsx_validations" );
@@ -226,7 +226,7 @@ function buildWorkbook( ) {
     const s = suggestion( homeLangs[0], homeCountry, currency );
     const tiers = suggestedTiers( currency );
     const adjusted = purchasingPowerAdjusted( currency );
-    const notes = [`Format from ${homeName}.`];
+    const notes = [`Format from ${homeName}.`, `Enabled in the FundraiseUp campaign (confirmed ${FRU_ENABLED_CONFIRMED}).`];
     if ( adjusted ) {
       notes.push( "Amounts are $5, $20 and $100 at the ratio of the lowest amounts on our donation form, rounded, and at least $3 at market rates." );
     } else if ( tiers ) {
@@ -234,7 +234,7 @@ function buildWorkbook( ) {
     }
     return [currency, currencyName( currency ), null, tiers?.min, tiers?.mid, tiers?.max, null, null, null,
       tiers ? ( adjusted ? "Yes" : "No" ) : null,
-      s.symbol, s.thousand, s.million, null, null, null, null, notes.join( " " )];
+      s.symbol, s.thousand, s.million, null, "Yes", null, null, notes.join( " " )];
   } );
   tableSheet( TABS.currencies,
     "Every currency FundraiseUp supports. Amounts and formats here are defaults for every country using the currency; a country's own on the Countries tab win. Every currency an enabled country uses needs a one-time min, unless all those countries set their own. Symbol and examples are pre-filled from the Unicode CLDR standard.",
@@ -462,7 +462,7 @@ function buildWorkbook( ) {
   const LEVELS = "currencies.<ISO> / countries.\"<ISO2>\" / countries.\"<ISO2>\".formats.<locale>";
   const EXAMPLES = "the 1,000.00 and 1,000,000.00 examples on Currencies, Countries or Country by language";
   [
-    [Y, "default_country", "Required", "Settings", "\"US\"", "Fallback when geolocation fails, the country isn't listed or is disabled, or a tier has no amount. Should have every tier."],
+    [Y, "default_country", "Required", "Settings", "\"US\"", "Fallback when geolocation fails, the country isn't listed or is disabled, or a tier has no amount. Should have every tier any country uses."],
     [Y, "tier_names", "Required", "Settings", "[min, mid, max]", "Fixed tier set. Only once.min is required for now."],
     [Y, "frequencies", "Required", "(fixed)", "{ once: once, monthly: monthly }", "Our frequency name and FundraiseUp's recurring value."],
     [Y, "last_reviewed", "Optional", "Settings", "2026-11-01", "When amounts were last checked."],

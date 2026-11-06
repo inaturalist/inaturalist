@@ -45,7 +45,7 @@ node check.js donation-config.xlsx --fill donation-config-filled.xlsx
 - tiers under a currency's FundraiseUp minimum, a missing or disabled fallback country, and custom fields that aren't `name=value`
 
 It warns, without failing, about:
-- a fallback country without every tier
+- a fallback country missing a tier that some currency or country sets
 - formats that differ from CLDR
 - a symbol such as `$` shown without a code for several currencies
 

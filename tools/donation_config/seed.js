@@ -101,6 +101,9 @@ const LOWEST_FORM_AMOUNTS = {
 };
 
 // One-time tiers suggested in USD, converted at the form amounts' ratio
+// When every FundraiseUp currency was confirmed enabled in our campaign
+const FRU_ENABLED_CONFIRMED = "2026-11-06";
+
 const SUGGESTED_USD_TIERS = { min: 5, mid: 20, max: 100 };
 
 // The whole number nearest x (by ratio) in a 1, 1.5, 2, 2.5, 3, 4, 5, 7.5
@@ -349,6 +352,7 @@ function suggestion( lang, country, currency ) {
 }
 
 module.exports = {
+  FRU_ENABLED_CONFIRMED,
   STARTER,
   FRU_CURRENCIES,
   suggest,

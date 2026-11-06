@@ -16,7 +16,7 @@ Decisions so far:
 
 | Field | E/O | Example | Purpose |
 |---|---|---|---|
-| `default_country` | E | `"US"` | Used when geoip fails, the country isn't listed or is disabled, or a tier has no amount. Its tiers and currency apply. Should have every tier; the checker warns if not. |
+| `default_country` | E | `"US"` | Used when geoip fails, the country isn't listed or is disabled, or a tier has no amount. Its tiers and currency apply. Should have every tier any currency or country sets; the checker warns if not. |
 | `tier_names` | E | `[min, mid, max]` | Fixed tier set. Shortcodes can only use these names. |
 | `frequencies` | E | `{ once: once, monthly: monthly }` | Our key → FundraiseUp `recurring` value. |
 | `last_reviewed` | O | `2026-11-01` | When engagement last checked the amounts. |
