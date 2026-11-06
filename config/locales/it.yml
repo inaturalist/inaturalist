@@ -2046,8 +2046,20 @@ it:
   favorites: "Preferiti"
   #Heading of the admin feature flags page and the admin nav link to it
   feature_flags: Contrassegni di funzionalità
+  #Note under a flag's kind on the admin feature flags page when the flag assigns app users by their app installation rather than their account, so logging in does not change it
+  feature_flags_by_installation: Assegnato tramite installazione app
+  #Button on the admin feature flags page that empties the app installation ID field and its preview column
+  feature_flags_clear: Cancella
   #Label shown before the current admin's on/off value for a flag on the admin feature flags page
   feature_flags_enabled_for_you: "Abilitato per te:"
+  #Label before the on/off value or variant a logged-out mobile app installation would get, in a column of the admin feature flags page
+  feature_flags_for_installation: "Questa installazione, disconnessa:"
+  #Help text under the app installation ID field on the admin feature flags page
+  feature_flags_installation_id_help: Incolla un ID di installazione dell'app (l'intestazione X-Installazione-ID) per vedere cosa riceverebbe quell'installazione mentre si è disconnessi.
+  #Label for a text field on the admin feature flags page where an admin enters a mobile app installation ID
+  feature_flags_installation_id_label: ID installazione app
+  #Warning on the admin feature flags page when the entered app installation ID is not a UUID
+  feature_flags_invalid_installation_id: Quello non è un ID di installazione valido. Gli ID di installazione sono UUID.
   #Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
   feature_flags_kind_client: Contrassegno visibile per il client
   #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
@@ -2062,6 +2074,8 @@ it:
   feature_flags_not_enrolled: Non iscritto
   #Intro text on the admin feature flags page, above a table listing every flag with the current admin's own value
   feature_flags_page_description: Ogni contrassegno di funzionalità ed esperimenti, risolto per il tuo profilo. Crea, abilita e distribuisci contrassegni nell'interfaccia di gestione.
+  #Button on the admin feature flags page that shows flag values for the entered app installation ID
+  feature_flags_preview: Anteprima
   #Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
   feature_flags_your_variant: "La tua variante in %{experiment}:"
   feature_this_project_: "Evidenzia questo progetto"
@@ -9609,6 +9623,41 @@ it:
               cannot_reference_variant: non può fare riferimento a un annuncio che sia essa stesso una variante (è consentito un solo livello di annidamento)
               #Error shown when trying to set an global announcement on an announcement that already has variants
               cannot_have_variants: Non può essere impostato su un annuncio che ha già varianti (consentito solo un livello di annidamento)
+            body:
+              #Error shown to site admins when an announcement body contains a
+              #donation shortcode whose name isn't [donation-label] or
+              #[donation-url]. %{shortcode} is the shortcode text as written,
+              #e.g. [donation-amount tier="min"]. Leave the bracketed shortcode
+              #names untranslated. Shown after the field name, e.g. "Body has
+              #an unknown donation shortcode..."
+              unknown_donation_shortcode: "ha un codice-breve di donazione sconosciuto %{shortcode}; Usa [etichetta-donazione] o [url-donazione]"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute that can't be read, e.g. an
+              #unquoted value. %{shortcode} is the shortcode text as written.
+              malformed_donation_shortcode: "ha un shortcode di donazione con un attributo illeggibile %{shortcode}; valori di citazione come tier=\"min\""
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute it doesn't accept.
+              #%{attribute} is the attribute name, %{shortcode} the shortcode
+              #text as written.
+              unknown_donation_shortcode_attribute: "ha un codice-breve di donazione con un attributo sconosciuto %{attribute}: %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a tier that doesn't exist. %{value} is
+              #the tier as written, %{allowed} lists the tier names.
+              invalid_donation_tier: "ha un codice-breve per donazioni con un livello sconosciuto %{value} (uno di %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a donation frequency that doesn't exist.
+              #%{value} is the frequency as written, %{allowed} lists the
+              #frequencies, e.g. "once, monthly".
+              invalid_donation_frequency: "ha un codice-breve per donazioni con frequenza sconosciuta %{value} (uno di %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body uses a tier and frequency that has no amount
+              #set for the default country, so some viewers would see nothing.
+              #%{tier} and %{frequency} are as written, e.g. "max" and "once".
+              unpriced_donation_tier: "ha un codice-breve per donazioni per un livello senza importo impostato (%{frequency} %{tier}): %{shortcode}"
+              #Error shown to site admins when the url attribute of a
+              #[donation-url] shortcode in an announcement body isn't a full
+              #http:// or https:// web address.
+              invalid_donation_url: "ha un codice-breve di donazione il cui URL deve essere un indirizzo completo http:// o https://: %{shortcode}"
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the

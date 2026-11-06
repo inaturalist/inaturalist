@@ -58,6 +58,11 @@ id:
     other: "<span class='count'>%{count}</span> pengamatan telah ditinjau"
   x_observers_caps_html:
     other: '<span class="count">%{count}</span> PENGAMAT'
+  #Footer below the scrolling list of flagged taxa on taxonomy details pages.
+  #count is the number of unresolved flags on taxa covered by the taxon
+  #framework; the list itself only shows the most-flagged taxa
+  x_open_flags_scroll_for_more:
+    other: "%{count} bendera terbuka · gulir untuk informasi lebih lanjut"
   x_others:
     other: "%{count} lainnya"
   x_people:
@@ -2117,6 +2122,12 @@ id:
   flag_this_sound: Tandai Suara Ini
   flagged_: Telah Ditandai
   flagged_for_curation: Telah ditandai untuk Kurasi
+  #Note below a list of flagged taxa explaining the difference between the
+  #count column and the links in each row. open_flags is the translated
+  #column header "Open flags" and view_all_flags is the translated link text
+  #"View All Flags". Taxa below a taxon are its descendants, e.g. the species
+  #within a genus
+  flagged_taxa_counts_explanation: "“%{open_flags}\" hanya menghitung bendera untuk takson tersebut saja. \"%{view_all_flags}\" juga menampilkan bendera pada takson di bawahnya."
   flagged_taxon: Takson Yang Telah Ditandai
   flagged_thing_explanation: "Pengguna telah menandai %{thing} ini karena"
   flagging_desc: |
@@ -3746,6 +3757,18 @@ id:
   #Geoprivacy status in which no privacy has been applied
   open_: Buka
   open_description: "Semua orang dapat melihat koordinatnya kecuali takson yang terancam."
+  #Column header for the number of unresolved flags on each taxon in a list
+  #of flagged taxa. The count only includes flags on that exact taxon, not
+  #flags on its descendants (lower-ranked taxa within it)
+  open_flags: Bendera terbuka
+  #Label for the number of unresolved flags on taxa covered by a taxon
+  #framework, i.e. the taxa whose classification the framework tracks against
+  #an external source. count is a link that shows a list of the flagged taxa
+  open_flags_on_covered_taxa_count: "Bendera terbuka pada takson yang tercakup: %{count}"
+  #Label for the number of unresolved flags on taxa within this taxon that are
+  #covered by a taxon framework attached to one of its ancestors. count is a
+  #link that shows a list of the flagged taxa
+  open_flags_on_downstream_taxa_count_html: "Bendera terbuka pada takson hilir: %{count}"
   open_street_map: OpenStreetMap
   optional: opsional
   options: Pengaturan
@@ -6093,6 +6116,9 @@ id:
   view_all_caps: LIHAT SEMUA
   view_all_fields: Lihat Semua Bidang
   view_all_flags: Lihat Semua Tanda
+  #Link that opens a search of unresolved flags on a taxon and all of its
+  #descendants (lower-ranked taxa within it)
+  view_all_flags_including_descendants: Lihat Semua Bendera (termasuk keturunan)
   view_all_members: Lihat Semua Anggota
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
@@ -9452,6 +9478,41 @@ id:
               cannot_reference_variant: tidak boleh merujuk kepada pengumuman yang merupakan varian juga (hanya satu tingkat bersarang yang diizinkan)
               #Error shown when trying to set an global announcement on an announcement that already has variants
               cannot_have_variants: tidak dapat diatur pada pengumuman yang sudah memiliki varian (hanya satu tingkat bersarang yang diizinkan)
+            body:
+              #Error shown to site admins when an announcement body contains a
+              #donation shortcode whose name isn't [donation-label] or
+              #[donation-url]. %{shortcode} is the shortcode text as written,
+              #e.g. [donation-amount tier="min"]. Leave the bracketed shortcode
+              #names untranslated. Shown after the field name, e.g. "Body has
+              #an unknown donation shortcode..."
+              unknown_donation_shortcode: "memiliki kode pendek donasi %{shortcode} yang tidak dikenal; gunakan [donation-label] atau [donation-url]"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute that can't be read, e.g. an
+              #unquoted value. %{shortcode} is the shortcode text as written.
+              malformed_donation_shortcode: "memiliki kode pendek donasi %{shortcode} dengan atribut yang tidak dapat dibaca; kutip nilai seperti tier=\"min\""
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute it doesn't accept.
+              #%{attribute} is the attribute name, %{shortcode} the shortcode
+              #text as written.
+              unknown_donation_shortcode_attribute: "memiliki kode pendek donasi %{attribute} dengan atribut yang tidak diketahui: %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a tier that doesn't exist. %{value} is
+              #the tier as written, %{allowed} lists the tier names.
+              invalid_donation_tier: "memiliki kode pendek donasi dengan tingkat %{value} yang tidak dikenal (salah satu dari %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a donation frequency that doesn't exist.
+              #%{value} is the frequency as written, %{allowed} lists the
+              #frequencies, e.g. "once, monthly".
+              invalid_donation_frequency: "memiliki kode pendek donasi dengan frekuensi %{value} yang tidak dikenal (salah satu dari %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body uses a tier and frequency that has no amount
+              #set for the default country, so some viewers would see nothing.
+              #%{tier} and %{frequency} are as written, e.g. "max" and "once".
+              unpriced_donation_tier: "memiliki kode pendek donasi untuk tingkat tanpa jumlah yang diatur (%{frequency} %{tier}): %{shortcode}"
+              #Error shown to site admins when the url attribute of a
+              #[donation-url] shortcode in an announcement body isn't a full
+              #http:// or https:// web address.
+              invalid_donation_url: "memiliki kode pendek donasi yang URL-nya harus berupa alamat http:// atau https:// lengkap: %{shortcode}"
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the

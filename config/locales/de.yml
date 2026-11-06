@@ -2027,6 +2027,14 @@ de:
     werden nach dem Aktualisieren der Seite angezeigt.
   favorite_taxa: bevorzugte Taxa
   favorites: "Favoriten"
+  #Label before the on/off value or variant a logged-out mobile app installation would get, in a column of the admin feature flags page
+  feature_flags_for_installation: "Diese Installation, ausgeloggt:"
+  #Label for a text field on the admin feature flags page where an admin enters a mobile app installation ID
+  feature_flags_installation_id_label: App-Installations-ID
+  #Warning on the admin feature flags page when the entered app installation ID is not a UUID
+  feature_flags_invalid_installation_id: Das ist keine gültige Installations-ID. Installations-IDs sind UUIDs.
+  #Button on the admin feature flags page that shows flag values for the entered app installation ID
+  feature_flags_preview: Vorschau
   feature_this_project_: "Dieses Projekt featuren"
   featured: Erwähnenswert
   #Title for a button or section describing the "featured" status of a project
