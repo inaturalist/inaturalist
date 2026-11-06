@@ -84,3 +84,14 @@ describe DeviseMailer, "reset_password_instructions" do
     expect( mail.body ).to include site.url
   end
 end
+
+describe DeviseMailer, "email_changed" do
+  it "masks the new email address" do
+    u = User.make!( email: "original@example.org", unconfirmed_email: "unconfirmed@newexample.org" )
+    mail = DeviseMailer.email_changed( u )
+    expect( mail.subject ).to eq I18n.t( "devise.mailer.email_changed.subject", locale: :en )
+    expect( mail.body ).to include u.email
+    expect( mail.body ).not_to include u.unconfirmed_email
+    expect( mail.body ).to include "u***@newexample.org"
+  end
+end

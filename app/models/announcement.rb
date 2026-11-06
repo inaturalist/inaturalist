@@ -72,6 +72,7 @@ class Announcement < ApplicationRecord
   validate :parent_announcement_cannot_be_self
   validate :parent_announcement_cannot_have_parent
   validate :parent_with_children_cannot_become_child
+  validate :valid_donation_shortcodes, if: :donation_shortcodes?
 
   validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
   validates_inclusion_of :target_logged_in, in: YES_NO_ANY
@@ -143,6 +144,30 @@ class Announcement < ApplicationRecord
     return unless persisted? && child_announcements.exists?
 
     errors.add( :parent_announcement_id, :cannot_have_variants )
+  end
+
+  # ISO2 country of the person viewing the announcement, set by
+  # Announcement.active. Picks the currency for donation shortcodes; nil
+  # means the default country.
+  attr_accessor :viewer_country
+
+  def valid_donation_shortcodes
+    DonationShortcodes.validation_errors( body ).each do | key, options |
+      errors.add( :body, key, **options )
+    end
+  end
+
+  def donation_shortcodes?
+    body.to_s.include?( "[donation-" )
+  end
+
+  # The body with donation shortcodes replaced for viewer_country, with
+  # [donation-url] links tagged utm_term=<id>. A body without shortcodes is
+  # returned as is.
+  def localized_body
+    return body unless donation_shortcodes?
+
+    DonationShortcodes.new( viewer_country, utm_term: id ).render( body )
   end
 
   def body_preview( length = 60 )
@@ -432,19 +457,26 @@ class Announcement < ApplicationRecord
     locale_str = I18n.locale.to_s
     lang_only = locale_str.split( "-" ).first
 
-    # Only hit the geoip service when some candidate is country-targeted; a nil
-    # country makes filter_family fall back to variants without ip_countries
-    needs_geoip = options[:ip].present? && all_announcements.any? do | a |
-      a.ip_countries.present? || a.exclude_ip_countries.present?
+    # Only hit the geoip service when some candidate is country-targeted or has
+    # donation shortcodes; a nil country makes filter_family fall back to
+    # variants without ip_countries and shortcodes use the default country. A
+    # caller that already knows the country can pass it as options[:country].
+    geoip_country = if options.key?( :country )
+      options[:country].presence
+    elsif options[:ip].present? &&
+      all_announcements.any? do | a |
+        a.ip_countries.present? || a.exclude_ip_countries.present? || a.donation_shortcodes?
+      end
+      geoip_country_for_ip( options[:ip] )
     end
-    geoip_country = needs_geoip ? geoip_country_for_ip( options[:ip] ) : nil
 
     families = all_announcements.group_by {| a | a.parent_announcement_id || a.id }
 
     announcements = families.flat_map do | _key, group |
-      filter_family( group, user: user, site: site, ip: options[:ip],
+      filter_family( group, user: user, site: site,
         geoip_country: geoip_country, locale_str: locale_str, lang_only: lang_only )
     end
+    announcements.each {| a | a.viewer_country = geoip_country }
 
     # TODO: remove excludes_non_site logic once the column is fully deprecated.
     # This was a workaround now replaced by parent_announcement_id family grouping.
@@ -470,7 +502,7 @@ class Announcement < ApplicationRecord
   end
   private_class_method :geoip_country_for_ip
 
-  def self.filter_family( group, user:, site:, ip:, geoip_country:, locale_str:, lang_only: )
+  def self.filter_family( group, user:, site:, geoip_country:, locale_str:, lang_only: )
     # Dismissing any variant hides the entire family. Checked before targeting so
     # that a dismissed variant still suppresses the family even if the user no
     # longer matches its targeting rules.
@@ -478,9 +510,9 @@ class Announcement < ApplicationRecord
 
     filtered = group.select {| a | a.targeted_to_user?( user ) }
 
-    # Without an IP or a resolved country we can't honor ip_countries, so only
-    # show variants that aren't country-targeted
-    filtered = if ip && geoip_country.present?
+    # Without a resolved country we can't honor ip_countries, so only show
+    # variants that aren't country-targeted
+    filtered = if geoip_country.present?
       pick_best_matches( filtered,
         ->( a ) { a.ip_countries.present? && a.visible_in_country?( geoip_country ) },
         ->( a ) { a.ip_countries.blank? && a.visible_in_country?( geoip_country ) } )
@@ -518,7 +550,7 @@ class Announcement < ApplicationRecord
   end
 
   def body_for_mobile
-    return body unless prefers_embed_fru?
+    return localized_body unless prefers_embed_fru?
 
     <<~HTML
       <!DOCTYPE html>
@@ -527,7 +559,7 @@ class Announcement < ApplicationRecord
         #{ApplicationController.helpers.fundraise_up_js}
       </head>
       <body>
-        #{body}
+        #{localized_body}
       </body>
       </html>
     HTML
