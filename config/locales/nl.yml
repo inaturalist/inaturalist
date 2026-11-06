@@ -9901,6 +9901,41 @@ nl:
               cannot_reference_variant: kan niet verwijzen naar een aankondiging die zelf een variant is (slechts één niveau van nesten toegestaan)
               #Error shown when trying to set an global announcement on an announcement that already has variants
               cannot_have_variants: Kan niet worden ingesteld op een aankondiging die al varianten heeft (slechts één niveau van nesten toegestaan)
+            body:
+              #Error shown to site admins when an announcement body contains a
+              #donation shortcode whose name isn't [donation-label] or
+              #[donation-url]. %{shortcode} is the shortcode text as written,
+              #e.g. [donation-amount tier="min"]. Leave the bracketed shortcode
+              #names untranslated. Shown after the field name, e.g. "Body has
+              #an unknown donation shortcode..."
+              unknown_donation_shortcode: "heeft een onbekende donatieshortcode %{shortcode}; Gebruik [donatielabel] of [donatie-url]"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute that can't be read, e.g. an
+              #unquoted value. %{shortcode} is the shortcode text as written.
+              malformed_donation_shortcode: "heeft een donatie shortcode met een onleesbaar attribuut %{shortcode}; quote waarden zoals tier=\"min\""
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute it doesn't accept.
+              #%{attribute} is the attribute name, %{shortcode} the shortcode
+              #text as written.
+              unknown_donation_shortcode_attribute: "heeft een donatie shortcode met een onbekend attribuut %{attribute}: %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a tier that doesn't exist. %{value} is
+              #the tier as written, %{allowed} lists the tier names.
+              invalid_donation_tier: "heeft een donatieshortcode met een onbekende tier %{value} (een van %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a donation frequency that doesn't exist.
+              #%{value} is the frequency as written, %{allowed} lists the
+              #frequencies, e.g. "once, monthly".
+              invalid_donation_frequency: "heeft een donatieshortcode met een onbekende frequentie %{value} (een van %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body uses a tier and frequency that has no amount
+              #set for the default country, so some viewers would see nothing.
+              #%{tier} and %{frequency} are as written, e.g. "max" and "once".
+              unpriced_donation_tier: "heeft een donatie shortcode voor een tier zonder bedrag (%{frequency} %{tier}): %{shortcode}"
+              #Error shown to site admins when the url attribute of a
+              #[donation-url] shortcode in an announcement body isn't a full
+              #http:// or https:// web address.
+              invalid_donation_url: "heeft een donatieshortcode waarvan de URL een volledige http:// of https:// adres moet zijn: %{shortcode}"
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
