@@ -40,11 +40,6 @@ describe YearStatistic, "generation" do
     allow( ApplicationController.helpers ).to receive( :image_url ).
       and_return "https://www.inaturalist.org/assets/bird.png"
     allow( ApplicationController.helpers ).to receive( :image_url ).
-      with( "yir-background.png" ).
-      and_return(
-        "https://www.inaturalist.org/assets/yir-background.png"
-      )
-    allow( ApplicationController.helpers ).to receive( :image_url ).
       with( "logo-small.gif" ).
       and_return "https://www.inaturalist.org/assets/logo-small.gif"
   end
@@ -55,9 +50,9 @@ describe YearStatistic, "generation" do
       body: '{"results": []}'.dup,
       headers: { "Content-Type" => "application/json" }
     )
-    stub_request( :get, %r{crowdin\.com.*/info} ).to_return(
+    stub_request( :get, %r{crowdin\.com.*/api/v2/projects/[^\\]+} ).to_return(
       status: 200,
-      body: '{"languages": []}'.dup,
+      body: '{"data": {"targetLanguages":[]}}'.dup,
       headers: { "Content-Type" => "application/json" }
     )
     stub_request( :post, %r{crowdin\.com.*/top-members/export} ).to_return(
@@ -74,7 +69,6 @@ describe YearStatistic, "generation" do
       body: "[]".dup,
       headers: { "Content-Type" => "application/json" }
     )
-
     expect { YearStatistic.generate_for_year( 2023 ) }.not_to raise_error
   end
   it "generate_for_user_year should not raise an error" do
