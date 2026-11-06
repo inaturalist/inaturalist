@@ -25,6 +25,23 @@ class DonationShortcodes
   # Attributes of [donation-url] copied into the link's query as written
   QUERY_PARAMS = ( FRU_PARAMS + UTM_PARAMS ).freeze
 
+  # Codes FundraiseUp accepts for _lang (https://fundraiseup.com/docs/languages/).
+  FUNDRAISEUP_LANGUAGES = %w(
+    ar da de en-CA en-GB en-US es es-US fi fr-CA fr-FR he hu it ja ko nl no pl
+    pt-BR pt-PT ru sv zh-CN zh-TW
+  ).freeze
+
+  # locales where FundraiseUp language code differs from inat
+  FUNDRAISEUP_LANGUAGE_ALIASES = {
+    "en" => "en-US",
+    "fr" => "fr-FR",
+    "pt" => "pt-PT",
+    "nb" => "no",
+    "nn" => "no",
+    "zh-HK" => "zh-TW",
+    "iw" => "he"
+  }.freeze
+
   # Shortcode name → the attributes it accepts
   SHORTCODES = {
     "label" => %w(tier frequency),
@@ -59,6 +76,18 @@ class DonationShortcodes
           malformed: attribute_text.gsub( ATTRIBUTE_PATTERN, "" ).strip.present?
         )
       end
+    end
+
+    def fundraiseup_language( locale )
+      locale = locale.to_s
+      language = locale.split( "-" ).first
+      candidates = [
+        locale,
+        FUNDRAISEUP_LANGUAGE_ALIASES[locale],
+        language,
+        FUNDRAISEUP_LANGUAGE_ALIASES[language]
+      ]
+      candidates.find {| code | FUNDRAISEUP_LANGUAGES.include?( code ) }
     end
 
     # [error_key, options] pairs for Announcement to add to its body errors.
@@ -151,7 +180,8 @@ class DonationShortcodes
   # language preset, or nil if no amount is set for the tier. The base url's
   # query is kept; QUERY_PARAMS given here replace params of the same name,
   # and the amount, currency, frequency and language always come from the
-  # viewer.
+  # viewer. _lang is left out when FundraiseUp has no language for the
+  # viewer's locale, so FundraiseUp picks one itself.
   def url( tier: DEFAULT_TIER, frequency: DEFAULT_FREQUENCY, url: nil, **query )
     price = @currency.amount( tier: tier, frequency: frequency )
     return unless price
@@ -165,9 +195,14 @@ class DonationShortcodes
     params.merge!(
       "amount" => price.amount.to_s,
       "currency" => price.currency,
-      "recurring" => DonationCurrency.config["frequencies"][frequency.to_s],
-      "_lang" => locale.to_s
+      "recurring" => DonationCurrency.config["frequencies"][frequency.to_s]
     )
+    language = self.class.fundraiseup_language( locale )
+    if language
+      params["_lang"] = language
+    else
+      params.delete( "_lang" )
+    end
     uri.query = Rack::Utils.build_query( params )
     uri.to_s
   end
