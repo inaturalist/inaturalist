@@ -1021,6 +1021,7 @@ class UsersController < ApplicationController
       where( "created_at < ?", before ).
       order( "id desc" )
     scopes["Flag"] = Flag.
+      includes( :resolver ).
       where( "created_at < ?", before ).
       where( flaggable_user_id: @user ).
       where( "flaggable_type != 'Taxon'" ).
@@ -1046,6 +1047,12 @@ class UsersController < ApplicationController
       @records += scope.to_a
     end
     @records = @records.flatten.sort_by( &:created_at )
+    flag_ids = @records.select {| record | record.is_a?( Flag ) }.map( &:id )
+    @flag_comment_counts = if flag_ids.empty?
+      {}
+    else
+      Comment.where( parent_type: "Flag", parent_id: flag_ids ).group( :parent_id ).count
+    end
     respond_to do | format |
       format.html do
         render layout: "bootstrap-container"
