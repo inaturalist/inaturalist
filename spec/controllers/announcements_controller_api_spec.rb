@@ -495,12 +495,6 @@ describe AnnouncementsController do
 
     before { sign_in admin }
 
-    def priced_tiers_text
-      DonationShortcodes.priced_tiers.reject {| _frequency, tiers | tiers.empty? }.map do | frequency, tiers |
-        "#{frequency}: #{tiers.join( ', ' )}"
-      end.join( "; " )
-    end
-
     it "renders on the new form" do
       get :new
       expect( help ).to be_present
@@ -512,11 +506,6 @@ describe AnnouncementsController do
       announcement = create :announcement
       get :edit, params: { id: announcement.id }
       expect( help ).to be_present
-    end
-
-    it "lists the priced tiers from the donation config" do
-      get :new
-      expect( help.text ).to include( priced_tiers_text )
     end
 
     it "lists every attribute the shortcodes accept" do

@@ -7328,9 +7328,6 @@ en:
       donation_shortcode_query_params_desc: |
         %{shortcode} only. Added to the link as written. %{utm_term} defaults
         to the announcement ID.
-      # Lists which donation tiers have amounts set and can be used, in the
-      # donation shortcodes help panel. %{tiers} is e.g. "once: min; monthly: min"
-      donation_shortcode_priced_tiers: "Tiers with amounts: %{tiers}. Other tiers can't be saved."
       # Heading above example shortcodes in the donation shortcodes help panel
       donation_shortcode_examples: Examples
       end_desc: |

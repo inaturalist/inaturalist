@@ -34,11 +34,6 @@ module AnnouncementsHelper
       currency: country["currency"] )
   end
 
-  def donation_priced_tiers_text
-    priced = DonationShortcodes.priced_tiers.reject {| _frequency, tiers | tiers.empty? }
-    priced.map {| frequency, tiers | "#{frequency}: #{tiers.join( ', ' )}" }.join( "; " )
-  end
-
   def donation_shortcode_query_params_html
     safe_join( DonationShortcodes::QUERY_PARAMS.map {| param | content_tag( :code, param ) }, " " )
   end
