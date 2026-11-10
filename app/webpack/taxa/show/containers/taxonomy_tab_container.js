@@ -1,8 +1,5 @@
 import { connect } from "react-redux";
 import TaxonomyTab from "../components/taxonomy_tab";
-import TaxonomyTabLegacy from "../components/taxonomy_tab_legacy";
-import gatedComponent from "../../../shared/components/gated_component";
-import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 import { showNewTaxon } from "../actions/taxon";
 import { toggleConfig } from "../../../shared/ducks/config";
 
@@ -14,8 +11,7 @@ function mapStateToProps( state ) {
     names: state.taxon.names,
     allChildrenShown: state.config.allChildrenShown,
     provisionalChildrenShown: state.config.provisionalChildrenShown,
-    currentUser: state.config.currentUser,
-    config: state.config
+    currentUser: state.config.currentUser
   };
 }
 
@@ -30,6 +26,6 @@ function mapDispatchToProps( dispatch ) {
 const TaxonomyTabContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( gatedComponent( RESPONSIVE_TEST_GROUPS, TaxonomyTab, TaxonomyTabLegacy ) );
+)( TaxonomyTab );
 
 export default TaxonomyTabContainer;
