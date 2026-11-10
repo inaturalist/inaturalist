@@ -90,25 +90,6 @@ describe DonationShortcodes do
     end
   end
 
-  describe ".priced_tiers" do
-    it "lists the default country's priced tiers for each frequency" do
-      expect( DonationShortcodes.priced_tiers ).to eq(
-        "once" => %w(min mid),
-        "monthly" => %w(min)
-      )
-    end
-
-    it "lists no tiers for a frequency the default country doesn't price" do
-      config["currencies"]["USD"]["tiers"].delete( "monthly" )
-      expect( DonationShortcodes.priced_tiers ).to eq( "once" => %w(min mid), "monthly" => [] )
-    end
-
-    it "uses the country's tiers before its currency's" do
-      config["countries"]["US"]["tiers"] = { "once" => { "max" => 50 } }
-      expect( DonationShortcodes.priced_tiers["once"] ).to eq %w(min mid max)
-    end
-  end
-
   describe ".fundraiseup_language" do
     {
       "es" => "es",

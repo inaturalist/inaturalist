@@ -134,6 +134,12 @@ en:
     few: '<span class="count">%{count}</span> OBSERVERS'
     many: '<span class="count">%{count}</span> OBSERVERS'
     other: '<span class="count">%{count}</span> OBSERVERS'
+  # Footer below the scrolling list of flagged taxa on taxonomy details pages.
+  # count is the number of unresolved flags on taxa covered by the taxon
+  # framework; the list itself only shows the most-flagged taxa
+  x_open_flags_scroll_for_more:
+    one: "%{count} open flag · scroll for more"
+    other: "%{count} open flags · scroll for more"
   x_others:
     one: "%{count} other"
     other: "%{count} others"
@@ -662,6 +668,8 @@ en:
   alphabetical: Alphabetical
   alphabetical_order: Alphabetical Order
   already_have_an_account_log_in_html: Already have an account? <strong>Log in.</strong>
+  # Badge on the profile describing when a user became an iNaturalist ambassador, e.g. "Ambassador since January 2020"
+  ambassador_since_date: Ambassador since %{date}
   amphibians: amphibians
   # This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
   # in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
@@ -2433,6 +2441,12 @@ en:
   flag_this_sound: Flag This Sound
   flagged_: Flagged
   flagged_for_curation: Flagged for Curation
+  # Note below a list of flagged taxa explaining the difference between the
+  # count column and the links in each row. open_flags is the translated
+  # column header "Open flags" and view_all_flags is the translated link text
+  # "View All Flags". Taxa below a taxon are its descendants, e.g. the species
+  # within a genus
+  flagged_taxa_counts_explanation: "“%{open_flags}” counts flags on that taxon only. “%{view_all_flags}” also shows flags on taxa below it."
   flagged_taxon: Flagged Taxon
   flagged_thing_explanation: "Users have flagged this %{thing} because"
   flagging_desc: |
@@ -4165,6 +4179,18 @@ en:
   # Geoprivacy status in which no privacy has been applied
   open_: Open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
+  # Column header for the number of unresolved flags on each taxon in a list
+  # of flagged taxa. The count only includes flags on that exact taxon, not
+  # flags on its descendants (lower-ranked taxa within it)
+  open_flags: Open flags
+  # Label for the number of unresolved flags on taxa covered by a taxon
+  # framework, i.e. the taxa whose classification the framework tracks against
+  # an external source. count is a link that shows a list of the flagged taxa
+  open_flags_on_covered_taxa_count: "Open flags on covered taxa: %{count}"
+  # Label for the number of unresolved flags on taxa within this taxon that are
+  # covered by a taxon framework attached to one of its ancestors. count is a
+  # link that shows a list of the flagged taxa
+  open_flags_on_downstream_taxa_count_html: "Open flags on downstream taxa: %{count}"
   open_street_map: OpenStreetMap
   optional: optional
   options: Options
@@ -6762,6 +6788,9 @@ en:
   view_all_caps: VIEW ALL
   view_all_fields: View All Fields
   view_all_flags: View All Flags
+  # Link that opens a search of unresolved flags on a taxon and all of its
+  # descendants (lower-ranked taxa within it)
+  view_all_flags_including_descendants: View All Flags (including descendants)
   view_all_members: View All Members
   # As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
