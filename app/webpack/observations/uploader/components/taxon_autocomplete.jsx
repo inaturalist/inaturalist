@@ -380,7 +380,7 @@ class TaxonAutocomplete extends React.Component {
   }
 
   inputValue( ) {
-    return stripTags( this.inputElement( ).val( ) );
+    return _.escape( stripTags( this.inputElement( ).val( ) ) );
   }
 
   idElement( ) {
