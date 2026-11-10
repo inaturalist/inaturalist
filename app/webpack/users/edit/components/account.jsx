@@ -255,20 +255,6 @@ const Account = ( {
                   </tr>
                   <tr>
                     <td className="col-xs-4 borderless table-row">
-                      Responsive Obs Detail
-                    </td>
-                    <td className="col-xs-4 borderless table-row">
-                      <button
-                        type="button"
-                        className="btn btn-success"
-                        onClick={( ) => toggleGroup( "responsive-obs-detail" )}
-                      >
-                        { config.currentUser.isInTestGroup( "responsive-obs-detail" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="col-xs-4 borderless table-row">
                       Responsive Taxon Detail
                     </td>
                     <td className="col-xs-4 borderless table-row">

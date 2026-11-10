@@ -22,17 +22,13 @@ test.describe( "Observation detail page", () => {
       longitude: 1,
       observed_on_string: "yesterday"
     } );
-    // The responsive obs-detail page is gated behind the responsive-obs-detail
-    // test group, so the overflow checks below must run as a group member.
     viewer = await appMake( "create", "user", { password: VIEWER_PASSWORD } );
-    await app( "add_test_group", { user_id: viewer.id, test_groups: "responsive-obs-detail" } );
   } );
 
   test.beforeEach( async ( { page } ) => {
     await mockObservationFetch( page, obs );
   } );
 
-  // Anonymous, so out of the test group: this is the legacy-path smoke test.
   test( "loads and displays core observation content", async ( { page } ) => {
     const detailPage = new ObservationDetailPage( page );
     await detailPage.goto( obs.id as number );
@@ -119,7 +115,6 @@ test.describe( "Observation detail page", () => {
 
     test.beforeAll( async () => {
       curator = await app( "make_curator", { password: CURATOR_PASSWORD } ) as Record<string, unknown>;
-      await app( "add_test_group", { user_id: curator.id, test_groups: "responsive-obs-detail" } );
     } );
 
     expectNoHorizontalOverflow( () => `/observations/${obs.id}`, {

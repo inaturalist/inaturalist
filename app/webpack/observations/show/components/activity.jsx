@@ -9,14 +9,8 @@ import {
 import moment from "moment-timezone";
 import { addImplicitDisagreementsToActivity } from "../../../shared/util";
 import UserImage from "../../../shared/components/user_image";
-import ActivityItemNew from "./activity_item";
-import ActivityItemLegacy from "./activity_item_legacy";
-import gatedComponent from "../../../shared/components/gated_component";
-import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
+import ActivityItem from "./activity_item";
 import ActivityCreatePanelContainer from "../containers/activity_create_panel_container";
-
-// config flows to each item via {...this.props}, so the wrapper switches on it.
-const ActivityItem = gatedComponent( RESPONSIVE_TEST_GROUPS, ActivityItemNew, ActivityItemLegacy );
 
 class Activity extends React.Component {
   componentDidMount( ) {
