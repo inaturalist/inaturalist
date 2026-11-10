@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import ReactDOMServer from "react-dom/server";
 import inaturalistjs from "inaturalistjs";
 import { Glyphicon } from "react-bootstrap";
-import { updateSession } from "../../../shared/util";
+import { updateSession, stripTags } from "../../../shared/util";
 
 let searchInProgress;
 
@@ -380,7 +380,7 @@ class TaxonAutocomplete extends React.Component {
   }
 
   inputValue( ) {
-    return this.inputElement( ).val( );
+    return _.escape( stripTags( this.inputElement( ).val( ) ) );
   }
 
   idElement( ) {
@@ -541,7 +541,7 @@ class TaxonAutocomplete extends React.Component {
     inaturalistjs.taxa.autocomplete( params ).then( r => {
       const results = r.results || [];
       // show as the last item an option to search external name providers
-      if ( searchExternalEnabled !== false ) {
+      if ( searchExternalEnabled !== false && this.inputValue( ) ) {
         results.push( {
           type: "search_external",
           title: I18n.t( "search_external_name_providers" )
