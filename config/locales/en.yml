@@ -7292,43 +7292,32 @@ en:
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
         client.
-      # Heading of a collapsible help panel under the announcement body field
-      # explaining donation shortcodes, codes in square brackets that are
-      # replaced with donation amounts
+      # Heading of the donation shortcodes help panel on the announcement form
       donation_shortcodes: Donation shortcodes
-      # Introduction in the donation shortcodes help panel on the announcement form
+      # Introduction to the donation shortcodes help panel
       donation_shortcodes_desc: |
         Shortcodes in the body are replaced with donation amounts in each
         viewer's currency and language. Save the announcement, then preview
         other countries and languages on its page.
-      # Describes the [donation-label] shortcode in the donation shortcodes
-      # help panel. %{example} is example button text, e.g. "Donate $5 (USD)"
+      # %{example} is button text, e.g. "Donate $5 (USD)"
       donation_label_shortcode_desc: Donation button text with the amount, e.g. %{example}
-      # Describes the [donation-url] shortcode in the donation shortcodes help
-      # panel. FundraiseUp is the donation service; href is the HTML attribute
-      # that holds a link's address
+      # FundraiseUp is a service name; href is an HTML attribute, don't translate
       donation_url_shortcode_desc: |
         Link to the FundraiseUp checkout with the amount, currency, frequency,
         and language filled in. Use it as a link's href.
-      # Heading above the list of optional settings shortcodes accept, in the
-      # donation shortcodes help panel
+      # Heading for the optional settings of donation shortcodes
       donation_shortcode_attributes: Optional attributes
-      # Describes the tier attribute of donation shortcodes. %{tiers} is a
-      # list of tier names, e.g. "min, mid, max"; %{default_tier} is one of them
+      # %{tiers} is e.g. "min, mid, max"; %{default_tier} is e.g. "min"
       donation_shortcode_tier_desc: "Which amount to show: %{tiers}. Default: %{default_tier}."
-      # Describes the frequency attribute of donation shortcodes. %{frequencies}
-      # is a list of names, e.g. "once, monthly"; %{default_frequency} is one of them
+      # %{frequencies} is e.g. "once, monthly"; %{default_frequency} is e.g. "once"
       donation_shortcode_frequency_desc: "One-time or monthly donation: %{frequencies}. Default: %{default_frequency}."
-      # Describes the url attribute of donation shortcodes. %{shortcode} is
-      # "[donation-url]" and %{default_url} a web address
+      # %{shortcode} is "[donation-url]"; %{default_url} is a web address
       donation_shortcode_url_desc: "%{shortcode} only. The FundraiseUp page to link to. Default: %{default_url}"
-      # Describes tracking attributes of donation shortcodes such as
-      # utm_source. %{shortcode} is "[donation-url]" and %{utm_term} is the
-      # name of one of the attributes
+      # %{shortcode} is "[donation-url]"; %{utm_term} is a setting name
       donation_shortcode_query_params_desc: |
         %{shortcode} only. Added to the link as written. %{utm_term} defaults
         to the announcement ID.
-      # Heading above example shortcodes in the donation shortcodes help panel
+      # Heading above example donation shortcodes
       donation_shortcode_examples: Examples
       end_desc: |
         Time in your account time zone that this announcement will stop
