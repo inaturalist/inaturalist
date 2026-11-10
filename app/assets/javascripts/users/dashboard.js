@@ -1,7 +1,6 @@
-/* global DASHBOARD_FROM, DASHBOARD_PAGE, DASHBOARD_TAB, I18n, updateSession */
+/* global DASHBOARD_PAGE, DASHBOARD_TAB, I18n, updateSession */
 
 var DASHBOARD = {
-  fromIDs: { },
   fromPage: { }
 };
 
@@ -10,11 +9,7 @@ setTimeout( function ( ) {
   $( "#flash" ).fadeOut( 1000 );
 }, 5000 );
 
-// set default `from` param from variable defined in view
-if ( DASHBOARD_FROM ) {
-  DASHBOARD.fromIDs[DASHBOARD_TAB] = DASHBOARD_FROM;
-}
-if ( typeof DASHBOARD_PAGE !== "undefined" && DASHBOARD_PAGE ) {
+if ( DASHBOARD_PAGE ) {
   DASHBOARD.fromPage[DASHBOARD_TAB] = DASHBOARD_PAGE;
 }
 
@@ -27,8 +22,6 @@ if ( "scrollRestoration" in window.history ) {
 window.onpopstate = function ( event ) {
   // fragment links (#header) push entries with no state
   if ( !event.state ) { return; }
-  // set the tab's current `from` and `page` params based on the popped state
-  DASHBOARD.fromIDs[event.state.type] = event.state.fromID;
   DASHBOARD.fromPage[event.state.type] = event.state.page;
   // show the tab and fetch the content
   DASHBOARD.loadTab( event.state.type, { noState: true } );
@@ -73,10 +66,6 @@ DASHBOARD.tabSettings = function ( type ) {
       target = "#updates_target";
     }
   }
-  // use this tab's current `from` param
-  if ( DASHBOARD.fromIDs[type] ) {
-    params.from = DASHBOARD.fromIDs[type];
-  }
   if ( DASHBOARD.fromPage[type] ) {
     params.page = DASHBOARD.fromPage[type];
   }
@@ -99,26 +88,11 @@ DASHBOARD.fetchContent = function ( fetchURL, type, target ) {
         : data;
       DASHBOARD.finishPanelLoading( target );
       $( target ).html( content );
-      // enable jQuery click events on loaded pagination buttons
-      if ( $( "body" ).hasClass( "responsive" ) ) {
-        DASHBOARD.enablePageButtonClickEvents( target );
-      } else {
-        DASHBOARD.enableMoreButtonClickEvents( target );
-      }
+      DASHBOARD.enablePageButtonClickEvents( target );
       if ( type !== "comments" ) {
         $( ".subscriptionsettings" ).subscriptionSettings( );
       }
     }
-  } );
-};
-
-DASHBOARD.enableMoreButtonClickEvents = function ( target ) {
-  $( target ).find( "#more_pagination" ).unbind( "click" );
-  $( target ).find( "#more_pagination" ).bind( "click", function ( e ) {
-    e.preventDefault( );
-    var tab = $( e.target ).parents( ".tab-pane:first" ).data( "tab" );
-    DASHBOARD.fromIDs[tab] = $( this ).data( "from" );
-    DASHBOARD.loadTab( tab, { scrollToTop: true } );
   } );
 };
 
@@ -134,14 +108,12 @@ DASHBOARD.enablePageButtonClickEvents = function ( target ) {
 
 DASHBOARD.setState = function ( type, params, options ) {
   var opts = options || { };
-  var state = { type: type, fromID: DASHBOARD.fromIDs[type], page: DASHBOARD.fromPage[type] };
+  var state = { type: type, page: DASHBOARD.fromPage[type] };
   // on page load, just replace the empty state with the default params
   if ( opts.replaceState ) {
     window.history.replaceState( state, "" );
   } else if ( !opts.noState ) {
     var dashboardParams = { tab: type };
-    // store this tab's current `from` param in state
-    if ( DASHBOARD.fromIDs[type] ) { dashboardParams.from = DASHBOARD.fromIDs[type]; }
     // store this tab's current `page` param in state
     if ( DASHBOARD.fromPage[type] ) { dashboardParams.page = DASHBOARD.fromPage[type]; }
     // stores the state and changes the browser URL
