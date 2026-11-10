@@ -200,9 +200,6 @@ class AnnouncementsController < ApplicationController
     end
   end
 
-  # Admins can preview donation shortcodes as viewed from another country and
-  # in another locale without changing their own locale. Any two-letter code
-  # is accepted so an unlisted one previews the default country.
   def load_preview_options
     country = params[:preview_country].to_s.strip.upcase
     @preview_country = country if country.match?( /\A[A-Z]{2}\z/ )
