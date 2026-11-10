@@ -310,7 +310,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         -size #{width}x#{title_height} \
         -background transparent \
         -fill #{text_color} \
-        -font #{title.ascii_only? ? self.class.lato_light_font_path : light_font_path} \
+        -font #{( label_method == 'label' && title.ascii_only? ) ? self.class.lato_light_font_path : light_font_path} \
         -kerning #{title_kerning} \
         #{label_method}:"#{title}" \
         -trim \
@@ -346,7 +346,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       \\( \
         -size #{width}x40 \
         -background transparent \
-        -font #{owner.ascii_only? ? self.class.lato_medium_font_path : font_path} \
+        -font #{( label_method == 'label' && owner.ascii_only? ) ? self.class.lato_medium_font_path : font_path} \
         #{kerning} \
         -fill #{text_color} \
         #{label_method}:"#{owner}" \
@@ -384,7 +384,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       \\( \
         -size #{text_width}x55 \
         -background transparent \
-        -font #{count_txt.ascii_only? ? self.class.lato_semibold_font_path : semibold_font_path} \
+        -font #{( label_method == 'label' && count_txt.ascii_only? ) ? self.class.lato_semibold_font_path : semibold_font_path} \
         -fill white \
         #{label_method}:"#{count_txt}" \
         -trim \
@@ -397,7 +397,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       \\( \
         -size #{text_width}x#{label_height} \
         -background transparent \
-        -font #{label_txt.ascii_only? ? self.class.lato_medium_font_path : medium_font_path} \
+        -font #{( label_method == 'label' && label_txt.ascii_only? ) ? self.class.lato_medium_font_path : medium_font_path} \
         -kerning 2 \
         -fill white \
         #{label_method}:"#{label_txt}" \

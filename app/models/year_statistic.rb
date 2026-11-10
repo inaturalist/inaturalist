@@ -925,7 +925,7 @@ class YearStatistic < ApplicationRecord
     # hard-coding some publication scores for 2025. The Altmetric API we were using previously
     # has just recently required an API key. We have not yet been granted API key access, so
     # these scores were manually compiled to generate a reasonable list of highly scored
-    # publications for 2025
+    # publications for 2026
     known_doi_scores = {
       "10.1038/s41559-026-03074-6" => 180,
       "10.1038/s41467-026-73613-z" => 110,
@@ -1653,11 +1653,15 @@ class YearStatistic < ApplicationRecord
     repos.each do | repo |
       page = 1
       loop do
-        url = "https://api.github.com/repos/inaturalist/#{repo}/pulls?state=closed&page=#{page}&per_page=100&direction=desc"
+        url = "https://api.github.com/repos/inaturalist/#{repo}/pulls?state=closed&page=#{page}&per_page=100&sort=updated&direction=desc"
         puts "Getting #{url}" if options[:debug]
         pulls = try_and_try_again( [RestClient::Forbidden, RestClient::TooManyRequests] ) do
-          JSON.parse( RestClient.get( url ) )
+          JSON.parse( RestClient.get( url, {
+            "User-Agent" => "iNaturalist/Github"
+          } ) )
         end
+        sleep( 1 )
+
         relevant_pulls = ( pulls || [] ).select do | pull |
           pull["merged_at"] &&
             !%w(MEMBER COLLABORATOR).include?( pull["author_association"] ) &&
@@ -1675,11 +1679,18 @@ class YearStatistic < ApplicationRecord
               angielt
               kvangork
               sepeterson
+              sundisc
+              caseyhofford
+              jtklein-agents
+              kueda
             ).include?( pull["user"]["login"] ) &&
             ( merge_date = Date.parse( pull["merged_at"] ) ) &&
             merge_date.year == year
         end
-        break if relevant_pulls.blank? && !year_pulls.blank?
+        pull_years = pulls.select {| pull | pull["merged_at"] }.map do | pull |
+          Date.parse( pull["merged_at"] ).year
+        end.uniq
+        break if pull_years.empty? || pull_years.all? {| pull_year | pull_year < year }
 
         year_pulls += relevant_pulls
         page += 1
