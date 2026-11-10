@@ -6218,7 +6218,8 @@ CREATE TABLE public.users (
     fundraiseup_plan_frequency character varying,
     fundraiseup_plan_status character varying,
     fundraiseup_plan_started_at date,
-    suspended_until timestamp without time zone
+    suspended_until timestamp without time zone,
+    ambassador_since date
 );
 
 
@@ -12388,6 +12389,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260706194405'),
 ('20260730225905'),
 ('20260806120000'),
-('20260819211039');
+('20260819211039'),
+('20261103180000');
 
 

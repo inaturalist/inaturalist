@@ -83,6 +83,10 @@
           = link_to monthly_supporters_url_for_page do
             %i.icon-logomark
           =t :monthly_supporter_since_date_html, date: l( @donor_since, format: :month_year ), url: monthly_supporters_url_for_page
+      - if @user.ambassador_since
+        %span.monthly-supporter.ambassador
+          %i.icon-logomark
+          =t :ambassador_since_date, date: l( @user.ambassador_since, format: :month_year )
 
     #description
       - if @user.description.blank?

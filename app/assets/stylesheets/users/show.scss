@@ -73,6 +73,9 @@ h1 {
     margin-right: 20px;
     a { color: #333; }
   }
+  > .monthly-supporter {
+    display: block;
+  }
   .monthly-supporter,
   .monthly-supporter a {
     color: $inat-green;
