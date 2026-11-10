@@ -11,37 +11,21 @@ describe UsersController, "dashboard" do
     expect( response ).to be_successful
   end
 
-  describe "responsive gate" do
-    it "sets the responsive variant for a responsive-global member" do
-      user = User.make!
-      user.update_column( :test_groups, "responsive-global" )
-      sign_in user
-      get :dashboard
-      expect( assigns( :responsive ) ).to be_truthy
-      expect( request.variant ).to include( :responsive )
-    end
+  describe "rendering" do
+    render_views
 
-    describe "rendering" do
-      render_views
-
-      it "renders the responsive by-login header for a responsive-global member" do
-        user = User.make!
-        user.update_column( :test_groups, "responsive-global" )
-        sign_in user
-        get :dashboard
-        doc = Nokogiri::HTML( response.body )
-        expect( doc.at_css( "h3 .logged-in-user-image" ) ).not_to be_nil
-        expect( doc.at_css( "#UserSubnavTabDrawer" ) ).not_to be_nil
-      end
-    end
-
-    it "does not set the responsive variant for a user in no test group" do
+    it "is responsive for a user in no test group" do
       user = User.make!
       expect( user.test_groups ).to be_blank
       sign_in user
       get :dashboard
-      expect( assigns( :responsive ) ).to be_falsey
-      expect( request.variant ).to be_blank
+      expect( assigns( :responsive ) ).to be_truthy
+      expect( assigns( :test_group_toggle ) ).to be_nil
+      expect( response.body ).to have_tag( "meta[name=viewport][content*='width=device-width']" )
+      doc = Nokogiri::HTML( response.body )
+      expect( doc.at_css( "h3 .logged-in-user-image" ) ).not_to be_nil
+      expect( doc.at_css( "#UserSubnavTabDrawer" ) ).not_to be_nil
+      expect( doc.at_css( ".dashboard-columns" ) ).not_to be_nil
     end
   end
 
@@ -214,39 +198,42 @@ describe UsersController, "dashboard" do
           ( first <=> second ) == -1
         end
 
-        it "renders above sidebar announcements in the legacy sidebar" do
+        it "renders above the header for mobile and in the sidebar for desktop" do
           get :dashboard
-          expect( doc.css( priority_selector ).size ).to eq 1
-          expect( doc.at_css( ".col-md-4 #{priority_selector}" ) ).not_to be_nil
-          expect( precedes?( doc.at_css( priority_selector ), doc.at_css( "#announcement-#{sidebar.id}" ) ) ).to be true
+          mobile = doc.at_css( ".dashboard-priority-mobile #{priority_selector}" )
+          expect( mobile ).not_to be_nil
+          expect( precedes?( mobile, doc.at_css( ".dashboard-columns" ) ) ).to be true
+          expect( doc.at_css( ".dashboard-sidebar .dashboard-priority-sidebar.desktop-only #{priority_selector}" ) ).
+            not_to be_nil
+          expect( AnnouncementImpression.where( announcement_id: priority.id ).sum( :impressions_count ) ).to eq 1
         end
 
-        describe "responsive" do
-          before { user.update_column( :test_groups, "responsive-global" ) }
-
-          it "renders above the header for mobile and in the sidebar for desktop" do
-            get :dashboard
-            mobile = doc.at_css( ".dashboard-priority-mobile #{priority_selector}" )
-            expect( mobile ).not_to be_nil
-            expect( precedes?( mobile, doc.at_css( ".dashboard-columns" ) ) ).to be true
-            expect( doc.at_css( ".dashboard-sidebar .dashboard-priority-sidebar.desktop-only #{priority_selector}" ) ).
-              not_to be_nil
-            expect( AnnouncementImpression.where( announcement_id: priority.id ).sum( :impressions_count ) ).to eq 1
-          end
-
-          it "only renders in the sidebar when there is a users/dashboard announcement" do
-            create :announcement, placement: Announcement::USERS_DASHBOARD
-            get :dashboard
-            expect( doc.at_css( ".dashboard-priority-mobile" ) ).to be_nil
-            expect( doc.css( priority_selector ).size ).to eq 1
-            sidebar_copy = doc.at_css( ".dashboard-sidebar .dashboard-priority-sidebar #{priority_selector}" )
-            expect( sidebar_copy ).not_to be_nil
-            expect( doc.at_css( ".dashboard-priority-sidebar.desktop-only" ) ).to be_nil
-            expect( precedes?( sidebar_copy, doc.at_css( "#announcement-#{sidebar.id}" ) ) ).to be true
-          end
+        it "only renders in the sidebar when there is a users/dashboard announcement" do
+          create :announcement, placement: Announcement::USERS_DASHBOARD
+          get :dashboard
+          expect( doc.at_css( ".dashboard-priority-mobile" ) ).to be_nil
+          expect( doc.css( priority_selector ).size ).to eq 1
+          sidebar_copy = doc.at_css( ".dashboard-sidebar .dashboard-priority-sidebar #{priority_selector}" )
+          expect( sidebar_copy ).not_to be_nil
+          expect( doc.at_css( ".dashboard-priority-sidebar.desktop-only" ) ).to be_nil
+          expect( precedes?( sidebar_copy, doc.at_css( "#announcement-#{sidebar.id}" ) ) ).to be true
         end
       end
     end
+  end
+end
+
+describe UsersController, "dashboard_updates" do
+  let( :user ) { User.make! }
+
+  before { sign_in user }
+
+  it "ignores the from param and paginates by page" do
+    expect_any_instance_of( User ).to receive( :recent_notifications ).
+      with( hash_including( filters: [], page: 2 ) ).
+      and_return( WillPaginate::Collection.new( 2, 50, 0 ) )
+    get :dashboard_updates, params: { from: 1.day.ago.to_i, page: 2 }
+    expect( response ).to be_successful
   end
 end
 

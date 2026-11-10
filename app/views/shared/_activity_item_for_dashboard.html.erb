@@ -25,22 +25,16 @@
 -%>
 
 <li class="<%= ("id_refined" unless item.current?) if item.is_a? Identification  %> <%= "last" if last  %>">
-  <div class="timeline-badge">
-    <% if user && !no_thumb -%>
-      <%= link_to_user user do %>
-        <%= user_image user, size: "thumb", class: "padding" %>
-      <% end -%>
-    <% end -%>
-  </div>
   <div class="timeline-panel">
     <div class="timeline-heading">
       <h2 class="timeline-title">
-        <span class="time">
-          <%= compact_date( posted_at, obscured: item.is_a?( Observation ) && !item.coordinates_viewable_by?( current_user ) ) %>
-        </span>
         <%- unless user.blank? || ( item.is_a?( Flag ) && item.resolver && user == item.resolver ) -%>
           <span style="font-weight:normal; color:gray">
-            <%- title = link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
+            <%-
+              name_link = link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user))
+              avatar_link = link_to(user_image(user, size: "thumb", no_inline_dimensions: true, class: "timeline-badge"), person_path(user))
+              title = no_thumb ? name_link : safe_join([avatar_link, name_link], " ")
+            %>
             <%- if item.is_a? Identification %>
               <%=t :user_added_an_identification_html, user: title %>
             <% elsif item.is_a? Flag %>
@@ -54,6 +48,9 @@
             <%- end -%>
           </span>
         <%- end -%>
+        <span class="time">
+          <%= compact_date( posted_at, obscured: item.is_a?( Observation ) && !item.coordinates_viewable_by?( current_user ) ) %>
+        </span>
       </h2>
     </div>
     <div class="timeline-body">

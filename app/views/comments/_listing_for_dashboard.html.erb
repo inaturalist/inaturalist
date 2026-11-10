@@ -1,71 +1,70 @@
-<%- 
+<%-
   comment ||= listing_for_dashboard
   extra ||= nil
   parent = comment.parent
 -%>
 
 <li class="observation_multiple_added">
-  <div class="timeline-badge plain">
-    <%- case parent.class.to_s -%>
-    <%- when "Observation" -%>
-      <%= link_to observation_image(parent, :options => {:size => "square"}, :style => "max-width:48px;"), parent %>
-    <%- when "Post" -%>
-      <%- case parent.parent_type -%>
-      <%- when "User" -%>
-        <%= link_to_user parent.user do %>
-          <%= user_image parent.user, size: "thumb", style: "max-width:48px;" %>
-        <% end -%>
-      <%- when "Project" -%>
-        <%= link_to image_tag(parent.parent.icon.url(:thumb), :options => {:class => "projecticon"}, :style => "max-width:48px;"), parent %>
-      <%- else %>
-        <%= link_to image_tag(parent.parent.logo_square.url, :options => {:class => "siteicon"}, :style => "max-width:48px;"), parent %>
-      <%- end -%>
-    <%- when "ListedTaxon" %>
-      <%= link_to image_tag("checklist-icon-color-32px.png", :style => "max-width:48px;"), parent %>
-    <%- else %>
-      <%= link_to image_tag("logo-cccccc-20px.png"), parent %>
-    <%- end -%>
-  </div>                    
-  <div class="sub-badge">
-    <i class="glyphicon glyphicon-bookmark"></i>
-  </div>
   <div class="timeline-panel">
     <div class="timeline-heading">
+      <div class="timeline-badge plain">
+        <%- case parent.class.to_s -%>
+        <%- when "Observation" -%>
+          <%= link_to observation_image(parent, :options => {:size => "square"}, :style => "max-width:48px;"), parent %>
+        <%- when "Post" -%>
+          <%- case parent.parent_type -%>
+          <%- when "User" -%>
+            <%= link_to_user parent.user do %>
+              <%= user_image parent.user, size: "thumb", style: "max-width:48px;" %>
+            <% end -%>
+          <%- when "Project" -%>
+            <%= link_to image_tag(parent.parent.icon.url(:thumb), :options => {:class => "projecticon"}, :style => "max-width:48px;"), parent %>
+          <%- else %>
+            <%= link_to image_tag(parent.parent.logo_square.url, :options => {:class => "siteicon"}, :style => "max-width:48px;"), parent %>
+          <%- end -%>
+        <%- when "ListedTaxon" %>
+          <%= link_to image_tag("checklist-icon-color-32px.png", :style => "max-width:48px;"), parent %>
+        <%- else %>
+          <%= link_to image_tag("logo-cccccc-20px.png"), parent %>
+        <%- end -%>
+      </div>
       <h2 class="timeline-title">
+        <span class="tagline">
+          <%- if parent.class.to_s == "Observation" -%>
+              <%= raw t( "new_comment_on_a_parent_by_user_link",
+                parent: translate_with_consistent_case(
+                  parent.class.name.parameterize.underscore,
+                  default: t(
+                    parent.class.name,
+                    scope: [:activerecord, :models]
+                  )
+                ),
+                user_link:  link_to( parent.user.login, parent.user ),
+                vow_or_con: parent.class.to_s.first.downcase ) %>
+          <%- elsif parent.class.to_s == "Post" -%>
+              <%= raw t( "new_comment_on_a_parent_by_user_link",
+                parent: translate_with_consistent_case(
+                  :journal_post,
+                  default: t( "Post", scope: [:activerecord, :models] )
+                ),
+                user_link:  link_to( parent.user.login, parent.user ),
+                vow_or_con: parent.class.to_s.first.downcase ) %>
+          <%- elsif parent.user %>
+              <%= raw t( "new_comment_on_a_parent_by_user_link",
+                parent: translate_with_consistent_case(
+                  parent.class.name.parameterize.underscore,
+                  default: t(
+                    parent.class.name,
+                    scope: [:activerecord, :models]
+                  )
+                ),
+                user_link:  link_to( parent.user.login, parent.user ),
+                vow_or_con: parent.class.to_s.first.downcase ) %>
+          <%- end -%>
+        </span>
         <span class="comment_time">
           <i class="glyphicon glyphicon-time"></i> <%=t :time_ago, :time => time_ago_in_words(comment.created_at) %>
         </span>
-        <%- if parent.class.to_s == "Observation" -%>
-            <%= raw t( "new_comment_on_a_parent_by_user_link",
-              parent: translate_with_consistent_case(
-                parent.class.name.parameterize.underscore,
-                default: t(
-                  parent.class.name,
-                  scope: [:activerecord, :models]
-                )
-              ),
-              user_link:  link_to( parent.user.login, parent.user ),
-              vow_or_con: parent.class.to_s.first.downcase ) %>
-        <%- elsif parent.class.to_s == "Post" -%>
-            <%= raw t( "new_comment_on_a_parent_by_user_link",
-              parent: translate_with_consistent_case(
-                :journal_post,
-                default: t( "Post", scope: [:activerecord, :models] )
-              ),
-              user_link:  link_to( parent.user.login, parent.user ),
-              vow_or_con: parent.class.to_s.first.downcase ) %>
-        <%- elsif parent.user %>
-            <%= raw t( "new_comment_on_a_parent_by_user_link",
-              parent: translate_with_consistent_case(
-                parent.class.name.parameterize.underscore,
-                default: t(
-                  parent.class.name,
-                  scope: [:activerecord, :models]
-                )
-              ),
-              user_link:  link_to( parent.user.login, parent.user ),
-              vow_or_con: parent.class.to_s.first.downcase ) %>
-        <%- end -%>
       </h2>
     </div>
     <div class="timeline-body">
@@ -82,7 +81,7 @@
           <% end %>
         <%- else %>
           <div class="commenttype">
-            <%= link_to parent.class.to_s.underscore.humanize, parent %> 
+            <%= link_to parent.class.to_s.underscore.humanize, parent %>
             <% if parent.user -%>
               <%= t( :by_user, user: link_to( parent.user.login, parent.user ) ).html_safe %>
             <% end -%>
@@ -104,7 +103,7 @@
     </div>
     <div class="timeline-footer">
       <%= link_to t( "view_#{parent.class.to_s.underscore}", default: t(:view_x, x: t( parent.class.to_s.underscore, default: parent.class.to_s ) ) ), parent, :class => "btn btn-sm btn-primary" %>
-      <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#<%= "#{target_id}" %>" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> <%=t :show_more %></span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> <%=t :show_less %> </span></button>
+      <button type="button" class="btn btn-sm btn-default btn_expand collapsed" data-toggle="collapse" data-target="#<%= "#{target_id}" %>" aria-pressed="false" autocomplete="off"> <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> <span class="btn_expand_label"><%=t :show_more %></span></span><span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> <span class="btn_expand_label"><%=t :show_less %></span> </span></button>
     </div>
   </div>
 </li>
