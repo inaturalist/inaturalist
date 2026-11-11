@@ -2924,6 +2924,10 @@ en:
   jobs: Jobs
   join: Join
   join_and_add_an_observation_to_project_html: Join and Add An Observation to %{project}
+  # Shown after dismissing a banner that invites you to join, or lets you
+  # leave, a test of a new feature, pointing at the other place to do both
+  join_or_leave_this_test_in_account_settings_html: |
+    You can join or leave this test any time in your <a href="%{url}">account settings</a>.
   join_project: Join this project
   # Prompt to join a specific project
   join_project?: Join %{project}?
@@ -3421,6 +3425,9 @@ en:
   # Label shown when a date has not been entered
   missing_date: Missing Date
   mobile: Mobile
+  # Name of the test group for the responsive, mobile-friendly redesign of the
+  # site, matching the wording of the banner that prompts you to join it
+  mobile_friendly_mode: Mobile-Friendly Mode
   moderation_history_for_user_html: Moderation history for %{user}
   moderation_history_desc_html: |
     This includes moderator actions (e.g. hiding or unhiding comments), notes,
@@ -5298,6 +5305,14 @@ en:
   resolved_by: Resolved by
   resolved_by_user_on_date_html: Resolved by %{user} on %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
+  # Prompt to join a test of the responsive, mobile-friendly redesign of the
+  # site. Shown at the bottom of pages that have been converted so far.
+  responsive_global_test_prompt: |
+    Test the new mobile-friendly responsive layout? 
+    Note that not all pages have been converted yet.
+  # Message displayed when you have joined the test of the responsive,
+  # mobile-friendly redesign. Could also be translated as "You have joined..."
+  responsive_global_test_joined_status: Currently in mobile-friendly mode.
   restart: Restart
   restore: Restore
   restoring: Restoring...
