@@ -267,20 +267,6 @@ const Account = ( {
                       </button>
                     </td>
                   </tr>
-                  <tr>
-                    <td className="col-xs-4 borderless table-row">
-                      Responsive Taxon Detail
-                    </td>
-                    <td className="col-xs-4 borderless table-row">
-                      <button
-                        type="button"
-                        className="btn btn-success"
-                        onClick={( ) => toggleGroup( "responsive-taxon-detail" )}
-                      >
-                        { config.currentUser.isInTestGroup( "responsive-taxon-detail" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
-                      </button>
-                    </td>
-                  </tr>
                 </>
                 ) }
                 { ( viewerIsAdmin || config.currentUser.isInTestGroup( "helpful-id-tips-reviewer" ) ) && (

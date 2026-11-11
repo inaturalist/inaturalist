@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import { Grid, Row, Col } from "react-bootstrap";
-import Carousel from "./carousel";
-import TaxonPhoto from "../../shared/components/taxon_photo";
+import Carousel from "../../../taxa/show/components/carousel";
+import TaxonPhoto from "../../../taxa/shared/components/taxon_photo";
 
 const RecentObservations = ( { observations, showPhotoModal, url } ) => {
   if ( !observations ) { return ( <span /> ); }

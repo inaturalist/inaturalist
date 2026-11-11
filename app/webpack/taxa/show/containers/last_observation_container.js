@@ -18,8 +18,7 @@ function mapStateToProps( state ) {
     linkText: I18n.t( "leaderboard" ),
     name: I18n.t( "no_observations" ),
     noContent: true,
-    className: "LastObservation",
-    config: state.config
+    className: "LastObservation"
   };
   if ( !last ) {
     return props;

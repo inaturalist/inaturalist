@@ -2,9 +2,6 @@ import { connect } from "react-redux";
 import { updateSession } from "../../../shared/util";
 import { setConfig } from "../../../shared/ducks/config";
 import TaxonPageTabs from "../components/taxon_page_tabs";
-import TaxonPageTabsLegacy from "../components/taxon_page_tabs_legacy";
-import gatedComponent from "../../../shared/components/gated_component";
-import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 import {
   fetchDescription,
   fetchLinks,
@@ -26,8 +23,7 @@ function mapStateToProps( state ) {
   return {
     taxon: state.taxon.taxon,
     currentUser: state.config.currentUser,
-    chosenTab,
-    config: state.config
+    chosenTab
   };
 }
 
@@ -74,6 +70,6 @@ function mapDispatchToProps( dispatch ) {
 const TaxonPageTabsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( gatedComponent( RESPONSIVE_TEST_GROUPS, TaxonPageTabs, TaxonPageTabsLegacy ) );
+)( TaxonPageTabs );
 
 export default TaxonPageTabsContainer;
