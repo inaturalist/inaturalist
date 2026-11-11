@@ -405,7 +405,6 @@ class User < ApplicationRecord
   HELPFUL_ID_TIPS_TEST_GROUP = "helpful-id-tips"
   ADMIN_ONLY_TEST_GROUPS = %w(
     responsive-header
-    responsive-obs-detail
     helpful-id-tips-reviewer
   ).freeze
 

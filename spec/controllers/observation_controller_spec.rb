@@ -227,37 +227,20 @@ describe ObservationsController do
       )
     end
 
-    describe "responsive obs-detail test group gate" do
-      it "sets the responsive flags for a user in the responsive-obs-detail group" do
-        user = User.make!
-        user.update_column( :test_groups, "responsive-obs-detail" )
-        sign_in user
+    describe "responsive layout" do
+      it "is responsive for anonymous users" do
         get :show, params: { id: observation.id }
-        expect( assigns( :obs_detail_responsive ) ).to be_truthy
         expect( assigns( :responsive ) ).to be_truthy
         expect( assigns( :skip_min_width ) ).to be_truthy
+        expect( assigns( :test_group_toggle ) ).to be_nil
       end
 
-      it "sets the responsive flags for a user in the responsive-global group" do
-        user = User.make!
-        user.update_column( :test_groups, "responsive-global" )
-        sign_in user
-        get :show, params: { id: observation.id }
-        expect( assigns( :obs_detail_responsive ) ).to be_truthy
-        expect( assigns( :responsive ) ).to be_truthy
-        expect( assigns( :skip_min_width ) ).to be_truthy
-      end
-
-      it "does not set the responsive flags for a user not in the test group" do
+      it "is responsive for a signed-in user in no test group" do
         sign_in User.make!
         get :show, params: { id: observation.id }
-        expect( assigns( :obs_detail_responsive ) ).to be_falsey
-        expect( assigns( :responsive ) ).to be_falsey
-      end
-
-      it "does not set the responsive flags for anonymous users" do
-        get :show, params: { id: observation.id }
-        expect( assigns( :responsive ) ).to be_falsey
+        expect( assigns( :responsive ) ).to be_truthy
+        expect( assigns( :skip_min_width ) ).to be_truthy
+        expect( assigns( :test_group_toggle ) ).to be_nil
       end
     end
 

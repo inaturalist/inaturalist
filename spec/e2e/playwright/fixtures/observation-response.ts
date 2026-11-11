@@ -65,6 +65,7 @@ export function buildObservationApiResponse( obsData: Record<string, unknown> ) 
         captive: false,
         out_of_range: false,
         comments: ( obsData["comments"] as unknown[] ) || [],
+        identifications: obsData["identifications"],
         ofvs: ( obsData["ofvs"] as unknown[] ) || [],
         comments_count: ( ( obsData["comments"] as unknown[] ) || [] ).length,
         identifications_count: 1,

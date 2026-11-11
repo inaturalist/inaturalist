@@ -22,17 +22,13 @@ test.describe( "Observation detail page", () => {
       longitude: 1,
       observed_on_string: "yesterday"
     } );
-    // The responsive obs-detail page is gated behind the responsive-obs-detail
-    // test group, so the overflow checks below must run as a group member.
     viewer = await appMake( "create", "user", { password: VIEWER_PASSWORD } );
-    await app( "add_test_group", { user_id: viewer.id, test_groups: "responsive-obs-detail" } );
   } );
 
   test.beforeEach( async ( { page } ) => {
     await mockObservationFetch( page, obs );
   } );
 
-  // Anonymous, so out of the test group: this is the legacy-path smoke test.
   test( "loads and displays core observation content", async ( { page } ) => {
     const detailPage = new ObservationDetailPage( page );
     await detailPage.goto( obs.id as number );
@@ -113,13 +109,65 @@ test.describe( "Observation detail page", () => {
     }
   } );
 
+  test( "wrapped identification taxon lines do not overlap", async ( { page } ) => {
+    await page.setViewportSize( { width: 360, height: 800 } );
+    await mockObservationFetch( page, {
+      ...obs,
+      identifications: [
+        {
+          id: 999996,
+          uuid: "00000000-0000-0000-0000-000000000996",
+          created_at: "2024-06-01T12:00:00+00:00",
+          current: true,
+          category: "leading",
+          hidden: false,
+          flags: [],
+          moderator_actions: [],
+          user: { id: 987654, login: "beetledude", name: "beetledude" },
+          taxon: {
+            id: 999995,
+            name: "Gastrida abdominalis",
+            rank: "species",
+            rank_level: 10,
+            is_active: true,
+            ancestors: [
+              {
+                id: 999994,
+                name: "Galerucinae",
+                rank: "subfamily",
+                rank_level: 33,
+                preferred_common_name: "Skeletonizing Leaf and Flea Beetles"
+              }
+            ]
+          }
+        }
+      ]
+    } );
+    await page.goto( `/observations/${obs.id}` );
+    const taxon = page.locator( "#ObservationShow .ActivityItem .identification span.taxon" ).first();
+    await expect( taxon.locator( ".member-group" ) ).toBeVisible( { timeout: 15_000 } );
+    const overlaps = await taxon.evaluate( el => {
+      const walker = document.createTreeWalker( el, NodeFilter.SHOW_TEXT );
+      const rects: DOMRect[] = [];
+      for ( let node = walker.nextNode(); node; node = walker.nextNode() ) {
+        const range = document.createRange();
+        range.selectNodeContents( node );
+        rects.push( ...Array.from( range.getClientRects() ).filter( r => r.height > 0 ) );
+      }
+      const lines = rects.sort( ( a, b ) => a.top - b.top );
+      return lines.slice( 1 ).filter( ( r, i ) => (
+        r.top - lines[i].top > 1 && r.top < lines[i].bottom - 1
+      ) ).length;
+    } );
+    expect( overlaps ).toBe( 0 );
+  } );
+
   test.describe( "with RtlTestGroupToggle", () => {
     const CURATOR_PASSWORD = "TestPass123!";
     let curator: Record<string, unknown>;
 
     test.beforeAll( async () => {
       curator = await app( "make_curator", { password: CURATOR_PASSWORD } ) as Record<string, unknown>;
-      await app( "add_test_group", { user_id: curator.id, test_groups: "responsive-obs-detail" } );
     } );
 
     expectNoHorizontalOverflow( () => `/observations/${obs.id}`, {
