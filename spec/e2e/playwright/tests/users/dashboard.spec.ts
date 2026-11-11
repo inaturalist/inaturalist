@@ -195,6 +195,23 @@ test.describe( "dashboard tab interactions", () => {
     } );
   } );
 
+  test( "shows scroll to top after scrolling and returns to the top", async ( { page } ) => {
+    await page.goto( "/home" );
+    await expect( page.locator( "#updates_target #mock-update-1" ) ).toBeVisible();
+    const button = page.locator( "a.scroll-to-top" );
+    await expect( button ).toBeHidden();
+
+    await page.evaluate( () => {
+      document.body.style.paddingBottom = "3000px";
+      window.scrollTo( 0, window.innerHeight + 1 );
+    } );
+    await expect( button ).toBeVisible();
+
+    await button.click();
+    await expect.poll( () => page.evaluate( () => window.scrollY ) ).toBe( 0 );
+    await expect( button ).toBeHidden();
+  } );
+
   test( "toggles subscribe modal labels by type", async ( { page } ) => {
     await page.goto( "/home" );
     const modal = page.locator( "#subscribeModal" );
