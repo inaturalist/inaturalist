@@ -232,7 +232,6 @@ describe ObservationsController do
         get :show, params: { id: observation.id }
         expect( assigns( :responsive ) ).to be_truthy
         expect( assigns( :skip_min_width ) ).to be_truthy
-        expect( assigns( :test_group_toggle ) ).to be_nil
       end
 
       it "is responsive for a signed-in user in no test group" do
@@ -240,7 +239,6 @@ describe ObservationsController do
         get :show, params: { id: observation.id }
         expect( assigns( :responsive ) ).to be_truthy
         expect( assigns( :skip_min_width ) ).to be_truthy
-        expect( assigns( :test_group_toggle ) ).to be_nil
       end
     end
 

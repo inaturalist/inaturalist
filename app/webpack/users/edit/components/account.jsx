@@ -21,6 +21,7 @@ const Account = ( {
   const siteId = userSettings.site_id || 1;
   const currentNetworkAffiliation = sites.filter( site => site.id === siteId )[0];
   const viewerIsAdmin = config.currentUser.roles && config.currentUser.roles.indexOf( "admin" ) >= 0;
+  const showHelpfulIdTips = viewerIsAdmin || config.currentUser.isInTestGroup( "helpful-id-tips-reviewer" );
 
   // these locales are not available for all regions (like "en-US")
   // so taking the list of keys from the english version
@@ -210,33 +211,10 @@ const Account = ( {
               </SettingsItem>
             )
             : <div className="nocontent"><div className="loading_spinner" /></div> }
+          { ( viewerIsAdmin || showHelpfulIdTips ) && (
           <SettingsItem header={I18n.t( "test_groups" )} htmlFor="user_test_groups">
             <table className="table">
               <tbody className="borderless">
-                <tr>
-                  <td className="col-xs-4 borderless table-row">
-                    { I18n.t( "mobile_friendly_mode" ) }
-                  </td>
-                  <td className="col-xs-4 borderless table-row text-center">
-                    <button
-                      type="button"
-                      className="btn btn-success"
-                      onClick={( ) => toggleGroup( "responsive-global" )}
-                    >
-                      { config.currentUser.isInTestGroup( "responsive-global" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
-                    </button>
-                    { config.currentUser.isInTestGroup( "responsive-global" ) && (
-                      <a
-                        className="btn btn-link"
-                        href="https://inaturalist.typeform.com/to/HZsu49MO"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        { I18n.t( "feedback" ) }
-                      </a>
-                    ) }
-                  </td>
-                </tr>
                 { viewerIsAdmin && (
                 <tr>
                   <td className="col-xs-4 borderless table-row">
@@ -253,7 +231,7 @@ const Account = ( {
                   </td>
                 </tr>
                 ) }
-                { ( viewerIsAdmin || config.currentUser.isInTestGroup( "helpful-id-tips-reviewer" ) ) && (
+                { showHelpfulIdTips && (
                 <tr>
                   <td className="col-xs-4 borderless table-row">
                     Helpful ID Tips
@@ -272,6 +250,7 @@ const Account = ( {
               </tbody>
             </table>
           </SettingsItem>
+          ) }
         </div>
       </div>
       <div className="row">

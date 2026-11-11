@@ -303,7 +303,6 @@ describe ProjectsController, "index hero" do
     stub_projects
     get :index
     expect( assigns( :responsive ) ).to be_truthy
-    expect( assigns( :test_group_toggle ) ).to be_nil
     expect( response.body ).to have_tag( "meta[name=viewport][content*='width=device-width']" )
     expect( response.body ).to have_tag( "#hero-container" )
     expect( response.body ).not_to have_tag( "#carousel-container" )
@@ -344,7 +343,6 @@ describe ProjectsController, "browse" do
 
   it "is responsive" do
     expect( assigns( :responsive ) ).to be_truthy
-    expect( assigns( :test_group_toggle ) ).to be_nil
     expect( response.body ).to have_tag( "meta[name=viewport][content*='width=device-width']" )
     expect( response.body ).to have_tag( "#projects-browse" )
   end
@@ -387,7 +385,6 @@ describe ProjectsController, "search" do
 
     it "is responsive" do
       expect( assigns( :responsive ) ).to be_truthy
-      expect( assigns( :test_group_toggle ) ).to be_nil
       expect( response.body ).to have_tag( "meta[name=viewport][content*='width=device-width']" )
       expect( response.body ).to have_tag( "#projects-search" )
     end
