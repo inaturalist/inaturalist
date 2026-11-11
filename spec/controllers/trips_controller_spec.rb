@@ -28,3 +28,13 @@ describe TripsController, "show" do
     expect( response.body ).to include observation_path( obs )
   end
 end
+
+describe TripsController, "create" do
+  include_context "blog v2 params"
+
+  it "ignores blog v2 attributes" do
+    sign_in User.make!
+    post :create, params: { trip: { title: "Foo", body: "Bar" }.merge( blog_v2_params ) }
+    expect( Trip.last.attributes.slice( *blog_v2_attributes ) ).to eq blog_v2_attributes.index_with( nil )
+  end
+end
