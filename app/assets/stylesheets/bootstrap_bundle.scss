@@ -328,6 +328,3 @@ body>div>.popover .label {
   font-weight: 600;
 }
 
-// Imported here rather than at the top of the file so container-padding lands
-// after the nested `@import "bootstrap"` above and cannot be shadowed by it.
-@import "shared/test_group_banner";

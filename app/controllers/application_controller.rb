@@ -964,13 +964,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_testing_responsive
-    if current_user&.in_test_group?( "responsive-header" )
-      @responsive = true
-    end
-    if current_user&.in_test_group?( "responsive-global" )
-      @responsive = true
-      request.variant = :responsive
-    end
+    @responsive = true if current_user&.in_test_group?( "responsive-header" )
   end
 
   def not_allowed_with_html_and_json_response( redirect_record )

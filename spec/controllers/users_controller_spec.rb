@@ -20,7 +20,6 @@ describe UsersController, "dashboard" do
       sign_in user
       get :dashboard
       expect( assigns( :responsive ) ).to be_truthy
-      expect( assigns( :test_group_toggle ) ).to be_nil
       expect( response.body ).to have_tag( "meta[name=viewport][content*='width=device-width']" )
       doc = Nokogiri::HTML( response.body )
       expect( doc.at_css( "h3 .logged-in-user-image" ) ).not_to be_nil
