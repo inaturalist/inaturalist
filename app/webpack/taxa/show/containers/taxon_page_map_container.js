@@ -1,9 +1,6 @@
 import { connect } from "react-redux";
 import { updateCurrentUser } from "../../../shared/ducks/config";
 import TaxonPageMap from "../components/taxon_page_map";
-import TaxonPageMapLegacy from "../components/taxon_page_map_legacy";
-import gatedComponent from "../../../shared/components/gated_component";
-import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 
 function mapStateToProps( state ) {
   const bounds = state.config.mapBounds;
@@ -63,6 +60,6 @@ function mapDispatchToProps( dispatch ) {
 const TaxonPageMapContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( gatedComponent( RESPONSIVE_TEST_GROUPS, TaxonPageMap, TaxonPageMapLegacy ) );
+)( TaxonPageMap );
 
 export default TaxonPageMapContainer;

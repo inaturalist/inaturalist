@@ -195,6 +195,7 @@ class YearStatistic < ApplicationRecord
     # shareable has already been generated, and it doesn't need to be updated
     # and the CloudFront cache for that image invalidated
     year_statistic.delay(
+      queue: "slow",
       priority: USER_INTEGRITY_PRIORITY,
       unique_hash: "YearStatistic::generate_shareable_image::#{user.id}::#{year}"
     ).generate_shareable_image( skip_user_locale: true )
@@ -924,18 +925,17 @@ class YearStatistic < ApplicationRecord
     # hard-coding some publication scores for 2025. The Altmetric API we were using previously
     # has just recently required an API key. We have not yet been granted API key access, so
     # these scores were manually compiled to generate a reasonable list of highly scored
-    # publications for 2025
+    # publications for 2026
     known_doi_scores = {
-      "10.1038/s41586-025-09351-x" => 200,
-      "10.1038/s44358-025-00068-3" => 135,
-      "10.3897/aiep.55.151390" => 94,
-      "10.1371/journal.pone.0326507" => 40,
-      "10.3897/neobiota.99.145703" => 21,
-      "10.1007/s10531-025-03121-x" => 14,
-      "10.3390/insects16080790" => 12,
-      "10.1007/s42991-025-00516-9" => 10,
-      "10.1002/ece3.71926" => 8,
-      "10.1007/s44415-025-00029-w" => 7
+      "10.1038/s41559-026-03074-6" => 180,
+      "10.1038/s41467-026-73613-z" => 110,
+      "10.1098/rsos.260347" => 100,
+      "10.1111/jbi.70244" => 45,
+      "10.1038/s41467-026-72379-8" => 63,
+      "10.1186/s12862-026-02524-w" => 15,
+      "10.1111/ddi.70205" => 12,
+      "10.1093/evolut/qpag093" => 12,
+      "10.1016/j.japb.2026.04.003" => 5
     }
 
     gbif_endpoint = "https://api.gbif.org/v1/literature/search"
@@ -1653,11 +1653,15 @@ class YearStatistic < ApplicationRecord
     repos.each do | repo |
       page = 1
       loop do
-        url = "https://api.github.com/repos/inaturalist/#{repo}/pulls?state=closed&page=#{page}&per_page=100&direction=desc"
+        url = "https://api.github.com/repos/inaturalist/#{repo}/pulls?state=closed&page=#{page}&per_page=100&sort=updated&direction=desc"
         puts "Getting #{url}" if options[:debug]
         pulls = try_and_try_again( [RestClient::Forbidden, RestClient::TooManyRequests] ) do
-          JSON.parse( RestClient.get( url ) )
+          JSON.parse( RestClient.get( url, {
+            "User-Agent" => "iNaturalist/Github"
+          } ) )
         end
+        sleep( 1 )
+
         relevant_pulls = ( pulls || [] ).select do | pull |
           pull["merged_at"] &&
             !%w(MEMBER COLLABORATOR).include?( pull["author_association"] ) &&
@@ -1675,11 +1679,18 @@ class YearStatistic < ApplicationRecord
               angielt
               kvangork
               sepeterson
+              sundisc
+              caseyhofford
+              jtklein-agents
+              kueda
             ).include?( pull["user"]["login"] ) &&
             ( merge_date = Date.parse( pull["merged_at"] ) ) &&
             merge_date.year == year
         end
-        break if relevant_pulls.blank? && !year_pulls.blank?
+        pull_years = pulls.select {| pull | pull["merged_at"] }.map do | pull |
+          Date.parse( pull["merged_at"] ).year
+        end.uniq
+        break if pull_years.empty? || pull_years.all? {| pull_year | pull_year < year }
 
         year_pulls += relevant_pulls
         page += 1

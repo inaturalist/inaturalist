@@ -1,8 +1,5 @@
 import { connect } from "react-redux";
 import IdentificationsTab from "../components/identifications_tab";
-import IdentificationsTabLegacy from "../components/identifications_tab_legacy";
-import gatedComponent from "../../../shared/components/gated_component";
-import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 import {
   setIdentificationsQuery,
   nominateIdentification,
@@ -41,6 +38,6 @@ function mapDispatchToProps( dispatch ) {
 const IdentificationsTabContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( gatedComponent( RESPONSIVE_TEST_GROUPS, IdentificationsTab, IdentificationsTabLegacy ) );
+)( IdentificationsTab );
 
 export default IdentificationsTabContainer;

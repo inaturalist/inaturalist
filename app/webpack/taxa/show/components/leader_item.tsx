@@ -1,10 +1,6 @@
 import React from "react";
 import _ from "lodash";
 import CoverImage from "../../../shared/components/cover_image";
-import gatedComponent from "../../../shared/components/gated_component";
-import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
-import LeaderItemLegacy from "./leader_item_legacy";
-import type { Config } from "../../../shared/types";
 
 interface LeaderItemProps {
   noContent?: boolean;
@@ -27,7 +23,7 @@ interface LeaderItemProps {
   onClickUrlPayload?: Record<string, unknown>;
 }
 
-const LeaderItemResponsive = ( {
+const LeaderItem = ( {
   noContent,
   className = "",
   label,
@@ -101,17 +97,5 @@ const LeaderItemResponsive = ( {
     </div>
   );
 };
-
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-// `config` is consumed by the gate, not by either layout, so it lives only on the gate's props.
-type GateProps = React.ComponentProps<typeof LeaderItemResponsive> & { config?: Config };
-const LegacyFallback = LeaderItemLegacy as unknown as React.ComponentType<GateProps>;
-
-const LeaderItem = gatedComponent<GateProps>(
-  RESPONSIVE_TEST_GROUPS,
-  LeaderItemResponsive,
-  LegacyFallback
-);
 
 export default LeaderItem;

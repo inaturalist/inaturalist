@@ -2,7 +2,7 @@ import {
   test, expect, Locator, Page
 } from "@playwright/test";
 import { login } from "../../helpers/auth.helper";
-import { app, appMake } from "../../support/on-rails";
+import { appMake } from "../../support/on-rails";
 import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
 import { VIEWPORTS } from "../../../shared/breakpoints";
 
@@ -13,14 +13,6 @@ let testEmail: string;
 test.beforeAll( async () => {
   const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
   testEmail = user.email as string;
-  // Enable the responsive dashboard. "responsive-global" flips the template
-  // variant (responsive dashboard + subnav drawer); "responsive-header"
-  // collapses the nav into a hamburger on narrow viewports. Both are needed for
-  // the page-level overflow check to exercise the shipping responsive layout.
-  await app( "add_test_group", {
-    user_id: user.id,
-    test_groups: ["responsive-header", "responsive-global"]
-  } );
 } );
 
 test.beforeEach( async ( { page } ) => {
@@ -203,6 +195,23 @@ test.describe( "dashboard tab interactions", () => {
     } );
   } );
 
+  test( "shows scroll to top after scrolling and returns to the top", async ( { page } ) => {
+    await page.goto( "/home" );
+    await expect( page.locator( "#updates_target #mock-update-1" ) ).toBeVisible();
+    const button = page.locator( "a.scroll-to-top" );
+    await expect( button ).toBeHidden();
+
+    await page.evaluate( () => {
+      document.body.style.paddingBottom = "3000px";
+      window.scrollTo( 0, window.innerHeight + 1 );
+    } );
+    await expect( button ).toBeVisible();
+
+    await button.click();
+    await expect.poll( () => page.evaluate( () => window.scrollY ) ).toBe( 0 );
+    await expect( button ).toBeHidden();
+  } );
+
   test( "toggles subscribe modal labels by type", async ( { page } ) => {
     await page.goto( "/home" );
     const modal = page.locator( "#subscribeModal" );
@@ -230,7 +239,6 @@ test.describe( "priority sidebar announcements", () => {
   // target_creator keeps these announcements from showing up for other tests' users
   async function visitWithAnnouncements( page: Page, placements: string[], viewport: keyof typeof VIEWPORTS ) {
     const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
-    await app( "add_test_group", { user_id: user.id, test_groups: ["responsive-global"] } );
     await Promise.all( placements.map( placement => appMake( "create", "announcement", {
       placement,
       body: `${placement} annc`,

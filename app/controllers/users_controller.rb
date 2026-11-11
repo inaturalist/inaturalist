@@ -63,8 +63,7 @@ class UsersController < ApplicationController
       c.send(
         :dashboard_updates_url,
         :user_id => c.instance_variable_get( "@current_user" ).id,
-        :ssl => c.request.ssl?,
-        :variant => Array( c.request.variant ).first
+        :ssl => c.request.ssl?
       )
     },
     :if => Proc.new {|c|
@@ -439,9 +438,6 @@ class UsersController < ApplicationController
 
   def dashboard_updates
     filters = [ ]
-    if params[:from]
-      filters << { range: { created_at: { lt: Time.at( params[:from].to_i ) } } }
-    end
     unless params[:notifier_type].blank?
       filters << { term: { notifier_type: params[:notifier_type] } }
     end
@@ -566,7 +562,7 @@ class UsersController < ApplicationController
       @ungrafted_taxa = Taxon.where( "ancestry IS NULL" ).active.limit( 50 ).
         sort{ |t| t.id }[0...5]
     end
-    @test_group_toggle = "responsive-global"
+    @responsive = true
     respond_to do |format|
       format.html do
         render layout: "bootstrap"
