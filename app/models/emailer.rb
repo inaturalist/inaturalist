@@ -272,7 +272,7 @@ class Emailer < ActionMailer::Base
     @application = application
     # Small guard against not receiving applications if help@inat gets
     # unsubscribed from transactional emails
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.account
+    @x_smtpapi_headers[:asm_group_id] = CONFIG.sendgrid&.asm_group_ids&.account
     mail( opts )
   end
 
@@ -300,50 +300,20 @@ class Emailer < ActionMailer::Base
 
   def year_in_review( user, options = {} )
     @user = user
-    return if @user&.email&.blank?
-    # We are contemplating sending this to unconfirmed users
-    # return unless @user&.confirmed?
-    return if @user.prefers_no_email?
-    return if @user.suspended?
-    return if @user.email_suppressed_in_group?( EmailSuppression::NEWS_EMAILS )
+    preparation_succeeded = prepare_year_in_review
+    return unless preparation_succeeded
 
-    @year = Date.today.year
-    global_year_statistic = YearStatistic.
-      where( year: @year ).
-      where( "user_id IS NULL" ).
-      where( "site_id IS NULL" ).
-      first
-    unless global_year_statistic
-      raise "Cannot send YIR email if YIR for this year does not exist"
-    end
+    year_in_review_email( options )
+  ensure
+    reset_locale
+  end
 
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
-    @force_default_site_url_options = true
-    set_locale
-    @shareable_image_url = global_year_statistic.
-      shareable_image_for_locale( I18n.locale )&.
-      url
-    if options[:raise_on_missing_translations]
-      without_english_fallback do
-        # Set default options to raise errors on missing translation. I hope
-        # there's a better way to do this but I haven't figured out one
-        I18n.with_options( raise: true ) do | i18n |
-          # Assign I18n instance with custom options to an instance var so it
-          # can be accessed in views.
-          @i18n = i18n
-          mail( to: @user.email, subject: @i18n.t( :yir_email_subject, year: @year ) ) do | format |
-            format.html { render layout: "emailer_dark" }
-            format.text { render layout: "emailer_dark" }
-          end
-        end
-      end
-    else
-      @i18n = I18n
-      mail( to: user.email, subject: t( :yir_email_subject, year: @year ) ) do | format |
-        format.html { render layout: "emailer_dark" }
-        format.text { render layout: "emailer_dark" }
-      end
-    end
+  def year_in_review_simplified( user, options = {} )
+    @user = user
+    preparation_succeeded = prepare_year_in_review
+    return unless preparation_succeeded
+
+    year_in_review_email( options )
   ensure
     reset_locale
   end
@@ -487,7 +457,7 @@ class Emailer < ActionMailer::Base
       options[:force]
     elsif !@user&.locale&.blank?
       @user&.locale
-    elsif @user&.site && !@user&.site&.preferred_locale&.blank?
+    elsif @user&.site && !@user.site&.preferred_locale&.blank?
       @user&.site&.preferred_locale
     end
     I18n.locale = normalize_locale( locale )
@@ -501,7 +471,7 @@ class Emailer < ActionMailer::Base
 
   # rubocop:disable Naming/MemoizedInstanceVariableName
   def set_site
-    @site ||= @user ? @user.site : nil
+    @site ||= @user&.site
     @site ||= Site.default
   end
   # rubocop:enable Naming/MemoizedInstanceVariableName
@@ -519,7 +489,7 @@ class Emailer < ActionMailer::Base
       # This is an identifier specifying the Sendgrid Unsubscribe Group this
       # email belongs to. This assumes we're using one for all email sent from
       # the webapp
-      asm_group_id: CONFIG&.sendgrid&.asm_group_ids&.default,
+      asm_group_id: CONFIG.sendgrid&.asm_group_ids&.default,
       # We're having Sendgrid perform this substitution because ERB freaks out
       # when you put tags like this in a template
       sub: {
@@ -574,5 +544,55 @@ class Emailer < ActionMailer::Base
       end
     end
     filtered_species
+  end
+
+  def prepare_year_in_review
+    raise unless @user.is_a?( User )
+    return if @user&.email&.blank?
+    return if @user.prefers_no_email?
+    return if @user.suspended?
+    return if @user.email_suppressed_in_group?( EmailSuppression::NEWS_EMAILS )
+
+    @year = Date.today.year
+    global_year_statistic = YearStatistic.
+      where( year: @year ).
+      where( "user_id IS NULL" ).
+      where( "site_id IS NULL" ).
+      first
+    unless global_year_statistic
+      raise "Cannot send YIR email if YIR for this year does not exist"
+    end
+
+    @x_smtpapi_headers[:asm_group_id] = CONFIG.sendgrid&.asm_group_ids&.news
+    @force_default_site_url_options = true
+    set_locale
+    @shareable_image_url = global_year_statistic.
+      shareable_image_for_locale( I18n.locale )&.
+      url
+    true
+  end
+
+  def year_in_review_email( options = {} )
+    if options[:raise_on_missing_translations]
+      without_english_fallback do
+        # Set default options to raise errors on missing translation. I hope
+        # there's a better way to do this but I haven't figured out one
+        I18n.with_options( raise: true ) do | i18n |
+          # Assign I18n instance with custom options to an instance var so it
+          # can be accessed in views.
+          @i18n = i18n
+          mail( to: @user.email, subject: @i18n.t( :yir_email_subject, year: @year ) ) do | format |
+            format.html { render layout: "emailer_dark" }
+            format.text { render layout: "emailer_dark" }
+          end
+        end
+      end
+    else
+      @i18n = I18n
+      mail( to: @user.email, subject: t( :yir_email_subject, year: @year ) ) do | format |
+        format.html { render layout: "emailer_dark" }
+        format.text { render layout: "emailer_dark" }
+      end
+    end
   end
 end

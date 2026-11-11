@@ -54,9 +54,9 @@ async function expectHeaderItems( page: Page, visible: HeaderItem[] ): Promise<v
   }
 }
 
-async function gotoHeader( page: Page, breakpoint: BreakpointName ): Promise<void> {
+async function gotoHeader( page: Page, breakpoint: BreakpointName, path = "/" ): Promise<void> {
   await page.setViewportSize( VIEWPORTS[breakpoint] );
-  await page.goto( "/" );
+  await page.goto( path );
   await page.locator( "#header" ).waitFor( );
 }
 
@@ -257,7 +257,8 @@ test.describe( "Header item inventory (no test group)", () => {
   } );
 
   test( "shows every header item except the hamburger menu at the md breakpoint", async ( { page } ) => {
-    await gotoHeader( page, "md" );
+    // the dashboard ("/") is always responsive now, so use a page that still has the legacy header
+    await gotoHeader( page, "md", "/users/edit" );
 
     await expectHeaderItems( page, LEGACY_INVENTORY );
   } );

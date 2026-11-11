@@ -124,23 +124,20 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
   end
 
   def label_method
-    Rails.env.production? && locale.to_s =~ /^(il|he|ar|kn|mr|sat|th)/ ? "pango" : "label"
+    ( Rails.env.production? && locale.to_s =~ /^(il|he|ar|kn|mr|sat|th)/ ) ? "pango" : "label"
   end
 
   def generate_icon_or_logo( work_path )
     # Get the icon
-    icon_or_logo_url = if year_statistic.user
-      ApplicationController.helpers.image_url( year_statistic.user.icon.url( :large ) ).to_s.gsub( %r{([^:])//},
-        "\\1/" )
-    elsif year_statistic.site
-      ApplicationController.helpers.image_url( year_statistic.site.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
-    elsif Site.default
-      ApplicationController.helpers.image_url( Site.default.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
+    original_path = if year_statistic.user
+      self.class.cache_icon_or_logo( year_statistic.user.icon.url( :large ) )
+    elsif year_statistic.site&.logo_square&.present?
+      self.class.cache_icon_or_logo( year_statistic.site.logo_square.url )
+    elsif Site.default&.logo_square&.present?
+      self.class.cache_icon_or_logo( Site.default.logo_square.url )
     else
-      ApplicationController.helpers.image_url( "bird.png" ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      File.join( Rails.root, "app", "assets", "images", "bird.png" )
     end
-    icon_or_logo_url = icon_or_logo_url.sub( "staticdev", "static" ) # basically just for testing
-    original_path = self.class.cache_asset( icon_or_logo_url )
 
     # Resize icon to a 500x500 square
     square_path = File.join( work_path, "square_icon_or_logo.png" )
@@ -313,7 +310,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         -size #{width}x#{title_height} \
         -background transparent \
         -fill #{text_color} \
-        -font #{light_font_path} \
+        -font #{( label_method == 'label' && title.ascii_only? ) ? self.class.lato_light_font_path : light_font_path} \
         -kerning #{title_kerning} \
         #{label_method}:"#{title}" \
         -trim \
@@ -349,7 +346,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       \\( \
         -size #{width}x40 \
         -background transparent \
-        -font #{font_path} \
+        -font #{( label_method == 'label' && owner.ascii_only? ) ? self.class.lato_medium_font_path : font_path} \
         #{kerning} \
         -fill #{text_color} \
         #{label_method}:"#{owner}" \
@@ -387,7 +384,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       \\( \
         -size #{text_width}x55 \
         -background transparent \
-        -font #{semibold_font_path} \
+        -font #{( label_method == 'label' && count_txt.ascii_only? ) ? self.class.lato_semibold_font_path : semibold_font_path} \
         -fill white \
         #{label_method}:"#{count_txt}" \
         -trim \
@@ -400,7 +397,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       \\( \
         -size #{text_width}x#{label_height} \
         -background transparent \
-        -font #{medium_font_path} \
+        -font #{( label_method == 'label' && label_txt.ascii_only? ) ? self.class.lato_medium_font_path : medium_font_path} \
         -kerning 2 \
         -fill white \
         #{label_method}:"#{label_txt}" \
@@ -414,6 +411,49 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     BASH
   end
 
+  def split_count_label( count_label )
+    count_text = count_label[%r{<span.*?>(.+)</span>(.+)}, 1].to_s
+    label_text = if locale == "ko" && !count_label.start_with?( "<span" )
+      count_label[%r{(.+)<span.*?>(.+)</span>}, 1].to_s.strip
+    else
+      count_label[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip
+    end
+    [count_text, label_text]
+  end
+
+  def i18n_key_with_fallback( preferred_key, fallback_key )
+    if I18n.has_t?( preferred_key, locale: locale ) || !I18n.has_t?( fallback_key, locale: locale )
+      return preferred_key
+    end
+
+    fallback_key
+  end
+
+  def stat_count_labels( preferred_key, fallback_key, count )
+    # for these translations we are creating a template by skipping interpolation,
+    # then interpolating the count in later. This is because the count is used both
+    # to determine pluralization, but is also interpolated into the string. We
+    # also want counts to be formatted for the locale. The problem arises with
+    # languages that use space-separated counts, e.g. 1M -> 1 000 000. When sending
+    # that as a pluralization `count` parameter, the singular case is used. We could
+    # avoid this by using a seprate variable for pluralization vs interpolation,
+    # e.g. count and display_count.
+    # TODO: add new translations that separate plurlization count and
+    # interpolation count variables
+    template_key = i18n_key_with_fallback( preferred_key, fallback_key )
+    template = I18n.t(
+      template_key,
+      count: count,
+      locale: locale,
+      skip_interpolation: true
+    )
+    translation = I18n.interpolate(
+      template,
+      count: ApplicationController.helpers.number_with_delimiter( count, locale: locale )
+    )
+    split_count_label( translation )
+  end
+
   def prepare_text
     text = {}
     text[:owner] = if year_statistic.user
@@ -421,12 +461,9 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     else
       ""
     end
-    title = if I18n.has_t?( "x_observations_caps_html", locale: locale )
-      I18n.t( :year_in_review_caps, year: year_statistic.year, locale: locale )
-    else
-      I18n.t( :year_in_review, year: year_statistic.year, locale: locale )
-    end
-    text[:title] = title
+    title_i18n_key = i18n_key_with_fallback( "year_in_review_caps", "year_in_review" )
+    text[:title] = I18n.t( title_i18n_key, year: year_statistic.year, locale: locale )
+
     obs_count = if ( qg_counts = year_statistic.data.dig( "observations", "quality_grade_counts" ) )
       qg_counts["research"].to_i + qg_counts["needs_id"].to_i
     else
@@ -440,52 +477,21 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       end
     ).to_i
 
-    obs_translation = if I18n.has_t?( "x_observations_caps_html", locale: locale )
-      I18n.t(
-        "x_observations_caps_html",
-        count: ApplicationController.helpers.number_with_delimiter( obs_count, locale: locale ),
-        locale: locale
-      )
-    else
-      I18n.t(
-        "x_observations_html",
-        count: ApplicationController.helpers.number_with_delimiter( obs_count, locale: locale ),
-        locale: locale
-      )
-    end
-    text[:obs_count_txt] = obs_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s
-    text[:obs_label_txt] = obs_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip
-    species_translation = if I18n.has_t?( "x_species_caps_html", locale: locale )
-      I18n.t(
-        "x_species_caps_html",
-        count: ApplicationController.helpers.number_with_delimiter( species_count, locale: locale ),
-        locale: locale
-      )
-    else
-      I18n.t(
-        "x_species_html",
-        count: ApplicationController.helpers.number_with_delimiter( species_count, locale: locale ),
-        locale: locale
-      )
-    end
-    text[:species_count_txt] = species_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s
-    text[:species_label_txt] = species_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip
-    identifications_translation = if I18n.has_t?( "x_identifications_caps_html", locale: locale )
-      I18n.t(
-        "x_identifications_caps_html",
-        count: ApplicationController.helpers.number_with_delimiter( identifications_count, locale: locale ),
-        locale: locale
-      )
-    else
-      I18n.t(
-        "x_identifications_html",
-        count: ApplicationController.helpers.number_with_delimiter( identifications_count, locale: locale ),
-        locale: locale
-      )
-    end
-    text[:identifications_count_txt] = identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s
-    text[:identifications_label_txt] =
-      identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip
+    text[:obs_count_txt], text[:obs_label_txt] = stat_count_labels(
+      "x_observations_caps_html",
+      "x_observations_html",
+      obs_count
+    )
+    text[:species_count_txt], text[:species_label_txt] = stat_count_labels(
+      "x_species_caps_html",
+      "x_species_html",
+      species_count
+    )
+    text[:identifications_count_txt], text[:identifications_label_txt] = stat_count_labels(
+      "x_identifications_caps_html",
+      "x_identifications_html",
+      identifications_count
+    )
 
     if label_method == "pango"
       text[:title] = "<span size='#{1024 * 22}'>#{text[:title]}</span>"
@@ -503,12 +509,21 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
   def font_paths( no_lato_support )
     if no_lato_support
       if Rails.env.production?
-        if locale =~ /^(ja|ko|zh)/
+        case locale
+        when /^(ja|ko|zh)/
           light_font_path = "Noto-Sans-CJK-HK"
           medium_font_path = "Noto-Sans-CJK-HK"
           semibold_font_path = "Noto-Sans-CJK-HK-Bold"
+        when "ta"
+          light_font_path = "Noto-Sans-Tamil-Regular"
+          medium_font_path = "Noto-Sans-Tamil-Regular"
+          semibold_font_path = "Noto-Sans-Tamil-Bold"
+        when "ml"
+          light_font_path = "Noto-Sans-Malayalam-Regular"
+          medium_font_path = "Noto-Sans-Malayalam-Regular"
+          semibold_font_path = "Noto-Sans-Malayalam-Bold"
         else
-          light_font_path = "DejaVu-Sans-ExtraLight"
+          light_font_path = ( locale =~ /^(he|iw)/ ) ? "DejaVu-Sans" : "DejaVu-Sans-ExtraLight"
           medium_font_path = "DejaVu-Sans"
           semibold_font_path = "DejaVu-Sans-Bold"
         end
@@ -518,11 +533,20 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         semibold_font_path = "Helvetica-Bold"
       end
     else
-      light_font_path = File.join( Rails.root, "public", "fonts", "lato", "Lato-Light.ttf" )
-      medium_font_path = File.join( Rails.root, "public", "fonts", "lato", "Lato-Medium.ttf" )
-      semibold_font_path = File.join( Rails.root, "public", "fonts", "lato", "Lato-Semibold.ttf" )
+      light_font_path = self.class.lato_light_font_path
+      medium_font_path = self.class.lato_medium_font_path
+      semibold_font_path = self.class.lato_semibold_font_path
     end
     [light_font_path, medium_font_path, semibold_font_path]
+  end
+
+  def self.cache_icon_or_logo( icon_or_logo_url )
+    # replace the domain for testing on staging
+    icon_or_logo_url = icon_or_logo_url.sub( "staticdev", "static" )
+    icon_or_logo_url = ApplicationController.helpers.image_url(
+      icon_or_logo_url
+    ).to_s.gsub( %r{([^:])//}, "\\1/" )
+    cache_asset( icon_or_logo_url )
   end
 
   def self.cached_asset_exists_and_unexpired?( path )
@@ -569,10 +593,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     else
       "yir-background.png"
     end
-    background_url = ApplicationController.helpers.image_url( background_filename ).to_s.
-      gsub( %r{([^:])//}, "\\1/" ).
-      gsub( "staging.inaturalist", "www.inaturalist" )
-    YearStatisticLocalizedShareableImage.cache_asset( background_url )
+    File.join( Rails.root, "app", "assets", "images", background_filename )
   end
 
   def self.generate_circle_mask
@@ -587,6 +608,18 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       convert -size 242x242 xc:transparent -fill "#74ac00" \
         -draw "translate 116,116 circle 0,0 0,116"
     BASH
+  end
+
+  def self.lato_light_font_path
+    File.join( Rails.root, "public", "fonts", "lato", "Lato-Light.ttf" )
+  end
+
+  def self.lato_medium_font_path
+    File.join( Rails.root, "public", "fonts", "lato", "Lato-Medium.ttf" )
+  end
+
+  def self.lato_semibold_font_path
+    File.join( Rails.root, "public", "fonts", "lato", "Lato-Semibold.ttf" )
   end
 
   def self.run_cmd( cmd, options = { timeout: 60 } )

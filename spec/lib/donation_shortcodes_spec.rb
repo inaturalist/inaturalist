@@ -90,6 +90,40 @@ describe DonationShortcodes do
     end
   end
 
+  describe ".fundraiseup_language" do
+    {
+      "es" => "es",
+      "es-MX" => "es",
+      "de" => "de",
+      "en" => "en-US",
+      "en-GB" => "en-GB",
+      "en-AU" => "en-US",
+      "fr" => "fr-FR",
+      "fr-CA" => "fr-CA",
+      "pt" => "pt-PT",
+      "pt-BR" => "pt-BR",
+      "nb" => "no",
+      "nn" => "no",
+      "zh-CN" => "zh-CN",
+      "zh-TW" => "zh-TW",
+      "zh-HK" => "zh-TW",
+      "iw" => "he",
+      "he" => "he"
+    }.each do | locale, language |
+      it "maps #{locale} to #{language}" do
+        expect( DonationShortcodes.fundraiseup_language( locale ) ).to eq language
+      end
+    end
+
+    it "accepts a symbol locale" do
+      expect( DonationShortcodes.fundraiseup_language( :"es-MX" ) ).to eq "es"
+    end
+
+    it "returns nil for a language FundraiseUp doesn't support" do
+      expect( DonationShortcodes.fundraiseup_language( "af" ) ).to be_nil
+    end
+  end
+
   describe "#url" do
     it "defaults to the config's fru.default_url" do
       url = DonationShortcodes.new( "US", locale: :en ).url( tier: "min" )
@@ -100,8 +134,34 @@ describe DonationShortcodes do
     it "presets the amount, currency, frequency and language" do
       url = DonationShortcodes.new( "MX", locale: :"es-MX" ).url( tier: "min", frequency: "monthly" )
       expect( query_params( url ) ).to include(
-        "amount" => "60", "currency" => "MXN", "recurring" => "monthly", "_lang" => "es-MX"
+        "amount" => "60", "currency" => "MXN", "recurring" => "monthly", "_lang" => "es"
       )
+    end
+
+    it "presets another country's currency and language" do
+      url = DonationShortcodes.new( "DE", locale: :de ).url( tier: "min" )
+      expect( query_params( url ) ).to include(
+        "amount" => "5", "currency" => "EUR", "recurring" => "once", "_lang" => "de"
+      )
+    end
+
+    it "leaves out _lang when FundraiseUp has no language for the locale" do
+      url = DonationShortcodes.new( "US", locale: :af ).url( tier: "min" )
+      expect( query_params( url ) ).not_to include( "_lang" )
+    end
+
+    it "replaces a _lang in the base url with the viewer's language" do
+      url = DonationShortcodes.new( "MX", locale: :es ).url(
+        tier: "min", url: "https://giving.inaturalist.org/page/other?_lang=en-US"
+      )
+      expect( query_params( url ) ).to include( "_lang" => "es" )
+    end
+
+    it "drops a _lang in the base url when FundraiseUp has no language for the locale" do
+      url = DonationShortcodes.new( "US", locale: :af ).url(
+        tier: "min", url: "https://giving.inaturalist.org/page/other?_lang=en-US"
+      )
+      expect( query_params( url ) ).not_to include( "_lang" )
     end
 
     it "uses the default country's currency for a tier the country doesn't price" do

@@ -12,8 +12,7 @@ function mapStateToProps( state ) {
     valueIconClassName: "fa fa-binoculars",
     linkText: I18n.t( "leaderboard" ),
     name: I18n.t( "no_observations" ),
-    className: "TopObserver",
-    config: state.config
+    className: "TopObserver"
   };
   if ( !leader || !leader.user ) {
     return props;

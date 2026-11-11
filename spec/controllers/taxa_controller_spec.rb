@@ -151,34 +151,23 @@ describe TaxaController do
       end.not_to raise_error
     end
 
-    describe "responsive gating" do
-      it "is responsive for a user in the responsive-taxon-detail group" do
-        user = create( :user )
-        user.update_column( :test_groups, "responsive-taxon-detail" )
-        sign_in user
-        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
+    describe "responsive layout" do
+      before { allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json ) }
+
+      it "is responsive for a user in no test group" do
+        sign_in create( :user )
         get :show, params: { id: taxon.id }
         expect( assigns( :responsive ) ).to be true
         expect( assigns( :skip_min_width ) ).to be true
+        expect( assigns( :test_group_toggle ) ).to be_nil
         expect( response.body ).to have_tag( "link[href*='taxa/show']" )
         expect( response.body ).not_to have_tag( "link[href*='show_legacy']" )
       end
 
-
-      it "is not responsive for a user in no responsive test group" do
-        sign_in create( :user )
-        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
+      it "is responsive when logged out" do
         get :show, params: { id: taxon.id }
-        expect( assigns( :responsive ) ).to be_falsey
-        expect( assigns( :skip_min_width ) ).to be_falsey
-        expect( response.body ).to have_tag( "link[href*='show_legacy']" )
-      end
-
-      it "is not responsive when logged out" do
-        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
-        get :show, params: { id: taxon.id }
-        expect( assigns( :responsive ) ).to be_falsey
-        expect( assigns( :skip_min_width ) ).to be_falsey
+        expect( assigns( :responsive ) ).to be true
+        expect( assigns( :skip_min_width ) ).to be true
       end
     end
 

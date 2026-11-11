@@ -406,7 +406,6 @@ class User < ApplicationRecord
   ADMIN_ONLY_TEST_GROUPS = %w(
     responsive-header
     responsive-obs-detail
-    responsive-taxon-detail
     helpful-id-tips-reviewer
   ).freeze
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import StatusTab from "./status_tab";
-import StatusTabLegacy from "./status_tab_legacy";
+import type { Taxon } from "../../../shared/types";
 
 jest.mock( "../../shared/util", ( ) => ( {
   urlForTaxon: ( ) => null,
@@ -24,12 +24,12 @@ const conservationStatus = ( status: string, text: string ) => ( {
   iucnStatusCode: ( ) => "LC"
 } );
 
-describe.each( [
-  ["StatusTab", StatusTab],
-  ["StatusTabLegacy", StatusTabLegacy]
-] )( "%s status text", ( _name, Component ) => {
+describe( "StatusTab status text", ( ) => {
   const renderStatus = ( status: string, text: string ) => render(
-    <Component statuses={[conservationStatus( status, text )]} taxon={{ id: 1 }} />
+    <StatusTab
+      statuses={[conservationStatus( status, text )]}
+      taxon={{ id: 1 } as unknown as Taxon}
+    />
   );
 
   it( "renders statuses that start with a regex quantifier", ( ) => {
