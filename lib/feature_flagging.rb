@@ -7,6 +7,7 @@ require "digest"
 #   FeatureFlagging.flags_for( current_user )       # => { client_some_flag: false }
 #   FeatureFlagging.variant( :some_experiment, current_user )  # => "treatment"
 #   FeatureFlagging.flags_for( current_user, installation_id: request.headers["X-Installation-ID"] )
+#   FeatureFlagging.enabled?( :some_flag, nil, locale: "fr" )  # locale defaults to I18n.locale
 # Flags are created at runtime in Flipper::UI; the key prefix decides exposure (see kind_of)
 # and install_ after it buckets by app installation instead of user (see install_scoped?).
 module FeatureFlagging
@@ -22,6 +23,17 @@ module FeatureFlagging
   VARIANTS = %w(control treatment).freeze
   # The gates a request's other identity may still open; percentage gates are left out on purpose.
   TARGETING_GATES = [Flipper::Gates::Actor.new, Flipper::Gates::Group.new].freeze
+  # A request with no id can only be matched by a group (e.g. locale_en), never by an actor or percentage.
+  ANONYMOUS_GATES = [Flipper::Gates::Group.new].freeze
+
+  # Matches "en" and "en-*" but not "eng".
+  ENGLISH_LOCALE = /\Aen(-|\z)/
+  # Flipper groups matching the request locale; plain group gates, so they add to other gates.
+  # Add a language here to offer it in Flipper UI.
+  LOCALE_GROUPS = {
+    locale_en: ->( locale ) { ENGLISH_LOCALE.match?( locale ) },
+    locale_not_en: ->( locale ) { !ENGLISH_LOCALE.match?( locale ) }
+  }.freeze
 
   # Cache TTL bounds staleness for raw SQL writes or lagging replica reads.
   CACHE_TTL = 10
@@ -67,6 +79,26 @@ module FeatureFlagging
       installation_id.is_a?( String ) && INSTALLATION_ID_PATTERN.match?( installation_id )
     end
 
+    # A blank locale is in no group, so locale-targeted flags stay off when it is unknown.
+    def locale_in_group?( group, locale )
+      matcher = LOCALE_GROUPS[group.to_sym]
+      locale = locale.to_s
+      return false if matcher.nil? || locale.blank?
+
+      matcher.call( locale )
+    end
+
+    # Called after boot from config/initializers/flipper.rb; group blocks receive a RequestActor.
+    def register_locale_groups
+      LOCALE_GROUPS.each_key do | group |
+        next if Flipper.group_exists?( group )
+
+        Flipper.register( group ) do | actor |
+          actor.respond_to?( :locale ) && locale_in_group?( group, actor.locale )
+        end
+      end
+    end
+
     def experiment_name( key )
       key.to_s.delete_prefix( EXPERIMENT_PREFIX ).to_sym
     end
@@ -99,24 +131,25 @@ module FeatureFlagging
 
     # actor: a User, nil, or anything else responding to #flipper_id
     # installation_id: the app's X-Installation-ID; only install_ flags use it
-    def enabled?( key, actor = nil, installation_id: nil )
+    # locale: matched by the locale_ groups; the app's language on GET /feature_flags
+    def enabled?( key, actor = nil, installation_id: nil, locale: I18n.locale )
       key = key.to_sym
       unless exists?( key )
         warn_unknown( key )
         return false
       end
 
-      evaluate( key, resolve_request( actor, installation_id ) )
+      evaluate( key, resolve_request( actor, installation_id, locale ) )
     end
 
     # Client flag map for GET /feature_flags.
-    def flags_for( actor = nil, installation_id: nil )
-      request = resolve_request( actor, installation_id )
+    def flags_for( actor = nil, installation_id: nil, locale: I18n.locale )
+      request = resolve_request( actor, installation_id, locale )
       client_keys.to_h {| key | [key.to_sym, evaluate( key.to_sym, request )] }
     end
 
     # MD5 bucketing ensures independent experiment assignments; CRC32 linearity fails.
-    def variant( experiment, actor = nil, installation_id: nil )
+    def variant( experiment, actor = nil, installation_id: nil, locale: I18n.locale )
       experiment = experiment.to_sym
       flag = experiment_flag( experiment )
       unless exists?( flag )
@@ -124,12 +157,12 @@ module FeatureFlagging
         return nil
       end
 
-      variant_for( experiment, resolve_request( actor, installation_id ) )
+      variant_for( experiment, resolve_request( actor, installation_id, locale ) )
     end
 
     # Variant map keyed by experiment name for GET /feature_flags.
-    def experiments_for( actor = nil, installation_id: nil )
-      request = resolve_request( actor, installation_id )
+    def experiments_for( actor = nil, installation_id: nil, locale: I18n.locale )
+      request = resolve_request( actor, installation_id, locale )
       experiment_keys.to_h do | key |
         name = experiment_name( key )
         [name, variant_for( name, request )]
@@ -190,19 +223,26 @@ module FeatureFlagging
 
     # Flipper saw only the bucketing id. An actor or group gate may still name the request's other
     # identity, so run just those two over both; passing both to Flipper would re-roll percentages at login.
+    # With no identity, only groups run, over the id-less request, so locale_ groups reach logged-out visitors.
     def targeted?( key, request )
-      actors = request.identities.map {| identity | Flipper::Types::Actor.wrap( identity ) }
-      return false if actors.empty?
+      identities = request.identities
+      gates = TARGETING_GATES
+      if identities.empty?
+        identities = [request]
+        gates = ANONYMOUS_GATES
+      end
 
       context = Flipper::FeatureCheckContext.new(
-        feature_name: key, values: Flipper[key].gate_values, actors: actors
+        feature_name: key,
+        values: Flipper[key].gate_values,
+        actors: identities.map {| identity | Flipper::Types::Actor.wrap( identity ) }
       )
-      TARGETING_GATES.any? {| gate | gate.open?( context ) }
+      gates.any? {| gate | gate.open?( context ) }
     end
 
-    def resolve_request( actor, installation_id )
+    def resolve_request( actor, installation_id, locale )
       installation_id = nil unless valid_installation_id?( installation_id )
-      FeatureFlagging::RequestActor.new( resolve_actor( actor ), installation_id )
+      FeatureFlagging::RequestActor.new( resolve_actor( actor ), installation_id, locale: locale )
     end
 
     def actor_for_key( key, request )

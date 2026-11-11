@@ -14,9 +14,14 @@
     <%= text_field_tag :installation_id, @installation_id, class: "form-control", size: 40,
       placeholder: "00000000-0000-0000-0000-000000000000", "data-1p-ignore" => true %>
   </div>
+  <div class="form-group">
+    <%= label_tag :preview_locale, t( :feature_flags_locale_label ) %>
+    <%= text_field_tag :preview_locale, @preview_locale, class: "form-control", size: 8, placeholder: "en" %>
+  </div>
   <%= submit_tag t( :feature_flags_preview ), class: "btn btn-default", name: nil %>
   <%= link_to t( :feature_flags_clear ), admin_feature_flags_path, class: "btn btn-default" %>
   <p class="help-block"><%= t :feature_flags_installation_id_help %></p>
+  <p class="help-block"><%= t :feature_flags_locale_help %></p>
 <% end %>
 <% if @installation_id && !@installation_id_valid %>
   <div class="alert alert-warning"><%= t :feature_flags_invalid_installation_id %></div>
@@ -42,19 +47,19 @@
             <% if kind == :experiment %>
               <% experiment = FeatureFlagging.experiment_name( key ) %>
               <%= t( :feature_flags_your_variant, experiment: experiment ) %>
-              <strong><%= FeatureFlagging.variant( experiment, current_user ) || t( :feature_flags_not_enrolled ) %></strong>
+              <strong><%= FeatureFlagging.variant( experiment, current_user, locale: @preview_locale ) || t( :feature_flags_not_enrolled ) %></strong>
             <% else %>
               <%= t :feature_flags_enabled_for_you %>
-              <strong><%= FeatureFlagging.enabled?( key, current_user ) %></strong>
+              <strong><%= FeatureFlagging.enabled?( key, current_user, locale: @preview_locale ) %></strong>
             <% end %>
           </td>
           <% if @installation_id_valid %>
             <td>
               <%= t :feature_flags_for_installation %>
               <% if kind == :experiment %>
-                <strong><%= FeatureFlagging.variant( FeatureFlagging.experiment_name( key ), nil, installation_id: @installation_id ) || t( :feature_flags_not_enrolled ) %></strong>
+                <strong><%= FeatureFlagging.variant( FeatureFlagging.experiment_name( key ), nil, installation_id: @installation_id, locale: @preview_locale ) || t( :feature_flags_not_enrolled ) %></strong>
               <% else %>
-                <strong><%= FeatureFlagging.enabled?( key, nil, installation_id: @installation_id ) %></strong>
+                <strong><%= FeatureFlagging.enabled?( key, nil, installation_id: @installation_id, locale: @preview_locale ) %></strong>
               <% end %>
             </td>
           <% end %>

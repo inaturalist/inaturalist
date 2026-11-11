@@ -126,6 +126,25 @@ describe "the admin feature flag readout", type: :request do
       )
     end
 
+    # Not ?locale=, which would also switch the page's own language.
+    it "offers a preview locale field defaulting to the page locale" do
+      get path
+      expect( response.body ).to match( /<input[^>]*name="preview_locale"[^>]*value="en"/ )
+    end
+
+    it "previews both columns in the entered locale without translating the page" do
+      Flipper.enable_group( :client_install_smoke_test, :locale_en )
+      you = Regexp.escape( I18n.t( :feature_flags_enabled_for_you ) )
+      install = Regexp.escape( label )
+      { "fr" => false, "en-GB" => true }.each do | locale, expected |
+        get path, params: { installation_id: installation_id, preview_locale: locale }
+        result = "\\s*<strong>#{expected}</strong>"
+        expect( response.body ).to match(
+          %r{<code>client_install_smoke_test</code>.*#{you}#{result}.*#{install}#{result}}m
+        ), locale
+      end
+    end
+
     it "says when the id is not a uuid" do
       get path, params: { installation_id: "installation123" }
       expect( response.body ).to include I18n.t( :feature_flags_invalid_installation_id )

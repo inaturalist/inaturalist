@@ -7,6 +7,7 @@ class FeatureFlagsController < ApplicationController
     response.headers["Cache-Control"] = "private, max-age=60"
     # Apps send this logged in or out; install_ flags bucket on it.
     installation_id = request.headers["X-Installation-ID"]
+    # locale_ groups match I18n.locale from set_request_locale; apps send ?locale=<app language>.
     render json: {
       flags: FeatureFlagging.flags_for( current_user, installation_id: installation_id ),
       experiments: FeatureFlagging.experiments_for( current_user, installation_id: installation_id )
