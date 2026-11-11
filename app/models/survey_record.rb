@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# No survey endpoint exists yet. Default serialization is deliberately limited
+# Default serialization is deliberately limited
 # to scalar columns: callers cannot accidentally traverse into location-bearing
 # observations/sites with :include or :methods. A future authorized serializer
 # must explicitly implement disclosure policy.

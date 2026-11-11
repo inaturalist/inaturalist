@@ -1,0 +1,4 @@
+<h1>Visit not saved</h1><p class="error" role="alert"><%= @error %></p>
+<p>The failed operation made no changes. Use your browser's Back button to recover your entered values, or reload the saved visit.</p>
+<%= link_to "Reload saved visit", edit_point_count_path(@event.uuid) if @event %>
+<%= link_to "My point counts", point_counts_path %>

@@ -1,7 +1,8 @@
 # Survey database and Rails backend v0.2
 
-Implemented October 15, 2026. Backend only: no HTTP endpoints, UI, search indexes,
-observation callbacks, or taxonomy changes. See [implementation results](survey_implementation_report.md)
+Backend implemented October 15, 2026. On October 25, a private HTML
+[point-count pilot](protocols/stationary-bird-point-count-v1.md) was added on this
+foundation. No public API, search index, observation callback, or taxonomy changes. See [implementation results](survey_implementation_report.md)
 and the workspace [decision record](decisions/001-survey-backend-v02.md).
 
 ## Compatibility and schema

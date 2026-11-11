@@ -1,0 +1,17 @@
+<h1>New point count</h1>
+<p><%= @protocol.survey_protocol.title %> · Version <%= @protocol.version_number %></p>
+<details class="card"><summary>Field instructions</summary><pre><%= @protocol.instructions %></pre></details>
+<%= form_tag point_counts_path do %>
+<section class="card">
+  <h2>Choose your station</h2>
+  <p>Return to the same station for repeat visits. Coordinates identify where you stand, not where each bird was located.</p>
+  <%= label_tag "point_count_station_uuid", "Existing station" %>
+  <%= select_tag "point_count[station_uuid]", options_for_select(@stations.map { |s| [s.name, s.uuid] }, params[:station_uuid]), include_blank: "Create a new station below" %>
+  <h3>New station</h3><p class="muted">These fields are used only when no existing station is selected.</p>
+  <%= label_tag "point_count_station_name", "Station name" %><%= text_field_tag "point_count[station_name]", nil, placeholder: "Pond North" %>
+  <div class="grid"><div><%= label_tag "point_count_station_latitude", "Latitude (decimal degrees)" %><%= number_field_tag "point_count[station_latitude]", nil, step: "any", min: -90, max: 90 %></div>
+  <div><%= label_tag "point_count_station_longitude", "Longitude (decimal degrees)" %><%= number_field_tag "point_count[station_longitude]", nil, step: "any", min: -180, max: 180 %></div></div>
+  <p class="muted">Private station · fixed 50-metre radius · one active observer</p>
+  <%= submit_tag "Create visit" %>
+</section>
+<% end %>

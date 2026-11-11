@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Bird point counts · iNaturalist</title>
+  <%= csrf_meta_tags %>
+  <style>
+    body { margin:0; color:#25372e; background:#f5f6f2; font:17px/1.55 system-ui,sans-serif; }
+    header { background:#244c3a; color:white; padding:18px max(24px,calc((100% - 1000px)/2)); }
+    header a { color:white; } nav { display:flex; gap:24px; flex-wrap:wrap; align-items:center; }
+    main { max-width:1000px; margin:32px auto; padding:0 24px 48px; }
+    h1,h2,h3 { line-height:1.2; } h1 { font-size:34px; } h2 { margin-top:0; font-size:24px; }
+    a { color:#285f42; } .card { background:white; padding:26px; border:1px solid #d6ddd5; border-radius:10px; margin:20px 0; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+    label { display:block; font-weight:600; margin-top:12px; } input,select,textarea { box-sizing:border-box; width:100%; padding:10px; border:1px solid #8b9c8e; border-radius:4px; font:inherit; }
+    textarea { min-height:90px; } input[type=submit],button,.button { display:inline-block; width:auto; background:#285f42; color:white; padding:10px 18px; border:0; border-radius:5px; font:inherit; text-decoration:none; cursor:pointer; margin-top:16px; }
+    .muted { color:#58685d; } .notice { background:#e2efdd; padding:16px; border-radius:5px; } .error { background:#fff0e8; padding:16px; }
+    table { width:100%; border-collapse:collapse; } th,td { text-align:left; padding:12px 8px; border-bottom:1px solid #d6ddd5; vertical-align:top; }
+    .table-wrap { overflow-x:auto; } .tag { background:#e9eee7; border-radius:4px; padding:3px 8px; font-size:14px; }
+    pre { white-space:pre-wrap; font:inherit; } .actions { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  </style>
+</head>
+<body>
+<header><nav><strong>iNaturalist · Survey pilot</strong><%= link_to "My point counts", point_counts_path %><%= link_to "iNaturalist home", root_path %><span>Private · <%= current_user&.login %></span></nav></header>
+<main>
+  <% if flash[:notice] %><p class="notice" role="status"><%= flash[:notice] %></p><% end %>
+  <%= yield %>
+</main>
+</body>
+</html>

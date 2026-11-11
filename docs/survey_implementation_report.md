@@ -1,5 +1,10 @@
 # Survey v0.2 implementation report
 
+Historical backend report. The subsequent October 25
+[private point-count pilot](protocols/stationary-bird-point-count-v1.md) adds a
+Rails workflow and has now applied these migrations to the backed-up local
+development database. The scope and results below describe the October 15 work.
+
 Date: October 15, 2026. Branch: `feature/survey-schema-v0.2` in `web`.
 Implementation and validation were completed on October 15; the changes were
 prepared for local commits on October 16. No pull request has been created. See [schema and lifecycle documentation](survey_schema.md) and the

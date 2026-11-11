@@ -1,0 +1,21 @@
+<h1><%= @event.survey_sampling_unit.name %></h1>
+<p><span class="tag"><%= @event.status.humanize %> · private</span></p>
+<p><%= @event.survey_protocol_version.survey_protocol.title %> · v<%= @event.survey_protocol_version.version_number %></p>
+<div class="actions"><% if %w(planned in_progress).include?(@event.status) %><%= link_to "Continue recording", edit_point_count_path(@event.uuid), class: "button" %><% end %>
+<%= link_to "New visit at this station", new_point_count_path(station_uuid: @event.survey_sampling_unit.uuid), class: "button" %></div>
+<section class="card"><h2>Visit summary</h2>
+<p><strong>Start:</strong> <%= @event.started_at&.in_time_zone(@event.time_zone || "UTC") || "Not recorded" %><br>
+<strong>End:</strong> <%= @event.ended_at&.in_time_zone(@event.time_zone || "UTC") || "Not recorded" %><br>
+<strong>Effort:</strong> <%= @event.survey_efforts.first&.duration_seconds || "Not recorded" %> seconds · one observer<br>
+<strong>Station:</strong> <%= @event.geom&.y %>, <%= @event.geom&.x %> · 50-metre radius</p>
+<p><strong>Method followed:</strong> <%= @values["method_followed"].nil? ? "Not assessed" : (@values["method_followed"] ? "Yes" : "No") %><br>
+<strong>All detections reported:</strong> <%= @values["all_detections_reported"].nil? ? "Not assessed" : (@values["all_detections_reported"] ? "Yes" : "No") %></p>
+<p><strong>Conditions:</strong> <%= @values.values_at("precipitation", "wind", "noise").map { |v| v || "Not recorded" }.join(" / ") %> (precipitation / wind / noise)</p>
+<% if @values["deviation_reason"].present? %><p><strong>Deviation:</strong> <%= @values["deviation_reason"] %></p><% end %>
+<p><%= @event.remarks %></p><p class="muted">Visit reference: <%= @event.uuid %></p>
+</section>
+<section class="card"><h2>Detections</h2><%= render "detections", editable: false %></section>
+<% if @event.status == "completed" %>
+<section class="card"><h2>Correct a completed visit</h2><p>Completed scientific data cannot be edited. Void this visit with a reason, then create a replacement visit. Include the original visit reference in the replacement's notes.</p>
+<%= form_tag void_point_count_path(@event.uuid) do %><%= label_tag "point_count_reason", "Reason for voiding" %><%= text_area_tag "point_count[reason]", nil, required: true %><%= submit_tag "Void visit and retain history" %><% end %></section>
+<% elsif @event.status == "void" %><p class="error">Voided: <%= @event.void_reason %></p><% end %>

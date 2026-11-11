@@ -174,6 +174,7 @@
             %i.fa.fa-angle-down
           %ul.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-user-menu-dropdown-toggle" } }
             %li= link_to t(:dashboard), home_path
+            %li= link_to t(:my_surveys), point_counts_path
             %li= link_to t(:edit_observations), observations_by_login_path(current_user.login), :class => "observations_link"
             %li.header-xs.header-sm
               = link_to t(:add_observations), upload_observations_path

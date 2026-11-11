@@ -1,0 +1,40 @@
+<h1><%= @event.survey_sampling_unit.name %></h1>
+<p><span class="tag">In progress · private</span> Five minutes · 50-metre radius · one observer</p>
+<details class="card"><summary>Field instructions</summary><pre><%= @event.survey_protocol_version.instructions %></pre></details>
+<section class="card">
+<h2>1. Effort and field conditions</h2>
+<p>Enter actual times, including for interrupted visits. The one-minute settling period is excluded.</p>
+<%= form_tag point_count_path(@event.uuid), method: :patch do %>
+<% zone = @event.time_zone || current_user.time_zone.presence || "UTC" %>
+<%= label_tag "point_count_time_zone", "Time zone" %><%= select_tag "point_count[time_zone]", options_for_select(ActiveSupport::TimeZone.all.map { |z| [z.to_s, z.name] }, zone) %>
+<div class="grid"><div><%= label_tag "point_count_started_at", "Started at (local time)" %><%= datetime_local_field_tag "point_count[started_at]", @event.started_at&.in_time_zone(zone)&.strftime("%Y-%m-%dT%H:%M:%S"), step: 1 %></div>
+<div><%= label_tag "point_count_ended_at", "Ended at (local time)" %><%= datetime_local_field_tag "point_count[ended_at]", @event.ended_at&.in_time_zone(zone)&.strftime("%Y-%m-%dT%H:%M:%S"), step: 1 %></div></div>
+<div class="grid"><% %w(precipitation wind noise).each do |key| %><div><%= label_tag "point_count_#{key}", Surveys::PointCountProtocol::EVENT_FIELDS[key][:label] %><%= select_tag "point_count[#{key}]", options_for_select(Surveys::PointCountProtocol::EVENT_FIELDS[key][:allowed_values].map { |v| [v.humanize, v] }, @values[key]), include_blank: "Choose…" %></div><% end %></div>
+<%= label_tag "point_count_method_followed", "Did you follow the prescribed method for five uninterrupted minutes?" %>
+<%= select_tag "point_count[method_followed]", options_for_select([["Yes", "true"], ["No — interrupted or nonconforming", "false"]], @values["method_followed"]&.to_s), include_blank: "Not yet assessed" %>
+<%= label_tag "point_count_deviation_reason", "Deviation reason (required when method was not followed)" %><%= text_area_tag "point_count[deviation_reason]", @values["deviation_reason"] %>
+<%= label_tag "point_count_all_detections_reported", "Have you recorded every in-scope detection, including unidentified birds?" %>
+<%= select_tag "point_count[all_detections_reported]", options_for_select([["Yes", "true"], ["No", "false"]], @values["all_detections_reported"]&.to_s), include_blank: "Not yet assessed" %>
+<%= label_tag "point_count_remarks", "Visit notes (including birds outside or of uncertain distance)" %><%= text_area_tag "point_count[remarks]", @event.remarks %>
+<%= submit_tag "Save effort and assessment" %>
+<% end %>
+</section>
+<section class="card">
+<h2>2. Detections</h2><p>Enter one total per taxon. Count each individual once; use broader taxa for uncertain identification. Exclude mere flyovers and birds outside or of uncertain distance.</p>
+<%= render "detections", editable: true %>
+<%= form_tag edit_point_count_path(@event.uuid), method: :get do %>
+<%= label_tag :q, "Find a bird by scientific or common name" %><%= search_field_tag :q, params[:q], placeholder: "Chickadee, robin, or a scientific name" %><%= submit_tag "Find taxa" %>
+<% end %>
+<p class="muted">Search before filling the detection form. Results use locally available names; Aves is available for an unidentified bird.</p>
+<%= form_tag add_detection_point_count_path(@event.uuid) do %>
+<%= label_tag "point_count_taxon_id", "Taxon" %><%= select_tag "point_count[taxon_id]", options_for_select(@taxa.map { |t| [t.name == "Aves" ? "Unidentified bird (Aves)" : t.name, t.id] }) %>
+<div class="grid"><div><%= label_tag "point_count_quantity", "Distinct individuals" %><%= number_field_tag "point_count[quantity]", 1, min: 1, max: 9999999, step: 1, required: true %></div>
+<div><%= label_tag "point_count_detection_method", "Detected by" %><%= select_tag "point_count[detection_method]", options_for_select([["Seen", "seen"], ["Heard", "heard"], ["Seen and heard", "both"]]) %></div></div>
+<%= label_tag "point_count_observation_id", "Your existing iNaturalist observation ID (optional)" %><%= number_field_tag "point_count[observation_id]", nil, min: 1, step: 1 %>
+<p class="muted">Link supporting evidence only. The observation retains its own visibility; no observation is automatically created or relocated.</p>
+<%= label_tag "detection_remarks", "Detection notes or count uncertainty" %><%= text_area_tag "point_count[remarks]", nil, id: "detection_remarks" %>
+<%= submit_tag "Add detection" %><% end %>
+</section>
+<section class="card"><h2>3. Complete this visit</h2><p>Save your effort and assessment above first. Completion freezes the scientific record, including a visit with no detections or a documented deviation.</p>
+<%= button_to "Complete visit", complete_point_count_path(@event.uuid) %></section>
+<%= link_to "View saved visit", point_count_path(@event.uuid) %>

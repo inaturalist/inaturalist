@@ -1,0 +1,8 @@
+<div class="table-wrap"><table><thead><tr><th>Taxon</th><th>Individuals</th><th>Detected by</th><th>Notes / evidence</th><% if editable %><th>Change</th><% end %></tr></thead><tbody>
+<% @event.survey_detections.includes(:survey_measurements, :survey_observations).order(:id).each do |d| %>
+<tr><td><%= d.taxon_name_snapshot %></td><td><%= d.quantity.to_i %></td><td><%= d.survey_measurements.first&.value_text %></td>
+<td><%= d.remarks %><% d.survey_observations.each do |link| %><div><%= link_to "Observation ##{link.observation_id}", observation_path(link.observation_id) %></div><% end %></td>
+<% if editable %><td><%= button_to "Remove", remove_detection_point_count_path(@event.uuid), params: { detection_uuid: d.uuid } %></td><% end %></tr>
+<% end %>
+</tbody></table></div>
+<% if @event.survey_detections.empty? %><p>No detections recorded. This is valid for a completed visit when you confirm that all in-scope detections were reported.</p><% end %>

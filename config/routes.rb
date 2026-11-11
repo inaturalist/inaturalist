@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :point_counts, except: [:destroy] do
+    member do
+      post :add_detection
+      post :remove_detection
+      post :complete
+      post :void
+    end
+  end
   resources :redirect_links
   resources :moderator_notes
   resources :data_partners

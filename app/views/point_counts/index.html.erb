@@ -1,0 +1,15 @@
+<p class="muted">STATIONARY BIRD SURVEYS</p>
+<h1>My point counts</h1>
+<p>One station. Five minutes. All wild birds detected within 50 metres.</p>
+<%= link_to "New point count", new_point_count_path, class: "button" %>
+<section class="card">
+  <h2>Your visits</h2>
+  <% if @events.empty? %><p>No visits yet. Create a station and record your first point count.</p><% end %>
+  <% @events.each do |event| %>
+    <p><%= link_to event.survey_sampling_unit&.name || "Point count", point_count_path(event.uuid) %>
+    <span class="tag"><%= event.status.humanize %></span>
+    <span class="muted"><%= event.started_at&.in_time_zone(event.time_zone || "UTC")&.strftime("%d %b %Y, %H:%M %Z") || "Time not entered" %></span></p>
+  <% end %>
+  <%= will_paginate @events %>
+</section>
+<p class="muted">Only you can access these survey pages. Linking an existing observation does not change that observation's own visibility.</p>
