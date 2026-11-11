@@ -216,6 +216,7 @@ body > [role="dialog"] .ActivityItem {
     }
     span.taxon {
       display: inline-block;
+      line-height: 18px;
       .secondary-names, & > .secondary-name {
         font-size: 14px;
         line-height: 16px;
