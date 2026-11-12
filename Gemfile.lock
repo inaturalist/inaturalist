@@ -26,10 +26,10 @@ GIT
 
 GIT
   remote: https://github.com/inaturalist/kt-paperclip.git
-  revision: c5c5f51843cbb8e1919391f6d60580dd7b79af67
-  ref: reset-original-content-type
+  revision: 713c17c601255d454af94c1362ca51f9faf24294
+  ref: 713c17c601255d454af94c1362ca51f9faf24294
   specs:
-    kt-paperclip (7.4.0)
+    kt-paperclip (8.0.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       marcel (>= 1.0.1)
@@ -449,21 +449,21 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.1.0)
+    marcel (1.2.1)
     matrix (0.4.2)
     method_source (1.1.0)
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.0414)
+    mime-types-data (3.2026.1103)
     mimemagic (0.3.10)
       nokogiri (~> 1)
       rake
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (6.0.6)
+    minitest (6.1.0)
       drb (~> 2.0)
-      prism (~> 1.5)
+      prism (>= 1.5, < 3)
     multi_json (1.15.0)
     multi_xml (0.8.0)
       bigdecimal (>= 3.1, < 5)
@@ -559,7 +559,10 @@ GEM
       racc
     patron (0.13.3)
     pg (1.5.9)
-    prism (1.9.0)
+    prism (2.1.0)
+    prism (2.1.0-arm64-darwin)
+    prism (2.1.0-x86_64-darwin)
+    prism (2.1.0-x86_64-linux-gnu)
     public_suffix (7.0.5)
     puma (7.2.1)
       nio4r (~> 2.0)

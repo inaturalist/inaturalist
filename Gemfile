@@ -73,7 +73,7 @@ gem "irwi", git: "https://github.com/inaturalist/irwi.git",
   ref: "60ebafe1aa360184276862cae102c995eba3308a"
 gem "json"
 gem "jwt", "~> 2.10.3"
-gem "kt-paperclip", git: "https://github.com/inaturalist/kt-paperclip.git", ref: "reset-original-content-type"
+gem "kt-paperclip", git: "https://github.com/inaturalist/kt-paperclip.git", ref: "713c17c601255d454af94c1362ca51f9faf24294"
 gem "makara", git: "https://github.com/instacart/makara.git", ref: "9e7960558a75aed3f97ba4cbab61abb64687ec3c"
 gem "multi_json", "~> 1.15.0"
 gem "nokogiri"
