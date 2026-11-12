@@ -28,6 +28,14 @@ describe "flipper initializer" do
     expect( ui.descriptions_source.call( %w(client_a exp_b c) ).values.uniq.size ).to eq 3
   end
 
+  it "registers the admins and locale groups" do
+    expect( Flipper.group_names ).to include( :admins, :locale_en, :locale_not_en )
+  end
+
+  it "explains locale groups in the UI banner" do
+    expect( Flipper::UI.configuration.banner_text ).to include "locale_en"
+  end
+
   it "adds no cache layer for the test cache store" do
     expect( FeatureFlagging.shared_cache ).to be_nil
   end

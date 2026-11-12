@@ -591,6 +591,142 @@ describe FeatureFlagging do
     end
   end
 
+  describe "locale groups" do
+    let( :installation_id ) { SecureRandom.uuid }
+    let( :install_flag ) { :client_install_smoke_test }
+    let( :install_experiment ) { :install_hello_world }
+
+    before { add_install_test_flags }
+
+    def enabled_in?( locale, key = flag, user = actor, installation_id: nil )
+      FeatureFlagging.enabled?( key, user, installation_id: installation_id, locale: locale )
+    end
+
+    it "registers locale_en and locale_not_en as Flipper groups" do
+      expect( Flipper.group_exists?( :locale_en ) ).to be true
+      expect( Flipper.group_exists?( :locale_not_en ) ).to be true
+      expect( Flipper.group_exists?( :admins ) ).to be true
+    end
+
+    it "matches English and its regional variants to locale_en" do
+      %w(en en-GB en-US en-CA).each do | l |
+        expect( FeatureFlagging.locale_in_group?( :locale_en, l ) ).to be( true ), l
+      end
+      [nil, "", "fr", "pt-BR", "eng", "enx"].each do | l |
+        expect( FeatureFlagging.locale_in_group?( :locale_en, l ) ).to be( false ), l.inspect
+      end
+    end
+
+    it "matches every other non-blank locale to locale_not_en" do
+      %w(fr pt-BR zh-TW es-MX).each do | l |
+        expect( FeatureFlagging.locale_in_group?( :locale_not_en, l ) ).to be( true ), l
+      end
+      [nil, "", "en", "en-GB"].each do | l |
+        expect( FeatureFlagging.locale_in_group?( :locale_not_en, l ) ).to be( false ), l.inspect
+      end
+    end
+
+    it "accepts symbol locales like I18n.locale" do
+      expect( FeatureFlagging.locale_in_group?( :locale_en, :"en-GB" ) ).to be true
+    end
+
+    describe "locale_en" do
+      before { Flipper.enable_group( flag, :locale_en ) }
+
+      it "enables a flag for a signed-in user in English only" do
+        expect( enabled_in?( "en" ) ).to be true
+        expect( enabled_in?( "en-GB" ) ).to be true
+        expect( enabled_in?( "fr" ) ).to be false
+        expect( enabled_in?( "pt-BR" ) ).to be false
+        expect( enabled_in?( nil ) ).to be false
+      end
+
+      it "enables a user-scoped flag for a logged-out app" do
+        expect( enabled_in?( "en", flag, nil, installation_id: installation_id ) ).to be true
+        expect( enabled_in?( "fr", flag, nil, installation_id: installation_id ) ).to be false
+      end
+
+      it "enables a flag for a logged-out request with no identity at all" do
+        expect( enabled_in?( "en", flag, nil ) ).to be true
+        expect( enabled_in?( "fr", flag, nil ) ).to be false
+      end
+
+      it "treats the shared anonymous user as logged out" do
+        anonymous = User.new( id: Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID )
+        expect( enabled_in?( "en", flag, anonymous ) ).to be true
+        expect( enabled_in?( "fr", flag, anonymous ) ).to be false
+      end
+
+      it "enables an install-scoped flag with or without the app header" do
+        Flipper.enable_group( install_flag, :locale_en )
+        expect( enabled_in?( "en", install_flag, nil, installation_id: installation_id ) ).to be true
+        expect( enabled_in?( "en", install_flag, actor ) ).to be true
+        expect( enabled_in?( "fr", install_flag, nil, installation_id: installation_id ) ).to be false
+      end
+
+      it "reports the flag in the client map for that locale only" do
+        expect( FeatureFlagging.flags_for( nil, locale: "en" )[flag] ).to be true
+        expect( FeatureFlagging.flags_for( nil, locale: "fr" )[flag] ).to be false
+      end
+
+      it "defaults to I18n.locale" do
+        I18n.with_locale( :en ) { expect( FeatureFlagging.enabled?( flag, actor ) ).to be true }
+        I18n.with_locale( :fr ) { expect( FeatureFlagging.enabled?( flag, actor ) ).to be false }
+      end
+    end
+
+    describe "locale_not_en" do
+      before { Flipper.enable_group( flag, :locale_not_en ) }
+
+      it "enables a flag for every non-English locale" do
+        expect( enabled_in?( "fr" ) ).to be true
+        expect( enabled_in?( "zh-TW", flag, nil ) ).to be true
+        expect( enabled_in?( "en" ) ).to be false
+        expect( enabled_in?( "en-GB", flag, nil ) ).to be false
+        expect( enabled_in?( nil ) ).to be false
+      end
+    end
+
+    it "enables a flag for any locale when both groups are on" do
+      Flipper.enable_group( flag, :locale_en )
+      Flipper.enable_group( flag, :locale_not_en )
+      %w(en en-GB fr pt-BR).each {| l | expect( enabled_in?( l, flag, nil ) ).to be( true ), l }
+    end
+
+    describe "experiments" do
+      it "enrolls an English logged-out installation in an installation experiment" do
+        Flipper.enable_group( FeatureFlagging.experiment_flag( install_experiment ), :locale_en )
+        en = FeatureFlagging.variant( install_experiment, nil, installation_id: installation_id, locale: "en" )
+        expect( FeatureFlagging::VARIANTS ).to include en
+        expect( FeatureFlagging.variant( install_experiment, nil, installation_id: installation_id, locale: "fr" ) ).
+          to be_nil
+        Flipper.enable( FeatureFlagging.experiment_flag( install_experiment ) )
+        expect( FeatureFlagging.variant( install_experiment, nil, installation_id: installation_id ) ).to eq en
+      end
+
+      it "still needs a user to assign a variant in a user experiment" do
+        Flipper.enable_group( FeatureFlagging.experiment_flag( experiment ), :locale_en )
+        expect( FeatureFlagging.variant( experiment, nil, installation_id: installation_id, locale: "en" ) ).to be_nil
+        expect( FeatureFlagging::VARIANTS ).to include FeatureFlagging.variant( experiment, actor, locale: "en" )
+        expect( FeatureFlagging.experiments_for( actor, locale: "fr" )[experiment] ).to be_nil
+      end
+    end
+
+    it "never hands a request without an identity to a percentage gate" do
+      Flipper.enable_percentage_of_actors( flag, 100 )
+      expect( enabled_in?( "en", flag, nil ) ).to be false
+    end
+
+    it "adds a locale group to a percentage gate instead of narrowing it" do
+      Flipper.enable_group( flag, :locale_en )
+      Flipper.enable_percentage_of_actors( flag, 100 )
+      expect( enabled_in?( "fr" ) ).to be true
+      Flipper.enable_percentage_of_actors( flag, 0 )
+      expect( enabled_in?( "en" ) ).to be true
+      expect( enabled_in?( "fr" ) ).to be false
+    end
+  end
+
   describe "the ActiveRecord adapter" do
     let( :ar_flipper ) { Flipper.new( FeatureFlagging.build_adapter( cache: nil ) ) }
 

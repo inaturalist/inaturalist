@@ -3,19 +3,21 @@
 module FeatureFlagging
   # Everything a request is known by. Flipper sees one id per key (see bucketed_by) so logging in
   # can't move a percentage result, but group blocks see the whole request on every key.
+  # locale feeds the locale_ groups only; it never changes a bucket.
   class RequestActor
-    attr_reader :user, :installation_id, :bucket_by
+    attr_reader :user, :installation_id, :bucket_by, :locale
 
-    def initialize( user, installation_id, bucket_by = nil )
+    def initialize( user, installation_id, bucket_by = nil, locale: nil )
       @user = user
       @installation_id = installation_id
       @bucket_by = bucket_by
+      @locale = locale.to_s.presence
     end
 
     def bucketed_by( identity )
       return nil if id_for( identity ).nil?
 
-      self.class.new( user, installation_id, identity )
+      self.class.new( user, installation_id, identity, locale: locale )
     end
 
     def flipper_id

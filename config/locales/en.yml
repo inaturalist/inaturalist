@@ -2308,6 +2308,10 @@ en:
   feature_flags_invalid_installation_id: That is not a valid installation ID. Installation IDs are UUIDs.
   # Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
   feature_flags_kind_client: Client-visible flag
+  # Help text under the locale field on the admin feature flags page; locale_en is a code name, do not translate
+  feature_flags_locale_help: A language code such as en or pt-BR, used by language groups like locale_en. Defaults to the language of this page.
+  # Label for a text field on the admin feature flags page where an admin enters a language code to preview flags in
+  feature_flags_locale_label: Locale
   # Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
   feature_flags_kind_experiment: Experiment
   # Kind label on the admin feature flags page for a flag that only server code reads

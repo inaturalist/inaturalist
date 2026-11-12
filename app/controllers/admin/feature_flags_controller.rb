@@ -13,6 +13,7 @@ module Admin
       # Previews what a logged-out app with this X-Installation-ID would get.
       @installation_id = params[:installation_id].to_s.strip.presence
       @installation_id_valid = FeatureFlagging.valid_installation_id?( @installation_id )
+      @preview_locale = params[:preview_locale].to_s.strip.presence || I18n.locale.to_s
     end
   end
 end
