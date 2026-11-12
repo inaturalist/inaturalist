@@ -4186,7 +4186,7 @@ en:
   # Label for the number of unresolved flags on taxa covered by a taxon
   # framework, i.e. the taxa whose classification the framework tracks against
   # an external source. count is a link that shows a list of the flagged taxa
-  open_flags_on_covered_taxa_count: "Open flags on covered taxa: %{count}"
+  open_flags_on_covered_taxa_count_html: "Open flags on covered taxa: %{count}"
   # Label for the number of unresolved flags on taxa within this taxon that are
   # covered by a taxon framework attached to one of its ancestors. count is a
   # link that shows a list of the flagged taxa
