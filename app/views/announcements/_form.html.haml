@@ -61,6 +61,7 @@
   .row
     .col-xs-12
       = f.text_area :body
+      = render "donation_shortcode_help"
   .row.stacked.upstacked
     .col-xs-12
       = f.form_field :target_logged_in, builder: BootstrapFormBuilder do

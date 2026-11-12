@@ -1,0 +1,42 @@
+- config = DonationCurrency.config
+- url_shortcode = "[donation-url]"
+%details.panel.panel-default#donation-shortcode-help
+  %summary.panel-heading= t "views.announcements.donation_shortcodes"
+  .panel-body
+    %p= t "views.announcements.donation_shortcodes_desc"
+    %dl
+      %dt
+        %code [donation-label]
+      %dd
+        = t "views.announcements.donation_label_shortcode_desc",
+            example: DonationShortcodes.new( nil ).label
+      %dt
+        %code= url_shortcode
+      %dd= t "views.announcements.donation_url_shortcode_desc"
+    %h5= t "views.announcements.donation_shortcode_attributes"
+    %dl
+      %dt
+        %code tier
+      %dd
+        = t "views.announcements.donation_shortcode_tier_desc",
+            tiers: config["tier_names"].join( ", " ),
+            default_tier: DonationShortcodes::DEFAULT_TIER
+      %dt
+        %code frequency
+      %dd
+        = t "views.announcements.donation_shortcode_frequency_desc",
+            frequencies: config["frequencies"].keys.join( ", " ),
+            default_frequency: DonationShortcodes::DEFAULT_FREQUENCY
+      %dt
+        %code url
+      %dd
+        = t "views.announcements.donation_shortcode_url_desc",
+            shortcode: url_shortcode,
+            default_url: config["fru"]["default_url"]
+      %dt= donation_shortcode_query_params_html
+      %dd
+        = t "views.announcements.donation_shortcode_query_params_desc",
+            shortcode: url_shortcode,
+            utm_term: "utm_term"
+    %h5= t "views.announcements.donation_shortcode_examples"
+    = donation_shortcode_examples_html
