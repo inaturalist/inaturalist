@@ -727,7 +727,6 @@ CREATE TABLE public.blog_categories (
     site_id integer NOT NULL,
     slug character varying NOT NULL,
     label character varying NOT NULL,
-    description text,
     "position" integer,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL

@@ -6,7 +6,6 @@ class CreateBlogV2TablesAndPostColumns < ActiveRecord::Migration[6.1]
       t.integer :site_id, null: false
       t.string :slug, null: false
       t.string :label, null: false
-      t.text :description
       t.integer :position
       t.timestamps
     end

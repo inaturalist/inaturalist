@@ -30,11 +30,13 @@ describe TripsController, "show" do
 end
 
 describe TripsController, "create" do
-  include_context "blog v2 params"
+  let( :blog_v2_params ) do
+    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: 1, cover_image_id: 1, locale: "fr" }
+  end
 
   it "ignores blog v2 attributes" do
     sign_in User.make!
     post :create, params: { trip: { title: "Foo", body: "Bar" }.merge( blog_v2_params ) }
-    expect( Trip.last.attributes.slice( *blog_v2_attributes ) ).to eq blog_v2_attributes.index_with( nil )
+    expect( Trip.last.slice( *blog_v2_params.keys ).compact ).to be_empty
   end
 end

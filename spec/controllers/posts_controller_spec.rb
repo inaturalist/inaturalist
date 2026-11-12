@@ -66,7 +66,9 @@ describe PostsController, "spam" do
 end
 
 describe PostsController, "create" do
-  include_context "blog v2 params"
+  let( :blog_v2_params ) do
+    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: 1, cover_image_id: 1, locale: "fr" }
+  end
   describe "for user journal" do
     let( :user ) { User.make! }
     before do
@@ -124,13 +126,15 @@ describe PostsController, "create" do
       post :create, params: {
         post: { title: "Foo", body: "Bar", parent_type: "Site", parent_id: site.id }.merge( blog_v2_params )
       }
-      expect( Post.last.attributes.slice( *blog_v2_attributes ) ).to eq blog_v2_attributes.index_with( nil )
+      expect( Post.last.slice( *blog_v2_params.keys ).compact ).to be_empty
     end
   end
 end
 
 describe PostsController, "update" do
-  include_context "blog v2 params"
+  let( :blog_v2_params ) do
+    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: 1, cover_image_id: 1, locale: "fr" }
+  end
   describe "for user" do
     let( :user ) { User.make! }
     before { sign_in user }
@@ -154,7 +158,7 @@ describe PostsController, "update" do
       put :update, params: { id: p.id, post: { body: "New body" }.merge( blog_v2_params ) }
       p.reload
       expect( p.body ).to eq "New body"
-      expect( p.attributes.slice( *blog_v2_attributes ) ).to eq blog_v2_attributes.index_with( nil )
+      expect( p.slice( *blog_v2_params.keys ).compact ).to be_empty
     end
     it "should ignore blog v2 attributes on a trip" do
       trip = Trip.make!( user: user )
@@ -165,7 +169,7 @@ describe PostsController, "update" do
       }
       trip.reload
       expect( trip.body ).to eq "New body"
-      expect( trip.attributes.slice( *blog_v2_attributes ) ).to eq blog_v2_attributes.index_with( nil )
+      expect( trip.slice( *blog_v2_params.keys ).compact ).to be_empty
     end
   end
   describe "for project" do
