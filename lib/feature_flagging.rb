@@ -79,7 +79,6 @@ module FeatureFlagging
       installation_id.is_a?( String ) && INSTALLATION_ID_PATTERN.match?( installation_id )
     end
 
-    # A blank locale is in no group, so locale-targeted flags stay off when it is unknown.
     def locale_in_group?( group, locale )
       matcher = LOCALE_GROUPS[group.to_sym]
       locale = locale.to_s

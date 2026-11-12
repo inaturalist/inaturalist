@@ -591,7 +591,6 @@ describe FeatureFlagging do
     end
   end
 
-  # WEB-1434: release in English while other languages are translated, logged in or out.
   describe "locale groups" do
     let( :installation_id ) { SecureRandom.uuid }
     let( :install_flag ) { :client_install_smoke_test }
@@ -718,8 +717,6 @@ describe FeatureFlagging do
       expect( enabled_in?( "en", flag, nil ) ).to be false
     end
 
-    # Pinned on purpose: Flipper ORs gates, so a percentage does not narrow a locale group.
-    # WEB-1476 changes this to "25% of English users".
     it "adds a locale group to a percentage gate instead of narrowing it" do
       Flipper.enable_group( flag, :locale_en )
       Flipper.enable_percentage_of_actors( flag, 100 )
