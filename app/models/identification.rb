@@ -40,6 +40,7 @@ class Identification < ApplicationRecord
     :update_quality_metrics
   after_update :update_curator_identification,
     :update_quality_metrics
+  after_update :reset_exemplar_identification_score, if: :saved_change_to_body?
   after_save :create_exemplar_identification_association,
     :update_exemplar_identification
 
@@ -211,6 +212,13 @@ class Identification < ApplicationRecord
       skip_indexing: skip_indexing,
       wait_for_index_refresh: wait_for_index_refresh
     )
+  end
+
+  def reset_exemplar_identification_score
+    return unless exemplar_identification
+    return if body.nil? || body.strip.blank?
+
+    exemplar_identification.reset_score
   end
 
   def update_exemplar_identification
