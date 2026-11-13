@@ -6569,6 +6569,12 @@ id:
         Klik CMD atau SHIFT untuk memilih beberapa. Memilih "Semua" atau tidak membuat pilihan akan menampilkan pengumuman untuk semua pengguna tanpa memandang daerahnya. Memilih suatu bahasa tanpa daerahnya *tidak* akan menargetkan bahasa yang memiliki daerah. Contohnya, jika Anda memilih English, pengumuman tidak akan ditampilkan untuk orang yang telah memilih English (UK).
       clients_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang kliennya.
+      #Heading of the donation shortcodes help panel on the announcement form
+      donation_shortcodes: Kode singkat donasi
+      #Heading for the optional settings of donation shortcodes
+      donation_shortcode_attributes: Atribut opsional
+      #Heading above example donation shortcodes
+      donation_shortcode_examples: Contoh
       end_desc: |
         Waktu di zona waktu akun Anda di mana pengumuman ini akan berhenti 
         ditampilkan. Berlaku di seluruh zona waktu, sehingga semua orang akan berhenti 
@@ -6592,6 +6598,14 @@ id:
       parent_announcement_disabled_desc: Pengumuman ini memiliki varian yang ditargetkan dan tidak dapat ditetapkan sebagai pengumuman global.
       #Tooltip for the global announcement select field on the announcement form
       parent_announcement_desc: Pilih pengumuman yang harus digantikan oleh pengumuman ini untuk pengguna yang memenuhi aturan penargetan.
+      #Label for a menu choosing the country for a donation preview
+      preview_as_country: Pratinjau sebagai negara
+      #Label for a menu choosing the language for a donation preview
+      preview_in_locale: Pratinjau dalam bahasa
+      #%{country} is a country name; %{currency} is a code, e.g. "USD"
+      preview_default_country: Default (%{country}, %{currency})
+      #Language menu option meaning the viewer's current site language
+      preview_your_locale: Bahasa Anda
       site_ids_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang afiliasi situsnya.
       start_desc: |
