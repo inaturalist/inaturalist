@@ -6,6 +6,9 @@ describe Post do
   it { is_expected.to belong_to :parent }
   it { is_expected.to belong_to :user }
   it { is_expected.to have_many( :comments ).dependent :destroy }
+  it { is_expected.to have_many( :post_images ).dependent :destroy }
+  it { is_expected.to belong_to( :cover_image ).class_name( "PostImage" ).optional }
+  it { is_expected.to belong_to( :blog_category ).optional }
 
   it { is_expected.to validate_length_of( :title ).is_at_least( 1 ).is_at_most 2000 }
   it { is_expected.to validate_presence_of :parent }
@@ -239,6 +242,127 @@ describe Post do
 
       expect( Post.dbsearch( user, "body" ).size ).to eq 1
       expect( Post.dbsearch( user, "body" ) ).to include( post2 )
+    end
+  end
+
+  def journal_post( attrs = {} )
+    author = User.make!
+    Post.make( { user: author, parent: author }.merge( attrs ) )
+  end
+
+  it "builds valid journal posts for the specs below" do
+    expect( journal_post ).to be_valid
+  end
+
+  describe "blog category" do
+    let( :category ) { BlogCategory.make! }
+
+    it "is valid on a post for the category's site" do
+      expect( Post.make( parent: category.site, blog_category: category ) ).to be_valid
+    end
+
+    it "is invalid on a post for another site" do
+      expect( Post.make( parent: Site.make!, blog_category: category ) ).not_to be_valid
+    end
+
+    it "is invalid on a non-Site post" do
+      expect( journal_post( blog_category: category ) ).not_to be_valid
+    end
+  end
+
+  describe "featured flags" do
+    it "are valid on a Site post" do
+      expect( Post.make( parent: Site.make!, featured_at: Time.now, mobile_featured_at: Time.now ) ).to be_valid
+    end
+
+    it "are invalid on a non-Site post" do
+      expect( journal_post( featured_at: Time.now ) ).not_to be_valid
+      expect( journal_post( mobile_featured_at: Time.now ) ).not_to be_valid
+    end
+  end
+
+  describe "cover image" do
+    let( :post ) { Post.make!( :draft, parent: Site.make! ) }
+
+    it "must belong to the post" do
+      post.cover_image = PostImage.make!( post: Post.make!( parent: post.parent ), alt: "A heron" )
+      expect( post ).not_to be_valid
+    end
+
+    it "can be one of the post's images" do
+      post.cover_image = PostImage.make!( post: post, alt: "A heron" )
+      expect( post ).to be_valid
+    end
+
+    it "needs alt text to publish" do
+      post.cover_image = PostImage.make!( post: post, alt: nil )
+      expect( post ).to be_valid
+      post.published_at = Time.now
+      expect( post ).not_to be_valid
+    end
+
+    it "doesn't require alt text on body images to publish" do
+      PostImage.make!( post: post, alt: nil )
+      post.published_at = Time.now
+      expect( post ).to be_valid
+    end
+  end
+
+  describe "locale" do
+    it "can be blank or a supported locale" do
+      expect( journal_post( locale: nil ) ).to be_valid
+      expect( journal_post( locale: "es" ) ).to be_valid
+    end
+
+    it "can't be an unsupported locale" do
+      expect( journal_post( locale: "xx" ) ).not_to be_valid
+    end
+  end
+
+  describe "tags" do
+    it "can't exceed 750 characters" do
+      expect( journal_post( tag_list: Array.new( 76 ) {| i | "tag#{i.to_s.rjust( 6, '0' )}" } ) ).not_to be_valid
+    end
+  end
+
+  describe "in_category" do
+    it "returns posts in the category with that slug" do
+      category = BlogCategory.make!
+      in_category = Post.make!( parent: category.site, blog_category: category )
+      Post.make!( parent: category.site )
+      expect( Post.in_category( category.slug ) ).to eq [in_category]
+    end
+  end
+
+  describe "featured scopes" do
+    let( :site ) { Site.make! }
+
+    it "returns featured Site posts, newest featured first" do
+      older = Post.make!( parent: site, featured_at: 2.days.ago )
+      newer = Post.make!( parent: site, featured_at: 1.day.ago )
+      Post.make!( parent: site )
+      expect( site.posts.featured ).to eq [newer, older]
+    end
+
+    it "returns app-featured Site posts, newest featured first" do
+      older = Post.make!( parent: site, mobile_featured_at: 2.days.ago )
+      newer = Post.make!( parent: site, mobile_featured_at: 1.day.ago )
+      Post.make!( parent: site, featured_at: Time.now )
+      expect( site.posts.mobile_featured ).to eq [newer, older]
+    end
+
+    # Notify if future scope rewrites query without the partial index
+    describe "query plans" do
+      before { ActiveRecord::Base.connection.execute( "SET enable_seqscan = off" ) }
+      after { ActiveRecord::Base.connection.execute( "RESET enable_seqscan" ) }
+
+      it "uses the partial index for featured" do
+        expect( site.posts.featured.limit( 5 ).explain ).to include "index_posts_on_site_featured"
+      end
+
+      it "uses the partial index for mobile_featured" do
+        expect( site.posts.mobile_featured.limit( 5 ).explain ).to include "index_posts_on_site_mobile_featured"
+      end
     end
   end
 end

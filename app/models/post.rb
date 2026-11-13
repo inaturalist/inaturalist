@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  BLOG_V2_ATTRIBUTES = %w(cover_image_id featured_at mobile_featured_at locale blog_category_id).freeze
-
   acts_as_spammable fields: [:title, :body],
     comment_type: "blog-post"
+  acts_as_taggable
   include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
@@ -43,11 +42,20 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, as: :parent, dependent: :destroy
   has_and_belongs_to_many :observations, -> { distinct }
+  has_many :post_images, dependent: :destroy
+  belongs_to :cover_image, class_name: "PostImage", optional: true
+  belongs_to :blog_category, optional: true
 
   validates_length_of :title, in: 1..2000
   validates_length_of :body, in: 1..1_000_000
   validates_presence_of :parent
+  validates :locale, inclusion: { in: I18N_SUPPORTED_LOCALES }, allow_blank: true
   validate :user_must_be_on_site_long_enough
+  validate :blog_fields_only_on_site_posts
+  validate :blog_category_on_post_site
+  validate :cover_image_belongs_to_post
+  validate :cover_image_alt_to_publish
+  validate :tag_list_length
 
   before_save :skip_update_for_draft
   after_save :update_user_counter_cache
@@ -59,6 +67,11 @@ class Post < ApplicationRecord
   scope :dbsearch, lambda {| parent, q |
     where( parent: parent ).where( "posts.title ILIKE ? OR posts.body ILIKE ?", "%#{q}%", "%#{q}%" )
   }
+  scope :featured, -> { where( parent_type: "Site" ).where.not( featured_at: nil ).order( featured_at: :desc ) }
+  scope :mobile_featured, lambda {
+    where( parent_type: "Site" ).where.not( mobile_featured_at: nil ).order( mobile_featured_at: :desc )
+  }
+  scope :in_category, ->( slug ) { joins( :blog_category ).where( blog_categories: { slug: slug } ) }
 
   FORMATTING_SIMPLE = "simple"
   FORMATTING_NONE = "none"
@@ -144,6 +157,38 @@ class Post < ApplicationRecord
     return unless !is_a?( Trip ) && published? && user.created_at > 24.hours.ago
 
     errors.add( :user, :must_be_on_site_long_enough )
+  end
+
+  def blog_fields_only_on_site_posts
+    return if parent_type == "Site"
+
+    %i[featured_at mobile_featured_at blog_category_id].select {| attr | send( attr ).present? }.each do | attr |
+      errors.add( attr, "is only allowed on site posts" )
+    end
+  end
+
+  def blog_category_on_post_site
+    return unless parent_type == "Site" && blog_category && blog_category.site_id != parent_id
+
+    errors.add( :blog_category, "does not belong to this post's site" )
+  end
+
+  def cover_image_belongs_to_post
+    return if cover_image.nil? || ( id && cover_image.post_id == id )
+
+    errors.add( :cover_image, "must be one of the post's images" )
+  end
+
+  def cover_image_alt_to_publish
+    return unless published? && cover_image && cover_image.alt.blank?
+
+    errors.add( :cover_image, "needs alt text to publish" )
+  end
+
+  def tag_list_length
+    return unless tag_list.join( ", " ).length > 750
+
+    errors.add( :tag_list, "must be under 750 characters total, no more than 256 characters per tag" )
   end
 
   def skip_update_for_draft
