@@ -30,13 +30,10 @@ describe TripsController, "show" do
 end
 
 describe TripsController, "create" do
-  let( :blog_v2_params ) do
-    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: 1, cover_image_id: 1, locale: "fr" }
-  end
-
-  it "ignores blog v2 attributes" do
+  it "doesn't save featured flags" do
     sign_in User.make!
-    post :create, params: { trip: { title: "Foo", body: "Bar" }.merge( blog_v2_params ) }
-    expect( Trip.last.slice( *blog_v2_params.keys ).compact ).to be_empty
+    expect do
+      post :create, params: { trip: { title: "Foo", body: "Bar", featured_at: Time.now } }
+    end.not_to change( Trip, :count )
   end
 end

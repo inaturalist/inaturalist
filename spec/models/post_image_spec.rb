@@ -6,6 +6,7 @@ describe PostImage do
   it { is_expected.to belong_to :user }
   it { is_expected.to belong_to( :post ).optional }
 
+  # TODO: set up an orphaned PostImage cleanup job: WEB-1448
   it "is valid without a post" do
     expect( PostImage.make( post: nil ) ).to be_valid
   end

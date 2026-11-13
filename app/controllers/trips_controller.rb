@@ -5,7 +5,6 @@ class TripsController < ApplicationController
   before_action :require_owner, :only => [:edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_action :load_form_data, :only => [:new, :edit]
   before_action :load_user_by_login, :only => [:by_login]
-  before_action -> { params[:trip].try( :extract!, *Post::BLOG_V2_ATTRIBUTES ) }, only: %i[create update]
 
   layout "bootstrap"
 

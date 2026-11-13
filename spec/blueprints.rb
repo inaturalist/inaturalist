@@ -49,6 +49,11 @@ BlockedIp.blueprint do
   user { User.make }
 end
 
+BlogCategory.blueprint do
+  site { Site.make! }
+  label { "Category #{sn}" }
+end
+
 CheckList.blueprint do
   place { make_place_with_geom }
 end
@@ -339,6 +344,14 @@ end
 
 Post.blueprint(:draft) do
   published_at { nil }
+end
+
+PostImage.blueprint do
+  user { User.make! }
+  file_content_type { "image/jpeg" }
+  file_file_name { "foo.jpg" }
+  file_file_size { 1024 }
+  file_updated_at { Time.now }
 end
 
 Project.blueprint do

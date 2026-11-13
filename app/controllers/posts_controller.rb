@@ -9,8 +9,6 @@ class PostsController < ApplicationController
   blocks_spam only: load_only, instance: :post
   check_spam only: %i[create update], instance: :post
   before_action :load_parent, except: %i[browse for_project_user for_user]
-  before_action -> { params.values_at( :post, :trip ).each {| p | p.try( :extract!, *Post::BLOG_V2_ATTRIBUTES ) } },
-    only: %i[create update]
   before_action :load_new_post, only: %i[new create]
   before_action :owner_required, only: %i[create edit update destroy]
 
