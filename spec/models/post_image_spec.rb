@@ -28,4 +28,12 @@ describe PostImage do
   it "rejects files over 20 MB" do
     expect( PostImage.make( file_file_size: 21.megabytes ) ).not_to be_valid
   end
+
+  %w(image/jpeg image/gif).each do | content_type |
+    it "strips metadata from every #{content_type} style" do
+      styles = PostImage.new( file_content_type: content_type ).file.styles
+      expect( styles.keys ).to contain_exactly( :original, :large, :medium, :small )
+      styles.each_value {| style | expect( style.processors ).to include :metadata_filter }
+    end
+  end
 end

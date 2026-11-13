@@ -9,9 +9,9 @@ class PostImage < ApplicationRecord
       fmt = ( attachment.instance.file_content_type == "image/gif" ) ? :gif : :jpg
       {
         original: { geometry: "2048x2048>", format: fmt, processors: [:thumbnail, :metadata_filter] },
-        large: { geometry: "1024x1024>", format: fmt },
-        medium: { geometry: "500x500>", format: fmt },
-        small: { geometry: "240x240>", format: fmt, processors: [:deanimator] }
+        large: { geometry: "1024x1024>", format: fmt, processors: [:thumbnail, :metadata_filter] },
+        medium: { geometry: "500x500>", format: fmt, processors: [:thumbnail, :metadata_filter] },
+        small: { geometry: "240x240>", format: fmt, processors: [:deanimator, :metadata_filter] }
       }
     }
   }.freeze
