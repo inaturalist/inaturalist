@@ -86,6 +86,12 @@ it:
   x_observers_caps_html:
     one: '<span class="count">%{count}</span> OSSERVATORE'
     other: '<span class="count">%{count}</span> OSSERVATORI'
+  #Footer below the scrolling list of flagged taxa on taxonomy details pages.
+  #count is the number of unresolved flags on taxa covered by the taxon
+  #framework; the list itself only shows the most-flagged taxa
+  x_open_flags_scroll_for_more:
+    one: "%{count} contrassegno aperto · Scorri per saperne di più"
+    other: "%{count} contrassegni aperti · Scorri per saperne di più"
   x_others:
     one: "un altro"
     other: "%{count} altri"
@@ -563,6 +569,8 @@ it:
   alphabetical: Alfabetico
   alphabetical_order: Ordine Alfabetico
   already_have_an_account_log_in_html: Hai già un'utenza? <strong>Accedi.</strong>
+  #Badge on the profile describing when a user became an iNaturalist ambassador, e.g. "Ambassador since January 2020"
+  ambassador_since_date: Ambasciatore dal %{date}
   amphibians: anfibi
   #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
   #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
@@ -2046,8 +2054,20 @@ it:
   favorites: "Preferiti"
   #Heading of the admin feature flags page and the admin nav link to it
   feature_flags: Contrassegni di funzionalità
+  #Note under a flag's kind on the admin feature flags page when the flag assigns app users by their app installation rather than their account, so logging in does not change it
+  feature_flags_by_installation: Assegnato tramite installazione app
+  #Button on the admin feature flags page that empties the app installation ID field and its preview column
+  feature_flags_clear: Cancella
   #Label shown before the current admin's on/off value for a flag on the admin feature flags page
   feature_flags_enabled_for_you: "Abilitato per te:"
+  #Label before the on/off value or variant a logged-out mobile app installation would get, in a column of the admin feature flags page
+  feature_flags_for_installation: "Questa installazione, disconnessa:"
+  #Help text under the app installation ID field on the admin feature flags page
+  feature_flags_installation_id_help: Incolla un ID di installazione dell'app (l'intestazione X-Installazione-ID) per vedere cosa riceverebbe quell'installazione mentre si è disconnessi.
+  #Label for a text field on the admin feature flags page where an admin enters a mobile app installation ID
+  feature_flags_installation_id_label: ID installazione app
+  #Warning on the admin feature flags page when the entered app installation ID is not a UUID
+  feature_flags_invalid_installation_id: Quello non è un ID di installazione valido. Gli ID di installazione sono UUID.
   #Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
   feature_flags_kind_client: Contrassegno visibile per il client
   #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
@@ -2062,6 +2082,8 @@ it:
   feature_flags_not_enrolled: Non iscritto
   #Intro text on the admin feature flags page, above a table listing every flag with the current admin's own value
   feature_flags_page_description: Ogni contrassegno di funzionalità ed esperimenti, risolto per il tuo profilo. Crea, abilita e distribuisci contrassegni nell'interfaccia di gestione.
+  #Button on the admin feature flags page that shows flag values for the entered app installation ID
+  feature_flags_preview: Anteprima
   #Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
   feature_flags_your_variant: "La tua variante in %{experiment}:"
   feature_this_project_: "Evidenzia questo progetto"
@@ -2179,6 +2201,12 @@ it:
   flag_this_sound: Segnala questo suono
   flagged_: Contrassegnato
   flagged_for_curation: Contrassegnato per il controllo
+  #Note below a list of flagged taxa explaining the difference between the
+  #count column and the links in each row. open_flags is the translated
+  #column header "Open flags" and view_all_flags is the translated link text
+  #"View All Flags". Taxa below a taxon are its descendants, e.g. the species
+  #within a genus
+  flagged_taxa_counts_explanation: "“%{open_flags}\" conta solo i contrassegni aperti su quel taxon. \"%{view_all_flags}\" mostra anche i contrassegni per i taxa discendenti."
   flagged_taxon: Taxon segnato
   flagged_thing_explanation: "Gli utenti hanno contrassegnato questa %{thing} perché"
   flagging_desc: |
@@ -3812,6 +3840,18 @@ it:
   #Geoprivacy status in which no privacy has been applied
   open_: Aperta
   open_description: "Tutti possono vedere le coordinate, a meno che il taxon non sia minacciato."
+  #Column header for the number of unresolved flags on each taxon in a list
+  #of flagged taxa. The count only includes flags on that exact taxon, not
+  #flags on its descendants (lower-ranked taxa within it)
+  open_flags: Contrassegni aperti
+  #Label for the number of unresolved flags on taxa covered by a taxon
+  #framework, i.e. the taxa whose classification the framework tracks against
+  #an external source. count is a link that shows a list of the flagged taxa
+  open_flags_on_covered_taxa_count: "Contrassegni aperti per taxa coperti: %{count}"
+  #Label for the number of unresolved flags on taxa within this taxon that are
+  #covered by a taxon framework attached to one of its ancestors. count is a
+  #link that shows a list of the flagged taxa
+  open_flags_on_downstream_taxa_count_html: "Contrassegni aperti per i taxa a valle: %{count}"
   open_street_map: OpenStreetMap
   optional: opzionale
   options: Opzioni
@@ -6185,6 +6225,9 @@ it:
   view_all_caps: VISUALIZZA TUTTO
   view_all_fields: Visualizza Tutti I Campi
   view_all_flags: Mostra tutti i contrassegni
+  #Link that opens a search of unresolved flags on a taxon and all of its
+  #descendants (lower-ranked taxa within it)
+  view_all_flags_including_descendants: Visualizza tutti i contrassegni (inclusi i discendenti)
   view_all_members: Visualizza tutti i membri
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
@@ -6629,6 +6672,30 @@ it:
         Fare clic con il tasto CMD o MAIUSC per selezionarne più di uno. Selezionando "Tutto" o non effettuando una selezione mostrerà l'annuncio a tutti gli utenti indipendentemente dal settaggio locale. La scelta di una lingua senza una regione *non* avrà come taget le impostazioni locali con regioni, ad esempio se hai scelto l'inglese non apparirà per le persone che hanno scelto l'Inglese (Regno Unito).
       clients_desc: |
         Fare clic con il tasto CMD o MAIUSC per selezionarne più di uno. Selezionando "Tutto" o non effettuando alcuna selezione mostrerà l'annuncio a tutti gli utenti indipendentemente dal cliente.
+      #Heading of the donation shortcodes help panel on the announcement form
+      donation_shortcodes: Codici-brevi delle donazioni
+      #Introduction to the donation shortcodes help panel
+      donation_shortcodes_desc: |
+        I codici-brevi nel corpo sono sostituiti con importi di donazione nella valuta e lingua del visualizzatore. Salva l'annuncio, poi vedi l'anteprima per altri paesi e lingue nella sua pagina.
+      #%{example} is button text, e.g. "Donate $5 (USD)"
+      donation_label_shortcode_desc: Testo del pulsante di donazione con l'importo, ad esempio %{example}
+      #FundraiseUp is a service name; href is an HTML attribute, don't translate
+      donation_url_shortcode_desc: |
+        Link al checkout di FundraiseUp con importo, valuta, frequenza,
+        e il lingua compilati. Usalo come href di un link.
+      #Heading for the optional settings of donation shortcodes
+      donation_shortcode_attributes: Attributi opzionali
+      #%{tiers} is e.g. "min, mid, max"; %{default_tier} is e.g. "min"
+      donation_shortcode_tier_desc: "Quale quantità da mostrare: %{tiers}. Predefinito: %{default_tier}."
+      #%{frequencies} is e.g. "once, monthly"; %{default_frequency} is e.g. "once"
+      donation_shortcode_frequency_desc: "Donazione una tantum o mensile: %{frequencies}. Predefinito: %{default_frequency}."
+      #%{shortcode} is "[donation-url]"; %{default_url} is a web address
+      donation_shortcode_url_desc: "Unicamente %{shortcode}. La pagina FundraiseUp a cui collegarsi. Predefinito: %{default_url}"
+      #%{shortcode} is "[donation-url]"; %{utm_term} is a setting name
+      donation_shortcode_query_params_desc: |
+        Unicamente %{shortcode}. Aggiunto al link così com'è. %{utm_term} Predefinito per l'ID dell'annuncio.
+      #Heading above example donation shortcodes
+      donation_shortcode_examples: Esempi
       end_desc: |
         Ora nel fuso orario del tuo profilo in cui questo annuncio smetterà di comparire. Si applica a tutti i fusi orari, quindi tutti smetteranno di vedere nello stesso momento, non in relazione alla loro ora locale.
       excludes_non_site_desc: |
@@ -6650,6 +6717,17 @@ it:
       parent_announcement_disabled_desc: Questo annuncio ha varianti mirate e non può essere assegnato a un annuncio globale.
       #Tooltip for the global announcement select field on the announcement form
       parent_announcement_desc: Seleziona un annuncio che questo annuncio dovrebbe sostituire per gli utenti che rispettano le regole di targeting.
+      #Label for a menu choosing the country for a donation preview
+      preview_as_country: Anteprima come paese
+      #Label for a menu choosing the language for a donation preview
+      preview_in_locale: Anteprima nella lingua
+      #%{country} is a country name; %{currency} is a code, e.g. "USD"
+      preview_default_country: Predefinito (%{country}, %{currency})
+      #Language menu option meaning the viewer's current site language
+      preview_your_locale: La tua lingua
+      #Help text under the donation preview menus
+      preview_donation_shortcodes_desc: |
+        Mostra gli importi delle donazioni nella valuta del paese scelto, e il pulsante di donazione e pagamento nella lingua scelta. le persone in paesi non elencati vedono gli importi predefiniti del paese.
       site_ids_desc: |
         Fare clic con il tasto CMD o MAIUSC per selezionarne più di uno. Selezionando "Tutto" o non effettuando alcuna selezione mostrerà l'annuncio a tutti gli utenti indipendentemente dall'affiliazione al sito.
       start_desc: |
@@ -9609,6 +9687,41 @@ it:
               cannot_reference_variant: non può fare riferimento a un annuncio che sia essa stesso una variante (è consentito un solo livello di annidamento)
               #Error shown when trying to set an global announcement on an announcement that already has variants
               cannot_have_variants: Non può essere impostato su un annuncio che ha già varianti (consentito solo un livello di annidamento)
+            body:
+              #Error shown to site admins when an announcement body contains a
+              #donation shortcode whose name isn't [donation-label] or
+              #[donation-url]. %{shortcode} is the shortcode text as written,
+              #e.g. [donation-amount tier="min"]. Leave the bracketed shortcode
+              #names untranslated. Shown after the field name, e.g. "Body has
+              #an unknown donation shortcode..."
+              unknown_donation_shortcode: "ha un codice-breve di donazione sconosciuto %{shortcode}; Usa [etichetta-donazione] o [url-donazione]"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute that can't be read, e.g. an
+              #unquoted value. %{shortcode} is the shortcode text as written.
+              malformed_donation_shortcode: "ha un shortcode di donazione con un attributo illeggibile %{shortcode}; valori di citazione come tier=\"min\""
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute it doesn't accept.
+              #%{attribute} is the attribute name, %{shortcode} the shortcode
+              #text as written.
+              unknown_donation_shortcode_attribute: "ha un codice-breve di donazione con un attributo sconosciuto %{attribute}: %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a tier that doesn't exist. %{value} is
+              #the tier as written, %{allowed} lists the tier names.
+              invalid_donation_tier: "ha un codice-breve per donazioni con un livello sconosciuto %{value} (uno di %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a donation frequency that doesn't exist.
+              #%{value} is the frequency as written, %{allowed} lists the
+              #frequencies, e.g. "once, monthly".
+              invalid_donation_frequency: "ha un codice-breve per donazioni con frequenza sconosciuta %{value} (uno di %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body uses a tier and frequency that has no amount
+              #set for the default country, so some viewers would see nothing.
+              #%{tier} and %{frequency} are as written, e.g. "max" and "once".
+              unpriced_donation_tier: "ha un codice-breve per donazioni per un livello senza importo impostato (%{frequency} %{tier}): %{shortcode}"
+              #Error shown to site admins when the url attribute of a
+              #[donation-url] shortcode in an announcement body isn't a full
+              #http:// or https:// web address.
+              invalid_donation_url: "ha un codice-breve di donazione il cui URL deve essere un indirizzo completo http:// o https://: %{shortcode}"
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the

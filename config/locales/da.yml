@@ -86,6 +86,12 @@ da:
   x_observers_caps_html:
     one: '<span class="count">%{count}</span> OBSERVATØR'
     other: '<span class="count">%{count}</span> OBSERVATØRER'
+  #Footer below the scrolling list of flagged taxa on taxonomy details pages.
+  #count is the number of unresolved flags on taxa covered by the taxon
+  #framework; the list itself only shows the most-flagged taxa
+  x_open_flags_scroll_for_more:
+    one: "%{count} åbent flag · rul for mere"
+    other: "%{count} åbne flag · rul for mere"
   x_others:
     one: "%{count} anden"
     other: "%{count} andre"
@@ -578,6 +584,8 @@ da:
   alphabetical: Alfabetisk
   alphabetical_order: Alfabetisk orden
   already_have_an_account_log_in_html: Har du en konto? <strong>Log in.</strong>
+  #Badge on the profile describing when a user became an iNaturalist ambassador, e.g. "Ambassador since January 2020"
+  ambassador_since_date: Ambassadør siden %{date}
   amphibians: padder
   #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
   #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
@@ -2100,8 +2108,20 @@ da:
   favorites: "Favoritter"
   #Heading of the admin feature flags page and the admin nav link to it
   feature_flags: Funktionsflag
+  #Note under a flag's kind on the admin feature flags page when the flag assigns app users by their app installation rather than their account, so logging in does not change it
+  feature_flags_by_installation: Kategoriseret efter app-installation
+  #Button on the admin feature flags page that empties the app installation ID field and its preview column
+  feature_flags_clear: Ryd
   #Label shown before the current admin's on/off value for a flag on the admin feature flags page
   feature_flags_enabled_for_you: "Aktiveret for dig:"
+  #Label before the on/off value or variant a logged-out mobile app installation would get, in a column of the admin feature flags page
+  feature_flags_for_installation: "Denne installation, logget ud:"
+  #Help text under the app installation ID field on the admin feature flags page
+  feature_flags_installation_id_help: Indsæt et app-installations-ID (X-Installations-ID-headeren) for at se, hvad installationen får, mens den logger ud.
+  #Label for a text field on the admin feature flags page where an admin enters a mobile app installation ID
+  feature_flags_installation_id_label: App-installations-ID
+  #Warning on the admin feature flags page when the entered app installation ID is not a UUID
+  feature_flags_invalid_installation_id: Det er ikke et gyldigt installations-ID. Installations-ID'er er UUID'er.
   #Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
   feature_flags_kind_client: Klientsynligt flag
   #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
@@ -2116,6 +2136,8 @@ da:
   feature_flags_not_enrolled: ikke tilmeldt
   #Intro text on the admin feature flags page, above a table listing every flag with the current admin's own value
   feature_flags_page_description: Hvert funktionsflag og eksperiment løst for din konto. Opret, aktivér og udrul flag i håndterings-UI'en.
+  #Button on the admin feature flags page that shows flag values for the entered app installation ID
+  feature_flags_preview: Prævisning
   #Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
   feature_flags_your_variant: "Din variant i %{experiment}:"
   feature_this_project_: "Fremhæv dette projekt"
@@ -2171,6 +2193,8 @@ da:
   find_your_current_location: Find din aktuelle placering
   finished: Afsluttet
   finished_with_page: Færdig med side
+  #Label for a pagination button that goes to the first page of results
+  first: Første
   first_confirmed_inat_observation: "Først bekræftet %{site_name} observation"
   first_connect_your_provider_account_to_your_site: "Forbind først din %{provider} konto til %{site_name}"
   first_inat_observation: "Første %{site_name} observation"
@@ -2231,6 +2255,12 @@ da:
   flag_this_sound: Markér denne lyd
   flagged_: Markeret
   flagged_for_curation: Markeret for kuration
+  #Note below a list of flagged taxa explaining the difference between the
+  #count column and the links in each row. open_flags is the translated
+  #column header "Open flags" and view_all_flags is the translated link text
+  #"View All Flags". Taxa below a taxon are its descendants, e.g. the species
+  #within a genus
+  flagged_taxa_counts_explanation: "“%{open_flags}\" tællerflag kun på dén taxon. \"%{view_all_flags}\" viser også flag på taxa under sig."
   flagged_taxon: Markeret taksa
   flagged_thing_explanation: "Bruger har markeret dette %{thing} fordi"
   flagging_desc: |
@@ -3899,6 +3929,18 @@ da:
   #Geoprivacy status in which no privacy has been applied
   open_: Åben
   open_description: "Alle kan se koordinaterne, medmindre taksonen er truet."
+  #Column header for the number of unresolved flags on each taxon in a list
+  #of flagged taxa. The count only includes flags on that exact taxon, not
+  #flags on its descendants (lower-ranked taxa within it)
+  open_flags: Åbne flag
+  #Label for the number of unresolved flags on taxa covered by a taxon
+  #framework, i.e. the taxa whose classification the framework tracks against
+  #an external source. count is a link that shows a list of the flagged taxa
+  open_flags_on_covered_taxa_count: "Åbne flag på omfattede taxa: %{count}"
+  #Label for the number of unresolved flags on taxa within this taxon that are
+  #covered by a taxon framework attached to one of its ancestors. count is a
+  #link that shows a list of the flagged taxa
+  open_flags_on_downstream_taxa_count_html: "Åbne flag på efterfølgende taxa: %{count}"
   open_street_map: OpenStreetMap
   optional: valgfri
   options: Valgmuligheder
@@ -3953,6 +3995,8 @@ da:
   overlapping_atlases: Overlappende atlaser
   overlapping_downstream_taxon_frameworks_html: "Overlappende downstream Taxon Frameworks: %{count}"
   owner: Ejer
+  #Accessible label for a set of pagination controls
+  pagination: Paginering
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Overordnet
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
@@ -5044,6 +5088,8 @@ da:
   schemes_including: Systemer der inkluderer
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Videnskabeligt navn
+  #Accessible label for a button that scrolls the page back to the top
+  scroll_to_top: Scroll til toppen
   search: Søg
   search_all_fields: søg i alle felter
   #Placeholder for a search bar where the user can search for another user
@@ -6381,6 +6427,9 @@ da:
   view_all_caps: VIS ALLE
   view_all_fields: Vis alle felter
   view_all_flags: Vis alle markeringer
+  #Link that opens a search of unresolved flags on a taxon and all of its
+  #descendants (lower-ranked taxa within it)
+  view_all_flags_including_descendants: Se alle flag (inkl. efterkommere)
   view_all_members: Vis alle medlemmer
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
@@ -6853,6 +6902,33 @@ da:
       clients_desc: |
         CMD- eller SHIFT-klik for at vælge flere. Vælges "Alle", eller foretages
         intet valg, vises bekendtgørelsen til alle brugere uanset klient.
+      #Heading of the donation shortcodes help panel on the announcement form
+      donation_shortcodes: Donationssporings-tags
+      #Introduction to the donation shortcodes help panel
+      donation_shortcodes_desc: |
+        Sporings-tags i brødteksten erstattes med donationsbeløb i hver
+        seers valuta og sprog. Gem meddelelsen, og prævis dernæst
+        andre lande og sprog på dens side.
+      #%{example} is button text, e.g. "Donate $5 (USD)"
+      donation_label_shortcode_desc: Donationsknaptekster med beløbet, f.eks. %{example}
+      #FundraiseUp is a service name; href is an HTML attribute, don't translate
+      donation_url_shortcode_desc: |
+        Link til FundraiseUp-kassen med beløb, valuta, hyppighed,
+        og sprog udfyldt. Brug det som linkets href.
+      #Heading for the optional settings of donation shortcodes
+      donation_shortcode_attributes: Valgfrie egenskaber
+      #%{tiers} is e.g. "min, mid, max"; %{default_tier} is e.g. "min"
+      donation_shortcode_tier_desc: "Hvilket beløb, der skal vises: %{tiers}. Standard: %{default_tier}."
+      #%{frequencies} is e.g. "once, monthly"; %{default_frequency} is e.g. "once"
+      donation_shortcode_frequency_desc: "Engangs- eller månedlig donation: %{frequencies}. Standard: %{default_frequency}."
+      #%{shortcode} is "[donation-url]"; %{default_url} is a web address
+      donation_shortcode_url_desc: "Kun %{shortcode}. FundraiseUp-siden, der skal linkes til. Standard: %{default_url}"
+      #%{shortcode} is "[donation-url]"; %{utm_term} is a setting name
+      donation_shortcode_query_params_desc: |
+        Kun %{shortcode}. Føjet til linket som skrevet. %{utm_term} er som standard
+        annoncering-ID'et..
+      #Heading above example donation shortcodes
+      donation_shortcode_examples: Eksempler
       end_desc: |
         Tid i kontoens tidszone, hvor denne meddelelse ophører med at
         vises. Anvendes på tværs af tidszoner, så alle ophører med at se
@@ -6880,6 +6956,19 @@ da:
       parent_announcement_disabled_desc: Denne bekendtgørelse har målrettet varianter og kan ikke tildeles en global bekendtgørelse.
       #Tooltip for the global announcement select field on the announcement form
       parent_announcement_desc: Vælg en bekendtgørelse denne bekendtgørelse bør erstatte for brugere, som opfylder målretningsreglerne.
+      #Label for a menu choosing the country for a donation preview
+      preview_as_country: Prævisning som land
+      #Label for a menu choosing the language for a donation preview
+      preview_in_locale: Prævisning på sprog
+      #%{country} is a country name; %{currency} is a code, e.g. "USD"
+      preview_default_country: Standard (%{country}, %{currency})
+      #Language menu option meaning the viewer's current site language
+      preview_your_locale: Eget sprog
+      #Help text under the donation preview menus
+      preview_donation_shortcodes_desc: |
+        Viser donationsbeløb i det valgte lands valuta og
+        donationsknappen og kassen i det valgte sprog. Folk i
+        ikke-oplistede lande kan ikke se standardlandets beløb.
       site_ids_desc: |
         CMD- eller SHIFT-klik for at vælge flere. Vælges "Alle", eller foretages
         intet valg, vises bekendtgørelsen til alle brugere uanset webstedstilknytning.
@@ -10257,6 +10346,41 @@ da:
               cannot_reference_variant: kan ikke referere til en bekendtgørelse, der selv er en variant (kun ét indlejringsniveau tilladt)
               #Error shown when trying to set an global announcement on an announcement that already has variants
               cannot_have_variants: kan ikke sættes på en bekendtgørelse, der allerede har varianter (kun ét indlejringsniveau tilladt)
+            body:
+              #Error shown to site admins when an announcement body contains a
+              #donation shortcode whose name isn't [donation-label] or
+              #[donation-url]. %{shortcode} is the shortcode text as written,
+              #e.g. [donation-amount tier="min"]. Leave the bracketed shortcode
+              #names untranslated. Shown after the field name, e.g. "Body has
+              #an unknown donation shortcode..."
+              unknown_donation_shortcode: "har en ukendt donationskode %{shortcode}; Brug [donationsetiket] eller [donations-URL]"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute that can't be read, e.g. an
+              #unquoted value. %{shortcode} is the shortcode text as written.
+              malformed_donation_shortcode: "har en donationskortkode med en ulæselig attribut %{shortcode}; Citationsværdier, såsom tier=\"min\""
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute it doesn't accept.
+              #%{attribute} is the attribute name, %{shortcode} the shortcode
+              #text as written.
+              unknown_donation_shortcode_attribute: "har en donationskortkode med en ukendt attribut %{attribute}: %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a tier that doesn't exist. %{value} is
+              #the tier as written, %{allowed} lists the tier names.
+              invalid_donation_tier: "har en donationskode med ukendt niveau %{value} (en af %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a donation frequency that doesn't exist.
+              #%{value} is the frequency as written, %{allowed} lists the
+              #frequencies, e.g. "once, monthly".
+              invalid_donation_frequency: "har en donationskode med ukendt hyppighed %{value} (en af %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body uses a tier and frequency that has no amount
+              #set for the default country, so some viewers would see nothing.
+              #%{tier} and %{frequency} are as written, e.g. "max" and "once".
+              unpriced_donation_tier: "har en donationskortkode til et niveau uden fastsat beløb (%{frequency} %{tier}): %{shortcode}"
+              #Error shown to site admins when the url attribute of a
+              #[donation-url] shortcode in an announcement body isn't a full
+              #http:// or https:// web address.
+              invalid_donation_url: "har en donationskortkode, hvis URL skal være en fuld http:// eller https:// adresse: %{shortcode}"
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
