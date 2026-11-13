@@ -1478,6 +1478,55 @@ ALTER SEQUENCE public.email_suppressions_id_seq OWNED BY public.email_suppressio
 
 
 --
+-- Name: exemplar_identification_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.exemplar_identification_scores (
+    id bigint NOT NULL,
+    exemplar_identification_id bigint NOT NULL,
+    status character varying NOT NULL,
+    self_contained_score smallint,
+    self_contained_vote_sum smallint,
+    readability_score smallint,
+    readability_vote_sum smallint,
+    id_help_score smallint,
+    id_help_vote_sum smallint,
+    cool_fact_score smallint,
+    cool_fact_vote_sum smallint,
+    flags text[] DEFAULT '{}'::text[] NOT NULL,
+    raw_votes json,
+    filter_model character varying,
+    score_model character varying,
+    prompt_version character varying,
+    scored_at timestamp without time zone,
+    attempts smallint DEFAULT 0 NOT NULL,
+    last_error text,
+    last_attempt_at timestamp without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: exemplar_identification_scores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.exemplar_identification_scores_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: exemplar_identification_scores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.exemplar_identification_scores_id_seq OWNED BY public.exemplar_identification_scores.id;
+
+
+--
 -- Name: exemplar_identifications; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6692,6 +6741,13 @@ ALTER TABLE ONLY public.email_suppressions ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: exemplar_identification_scores id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.exemplar_identification_scores ALTER COLUMN id SET DEFAULT nextval('public.exemplar_identification_scores_id_seq'::regclass);
+
+
+--
 -- Name: exemplar_identifications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7843,6 +7899,14 @@ ALTER TABLE ONLY public.deleted_users
 
 ALTER TABLE ONLY public.email_suppressions
     ADD CONSTRAINT email_suppressions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: exemplar_identification_scores exemplar_identification_scores_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.exemplar_identification_scores
+    ADD CONSTRAINT exemplar_identification_scores_pkey PRIMARY KEY (id);
 
 
 --
@@ -9405,6 +9469,20 @@ CREATE INDEX index_email_suppressions_on_email_and_suppression_type ON public.em
 --
 
 CREATE INDEX index_email_suppressions_on_user_id ON public.email_suppressions USING btree (user_id);
+
+
+--
+-- Name: index_exemplar_identification_scores_on_backlog_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_exemplar_identification_scores_on_backlog_status ON public.exemplar_identification_scores USING btree (status) WHERE ((status)::text = ANY ((ARRAY['pending'::character varying, 'submitted'::character varying])::text[]));
+
+
+--
+-- Name: index_exemplar_identification_scores_on_exemplar_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_exemplar_identification_scores_on_exemplar_id ON public.exemplar_identification_scores USING btree (exemplar_identification_id);
 
 
 --
@@ -12390,6 +12468,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260730225905'),
 ('20260806120000'),
 ('20260819211039'),
-('20261103180000');
+('20261103180000'),
+('20261113120000');
 
 
