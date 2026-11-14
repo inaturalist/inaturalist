@@ -4086,8 +4086,8 @@ nl:
       continent: continent
       Country: Land
       country: land
-      County: Streek
-      county: streek
+      County: Graafschap
+      county: graafschap
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       Delegation: Delegatie
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
@@ -4110,7 +4110,7 @@ nl:
       estate: landgoed
       Governorate: Gouvernement
       governorate: gouvernement
-      Historical_County: Historische graafschap
+      Historical_County: Historisch graafschap
       historical_county: historische graafschap
       Historical_State: Historische staat
       historical_state: Historische staat
@@ -7483,7 +7483,7 @@ nl:
         query_placeholder: "Kies onderstaande queryparameters of plak een waarnemings-URL in"
         taxon_extras_help_html: "Let op: deze kolommen vertragen het genereren van je export"
         geo_help_html: |
-          Plaats-, gemeente-, provincie-, landvelden op basis van coördinaten. Vergelijkbare 
+          Plaats-, graafschap, provincie-, landvelden op basis van coördinaten. Vergelijkbare 
           administratieve niveaus zullen worden gebruikt voor waarnemingen waar deze plaatstypen
           niet van toepassing zijn.
           De private_*-velden worden alleen opgenomen wanneer je het gebruikersfilter gebruikt en je die gebruiker bent, of wanneer je het projectfilter gebruikt en projectcurator bent.
@@ -7596,8 +7596,8 @@ nl:
           waarneming heeft gecreëerd. Voor meer informatie over de applicatie voeg deze dan
           toe aan https://www.inaturalist.org/oauth/applications/
         place_county_name: |
-          De naam van het derde niveau administratieve gebied dat de
-          waarnemingscoördinaten bevat (bijvoorbeeld een gemeente)
+          De naam van het derde-niveau-administratieve gebied dat de
+          waarnemingscoördinaten bevat (bijvoorbeeld een graafschap)
         place_country_name: |
           De naam van de gemeente die de coördinaten van deze waarneming bevat
         place_state_name: |
