@@ -6325,6 +6325,9 @@ nl:
   view_all_caps: ALLES TONEN
   view_all_fields: Toon alle velden
   view_all_flags: Alle meldingen bekijken
+  #Link that opens a search of unresolved flags on a taxon and all of its
+  #descendants (lower-ranked taxa within it)
+  view_all_flags_including_descendants: Bekijk alle meldingen (inclusief opvolgingen)
   view_all_members: Alle leden weergeven
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
@@ -6791,6 +6794,14 @@ nl:
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of niet maken
         Een selectie toont de aankondiging aan alle gebruikers, ongeacht
         klant.
+      #Heading for the optional settings of donation shortcodes
+      donation_shortcode_attributes: Optionele attributen
+      #%{tiers} is e.g. "min, mid, max"; %{default_tier} is e.g. "min"
+      donation_shortcode_tier_desc: "Wat neerkomt op het volgende: %{tiers}. Standaard: %{default_tier}."
+      #%{frequencies} is e.g. "once, monthly"; %{default_frequency} is e.g. "once"
+      donation_shortcode_frequency_desc: "Eenmalige of maandelijkse donatie: %{frequencies}. Standaard: %{default_frequency}."
+      #Heading above example donation shortcodes
+      donation_shortcode_examples: Voorbeelden
       end_desc: |
         Tijd in de tijdzone van uw account waarop deze aankondiging stopt
         Verschijnen. Geldt voor meerdere tijdzones, zodat iedereen niet meer te zien is
@@ -6817,6 +6828,19 @@ nl:
       parent_announcement_disabled_desc: Deze aankondiging is gericht aan een specifiek publiek en kan niet worden toegewezen aan een wereldwijde aankondiging.
       #Tooltip for the global announcement select field on the announcement form
       parent_announcement_desc: Selecteer een aankondiging die deze aankondiging moet vervangen voor gebruikers die aan de regels voldoen.
+      #Label for a menu choosing the country for a donation preview
+      preview_as_country: Vooruitblik als land
+      #Label for a menu choosing the language for a donation preview
+      preview_in_locale: Preview in taal
+      #%{country} is a country name; %{currency} is a code, e.g. "USD"
+      preview_default_country: Standaard (%{country}, %{currency})
+      #Language menu option meaning the viewer's current site language
+      preview_your_locale: Jouw taal
+      #Help text under the donation preview menus
+      preview_donation_shortcodes_desc: |
+        Toont donatiebedragen in de valuta van het gekozen land en de
+        Donatieknop en afrekenen in de gekozen taal. Mensen in
+        Landen die niet worden vermeld, zien de bedragen van het standaardland.
       site_ids_desc: |
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
         een selectie toont de aankondiging aan alle gebruikers, ongeacht ongeacht
