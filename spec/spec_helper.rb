@@ -112,7 +112,10 @@ end
 
 def rebuild_all_test_elasticsearch_indices
   Elasticsearch::Model.client.ping
-  es_classes = ApplicationRecord.descendants.filter {| m | m.respond_to?( :elastic_index! ) }
+  # STI subclasses (Trip < Post) share their base class's index
+  es_classes = ApplicationRecord.descendants.filter do | m |
+    m.respond_to?( :elastic_index! ) && m.base_class == m
+  end
   print "Rebuilding #{es_classes.size} indexes"
   es_classes.each do | klass |
     print "."

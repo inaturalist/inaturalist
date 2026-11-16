@@ -3,6 +3,11 @@
 class Post < ApplicationRecord
   BLOG_V2_ATTRIBUTES = %w(cover_image_id featured_at mobile_featured_at locale blog_category_id).freeze
 
+  # No lifecycle callbacks until the posts index exists in production. Must
+  # match the call in app/es_indices/post_index.rb, which loads first when
+  # eager loading. WEB-1426 removes `lifecycle_callbacks: []` from both.
+  acts_as_elastic_model lifecycle_callbacks: []
+
   acts_as_spammable fields: [:title, :body],
     comment_type: "blog-post"
   acts_as_taggable

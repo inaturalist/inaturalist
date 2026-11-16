@@ -116,6 +116,9 @@ class Comment < ApplicationRecord
   def index_parent
     return if @parent_indexed
     return if bulk_delete
+    # Indexing a post before the posts index exists would let Elasticsearch
+    # auto-create it with guessed mappings. WEB-1426 removes this skip.
+    return if parent.is_a?( Post )
 
     return unless parent.respond_to?( :elastic_index! )
 
