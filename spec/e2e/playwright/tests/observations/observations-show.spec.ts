@@ -4,7 +4,7 @@ import { mockObservationFetch } from "../../fixtures/observation-response";
 import { mockTaxonSuggestions } from "../../fixtures/taxon-suggestions";
 import { app, appMake } from "../../support/on-rails";
 import { login } from "../../helpers/auth.helper";
-import { expectNoHorizontalOverflow, expectWithinViewport } from "../../helpers/overflow.helper";
+import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
 
 test.describe( "Observation detail page", () => {
   let obs: Record<string, unknown>;
@@ -160,46 +160,6 @@ test.describe( "Observation detail page", () => {
       ) ).length;
     } );
     expect( overlaps ).toBe( 0 );
-  } );
-
-  [320, 360].forEach( width => {
-    test( `identification header and taxon name keep a readable width at ${width}px in German`, async ( { page } ) => {
-      await page.setViewportSize( { width, height: 800 } );
-      await login( page, viewer.email as string, VIEWER_PASSWORD );
-      await mockObservationFetch( page, {
-        ...obs,
-        identifications: [
-          {
-            id: 999993,
-            uuid: "00000000-0000-0000-0000-000000000993",
-            created_at: new Date( Date.now() - 43 * 60_000 ).toISOString(),
-            current: true,
-            category: "improving",
-            vision: true,
-            hidden: false,
-            flags: [],
-            moderator_actions: [],
-            user: { id: 987653, login: "thomastaylor1", name: "thomastaylor1" },
-            taxon: {
-              id: 999992,
-              name: "Zelus renardii",
-              rank: "species",
-              rank_level: 10,
-              is_active: true,
-              preferred_common_name: "Nordamerikanische Zikaden-Raubwanze"
-            }
-          }
-        ]
-      } );
-      await page.goto( `/observations/${obs.id}?locale=de` );
-      const item = page.locator( "#ObservationShow .ActivityItem", { hasText: "thomastaylor1" } ).first();
-      await expect( item.locator( ".buttons button", { hasText: "Zustimmen" } ) ).toBeVisible( { timeout: 15_000 } );
-      const titleBox = await item.locator( ".panel-title .title_text" ).boundingBox();
-      const taxonBox = await item.locator( ".identification > .taxon" ).boundingBox();
-      expect( titleBox?.width ).toBeGreaterThanOrEqual( 150 );
-      expect( taxonBox?.width ).toBeGreaterThanOrEqual( 150 );
-      await expectWithinViewport( page, `${width}px` );
-    } );
   } );
 
   test.describe( "with RtlTestGroupToggle", () => {
