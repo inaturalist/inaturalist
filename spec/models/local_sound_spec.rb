@@ -7,6 +7,7 @@ describe LocalSound, "creation" do
       file: File.open( File.join( Rails.root, "spec/fixtures/files/pika.amr" ) )
     )
     expect( ["audio/mp4", "audio/x-m4a"] ).to include ls.file.content_type
+    expect( ls.file.path ).to end_with "/#{ls.id}.m4a"
   end
 
   it "should not convert an MP3 to an MP4" do
@@ -15,6 +16,16 @@ describe LocalSound, "creation" do
       file: File.open( File.join( Rails.root, "spec/fixtures/files/pika.mp3" ) )
     )
     expect( ["audio/mp3", "audio/mpeg"]  ).to include ls.file.content_type
+    expect( ls.file.path ).to end_with "/#{ls.id}.mp3"
+  end
+
+  it "should not convert a WAV" do
+    ls = LocalSound.create!(
+      user: User.make!,
+      file: File.open( File.join( Rails.root, "spec/fixtures/files/pika.wav" ) )
+    )
+    expect( ls.file.content_type ).to match( /wav/ )
+    expect( ls.file.path ).to end_with "/#{ls.id}.wav"
   end
 end
 
