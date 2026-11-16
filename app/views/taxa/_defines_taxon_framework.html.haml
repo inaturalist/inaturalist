@@ -80,7 +80,7 @@
                   %h4.media-heading= link_to taxon_curator.user.login, person_by_login_path( taxon_curator.user.login )
       - if flagged_taxa_count > 0
         .flagged_taxa_count
-          =t :open_flags_on_covered_taxa_count, count: link_to( flagged_taxa_count, "#" )
+          =t :open_flags_on_covered_taxa_count_html, count: link_to( flagged_taxa_count, "#" )
           = link_to "#{t( :view_all_flags_including_descendants )} &rarr;".html_safe, flags_path( flaggable_type: "Taxon", taxon_id: taxon.id, resolved: "no" ), class: "view-all-flags"
         = render partial: "taxa/flagged_taxa_table", object: { flagged_taxa: flagged_taxa, flagged_taxa_count: flagged_taxa_count }
     - unless taxon_framework.description.blank?
