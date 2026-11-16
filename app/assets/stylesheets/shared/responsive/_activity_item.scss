@@ -19,7 +19,7 @@ body > [role="dialog"] .ActivityItem {
     width: 100%;
     > .taxon {
       display: flex;
-      flex: 1 1 0;
+      flex: 1 1 12rem;
       min-width: 0;
       overflow-wrap: anywhere;
       overflow: hidden;
@@ -435,6 +435,19 @@ body > [role="dialog"] .ActivityItemMenu {
         flex: 2;
         margin-right: 5px
       }
+    }
+  }
+}
+
+@media ( max-width: $xs-max ) {
+  .ActivityItem .panel-title,
+  body > [role="dialog"] .ActivityItem .panel-title {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    .title_text {
+      flex: 1 1 100%;
+      order: 0;
+      margin-inline-end: 0;
     }
   }
 }
