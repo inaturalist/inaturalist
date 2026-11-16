@@ -66,6 +66,9 @@ describe PostsController, "spam" do
 end
 
 describe PostsController, "create" do
+  let( :blog_v2_params ) do
+    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: 1, cover_image_id: 1, locale: "fr" }
+  end
   describe "for user journal" do
     let( :user ) { User.make! }
     before do
@@ -118,10 +121,20 @@ describe PostsController, "create" do
         post :create, params: { post: { title: "Foo", body: "Bar", parent_type: "Site", parent_id: site.id } }
       end.not_to change( Post, :count )
     end
+    it "should ignore blog v2 attributes" do
+      sign_in SiteAdmin.make!( site: site ).user
+      post :create, params: {
+        post: { title: "Foo", body: "Bar", parent_type: "Site", parent_id: site.id }.merge( blog_v2_params )
+      }
+      expect( Post.last.slice( *blog_v2_params.keys ).compact ).to be_empty
+    end
   end
 end
 
 describe PostsController, "update" do
+  let( :blog_v2_params ) do
+    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: 1, cover_image_id: 1, locale: "fr" }
+  end
   describe "for user" do
     let( :user ) { User.make! }
     before { sign_in user }
@@ -139,6 +152,24 @@ describe PostsController, "update" do
       put :update, params: { id: p.id, post: { body: new_body } }
       p.reload
       expect( p.body ).not_to eq new_body
+    end
+    it "should ignore blog v2 attributes" do
+      p = Post.make!( user: user, parent: user )
+      put :update, params: { id: p.id, post: { body: "New body" }.merge( blog_v2_params ) }
+      p.reload
+      expect( p.body ).to eq "New body"
+      expect( p.slice( *blog_v2_params.keys ).compact ).to be_empty
+    end
+    it "should ignore blog v2 attributes on a trip" do
+      trip = Trip.make!( user: user )
+      put :update, params: {
+        id: trip.id,
+        observations: [Observation.make!( user: user ).id],
+        trip: { body: "New body" }.merge( blog_v2_params )
+      }
+      trip.reload
+      expect( trip.body ).to eq "New body"
+      expect( trip.slice( *blog_v2_params.keys ).compact ).to be_empty
     end
   end
   describe "for project" do
