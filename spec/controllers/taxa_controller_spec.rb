@@ -159,7 +159,6 @@ describe TaxaController do
         get :show, params: { id: taxon.id }
         expect( assigns( :responsive ) ).to be true
         expect( assigns( :skip_min_width ) ).to be true
-        expect( assigns( :test_group_toggle ) ).to be_nil
         expect( response.body ).to have_tag( "link[href*='taxa/show']" )
         expect( response.body ).not_to have_tag( "link[href*='show_legacy']" )
       end

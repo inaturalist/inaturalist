@@ -126,7 +126,6 @@ class User < ApplicationRecord
   preference :suggestions_sort, :string
   preference :taxon_page_tab, :string
   preference :taxon_page_ancestors_shown, :boolean, default: false
-  preference :hide_responsive_global_toggle, :boolean, default: false
 
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
@@ -405,7 +404,6 @@ class User < ApplicationRecord
   HELPFUL_ID_TIPS_TEST_GROUP = "helpful-id-tips"
   ADMIN_ONLY_TEST_GROUPS = %w(
     responsive-header
-    responsive-obs-detail
     helpful-id-tips-reviewer
   ).freeze
 

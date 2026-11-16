@@ -220,13 +220,12 @@ test.describe( "Header with a wide network logo", () => {
   } );
 } );
 
-test.describe( "Header item inventory (responsive-global)", () => {
+test.describe( "Header item inventory (responsive)", () => {
   let responsiveEmail: string;
 
   test.beforeAll( async () => {
     const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
     responsiveEmail = user.email as string;
-    await app( "add_test_group", { user_id: user.id, test_groups: "responsive-global" } );
   } );
 
   test.beforeEach( async ( { page } ) => {

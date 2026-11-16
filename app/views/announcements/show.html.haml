@@ -149,14 +149,34 @@
           %th=t :body
           - width = @announcement.placement.end_with?( "sidebar" ) ? "360px" : "100%"
           %td
+            - if @announcement.donation_shortcodes?
+              = form_tag url_for,
+                         method: :get,
+                         id: "donation-preview",
+                         class: "form-inline",
+                         enforce_utf8: false do
+                .form-group
+                  %label{ for: "preview_country" }
+                    = t "views.announcements.preview_as_country"
+                  = donation_preview_country_select( @preview_country )
+                .form-group
+                  %label{ for: "preview_locale" }
+                    = t "views.announcements.preview_in_locale"
+                  = donation_preview_locale_select( @preview_locale )
+                %p.help-block
+                  = t "views.announcements.preview_donation_shortcodes_desc"
             - if @announcement.placement =~ /^mobile/
-              %iframe{src: url_for( body: true ), style: "width: 100%; border: 0;"}
+              - body_url = url_for( body: true, **preview_params )
+              %iframe{ src: body_url, style: "width: 100%; border: 0;" }
               %p Preview is in an iframe because mobile announcements do not get any extra styling like web announcements.
               %p
-                = link_to "View in new window", url_for( body: true ), class: "readmore"
+                = link_to "View in new window", body_url, class: "readmore"
             - else
               %div{style: "width: #{width};"}
-                = render "announcements/announcement", announcement: @announcement, preview: true
+                - I18n.with_locale( preview_locale ) do
+                  = render "announcements/announcement",
+                           announcement: @announcement,
+                           preview: true
         %tr
           %th=t :dismissed_by
           %td
