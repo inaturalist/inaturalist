@@ -93,6 +93,27 @@ shared_examples_for "a PhotosController" do
       json = JSON.parse( response.body )
       expect( json["errors"]["uuid"] ).to eq ["has already been taken"]
     end
+
+    it "rejects a file that is not an image even if it is named like one" do
+      expect do
+        post :create, format: :json, params: {
+          file: fixture_file_upload( "not-an-image.jpg", "image/jpeg" )
+        }
+      end.not_to change( Photo, :count )
+      expect( response.status ).to eq 422
+      json = JSON.parse( response.body )
+      expect( json["errors"]["file_content_type"] ).not_to be_blank
+    end
+
+    it "returns .jpg URLs for a PNG it converted", :paperclip_processing do
+      post :create, format: :json, params: {
+        file: fixture_file_upload( "polistes_dominula-png-metadata.png", "image/png" )
+      }
+      expect( response ).to be_successful
+      json = JSON.parse( response.body )
+      expect( json["original_url"] ).to end_with "/original.jpg"
+      expect( json["large_url"] ).to end_with "/large.jpg"
+    end
   end
 
   describe "hide" do
