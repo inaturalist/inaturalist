@@ -1,0 +1,11 @@
+= form_for @blog_category, url: @blog_category.persisted? ? blog_category_path( id: @blog_category.id ) : blog_categories_path, html: { class: "blog-categories-form" } do |f|
+  = f.error_messages
+  .blog-categories-field
+    = f.label :label, BlogCategory.human_attribute_name( :label )
+    = f.text_field :label, required: true
+  .blog-categories-field
+    = f.label :position, BlogCategory.human_attribute_name( :position )
+    = f.number_field :position
+  .blog-categories-form-actions
+    = f.submit t(:save), class: "blog-categories-button blog-categories-button-primary"
+    = link_to t(:cancel), blog_categories_path, class: "blog-categories-button"

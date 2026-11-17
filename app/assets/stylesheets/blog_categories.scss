@@ -1,0 +1,110 @@
+@import "colors";
+@import "breakpoints";
+
+.blog-categories {
+  @include container-padding;
+  margin-block: 20px 40px;
+
+  h1 {
+    margin-block: 10px 20px;
+  }
+
+  .blog-categories-empty {
+    color: $text-grey;
+    margin-top: 20px;
+  }
+
+  .blog-categories-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid $border-grey;
+    border-radius: 4px;
+    background: white;
+    color: $text-greyer;
+    font: inherit;
+    line-height: 1.4;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background: $light-grey;
+      color: $text-greyer;
+      text-decoration: none;
+    }
+  }
+
+  .blog-categories-button-primary {
+    border-color: $inat-green;
+    background: $inat-green;
+    color: white;
+
+    &:hover,
+    &:focus {
+      background: darken( $inat-green, 8% );
+      color: white;
+    }
+  }
+
+  .blog-categories-button-danger {
+    border-color: $fail-red;
+    color: $fail-red;
+
+    &:hover,
+    &:focus {
+      background: $fail-red;
+      color: white;
+    }
+  }
+
+  .blog-categories-table-wrapper {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+
+  .blog-categories-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: 8px;
+      border-bottom: 1px solid $border-grey;
+      text-align: start;
+      vertical-align: middle;
+    }
+  }
+
+  .blog-categories-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .blog-categories-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 480px;
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 6px 10px;
+      border: 1px solid $border-grey;
+      border-radius: 4px;
+    }
+  }
+
+  .blog-categories-field label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .blog-categories-form-actions {
+    display: flex;
+    gap: 10px;
+  }
+}
