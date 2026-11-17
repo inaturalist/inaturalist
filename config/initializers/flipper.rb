@@ -18,16 +18,8 @@ flipper_config.strict = false
 
 flipper_config.log = false
 
-# Duck-typed to avoid loading User at boot (classic autoloader). FeatureFlagging passes group
-# blocks a FeatureFlagging::RequestActor, which exposes #user, #installation_id and #locale on every key.
-unless Flipper.group_exists?( :admins )
-  Flipper.register( :admins ) do | actor |
-    actor.respond_to?( :is_admin? ) && actor.is_admin?
-  end
-end
-
-# locale_en / locale_not_en; after boot so FeatureFlagging isn't autoloaded mid-initializer.
-Rails.application.config.after_initialize { FeatureFlagging.register_locale_groups }
+# Groups live in FeatureFlagging.register_groups; after boot so FeatureFlagging isn't autoloaded mid-initializer.
+Rails.application.config.after_initialize { FeatureFlagging.register_groups }
 
 # English literals below: Flipper::UI is an untranslated third-party admin app.
 Flipper::UI.configure do | config |

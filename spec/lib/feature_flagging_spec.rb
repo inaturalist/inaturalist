@@ -602,10 +602,23 @@ describe FeatureFlagging do
       FeatureFlagging.enabled?( key, user, installation_id: installation_id, locale: locale )
     end
 
-    it "registers locale_en and locale_not_en as Flipper groups" do
+    it "registers admins, locale_en and locale_not_en as Flipper groups" do
       expect( Flipper.group_exists?( :locale_en ) ).to be true
       expect( Flipper.group_exists?( :locale_not_en ) ).to be true
       expect( Flipper.group_exists?( :admins ) ).to be true
+    end
+
+    it "defines every group in register_groups" do
+      allow( Flipper ).to receive( :group_exists? ).and_return( false )
+      allow( Flipper ).to receive( :register )
+      FeatureFlagging.register_groups
+      %i[admins locale_en locale_not_en].each do | group |
+        expect( Flipper ).to have_received( :register ).with( group )
+      end
+    end
+
+    it "skips groups that are already registered" do
+      expect { FeatureFlagging.register_groups }.not_to change( Flipper, :group_names )
     end
 
     it "matches English and its regional variants to locale_en" do

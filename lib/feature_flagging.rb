@@ -87,14 +87,12 @@ module FeatureFlagging
       matcher.call( locale )
     end
 
-    # Called after boot from config/initializers/flipper.rb; group blocks receive a RequestActor.
-    def register_locale_groups
+    # Every Flipper group; called after boot from config/initializers/flipper.rb. Blocks receive a
+    # RequestActor and are duck-typed so User isn't loaded at boot.
+    def register_groups
+      register_group( :admins ) {| actor | actor.respond_to?( :is_admin? ) && actor.is_admin? }
       LOCALE_GROUPS.each_key do | group |
-        next if Flipper.group_exists?( group )
-
-        Flipper.register( group ) do | actor |
-          actor.respond_to?( :locale ) && locale_in_group?( group, actor.locale )
-        end
+        register_group( group ) {| actor | actor.respond_to?( :locale ) && locale_in_group?( group, actor.locale ) }
       end
     end
 
@@ -173,6 +171,10 @@ module FeatureFlagging
     end
 
     private
+
+    def register_group( name, & )
+      Flipper.register( name, & ) unless Flipper.group_exists?( name )
+    end
 
     def client_keys
       feature_keys.select {| key | kind_of( key ) == :client }
