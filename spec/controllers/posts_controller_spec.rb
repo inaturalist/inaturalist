@@ -66,8 +66,8 @@ describe PostsController, "spam" do
 end
 
 describe PostsController, "create" do
-  let( :blog_v2_params ) do
-    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: 1, cover_image_id: 1, locale: "fr" }
+  let( :site_only_values ) do
+    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: BlogCategory.make!.id }
   end
   describe "for user journal" do
     let( :user ) { User.make! }
@@ -84,12 +84,20 @@ describe PostsController, "create" do
         post :create, params: { post: { title: "Foo", body: "Bar", parent_type: "User", parent_id: User.make!.id } }
       end.not_to change( Post, :count )
     end
-    it "should not save featured flags" do
-      expect do
-        post :create, params: {
-          post: { title: "Foo", body: "Bar", parent_type: "User", parent_id: user.id, featured_at: Time.now }
-        }
-      end.not_to change( Post, :count )
+    %i[featured_at mobile_featured_at blog_category_id].each do | field |
+      it "should not save #{field}" do
+        expect do
+          post :create, params: {
+            post: {
+              title: "Foo",
+              body: "Bar",
+              parent_type: "User",
+              parent_id: user.id,
+              field => site_only_values[field]
+            }
+          }
+        end.not_to change( Post, :count )
+      end
     end
   end
   describe "for projects" do
@@ -110,6 +118,22 @@ describe PostsController, "create" do
       expect do
         post :create, params: { post: { title: "Foo", body: "Bar", parent_type: "Project", parent_id: project.id } }
       end.not_to change( Post, :count )
+    end
+    %i[featured_at mobile_featured_at blog_category_id].each do | field |
+      it "should not save #{field}" do
+        project = Project.make!( user: user )
+        expect do
+          post :create, params: {
+            post: {
+              title: "Foo",
+              body: "Bar",
+              parent_type: "Project",
+              parent_id: project.id,
+              field => site_only_values[field]
+            }
+          }
+        end.not_to change( Post, :count )
+      end
     end
   end
   describe "for sites" do
@@ -153,8 +177,8 @@ describe PostsController, "create" do
 end
 
 describe PostsController, "update" do
-  let( :blog_v2_params ) do
-    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: 1, cover_image_id: 1, locale: "fr" }
+  let( :site_only_values ) do
+    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: BlogCategory.make!.id }
   end
   describe "for user" do
     let( :user ) { User.make! }
@@ -174,28 +198,32 @@ describe PostsController, "update" do
       p.reload
       expect( p.body ).not_to eq new_body
     end
-    it "should not save featured flags" do
-      p = Post.make!( user: user, parent: user )
-      put :update, params: { id: p.id, post: { body: "New body", featured_at: Time.now } }
-      p.reload
-      expect( p.body ).not_to eq "New body"
-      expect( p.featured_at ).to be_nil
+    %i[featured_at mobile_featured_at blog_category_id].each do | field |
+      it "should not save #{field}" do
+        p = Post.make!( user: user, parent: user )
+        put :update, params: { id: p.id, post: { body: "New body", field => site_only_values[field] } }
+        p.reload
+        expect( p.body ).not_to eq "New body"
+        expect( p[field] ).to be_nil
+      end
     end
     it "should set the locale" do
       p = Post.make!( user: user, parent: user )
       put :update, params: { id: p.id, post: { locale: "fr" } }
       expect( p.reload.locale ).to eq "fr"
     end
-    it "should not save featured flags on a trip" do
-      trip = Trip.make!( user: user )
-      put :update, params: {
-        id: trip.id,
-        observations: [Observation.make!( user: user ).id],
-        trip: { body: "New body", featured_at: Time.now }
-      }
-      trip.reload
-      expect( trip.body ).not_to eq "New body"
-      expect( trip.featured_at ).to be_nil
+    %i[featured_at mobile_featured_at blog_category_id].each do | field |
+      it "should not save #{field} on a trip" do
+        trip = Trip.make!( user: user )
+        put :update, params: {
+          id: trip.id,
+          observations: [Observation.make!( user: user ).id],
+          trip: { body: "New body", field => site_only_values[field] }
+        }
+        trip.reload
+        expect( trip.body ).not_to eq "New body"
+        expect( trip[field] ).to be_nil
+      end
     end
   end
   describe "for project" do
@@ -216,6 +244,15 @@ describe PostsController, "update" do
       put :update, params: { id: p.id, post: { body: new_body } }
       p.reload
       expect( p.body ).not_to eq new_body
+    end
+    %i[featured_at mobile_featured_at blog_category_id].each do | field |
+      it "should not save #{field}" do
+        p = Post.make!( user: user, parent: Project.make!( user: user ) )
+        put :update, params: { id: p.id, post: { body: "New body", field => site_only_values[field] } }
+        p.reload
+        expect( p.body ).not_to eq "New body"
+        expect( p[field] ).to be_nil
+      end
     end
   end
   describe "for site" do
