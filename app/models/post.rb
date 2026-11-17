@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  BLOG_V2_ATTRIBUTES = %w(cover_image_id featured_at mobile_featured_at locale blog_category_id).freeze
+
   acts_as_spammable fields: [:title, :body],
     comment_type: "blog-post"
   include ActsAsUUIDable

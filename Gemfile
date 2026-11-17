@@ -78,7 +78,6 @@ gem "makara", git: "https://github.com/instacart/makara.git", ref: "9e7960558a75
 gem "multi_json", "~> 1.15.0"
 gem "nokogiri"
 gem "non-stupid-digest-assets"
-gem "objectify-xml", git: "https://github.com/inaturalist/objectify_xml.git"
 gem "omniauth"
 gem "omniauth-apple"
 gem "omniauth-flickr", git: "https://github.com/pleary/omniauth-flickr.git",
