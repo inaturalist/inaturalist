@@ -6,7 +6,8 @@ class PostImage < ApplicationRecord
 
   FILE_OPTIONS = {
     styles: proc {| attachment |
-      fmt = { "image/gif" => :gif, "image/png" => :png }.fetch( attachment.instance.file_content_type, :jpg )
+      fmt = { "image/gif" => :gif, "image/png" => :png, "image/webp" => :webp }.
+        fetch( attachment.instance.file_content_type, :jpg )
       {
         original: { geometry: "2048x2048>", format: fmt, processors: [:thumbnail, :metadata_filter] },
         large: { geometry: "1024x1024>", format: fmt, processors: [:thumbnail, :metadata_filter] },

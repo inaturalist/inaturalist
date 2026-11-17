@@ -31,7 +31,7 @@ describe PostImage do
 
   {
     "image/jpeg" => :jpg,
-    "image/webp" => :jpg,
+    "image/webp" => :webp,
     "image/png" => :png,
     "image/gif" => :gif
   }.each do | content_type, format |
