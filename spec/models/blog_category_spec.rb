@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe BlogCategory do
-  it { is_expected.to belong_to :site }
+  it { is_expected.to belong_to( :site ).required }
   it { is_expected.to have_many( :posts ).dependent( :restrict_with_error ) }
   it { is_expected.to validate_presence_of :label }
 
