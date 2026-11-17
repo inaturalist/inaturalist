@@ -66,6 +66,9 @@ describe PostsController, "spam" do
 end
 
 describe PostsController, "create" do
+  let( :blog_v2_params ) do
+    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: 1, cover_image_id: 1, locale: "fr" }
+  end
   describe "for user journal" do
     let( :user ) { User.make! }
     before do
@@ -150,6 +153,9 @@ describe PostsController, "create" do
 end
 
 describe PostsController, "update" do
+  let( :blog_v2_params ) do
+    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: 1, cover_image_id: 1, locale: "fr" }
+  end
   describe "for user" do
     let( :user ) { User.make! }
     before { sign_in user }

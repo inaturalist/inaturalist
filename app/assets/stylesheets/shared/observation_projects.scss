@@ -197,6 +197,7 @@
     .modal-content {
       height: auto;
       max-height: calc( 100vh - 20px );
+      max-height: calc( 100dvh - 20px );
       padding-bottom: 0;
       display: flex;
       flex-direction: column;

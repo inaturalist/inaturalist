@@ -126,7 +126,6 @@ class User < ApplicationRecord
   preference :suggestions_sort, :string
   preference :taxon_page_tab, :string
   preference :taxon_page_ancestors_shown, :boolean, default: false
-  preference :hide_responsive_global_toggle, :boolean, default: false
 
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
