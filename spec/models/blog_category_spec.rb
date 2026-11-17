@@ -14,7 +14,7 @@ describe BlogCategory do
   it "keeps slugs unique per site" do
     first = BlogCategory.make!( label: "Updates" )
     expect( BlogCategory.make!( site: first.site, label: "Updates" ).slug ).not_to eq first.slug
-    expect( BlogCategory.make!( label: "Updates" ).slug ).to eq "updates"
+    expect( BlogCategory.make!( site: Site.make!, label: "Updates" ).slug ).to eq "updates"
   end
 
   it "reserves the all slug" do
