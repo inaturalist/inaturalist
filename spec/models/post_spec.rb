@@ -377,16 +377,12 @@ describe Post do
     end
   end
 
-  describe "indexing" do
-    def indexed( post )
-      Post.find( post.id ).as_indexed_json
-    end
-
+  describe "as_indexed_json" do
     it "indexes the post's fields" do
       author = User.make!( login: "indexedauthor", name: "Indexed Author" )
       post = Post.make!( user: author, parent: author, title: "A title", locale: "es", tag_list: ["Fungi"] )
       Comment.make!( parent: post )
-      json = indexed( post )
+      json = post.as_indexed_json
       expect( json ).to include(
         id: post.id,
         uuid: post.uuid,
@@ -397,9 +393,9 @@ describe Post do
         published: true,
         spam: false,
         locale: "es",
-        comments_count: 1
+        comments_count: 1,
+        published_at: post.published_at
       )
-      expect( json[:published_at] ).to eq post.published_at
       expect( json[:user] ).to eq( id: author.id, login: "indexedauthor", name: "Indexed Author", spammer: false )
       expect( json ).not_to have_key( :blog_category_id )
     end
@@ -407,18 +403,21 @@ describe Post do
     describe "site_id" do
       it "is the site for a Site post" do
         site = Site.make!
-        expect( indexed( Post.make!( parent: site ) )[:site_id] ).to eq site.id
+        post = Post.make!( parent: site )
+        expect( post.as_indexed_json[:site_id] ).to eq site.id
       end
 
       it "is the author's site for a User post" do
         site = Site.make!
         author = User.make!( site: site )
-        expect( indexed( Post.make!( user: author, parent: author ) )[:site_id] ).to eq site.id
+        post = Post.make!( user: author, parent: author )
+        expect( post.as_indexed_json[:site_id] ).to eq site.id
       end
 
       it "is nil for a Project post" do
         project = Project.make!
-        expect( indexed( Post.make!( user: project.user, parent: project ) )[:site_id] ).to be_nil
+        post = Post.make!( user: project.user, parent: project )
+        expect( post.as_indexed_json[:site_id] ).to be_nil
       end
     end
 
@@ -426,39 +425,40 @@ describe Post do
       it "strips HTML and script content, keeping words apart" do
         html = "<p>First<br>line</p><script>alert('x')</script><p>Second <b>line</b></p>"
         post = journal_post( body: html ).tap( &:save! )
-        expect( indexed( post )[:body] ).to eq "First line Second line"
+        expect( post.as_indexed_json[:body] ).to eq "First line Second line"
       end
 
       it "indexes a nil body as empty" do
         post = journal_post.tap( &:save! )
         post.update_column( :body, nil )
-        json = indexed( post )
+        json = post.as_indexed_json
         expect( json[:body] ).to eq ""
         expect( json[:body_excerpt] ).to eq ""
       end
 
       it "caps the indexed text and keeps a short excerpt" do
         post = journal_post( body: "word " * 30_000 ).tap( &:save! )
-        json = indexed( post )
+        json = post.as_indexed_json
         expect( json[:body].length ).to eq Post::INDEXED_BODY_MAX_LENGTH
         expect( json[:body_excerpt].length ).to be <= Post::BODY_EXCERPT_LENGTH
       end
     end
 
     it "marks drafts unpublished" do
-      expect( indexed( journal_post( published_at: nil ).tap( &:save! ) )[:published] ).to be false
+      post = journal_post( published_at: nil ).tap( &:save! )
+      expect( post.as_indexed_json[:published] ).to be false
     end
 
     it "marks posts flagged as spam" do
       post = journal_post.tap( &:save! )
       Flag.make!( flaggable: post, flag: Flag::SPAM )
-      expect( indexed( post )[:spam] ).to be true
+      expect( post.as_indexed_json[:spam] ).to be true
     end
 
     it "marks posts by spammers" do
       post = journal_post.tap( &:save! )
       post.user.update_column( :spammer, true )
-      json = indexed( post )
+      json = post.as_indexed_json
       expect( json[:user][:spammer] ).to be true
       expect( json[:spam] ).to be false
     end
@@ -472,7 +472,9 @@ describe Post do
       counts = batch.to_h {| post | [post.id, post.as_indexed_json[:comments_count]] }
       expect( counts ).to eq( with_comments.id => 2, without_comments.id => 0 )
     end
+  end
 
+  describe "posts index" do
     it "excludes the body from _source and stores it" do
       mapping = Post.mappings.to_hash
       expect( mapping[:_source] ).to eq( excludes: ["body"] )
