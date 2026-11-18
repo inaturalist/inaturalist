@@ -66,8 +66,8 @@ describe PostsController, "spam" do
 end
 
 describe PostsController, "create" do
-  let( :blog_v2_params ) do
-    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: 1, cover_image_id: 1, locale: "fr" }
+  let( :site_only_values ) do
+    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: BlogCategory.make!.id }
   end
   describe "for user journal" do
     let( :user ) { User.make! }
@@ -83,6 +83,21 @@ describe PostsController, "create" do
       expect do
         post :create, params: { post: { title: "Foo", body: "Bar", parent_type: "User", parent_id: User.make!.id } }
       end.not_to change( Post, :count )
+    end
+    %i[featured_at mobile_featured_at blog_category_id].each do | field |
+      it "should not save #{field}" do
+        expect do
+          post :create, params: {
+            post: {
+              title: "Foo",
+              body: "Bar",
+              parent_type: "User",
+              parent_id: user.id,
+              field => site_only_values[field]
+            }
+          }
+        end.not_to change( Post, :count )
+      end
     end
   end
   describe "for projects" do
@@ -104,6 +119,22 @@ describe PostsController, "create" do
         post :create, params: { post: { title: "Foo", body: "Bar", parent_type: "Project", parent_id: project.id } }
       end.not_to change( Post, :count )
     end
+    %i[featured_at mobile_featured_at blog_category_id].each do | field |
+      it "should not save #{field}" do
+        project = Project.make!( user: user )
+        expect do
+          post :create, params: {
+            post: {
+              title: "Foo",
+              body: "Bar",
+              parent_type: "Project",
+              parent_id: project.id,
+              field => site_only_values[field]
+            }
+          }
+        end.not_to change( Post, :count )
+      end
+    end
   end
   describe "for sites" do
     let( :site ) { Site.make! }
@@ -121,19 +152,33 @@ describe PostsController, "create" do
         post :create, params: { post: { title: "Foo", body: "Bar", parent_type: "Site", parent_id: site.id } }
       end.not_to change( Post, :count )
     end
-    it "should ignore blog v2 attributes" do
+    it "should let a site admin set the blog fields" do
       sign_in SiteAdmin.make!( site: site ).user
+      category = BlogCategory.make!( site: site )
       post :create, params: {
-        post: { title: "Foo", body: "Bar", parent_type: "Site", parent_id: site.id }.merge( blog_v2_params )
+        post: {
+          title: "Foo",
+          body: "Bar",
+          parent_type: "Site",
+          parent_id: site.id,
+          featured_at: Time.now,
+          mobile_featured_at: Time.now,
+          blog_category_id: category.id,
+          locale: "fr"
+        }
       }
-      expect( Post.last.slice( *blog_v2_params.keys ).compact ).to be_empty
+      created = Post.last
+      expect( created.featured_at ).not_to be_nil
+      expect( created.mobile_featured_at ).not_to be_nil
+      expect( created.blog_category ).to eq category
+      expect( created.locale ).to eq "fr"
     end
   end
 end
 
 describe PostsController, "update" do
-  let( :blog_v2_params ) do
-    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: 1, cover_image_id: 1, locale: "fr" }
+  let( :site_only_values ) do
+    { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: BlogCategory.make!.id }
   end
   describe "for user" do
     let( :user ) { User.make! }
@@ -153,23 +198,32 @@ describe PostsController, "update" do
       p.reload
       expect( p.body ).not_to eq new_body
     end
-    it "should ignore blog v2 attributes" do
-      p = Post.make!( user: user, parent: user )
-      put :update, params: { id: p.id, post: { body: "New body" }.merge( blog_v2_params ) }
-      p.reload
-      expect( p.body ).to eq "New body"
-      expect( p.slice( *blog_v2_params.keys ).compact ).to be_empty
+    %i[featured_at mobile_featured_at blog_category_id].each do | field |
+      it "should not save #{field}" do
+        p = Post.make!( user: user, parent: user )
+        put :update, params: { id: p.id, post: { body: "New body", field => site_only_values[field] } }
+        p.reload
+        expect( p.body ).not_to eq "New body"
+        expect( p[field] ).to be_nil
+      end
     end
-    it "should ignore blog v2 attributes on a trip" do
-      trip = Trip.make!( user: user )
-      put :update, params: {
-        id: trip.id,
-        observations: [Observation.make!( user: user ).id],
-        trip: { body: "New body" }.merge( blog_v2_params )
-      }
-      trip.reload
-      expect( trip.body ).to eq "New body"
-      expect( trip.slice( *blog_v2_params.keys ).compact ).to be_empty
+    it "should set the locale" do
+      p = Post.make!( user: user, parent: user )
+      put :update, params: { id: p.id, post: { locale: "fr" } }
+      expect( p.reload.locale ).to eq "fr"
+    end
+    %i[featured_at mobile_featured_at blog_category_id].each do | field |
+      it "should not save #{field} on a trip" do
+        trip = Trip.make!( user: user )
+        put :update, params: {
+          id: trip.id,
+          observations: [Observation.make!( user: user ).id],
+          trip: { body: "New body", field => site_only_values[field] }
+        }
+        trip.reload
+        expect( trip.body ).not_to eq "New body"
+        expect( trip[field] ).to be_nil
+      end
     end
   end
   describe "for project" do
@@ -190,6 +244,15 @@ describe PostsController, "update" do
       put :update, params: { id: p.id, post: { body: new_body } }
       p.reload
       expect( p.body ).not_to eq new_body
+    end
+    %i[featured_at mobile_featured_at blog_category_id].each do | field |
+      it "should not save #{field}" do
+        p = Post.make!( user: user, parent: Project.make!( user: user ) )
+        put :update, params: { id: p.id, post: { body: "New body", field => site_only_values[field] } }
+        p.reload
+        expect( p.body ).not_to eq "New body"
+        expect( p[field] ).to be_nil
+      end
     end
   end
   describe "for site" do
@@ -212,6 +275,30 @@ describe PostsController, "update" do
       put :update, params: { id: p.id, post: { body: new_body } }
       p.reload
       expect( p.body ).not_to eq new_body
+    end
+    it "should let a site admin feature the post and set its cover" do
+      site = Site.make!
+      sign_in SiteAdmin.make!( site: site ).user
+      p = Post.make!( parent: site )
+      cover = PostImage.make!( post: p, alt: "A heron" )
+      put :update, params: {
+        id: p.id,
+        post: { featured_at: Time.now, mobile_featured_at: Time.now, cover_image_id: cover.id }
+      }
+      p.reload
+      expect( p.featured_at ).not_to be_nil
+      expect( p.mobile_featured_at ).not_to be_nil
+      expect( p.cover_image ).to eq cover
+    end
+    it "should let the post's author set featured flags without being a site editor" do
+      site = Site.make!
+      author = User.make!
+      sign_in author
+      p = Post.make!( parent: site, user: author )
+      put :update, params: { id: p.id, post: { featured_at: Time.now, mobile_featured_at: Time.now } }
+      p.reload
+      expect( p.featured_at ).not_to be_nil
+      expect( p.mobile_featured_at ).not_to be_nil
     end
   end
 end
