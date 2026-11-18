@@ -487,12 +487,7 @@ describe Post do
   end
 
   describe "with Elasticsearch callbacks off" do
-    # Specs load the model before the index file, but eager loading
-    # (development, production) loads the index file first, and only the first
-    # acts_as_elastic_model call takes effect, so both calls must turn
-    # callbacks off. Run this file with E2E_EAGER_LOAD=true to check the eager
-    # order. Checking the callbacks directly covers create, update and destroy
-    # without truncating the database so after_commit can fire.
+    # Run this file with E2E_EAGER_LOAD=true to check the eager load order
     it "installs no Elasticsearch commit callbacks" do
       elastic_callbacks = Post._commit_callbacks.select do | callback |
         callback.raw_filter.is_a?( Proc ) &&

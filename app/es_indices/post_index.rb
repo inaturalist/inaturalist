@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  # Must match the call in app/models/post.rb. Only the first call takes
-  # effect, and with eager loading (development, production) this file loads
-  # before the model. WEB-1426 removes `lifecycle_callbacks: []` from both.
+  # Duplicated in app/models/post.rb to prevent automatic index creation
+  # TODO: WEB-1426 removes `lifecycle_callbacks: []` from both.
   acts_as_elastic_model lifecycle_callbacks: []
 
   DEFAULT_ES_BATCH_SIZE = 500

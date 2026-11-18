@@ -1,22 +1,14 @@
 # frozen_string_literal: true
 
-# Elasticsearch search over posts: the blog, project journals and user
-# journals. Returns Post records in ranked order. Ships unused in WEB-1424;
-# WEB-1426 switches PostsController#search to it.
 class PostSearch
-  # With a query, relevance is multiplied by 1 + gauss(published_at): up to 2x
-  # for posts from the last month, about 1.5x at a year, roughly 1x after two
-  # years. Newer posts win among similar matches; a much better old match
-  # still wins.
+  # Relevance is multiplied by 1 + gauss(published_at)
   RECENCY_BOOST = { origin: "now", offset: "30d", scale: "365d", decay: 0.5 }.freeze
   QUERY_FIELDS = %w(title.standard^5 title^4 tags^3 user.login^2 user.name^2 body).freeze
   ORDERS = %w(relevance newest oldest).freeze
   PARENT_TYPES = %w(Site Project User).freeze
   DEFAULT_PER_PAGE = 30
   MAX_PER_PAGE = 200
-  # Elasticsearch's default index.max_result_window
   MAX_RESULT_WINDOW = 10_000
-  # Same preloads PostsController#for_user uses before posts_json
   POSTS_JSON_PRELOADS = [{ user: :site }, :stored_preferences, :parent].freeze
   HIGHLIGHT = {
     encoder: "html",
@@ -58,7 +50,6 @@ class PostSearch
     body
   end
 
-  # WillPaginate::Collection of Posts in ranked order
   def results
     @results ||= begin
       hits = Post.__elasticsearch__.search( query_body ).response["hits"]

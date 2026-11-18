@@ -3,8 +3,7 @@
 require "spec_helper"
 
 describe PostSearch do
-  # Post has no lifecycle callbacks yet (WEB-1424), so index explicitly. Clear
-  # the index without `elastic_models( Post )`, which would add save hooks.
+  # TODO: Post has no lifecycle callbacks until WEB-1426
   before { enable_elastic_indexing( Post, use_transactional_fixtures: false ) }
 
   def index!( *posts )
@@ -86,9 +85,6 @@ describe PostSearch do
 
   describe "recency" do
     it "ranks the recent post first when matches are similarly good" do
-      # The recent title is a little longer, so on relevance alone it would
-      # score slightly lower; only the recency boost puts it first. (Exact ties
-      # would fall through to the published_at tiebreak in the sort.)
       old = journal_post( title: "Quokka census", published_at: 3.years.ago )
       recent = journal_post( title: "Quokka census report", published_at: 5.days.ago )
       index!( old, recent )
