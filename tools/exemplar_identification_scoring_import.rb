@@ -8,9 +8,10 @@ OPTS = Optimist.options do
   banner <<~HELP
     Last Rails step of a scoring run. Imports
     exemplar_identification_scored.csv from the run directory into
-    exemplar_identification_scores. Dropped, failed and missing bodies are
-    listed in exemplar_identification_import_rejects.csv, and the counts are
-    logged with --log-task-name. Safe to rerun.
+    exemplar_identification_scores. The dropped, retried, failed and missing
+    bodies are listed in exemplar_identification_import_rejects.csv in the
+    run directory. With --log-task-name, a summary of the counts goes to the
+    task log. Safe to rerun.
 
     Usage:
 

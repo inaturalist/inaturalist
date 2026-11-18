@@ -9,9 +9,9 @@ OPTS = Optimist.options do
     First Rails step of a scoring run. Sets the rows of a run that died back
     to pending, then exports the exemplar identification bodies waiting to be
     scored to exemplar_identification_to_score.csv in the run directory.
-    Recovered and short bodies are listed in
-    exemplar_identification_export_rejects.csv, and the counts are logged
-    with --log-task-name.
+    The recovered rows and the short bodies are listed in
+    exemplar_identification_export_rejects.csv in the run directory. With
+    --log-task-name, a summary of the counts goes to the task log.
 
     Usage:
 

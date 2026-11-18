@@ -11,9 +11,9 @@ OPTS = Optimist.options do
     every other exemplar identification a row, then resets bodies edited
     during the backfill, reconciles the active flag and deletes orphan rows.
     The July lines not imported as they are, and the rows reset, are listed
-    in exemplar_identification_backfill_rejects.csv next to the file, and the
-    counts are logged with --log-task-name. Safe to rerun: existing rows are
-    never overwritten.
+    in exemplar_identification_backfill_rejects.csv next to the file. With
+    --log-task-name, a summary of the counts goes to the task log. Safe to
+    rerun: existing rows are never overwritten.
 
     Usage:
 
