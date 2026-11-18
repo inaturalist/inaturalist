@@ -119,6 +119,14 @@ def rebuild_all_test_elasticsearch_indices
   print "Rebuilding #{es_classes.size} indexes"
   es_classes.each do | klass |
     print "."
+    # ES refuses DELETE on an alias, and the alias never satisfies index_exists?
+    if klass.es_index_version.present?
+      aliased_index = ElasticModel::AliasedIndex.new( klass )
+      aliased_index.delete!
+      aliased_index.create!
+      ElasticModel.wait_until_index_exists( aliased_index.physical_name, timeout: 1 )
+      next
+    end
     begin
       klass.__elasticsearch__.delete_index!
     rescue StandardError => e

@@ -64,26 +64,46 @@ namespace :es do
     klass.elastic_index!( opts )
   end
 
-  desc "Delete and recreate a single index. Usage: rake es:recreate_index[Place]"
+  desc "Create a single index if it does not exist. Usage: rake es:create_index[Post]"
+  task :create_index, [:model] => :environment do | _, args |
+    next if fail_unless_elasticsearch_is_running
+
+    klass = elastic_model_from_args( args )
+    next unless klass
+
+    if ( aliased_index = aliased_index_for( klass ) )
+      begin
+        aliased_index.create!
+      rescue ElasticModel::AliasedIndex::Exists => e
+        puts e.message
+        exit 1
+      end
+      puts "Created #{aliased_index.physical_name} → #{aliased_index.alias_name}"
+      puts "Backfill it with: rake 'es:index_model[#{klass.name},500,1]'"
+    else
+      if klass.__elasticsearch__.index_exists?
+        puts "#{klass.index_name} already exists. Nothing was changed."
+        exit 1
+      end
+      klass.__elasticsearch__.create_index!
+      puts "Created #{klass.index_name}"
+    end
+  end
+
+  desc "Delete a single index, deleting its data, and recreate it empty. Usage: rake es:recreate_index[Place]"
   task :recreate_index, [:model] => :environment do | _, args |
     next if fail_unless_elasticsearch_is_running
 
-    model_name = args[:model]
-    unless model_name
-      puts "Missing model."
-      next
-    end
-
-    klass = elastic_model_for_name( model_name )
-    unless klass
-      puts "Unknown model."
-      next
-    end
+    klass = elastic_model_from_args( args )
+    next unless klass
 
     puts "Recreating index #{klass}..."
-    client = klass.__elasticsearch__.client
-    index = klass.index_name
-    klass.__elasticsearch__.create_index! force: true
+    if ( aliased_index = aliased_index_for( klass ) )
+      aliased_index.delete!
+      aliased_index.create!
+    else
+      klass.__elasticsearch__.create_index! force: true
+    end
   end
 
   desc "Delete and rebuild all models in elasticsearch"
@@ -92,10 +112,15 @@ namespace :es do
     if success
       elastic_models.each do | klass, opts |
         puts "Rebuilding #{klass}..."
-        if klass.__elasticsearch__.client.indices.exists( index: klass.index_name )
-          klass.__elasticsearch__.delete_index!
+        if ( aliased_index = aliased_index_for( klass ) )
+          aliased_index.delete!
+          aliased_index.create!
+        else
+          if klass.__elasticsearch__.client.indices.exists( index: klass.index_name )
+            klass.__elasticsearch__.delete_index!
+          end
+          klass.__elasticsearch__.create_index!
         end
-        klass.__elasticsearch__.create_index!
         klass.elastic_index!( opts )
       end
     else
@@ -148,6 +173,24 @@ def elastic_model_for_name( name )
   return if name.blank?
 
   elastic_models.keys.find {| klass | klass.name.casecmp( name.to_s ).zero? }
+end
+
+def elastic_model_from_args( args )
+  model_name = args[:model]
+  unless model_name
+    puts "Missing model."
+    return
+  end
+
+  klass = elastic_model_for_name( model_name )
+  puts "Unknown model." unless klass
+  klass
+end
+
+# Models with es_index_version are served through an alias and need
+# ElasticModel::AliasedIndex to create or delete their index.
+def aliased_index_for( klass )
+  ElasticModel::AliasedIndex.new( klass ) if klass.es_index_version.present?
 end
 
 def elastic_index_options_from_args( args )

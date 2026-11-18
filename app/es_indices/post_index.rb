@@ -14,6 +14,9 @@ class Post < ApplicationRecord
 
   scope :load_for_index, -> { includes( :flags, :tags, :parent, :user ) }
 
+  # Bump for an incompatible mapping or analyzer change (ElasticModel::AliasedIndex).
+  self.es_index_version = 1
+
   # The body is stored on its own and kept out of _source: highlighting reads
   # the stored field, and _source reads stay small.
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do

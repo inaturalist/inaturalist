@@ -15,6 +15,11 @@ module ActsAsElasticModel
       @inserts = 0
       include Elasticsearch::Model
 
+      # When set, index_name is an alias for "#{index_name}_v#{es_index_version}"
+      # (see ElasticModel::AliasedIndex). A class_attribute so STI subclasses
+      # inherit it.
+      class_attribute :es_index_version, instance_writer: false
+
       attr_accessor :skip_indexing
       attr_accessor :wait_for_index_refresh
       attr_accessor :es_source
