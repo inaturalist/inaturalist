@@ -1994,6 +1994,10 @@ id:
   feature_flags_enabled_for_you: "Diaktifkan untuk Anda:"
   #Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
   feature_flags_kind_client: Flag terlihat klien
+  #Help text under the locale field on the admin feature flags page; locale_en is a code name, do not translate
+  feature_flags_locale_help: Kode bahasa seperti en atau pt-BR yang digunakan oleh kelompok bahasa seperti locale_en. Standarnya menggunakan bahasa halaman ini.
+  #Label for a text field on the admin feature flags page where an admin enters a language code to preview flags in
+  feature_flags_locale_label: Lokal
   #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
   feature_flags_kind_experiment: Eksperimen
   #Kind label on the admin feature flags page for a flag that only server code reads
