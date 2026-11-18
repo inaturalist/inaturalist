@@ -37,6 +37,12 @@ describe ExemplarIdentificationScoringRun do
     end
   end
 
+  def rejects( path )
+    return [] unless File.exist?( path )
+
+    CSV.read( path, headers: true ).map {| row | row.to_h.values }
+  end
+
   def identification_id( score )
     score.exemplar_identification.identification_id
   end
@@ -78,6 +84,9 @@ describe ExemplarIdentificationScoringRun do
       expect( score.status ).to eq ExemplarIdentificationScore::PENDING
       expect( score.attempts ).to eq 0
       expect( score.updated_at ).to be_within( 1.second ).of( updated_at )
+      expect( rejects( run.export_rejects_path ) ).to eq [
+        [identification_id( score ).to_s, "recovered", ExemplarIdentificationScoringRun::RECOVERED_DETAIL]
+      ]
     end
 
     it "leaves other statuses alone" do
@@ -119,6 +128,20 @@ describe ExemplarIdentificationScoringRun do
       expect( run.export ).to include( skipped_short: 1, written: 0 )
       expect( score.reload.status ).to eq ExemplarIdentificationScore::SKIPPED_SHORT
       expect( to_score_rows.size ).to eq 0
+      expect( rejects( run.export_rejects_path ) ).to eq [
+        [identification_id( score ).to_s, "skipped_short", "1 word(s)"]
+      ]
+    end
+
+    it "appends to the rejects of the recovery" do
+      recovered = make_score( status: ExemplarIdentificationScore::SUBMITTED, age: 1.hour )
+      short = make_score( body: "Nice" )
+      run.recover
+      run.export
+      expect( rejects( run.export_rejects_path ).map {| row | row[0].to_i } ).to eq [
+        identification_id( recovered ),
+        identification_id( short )
+      ]
     end
 
     it "joins the lines of a body" do
@@ -170,6 +193,9 @@ describe ExemplarIdentificationScoringRun do
       score.reload
       expect( score.status ).to eq ExemplarIdentificationScore::PENDING
       expect( score.self_contained_score ).to be_nil
+      expect( rejects( run.import_rejects_path ) ).to eq [
+        [identification_id( score ).to_s, "dropped", ExemplarIdentificationScoringRun::DROPPED_DETAIL]
+      ]
     end
 
     it "sets a failed body back to pending with one more attempt" do
@@ -180,6 +206,9 @@ describe ExemplarIdentificationScoringRun do
       expect( score.status ).to eq ExemplarIdentificationScore::PENDING
       expect( score.attempts ).to eq 1
       expect( score.last_error ).to eq "incomplete: 2 of 3 runs returned"
+      expect( rejects( run.import_rejects_path ) ).to eq [
+        [identification_id( score ).to_s, "retried", "attempt 1 of 3: incomplete: 2 of 3 runs returned"]
+      ]
     end
 
     it "sets a body to failed at the last attempt" do
@@ -190,6 +219,9 @@ describe ExemplarIdentificationScoringRun do
       score.reload
       expect( score.status ).to eq ExemplarIdentificationScore::FAILED
       expect( score.attempts ).to eq ExemplarIdentificationScoringRun::MAX_ATTEMPTS
+      expect( rejects( run.import_rejects_path ) ).to eq [
+        [identification_id( score ).to_s, "failed", "attempt 3 of 3: incomplete: 2 of 3 runs returned"]
+      ]
     end
 
     it "counts a body missing from the results as failed" do
@@ -200,6 +232,8 @@ describe ExemplarIdentificationScoringRun do
       expect( score.status ).to eq ExemplarIdentificationScore::PENDING
       expect( score.attempts ).to eq 1
       expect( score.last_error ).to eq ExemplarIdentificationScoringRun::MISSING_ERROR
+      detail = "attempt 1 of 3: #{ExemplarIdentificationScoringRun::MISSING_ERROR}"
+      expect( rejects( run.import_rejects_path ) ).to eq [[identification_id( score ).to_s, "missing", detail]]
     end
 
     it "can be run again" do
@@ -210,6 +244,7 @@ describe ExemplarIdentificationScoringRun do
       run.import
       expect( scored.reload.status ).to eq ExemplarIdentificationScore::SCORED
       expect( failed.reload.attempts ).to eq 1
+      expect( rejects( run.import_rejects_path ).map {| row | row[1] } ).to eq %w(retried dropped dropped)
     end
 
     it "raises on an unknown status" do

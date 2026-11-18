@@ -3,10 +3,11 @@
 require "csv"
 
 # The Rails side of a scoring run: recovers the rows of a run that died,
-# exports the bodies to score to exemplar_identification_remarks_to_score.csv,
-# and imports exemplar_identification_remarks_scored.csv. Both files live in
-# the run directory. Rows are read and written in batches, and the files are
-# streamed, so memory use stays flat.
+# exports the bodies to score to exemplar_identification_to_score.csv,
+# and imports exemplar_identification_scored.csv. Both files live in
+# the run directory, with one rejects file per step listing the bodies that
+# didn't go the normal way. Rows are read and written in batches, and the
+# files are streamed, so memory use stays flat.
 #
 # The run doesn't touch updated_at: the minimum age is about changes made
 # on the site, and the rows of a run that died must be exported again by
@@ -16,9 +17,14 @@ class ExemplarIdentificationScoringRun
   MAX_ATTEMPTS = 3
   MIN_WORDS = 2
   BATCH_SIZE = 1000
-  TO_SCORE_FILE = "exemplar_identification_remarks_to_score.csv"
-  RESULTS_FILE = "exemplar_identification_remarks_scored.csv"
+  TO_SCORE_FILE = "exemplar_identification_to_score.csv"
+  RESULTS_FILE = "exemplar_identification_scored.csv"
+  EXPORT_REJECTS_FILE = "exemplar_identification_export_rejects.csv"
+  IMPORT_REJECTS_FILE = "exemplar_identification_import_rejects.csv"
   MISSING_ERROR = "missing from #{RESULTS_FILE}".freeze
+  REJECTS_HEADERS = %w(identification_id kind detail).freeze
+  RECOVERED_DETAIL = "submitted by a run that died"
+  DROPPED_DETAIL = "not submitted anymore: body edited during the run, or imported by an earlier attempt"
 
   TO_SCORE_HEADERS = %w(
     identification_id
@@ -68,13 +74,25 @@ class ExemplarIdentificationScoringRun
     File.join( @dir, RESULTS_FILE )
   end
 
+  def export_rejects_path
+    File.join( @dir, EXPORT_REJECTS_FILE )
+  end
+
+  def import_rejects_path
+    File.join( @dir, IMPORT_REJECTS_FILE )
+  end
+
   # Only a run sets rows to submitted, and runs never overlap, so rows still
   # submitted when a run starts belong to a run that died. No attempt is
   # counted: the run failed, not the body
   def recover
-    ExemplarIdentificationScore.
-      where( status: ExemplarIdentificationScore::SUBMITTED ).
-      update_all( status: ExemplarIdentificationScore::PENDING )
+    recovered = 0
+    submitted.in_batches( of: BATCH_SIZE ) do | batch |
+      rejects = identification_ids( batch ).map {| id | [id, :recovered, RECOVERED_DETAIL] }
+      recovered += batch.update_all( status: ExemplarIdentificationScore::PENDING )
+      write_rejects( export_rejects_path, rejects )
+    end
+    recovered
   end
 
   # Marks the rows first, then reads their bodies: a body edited after the
@@ -93,11 +111,14 @@ class ExemplarIdentificationScoringRun
           pluck( *TO_SCORE_COLUMNS )
         load_common_names( rows.map {| row | row[3] }, common_names )
         short_ids = []
+        rejects = []
         rows.each do | row |
           score_id, identification_id, body, taxon_id, taxon_name, iconic_taxon_id = row
           body = sanitize_text( body )
-          if body.split.size < MIN_WORDS
+          words = body.split.size
+          if words < MIN_WORDS
             short_ids << score_id
+            rejects << [identification_id, ExemplarIdentificationScore::SKIPPED_SHORT, "#{words} word(s)"]
             next
           end
 
@@ -112,6 +133,7 @@ class ExemplarIdentificationScoringRun
         end
         skipped_short += submitted.where( id: short_ids ).
           update_all( status: ExemplarIdentificationScore::SKIPPED_SHORT )
+        write_rejects( export_rejects_path, rejects )
       end
     end
     { marked: marked, written: written, skipped_short: skipped_short }
@@ -124,21 +146,25 @@ class ExemplarIdentificationScoringRun
     counts = Hash.new( 0 )
     now = Time.now
     CSV.foreach( results_path, headers: true, encoding: "UTF-8" ).each_slice( BATCH_SIZE ) do | lines |
-      score_ids = submitted.
+      scores = submitted.
         joins( :exemplar_identification ).
         where( exemplar_identifications: { identification_id: lines.map {| line | line["id"].to_i } } ).
-        pluck( "exemplar_identifications.identification_id", :id ).
-        to_h
+        pluck( "exemplar_identifications.identification_id", :id, :attempts ).
+        index_by( &:first )
+      rejects = []
       lines.each do | line |
-        score_id = score_ids[line["id"].to_i]
+        _, score_id, attempts = scores[line["id"].to_i]
         unless score_id
           counts[:dropped] += 1
+          rejects << [line["id"], :dropped, DROPPED_DETAIL]
           next
         end
 
         status = line["status"]
         if status == ExemplarIdentificationScore::FAILED
-          counts[record_failure( submitted.where( id: score_id ), line["error"] )] += 1
+          outcome = record_failure( submitted.where( id: score_id ), line["error"] )
+          counts[outcome] += 1
+          rejects << [line["id"], outcome, attempt_detail( attempts, line["error"] )]
         elsif RESULT_STATUSES.include?( status )
           submitted.where( id: score_id ).update_all( result_attributes( line, now ) )
           counts[status.to_sym] += 1
@@ -146,6 +172,7 @@ class ExemplarIdentificationScoringRun
           raise "Unknown status #{status.inspect} for id #{line['id']} in #{results_path}"
         end
       end
+      write_rejects( import_rejects_path, rejects )
     end
     record_missing( counts )
     counts
@@ -196,13 +223,26 @@ class ExemplarIdentificationScoringRun
   end
 
   # Rows still submitted after the import were exported by this run but are
-  # missing from exemplar_identification_remarks_scored.csv, so nothing can
+  # missing from exemplar_identification_scored.csv, so nothing can
   # silently disappear
   def record_missing( counts )
     submitted.in_batches( of: BATCH_SIZE ) do | batch |
+      rejects = batch.joins( :exemplar_identification ).
+        pluck( "exemplar_identifications.identification_id", :attempts ).
+        map {| id, attempts | [id, :missing, attempt_detail( attempts, MISSING_ERROR )] }
       counts[:missing] += batch.count
       record_failure( batch, MISSING_ERROR )
+      write_rejects( import_rejects_path, rejects )
     end
+  end
+
+  # attempts is the count before this failure
+  def attempt_detail( attempts, error )
+    "attempt #{attempts + 1} of #{MAX_ATTEMPTS}: #{error}"
+  end
+
+  def identification_ids( scope )
+    scope.joins( :exemplar_identification ).pluck( "exemplar_identifications.identification_id" )
   end
 
   def sanitize_text( str )
@@ -210,6 +250,18 @@ class ExemplarIdentificationScoringRun
     s = s.gsub( /\r\n?|\n/, " " )
     s = s.gsub( /[\p{Cntrl}&&[^\r\n\t]]/, "" )
     s.gsub( /\s+/, " " ).strip
+  end
+
+  # Appends the bodies a step didn't process the normal way, one line each
+  # with the reason. A rerun keeps the lines of the previous attempts
+  def write_rejects( path, rejects )
+    return if rejects.empty?
+
+    new_file = !File.exist?( path ) || File.empty?( path )
+    CSV.open( path, "ab", encoding: "UTF-8" ) do | csv |
+      csv << REJECTS_HEADERS if new_file
+      rejects.each {| reject | csv << reject }
+    end
   end
 
   def load_common_names( taxon_ids, cache )
