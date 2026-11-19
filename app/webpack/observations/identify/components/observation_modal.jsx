@@ -266,7 +266,8 @@ class ObservationModal extends React.Component {
       photos = (
         <div className={`photos-wrapper ${brightnessClass}`}>
           <ZoomableImageGallery
-            key={`map-for-${observation.id}`}
+            // EasyZoom's jQuery wrappers keep stale hrefs, so remount when zoom URLs change
+            key={`map-for-${observation.id}-${images.map( image => image.zoom ).join( "," )}`}
             items={images.map( image => ( {
               ...image,
               description: (

@@ -167,9 +167,17 @@ body > [role="dialog"] .ObservationModal {
     bottom: 75px;
   }
   .image-gallery-slide .image-gallery-description:has(.hidden-media) {
-    top: 50%;
-    bottom: auto;
-    transform: translateY(-50%);
+    top: 0;
+    .hidden-media {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      .hidden-status,
+      .captions {
+        margin-top: auto;
+      }
+    }
   }
 
   .image-gallery {
