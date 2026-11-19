@@ -262,11 +262,15 @@ describe Post do
     end
 
     it "is invalid on a post for another site" do
-      expect( Post.make( parent: Site.make!, blog_category: category ) ).not_to be_valid
+      post = Post.make( parent: Site.make!, blog_category: category )
+      expect( post ).not_to be_valid
+      expect( post.errors.added?( :blog_category, :must_belong_to_post_site ) ).to be true
     end
 
     it "is invalid on a non-Site post" do
-      expect( journal_post( blog_category: category ) ).not_to be_valid
+      post = journal_post( blog_category: category )
+      expect( post ).not_to be_valid
+      expect( post.errors.added?( :blog_category_id, :only_allowed_on_site_posts ) ).to be true
     end
   end
 
@@ -276,8 +280,11 @@ describe Post do
     end
 
     it "are invalid on a non-Site post" do
-      expect( journal_post( featured_at: Time.now ) ).not_to be_valid
-      expect( journal_post( mobile_featured_at: Time.now ) ).not_to be_valid
+      %i[featured_at mobile_featured_at].each do | attr |
+        post = journal_post( attr => Time.now )
+        expect( post ).not_to be_valid
+        expect( post.errors.added?( attr, :only_allowed_on_site_posts ) ).to be true
+      end
     end
   end
 
@@ -287,6 +294,7 @@ describe Post do
     it "must belong to the post" do
       post.cover_image = PostImage.make!( post: Post.make!( parent: post.parent ), alt: "A heron" )
       expect( post ).not_to be_valid
+      expect( post.errors.added?( :cover_image, :must_be_one_of_the_post_images ) ).to be true
     end
 
     it "can be one of the post's images" do
@@ -299,6 +307,7 @@ describe Post do
       expect( post ).to be_valid
       post.published_at = Time.now
       expect( post ).not_to be_valid
+      expect( post.errors.added?( :cover_image, :needs_alt_text_to_publish ) ).to be true
     end
 
     it "doesn't require alt text on body images to publish" do
@@ -321,7 +330,9 @@ describe Post do
 
   describe "tags" do
     it "can't exceed 750 characters" do
-      expect( journal_post( tag_list: Array.new( 76 ) {| i | "tag#{i.to_s.rjust( 6, '0' )}" } ) ).not_to be_valid
+      post = journal_post( tag_list: Array.new( 76 ) {| i | "tag#{i.to_s.rjust( 6, '0' )}" } )
+      expect( post ).not_to be_valid
+      expect( post.errors.added?( :tag_list, :too_long ) ).to be true
     end
   end
 

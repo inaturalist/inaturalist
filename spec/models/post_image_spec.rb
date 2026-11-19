@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe PostImage do
-  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to( :user ).required }
   it { is_expected.to belong_to( :post ).optional }
 
   # TODO: set up an orphaned PostImage cleanup job: WEB-1448
@@ -27,6 +27,18 @@ describe PostImage do
 
   it "rejects files over 20 MB" do
     expect( PostImage.make( file_file_size: 21.megabytes ) ).not_to be_valid
+  end
+
+  {
+    "image/jpeg" => :jpg,
+    "image/webp" => :webp,
+    "image/png" => :png,
+    "image/gif" => :gif
+  }.each do | content_type, format |
+    it "stores #{content_type} styles as #{format}" do
+      styles = PostImage.new( file_content_type: content_type ).file.styles
+      styles.each_value {| style | expect( style.format ).to eq format }
+    end
   end
 
   it "strips metadata from every style" do

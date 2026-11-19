@@ -2316,6 +2316,10 @@ en:
   feature_flags_invalid_installation_id: That is not a valid installation ID. Installation IDs are UUIDs.
   # Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
   feature_flags_kind_client: Client-visible flag
+  # Help text under the locale field on the admin feature flags page; locale_en is a code name, do not translate
+  feature_flags_locale_help: A language code such as en or pt-BR, used by language groups like locale_en. Defaults to the language of this page.
+  # Label for a text field on the admin feature flags page where an admin enters a language code to preview flags in
+  feature_flags_locale_label: Locale
   # Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
   feature_flags_kind_experiment: Experiment
   # Kind label on the admin feature flags page for a flag that only server code reads
@@ -11443,12 +11447,29 @@ en:
               must_have_more_than_three_points: must have more than 3 points
               polygon_with_less_than_four_points: has a polygon with fewer than 4 points
         post:
+          # Shown when a non-site post, like a project journal post, sets a
+          # blog-only field such as a featured date or blog category
+          only_allowed_on_site_posts: is only allowed on site posts
           attributes:
+            blog_category:
+              # Shown when a blog post is assigned a category that belongs to
+              # a different site's blog
+              must_belong_to_post_site: does not belong to this post's site
+            cover_image:
+              # Shown when a blog post's cover image is not one of the images
+              # uploaded to that post
+              must_be_one_of_the_post_images: must be one of the post's images
+              # Shown when publishing a blog post whose cover image has no alt
+              # text, the description of the image read aloud by screen readers
+              needs_alt_text_to_publish: needs alt text to publish
             parent:
               # Error message shown when a client tries to create a comment on a
               # post that does not allow comments. Theoretically an end user
               # should never see this, though an API client might.
               prefers_no_comments: does not allow new comments
+            tag_list:
+              # Shown when a post's tags are too long in total or individually
+              too_long: must be under 750 characters total, no more than 256 characters per tag
             user:
               must_be_on_site_long_enough: |
                 must have registered more than 24 hours ago to publish. We get

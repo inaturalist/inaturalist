@@ -4,7 +4,7 @@ class BlogCategory < ApplicationRecord
   extend FriendlyId
   friendly_id :label, use: [:slugged, :scoped, :history], scope: :site, reserved_words: %w(all)
 
-  belongs_to :site
+  belongs_to :site, required: true
   has_many :posts, dependent: :restrict_with_error
 
   validates :label, presence: true

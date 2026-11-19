@@ -1,12 +1,21 @@
 # frozen_string_literal: true
 
 class PostImage < ApplicationRecord
+<<<<<<< HEAD
   belongs_to :user
+=======
+  belongs_to :user, required: true
+>>>>>>> main
   belongs_to :post, optional: true
 
   FILE_OPTIONS = {
     styles: proc {| attachment |
+<<<<<<< HEAD
       fmt = ( attachment.instance.file_content_type == "image/gif" ) ? :gif : :jpg
+=======
+      fmt = { "image/gif" => :gif, "image/png" => :png, "image/webp" => :webp }.
+        fetch( attachment.instance.file_content_type, :jpg )
+>>>>>>> main
       {
         original: { geometry: "2048x2048>", format: fmt, processors: [:thumbnail, :metadata_filter] },
         large: { geometry: "1024x1024>", format: fmt, processors: [:thumbnail, :metadata_filter] },

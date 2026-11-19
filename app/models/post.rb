@@ -165,32 +165,32 @@ class Post < ApplicationRecord
     return if parent_type == "Site"
 
     %i[featured_at mobile_featured_at blog_category_id].select {| attr | send( attr ).present? }.each do | attr |
-      errors.add( attr, "is only allowed on site posts" )
+      errors.add( attr, :only_allowed_on_site_posts )
     end
   end
 
   def blog_category_on_post_site
     return unless parent_type == "Site" && blog_category && blog_category.site_id != parent_id
 
-    errors.add( :blog_category, "does not belong to this post's site" )
+    errors.add( :blog_category, :must_belong_to_post_site )
   end
 
   def cover_image_belongs_to_post
     return if cover_image.nil? || ( id && cover_image.post_id == id )
 
-    errors.add( :cover_image, "must be one of the post's images" )
+    errors.add( :cover_image, :must_be_one_of_the_post_images )
   end
 
   def cover_image_alt_to_publish
     return unless published? && cover_image && cover_image.alt.blank?
 
-    errors.add( :cover_image, "needs alt text to publish" )
+    errors.add( :cover_image, :needs_alt_text_to_publish )
   end
 
   def tag_list_length
     return unless tag_list.join( ", " ).length > 750
 
-    errors.add( :tag_list, "must be under 750 characters total, no more than 256 characters per tag" )
+    errors.add( :tag_list, :too_long )
   end
 
   def skip_update_for_draft
