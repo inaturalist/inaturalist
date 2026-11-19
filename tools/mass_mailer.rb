@@ -47,6 +47,7 @@ require "optimist"
   opt :min_risky_score, "Miniumum score required to send to Risky addresses. Value btwn 0 and 1", type: :float
   opt :force_locale, "Force the email to send in this locale", type: :string
   opt :min_obs, "Only email users w/ at least this many obs", type: :integer
+  opt :max_obs, "Only email users w/ at most this many obs", type: :integer
   opt :min_obs_this_year, "Only email users w/ at least this many obs observed this year", type: :integer
   opt :min_last_active, "Only email users active since at least this date (YYYY-MM-DD)", type: :string
   opt :only_translated, "Only deliver mail if all strings are translated", type: :boolean
@@ -159,6 +160,9 @@ else
   end
   if @opts.min_obs
     scope = scope.where( "users.observations_count >= ?", @opts.min_obs )
+  end
+  if @opts.max_obs
+    scope = scope.where( "users.observations_count <= ?", @opts.max_obs )
   end
   if @opts.min_last_active
     scope = scope.where( "users.last_active >= ?", @opts.min_last_active )

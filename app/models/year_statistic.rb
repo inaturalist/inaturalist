@@ -930,9 +930,12 @@ class YearStatistic < ApplicationRecord
       "10.1038/s41559-026-03074-6" => 180,
       "10.1038/s41467-026-73613-z" => 110,
       "10.1098/rsos.260347" => 100,
-      "10.1111/jbi.70244" => 45,
       "10.1038/s41467-026-72379-8" => 63,
-      "10.1186/s12862-026-02524-w" => 15,
+      "10.1016/j.cell.2026.04.039" => 61,
+      "10.1186/s12862-026-02524-w" => 60,
+      "10.1111/jbi.70244" => 45,
+      "10.1111/1365-2664.70460" => 38,
+      "10.1007/s10980-026-02379-y" => 13,
       "10.1111/ddi.70205" => 12,
       "10.1093/evolut/qpag093" => 12,
       "10.1016/j.japb.2026.04.003" => 5
@@ -945,7 +948,7 @@ class YearStatistic < ApplicationRecord
       gbifDatasetKey: "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
       literatureType: "journal",
       year: year,
-      limit: 100
+      limit: 200
     }
     gbif_api_url = "#{gbif_endpoint}?#{gbif_params.to_query}"
     gbif_web_url = "https://www.gbif.org/resource/search?contentType=literature&#{gbif_params.to_query}"
