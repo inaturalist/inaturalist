@@ -18,13 +18,8 @@ flipper_config.strict = false
 
 flipper_config.log = false
 
-# Duck-typed to avoid loading User at boot (classic autoloader). FeatureFlagging passes group
-# blocks a FeatureFlagging::RequestActor, which exposes #user and #installation_id on every key.
-unless Flipper.group_exists?( :admins )
-  Flipper.register( :admins ) do | actor |
-    actor.respond_to?( :is_admin? ) && actor.is_admin?
-  end
-end
+# Groups live in FeatureFlagging.register_groups; after boot so FeatureFlagging isn't autoloaded mid-initializer.
+Rails.application.config.after_initialize { FeatureFlagging.register_groups }
 
 # English literals below: Flipper::UI is an untranslated third-party admin app.
 Flipper::UI.configure do | config |
@@ -32,7 +27,10 @@ Flipper::UI.configure do | config |
     "Name a flag <code>client_…</code> to send it to web and mobile, <code>exp_…</code> to run a " \
     "control/treatment experiment; any other name is read by server code only. Add " \
     "<code>install_</code> after either prefix (<code>exp_install_…</code>) to bucket by app installation, so " \
-    "logged-out app users are included and keep their result after logging in."
+    "logged-out app users are included and keep their result after logging in. " \
+    "Groups <code>locale_en</code> / <code>locale_not_en</code> enable a flag for everyone using the site " \
+    "or app in English / any other language, logged in or out. Like every gate they add to the others, " \
+    "so a percentage does not narrow them."
   config.banner_class = "danger"
 
   config.descriptions_source = ->( keys ) { keys.index_with {| key | FeatureFlagging.description_for( key ) } }

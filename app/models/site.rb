@@ -7,6 +7,7 @@ class Site < ApplicationRecord
   has_many :users, inverse_of: :site
   has_many :site_admins, inverse_of: :site
   has_many :posts, as: :parent, dependent: :destroy
+  has_many :blog_categories, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
   has_and_belongs_to_many :announcements
 

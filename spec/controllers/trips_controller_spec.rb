@@ -28,3 +28,12 @@ describe TripsController, "show" do
     expect( response.body ).to include observation_path( obs )
   end
 end
+
+describe TripsController, "create" do
+  it "doesn't save featured flags" do
+    sign_in User.make!
+    expect do
+      post :create, params: { trip: { title: "Foo", body: "Bar", featured_at: Time.now } }
+    end.not_to change( Trip, :count )
+  end
+end
