@@ -6,7 +6,8 @@ import { createFlag, deleteFlag } from "../actions/current_observation_actions";
 function mapStateToProps( state ) {
   return {
     config: state.config,
-    state: state.flaggingModal
+    state: state.flaggingModal,
+    radioOptions: state.flaggingModal.radioOptions
   };
 }
 

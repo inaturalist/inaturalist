@@ -50,6 +50,11 @@ describe( "PhotoDescription", ( ) => {
     expect( screen.getByRole( "link" ) ).toHaveAttribute( "href", "/photos/100" );
   } );
 
+  it( "opens the photo page in the given link target", ( ) => {
+    renderDescription( { linkTarget: "_blank" } );
+    expect( screen.getByRole( "link" ) ).toHaveAttribute( "target", "_blank" );
+  } );
+
   it( "opens the flagging modal through the confirmation gate", async ( ) => {
     const { performOrOpenConfirmationModal, setFlaggingModalState } = renderDescription( );
     await userEvent.click( screen.getByTitle( "flag_as_inappropriate" ) );
