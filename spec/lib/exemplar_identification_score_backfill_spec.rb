@@ -176,11 +176,11 @@ describe ExemplarIdentificationScoreBackfill do
   end
 
   describe "reset_edited" do
-    it "resets rows whose identification was updated after the start" do
+    it "resets rows whose body was edited after the start" do
       exemplar = make_exemplar
       write_file( july_line( exemplar ) )
       backfill.import
-      exemplar.identification.update_columns( updated_at: Time.now )
+      exemplar.identification.update_columns( body: "Note the black wing bars", updated_at: Time.now )
       expect( backfill.reset_edited ).to eq 1
       expect( rejects.map {| row | row[1] } ).to eq %w(reset_edited)
       score = score_of( exemplar )
@@ -189,11 +189,20 @@ describe ExemplarIdentificationScoreBackfill do
       expect( score.flags ).to eq []
     end
 
-    it "leaves rows whose identification wasn't updated" do
+    it "leaves rows updated after the start without a body change" do
       exemplar = make_exemplar
       write_file( july_line( exemplar ) )
       backfill.import
-      exemplar.identification.update_columns( updated_at: 1.hour.ago )
+      exemplar.identification.update_columns( updated_at: Time.now )
+      expect( backfill.reset_edited ).to eq 0
+      expect( score_of( exemplar ).status ).to eq ExemplarIdentificationScore::SCORED
+    end
+
+    it "leaves rows whose identification wasn't updated after the start" do
+      exemplar = make_exemplar
+      write_file( july_line( exemplar ) )
+      backfill.import
+      exemplar.identification.update_columns( body: "Note the black wing bars", updated_at: 1.hour.ago )
       expect( backfill.reset_edited ).to eq 0
       expect( score_of( exemplar ).status ).to eq ExemplarIdentificationScore::SCORED
     end

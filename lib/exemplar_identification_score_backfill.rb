@@ -20,7 +20,7 @@ class ExemplarIdentificationScoreBackfill
     incomplete: "incomplete result",
     existing: "row already there: created by the site, or by an earlier attempt"
   }.freeze
-  RESET_EDITED_DETAIL = "identification updated after the backfill started"
+  RESET_EDITED_DETAIL = "body edited during the backfill"
 
   # Statuses of the file kept as they are when the body hasn't changed
   RESULT_STATUSES = ExemplarIdentificationScoringRun::RESULT_STATUSES + [
@@ -65,18 +65,22 @@ class ExemplarIdentificationScoreBackfill
   end
 
   # Bodies edited while the import's batch holding their row was still
-  # uncommitted: the body hook found no row to reset
+  # uncommitted: the body hook found no row to reset. Only the
+  # identifications updated since the start are compared with the file
   def reset_edited
-    each_batch do | batch |
-      [true, false].sum do | active |
-        edited = batch.
-          joins( exemplar_identification: :identification ).
-          where( "identifications.updated_at >= ?", @started_at ).
-          where( exemplar_identifications: { active: active } )
-        write_rejects( edited.pluck( "identifications.id" ).map {| id | [id, :reset_edited, RESET_EDITED_DETAIL] } )
-        edited.update_all( unscored_attributes( active ).merge( "updated_at" => Time.now ) )
-      end
+    bodies = ExemplarIdentificationScore.
+      joins( exemplar_identification: :identification ).
+      where( "identifications.updated_at >= ?", @started_at ).
+      pluck( "identifications.id", "identifications.body" ).
+      to_h
+    return 0 if bodies.empty?
+
+    edited_ids = []
+    CSV.foreach( @path, headers: true, encoding: "UTF-8" ) do | line |
+      id = line["id"].to_i
+      edited_ids << id if bodies.key?( id ) && sanitize_text( bodies[id] ) != line["body"]
     end
+    reset( edited_ids.uniq )
   end
 
   # active changes made while the batch holding their row was still
@@ -178,6 +182,20 @@ class ExemplarIdentificationScoreBackfill
       "attempts" => 0,
       "last_error" => nil
     )
+  end
+
+  def reset( identification_ids )
+    return 0 if identification_ids.empty?
+
+    write_rejects( identification_ids.map {| id | [id, :reset_edited, RESET_EDITED_DETAIL] } )
+    rows = ExemplarIdentificationScore.
+      joins( :exemplar_identification ).
+      where( exemplar_identifications: { identification_id: identification_ids } )
+    [true, false].sum do | active |
+      rows.
+        where( exemplar_identifications: { active: active } ).
+        update_all( unscored_attributes( active ).merge( "updated_at" => Time.now ) )
+    end
   end
 
   # Returns the exemplar_identification_id of the rows inserted
