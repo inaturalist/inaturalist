@@ -86,6 +86,22 @@ describe BlogCategoriesController do
       expect( assigns( :blog_category ).errors.full_messages ).to include "Label is reserved"
     end
 
+    it "re-renders the form when the position is too large" do
+      expect do
+        post :create, params: { inat_site_id: site.id, blog_category: { label: "Field Notes", position: 99_999_999_999 } }
+      end.not_to change( BlogCategory, :count )
+      expect( response ).to have_http_status :unprocessable_entity
+      expect( response ).to render_template :new
+    end
+
+    it "re-renders the form when the label is already used on the site" do
+      BlogCategory.make!( site: site, label: "Field Notes" )
+      expect do
+        post :create, params: { inat_site_id: site.id, blog_category: { label: "field notes" } }
+      end.not_to change( BlogCategory, :count )
+      expect( response ).to render_template :new
+    end
+
     it "refuses a blank label" do
       expect do
         post :create, params: { inat_site_id: site.id, blog_category: { label: "" } }

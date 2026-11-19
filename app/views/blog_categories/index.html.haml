@@ -18,6 +18,7 @@
             %th= t :url_slug
             %th= t :posts
             %th
+              %span.sr-only= t :actions
         %tbody
           - @blog_categories.each do |blog_category|
             %tr
@@ -29,8 +30,8 @@
               %td
                 .inat-row-actions
                   = link_to edit_blog_category_path( id: blog_category.id ), class: "inat-button inat-button--neutral" do
-                    %i.fa.fa-pencil
+                    %i.fa.fa-pencil{ aria: { hidden: "true" } }
                     = t :edit
                   = link_to blog_category_path( id: blog_category.id ), method: :delete, data: { confirm: t( :are_you_sure? ) }, class: "inat-button inat-button--warning" do
-                    %i.fa.fa-trash
+                    %i.fa.fa-trash{ aria: { hidden: "true" } }
                     = t :delete
