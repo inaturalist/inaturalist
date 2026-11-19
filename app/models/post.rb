@@ -2,6 +2,7 @@
 
 class Post < ApplicationRecord
   BLOG_V2_ATTRIBUTES = %w(cover_image_id featured_at mobile_featured_at locale blog_category_id).freeze
+  POSTS_JSON_PRELOADS = [{ user: :site }, :stored_preferences, :parent].freeze
 
   # No lifecycle callbacks until the posts index exists in production. Must
   # match the call in app/es_indices/post_index.rb, which loads first when

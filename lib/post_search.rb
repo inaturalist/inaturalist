@@ -9,7 +9,6 @@ class PostSearch
   DEFAULT_PER_PAGE = 30
   MAX_PER_PAGE = 200
   MAX_RESULT_WINDOW = 10_000
-  POSTS_JSON_PRELOADS = [{ user: :site }, :stored_preferences, :parent].freeze
   HIGHLIGHT = {
     encoder: "html",
     fields: {
@@ -57,7 +56,7 @@ class PostSearch
       @highlights = hits["hits"].each_with_object( {} ) do | hit, memo |
         memo[hit["_id"].to_i] = hit["highlight"] if hit["highlight"]
       end
-      posts_by_id = Post.where( id: ids ).includes( POSTS_JSON_PRELOADS ).index_by( &:id )
+      posts_by_id = Post.where( id: ids ).includes( Post::POSTS_JSON_PRELOADS ).index_by( &:id )
       WillPaginate::Collection.create( page, per_page, hits["total"]["value"] ) do | pager |
         pager.replace( ids.filter_map {| id | posts_by_id[id] } )
       end
