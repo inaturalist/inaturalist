@@ -33,10 +33,12 @@ function mapStateToProps( state ) {
       defaultPhotoSize = "large";
     }
     images = observation.photos.map( photo => ( {
-      original: photo.photoUrl( defaultPhotoSize ),
-      zoom: photo.photoUrl( "original" ),
+      original: photo.hidden ? null : photo.photoUrl( defaultPhotoSize ),
+      zoom: photo.hidden ? null : photo.photoUrl( "original" ),
       thumbnail: photo.photoUrl( "square" ),
-      originalDimensions: photo.original_dimensions
+      originalDimensions: photo.original_dimensions,
+      // Moderation UI needs photo.user; keep the constructor for revealHiddenContent's instanceof
+      photo: new photo.constructor( { ...photo, user: observation.user } )
     } ) );
   }
   const currentObsBrightnessKeys = {};

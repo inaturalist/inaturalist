@@ -190,7 +190,10 @@ const OBSERVATION_FIELDS = {
     original_dimensions: {
       width: true,
       height: true
-    }
+    },
+    flags: { id: true },
+    hidden: true,
+    moderator_actions: MODERATOR_ACTION_FIELDS
   },
   place_guess: true,
   place_ids: true,

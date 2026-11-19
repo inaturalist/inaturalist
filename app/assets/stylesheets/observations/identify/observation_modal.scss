@@ -156,9 +156,20 @@ body > [role="dialog"] .ObservationModal {
     border: 4px solid #337ab7;
   }
   .image-gallery-slide .image-gallery-description {
-    position: relative;
+    background: none;
+    width: 100%;
     padding: 0;
-    bottom: 0;
+    bottom: 10px;
+    pointer-events: none;
+    text-align: center;
+  }
+  .image-gallery-content:has(.image-gallery-thumbnails-wrapper) .image-gallery-description {
+    bottom: 75px;
+  }
+  .image-gallery-slide .image-gallery-description:has(.hidden-media) {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
   }
 
   .image-gallery {

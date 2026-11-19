@@ -1,0 +1,53 @@
+.captions {
+  line-height: 18px;
+  .captions-box {
+    background: rgba(0,0,0,.45);
+    border-radius: 50px;
+    display: inline-block;
+    padding: 5px 9px 7px;
+    pointer-events: auto;
+    .badge {
+      background: white;
+      color: rgba(0,0,0,.75);
+      margin-inline-start: 5px;
+    }
+    .btn:hover, .fa:hover {
+      text-decoration: none;
+      opacity: 0.8;
+      color: inherit;
+    }
+    .btn:focus {
+      color: inherit;
+    }
+    .btn:focus:not(:focus-visible) {
+      outline: none;
+    }
+  }
+  .fa.license {
+    vertical-align: middle;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    &.fa-copyright {
+      font-size: 20px;
+    }
+  }
+  .btn-nostyle {
+    margin-inline-start: 5px;
+  }
+}
+
+.hidden-media {
+  text-align: center;
+  .hidden-status {
+    color: #333;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  .btn.reveal-hidden {
+    display: block;
+    color: #333;
+    pointer-events: auto;
+    margin: 9px auto 0;
+  }
+}

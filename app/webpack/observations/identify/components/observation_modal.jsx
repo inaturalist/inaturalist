@@ -25,6 +25,7 @@ import UserText from "../../../shared/components/user_text";
 import ErrorBoundary from "../../../shared/components/error_boundary";
 import { formattedDateTimeInTimeZone, translateWithConsistentCase } from "../../../shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
+import PhotoDescriptionContainer from "../../../shared/containers/photo_description_container";
 import FollowButtonContainer from "../containers/follow_button_container";
 import FavesContainer from "../containers/faves_container";
 import { TABS } from "../actions/current_observation_actions";
@@ -266,7 +267,12 @@ class ObservationModal extends React.Component {
         <div className={`photos-wrapper ${brightnessClass}`}>
           <ZoomableImageGallery
             key={`map-for-${observation.id}`}
-            items={images}
+            items={images.map( image => ( {
+              ...image,
+              description: (
+                <PhotoDescriptionContainer photo={image.photo} observation={observation} />
+              )
+            } ) )}
             slideDuration={0}
             slideIndex={imagesCurrentIndex}
             showThumbnails={images && images.length > 1}
@@ -280,17 +286,19 @@ class ObservationModal extends React.Component {
             onThumbnailClick={( event, index ) => setImagesCurrentIndex( index )}
           />
           <div className="photo-controls" role="toolbar">
-            <div className="btn-group-vertical btn-group-xs" role="group">
-              <a
-                href={currentImage.zoom || currentImage.original}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-default"
-                title={I18n.t( "view_full_size_photo" )}
-              >
-                <i className="icon-link-external" />
-              </a>
-            </div>
+            { currentImage.original && (
+              <div className="btn-group-vertical btn-group-xs" role="group">
+                <a
+                  href={currentImage.zoom || currentImage.original}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-default"
+                  title={I18n.t( "view_full_size_photo" )}
+                >
+                  <i className="icon-link-external" />
+                </a>
+              </div>
+            ) }
             <div className="brightness-control btn-group-vertical btn-group-xs" role="group">
               <button
                 type="button"
