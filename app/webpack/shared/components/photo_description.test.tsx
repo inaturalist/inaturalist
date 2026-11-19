@@ -11,6 +11,7 @@ jest.mock( "../containers/hidden_content_message_container", ( ) => ( {
 const observer = { id: 1, roles: [] as string[] };
 const curator = { id: 2, roles: ["curator"] };
 const admin = { id: 3, roles: ["admin"] };
+const regularUser = { id: 4, roles: [] as string[] };
 const observation = { id: 10, user: { id: observer.id, login: "obs" } };
 const photo = { id: 100, license_code: "cc-by" };
 const hiddenBy = ( user: { id: number }, extra = { } ) => ( {
@@ -60,6 +61,28 @@ describe( "PhotoDescription", ( ) => {
       item: photo,
       show: true
     } ) );
+  } );
+
+  it.each( [
+    ["a regular user", regularUser],
+    ["a logged-out visitor", null]
+  ] )( "shows %s only the license, flag, and info controls", ( _label, currentUser ) => {
+    renderDescription( { currentUser } );
+    expect( screen.getByTitle( "flag_as_inappropriate" ) ).toBeInTheDocument( );
+    expect( screen.getByRole( "link" ) ).toHaveAttribute( "href", "/photos/100" );
+    expect( screen.queryByTitle( "hide_content" ) ).not.toBeInTheDocument( );
+    expect( screen.queryByTitle( "unhide_content" ) ).not.toBeInTheDocument( );
+  } );
+
+  it.each( [
+    ["a regular user", regularUser],
+    ["a logged-out visitor", null]
+  ] )( "gives %s no way to unhide or reveal a hidden photo", ( _label, currentUser ) => {
+    renderDescription( { photo: hiddenBy( curator ), currentUser } );
+    expect( screen.getByTestId( "hidden-message" ) ).toBeInTheDocument( );
+    expect( screen.queryByTitle( "hide_content" ) ).not.toBeInTheDocument( );
+    expect( screen.queryByTitle( "unhide_content" ) ).not.toBeInTheDocument( );
+    expect( screen.queryByText( "show_hidden_content" ) ).not.toBeInTheDocument( );
   } );
 
   it( "never offers the observer a hide button", ( ) => {
