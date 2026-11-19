@@ -9654,12 +9654,29 @@ id:
               must_have_more_than_three_points: harus memiliki lebih dari 3 titik
               polygon_with_less_than_four_points: memiliki poligon yang titiknya kurang dari 4
         post:
+          #Shown when a non-site post, like a project journal post, sets a
+          #blog-only field such as a featured date or blog category
+          only_allowed_on_site_posts: hanya diperbolehkan di postingan situs
           attributes:
+            blog_category:
+              #Shown when a blog post is assigned a category that belongs to
+              #a different site's blog
+              must_belong_to_post_site: tidak termasuk dalam situs postingan ini
+            cover_image:
+              #Shown when a blog post's cover image is not one of the images
+              #uploaded to that post
+              must_be_one_of_the_post_images: Harus berupa salah satu gambar dari postingannya
+              #Shown when publishing a blog post whose cover image has no alt
+              #text, the description of the image read aloud by screen readers
+              needs_alt_text_to_publish: harus ada teks alt untuk dipublikasikan
             parent:
               #Error message shown when a client tries to create a comment on a
               #post that does not allow comments. Theoretically an end user
               #should never see this, though an API client might.
               prefers_no_comments: tidak mengizinkan komentar baru
+            tag_list:
+              #Shown when a post's tags are too long in total or individually
+              too_long: totalnya harus kurang dari 750 karakter, tidak lebih dari 256 karakter per tag
             user:
               must_be_on_site_long_enough: |
                 harus terdaftar lebih dari 24 jam yang lalu untuk menerbitkan. Kami mendapatkan banyak spammer, dan ini adalah semacam cara yang kurang baik untuk berurusan dengan mereka. Anda masih dapat menyimpan draf, dan jika Anda masih menggunakan situs ini dalam satu hari, Anda bisa menerbitkan.
