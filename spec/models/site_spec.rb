@@ -9,12 +9,21 @@ describe Site do
   it { is_expected.to have_many( :posts ).dependent :destroy }
   it { is_expected.to have_many( :journal_posts ).class_name( "Post" ).dependent :destroy }
   it { is_expected.to have_many( :site_featured_projects ).dependent :destroy }
+  it { is_expected.to have_many( :blog_categories ).dependent :destroy }
   it { is_expected.to have_and_belong_to_many :announcements }
   it { is_expected.to belong_to( :place ).inverse_of :sites }
   it { is_expected.to have_many( :places_sites ).dependent :destroy }
   it { is_expected.to have_many( :export_places_sites ).class_name( "PlacesSite" ) }
   it { is_expected.to have_many( :export_places ).through( :export_places_sites ).source( :place ) }
   it { is_expected.to belong_to( :taxon_range_source ).class_name( "Source" ).with_foreign_key "source_id" }
+
+  it "destroys its categorized posts and their categories" do
+    category = BlogCategory.make!
+    post = Post.make!( parent: category.site, blog_category: category )
+    category.site.destroy
+    expect( Post.find_by_id( post.id ) ).to be_nil
+    expect( BlogCategory.find_by_id( category.id ) ).to be_nil
+  end
 
   # this is maybe out of place, but these tests are targeting behavior in our forked version
   # of the `preferences` gem that we should make sure it preserved in future upgrades

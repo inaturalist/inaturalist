@@ -512,3 +512,121 @@ describe LocalPhoto, "to_tags" do
     end
   end
 end
+
+# These run the real Paperclip pipeline (ImageMagick, exiftool, and our
+# processors in lib/paperclip_processors). See spec/support/quickerclip.rb
+describe LocalPhoto, "file processing", :paperclip_processing do
+  def create_photo( fixture, content_type )
+    photo = LocalPhoto.new( user: User.make! )
+    photo.file = fixture_file_upload( fixture, content_type )
+    photo.save!
+    photo.reload
+  end
+
+  def stored_mime_type( photo, size )
+    Marcel::MimeType.for( Pathname.new( photo.file.path( size ) ) )
+  end
+
+  def identify( path, format )
+    Terrapin::CommandLine.new( "identify", "-format :format :path" ).
+      run( format: format, path: path ).strip
+  end
+
+  def frame_count( path )
+    Terrapin::CommandLine.new( "identify", ":path" ).run( path: path ).lines.size
+  end
+
+  shared_examples_for "a photo stored as JPEG" do
+    it "records image/jpeg as the content type" do
+      expect( photo.file_content_type ).to eq "image/jpeg"
+    end
+
+    it "stores a JPEG with a .jpg URL for every size" do
+      LocalPhoto::SIZES.each do | size |
+        expect( stored_mime_type( photo, size ) ).to eq( "image/jpeg" ), "#{size} is not a JPEG"
+        expect( photo.send( "#{size}_url" ) ).to end_with "/#{photo.id}/#{size}.jpg"
+      end
+    end
+  end
+
+  context "JPEG" do
+    let( :photo ) { create_photo( "cuthona_abronia.jpg", "image/jpeg" ) }
+
+    it_behaves_like "a photo stored as JPEG"
+  end
+
+  # Converting the original to JPEG must also update file_content_type. The
+  # inaturalist/kt-paperclip fork exists for this
+  # (Paperclip::Attachment#reset_file_if_original_reprocessed, WEB-326)
+  context "PNG" do
+    let( :photo ) { create_photo( "polistes_dominula-png-metadata.png", "image/png" ) }
+
+    it_behaves_like "a photo stored as JPEG"
+  end
+
+  context "HEIC" do
+    before do
+      formats = Terrapin::CommandLine.new( "identify", "-list format" ).run
+      heic_readable = formats.lines.any? {| line | line =~ /\A\s*HEIC\b/ && line =~ /\sr[w-][+-]\s/ }
+      skip "this ImageMagick cannot read HEIC" unless heic_readable
+    end
+
+    let( :photo ) { create_photo( "lupine-oakland.heic", "image/heic" ) }
+
+    it_behaves_like "a photo stored as JPEG"
+  end
+
+  context "animated GIF" do
+    let( :photo ) { create_photo( "animated-3-frames.gif", "image/gif" ) }
+
+    it "stores GIFs with .gif URLs for every size" do
+      expect( photo.file_content_type ).to eq "image/gif"
+      LocalPhoto::SIZES.each do | size |
+        expect( stored_mime_type( photo, size ) ).to eq( "image/gif" ), "#{size} is not a GIF"
+        expect( photo.send( "#{size}_url" ) ).to end_with "/#{photo.id}/#{size}.gif"
+      end
+    end
+
+    it "keeps the animation in the original but not in the small sizes" do
+      expect( frame_count( photo.file.path( :original ) ) ).to eq 3
+      %i[small thumb square].each do | size |
+        expect( frame_count( photo.file.path( size ) ) ).to eq( 1 ), "#{size} is still animated"
+      end
+    end
+  end
+
+  it "stores the original upright when EXIF says the camera was rotated" do
+    # 40x20 pixels with EXIF Orientation 6 (rotate 90 degrees clockwise)
+    photo = create_photo( "exif-orientation-6.jpg", "image/jpeg" )
+    expect( identify( photo.file.path( :original ), "%wx%h" ) ).to eq "20x40"
+  end
+
+  it "strips metadata from stored files but keeps what it extracted" do
+    photo = create_photo( "hyalophora-gps-h-pos.jpg", "image/jpeg" )
+    expect( photo.metadata[:gps_latitude] ).not_to be_blank
+    stored_exif = Exiftool.new( photo.file.path( :original ) ).to_hash
+    expect( stored_exif[:gps_latitude] ).to be_blank
+  end
+
+  describe "rotate!" do
+    let( :photo ) { create_photo( "polistes_dominula-png-metadata.png", "image/png" ) }
+
+    before do
+      # Re-fetching the original is a network concern; the stored original is
+      # already on disk here
+      allow( photo ).to receive( :reset_file_from_original )
+    end
+
+    it "rotates every size and keeps them JPEGs with .jpg URLs" do
+      expect( identify( photo.file.path( :original ), "%wx%h" ) ).to eq "72x67"
+      photo.rotate!( 90 )
+      photo.reload
+      expect( photo.file_content_type ).to eq "image/jpeg"
+      LocalPhoto::SIZES.each do | size |
+        expect( stored_mime_type( photo, size ) ).to eq( "image/jpeg" ), "#{size} is not a JPEG"
+        expect( photo.send( "#{size}_url" ) ).to end_with "/#{photo.id}/#{size}.jpg"
+      end
+      expect( identify( photo.file.path( :original ), "%wx%h" ) ).to eq "67x72"
+    end
+  end
+end

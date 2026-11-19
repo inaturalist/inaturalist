@@ -157,6 +157,44 @@ describe "GET /feature_flags", type: :request do
     end
   end
 
+  # WEB-1434 scenario 2: the app sends ?locale=<app language>; Node forwards query params.
+  describe "a caller targeted by locale" do
+    before { Flipper.enable_group( flag, :locale_en ) }
+
+    it "resolves locale_en from the locale param while logged out" do
+      get "/feature_flags", params: { locale: "en-GB" }
+      expect( body["flags"][flag.to_s] ).to be true
+      get "/feature_flags", params: { locale: "fr" }
+      expect( body["flags"][flag.to_s] ).to be false
+    end
+
+    it "resolves locale_en for a logged-out app with an application JWT" do
+      headers = { "HTTP_AUTHORIZATION" => JsonWebToken.applicationToken }
+      get "/feature_flags", params: { locale: "fr" }, headers: headers
+      expect( body["flags"][flag.to_s] ).to be false
+      get "/feature_flags", params: { locale: "en" }, headers: headers
+      expect( body["flags"][flag.to_s] ).to be true
+    end
+
+    it "prefers the locale param over a signed-in user's saved locale" do
+      user = User.make!( locale: "en" )
+      get "/feature_flags", params: { locale: "fr" },
+        headers: { "HTTP_AUTHORIZATION" => JsonWebToken.encode( user_id: user.id ) }
+      expect( body["flags"][flag.to_s] ).to be false
+    end
+
+    it "falls back to a signed-in user's saved locale" do
+      user = User.make!( locale: "es" )
+      get "/feature_flags", headers: { "HTTP_AUTHORIZATION" => JsonWebToken.encode( user_id: user.id ) }
+      expect( body["flags"][flag.to_s] ).to be false
+    end
+
+    it "keeps the response shape" do
+      get "/feature_flags", params: { locale: "en" }
+      expect( body.keys ).to match_array %w(flags experiments)
+    end
+  end
+
   # The app sends X-Installation-ID on every request, logged in or not; Node forwards it.
   describe "a caller with an installation id" do
     let( :installation_id ) { SecureRandom.uuid }

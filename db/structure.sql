@@ -719,6 +719,40 @@ ALTER SEQUENCE public.blocked_ips_id_seq OWNED BY public.blocked_ips.id;
 
 
 --
+-- Name: blog_categories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.blog_categories (
+    id bigint NOT NULL,
+    site_id integer NOT NULL,
+    slug character varying NOT NULL,
+    label character varying NOT NULL,
+    "position" integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: blog_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.blog_categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: blog_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.blog_categories_id_seq OWNED BY public.blog_categories.id;
+
+
+--
 -- Name: cohort_lifecycles; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3981,6 +4015,46 @@ ALTER SEQUENCE public.places_sites_id_seq OWNED BY public.places_sites.id;
 
 
 --
+-- Name: post_images; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.post_images (
+    id bigint NOT NULL,
+    user_id integer NOT NULL,
+    post_id integer,
+    file_file_name character varying,
+    file_content_type character varying,
+    file_file_size bigint,
+    file_updated_at timestamp without time zone,
+    width integer,
+    height integer,
+    caption text,
+    attribution text,
+    alt text,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: post_images_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.post_images_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: post_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.post_images_id_seq OWNED BY public.post_images.id;
+
+
+--
 -- Name: posts; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4003,7 +4077,12 @@ CREATE TABLE public.posts (
     radius integer,
     distance double precision,
     number integer,
-    uuid uuid DEFAULT public.uuid_generate_v4()
+    uuid uuid DEFAULT public.uuid_generate_v4(),
+    cover_image_id bigint,
+    featured_at timestamp without time zone,
+    mobile_featured_at timestamp without time zone,
+    locale character varying,
+    blog_category_id bigint
 );
 
 
@@ -6545,6 +6624,13 @@ ALTER TABLE ONLY public.blocked_ips ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: blog_categories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.blog_categories ALTER COLUMN id SET DEFAULT nextval('public.blog_categories_id_seq'::regclass);
+
+
+--
 -- Name: cohort_lifecycles id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7112,6 +7198,13 @@ ALTER TABLE ONLY public.places_sites ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: post_images id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.post_images ALTER COLUMN id SET DEFAULT nextval('public.post_images_id_seq'::regclass);
+
+
+--
 -- Name: posts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7675,6 +7768,14 @@ ALTER TABLE ONLY public.audits
 
 ALTER TABLE ONLY public.blocked_ips
     ADD CONSTRAINT blocked_ips_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blog_categories blog_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.blog_categories
+    ADD CONSTRAINT blog_categories_pkey PRIMARY KEY (id);
 
 
 --
@@ -8323,6 +8424,14 @@ ALTER TABLE ONLY public.places
 
 ALTER TABLE ONLY public.places_sites
     ADD CONSTRAINT places_sites_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: post_images post_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.post_images
+    ADD CONSTRAINT post_images_pkey PRIMARY KEY (id);
 
 
 --
@@ -9132,6 +9241,13 @@ CREATE INDEX index_audits_on_request_uuid ON public.audits USING btree (request_
 --
 
 CREATE UNIQUE INDEX index_blocked_ips_on_ip ON public.blocked_ips USING btree (ip);
+
+
+--
+-- Name: index_blog_categories_on_site_id_and_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_blog_categories_on_site_id_and_slug ON public.blog_categories USING btree (site_id, slug);
 
 
 --
@@ -10661,6 +10777,34 @@ CREATE INDEX index_places_sites_on_site_id ON public.places_sites USING btree (s
 
 
 --
+-- Name: index_post_images_on_post_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_post_images_on_post_id ON public.post_images USING btree (post_id);
+
+
+--
+-- Name: index_post_images_on_user_id_and_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_post_images_on_user_id_and_created_at ON public.post_images USING btree (user_id, created_at);
+
+
+--
+-- Name: index_posts_on_blog_category_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_posts_on_blog_category_id ON public.posts USING btree (blog_category_id);
+
+
+--
+-- Name: index_posts_on_parent_type_and_parent_id_and_published_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_posts_on_parent_type_and_parent_id_and_published_at ON public.posts USING btree (parent_type, parent_id, published_at);
+
+
+--
 -- Name: index_posts_on_place_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10672,6 +10816,20 @@ CREATE INDEX index_posts_on_place_id ON public.posts USING btree (place_id);
 --
 
 CREATE INDEX index_posts_on_published_at ON public.posts USING btree (published_at);
+
+
+--
+-- Name: index_posts_on_site_featured; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_posts_on_site_featured ON public.posts USING btree (parent_id, featured_at DESC) WHERE (((parent_type)::text = 'Site'::text) AND (featured_at IS NOT NULL));
+
+
+--
+-- Name: index_posts_on_site_mobile_featured; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_posts_on_site_mobile_featured ON public.posts USING btree (parent_id, mobile_featured_at DESC) WHERE (((parent_type)::text = 'Site'::text) AND (mobile_featured_at IS NOT NULL));
 
 
 --
@@ -11831,6 +11989,14 @@ ALTER TABLE ONLY public.announcements
 
 
 --
+-- Name: posts fk_rails_9125d5bbee; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.posts
+    ADD CONSTRAINT fk_rails_9125d5bbee FOREIGN KEY (blog_category_id) REFERENCES public.blog_categories(id) ON DELETE RESTRICT;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -12390,6 +12556,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260730225905'),
 ('20260806120000'),
 ('20260819211039'),
-('20261103180000');
+('20261103180000'),
+('20261111160000'),
+('20261111160100');
 
 
