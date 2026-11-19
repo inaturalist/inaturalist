@@ -480,9 +480,21 @@ describe Post do
       expect( mapping[:_source] ).to eq( excludes: ["body"] )
       expect( mapping[:properties][:body][:store] ).to be true
     end
+  end
 
-    it "indexes trips into the posts index" do
-      expect( Trip.index_name ).to eq Post.index_name
+  describe "prune_batch_for_index" do
+    it "drops trips" do
+      post = journal_post.tap( &:save! )
+      trip = Trip.make!
+      expect( Post.prune_batch_for_index( [post, trip] ) ).to eq [post]
+    end
+  end
+
+  describe "elastic_index!" do
+    it "does not index a trip" do
+      trip = Trip.make!
+      expect( trip.__elasticsearch__ ).not_to receive( :index_document )
+      expect { trip.elastic_index! }.not_to raise_error
     end
   end
 

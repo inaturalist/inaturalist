@@ -185,10 +185,10 @@ describe PostSearch do
       expect( search_ids ).to eq []
     end
 
-    it "finds trips" do
+    it "does not return trips" do
       trip = Trip.make!( title: "Axolotl trip" )
       index!( trip )
-      expect( search_ids( q: "axolotl" ) ).to eq [trip.id]
+      expect( search_ids( q: "axolotl" ) ).to eq []
     end
 
     it "returns escaped highlights for title and body" do

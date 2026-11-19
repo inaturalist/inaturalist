@@ -46,11 +46,9 @@ class Post < ApplicationRecord
     end
   end
 
-  # Trip < Post. elasticsearch-model gives each subclass its own proxy, so
-  # without this Trip would index into an unprefixed "trips" index.
-  def self.inherited( subclass )
-    super
-    subclass.index_name( index_name )
+  # Trips (Trip < Post) are a legacy feature and stay out of the index
+  def self.prune_batch_for_index( batch )
+    batch.reject {| post | post.is_a?( Trip ) }
   end
 
   def self.prepare_batch_for_index( batch )
