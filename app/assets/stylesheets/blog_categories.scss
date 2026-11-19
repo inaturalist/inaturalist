@@ -1,7 +1,7 @@
 @import "breakpoints";
-@import "shared/responsive/buttons";
-@import "shared/responsive/data_table";
-@import "shared/responsive/form_fields";
+@import "shared/buttons";
+@import "shared/data_table";
+@import "shared/form_fields";
 
 .blog-categories {
   @include container-padding;

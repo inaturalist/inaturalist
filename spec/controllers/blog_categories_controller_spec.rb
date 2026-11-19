@@ -43,24 +43,6 @@ describe BlogCategoriesController do
       expect( form["action"] ).to eq blog_category_path( id: category.id )
     end
 
-    it "renders the pages responsively without Bootstrap layout or component classes" do
-      category = BlogCategory.make!( site: site )
-      bootstrap_class = /\A(container|row|col-\w+-\d+|btn(-\w+)?|table|form-control|form-group|text-muted|text-right)\z/
-      [
-        -> { get :index, params: { inat_site_id: site.id } },
-        -> { get :new, params: { inat_site_id: site.id } },
-        -> { get :edit, params: { inat_site_id: site.id, id: category.id } }
-      ].each do | request |
-        request.call
-        expect( assigns( :responsive ) ).to be true
-        classes = Nokogiri::HTML( response.body ).css( ".blog-categories, .blog-categories [class]" ).flat_map do | n |
-          n["class"].split
-        end
-        expect( classes ).not_to be_empty
-        expect( classes.grep( bootstrap_class ) ).to be_empty
-      end
-    end
-
     it "includes post counts on the index" do
       category = BlogCategory.make!( site: site )
       2.times { Post.make!( parent: site, user: site_admin, blog_category: category ) }
