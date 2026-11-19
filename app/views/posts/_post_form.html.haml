@@ -38,6 +38,14 @@
             = t :allowed_html
             \:
           = Post::ALLOWED_TAGS.to_a.sort.join(', ')
+      - if post.parent_type == "Site"
+        = f.select :blog_category_id,
+          post.parent.blog_categories.order( :position, :label ).map {| category | [category.label, category.id] },
+          include_blank: true,
+          label: t( :category )
+        = f.text_field :tag_list, value: post.tag_list.to_s, label: t( :tags ), placeholder: t( :add_comma_separated_tags )
+        = f.check_box :featured, label: t( :feature_on_the_blog )
+        = f.check_box :mobile_featured, label: t( :feature_in_the_app )
       .stacked
         = f.check_box :prefers_no_comments, label: t(:disable_comments), description: t(:disable_comments_desc)
       = f.hidden_field :user_id
