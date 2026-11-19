@@ -17,11 +17,10 @@
   justify-content: center;
   gap: 8px;
   max-width: 500px;
-  padding: 8px 12px;
+  min-height: 44px;
+  padding: 0 22px;
   border: 3px solid transparent;
   border-radius: var(--inat-radius-lg);
-  font: inherit;
-  // font-weight: 700;
   line-height: 1.4;
   text-align: center;
   cursor: pointer;
@@ -47,7 +46,11 @@
     opacity: 1;
   }
 
-  // Doubled class: Bootstrap's `.bootstrap a` outranks a lone class
+  // Doubled class: Bootstrap's `.bootstrap a` and `.bootstrap input` outrank a lone class
+  &.inat-button {
+    font-size: 16px;
+  }
+
   &.inat-button--neutral {
     @include inat-button-colors( var(--inat-dark-gray), white, var(--inat-dark-gray) );
 
