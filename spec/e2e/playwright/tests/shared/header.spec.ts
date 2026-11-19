@@ -243,6 +243,81 @@ test.describe( "Header item inventory (responsive)", () => {
   );
 } );
 
+test.describe( "Header nav links vs. search state (responsive)", () => {
+  let navUser: { email: string; login: string };
+
+  const setSearchOpen = async ( page: Page, open: boolean ): Promise<void> => {
+    const header = page.locator( "#header" );
+    const isOpen = await header.evaluate( el => el.classList.contains( "search-open" ) );
+    if ( isOpen !== open ) {
+      await page.locator( `#header ${open ? ".show-btn" : ".hide-btn"}` ).click( );
+    }
+    await ( open
+      ? expect( header ).toHaveClass( /\bsearch-open\b/ )
+      : expect( header ).not.toHaveClass( /\bsearch-open\b/ ) );
+    await page.locator( "#headersearch .searchwrapper" ).evaluate(
+      el => Promise.all( el.getAnimations( ).map( a => a.finished ) )
+    );
+  };
+
+  const expectNav = async ( page: Page, shown: "mainnav" | "narrow-menu" ): Promise<void> => {
+    const hidden = shown === "mainnav" ? "narrow-menu" : "mainnav";
+    await expect( page.locator( `#header #${shown}` ) ).toBeVisible( );
+    await expect( page.locator( `#header #${hidden}` ) ).toBeHidden( );
+  };
+
+  const followersPath = ( ) => `/people/${navUser.login}/followers`;
+
+  test.beforeAll( async () => {
+    const user = await appMake( "create", "user", { password: TEST_PASSWORD } );
+    navUser = { email: user.email as string, login: user.login as string };
+  } );
+
+  test.describe( "logged in", () => {
+    test.beforeEach( async ( { page } ) => {
+      await login( page, navUser.email, TEST_PASSWORD );
+    } );
+
+    test( "shows the nav links at lg when search is collapsed", async ( { page } ) => {
+      await gotoHeader( page, "lg", followersPath( ) );
+      await setSearchOpen( page, false );
+
+      await expectNav( page, "mainnav" );
+      await expectWithinViewport( page, "lg breakpoint, search collapsed" );
+    } );
+
+    test( "shows the hamburger menu at lg when search is open", async ( { page } ) => {
+      await gotoHeader( page, "lg", followersPath( ) );
+      await setSearchOpen( page, true );
+
+      await expectNav( page, "narrow-menu" );
+      await expectWithinViewport( page, "lg breakpoint, search open" );
+    } );
+
+    test( "fits the German nav links at lg when search is collapsed", async ( { page } ) => {
+      await gotoHeader( page, "lg", `${followersPath( )}?locale=de` );
+      await setSearchOpen( page, false );
+
+      await expectNav( page, "mainnav" );
+      await expectWithinViewport( page, "lg breakpoint, German, search collapsed" );
+    } );
+
+    test( "keeps the hamburger menu at md when search is collapsed", async ( { page } ) => {
+      await gotoHeader( page, "md", followersPath( ) );
+      await setSearchOpen( page, false );
+
+      await expectNav( page, "narrow-menu" );
+    } );
+  } );
+
+  test( "shows the nav links at lg when logged out", async ( { page } ) => {
+    await gotoHeader( page, "lg", followersPath( ) );
+
+    await expectNav( page, "mainnav" );
+    await expectWithinViewport( page, "lg breakpoint, logged out" );
+  } );
+} );
+
 test.describe( "Header item inventory (no test group)", () => {
   let legacyEmail: string;
 

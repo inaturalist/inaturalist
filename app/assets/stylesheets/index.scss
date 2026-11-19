@@ -2561,6 +2561,9 @@ body:not(.responsive) {
   .search {
     flex: 1;
   }
+  #mainnav {
+    display: none;
+  }
   #narrow-menu {
     display: flex;
     align-items: center;
@@ -2612,12 +2615,15 @@ body.responsive {
   }
 }
 
-@media (max-width: $xl-max) {
+@media (max-width: $lg-max) {
   body.responsive #header {
     @include header-narrow-menu;
-    #mainnav {
-      display: none;
-    }
+  }
+}
+
+@media (min-width: $lg) and (max-width: $xl-max) {
+  body.responsive #header.search-open {
+    @include header-narrow-menu;
   }
 }
 

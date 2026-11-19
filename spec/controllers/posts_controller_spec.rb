@@ -385,13 +385,215 @@ describe PostsController, "show" do
       html = Nokogiri::HTML( response.body )
       expect( html.css( ".post-nav-inline a[href='#observations']" ) ).not_to be_empty
     end
+  end
 
-    it "renders the post nav for a blog post" do
-      site_post = Post.make!( parent: Site.make!, user: user )
-      Comment.make!( parent: site_post )
-      get :show, params: { id: site_post.id }
-      expect( response ).to be_successful
-      expect( Nokogiri::HTML( response.body ).css( ".post-nav-inline" ) ).not_to be_empty
+  describe "templates" do
+    it "renders the blog page for a Site post" do
+      get :show, params: { id: Post.make!( parent: Site.make!, user: user ).id }
+      expect( response ).to render_template( :show_blog )
+    end
+
+    it "keeps the shared page for a journal post" do
+      get :show, params: { id: Post.make!( parent: user, user: user ).id, login: user.login }
+      expect( response ).to render_template( :show )
+      expect( response ).not_to render_template( :show_blog )
+    end
+
+    it "keeps the shared page for a project post" do
+      project = Project.make!
+      get :show, params: { id: Post.make!( parent: project, user: project.user ).id, project_id: project.id }
+      expect( response ).to render_template( :show )
+      expect( response ).not_to render_template( :show_blog )
+    end
+  end
+end
+
+describe PostsController, "show for a blog post" do
+  render_views
+  let( :site ) { Site.make! }
+  let( :author ) { User.make! }
+  let( :blog_post ) { Post.make!( parent: site, user: author, published_at: 1.hour.ago ) }
+
+  def html
+    Nokogiri::HTML( response.body )
+  end
+
+  def show( post = blog_post )
+    get :show, params: { id: post.id }
+  end
+
+  def add_cover( post, attrs = {} )
+    cover = PostImage.make!( { post: post, user: post.user, alt: "A heron on a rock" }.merge( attrs ) )
+    post.update!( cover_image: cover )
+    cover
+  end
+
+  describe "other posts" do
+    it "lists the 3 newest other published posts from the same site" do
+      newest = [1, 2, 3].map {| d | Post.make!( parent: site, user: author, published_at: d.days.ago ) }
+      older = Post.make!( parent: site, user: author, published_at: 10.days.ago )
+      draft = Post.make!( parent: site, user: author, published_at: nil )
+      other_site = Post.make!( parent: Site.make!, user: author, published_at: 1.minute.ago )
+      show
+      expect( assigns( :other_posts ) ).to eq newest
+      expect( assigns( :other_posts ) ).not_to include( blog_post, older, draft, other_site )
+      expect( html.css( ".blog-card" ).size ).to eq 3
+    end
+
+    it "skips the journal prev/next lookups" do
+      Post.make!( parent: site, user: author, published_at: 1.day.ago )
+      Post.make!( parent: site, user: author, published_at: 1.minute.ago )
+      show
+      expect( assigns( :prev ) ).to be_nil
+      expect( assigns( :next ) ).to be_nil
+    end
+
+    it "links to the blog archive" do
+      Post.make!( parent: site, user: author, published_at: 1.day.ago )
+      show
+      expect( html.at_css( "a[href='#{archives_site_posts_path}']" ) ).not_to be_nil
+    end
+  end
+
+  describe "link previews" do
+    it "uses the cover image for og:image" do
+      cover = add_cover( blog_post )
+      show
+      expect( assigns( :shareable_image_url ) ).to include cover.file.url( :original ).split( "?" ).first
+    end
+
+    it "falls back to the first body image without a cover" do
+      post = Post.make!( parent: site, user: author, body: "<img src='https://example.org/a.png'>" )
+      show( post )
+      expect( assigns( :shareable_image_url ) ).to eq "https://example.org/a.png"
+    end
+  end
+
+  describe "cover" do
+    it "shows the hero with its alt text and a caption of caption and attribution" do
+      add_cover( blog_post, caption: "Riverweed on a rock", attribution: "Photo © seastarya, CC BY-NC" )
+      show
+      expect( html.at_css( ".post-hero img" )["alt"] ).to eq "A heron on a rock"
+      expect( html.at_css( ".post-hero figcaption" ).text.squish ).to eq(
+        "Riverweed on a rock. Photo © seastarya, CC BY-NC"
+      )
+    end
+
+    it "shows either caption part alone" do
+      add_cover( blog_post, attribution: "Photo © seastarya" )
+      show
+      expect( html.at_css( ".post-hero figcaption" ).text.squish ).to eq "Photo © seastarya"
+    end
+
+    it "has no caption when caption and attribution are empty" do
+      add_cover( blog_post )
+      show
+      expect( html.at_css( ".post-hero figcaption" ) ).to be_nil
+    end
+
+    it "has no hero without a cover" do
+      show
+      expect( html.at_css( ".post-hero" ) ).to be_nil
+    end
+  end
+
+  describe "category and tags" do
+    it "shows the category label and tags as plain text" do
+      blog_post.update!(
+        blog_category: BlogCategory.make!( site: site, label: "Behind the Observation" ),
+        tag_list: "herons, rivers"
+      )
+      show
+      expect( html.at_css( ".post-eyebrow" ).text.squish ).to eq "Behind the Observation"
+      expect( html.css( ".post-tags li" ).map {| li | li.text.squish } ).to match_array %w(#herons #rivers)
+      expect( html.css( ".post-tags a, .post-eyebrow a" ) ).to be_empty
+    end
+
+    it "has no tags row without tags" do
+      show
+      expect( html.at_css( ".post-tags" ) ).to be_nil
+    end
+  end
+
+  describe "body" do
+    it "renders inside the scrollable legacy region" do
+      show
+      region = html.at_css( ".post-body--legacy" )
+      expect( region["role"] ).to eq "region"
+      expect( region["tabindex"] ).to eq "0"
+      expect( region.text ).to include blog_post.body
+    end
+  end
+
+  describe "comments" do
+    it "offers to read all comments when there are some" do
+      2.times { Comment.make!( parent: blog_post ) }
+      show
+      expect( html.at_css( ".post-comments summary" ).text.squish ).to include "Read all 2 comments"
+    end
+
+    it "says there are no comments yet" do
+      show
+      expect( html.at_css( ".post-comments summary" ) ).to be_nil
+      expect( html.at_css( ".post-comments" ).text ).to include "No comments yet"
+    end
+
+    it "asks logged-out readers to sign in" do
+      show
+      expect( html.at_css( ".post-comments a[href='#{login_path}']" ).text.squish ).to eq "Sign in to comment"
+      expect( html.at_css( ".post-comments form" ) ).to be_nil
+    end
+
+    it "gives signed-in readers the comment form" do
+      sign_in make_user_with_privilege( UserPrivilege::INTERACTION )
+      Comment.make!( parent: blog_post )
+      show
+      form = html.at_css( ".post-comments form" )
+      expect( form.at_css( "input[type=submit]" )["value"] ).to eq "Post comment"
+      expect( form.text ).to include "Preview"
+    end
+
+    it "says comments are disabled instead of inviting readers to comment" do
+      blog_post.update!( prefers_no_comments: true )
+      show
+      expect( html.at_css( ".post-comments" ).text ).to include "Comments have been disabled"
+      expect( html.at_css( ".post-comments" ).text ).not_to include "No comments yet"
+      expect( html.at_css( ".post-comments a[href='#{login_path}']" ) ).to be_nil
+    end
+
+    it "says comments are disabled under existing comments" do
+      Comment.make!( parent: blog_post )
+      blog_post.update!( prefers_no_comments: true )
+      show
+      expect( html.at_css( ".post-comments summary" ) ).not_to be_nil
+      expect( html.at_css( ".post-comments" ).text ).to include "Comments have been disabled"
+    end
+
+    it "hides flagged comments" do
+      c = Comment.make!( parent: blog_post )
+      Flag.make!( flaggable: c, flag: Flag::INAPPROPRIATE )
+      show
+      expect( response.body ).not_to include c.body
+    end
+  end
+
+  describe "kept features" do
+    it "shows the edit button to its author" do
+      sign_in author
+      show
+      expect( html.at_css( ".blog-post__title-row a" )&.text ).to eq "Edit"
+    end
+
+    it "hides the edit button from other users" do
+      sign_in User.make!
+      show
+      expect( html.at_css( ".blog-post__title-row a" ) ).to be_nil
+    end
+
+    it "shows linked observations" do
+      blog_post.observations << Observation.make!
+      show
+      expect( html.at_css( "#observations" ) ).not_to be_nil
     end
   end
 end

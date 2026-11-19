@@ -8896,6 +8896,28 @@ en:
     posts:
       formatting_none_help: "No HTML inserted, just uses the tags you enter."
       formatting_simple_help: "Automatically link URLs and insert line breaks."
+      show_blog:
+        # Button that collapses the open list of comments under a blog post
+        hide_comments: Hide comments
+        # Shown in place of the comments button when a blog post has no comments
+        no_comments_yet: No comments yet
+        # Heading above cards linking to the newest other blog posts, under a blog post
+        other_posts: Other posts
+        # Submit button for the comment form under a blog post
+        post_comment: Post comment
+        # Button that expands the list of comments under a blog post
+        read_all_comments:
+          one: Read %{count} comment
+          other: Read all %{count} comments
+        # Screen reader label for the region holding a blog post's body, which
+        # scrolls sideways when older posts contain wide tables or images
+        scrollable_post_content: Older post content, scrolls sideways
+        # Link for logged-out readers under a blog post's comments
+        sign_in_to_comment: Sign in to comment
+        # Link back to the blog home from a blog post; %{site} is the site name, e.g. iNaturalist
+        site_blog: "%{site} Blog"
+        # Link from a blog post to the list of all blog posts by year and month
+        view_blog_archive: View blog archive
     projects:
       project_type: Project Type
       collection: Collection
