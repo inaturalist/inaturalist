@@ -45,13 +45,9 @@ const renderDescription = (
 };
 
 describe( "PhotoDescription", ( ) => {
-  it( "links to the photo page", ( ) => {
+  it( "links to the photo page in a new tab", ( ) => {
     renderDescription( );
     expect( screen.getByRole( "link" ) ).toHaveAttribute( "href", "/photos/100" );
-  } );
-
-  it( "opens the photo page in the given link target", ( ) => {
-    renderDescription( { linkTarget: "_blank" } );
     expect( screen.getByRole( "link" ) ).toHaveAttribute( "target", "_blank" );
   } );
 

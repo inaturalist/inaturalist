@@ -34,7 +34,8 @@ class ObservationPhotoAttribution extends React.Component {
       <span>
         { intro }, <a
           href={iNaturalist.Licenses[photo.license_code.toLowerCase( )].url}
-          target={this.props.linkTarget}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           { licenseText } ({ iNaturalist.Licenses[photo.license_code.toLowerCase( )].code })
         </a>
@@ -45,8 +46,7 @@ class ObservationPhotoAttribution extends React.Component {
 
 ObservationPhotoAttribution.propTypes = {
   photo: PropTypes.object,
-  observation: PropTypes.object,
-  linkTarget: PropTypes.string
+  observation: PropTypes.object
 };
 
 export default ObservationPhotoAttribution;

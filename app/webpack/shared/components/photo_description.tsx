@@ -30,7 +30,6 @@ interface PhotoDescriptionProps {
   unhideContent: ( photo: DescribedPhoto ) => void;
   revealHiddenContent: ( photo: DescribedPhoto ) => void;
   performOrOpenConfirmationModal: ( method: ( ) => void, options: object ) => void;
-  linkTarget?: string;
 }
 
 const FLAG_OPTIONS = ["spam", "copyright infringement", "artificially generated content", "inappropriate"];
@@ -43,8 +42,7 @@ const PhotoDescription = ( {
   hideContent,
   unhideContent,
   revealHiddenContent,
-  performOrOpenConfirmationModal,
-  linkTarget
+  performOrOpenConfirmationModal
 }: PhotoDescriptionProps ) => {
   const roles = currentUser?.roles || [];
   const isAdmin = roles.includes( "admin" );
@@ -76,11 +74,7 @@ const PhotoDescription = ( {
           rootClose
           overlay={(
             <Tooltip id={`photo-${photo.id}-license`}>
-              <ObservationPhotoAttribution
-                photo={photo}
-                observation={observation}
-                linkTarget={linkTarget}
-              />
+              <ObservationPhotoAttribution photo={photo} observation={observation} />
             </Tooltip>
           )}
         >
@@ -125,7 +119,12 @@ const PhotoDescription = ( {
             <i className="fa fa-lock" />
           </button>
         ) }
-        <a href={`/photos/${photo.id}`} target={linkTarget} aria-label={I18n.t( "more_info" )}>
+        <a
+          href={`/photos/${photo.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={I18n.t( "more_info" )}
+        >
           <Badge>
             <i className="fa fa-info" />
           </Badge>

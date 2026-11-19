@@ -271,11 +271,7 @@ class ObservationModal extends React.Component {
             items={images.map( image => ( {
               ...image,
               description: (
-                <PhotoDescriptionContainer
-                  photo={image.photo}
-                  observation={observation}
-                  linkTarget="_blank"
-                />
+                <PhotoDescriptionContainer photo={image.photo} observation={observation} />
               )
             } ) )}
             slideDuration={0}
