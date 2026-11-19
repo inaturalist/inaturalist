@@ -1,0 +1,87 @@
+- cover = post.cover_image
+- caption = [cover&.caption&.strip&.chomp( "." ), cover&.attribution].compact_blank.join( ". " )
+- comments = visible_comments( post ).sort_by( &:created_at )
+- comments_disabled = post.prefers_no_comments?
+- can_comment = logged_in? && post.published_at && !comments_disabled && !current_user.blocked_by?( post.user )
+- comment_form = capture do
+  - if can_comment
+    = render "comments/comment_form",
+      comment: Comment.new( parent: post, user: current_user ),
+      submit_label: t( "views.posts.show_blog.post_comment" )
+.blog-post-page
+  - if post.published_at.nil?
+    .alert.alert-warning= t( :preview )
+  %article.blog-post{ "aria-labelledby": "post-title" }
+    .blog-post__header
+      = link_to back_path, class: "blog-post__back" do
+        %svg{ "aria-hidden": "true", width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2.2", "stroke-linecap": "round", "stroke-linejoin": "round" }
+          %path{ d: "M19 12H5" }
+          %path{ d: "M12 19l-7-7 7-7" }
+        = back_label
+      - if eyebrow.present?
+        %p.post-eyebrow= eyebrow
+      .blog-post__title-row
+        %h1#post-title= post.title
+        - if post.editable_by?( current_user )
+          = link_to t( :edit ), edit_post_path( post ), class: "btn btn-default"
+      - date = ( post.published_at || post.updated_at ).to_date
+      %p.blog-post__byline
+        = t( :by_user, user: link_to( post.user.login, person_path( post.user ) ) ).html_safe
+        &middot;
+        %time{ datetime: date.iso8601 }= l( date, format: :long )
+    - if cover
+      %figure.post-hero
+        = image_tag cover.file.url( :original ), alt: cover.alt.to_s
+        - if caption.present?
+          %figcaption= caption
+    .blog-post__body
+      .post-body--legacy{ tabindex: 0, role: "region", "aria-label": t( "views.posts.show_blog.scrollable_post_content" ) }
+        = formatted_user_text( post.body,
+          scrubber: PostScrubber.new( tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES ),
+          skip_simple_format: post.preferred_formatting == Post::FORMATTING_NONE )
+      - if post.tag_list.any?
+        %ul.post-tags{ "aria-label": t( :tags ) }
+          - post.tag_list.each do | tag |
+            %li= "##{tag}"
+      - if observations.present?
+        %section#observations.blog-post__observations
+          %h2= t( :observations )
+          .observations.medium.grid
+            - compact do
+              = render partial: "observations/cached_component", collection: observations
+      %section.post-comments{ "aria-label": t( :comments ) }
+        - if comments.any?
+          %details.post-comments__details
+            %summary
+              %span.post-comments__read= t( "views.posts.show_blog.read_all_comments", count: comments.size )
+              %span.post-comments__hide= t( "views.posts.show_blog.hide_comments" )
+              %svg{ "aria-hidden": "true", width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2.4", "stroke-linecap": "round", "stroke-linejoin": "round" }
+                %path{ d: "M6 9l6 6 6-6" }
+            %ol.post-comments__list
+              - comments.each do | comment |
+                %li= render partial: "shared/activity_item", object: comment
+            = comment_form
+        - else
+          %p.post-comments__none= comments_disabled ? t( :comments_have_been_disabled ) : t( "views.posts.show_blog.no_comments_yet" )
+        - if comments_disabled && comments.any?
+          %p.post-comments__disabled= t( :comments_have_been_disabled )
+        - unless logged_in? || comments_disabled
+          = link_to t( "views.posts.show_blog.sign_in_to_comment" ), login_path, class: "post-comments__sign-in"
+        - if comments.empty?
+          .post-comments__form= comment_form
+      .blog-post__actions
+        - if logged_in? && current_user.id != post.user_id && !post.prefers_no_comments?
+          = render "subscriptions/subscription", resource: post.becomes( Post )
+        = render partial: "shared/flagging", locals: { instance: post.becomes( Post ) }
+  - if other_posts.any?
+    %section.blog-other{ "aria-labelledby": "blog-other-heading" }
+      %h2#blog-other-heading= other_heading
+      = link_to archives_site_posts_path, class: "blog-other__archive" do
+        = t( "views.posts.show_blog.view_blog_archive" )
+        %svg{ "aria-hidden": "true", width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2.4", "stroke-linecap": "round", "stroke-linejoin": "round" }
+          %path{ d: "M5 12h14" }
+          %path{ d: "M12 5l7 7-7 7" }
+      %ul.blog-other__cards
+        - other_posts.each do | other |
+          %li= render "posts/blog_card", post: other
+= render "shared/scroll_to_top"
