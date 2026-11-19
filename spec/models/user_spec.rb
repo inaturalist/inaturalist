@@ -571,6 +571,56 @@ describe User do
         ).size ).to eq 1
       end
     end
+
+    describe "reindex posts" do
+      before { enable_elastic_indexing( Post, use_transactional_fixtures: false ) }
+
+      let( :user ) { User.make!( login: "old_login", name: "Old Name" ) }
+      let!( :post ) { Post.make!( user: user, parent: user ) }
+
+      before { Delayed::Job.delete_all }
+
+      def post_reindex_jobs
+        Delayed::Job.where( "unique_hash LIKE '%Post::delayed_index%'" )
+      end
+
+      def indexed_author( post )
+        Post.__elasticsearch__.refresh_index!
+        Post.__elasticsearch__.client.search(
+          index: Post.index_name,
+          body: { query: { ids: { values: [post.id] } } }
+        )["hits"]["hits"].first["_source"]["user"]
+      end
+
+      { login: "new_login", name: "New Name", spammer: true }.each do | attribute, value |
+        it "queues one job when #{attribute} changes" do
+          user.update!( attribute => value )
+          expect( post_reindex_jobs.count ).to eq 1
+        end
+      end
+
+      it "queues no job for other changes" do
+        user.update!( description: "new description" )
+        expect( post_reindex_jobs.count ).to eq 0
+      end
+
+      it "queues no job for a user without posts" do
+        User.make!.update!( login: "postless_login" )
+        expect( post_reindex_jobs.count ).to eq 0
+      end
+
+      it "updates the author's login and name in the index" do
+        user.update!( login: "new_login", name: "New Name" )
+        Delayed::Worker.new.work_off
+        expect( indexed_author( post ) ).to include( "login" => "new_login", "name" => "New Name" )
+      end
+
+      it "updates the author's spammer status in the index" do
+        user.update!( spammer: true )
+        Delayed::Worker.new.work_off
+        expect( indexed_author( post )["spammer"] ).to be true
+      end
+    end
   end
 
   #
@@ -1541,6 +1591,22 @@ describe User do
 
     let( :keeper ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
     let( :reject ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
+
+    it "reindexes the moved posts under the keeper" do
+      enable_elastic_indexing( Post, use_transactional_fixtures: false )
+      post = Post.make!( user: reject, parent: reject )
+      Delayed::Job.delete_all
+      keeper.merge( reject )
+      expect( Delayed::Job.where( "unique_hash LIKE '%Post::delayed_index%'" ).count ).to eq 1
+      Delayed::Worker.new.work_off
+      Post.__elasticsearch__.refresh_index!
+      source = Post.__elasticsearch__.client.search(
+        index: Post.index_name,
+        body: { query: { ids: { values: [post.id] } } }
+      )["hits"]["hits"].first["_source"]
+      expect( source ).to include( "parent_id" => keeper.id )
+      expect( source["user"]["id"] ).to eq keeper.id
+    end
 
     it "should move observations" do
       o = Observation.make!( user: reject )
