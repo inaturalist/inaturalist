@@ -357,7 +357,7 @@ describe Emailer, "simplified year in review" do
     user = User.make!
     YearStatistic.create( site: nil, user: nil, year: year )
     mail = Emailer.year_in_review_simplified( user )
-    expect( mail.subject ).to match( /Your #{year} iNaturalist Year in Review/ )
+    expect( mail.subject ).to match( /iNaturalist's #{year} Year in Review/ )
     expect( mail.html_part.body.decoded ).not_to match( /generate your personal year in review/ )
     expect( mail.text_part.body.decoded ).not_to match( /generate your personal year in review/ )
   end
