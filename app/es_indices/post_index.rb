@@ -13,11 +13,10 @@ class Post < ApplicationRecord
 
   scope :load_for_index, -> { includes( :flags, :tags, :parent, :user ) }
 
-  # The body is stored on its own and kept out of _source: highlighting reads
-  # the stored field, and _source reads stay small.
+  # The body stays in _source so the index can be rebuilt with the reindex API
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
-    mappings( dynamic: true, _source: { excludes: ["body"] } ) do
-      indexes :body, analyzer: "ascii_snowball_analyzer", store: true
+    mappings( dynamic: false ) do
+      indexes :body, analyzer: "ascii_snowball_analyzer"
       indexes :body_excerpt, type: "text", index: false
       indexes :comments_count, type: "integer"
       indexes :id, type: "integer" do

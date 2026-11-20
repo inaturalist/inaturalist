@@ -475,10 +475,24 @@ describe Post do
   end
 
   describe "posts index" do
-    it "excludes the body from _source and stores it" do
+    it "does not use dynamic mappings" do
+      expect( Post.mappings.to_hash[:dynamic] ).to be false
+    end
+
+    it "keeps the body in _source without storing it separately" do
       mapping = Post.mappings.to_hash
-      expect( mapping[:_source] ).to eq( excludes: ["body"] )
-      expect( mapping[:properties][:body][:store] ).to be true
+      expect( mapping ).not_to have_key( :_source )
+      expect( mapping[:properties][:body] ).not_to have_key( :store )
+    end
+
+    describe "documents" do
+      before { enable_elastic_indexing( Post, use_transactional_fixtures: false ) }
+
+      it "have the body in _source" do
+        post = journal_post( body: "<p>A pangolin crossed the road.</p>" ).tap( &:save! )
+        Post.elastic_index!( ids: [post.id] )
+        expect( Post.elastic_get( post.id )["_source"]["body"] ).to eq "A pangolin crossed the road."
+      end
     end
   end
 
