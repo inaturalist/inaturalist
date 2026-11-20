@@ -35,6 +35,12 @@ class ExifMetadata
     title
   ].freeze
 
+  XMP_SEGMENT_HEADER = "http://ns.adobe.com/xap/1.0/"
+  XMP_NAMESPACES = {
+    "dc" => "http://purl.org/dc/elements/1.1/",
+    "rdf" => "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  }.freeze
+
   attr_accessor :path, :type
   attr_reader :metadata
 
@@ -74,7 +80,7 @@ class ExifMetadata
     return unless exif
 
     metadata.merge!( exif.to_hash )
-    extract_xmp( XMP.parse( exif ) )
+    extract_xmp( exif )
   end
 
   def extract_png
@@ -109,18 +115,33 @@ class ExifMetadata
     end
   end
 
-  def extract_xmp( xmp )
-    return unless xmp.respond_to?( :dc ) && !xmp.dc.nil?
+  def extract_xmp( jpeg )
+    xmp = xmp_document( jpeg )
+    return unless xmp
 
-    metadata[:dc] = {}
-    xmp.dc.attributes.each do | dcattr |
-      metadata[:dc][dcattr.to_sym] = xmp.dc.send( dcattr ) unless xmp.dc.send( dcattr ).blank?
-    rescue ArgumentError
-      # XMP does this for some DC attributes, not sure why
-    rescue RuntimeError => e
-      raise e unless e.message =~ /Don't know how to handle/
-      # XMP seems to do this when it doesn't know how to handle a tag
-    end
+    dublin_core = dublin_core_fields( xmp )
+    metadata[:dc] = dublin_core if dublin_core.present?
+  end
+
+  def xmp_document( jpeg )
+    segment = jpeg.app1s.find {| app1 | app1.start_with?( XMP_SEGMENT_HEADER ) }
+    return unless segment
+
+    _header, xml = segment.split( "\0", 2 )
+    Nokogiri::XML( xml )
+  end
+
+  def dublin_core_fields( xmp )
+    elements_and_attributes = xmp.xpath( "//dc:* | //@dc:*", XMP_NAMESPACES )
+    fields = elements_and_attributes.map {| node | [node.name.to_sym, dublin_core_value( node )] }
+    fields.to_h.compact_blank
+  end
+
+  def dublin_core_value( node )
+    list_items = node.xpath( "rdf:Bag/rdf:li | rdf:Seq/rdf:li | rdf:Alt/rdf:li", XMP_NAMESPACES )
+    return node.text.strip if list_items.empty?
+
+    list_items.map( &:text )
   end
 
   PNG_CHUNK_MAP = {

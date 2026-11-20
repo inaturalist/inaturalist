@@ -92,11 +92,71 @@ describe ExifMetadata, "extract" do
     end
   end
 
-  context "with Dublin Core metadata" do
-    let( :dc ) { XMP.parse( EXIFR::JPEG.new( "spec/fixtures/files/cuthona_abronia-tagged.jpg" ) ).dc }
+  context "with Dublin Core metadata in XMP" do
+    it "should extract a subject bag" do
+      expect( subject[:dc] ).to eq( subject: ["Cuthona abronia"] )
+    end
 
-    it "should extract Dublin Core tags from XMP" do
-      dc.attributes.each {| attr | expect( subject[:dc][attr.to_sym] ).to eq dc.send( attr ) }
+    context "with seq and alt arrays" do
+      let( :path ) { "spec/fixtures/files/gecko-foot-malaysia.jpg" }
+
+      it "should extract every dc element" do
+        expect( subject[:dc] ).to eq(
+          creator: ["Tony Iwane"],
+          description: [" " * 31],
+          rights: ["Tony Iwane"],
+          subject: ["penang", "malaysia", "penang island", "lizard", "gekko smithii", "giant forest gecko"]
+        )
+      end
+    end
+
+    context "with an inline dc attribute" do
+      let( :path ) { "spec/fixtures/files/spider-blank_title.jpg" }
+
+      it "should extract attributes and elements" do
+        expect( subject[:dc] ).to eq( format: "image/jpeg", title: [" "] )
+      end
+    end
+
+    context "with a padded scalar dc element" do
+      before do
+        xmp = <<~XML
+          <x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/">
+              <dc:format>
+                image/jpeg
+              </dc:format>
+            </rdf:Description>
+          </rdf:RDF></x:xmpmeta>
+        XML
+        allow( EXIFR::JPEG ).to receive( :new ).and_return(
+          instance_double( EXIFR::JPEG, to_hash: {}, app1s: ["http://ns.adobe.com/xap/1.0/\0#{xmp}"] )
+        )
+      end
+
+      it "should strip the value" do
+        expect( subject[:dc] ).to eq( format: "image/jpeg" )
+      end
+    end
+
+    context "with XMP but no dc namespace" do
+      let( :path ) { "spec/fixtures/files/hyalophora-gps-h-pos.jpg" }
+
+      it { is_expected.not_to have_key( :dc ) }
+    end
+
+    context "without XMP" do
+      let( :path ) { "spec/fixtures/files/cuthona_abronia.jpg" }
+
+      it { is_expected.not_to have_key( :dc ) }
+    end
+
+    it "should not write files to the working directory" do
+      absolute_path = File.expand_path( path )
+      Dir.mktmpdir do | dir |
+        Dir.chdir( dir ) { ExifMetadata.new( path: absolute_path, type: type ).extract }
+        expect( Dir.children( dir ) ).to be_empty
+      end
     end
   end
 end
