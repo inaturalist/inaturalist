@@ -32,7 +32,11 @@ class ObservationPhotoAttribution extends React.Component {
       I18n.t( "some_rights_reserved" );
     return (
       <span>
-        { intro }, <a href={ iNaturalist.Licenses[photo.license_code.toLowerCase( )].url }>
+        { intro }, <a
+          href={iNaturalist.Licenses[photo.license_code.toLowerCase( )].url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           { licenseText } ({ iNaturalist.Licenses[photo.license_code.toLowerCase( )].code })
         </a>
       </span>
