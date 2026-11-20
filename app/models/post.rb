@@ -155,6 +155,24 @@ class Post < ApplicationRecord
     xml:lang
   ).freeze
 
+  def featured
+    featured_at.present?
+  end
+
+  def featured=( value )
+    checked = ActiveModel::Type::Boolean.new.cast( value )
+    self.featured_at = checked ? ( featured_at || Time.now ) : nil
+  end
+
+  def mobile_featured
+    mobile_featured_at.present?
+  end
+
+  def mobile_featured=( value )
+    checked = ActiveModel::Type::Boolean.new.cast( value )
+    self.mobile_featured_at = checked ? ( mobile_featured_at || Time.now ) : nil
+  end
+
   def user_must_be_on_site_long_enough
     return unless !is_a?( Trip ) && published? && user.created_at > 24.hours.ago
 

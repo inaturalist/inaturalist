@@ -286,6 +286,32 @@ describe Post do
         expect( post.errors.added?( attr, :only_allowed_on_site_posts ) ).to be true
       end
     end
+
+    { featured: :featured_at, mobile_featured: :mobile_featured_at }.each do | flag, column |
+      describe "#{flag}=" do
+        let( :post ) { Post.make( parent: Site.make! ) }
+
+        it "sets #{column} to now when checked" do
+          post.send( "#{flag}=", "1" )
+          expect( post[column] ).to be_within( 5.seconds ).of( Time.now )
+          expect( post.send( flag ) ).to be true
+        end
+
+        it "keeps an existing #{column} when checked again" do
+          original = 3.days.ago.change( usec: 0 )
+          post[column] = original
+          post.send( "#{flag}=", "1" )
+          expect( post[column] ).to eq original
+        end
+
+        it "clears #{column} when unchecked" do
+          post[column] = Time.now
+          post.send( "#{flag}=", "0" )
+          expect( post[column] ).to be_nil
+          expect( post.send( flag ) ).to be false
+        end
+      end
+    end
   end
 
   describe "cover image" do
