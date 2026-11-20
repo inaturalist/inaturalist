@@ -324,6 +324,7 @@ class User < ApplicationRecord
   }
   after_update :check_privileges_if_confirmed
   after_update :reindex_exemplar_identifications_after_login_change_later
+  after_update :reindex_posts_later
   after_create :set_uri
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
@@ -960,6 +961,8 @@ class User < ApplicationRecord
           )
           .destroy_all
     merge_has_many_associations(reject)
+    # merge_has_many_associations moves posts with update_all, skipping callbacks
+    Post.elastic_index!( scope: Post.where( user_id: id ), delay: true )
     reject.delay( priority: USER_PRIORITY, unique_hash: { "User::sane_destroy": reject.id } ).sane_destroy
     User.delay( priority: USER_INTEGRITY_PRIORITY ).merge_cleanup( id )
   end
@@ -1573,6 +1576,13 @@ class User < ApplicationRecord
     # determining what IDs need to be reindexed might take a while,
     # so delay that operation, which will ultimately create more delayed jobs
     User.delay.reindex_exemplar_identifications_after_login_change( id )
+  end
+
+  # Posts index the author's login, name and spammer status
+  def reindex_posts_later
+    return unless saved_change_to_login? || saved_change_to_name? || saved_change_to_spammer?
+
+    Post.elastic_index!( scope: Post.where( user_id: id ), delay: true )
   end
 
   def generate_csv(path, columns, options = {})

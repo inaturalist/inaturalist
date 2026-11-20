@@ -414,6 +414,8 @@ describe PostsController, "edit" do
 end
 
 describe PostsController, "search" do
+  elastic_models( Post )
+
   let!( :site_post ) { Post.make!( body: "this is the post body", parent: Site.default ) }
   let( :user ) { User.make! }
   let!( :user_post ) { Post.make!( body: "this is the post body", parent: user ) }
@@ -438,5 +440,47 @@ describe PostsController, "search" do
   it "returns nothing on non-matching user posts" do
     get :search, params: { q: "nonsense", post: { parent_type: "User", parent_id: user.id } }
     expect( assigns( :posts ) ).to eq []
+  end
+
+  it "matches the author's login" do
+    get :search, params: { q: site_post.user.login }
+    expect( assigns( :posts ) ).to eq [site_post]
+  end
+
+  it "tolerates a typo" do
+    get :search, params: { q: "post bodu" }
+    expect( assigns( :posts ) ).to eq [site_post]
+  end
+
+  it "returns matching project posts" do
+    project = Project.make!
+    project_post = Post.make!( body: "this is the post body", user: project.user, parent: project )
+    get :search, params: { q: "post body", project_id: project.id }
+    expect( assigns( :posts ) ).to eq [project_post]
+  end
+
+  it "excludes posts flagged as spam" do
+    Flag.make!( flaggable: site_post, flag: Flag::SPAM )
+    get :search, params: { q: "post body" }
+    expect( assigns( :posts ) ).to eq []
+  end
+
+  it "excludes posts by spammers" do
+    without_delay { site_post.user.update!( spammer: true ) }
+    get :search, params: { q: "post body" }
+    expect( assigns( :posts ) ).to eq []
+  end
+
+  it "renders matching posts as JSON" do
+    get :search, format: :json, params: { q: "post body" }
+    expect( JSON.parse( response.body ).map {| post | post["id"] } ).to eq [site_post.id]
+  end
+
+  it "sets pagination headers" do
+    Post.make!( body: "another post body", parent: Site.default )
+    get :search, params: { q: "post body", per_page: 1 }
+    expect( assigns( :posts ).size ).to eq 1
+    expect( response.headers["X-Total-Entries"] ).to eq "2"
+    expect( response.headers["X-Per-Page"] ).to eq "1"
   end
 end
