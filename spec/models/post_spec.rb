@@ -490,7 +490,7 @@ describe Post do
   end
 
   describe "Elasticsearch callbacks" do
-    before { enable_elastic_indexing( Post, use_transactional_fixtures: false ) }
+    elastic_models( Post, use_transactional_fixtures: false )
 
     def posts_index_count
       Post.__elasticsearch__.refresh_index!

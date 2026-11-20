@@ -414,8 +414,7 @@ describe PostsController, "edit" do
 end
 
 describe PostsController, "search" do
-  # Must come before the let!s: it empties the posts index
-  before { enable_elastic_indexing( Post, use_transactional_fixtures: false ) }
+  elastic_models( Post )
 
   let!( :site_post ) { Post.make!( body: "this is the post body", parent: Site.default ) }
   let( :user ) { User.make! }

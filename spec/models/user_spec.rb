@@ -573,7 +573,7 @@ describe User do
     end
 
     describe "reindex posts" do
-      before { enable_elastic_indexing( Post, use_transactional_fixtures: false ) }
+      elastic_models( Post, use_transactional_fixtures: false )
 
       let( :user ) { User.make!( login: "old_login", name: "Old Name" ) }
       let!( :post ) { Post.make!( user: user, parent: user ) }
@@ -1587,13 +1587,12 @@ describe User do
   end
 
   describe "merge" do
-    elastic_models( Observation, Identification )
+    elastic_models( Observation, Identification, Post )
 
     let( :keeper ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
     let( :reject ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
 
     it "reindexes the moved posts under the keeper" do
-      enable_elastic_indexing( Post, use_transactional_fixtures: false )
       post = Post.make!( user: reject, parent: reject )
       Delayed::Job.delete_all
       keeper.merge( reject )
