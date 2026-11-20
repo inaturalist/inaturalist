@@ -643,7 +643,7 @@ class FiltersButton extends React.Component {
               if ( _.isEmpty( e.target.value ) ) {
                 updateSearchParams( { term_id: "", term_value_id: "" } );
               } else {
-                updateSearchParams( { term_id: e.target.value } );
+                updateSearchParams( { term_id: e.target.value, term_value_id: "" } ); 
               }
             }}
           >
@@ -687,7 +687,7 @@ class FiltersButton extends React.Component {
               if ( _.isEmpty( e.target.value ) ) {
                 updateSearchParams( { without_term_id: "", without_term_value_id: "" } );
               } else {
-                updateSearchParams( { without_term_id: e.target.value } );
+                updateSearchParams( { without_term_id: e.target.value, without_term_value_id: "" } );
               }
             }}
           >
