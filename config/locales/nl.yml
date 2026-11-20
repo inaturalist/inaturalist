@@ -1843,6 +1843,8 @@ nl:
   donate: DONEREN
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Schenken
+  #Label for a button to donate a specific amount, e.g. "Donate $5 (USD)"
+  donate_amount: "Doneer %{amount}"
   donate_again_caps: DONEER OPNIEUW
   donate_again_today_caps: DONEER VANDAAG OPNIEUW
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -2079,8 +2081,12 @@ nl:
   favorites: "Favorieten"
   #Heading of the admin feature flags page and the admin nav link to it
   feature_flags: Feature meldingen
+  #Button on the admin feature flags page that empties the app installation ID field and its preview column
+  feature_flags_clear: Wissen
   #Label shown before the current admin's on/off value for a flag on the admin feature flags page
   feature_flags_enabled_for_you: "Ingeschakeld voor jou:"
+  #Label for a text field on the admin feature flags page where an admin enters a mobile app installation ID
+  feature_flags_installation_id_label: Installatie ID van de app
   #Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
   feature_flags_kind_client: Klantzichtbare melding
   #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
@@ -4080,8 +4086,8 @@ nl:
       continent: continent
       Country: Land
       country: land
-      County: Streek
-      county: streek
+      County: Graafschap
+      county: graafschap
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       Delegation: Delegatie
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
@@ -4104,7 +4110,7 @@ nl:
       estate: landgoed
       Governorate: Gouvernement
       governorate: gouvernement
-      Historical_County: Historische graafschap
+      Historical_County: Historisch graafschap
       historical_county: historische graafschap
       Historical_State: Historische staat
       historical_state: Historische staat
@@ -6319,6 +6325,9 @@ nl:
   view_all_caps: ALLES TONEN
   view_all_fields: Toon alle velden
   view_all_flags: Alle meldingen bekijken
+  #Link that opens a search of unresolved flags on a taxon and all of its
+  #descendants (lower-ranked taxa within it)
+  view_all_flags_including_descendants: Bekijk alle meldingen (inclusief opvolgingen)
   view_all_members: Alle leden weergeven
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
@@ -6785,6 +6794,14 @@ nl:
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of niet maken
         Een selectie toont de aankondiging aan alle gebruikers, ongeacht
         klant.
+      #Heading for the optional settings of donation shortcodes
+      donation_shortcode_attributes: Optionele attributen
+      #%{tiers} is e.g. "min, mid, max"; %{default_tier} is e.g. "min"
+      donation_shortcode_tier_desc: "Wat neerkomt op het volgende: %{tiers}. Standaard: %{default_tier}."
+      #%{frequencies} is e.g. "once, monthly"; %{default_frequency} is e.g. "once"
+      donation_shortcode_frequency_desc: "Eenmalige of maandelijkse donatie: %{frequencies}. Standaard: %{default_frequency}."
+      #Heading above example donation shortcodes
+      donation_shortcode_examples: Voorbeelden
       end_desc: |
         Tijd in de tijdzone van uw account waarop deze aankondiging stopt
         Verschijnen. Geldt voor meerdere tijdzones, zodat iedereen niet meer te zien is
@@ -6811,6 +6828,19 @@ nl:
       parent_announcement_disabled_desc: Deze aankondiging is gericht aan een specifiek publiek en kan niet worden toegewezen aan een wereldwijde aankondiging.
       #Tooltip for the global announcement select field on the announcement form
       parent_announcement_desc: Selecteer een aankondiging die deze aankondiging moet vervangen voor gebruikers die aan de regels voldoen.
+      #Label for a menu choosing the country for a donation preview
+      preview_as_country: Vooruitblik als land
+      #Label for a menu choosing the language for a donation preview
+      preview_in_locale: Preview in taal
+      #%{country} is a country name; %{currency} is a code, e.g. "USD"
+      preview_default_country: Standaard (%{country}, %{currency})
+      #Language menu option meaning the viewer's current site language
+      preview_your_locale: Jouw taal
+      #Help text under the donation preview menus
+      preview_donation_shortcodes_desc: |
+        Toont donatiebedragen in de valuta van het gekozen land en de
+        Donatieknop en afrekenen in de gekozen taal. Mensen in
+        Landen die niet worden vermeld, zien de bedragen van het standaardland.
       site_ids_desc: |
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
         een selectie toont de aankondiging aan alle gebruikers, ongeacht ongeacht
@@ -7477,7 +7507,7 @@ nl:
         query_placeholder: "Kies onderstaande queryparameters of plak een waarnemings-URL in"
         taxon_extras_help_html: "Let op: deze kolommen vertragen het genereren van je export"
         geo_help_html: |
-          Plaats-, gemeente-, provincie-, landvelden op basis van coördinaten. Vergelijkbare 
+          Plaats-, graafschap, provincie-, landvelden op basis van coördinaten. Vergelijkbare 
           administratieve niveaus zullen worden gebruikt voor waarnemingen waar deze plaatstypen
           niet van toepassing zijn.
           De private_*-velden worden alleen opgenomen wanneer je het gebruikersfilter gebruikt en je die gebruiker bent, of wanneer je het projectfilter gebruikt en projectcurator bent.
@@ -7590,8 +7620,8 @@ nl:
           waarneming heeft gecreëerd. Voor meer informatie over de applicatie voeg deze dan
           toe aan https://www.inaturalist.org/oauth/applications/
         place_county_name: |
-          De naam van het derde niveau administratieve gebied dat de
-          waarnemingscoördinaten bevat (bijvoorbeeld een gemeente)
+          De naam van het derde-niveau-administratieve gebied dat de
+          waarnemingscoördinaten bevat (bijvoorbeeld een graafschap)
         place_country_name: |
           De naam van de gemeente die de coördinaten van deze waarneming bevat
         place_state_name: |
@@ -9895,6 +9925,41 @@ nl:
               cannot_reference_variant: kan niet verwijzen naar een aankondiging die zelf een variant is (slechts één niveau van nesten toegestaan)
               #Error shown when trying to set an global announcement on an announcement that already has variants
               cannot_have_variants: Kan niet worden ingesteld op een aankondiging die al varianten heeft (slechts één niveau van nesten toegestaan)
+            body:
+              #Error shown to site admins when an announcement body contains a
+              #donation shortcode whose name isn't [donation-label] or
+              #[donation-url]. %{shortcode} is the shortcode text as written,
+              #e.g. [donation-amount tier="min"]. Leave the bracketed shortcode
+              #names untranslated. Shown after the field name, e.g. "Body has
+              #an unknown donation shortcode..."
+              unknown_donation_shortcode: "heeft een onbekende donatieshortcode %{shortcode}; Gebruik [donatielabel] of [donatie-url]"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute that can't be read, e.g. an
+              #unquoted value. %{shortcode} is the shortcode text as written.
+              malformed_donation_shortcode: "heeft een donatie shortcode met een onleesbaar attribuut %{shortcode}; quote waarden zoals tier=\"min\""
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute it doesn't accept.
+              #%{attribute} is the attribute name, %{shortcode} the shortcode
+              #text as written.
+              unknown_donation_shortcode_attribute: "heeft een donatie shortcode met een onbekend attribuut %{attribute}: %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a tier that doesn't exist. %{value} is
+              #the tier as written, %{allowed} lists the tier names.
+              invalid_donation_tier: "heeft een donatieshortcode met een onbekende tier %{value} (een van %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a donation frequency that doesn't exist.
+              #%{value} is the frequency as written, %{allowed} lists the
+              #frequencies, e.g. "once, monthly".
+              invalid_donation_frequency: "heeft een donatieshortcode met een onbekende frequentie %{value} (een van %{allowed}): %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body uses a tier and frequency that has no amount
+              #set for the default country, so some viewers would see nothing.
+              #%{tier} and %{frequency} are as written, e.g. "max" and "once".
+              unpriced_donation_tier: "heeft een donatie shortcode voor een tier zonder bedrag (%{frequency} %{tier}): %{shortcode}"
+              #Error shown to site admins when the url attribute of a
+              #[donation-url] shortcode in an announcement body isn't a full
+              #http:// or https:// web address.
+              invalid_donation_url: "heeft een donatieshortcode waarvan de URL een volledige http:// of https:// adres moet zijn: %{shortcode}"
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
@@ -10018,7 +10083,14 @@ nl:
               must_have_more_than_three_points: moet meer dan 3 punten hebben
               polygon_with_less_than_four_points: heeft een veelhoek met minder dan 4 punten
         post:
+          #Shown when a non-site post, like a project journal post, sets a
+          #blog-only field such as a featured date or blog category
+          only_allowed_on_site_posts: is alleen toegestaan op siteberichten
           attributes:
+            blog_category:
+              #Shown when a blog post is assigned a category that belongs to
+              #a different site's blog
+              must_belong_to_post_site: behoort niet tot de site van dit bericht
             parent:
               #Error message shown when a client tries to create a comment on a
               #post that does not allow comments. Theoretically an end user

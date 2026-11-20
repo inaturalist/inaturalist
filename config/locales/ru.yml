@@ -9506,6 +9506,10 @@ ru:
               polygon_with_less_than_four_points: содержит многоугольник с количеством точек менее 4
         post:
           attributes:
+            blog_category:
+              #Shown when a blog post is assigned a category that belongs to
+              #a different site's blog
+              must_belong_to_post_site: не принадлежит сайту этого поста
             parent:
               #Error message shown when a client tries to create a comment on a
               #post that does not allow comments. Theoretically an end user
