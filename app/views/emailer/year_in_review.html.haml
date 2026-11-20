@@ -26,7 +26,7 @@
     p small {
       color: #ddd;
     }
-    #header-image {
+    #header-image, #shareable-image {
       width: 100%;
       margin: 0px auto;
       display: block;
@@ -58,7 +58,7 @@
 - if @shareable_image_url
   %p.bleed{ style: "margin-top: 40px" }
     = link_to year_stats_url( base_utm_params.merge( utm_content: "global-shareable", year: @year ) ) do
-      = image_tag image_url( @shareable_image_url, host: Site.default.url )
+      = image_tag image_url( @shareable_image_url, host: Site.default.url ), id: "shareable-image"
 
 %p= link_to @i18n.t( :view_inaturalist_global_year_in_review_caps, year: @year ), year_stats_url( base_utm_params.merge( utm_content: "global-btn", year: @year ) ), class: "btn btn-default"
 

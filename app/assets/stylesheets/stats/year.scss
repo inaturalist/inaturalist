@@ -291,7 +291,7 @@ $tip-opacity: 1;
         }
       }
       .btn {
-        min-width: 97px;
+        min-width: 136px;
         margin-left: 20px;
         &:first-child {
           margin-left: 0px;
@@ -313,11 +313,18 @@ $tip-opacity: 1;
           margin-right: 5px;
         }
       }
-      .twitter-share-button {
+      .x-share-button {
         vertical-align: top;
-        background-color: $twitter-blue;
-        border-color: $twitter-blue;
+        background-color: black;
+        border-color: white;
         color: white;
+        img {
+          width: 16px;
+          height: 16px;
+          position: relative;
+          top: -2px;
+          filter: invert(100%);
+        }
       }
     }
     .site-icon {

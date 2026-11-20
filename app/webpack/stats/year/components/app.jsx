@@ -1,4 +1,5 @@
 /* global DEFAULT_SITE_ID */
+/* global X_LOGO_URL */
 // I18n.t( "time.formats.long" )
 
 import React from "react";
@@ -198,14 +199,13 @@ const App = ( {
                     </a>
                   </div>
                   <a
-                    className="btn btn-primary btn-inat twitter-share-button"
-                    href={`https://twitter.com/intent/tweet?text=Check+these+${year}+${site.site_name_short || site.name}+stats!&url=${window.location.toString( ).replace( /#.+/, "" )}`}
+                    className="btn btn-primary btn-inat x-share-button"
+                    href={`https://x.com/intent/post?text=Check+these+${year}+${site.site_name_short || site.name}+stats!&url=${window.location.toString( ).replace( /#.+/, "" )}`}
                     data-size="large"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fa fa-twitter" />
-                    { I18n.t( "twitter" ) }
+                    <img src={X_LOGO_URL} alt="X" />
                   </a>
                   { /* eslint-disable-next-line no-undef */ }
                   { SHAREABLE_IMAGE_URL && (
