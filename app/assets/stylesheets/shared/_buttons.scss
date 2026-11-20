@@ -1,0 +1,89 @@
+@import "tokens";
+
+@mixin inat-button-colors( $color, $background, $border: $background ) {
+  &,
+  &:hover,
+  &:focus,
+  &:visited {
+    border-color: $border;
+    background: $background;
+    color: $color;
+  }
+}
+
+.inat-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 500px;
+  min-height: 44px;
+  padding: 0 22px;
+  border: 3px solid transparent;
+  border-radius: var(--inat-radius-lg);
+  line-height: 1.4;
+  text-align: center;
+  cursor: pointer;
+
+  &,
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &:active {
+    opacity: 0.75;
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--inat-green);
+    outline-offset: 2px;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 1;
+  }
+
+  // Doubled class: Bootstrap's `.bootstrap a` and `.bootstrap input` outrank a lone class
+  &.inat-button {
+    font-size: 16px;
+  }
+
+  &.inat-button--neutral {
+    @include inat-button-colors( var(--inat-dark-gray), white, var(--inat-dark-gray) );
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      @include inat-button-colors( var(--inat-dark-gray-disabled), white, var(--inat-dark-gray-disabled) );
+    }
+  }
+
+  &.inat-button--primary {
+    @include inat-button-colors( white, var(--inat-dark-gray) );
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      @include inat-button-colors( rgba( 255, 255, 255, 0.5 ), var(--inat-dark-gray-disabled) );
+    }
+  }
+
+  &.inat-button--focus {
+    @include inat-button-colors( white, var(--inat-green) );
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      @include inat-button-colors( rgba( 255, 255, 255, 0.5 ), var(--inat-green-disabled) );
+    }
+  }
+
+  &.inat-button--warning {
+    @include inat-button-colors( white, var(--inat-warning-red) );
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      @include inat-button-colors( rgba( 255, 255, 255, 0.5 ), var(--inat-warning-red-disabled) );
+    }
+  }
+}
