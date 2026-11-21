@@ -173,6 +173,25 @@ describe PostsController, "create" do
       expect( created.blog_category ).to eq category
       expect( created.locale ).to eq "fr"
     end
+    it "should claim the editor's uploads used in the body or as the cover" do
+      user = SiteAdmin.make!( site: site ).user
+      sign_in user
+      body_image = PostImage.make!( user: user )
+      cover = PostImage.make!( user: user )
+      post :create, params: {
+        post: {
+          title: "Foo",
+          body: "<img src=\"#{body_image.absolute_url( :large )}\">",
+          parent_type: "Site",
+          parent_id: site.id,
+          cover_image_id: cover.id
+        }
+      }
+      created = Post.last
+      expect( created.cover_image ).to eq cover
+      expect( body_image.reload.post ).to eq created
+      expect( cover.reload.post ).to eq created
+    end
   end
 end
 
@@ -289,6 +308,35 @@ describe PostsController, "update" do
       expect( p.featured_at ).not_to be_nil
       expect( p.mobile_featured_at ).not_to be_nil
       expect( p.cover_image ).to eq cover
+    end
+    it "should claim the editor's uploads used in the body or as the cover" do
+      site = Site.make!
+      user = SiteAdmin.make!( site: site ).user
+      sign_in user
+      p = Post.make!( :draft, parent: site, user: user )
+      body_image = PostImage.make!( user: user )
+      cover = PostImage.make!( user: user )
+      put :update, params: {
+        id: p.id,
+        post: { body: "<img src=\"#{body_image.absolute_url( :large )}\">", cover_image_id: cover.id }
+      }
+      p.reload
+      expect( p.cover_image ).to eq cover
+      expect( body_image.reload.post ).to eq p
+      expect( cover.reload.post ).to eq p
+    end
+    it "should not claim another user's uploads" do
+      site = Site.make!
+      user = SiteAdmin.make!( site: site ).user
+      sign_in user
+      p = Post.make!( :draft, parent: site, user: user )
+      someone_elses = PostImage.make!
+      put :update, params: {
+        id: p.id,
+        post: { body: "<img src=\"#{someone_elses.absolute_url( :large )}\">" }
+      }
+      expect( p.reload.body ).to include someone_elses.absolute_url( :large )
+      expect( someone_elses.reload.post ).to be_nil
     end
     it "should let the post's author set featured flags without being a site editor" do
       site = Site.make!

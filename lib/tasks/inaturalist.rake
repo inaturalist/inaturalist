@@ -265,6 +265,19 @@ namespace :inaturalist do
     end
   end
 
+  desc "Delete post images never claimed by a post, 24 hours after upload"
+  task delete_orphaned_post_images: :environment do
+    deleted_count = 0
+    PostImage.orphaned.find_each do | post_image |
+      # destroy, not delete, so Paperclip removes the files
+      post_image.destroy
+      deleted_count += 1
+    rescue StandardError => e
+      Rails.logger.error "[ERROR #{Time.now}] Rake task delete_orphaned_post_images: #{e}"
+    end
+    puts "Deleted #{deleted_count} orphaned post images"
+  end
+
   desc "Delete orphaned and expired photos"
   task :delete_orphaned_and_expired_photos, [:log_task_name] => :environment do | _, args |
     log_task_name = args[:log_task_name]
