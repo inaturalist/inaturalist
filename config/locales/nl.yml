@@ -2089,6 +2089,10 @@ nl:
   feature_flags_installation_id_label: Installatie ID van de app
   #Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
   feature_flags_kind_client: Klantzichtbare melding
+  #Help text under the locale field on the admin feature flags page; locale_en is a code name, do not translate
+  feature_flags_locale_help: Een taalcode zoals en of pt-BR, gebruikt door taalgroepen zoals locale_en. Standaard wordt de taal gebruikt van deze pagina.
+  #Label for a text field on the admin feature flags page where an admin enters a language code to preview flags in
+  feature_flags_locale_label: Locale
   #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
   feature_flags_kind_experiment: Experiment
   #Kind label on the admin feature flags page for a flag that only server code reads
@@ -3893,6 +3897,10 @@ nl:
   #Geoprivacy status in which no privacy has been applied
   open_: Open
   open_description: "De coördinaten zijn voor iedereen zichtbaar, tenzij het gaat om een bedreigd taxon."
+  #Label for the number of unresolved flags on taxa covered by a taxon
+  #framework, i.e. the taxa whose classification the framework tracks against
+  #an external source. count is a link that shows a list of the flagged taxa
+  open_flags_on_covered_taxa_count_html: "Open meldingen voor bedekte taxa: %{count}"
   open_street_map: OpenStreetMap
   optional: optioneel
   options: Opties
@@ -10091,11 +10099,21 @@ nl:
               #Shown when a blog post is assigned a category that belongs to
               #a different site's blog
               must_belong_to_post_site: behoort niet tot de site van dit bericht
+            cover_image:
+              #Shown when a blog post's cover image is not one of the images
+              #uploaded to that post
+              must_be_one_of_the_post_images: Moet wel een van de afbeeldingen van de post zijn
+              #Shown when publishing a blog post whose cover image has no alt
+              #text, the description of the image read aloud by screen readers
+              needs_alt_text_to_publish: heeft alt-tekst nodig om te mogen worden gepubliceerd
             parent:
               #Error message shown when a client tries to create a comment on a
               #post that does not allow comments. Theoretically an end user
               #should never see this, though an API client might.
               prefers_no_comments: staat geen nieuwe reacties toe
+            tag_list:
+              #Shown when a post's tags are too long in total or individually
+              too_long: moet in totaal minder dan 750 tekens zijn, niet meer dan 256 tekens per tag
             user:
               must_be_on_site_long_enough: |
                 moet meer dan 24 uur geleden hebben geregistreerd om te publiceren. We krijgen
