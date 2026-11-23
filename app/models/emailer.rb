@@ -313,7 +313,7 @@ class Emailer < ActionMailer::Base
     preparation_succeeded = prepare_year_in_review
     return unless preparation_succeeded
 
-    year_in_review_email( options )
+    year_in_review_email( options.merge( { simplified: true } ) )
   ensure
     reset_locale
   end
@@ -581,7 +581,12 @@ class Emailer < ActionMailer::Base
           # Assign I18n instance with custom options to an instance var so it
           # can be accessed in views.
           @i18n = i18n
-          mail( to: @user.email, subject: @i18n.t( :yir_email_subject, year: @year ) ) do | format |
+          subject = if options[:simplified]
+            @i18n.t( :site_year_in_review, site: Site.default.name, year: @year )
+          else
+            @i18n.t( :yir_email_subject, year: @year )
+          end
+          mail( to: @user.email, subject: subject ) do | format |
             format.html { render layout: "emailer_dark" }
             format.text { render layout: "emailer_dark" }
           end
@@ -589,7 +594,12 @@ class Emailer < ActionMailer::Base
       end
     else
       @i18n = I18n
-      mail( to: @user.email, subject: t( :yir_email_subject, year: @year ) ) do | format |
+      subject = if options[:simplified]
+        @i18n.t( :site_year_in_review, site: Site.default.name, year: @year )
+      else
+        @i18n.t( :yir_email_subject, year: @year )
+      end
+      mail( to: @user.email, subject: subject ) do | format |
         format.html { render layout: "emailer_dark" }
         format.text { render layout: "emailer_dark" }
       end
