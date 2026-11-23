@@ -166,6 +166,63 @@ describe YearStatistic do
         ]
       )
     end
+
+    it "queries a user's observations in 24-month chunks and returns monthly accumulation" do
+      user = User.make!
+      allow( Date ).to receive( :today ).and_return( Date.new( 2010, 2, 15 ) )
+      allow( YearStatistic ).to receive( :time_zone_for_options ).and_return( "UTC" )
+      allow( Observation ).to receive( :params_to_elastic_query ) do | params |
+        expect( params[:user_id] ).to eq( user.id )
+        { filters: [] }
+      end
+      allow( Taxon ).to receive( :where ) do | conditions |
+        double( "species relation", pluck: conditions[:id] )
+      end
+
+      buckets_by_start = {
+        "2008-01-01" => [
+          histogram_bucket( "2008-12-01", :taxon_ids, ["11"] ),
+          histogram_bucket( "2009-01-01", :taxon_ids, ["11,22"] )
+        ],
+        "2010-01-01" => [
+          histogram_bucket( "2010-01-01", :taxon_ids, ["22,33"] ),
+          histogram_bucket( "2010-02-01", :taxon_ids, ["33"] )
+        ]
+      }
+      queries = []
+      allow( Observation ).to receive( :elastic_search ) do | query |
+        queries << query
+        range = query[:filters].last[:range]["created_at"]
+        histogram_search_response( buckets_by_start.fetch( range[:gte] ) )
+      end
+
+      result = YearStatistic.observed_species_accumulation(
+        { verifiable: true, user: user }
+      )
+
+      expect( queries.map do | query |
+        range = query[:filters].last[:range]["created_at"]
+        [range[:gte], range[:lt]]
+      end ).to eq(
+        [
+          ["2008-01-01", "2010-01-01"],
+          ["2010-01-01", "2010-03-01"]
+        ]
+      )
+
+      expect( result ).to eq(
+        [
+          { date: "2008-12-01", accumulated_species_count: 1,
+            novel_species_ids: [11], species_count: 1 },
+          { date: "2009-01-01", accumulated_species_count: 2,
+            novel_species_ids: [22], species_count: 2 },
+          { date: "2010-01-01", accumulated_species_count: 3,
+            novel_species_ids: [33], species_count: 2 },
+          { date: "2010-02-01", accumulated_species_count: 3,
+            novel_species_ids: [], species_count: 1 }
+        ]
+      )
+    end
   end
 
   describe "streaks" do

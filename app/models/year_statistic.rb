@@ -760,6 +760,13 @@ class YearStatistic < ApplicationRecord
     interval = "month"
     date_field = params.delete( :date_field ) || "created_at"
     params[:user_id] = params[:user].id if params[:user]
+    months_per_query = options.fetch( :months_per_query ) do
+      params[:user_id].present? ? 24 : 1
+    end
+    unless months_per_query.is_a?( Integer ) && months_per_query.positive?
+      raise ArgumentError, "months_per_query must be a positive integer"
+    end
+
     params[:quality_grade] = params[:quality_grade] || "research,needs_id"
     if ( site = params[:site] )
       if site.place
@@ -790,7 +797,7 @@ class YearStatistic < ApplicationRecord
     )
 
     month_start = Date.new( 2008, 1, 1 )
-    last_month = Date.today.beginning_of_month
+    last_month_end_exclusive = Date.today.beginning_of_month.next_month
     month_end_exclusive = nil
 
     bucketer = proc do | es_params |
@@ -825,9 +832,12 @@ class YearStatistic < ApplicationRecord
 
     histogram_buckets = []
     time_zone = histogram_params[:aggs][:histogram][:date_histogram][:time_zone]
-    # loop through one month at a time
-    while month_start <= last_month
-      month_end_exclusive = month_start.next_month
+    # loop through one month, or 24 months for users, at a time
+    while month_start < last_month_end_exclusive
+      month_end_exclusive = [
+        month_start.next_month( months_per_query ),
+        last_month_end_exclusive
+      ].min
       date_range = {
         gte: month_start.to_s,
         lt: month_end_exclusive.to_s
