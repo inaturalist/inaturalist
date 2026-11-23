@@ -1347,7 +1347,7 @@ var SearchController = function (
     if ( !q ) { return; }
     // query the autocomplete service for the text in the search input
     $scope.placeAutocompleteService.getQueryPredictions(
-      { input: q },
+      { input: q, bounds: { north: 90, south: -90, west: -180, east: 180 },
       function ( predictions, status ) {
         if ( status !== google.maps.places.PlacesServiceStatus.OK
          || predictions.length === 0 || !predictions[0].place_id ) {
