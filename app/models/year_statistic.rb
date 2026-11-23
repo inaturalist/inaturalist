@@ -832,7 +832,7 @@ class YearStatistic < ApplicationRecord
 
     histogram_buckets = []
     time_zone = histogram_params[:aggs][:histogram][:date_histogram][:time_zone]
-    # loop through one month, or year for users, at a time
+    # loop through one month, or 24 months for users, at a time
     while month_start < last_month_end_exclusive
       month_end_exclusive = [
         month_start.next_month( months_per_query ),
