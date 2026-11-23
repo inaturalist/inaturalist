@@ -51,6 +51,10 @@ class Post < ApplicationRecord
   belongs_to :cover_image, class_name: "PostImage", optional: true
   belongs_to :blog_category, optional: true
 
+  # The user saving the post, set by the controller. Only their unclaimed
+  # PostImages can be claimed by the post (see sync_post_images).
+  attr_accessor :editor
+
   validates_length_of :title, in: 1..2000
   validates_length_of :body, in: 1..1_000_000
   validates_presence_of :parent
@@ -65,6 +69,7 @@ class Post < ApplicationRecord
   before_save :skip_update_for_draft
   after_save :update_user_counter_cache
   after_save :destroy_updates_if_unpublished
+  after_save :sync_post_images
   after_destroy :update_user_counter_cache
 
   scope :published, -> { where( "published_at IS NOT NULL" ) }
@@ -176,9 +181,33 @@ class Post < ApplicationRecord
   end
 
   def cover_image_belongs_to_post
-    return if cover_image.nil? || ( id && cover_image.post_id == id )
+    return if cover_image.nil? || ( id && cover_image.post_id == id ) || claimable?( cover_image )
 
     errors.add( :cover_image, :must_be_one_of_the_post_images )
+  end
+
+  # An unclaimed upload by whoever is saving the post, which sync_post_images
+  # claims after save
+  def claimable?( post_image )
+    editor.present? && post_image.post_id.nil? && post_image.user_id == editor.id
+  end
+
+  # Claims the editor's unclaimed uploads used in the body or as the cover.
+  # Never releases: an image the post stops using stays claimed, so old link
+  # previews keep working and editors can switch back to it.
+  def sync_post_images
+    return unless editor
+
+    ids = body.to_s.scan( PostImage::BODY_URL_ID ).flatten.map( &:to_i )
+    ids << cover_image_id if cover_image_id
+    ids.uniq!
+    return if ids.empty?
+
+    claimed = PostImage.where( id: ids, post_id: nil, user_id: editor.id ).update_all( post_id: id )
+    return if claimed.zero?
+
+    association( :cover_image ).reset
+    association( :post_images ).reset
   end
 
   def cover_image_alt_to_publish

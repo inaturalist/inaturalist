@@ -4901,6 +4901,8 @@ en:
   # Post is a noun
   post_from_your_journal_html: Post from <a href="%{url}">your journal</a>
   post_published: Post published!
+  # Shown when someone uploads more than 60 blog post images in an hour
+  post_image_upload_limit_reached: You've uploaded too many images recently. Please try again later.
   posted_by: Posted by
   # Shows the date a journal post was published
   posted_on_date_html: Posted on %{date}
@@ -11487,6 +11489,11 @@ en:
                 a lot of spammers, and this is a kind of lame way of dealing
                 with them. You can still save a draft, and if you're still
                 using the site in a day, you'll be able to publish.
+        post_image:
+          attributes:
+            alt:
+              # Shown when clearing the alt text (screen reader description) of a published blog post's cover image
+              required_for_published_cover: can't be removed from the cover of a published post
         project:
           attributes:
               base:

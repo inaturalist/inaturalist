@@ -143,6 +143,7 @@ class PostsController < ApplicationController
     if params[:observations]
       @post.observations << Observation.by( current_user ).find( params[:observations] )
     end
+    @post.editor = current_user
     if @post.save
       respond_to do | format |
         format.html do
@@ -193,6 +194,7 @@ class PostsController < ApplicationController
       @post.observations.clear
     end
 
+    @post.editor = current_user
     if @post.update( params[@post.class.name.underscore.to_sym] )
       respond_to do | format |
         format.html do

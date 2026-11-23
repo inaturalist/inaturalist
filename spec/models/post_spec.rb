@@ -298,6 +298,136 @@ describe Post do
       post.published_at = Time.now
       expect( post ).to be_valid
     end
+
+    it "can be an unclaimed image uploaded by the editor" do
+      post.editor = post.user
+      post.cover_image = PostImage.make!( user: post.user, post: nil )
+      expect( post ).to be_valid
+    end
+
+    it "can be an unclaimed image uploaded by the editor on a new post" do
+      new_post = Post.make( :draft, parent: post.parent )
+      new_post.editor = new_post.user
+      new_post.cover_image = PostImage.make!( user: new_post.user, post: nil )
+      expect( new_post ).to be_valid
+    end
+
+    it "can't be an unclaimed image uploaded by someone else" do
+      post.editor = post.user
+      post.cover_image = PostImage.make!( post: nil )
+      expect( post ).not_to be_valid
+      expect( post.errors.added?( :cover_image, :must_be_one_of_the_post_images ) ).to be true
+    end
+
+    it "can't be an unclaimed image without an editor" do
+      post.cover_image = PostImage.make!( user: post.user, post: nil )
+      expect( post ).not_to be_valid
+    end
+  end
+
+  describe "sync_post_images" do
+    let( :editor ) { User.make!( created_at: 2.days.ago ) }
+    let( :post ) { Post.make!( :draft, parent: Site.make!, user: editor ) }
+
+    def body_with( *post_images )
+      post_images.map do | post_image |
+        "<div class=\"post-figure\"><img src=\"#{post_image.absolute_url( :large )}\" alt=\"\"></div>"
+      end.join( "\n" )
+    end
+
+    def save_as( editor, post, attrs )
+      post.editor = editor
+      post.update!( attrs )
+    end
+
+    it "claims the editor's unclaimed images used in the body" do
+      images = [PostImage.make!( user: editor ), PostImage.make!( user: editor )]
+      save_as( editor, post, body: body_with( *images ) )
+      images.each {| image | expect( image.reload.post ).to eq post }
+    end
+
+    it "claims the editor's unclaimed cover image" do
+      cover = PostImage.make!( user: editor, alt: "A heron" )
+      save_as( editor, post, cover_image_id: cover.id )
+      expect( cover.reload.post ).to eq post
+      expect( post.reload.cover_image ).to eq cover
+    end
+
+    it "claims images when a new post is created" do
+      body_image = PostImage.make!( user: editor )
+      cover = PostImage.make!( user: editor )
+      new_post = Post.make( :draft, parent: Site.make!, user: editor, body: body_with( body_image ) )
+      new_post.editor = editor
+      new_post.cover_image = cover
+      new_post.save!
+      expect( body_image.reload.post ).to eq new_post
+      expect( cover.reload.post ).to eq new_post
+    end
+
+    it "claims images when publishing" do
+      image = PostImage.make!( user: editor )
+      save_as( editor, post, body: body_with( image ), published_at: Time.now )
+      expect( image.reload.post ).to eq post
+    end
+
+    it "claims an image used in the body and as the cover once" do
+      image = PostImage.make!( user: editor )
+      expect do
+        save_as( editor, post, body: body_with( image ), cover_image_id: image.id )
+      end.not_to change( PostImage, :count )
+      expect( image.reload.post ).to eq post
+      expect( post.reload.post_images ).to eq [image]
+    end
+
+    it "doesn't claim another user's image" do
+      image = PostImage.make!
+      save_as( editor, post, body: body_with( image ) )
+      expect( image.reload.post ).to be_nil
+    end
+
+    it "doesn't claim an image claimed by another post" do
+      other_post = Post.make!( parent: post.parent, user: editor )
+      image = PostImage.make!( user: editor, post: other_post )
+      save_as( editor, post, body: body_with( image ) )
+      expect( image.reload.post ).to eq other_post
+    end
+
+    it "doesn't claim anything without an editor" do
+      image = PostImage.make!( user: editor )
+      post.update!( body: body_with( image ) )
+      expect( image.reload.post ).to be_nil
+    end
+
+    it "keeps a replaced cover claimed" do
+      old_cover = PostImage.make!( user: editor )
+      save_as( editor, post, cover_image_id: old_cover.id )
+      new_cover = PostImage.make!( user: editor )
+      save_as( editor, post.reload, cover_image_id: new_cover.id )
+      expect( old_cover.reload.post ).to eq post
+      expect( new_cover.reload.post ).to eq post
+    end
+
+    it "keeps an image removed from the body claimed" do
+      image = PostImage.make!( user: editor )
+      save_as( editor, post, body: body_with( image ) )
+      save_as( editor, post.reload, body: "No more images" )
+      expect( image.reload.post ).to eq post
+    end
+
+    it "doesn't claim images from unrelated URLs" do
+      image = PostImage.make!( user: editor )
+      save_as( editor, post, body: "<a href=\"https://example.com/photos/#{image.id}/\">photo</a>" )
+      expect( image.reload.post ).to be_nil
+    end
+  end
+
+  describe "destroy" do
+    it "destroys the post's images" do
+      post = Post.make!( parent: Site.make! )
+      image = PostImage.make!( post: post )
+      post.destroy
+      expect( PostImage.find_by_id( image.id ) ).to be_nil
+    end
   end
 
   describe "locale" do

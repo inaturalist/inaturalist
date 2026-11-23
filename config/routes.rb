@@ -275,6 +275,7 @@ Rails.application.routes.draw do
 
   resources :observation_photos, only: [:show, :create, :update, :destroy]
   resources :observation_sounds, only: [:show, :create, :update, :destroy]
+  resources :post_images, only: [:create, :update]
   resources :soundcloud_sounds, only: [:index]
   resources :sounds, only: [:show, :create, :update, :destroy, :local_sound_fields] do
     resources :flags
