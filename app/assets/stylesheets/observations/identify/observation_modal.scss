@@ -173,7 +173,11 @@ body > [role="dialog"] .ObservationModal {
       flex-direction: column;
       align-items: center;
       height: 100%;
-      .hidden-status,
+      // Not margin-top on .hidden-status: react-overlays subtracts it from the popover position
+      &::before {
+        content: "";
+        margin-bottom: auto;
+      }
       .captions {
         margin-top: auto;
       }
