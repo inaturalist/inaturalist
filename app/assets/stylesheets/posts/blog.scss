@@ -1,13 +1,14 @@
 @import "breakpoints";
 @import "../shared/responsive/scroll_to_top";
 @import "blog_legacy_shim";
+@import "../shared/tokens";
 
 $blog-text: #1a1a1a;
 $blog-muted: #666666;
 $blog-green: #4a7200;
 $blog-green-dark: #355200;
-$blog-accent: #74ac00;
-$blog-rule: #e6e6e6;
+$blog-accent: var(--inat-green);
+$blog-rule: var(--inat-light-gray);
 $blog-placeholder: #e8ece2;
 $blog-pill: #f2f4ef;
 $blog-column: 720px;
