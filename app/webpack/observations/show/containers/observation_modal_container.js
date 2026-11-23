@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import observationModalImages from "../../shared/observation_modal_images";
 import { updateCurrentUser } from "../../../shared/ducks/config";
 import ObservationModal from "../../identify/components/observation_modal";
 import { addID } from "../ducks/observation";
@@ -20,12 +21,7 @@ function mapStateToProps( state ) {
     if ( $( ".ObservationModal .image-gallery" ).width( ) > 600 ) {
       defaultPhotoSize = "large";
     }
-    images = observation.photos.map( photo => ( {
-      original: photo.photoUrl( defaultPhotoSize ),
-      zoom: photo.photoUrl( "original" ),
-      thumbnail: photo.photoUrl( "square" ),
-      originalDimensions: photo.original_dimensions
-    } ) );
+    images = observationModalImages( observation, defaultPhotoSize );
   }
   const currentObsBrightnessKeys = {};
   const brightnessKeys = Object.keys( state.brightnesses );

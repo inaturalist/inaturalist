@@ -1,5 +1,6 @@
 import _ from "lodash";
 import { connect } from "react-redux";
+import observationModalImages from "../../shared/observation_modal_images";
 import { updateCurrentUser } from "../../../shared/ducks/config";
 import ObservationModal from "../components/observation_modal";
 import { updateEditorContent } from "../../shared/ducks/text_editors";
@@ -32,12 +33,7 @@ function mapStateToProps( state ) {
     if ( $( ".image-gallery" ).width( ) > 600 ) {
       defaultPhotoSize = "large";
     }
-    images = observation.photos.map( photo => ( {
-      original: photo.photoUrl( defaultPhotoSize ),
-      zoom: photo.photoUrl( "original" ),
-      thumbnail: photo.photoUrl( "square" ),
-      originalDimensions: photo.original_dimensions
-    } ) );
+    images = observationModalImages( observation, defaultPhotoSize );
   }
   const currentObsBrightnessKeys = {};
   const brightnessKeys = Object.keys( state.brightnesses );
