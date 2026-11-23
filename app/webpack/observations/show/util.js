@@ -50,6 +50,23 @@ const util = class util {
     } );
     return missingFields;
   }
+
+  static placeToPlaceTypeString( place ) {
+    if ( place && place.place_type && iNatModels.Place.PLACE_TYPES[place.place_type] ) {
+      return I18n.t( `place_geo.geo_planet_place_types.${
+        _.snakeCase( iNatModels.Place.PLACE_TYPES[place.place_type] )}` );
+    }
+    return I18n.t( "unknown" );
+  }
+
+  static placeToPlaceNameString( place ) {
+    if ( place && place.name ) {
+      return I18n.t( `places_name.${_.snakeCase( place.name )}`, {
+        defaultValue: place.display_name || place.name
+      } );
+    }
+    return I18n.t( "unknown" );
+  }
 };
 
 export default util;
