@@ -11,6 +11,7 @@ import ImageGallery from "react-image-gallery";
 import Dropzone from "react-dropzone";
 import ObservationPhotoAttribution from "../../../shared/components/observation_photo_attribution";
 import HiddenContentMessageContainer from "../../../shared/containers/hidden_content_message_container";
+import PhotoDescription from "../../../shared/components/photo_description";
 import { ACCEPTED_FILE_TYPES, MAX_FILE_SIZE } from "../../uploader/models/util";
 import SoundPlayer from "./sound_player";
 
@@ -162,129 +163,24 @@ class PhotoBrowser extends React.Component {
       } else if ( !photo.url ) {
         square = null;
       }
-      const latestPhotoModeratorAction = _.first(
-        _.orderBy( photo.moderator_actions || [], "created_at", "desc" )
+      const description = photo.id && (
+        <PhotoDescription
+          photo={photo}
+          observation={observation}
+          currentUser={currentUser}
+          setFlaggingModalState={setFlaggingModalState}
+          hideContent={hideContent}
+          unhideContent={unhideContent}
+          revealHiddenContent={revealHiddenContent}
+          performOrOpenConfirmationModal={performOrOpenConfirmationModal}
+        />
       );
-      const currentUserIsPhotoHidingCurator = latestPhotoModeratorAction
-        && latestPhotoModeratorAction.action === "hide"
-        && viewerIsCurator
-        && latestPhotoModeratorAction.user
-        && currentUser.id === latestPhotoModeratorAction.user.id;
-      let description;
-      if ( photo.id ) {
-        description = (
-          <div className="captions">
-            <div className="captions-box">
-              { this.attributionIcon( photo, "photo" ) }
-              <button
-                type="button"
-                className="btn btn-nostyle"
-                onClick={( ) => {
-                  performOrOpenConfirmationModal( ( ) => {
-                    setFlaggingModalState( {
-                      item: photo,
-                      show: true,
-                      radioOptions: ["spam", "copyright infringement", "artificially generated content", "inappropriate"]
-                    } );
-                  }, {
-                    permitOwnerOf: observation
-                  } );
-                }}
-                title={I18n.t( "flag_as_inappropriate" )}
-                label={I18n.t( "flag_as_inappropriate" )}
-              >
-                <i className="fa fa-flag" />
-              </button>
-              {
-                // observers never see the option to hide
-                // curators do if its unhidden or they were the one to hide the content,
-                //   and the content is not set to private
-                // admins always see the option to hide
-                ( !this.viewerIsObserver && (
-                  viewerIsAdmin
-                  || ( !photo.hidden && viewerIsCurator )
-                  || (
-                    photo.hidden
-                    && currentUserIsPhotoHidingCurator
-                    && !latestPhotoModeratorAction?.private
-                  )
-                ) ) && (
-                <button
-                  type="button"
-                  className="btn btn-nostyle"
-                  onClick={( ) => ( photo.hidden
-                    ? unhideContent( photo )
-                    : hideContent( photo )
-                  )}
-                  title={photo.hidden
-                    ? I18n.t( "unhide_content" )
-                    : I18n.t( "hide_content" )}
-                  label={photo.hidden
-                    ? I18n.t( "unhide_content" )
-                    : I18n.t( "hide_content" )}
-                >
-                  <i className={`fa ${photo.hidden ? "fa-eye" : "fa-eye-slash"}`} />
-                </button>
-                )
-              }
-              {
-                // admins see the option to hide content that is already
-                // hidden in case they need to mark it as private
-                ( !this.viewerIsObserver
-                  && viewerIsAdmin
-                  && photo.hidden
-                  && !latestPhotoModeratorAction?.private
-                ) && (
-                <button
-                  type="button"
-                  className="btn btn-nostyle"
-                  onClick={( ) => hideContent( photo )}
-                  title={I18n.t( "hide_content" )}
-                  label={I18n.t( "hide_content" )}
-                >
-                  <i className="fa fa-lock" />
-                </button>
-                )
-              }
-              <a href={`/photos/${photo.id}`}>
-                <Badge>
-                  <i className="fa fa-info" />
-                </Badge>
-              </a>
-            </div>
-          </div>
-        );
-      }
       if ( photo.hidden ) {
-        const overlay = (
-          <HiddenContentMessageContainer
-            item={photo}
-            itemType="photos"
-            itemIDField="id"
-          />
-        );
         return {
           original: null,
           zoom: null,
           thumbnail: square,
-          description: (
-            <div className="hidden-media">
-              {overlay}
-              { ( ( latestPhotoModeratorAction?.private && viewerIsAdmin )
-                || ( !latestPhotoModeratorAction?.private
-                  && ( viewerIsCurator || this.viewerIsObserver )
-                ) ) && (
-                <button
-                  type="button"
-                  className="btn btn-default btn-xs reveal-hidden"
-                  onClick={( ) => revealHiddenContent( photo )}
-                >
-                  { I18n.t( "show_hidden_content" ) }
-                </button>
-              ) }
-              {description}
-            </div>
-          )
+          description
         };
       }
       const slideDetails = {

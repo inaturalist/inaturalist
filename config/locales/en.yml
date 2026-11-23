@@ -1000,6 +1000,16 @@ en:
     behavior.
   block_removed: Block removed
   blocked_users: Blocked Users
+  # Title of the admin page listing the categories that site blog posts can be filed under
+  blog_categories: Blog categories
+  # Error shown when an admin tries to delete a blog category that posts are still filed under
+  blog_category_in_use: This category can't be deleted because it's used by %{count} post(s).
+  # Confirmation shown after an admin creates a blog category
+  blog_category_was_successfully_created: Category was successfully created.
+  # Confirmation shown after an admin deletes a blog category
+  blog_category_was_successfully_deleted: Category was successfully deleted.
+  # Confirmation shown after an admin edits a blog category
+  blog_category_was_successfully_updated: Category was successfully updated.
   blog_widget: Blog widget
   blue_butterfly_etc: "blue, butterfly, etc."
   body: Body
@@ -2142,6 +2152,8 @@ en:
   editing: Editing
   # Title for a page to edit an announcement
   editing_announcement_x: Editing announcement %{id}
+  # Title of the page for editing a blog category; label is the category's name
+  editing_blog_category_x: Editing category %{label}
   editing_custom_project_fields_for: Editing custom project fields for
   editing_observation_field: Editing observation field
   editing_observation_id: "Editing Observation %{obs_id}"
@@ -3330,6 +3342,8 @@ en:
   make_your_app_confidential: Make your app confidential if you can store your app secret securely, i.e. not in a publicly availble binary that can be decompiled. Uncheck this box if this is not the case and you plan to use the PKCE flow
   mammals: mammals
   manage_all_your_subscriptions: Manage all your subscriptions
+  # Button on the site blog that takes admins to the page for managing blog categories
+  manage_categories: Manage categories
   manage_names: Manage Names
   manage_your_projects: Manage Your Projects
   manage_your_relationships: Manage your relationships
@@ -3635,6 +3649,8 @@ en:
   new_announcement: New announcement
   new_application: New application
   new_assessment: New assessment
+  # Button and page title for creating a new blog category
+  new_blog_category: New category
   new_check_list: New check list
   new_check_list_for: "Create a new check list for %{place} &raquo;"
   new_check_list_record: "If you want to mark this list as comprehensive, create it, add the taxa, and then edit it and you'll have the option to mark it as comprehensive here."
@@ -3690,6 +3706,8 @@ en:
   # Shown when a list of 3rd party applications has no applications
   no_applications_yet: No applications yet
   no_assessments_have_been_added_to_this_project_yet: No assessments have been added to this project yet.
+  # Shown on the blog categories admin page when no categories exist
+  no_blog_categories_yet: No categories yet.
   no_but_it_is_a_member_of_taxon: "No, but it is a member of %{taxon}"
   no_comments_yet: No comments yet.
   no_creative_commons_flickr_photos_tagged_x: 'No Creative Commons Flickr photos tagged "%{x}"'
@@ -6608,6 +6626,8 @@ en:
   uploading_num_of_count_photos:
     one: Uploading photo...
     other: Uploading %{num} of %{count} photos...
+  # Table heading for the short, URL-safe version of a name used in web addresses, e.g. "identifier-profiles"
+  url_slug: URL slug
   url_for_your_app_outside_of_inaturalist: URL for your app outside of iNaturalist
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
@@ -11043,6 +11063,13 @@ en:
       blocked_user:
         # The user who has been blocked
         blocked_user: Blocked user
+      blog_category:
+        # Name of a blog category, as shown to readers
+        friendly_id: Label
+        # Name of a blog category, as shown to readers
+        label: Label
+        # Number that sets the order blog categories are listed in
+        position: Position
       conservation_status:
         status: Status
         description : Description
