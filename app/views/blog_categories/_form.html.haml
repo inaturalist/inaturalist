@@ -1,0 +1,11 @@
+= form_for @blog_category, url: @blog_category.persisted? ? blog_category_path( id: @blog_category.id ) : blog_categories_path, html: { class: "inat-form" } do |f|
+  = f.error_messages
+  .inat-field
+    = f.label :label, BlogCategory.human_attribute_name( :label )
+    = f.text_field :label, required: true, class: "inat-input"
+  .inat-field
+    = f.label :position, BlogCategory.human_attribute_name( :position )
+    = f.number_field :position, class: "inat-input"
+  .inat-form-actions
+    = f.submit t(:save), class: "inat-button inat-button--focus"
+    = link_to t(:cancel), blog_categories_path, class: "inat-button inat-button--neutral"

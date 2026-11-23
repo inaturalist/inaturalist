@@ -1,0 +1,8 @@
+- content_for(:title) do
+  = @title = t( :editing_blog_category_x, label: @blog_category.label_was )
+- content_for :extracss do
+  = stylesheet_link_tag "blog_categories"
+.blog-categories
+  = link_to t(:back), blog_categories_path
+  %h1= @title
+  = render "form"

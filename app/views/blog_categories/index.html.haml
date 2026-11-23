@@ -1,0 +1,37 @@
+- content_for(:title) do
+  = t :blog_categories
+- content_for :extracss do
+  = stylesheet_link_tag "blog_categories"
+.blog-categories
+  = link_to t(:back), site_posts_path
+  %h1= t :blog_categories
+  = link_to t(:new_blog_category), new_blog_category_path, class: "inat-button inat-button--focus"
+  - if @blog_categories.empty?
+    %p.blog-categories-empty= t :no_blog_categories_yet
+  - else
+    .inat-table-scroll
+      %table.inat-table
+        %thead
+          %tr
+            %th= BlogCategory.human_attribute_name( :position )
+            %th= BlogCategory.human_attribute_name( :label )
+            %th= t :url_slug
+            %th= t :posts
+            %th
+              %span.sr-only= t :actions
+        %tbody
+          - @blog_categories.each do |blog_category|
+            %tr
+              %td= blog_category.position
+              %td= blog_category.label
+              %td
+                %code= blog_category.slug
+              %td= blog_category.posts_count
+              %td
+                .inat-row-actions
+                  = link_to edit_blog_category_path( id: blog_category.id ), class: "inat-button inat-button--neutral" do
+                    %i.fa.fa-pencil{ aria: { hidden: "true" } }
+                    = t :edit
+                  = link_to blog_category_path( id: blog_category.id ), method: :delete, data: { confirm: t( :are_you_sure? ) }, class: "inat-button inat-button--warning" do
+                    %i.fa.fa-trash{ aria: { hidden: "true" } }
+                    = t :delete

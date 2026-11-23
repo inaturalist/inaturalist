@@ -1,0 +1,24 @@
+@import "tokens";
+
+.inat-table-scroll {
+  overflow-x: auto;
+}
+
+.inat-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 8px;
+    border-bottom: 1px solid var(--inat-light-gray);
+    text-align: start;
+    vertical-align: middle;
+  }
+}
+
+.inat-row-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
