@@ -1,0 +1,15 @@
+@import "tokens";
+
+.inat-notice {
+  padding: 12px 16px;
+  border: 1px solid var(--inat-medium-gray);
+  border-radius: var(--inat-radius-lg);
+  background: white;
+  color: var(--inat-dark-gray);
+}
+
+.inat-notice--warning {
+  border-color: #faebcc;
+  background: #fcf8e3;
+  color: #6d5530;
+}
