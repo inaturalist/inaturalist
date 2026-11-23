@@ -442,7 +442,7 @@ class CommunityIdentification extends React.Component {
           { I18n.t( "agree_" ) }
         </button>
       ) : (
-        <a href="/login">
+        <a href={`/login?return_to=${encodeURIComponent( window.location.pathname + window.location.search )}`}>
           <button
             type="button"
             className="btn btn-default"
