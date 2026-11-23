@@ -50,6 +50,21 @@ class OauthApplication < Doorkeeper::Application
     @@inat_next_android_app ||= OauthApplication.where( id: CONFIG.oauth_apps&.inat_next_android_id ).first
   end
 
+  def self.is_mobile_app_id?( oauth_application_id )
+    id = oauth_application_id.to_i
+    return false if id.zero?
+
+    id == classic_android_app&.id || id == classic_ios_app&.id ||
+      id == inat_next_ios_app&.id || id == inat_next_android_app&.id
+  end
+
+  # Mobile apps whose token requests don't need a stored session. Classic iOS
+  # is left out for now: it's the app that most often sends the session
+  # cookie back
+  def self.skips_session_storage?( oauth_application_id )
+    is_mobile_app_id?( oauth_application_id ) && oauth_application_id.to_i != classic_ios_app&.id
+  end
+
   def set_scopes
     self.scopes = Doorkeeper.configuration.default_scopes if self.scopes.blank?
     true
