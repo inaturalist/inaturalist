@@ -384,4 +384,28 @@ describe ActsAsElasticModel do
       end
     end
   end
+
+  describe "inheritance" do
+    elastic_models( Post )
+
+    it "shares the base class proxy with a subclass" do
+      expect( Trip.__elasticsearch__ ).to equal Post.__elasticsearch__
+    end
+
+    it "shares the base class index name and mappings with a subclass" do
+      expect( Trip.index_name ).to eq Post.index_name
+      expect( Trip.mappings.to_hash ).to eq Post.mappings.to_hash
+    end
+
+    it "points subclass instances at the base class index" do
+      expect( Trip.make!.__elasticsearch__.index_name ).to eq Post.index_name
+    end
+
+    it "counts inserts once for the base class and its subclasses" do
+      author = User.make!
+      post = Post.make!( user: author, parent: author )
+      expect { post.elastic_index! }.to change( Post, :elastic_inserts ).by( 1 )
+      expect( Trip.elastic_inserts ).to eq Post.elastic_inserts
+    end
+  end
 end
