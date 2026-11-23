@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  # Duplicated in app/models/post.rb to prevent automatic index creation
-  # TODO: WEB-1426 removes `lifecycle_callbacks: []` from both.
-  acts_as_elastic_model lifecycle_callbacks: []
+  acts_as_elastic_model
 
   DEFAULT_ES_BATCH_SIZE = 500
   INDEXED_BODY_MAX_LENGTH = 100_000
@@ -50,6 +48,14 @@ class Post < ApplicationRecord
     batch.reject {| post | post.is_a?( Trip ) }
   end
 
+  # elastic_index! skips trips via prune_batch_for_index, but elastic_delete!
+  # has no prune check
+  def elastic_delete!
+    return if is_a?( Trip )
+
+    super
+  end
+
   def self.prepare_batch_for_index( batch )
     counts = Comment.where( parent_type: "Post", parent_id: batch.map( &:id ) ).group( :parent_id ).count
     batch.each {| post | post.indexed_comments_count = counts[post.id] || 0 }
@@ -57,6 +63,7 @@ class Post < ApplicationRecord
 
   def as_indexed_json( _options = {} )
     preload_for_elastic_index
+    body_text = indexed_body_text
     {
       id: id,
       uuid: uuid,
@@ -65,25 +72,25 @@ class Post < ApplicationRecord
       site_id: indexed_site_id,
       user: indexed_user,
       title: title,
-      body: indexed_body_text,
-      body_excerpt: indexed_body_text.truncate( BODY_EXCERPT_LENGTH, separator: " " ),
+      body: body_text,
+      body_excerpt: body_text.truncate( BODY_EXCERPT_LENGTH, separator: " " ),
       tags: tags.map {| tag | tag.name.downcase }.uniq,
       published_at: published_at,
       published: published_at.present?,
       spam: known_spam?,
       locale: locale,
-      comments_count: indexed_comments_count || comments.size
+      # count, not size: size marks an empty association loaded, which would
+      # leave a reindexed instance stuck at 0
+      comments_count: indexed_comments_count || comments.count
     }
   end
 
-  # Plain text of the body, capped. Computed once per instance since both
-  # body and body_excerpt use it.
+  # Plain text of the body, capped. Not memoized: callbacks reindex the same
+  # instance after its body changes.
   def indexed_body_text
-    @indexed_body_text ||= begin
-      fragment = Nokogiri::HTML::DocumentFragment.parse( body.to_s )
-      fragment.css( "script, style" ).remove
-      fragment.xpath( ".//text()" ).map( &:text ).join( " " ).squish[0, INDEXED_BODY_MAX_LENGTH]
-    end
+    fragment = Nokogiri::HTML::DocumentFragment.parse( body.to_s )
+    fragment.css( "script, style" ).remove
+    fragment.xpath( ".//text()" ).map( &:text ).join( " " ).squish[0, INDEXED_BODY_MAX_LENGTH]
   end
 
   private
