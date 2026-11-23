@@ -29,6 +29,7 @@ const MODERATOR_ACTION_FIELDS = {
   id: true,
   created_at: true,
   reason: true,
+  private: true,
   user: USER_FIELDS
 };
 const TAXON_FIELDS = {
