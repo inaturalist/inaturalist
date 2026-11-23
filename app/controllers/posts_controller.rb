@@ -120,6 +120,7 @@ class PostsController < ApplicationController
         @shareable_description = helpers.shareable_description( @post.body ) if @post.body
         @responsive = true
         if @post.parent_type == "Site"
+          @no_bootstrap = true
           @other_posts = @post.parent.posts.published.where.not( id: @post.id ).
             order( published_at: :desc ).limit( 3 ).includes( :blog_category, :cover_image )
           render :show_blog

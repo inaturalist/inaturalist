@@ -60,6 +60,12 @@ test.describe( "legacy blog post with a wide table", () => {
     } ) );
     expect( scrollWidth ).toBeGreaterThan( clientWidth );
   } );
+
+  test( "keeps the stripes on Bootstrap 3 striped tables", async ( { page } ) => {
+    await page.goto( legacyPostPath );
+    await expect( page.locator( ".post-body--legacy tr" ).first() )
+      .toHaveCSS( "background-color", "rgb(249, 249, 249)" );
+  } );
 } );
 
 test.describe( "comments", () => {

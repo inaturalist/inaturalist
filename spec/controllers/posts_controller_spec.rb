@@ -567,7 +567,7 @@ describe PostsController, "show for a blog post" do
       show
       form = html.at_css( ".post-comments form" )
       expect( form.at_css( "input[type=submit]" )["value"] ).to eq "Post comment"
-      expect( form.text ).to include "Preview"
+      expect( form.text ).not_to include "Preview"
     end
 
     it "says comments are disabled instead of inviting readers to comment" do
@@ -594,11 +594,100 @@ describe PostsController, "show for a blog post" do
     end
   end
 
+  describe "without Bootstrap" do
+    it "renders the page outside Bootstrap's scope" do
+      show
+      expect( html.at_css( ".blog-post-page" ).ancestors( ".bootstrap" ) ).to be_empty
+    end
+
+    it "keeps Bootstrap's scope for journal posts" do
+      get :show, params: { id: Post.make!( parent: author, user: author, published_at: 1.hour.ago ).id }
+      expect( html.at_css( "#wrapper.bootstrap" ) ).not_to be_nil
+    end
+
+    it "uses no Bootstrap component classes" do
+      commenter = make_user_with_privilege( UserPrivilege::INTERACTION )
+      Comment.make!( parent: blog_post, user: commenter )
+      sign_in author
+      show
+      page = html.at_css( ".blog-post-page" )
+      expect( page.css( ".btn, .alert, .form-control, [data-toggle]" ) ).to be_empty
+    end
+
+    it "marks an unpublished post as a preview with a notice" do
+      sign_in author
+      show( Post.make!( parent: site, user: author, published_at: nil ) )
+      expect( html.at_css( ".blog-post-page > .inat-notice" )&.text&.squish ).to eq "Preview"
+    end
+
+    it "gives the comment form a labeled textarea and shared buttons" do
+      sign_in make_user_with_privilege( UserPrivilege::INTERACTION )
+      show
+      form = html.at_css( ".post-comments form" )
+      textarea = form.at_css( "textarea.inat-input" )
+      expect( form.at_css( "label[for='#{textarea['id']}']" ).text.squish ).to eq "Add a comment"
+      expect( form.at_css( "input[type=submit].inat-button--primary" )["value"] ).to eq "Post comment"
+      expect( form.at_css( ".commentpreviewbutton" ) ).to be_nil
+    end
+
+    it "asks readers who can't interact yet to confirm their email instead of showing the form" do
+      sign_in User.make!
+      show
+      comments = html.at_css( ".post-comments" )
+      expect( comments.at_css( "form textarea" ) ).to be_nil
+      expect( comments.at_css( "a.inat-button.emailConfirmationModalTrigger" ) ).not_to be_nil
+    end
+
+    describe "a comment" do
+      let( :commenter ) { User.make! }
+      let!( :comment ) { Comment.make!( parent: blog_post, user: commenter, body: "What a cool plant!" ) }
+
+      def comment_item
+        html.at_css( "#activity_comment_#{comment.uuid}.blog-comment" )
+      end
+
+      it "shows the commenter, when they commented and what they said" do
+        show
+        expect( comment_item.at_css( ".blog-comment__who" )["href"] ).to eq person_path( commenter )
+        expect( comment_item.at_css( ".blog-comment__who" ).text.squish ).to eq commenter.login
+        expect( comment_item.at_css( "time" )["datetime"] ).to eq comment.created_at.iso8601
+        expect( comment_item.at_css( ".blog-comment__body" ).text ).to include "What a cool plant!"
+      end
+
+      it "lets the commenter edit and delete it" do
+        sign_in commenter
+        show
+        links = comment_item.css( ".blog-comment__actions a" ).map {| a | a.text.squish }
+        expect( links ).to include( "Edit", "Delete" )
+      end
+
+      it "lets other signed-in readers flag it but not edit it" do
+        sign_in User.make!
+        show
+        links = comment_item.css( ".blog-comment__actions a" ).map {| a | a.text.squish }
+        expect( links ).to include "Flag"
+        expect( links ).not_to include "Edit"
+      end
+
+      it "shows no actions to logged-out readers" do
+        show
+        expect( comment_item.at_css( ".blog-comment__actions" ) ).to be_nil
+      end
+
+      it "hides the text of a hidden comment from other readers" do
+        ModeratorAction.make!( resource: comment, action: ModeratorAction::HIDE )
+        show
+        expect( comment_item.text ).not_to include "What a cool plant!"
+        expect( comment_item.text ).to include "Content Hidden"
+      end
+    end
+  end
+
   describe "kept features" do
     it "shows the edit button to its author" do
       sign_in author
       show
-      expect( html.at_css( ".blog-post__title-row a" )&.text ).to eq "Edit"
+      expect( html.at_css( ".blog-post__title-row a.inat-button" )&.text ).to eq "Edit"
     end
 
     it "hides the edit button from other users" do

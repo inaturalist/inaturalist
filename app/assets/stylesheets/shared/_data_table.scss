@@ -17,6 +17,21 @@
   }
 }
 
+.inat-table--condensed {
+  th,
+  td {
+    padding: 5px;
+  }
+}
+
+.inat-table--striped tbody tr:nth-of-type( odd ) {
+  background: #f9f9f9;
+}
+
+.inat-table--hover tbody tr:hover {
+  background: #f5f5f5;
+}
+
 .inat-row-actions {
   display: flex;
   justify-content: flex-end;

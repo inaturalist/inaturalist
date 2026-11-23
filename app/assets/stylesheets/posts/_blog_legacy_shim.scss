@@ -1,17 +1,52 @@
+@import "../shared/data_table";
+
 .post-body--legacy {
   table {
+    border-collapse: collapse;
+    border-spacing: 0;
     font-size: 1rem;
     line-height: 1.5;
   }
 
   .table {
+    @extend .inat-table;
     width: auto;
     min-width: 100%;
+    margin-bottom: 1.25rem;
+  }
+
+  .table-condensed {
+    @extend .inat-table--condensed;
+  }
+
+  .table-striped {
+    @extend .inat-table--striped;
+  }
+
+  .table-hover {
+    @extend .inat-table--hover;
   }
 
   pre,
   code {
     font-size: 0.9375rem;
+  }
+
+  .glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: normal;
+  }
+
+  .glyphicon-user::before {
+    content: "\e008";
+  }
+
+  .glyphicon-calendar::before {
+    content: "\e109";
   }
 
   .glyphicon,

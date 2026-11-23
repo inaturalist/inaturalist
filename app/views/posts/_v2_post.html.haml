@@ -5,25 +5,21 @@
 - can_comment = logged_in? && post.published_at && !comments_disabled && !current_user.blocked_by?( post.user )
 - comment_form = capture do
   - if can_comment
-    = render "comments/comment_form",
-      comment: Comment.new( parent: post, user: current_user ),
-      submit_label: t( "views.posts.show_blog.post_comment" )
+    = render "posts/blog_comment_form", post: post
 .blog-post-page
   - if post.published_at.nil?
-    .alert.alert-warning= t( :preview )
+    .inat-notice.inat-notice--warning= t( :preview )
   %article.blog-post{ "aria-labelledby": "post-title" }
     .blog-post__header
       = link_to back_path, class: "blog-post__back" do
-        %svg{ "aria-hidden": "true", width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2.2", "stroke-linecap": "round", "stroke-linejoin": "round" }
-          %path{ d: "M19 12H5" }
-          %path{ d: "M12 19l-7-7 7-7" }
+        = icon_svg( "arrow-left" )
         = back_label
       - if eyebrow.present?
         %p.post-eyebrow= eyebrow
       .blog-post__title-row
         %h1#post-title= post.title
         - if post.editable_by?( current_user )
-          = link_to t( :edit ), edit_post_path( post ), class: "btn btn-default"
+          = link_to t( :edit ), edit_post_path( post ), class: "inat-button inat-button--neutral"
       - date = ( post.published_at || post.updated_at ).to_date
       %p.blog-post__byline
         = t( :by_user, user: link_to( post.user.login, person_path( post.user ) ) ).html_safe
@@ -55,11 +51,9 @@
             %summary
               %span.post-comments__read= t( "views.posts.show_blog.read_all_comments", count: comments.size )
               %span.post-comments__hide= t( "views.posts.show_blog.hide_comments" )
-              %svg{ "aria-hidden": "true", width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2.4", "stroke-linecap": "round", "stroke-linejoin": "round" }
-                %path{ d: "M6 9l6 6 6-6" }
+              = icon_svg( "chevron-down" )
             %ol.post-comments__list
-              - comments.each do | comment |
-                %li= render partial: "shared/activity_item", object: comment
+              = render partial: "posts/blog_comment", collection: comments
             = comment_form
         - else
           %p.post-comments__none= comments_disabled ? t( :comments_have_been_disabled ) : t( "views.posts.show_blog.no_comments_yet" )
@@ -78,9 +72,7 @@
       %h2#blog-other-heading= other_heading
       = link_to archives_site_posts_path, class: "blog-other__archive" do
         = t( "views.posts.show_blog.view_blog_archive" )
-        %svg{ "aria-hidden": "true", width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2.4", "stroke-linecap": "round", "stroke-linejoin": "round" }
-          %path{ d: "M5 12h14" }
-          %path{ d: "M12 5l7 7-7 7" }
+        = icon_svg( "arrow-right" )
       %ul.blog-other__cards
         - other_posts.each do | other |
           %li= render "posts/blog_card", post: other
