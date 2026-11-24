@@ -3,7 +3,6 @@
   comment ||= comment_form || @comment
   unique_id ||= "new_comment_form-#{comment.parent_id}"
   partial ||= nil
-  submit_label ||= t( :save_comment )
 -%>
 <% content_for(:extrajs) do %>
   <script type="text/javascript">
@@ -52,8 +51,7 @@
         <%= render :partial => 'comments/comment_form_fields', :locals => {
           :f => f, 
           :comment => comment,
-          :unique_id => unique_id,
-          :submit_label => submit_label
+          :unique_id => unique_id
         } %>
       <% end %>
     <% else -%>
@@ -61,8 +59,7 @@
         <%= render :partial => 'comments/comment_form_fields', :locals => {
           :f => f, 
           :comment => comment,
-          :unique_id => unique_id,
-          :submit_label => submit_label
+          :unique_id => unique_id
         } %>
       <% end %>
     <% end -%>

@@ -1,5 +1,4 @@
 <%- unique_id ||= "new_comment_form-#{comment.parent.id}" -%>
-<%- submit_label ||= t( :save_comment ) -%>
 <%= f.hidden_field :parent_id %>
 <%= f.hidden_field :parent_type %>
 <%= f.hidden_field :user_id %>
@@ -7,7 +6,7 @@
   <%= f.text_area :body, class: "form-control", maxlength: Comment::MAX_LENGTH %>
 </div>
 <div class="buttonrow">
-  <%= submit_tag submit_label, :class => 'default button', 'data-loading-click' => true %>
+  <%= submit_tag t(:save_comment), :class => 'default button', 'data-loading-click' => true %>
   <%= link_to t(:preview), 
     comment.new_record? ? comments_path : comment_path(comment), 
     :id => "#{unique_id}-preview",
