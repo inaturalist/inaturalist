@@ -190,6 +190,39 @@ describe PostsController, "create" do
       expect( created.blog_category ).to eq category
       expect( created.locale ).to eq "fr"
     end
+    it "should set the featured timestamps from the form checkboxes" do
+      sign_in SiteAdmin.make!( site: site ).user
+      post :create, params: {
+        post: {
+          title: "Foo",
+          body: "Bar",
+          parent_type: "Site",
+          parent_id: site.id,
+          featured: "1",
+          mobile_featured: "1"
+        }
+      }
+      created = Post.last
+      expect( created.featured_at ).not_to be_nil
+      expect( created.mobile_featured_at ).not_to be_nil
+    end
+    it "should save the category and tags from the form" do
+      sign_in SiteAdmin.make!( site: site ).user
+      category = BlogCategory.make!( site: site )
+      post :create, params: {
+        post: {
+          title: "Foo",
+          body: "Bar",
+          parent_type: "Site",
+          parent_id: site.id,
+          blog_category_id: category.id,
+          tag_list: "herons, birds"
+        }
+      }
+      created = Post.last
+      expect( created.blog_category ).to eq category
+      expect( created.tag_list ).to match_array %w(herons birds)
+    end
   end
 end
 
@@ -317,6 +350,108 @@ describe PostsController, "update" do
       expect( p.featured_at ).not_to be_nil
       expect( p.mobile_featured_at ).not_to be_nil
     end
+    describe "blog form fields" do
+      render_views
+      let( :site ) { Site.make! }
+      let( :legacy_body ) { "<p>Legacy <b>HTML</b> body\nwith a line break</p>" }
+      let( :p ) { Post.make!( parent: site, body: legacy_body ) }
+      before { sign_in SiteAdmin.make!( site: site ).user }
+
+      it "saves category, tags and featured flags without changing the body" do
+        category = BlogCategory.make!( site: site )
+        put :update, params: {
+          id: p.id,
+          post: { blog_category_id: category.id, tag_list: "herons, birds", featured: "1", mobile_featured: "1" }
+        }
+        p.reload
+        expect( p.blog_category ).to eq category
+        expect( p.tag_list ).to match_array %w(herons birds)
+        expect( p.featured_at ).not_to be_nil
+        expect( p.mobile_featured_at ).not_to be_nil
+        expect( p.body ).to eq legacy_body
+      end
+
+      it "clears the featured timestamps when unchecked" do
+        p.update!( featured_at: Time.now, mobile_featured_at: Time.now )
+        put :update, params: { id: p.id, post: { featured: "0", mobile_featured: "0" } }
+        p.reload
+        expect( p.featured_at ).to be_nil
+        expect( p.mobile_featured_at ).to be_nil
+      end
+
+      def page_text
+        Nokogiri::HTML( response.body ).text
+      end
+
+      it "re-renders the form with an error for another site's category" do
+        put :update, params: { id: p.id, post: { blog_category_id: BlogCategory.make!( site: Site.make! ).id } }
+        expect( response ).to be_successful
+        expect( page_text ).to include p.errors.generate_message( :blog_category, :must_belong_to_post_site )
+        expect( p.reload.blog_category ).to be_nil
+      end
+
+      it "re-renders the form with an error for an over-long tag list" do
+        put :update, params: { id: p.id, post: { tag_list: Array.new( 100 ) {| i | "heron#{i}" }.join( ", " ) } }
+        expect( response ).to be_successful
+        expect( page_text ).to include p.errors.generate_message( :tag_list, :too_long )
+        expect( p.reload.tag_list ).to be_empty
+      end
+
+      it "keeps the original featured timestamp when left checked" do
+        featured_at = 3.days.ago.change( usec: 0 )
+        p.update!( featured_at: featured_at )
+        put :update, params: { id: p.id, post: { title: "New title", featured: "1" } }
+        expect( p.reload.featured_at ).to eq featured_at
+      end
+    end
+  end
+end
+
+describe PostsController, "post form blog fields" do
+  render_views
+  let( :blog_field_names ) { %w(post[blog_category_id] post[tag_list] post[featured] post[mobile_featured]) }
+
+  def form_field_names
+    Nokogiri::HTML( response.body ).css( "form.post_form [name]" ).map {| el | el["name"] }
+  end
+
+  it "shows the blog fields on a Site post with only the current site's categories" do
+    site = Site.make!
+    category = BlogCategory.make!( site: site )
+    other_category = BlogCategory.make!( site: Site.make! )
+    p = Post.make!( parent: site )
+    sign_in SiteAdmin.make!( site: site ).user
+    get :edit, params: { id: p.id }
+    expect( form_field_names ).to include( *blog_field_names )
+    options = Nokogiri::HTML( response.body ).css( "select[name='post[blog_category_id]'] option" ).map { _1["value"] }
+    expect( options ).to include category.id.to_s
+    expect( options ).not_to include other_category.id.to_s
+  end
+
+  it "shows the blog fields on a new Site post" do
+    site = Site.make!
+    sign_in SiteAdmin.make!( site: site ).user
+    get :new, params: { inat_site_id: site.id }
+    expect( form_field_names ).to include( *blog_field_names )
+  end
+
+  it "doesn't show the blog fields on a journal post" do
+    user = User.make!
+    p = Post.make!( parent: user, user: user )
+    sign_in user
+    get :edit, params: { id: p.id, login: user.login }
+    expect( response ).to be_successful
+    expect( form_field_names & blog_field_names ).to be_empty
+  end
+
+  it "doesn't show the blog fields on a project post" do
+    user = make_user_with_privilege( UserPrivilege::ORGANIZER )
+    project = Project.make!( user: user )
+    p = Post.make!( parent: project, user: user )
+    sign_in user
+    get :edit, params: { id: p.id, project_id: project.id }
+    expect( response ).to be_successful
+    expect( form_field_names & blog_field_names ).to be_empty
   end
 end
 

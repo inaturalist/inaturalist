@@ -31,6 +31,8 @@ class YearStatistic < ApplicationRecord
 
   # Generates stats for all of iNat for a single year
   def self.generate_for_year( year, options = {} )
+    raise "Unable to generate stats from before 2022" if year < 2022
+
     year_statistic = YearStatistic.where( year: year ).where( "user_id IS NULL" )
     year_statistic = if options[:site]
       year_statistic.where( site_id: options[:site] )
@@ -86,36 +88,13 @@ class YearStatistic < ApplicationRecord
     if options[:site].blank?
       json[:publications] = publications( year, options )
       json[:growth][:countries] = observation_counts_by_country( year, options )
-      if year < 2021
-        json[:budget] = {
-          donors: donors( year, options )
-        }
-      end
       json[:pull_requests] = github_pull_requests( year, options )
-      if year >= 2022
-        json[:budget] ||= {}
-        json[:budget][:monthly_supporters] = monthly_supporters( year, options )
-      end
+      json[:budget] ||= {}
+      json[:budget][:monthly_supporters] = monthly_supporters( year, options )
     end
     year_statistic.update( data: json )
     year_statistic.generate_shareable_image( options )
 
-    # Streaks are the longest-running and most memory intensive piece to
-    # calculate, and are probably not sustainable for the whole site in the
-    # long term. In 2021, it doesn't seem like any available production
-    # machine has enough memory to do it for all users. Putting it here
-    # ensures that everything else gets calculated first, and if streaks
-    # fail, they don't take down everything else. They're also pretty boring
-    # as of 2021 since it's basically just a lot of people on year+ long
-    # streaks. Yet another thing I never should have built...
-
-    # 2022 update: we decided to just not do streaks on global or site YIR
-    # anymore b/c it's too much of a support headache and encourages
-    # competetive behavior
-    if year <= 2021
-      json[:observations][:streaks] = streaks( year, options )
-      year_statistic.update( data: json )
-    end
     year_statistic
   end
 
@@ -778,9 +757,16 @@ class YearStatistic < ApplicationRecord
     if debug
       puts "[#{Time.now}] observed_species_accumulation, params: #{params}, options: #{options}"
     end
-    interval = params.delete( :interval ) || "month"
+    interval = "month"
     date_field = params.delete( :date_field ) || "created_at"
     params[:user_id] = params[:user].id if params[:user]
+    months_per_query = options.fetch( :months_per_query ) do
+      params[:user_id].present? ? 24 : 1
+    end
+    unless months_per_query.is_a?( Integer ) && months_per_query.positive?
+      raise ArgumentError, "months_per_query must be a positive integer"
+    end
+
     params[:quality_grade] = params[:quality_grade] || "research,needs_id"
     if ( site = params[:site] )
       if site.place
@@ -793,7 +779,6 @@ class YearStatistic < ApplicationRecord
     elastic_params = Observation.params_to_elastic_query( params )
     histogram_params = elastic_params.merge(
       size: 0,
-      track_total_hits: true,
       aggs: {
         histogram: {
           date_histogram: {
@@ -804,89 +789,67 @@ class YearStatistic < ApplicationRecord
           },
           aggs: {
             taxon_ids: {
-              terms: { field: "taxon.min_species_ancestry", size: 100_000 }
+              terms: { field: "taxon.min_species_ancestry", size: 250_000 }
             }
           }
         }
       }
     )
+
+    month_start = Date.new( 2008, 1, 1 )
+    last_month_end_exclusive = Date.today.beginning_of_month.next_month
+    month_end_exclusive = nil
+
     bucketer = proc do | es_params |
       buckets = Observation.elastic_search( es_params ).response.aggregations.histogram.buckets
+
       if debug
-        d1_filter = es_params[:filters].detect do | f |
-          f[:range] && f[:range][date_field] && f[:range][date_field][:gte]
+        buckets.each do | bucket |
+          omitted = bucket.taxon_ids["sum_other_doc_count"].to_i
+          if omitted.positive?
+            Rails.logger.info "observed_species_accumulation: #{omitted} " \
+              "term documents omitted for #{bucket['key_as_string']}"
+          end
         end
-        d2_filter = es_params[:filters].detect do | f |
-          f[:range] && f[:range][date_field] && f[:range][date_field][:lte]
-        end
-        if d1_filter && d2_filter
-          d1 = Date.parse( d1_filter[:range][date_field][:gte] )
-          d2 = Date.parse( d2_filter[:range][date_field][:lte] )
-        else
-          d1 = Date.parse( "2008-01-01" )
-          d2 = Date.today
-        end
+
         bucket_dates = buckets.map {| bucket | bucket["key_as_string"] }.sort
         species_ids = buckets.map do | bucket |
           bucket.taxon_ids.buckets.map do | b |
             b["key"].split( "," ).map( &:to_i )
           end
         end.flatten.uniq
+        max_taxon_buckets = buckets.map {| bucket | bucket.taxon_ids.buckets.size }.max || 0
         Rails.logger.info <<~MSG
-          observed_species_accumulation results for #{d1} - #{d2}:
+          observed_species_accumulation results for #{month_start} - #{month_end_exclusive - 1.day}:
+          #{max_taxon_buckets} keys in the largest bucket,
           #{buckets.size} buckets, #{bucket_dates.first} - #{bucket_dates.last},
-          #{species_ids.size} species
+          #{species_ids.size} taxon IDs
         MSG
       end
+
       buckets
     end
 
-    histogram_buckets = call_and_rescue_with_partitioner(
-      bucketer,
-      [histogram_params],
-      [
-        Elastic::Transport::Transport::Errors::BadRequest,
-        Elastic::Transport::Transport::Errors::ServiceUnavailable,
-        Elastic::Transport::Transport::Errors::TooManyRequests,
-        Faraday::TimeoutError
-      ],
-      exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception|Data too large)/ },
-      parallel: YearStatistic::NUM_ES_WORKERS,
-      debug: debug
-    ) do | args |
-      es_params = args[0].dup
-      d1_filter = es_params[:filters].detect {| f | f[:range] && f[:range][date_field] && f[:range][date_field][:gte] }
-      d2_filter = es_params[:filters].detect {| f | f[:range] && f[:range][date_field] && f[:range][date_field][:lte] }
-      es_params[:filters] = es_params[:filters].delete_if {| f | f[:range] && f[:range][date_field] }
-      if d1_filter && d2_filter
-        d1 = Date.parse( d1_filter[:range][date_field][:gte] )
-        d2 = Date.parse( d2_filter[:range][date_field][:lte] )
-      else
-        d1 = Date.parse( "2008-01-01" )
-        d2 = YearStatistic.end_of_month( Date.today )
-      end
-      half = ( d2 - d1 ) / 2
-      d1_p1 = d1
-      d2_p1 = YearStatistic.end_of_month( d1 + half.days )
-      d1_p2 = d2_p1 + 1.day
-      d2_p2 = d2
-      es_params1 = es_params.dup
-      es_params1[:filters] += [
-        { range: { date_field => { gte: d1_p1.to_s } } },
-        { range: { date_field => { lte: d2_p1.to_s } } }
-      ]
-      es_params2 = es_params.dup
-      es_params2[:filters] += [
-        { range: { date_field => { gte: d1_p2.to_s } } },
-        { range: { date_field => { lte: d2_p2.to_s } } }
-      ]
-      new_params = [es_params1, es_params2]
-      if debug
-        puts
-        puts "observed_species_accumulation partitions: #{d1_p1} - #{d2_p1}, #{d1_p2} - #{d2_p2}"
-        puts
-      end
-      new_params
+    histogram_buckets = []
+    time_zone = histogram_params[:aggs][:histogram][:date_histogram][:time_zone]
+    # loop through one month, or 24 months for users, at a time
+    while month_start < last_month_end_exclusive
+      month_end_exclusive = [
+        month_start.next_month( months_per_query ),
+        last_month_end_exclusive
+      ].min
+      date_range = {
+        gte: month_start.to_s,
+        lt: month_end_exclusive.to_s
+      }
+      date_range[:time_zone] = time_zone if time_zone
+
+      es_params = histogram_params.deep_dup
+      es_params[:filters] ||= []
+      es_params[:filters] << { range: { date_field => date_range } }
+
+      histogram_buckets.concat( bucketer.call( es_params ) )
+      month_start = month_end_exclusive
     end
 
     accumulation_with_all_species_ids = histogram_buckets.each_with_index.each_with_object( [] ) do | pair, memo |
@@ -1075,16 +1038,15 @@ class YearStatistic < ApplicationRecord
     if options[:debug]
       puts "[#{Time.now}] streaks, year: #{year}, options: #{options}"
     end
+    return nil unless options[:user].is_a?( User )
+
     options = options.clone
     debug = options[:debug]
     streak_length = 5
-    base_query = { quality_grade: "research,needs_id", d2: "#{year}-12-31" }
-    if options[:site]
-      base_query = base_query.merge( site_id: options[:site].id )
-    end
-    if options[:user]
-      base_query = base_query.merge( user_id: options[:user].id )
-    end
+    base_query = {
+      quality_grade: "research,needs_id",
+      user_id: options[:user].id
+    }
 
     streaks = []
     current_streaks = {}
@@ -1100,13 +1062,18 @@ class YearStatistic < ApplicationRecord
               field: "observed_on",
               calendar_interval: "day",
               format: "yyyy-MM-dd",
-              time_zone: time_zone_for_options( options )
+              time_zone: time_zone_for_options( options ),
+              min_doc_count: 0,
+              extended_bounds: {
+                min: query[:d1],
+                max: query[:d2]
+              }
             },
             aggs: {
               user_ids: {
                 terms: {
                   field: "user.id",
-                  size: 300_000
+                  size: 1
                 }
               }
             }
@@ -1114,73 +1081,19 @@ class YearStatistic < ApplicationRecord
         }
       ) ).response.aggregations.histogram.buckets
     end
+
     puts "[#{Time.now}] Aggregating all relevant observations by day and user..." if debug
-    histogram_buckets = call_and_rescue_with_partitioner(
-      streak_bucketer,
-      base_query,
-      [
-        Elastic::Transport::Transport::Errors::ServiceUnavailable,
-        Faraday::TimeoutError
-      ],
-      exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ },
-      parallel: NUM_ES_WORKERS,
-      debug: debug
-    ) do | args |
-      query = args[0]
-      # Assume no one has been on a streak since before 2008-01-01
-      puts "[#{Time.now}] partitioning #{query}" if debug
-      d1 = ( query[:d1] && Date.parse( query[:d1] ) ) || Date.parse( "2008-01-01" )
-      d2 = ( query[:d2] && Date.parse( query[:d2] ) ) || Date.today
-
-      # Even n-ary partitioner (splits into n even partitions)
-      # num_breaks = 8
-      # break_interval = ( d2 - d1 ) / num_breaks
-      # new_queries = []
-      # num_breaks.times do | i |
-      #   interval_d1 = d1 + ( i * break_interval ).days
-      #   interval_d2 = interval_d1 + break_interval.days - 1.day
-      #   interval_query = query.dup
-      #   new_queries << interval_query.merge( d1: interval_d1.to_s, d2: interval_d2.to_s )
-      # end
-
-      # If we're partitioning more than a year, assume a lot more buckets in
-      # more recent partitions
-      if d2 - d1 > 365
-        # Weighted binary partitioner
-        weight = 0.9
-        break_point = ( ( d2 - d1 ) * weight ).ceil
-        new_queries = [
-          query.merge( d1: d1.to_s, d2: ( d1 + break_point.days ).to_s ),
-          query.merge( d1: ( d1 + ( break_point + 1 ).days ).to_s, d2: d2.to_s )
-        ]
-      # If we're partitioning less than a year, assume variance has more to do
-      # with seasonality and events like CNC, so take a simple even approach
-      else
-        # Even binary partitioner
-        half = ( d2 - d1 ) / 2
-        new_queries = [
-          query.merge( d1: d1.to_s, d2: ( d1 + half.days ).to_s ),
-          query.merge( d1: ( d1 + ( half + 1 ).days ).to_s, d2: d2.to_s )
-        ]
-      end
-
-      # # Logarithmic n-ary partitioner
-      # num_breaks = 4
-      # # break_interval = ( d2 - d1 ) / num_breaks
-      # new_queries = []
-      # num_breaks.times do | i |
-      #   d2_offset = i**Math.log( d2 - d1, num_breaks )
-      #   d1_offset = ( i + 1 )**Math.log( d2 - d1, num_breaks )
-      #   interval_d1 = d2 - d1_offset.days
-      #   interval_d1 += 1.day unless i == 0
-      #   interval_d2 = d2 - d2_offset.days
-      #   interval_query = query.dup
-      #   new_queries << interval_query.merge( d1: interval_d1.to_s, d2: interval_d2.to_s )
-      # end
-
-      puts "[#{Time.now}] partitioned into #{new_queries}" if debug
-      new_queries
+    histogram_buckets = []
+    # loop through one year at a time
+    ( 2008..year.to_i ).each do | query_year |
+      query = base_query.merge(
+        d1: "#{query_year}-01-01",
+        d2: "#{query_year}-12-31"
+      )
+      puts "[#{Time.now}] Aggregating #{query_year}..." if debug
+      histogram_buckets.concat( streak_bucketer.call( query ) )
     end
+
     puts "[#{Time.now}] Processing #{histogram_buckets.size} buckets..." if debug
     histogram_buckets.each_with_index do | bucket, bucket_i |
       date = bucket["key_as_string"]
