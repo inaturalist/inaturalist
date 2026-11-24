@@ -49,11 +49,11 @@ test.beforeAll( async () => {
 } );
 
 test.describe( "blog post with a cover, images and an embed", () => {
-  expectNoHorizontalOverflow( () => richPostPath, { waitForSelector: ".blog-post" } );
+  expectNoHorizontalOverflow( () => richPostPath, { waitForSelector: ".post-article" } );
 } );
 
 test.describe( "legacy blog post with a wide table", () => {
-  expectNoHorizontalOverflow( () => legacyPostPath, { waitForSelector: ".blog-post" } );
+  expectNoHorizontalOverflow( () => legacyPostPath, { waitForSelector: ".post-article" } );
 
   test( "scrolls the table inside the post body region on phones", async ( { page } ) => {
     await page.setViewportSize( VIEWPORTS.xs );
@@ -69,7 +69,7 @@ test.describe( "legacy blog post with a wide table", () => {
 
   test( "keeps the stripes on Bootstrap 3 striped tables", async ( { page } ) => {
     await page.goto( legacyPostPath );
-    await expect( page.locator( ".post-body tr" ).first() )
+    await expect( page.locator( ".post-article__content tr" ).first() )
       .toHaveCSS( "background-color", "rgb(249, 249, 249)" );
   } );
 } );

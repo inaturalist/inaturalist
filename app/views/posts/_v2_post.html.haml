@@ -5,44 +5,44 @@
 - can_comment = logged_in? && post.published_at && !comments_disabled && !current_user.blocked_by?( post.user )
 - comment_form = capture do
   - if can_comment
-    = render "posts/blog_comment_form", post: post
-.blog-post-page
+    = render "posts/post_comment_form", post: post
+.post-page
   - if post.published_at.nil?
     .inat-notice.inat-notice--warning= t( :preview )
-  %article.blog-post{ "aria-labelledby": "post-title" }
-    .blog-post__header
-      = link_to back_path, class: "blog-post__back" do
+  %article.post-article{ "aria-labelledby": "post-title" }
+    .post-article__header
+      = link_to back_path, class: "post-article__back" do
         = icon_svg( "arrow-left" )
         = back_label
-      - if eyebrow.present?
-        %p.post-eyebrow= eyebrow
-      .blog-post__title-row
+      - if category.present?
+        %p.post-article__category= category
+      .post-article__title-row
         %h1#post-title= post.title
         - if post.editable_by?( current_user )
           = link_to t( :edit ), edit_post_path( post ), class: "inat-button inat-button--neutral"
       - date = ( post.published_at || post.updated_at ).to_date
-      %p.blog-post__byline
+      %p.post-article__byline
         = t( :by_user, user: post.user ? link_to( post.user.login, person_path( post.user ) ) : t( :deleted_user ) ).html_safe
         &middot;
         %time{ datetime: date.iso8601 }= l( date, format: :long )
     - if cover
-      %figure.post-hero
+      %figure.post-article__hero
         = image_tag cover.file.url( :original ), alt: cover.alt.to_s
         - if caption.present?
           %figcaption= caption
-    .blog-post__body
-      .post-body{ tabindex: 0, role: "region", "aria-label": t( "views.posts.show_blog.scrollable_post_content" ) }
+    .post-article__body
+      .post-article__content{ tabindex: 0, role: "region", "aria-label": t( "views.posts.show_blog.scrollable_post_content" ) }
         = formatted_user_text( post.body,
           scrubber: PostScrubber.new( tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES ),
           skip_simple_format: post.preferred_formatting == Post::FORMATTING_NONE )
       - if observations.present?
-        %section#observations.blog-post__observations
+        %section#observations.post-article__observations
           %h2= t( :observations )
           .observations.medium.grid
             - compact do
               = render partial: "observations/cached_component", collection: observations
       - if post.tag_list.any?
-        %ul.post-tags{ "aria-label": t( :tags ) }
+        %ul.post-article__tags{ "aria-label": t( :tags ) }
           - post.tag_list.each do | tag |
             %li= "##{tag}"
       %section.post-comments{ "aria-label": t( :comments ) }
@@ -53,7 +53,7 @@
               %span.post-comments__hide= t( "views.posts.show_blog.hide_comments" )
               = icon_svg( "chevron-down" )
             %ol.post-comments__list
-              = render partial: "posts/blog_comment", collection: comments
+              = render partial: "posts/post_comment", collection: comments
             = comment_form
         - else
           %p.post-comments__none= comments_disabled ? t( :comments_have_been_disabled ) : t( "views.posts.show_blog.no_comments_yet" )
@@ -63,17 +63,17 @@
           = link_to t( "views.posts.show_blog.sign_in_to_comment" ), login_path, class: "post-comments__sign-in"
         - if comments.empty?
           .post-comments__form= comment_form
-      .blog-post__actions
+      .post-article__actions
         - if logged_in? && current_user.id != post.user_id && !post.prefers_no_comments?
           = render "subscriptions/subscription", resource: post.becomes( Post )
         = render partial: "shared/flagging", locals: { instance: post.becomes( Post ) }
   - if other_posts.any?
-    %section.blog-other{ "aria-labelledby": "blog-other-heading" }
-      %h2#blog-other-heading= other_heading
-      = link_to archive_path, class: "blog-other__archive" do
-        = t( "views.posts.show_blog.view_blog_archive" )
+    %section.post-other-posts{ "aria-labelledby": "post-other-posts-heading" }
+      %h2#post-other-posts-heading= other_heading
+      = link_to archive_path, class: "post-other-posts__archive" do
+        = archive_label
         = icon_svg( "arrow-right" )
-      %ul.blog-other__cards
+      %ul.post-other-posts__cards
         - other_posts.each do | other |
-          %li= render "posts/blog_card", post: other
+          %li= render "posts/post_card", post: other
 = render "shared/scroll_to_top"

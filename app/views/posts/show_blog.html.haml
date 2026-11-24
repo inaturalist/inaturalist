@@ -1,7 +1,7 @@
 - content_for :title do
   =title_by_user @title = @post.title
 - content_for :extracss do
-  = stylesheet_link_tag "posts/blog"
+  = stylesheet_link_tag "posts/post"
 - content_for :extrajs do
   :javascript
     var linkedComment = window.location.hash && document.getElementById( window.location.hash.slice( 1 ) );
@@ -10,7 +10,7 @@
       linkedCommentList.open = true;
       linkedComment.scrollIntoView( );
     }
-    $( ".blog-post__observations .observations" ).observationsGrid( "medium" );
+    $( ".post-article__observations .observations" ).observationsGrid( "medium" );
     $( "#comment_body" ).textcompleteUsers( );
     $( ".emailConfirmationModalTrigger, #flag_this, a.flaglink" ).click( function( e ) {
       if ( $( "#emailConfirmationModalButton.lacking-interaction" ).length === 1 ) {
@@ -26,7 +26,8 @@
   observations: @observations,
   back_label: t( "views.posts.show_blog.site_blog", site: @post.parent.name ),
   back_path: "#{blog_root}#{site_posts_path}",
+  archive_label: t( "views.posts.show_blog.view_blog_archive" ),
   archive_path: "#{blog_root}#{archives_site_posts_path}",
-  eyebrow: @post.blog_category&.label,
+  category: @post.blog_category&.label,
   other_heading: t( "views.posts.show_blog.other_posts" ),
   other_posts: @other_posts

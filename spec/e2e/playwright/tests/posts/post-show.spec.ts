@@ -45,7 +45,7 @@ test.describe( "journal post", () => {
 } );
 
 test.describe( "blog post", () => {
-  expectNoHorizontalOverflow( () => blogPostPath, { waitForSelector: ".blog-post" } );
+  expectNoHorizontalOverflow( () => blogPostPath, { waitForSelector: ".post-article" } );
 } );
 
 test.describe( "post navigation", () => {

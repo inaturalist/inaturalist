@@ -1,9 +1,0 @@
-= link_to site_post_path( post ), class: "blog-card" do
-  - if post.cover_image
-    = image_tag post.cover_image.file.url( :large ), alt: post.cover_image.alt.to_s, class: "blog-card__img", loading: "lazy"
-  - else
-    .blog-card__img.blog-card__img--empty{ "aria-hidden": "true" }
-  - if post.blog_category
-    %span.blog-card__category= post.blog_category.label
-  %span.blog-card__title= post.title
-  %span.blog-card__date= l( post.published_at.to_date, format: :short_with_year )

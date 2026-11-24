@@ -614,7 +614,7 @@ describe PostsController, "show for a blog post" do
       show
       expect( assigns( :other_posts ) ).to eq newest
       expect( assigns( :other_posts ) ).not_to include( blog_post, older, draft, other_site )
-      expect( html.css( ".blog-card" ).size ).to eq 3
+      expect( html.css( ".post-card" ).size ).to eq 3
     end
 
     it "skips the journal prev/next lookups" do
@@ -638,7 +638,7 @@ describe PostsController, "show for a blog post" do
       User.where( id: author.id ).delete_all
       show
       expect( response ).to be_successful
-      expect( html.at_css( ".blog-post__byline" ).text ).to include I18n.t( :deleted_user )
+      expect( html.at_css( ".post-article__byline" ).text ).to include I18n.t( :deleted_user )
     end
   end
 
@@ -650,17 +650,17 @@ describe PostsController, "show for a blog post" do
 
     it "links back to that site's blog" do
       show( other_post )
-      expect( html.at_css( ".blog-post__back" )["href"] ).to eq "#{other_site.url}#{site_posts_path}"
+      expect( html.at_css( ".post-article__back" )["href"] ).to eq "#{other_site.url}#{site_posts_path}"
     end
 
     it "links to that site's archive" do
       show( other_post )
-      expect( html.at_css( ".blog-other__archive" )["href"] ).to eq "#{other_site.url}#{archives_site_posts_path}"
+      expect( html.at_css( ".post-other-posts__archive" )["href"] ).to eq "#{other_site.url}#{archives_site_posts_path}"
     end
 
     it "keeps relative links for the current site's posts" do
       show
-      expect( html.at_css( ".blog-post__back" )["href"] ).to eq site_posts_path
+      expect( html.at_css( ".post-article__back" )["href"] ).to eq site_posts_path
     end
   end
 
@@ -682,8 +682,8 @@ describe PostsController, "show for a blog post" do
     it "shows the hero with its alt text and a caption of caption and attribution" do
       add_cover( blog_post, caption: "Riverweed on a rock", attribution: "Photo © seastarya, CC BY-NC" )
       show
-      expect( html.at_css( ".post-hero img" )["alt"] ).to eq "A heron on a rock"
-      expect( html.at_css( ".post-hero figcaption" ).text.squish ).to eq(
+      expect( html.at_css( ".post-article__hero img" )["alt"] ).to eq "A heron on a rock"
+      expect( html.at_css( ".post-article__hero figcaption" ).text.squish ).to eq(
         "Riverweed on a rock. Photo © seastarya, CC BY-NC"
       )
     end
@@ -691,18 +691,18 @@ describe PostsController, "show for a blog post" do
     it "shows either caption part alone" do
       add_cover( blog_post, attribution: "Photo © seastarya" )
       show
-      expect( html.at_css( ".post-hero figcaption" ).text.squish ).to eq "Photo © seastarya"
+      expect( html.at_css( ".post-article__hero figcaption" ).text.squish ).to eq "Photo © seastarya"
     end
 
     it "has no caption when caption and attribution are empty" do
       add_cover( blog_post )
       show
-      expect( html.at_css( ".post-hero figcaption" ) ).to be_nil
+      expect( html.at_css( ".post-article__hero figcaption" ) ).to be_nil
     end
 
     it "has no hero without a cover" do
       show
-      expect( html.at_css( ".post-hero" ) ).to be_nil
+      expect( html.at_css( ".post-article__hero" ) ).to be_nil
     end
   end
 
@@ -713,21 +713,21 @@ describe PostsController, "show for a blog post" do
         tag_list: "herons, rivers"
       )
       show
-      expect( html.at_css( ".post-eyebrow" ).text.squish ).to eq "Behind the Observation"
-      expect( html.css( ".post-tags li" ).map {| li | li.text.squish } ).to match_array %w(#herons #rivers)
-      expect( html.css( ".post-tags a, .post-eyebrow a" ) ).to be_empty
+      expect( html.at_css( ".post-article__category" ).text.squish ).to eq "Behind the Observation"
+      expect( html.css( ".post-article__tags li" ).map {| li | li.text.squish } ).to match_array %w(#herons #rivers)
+      expect( html.css( ".post-article__tags a, .post-article__category a" ) ).to be_empty
     end
 
     it "has no tags row without tags" do
       show
-      expect( html.at_css( ".post-tags" ) ).to be_nil
+      expect( html.at_css( ".post-article__tags" ) ).to be_nil
     end
   end
 
   describe "body" do
     it "renders inside the scrollable post body region" do
       show
-      region = html.at_css( ".post-body" )
+      region = html.at_css( ".post-article__content" )
       expect( region["role"] ).to eq "region"
       expect( region["aria-label"] ).to eq "Post content, scrolls sideways"
       expect( region["tabindex"] ).to eq "0"
@@ -790,7 +790,7 @@ describe PostsController, "show for a blog post" do
   describe "without Bootstrap" do
     it "renders the page outside Bootstrap's scope" do
       show
-      expect( html.at_css( ".blog-post-page" ).ancestors( ".bootstrap" ) ).to be_empty
+      expect( html.at_css( ".post-page" ).ancestors( ".bootstrap" ) ).to be_empty
     end
 
     it "keeps Bootstrap's scope for journal posts" do
@@ -803,14 +803,14 @@ describe PostsController, "show for a blog post" do
       Comment.make!( parent: blog_post, user: commenter )
       sign_in author
       show
-      page = html.at_css( ".blog-post-page" )
+      page = html.at_css( ".post-page" )
       expect( page.css( ".btn, .alert, .form-control, [data-toggle]" ) ).to be_empty
     end
 
     it "marks an unpublished post as a preview with a notice" do
       sign_in author
       show( Post.make!( parent: site, user: author, published_at: nil ) )
-      expect( html.at_css( ".blog-post-page > .inat-notice" )&.text&.squish ).to eq "Preview"
+      expect( html.at_css( ".post-page > .inat-notice" )&.text&.squish ).to eq "Preview"
     end
 
     it "gives the comment form a labeled textarea and shared buttons" do
@@ -836,35 +836,35 @@ describe PostsController, "show for a blog post" do
       let!( :comment ) { Comment.make!( parent: blog_post, user: commenter, body: "What a cool plant!" ) }
 
       def comment_item
-        html.at_css( "#activity_comment_#{comment.uuid}.blog-comment" )
+        html.at_css( "#activity_comment_#{comment.uuid}.post-comment" )
       end
 
       it "shows the commenter, when they commented and what they said" do
         show
-        expect( comment_item.at_css( ".blog-comment__who" )["href"] ).to eq person_path( commenter )
-        expect( comment_item.at_css( ".blog-comment__who" ).text.squish ).to eq commenter.login
+        expect( comment_item.at_css( ".post-comment__who" )["href"] ).to eq person_path( commenter )
+        expect( comment_item.at_css( ".post-comment__who" ).text.squish ).to eq commenter.login
         expect( comment_item.at_css( "time" )["datetime"] ).to eq comment.created_at.iso8601
-        expect( comment_item.at_css( ".blog-comment__body" ).text ).to include "What a cool plant!"
+        expect( comment_item.at_css( ".post-comment__body" ).text ).to include "What a cool plant!"
       end
 
       it "lets the commenter edit and delete it" do
         sign_in commenter
         show
-        links = comment_item.css( ".blog-comment__actions a" ).map {| a | a.text.squish }
+        links = comment_item.css( ".post-comment__actions a" ).map {| a | a.text.squish }
         expect( links ).to include( "Edit", "Delete" )
       end
 
       it "lets other signed-in readers flag it but not edit it" do
         sign_in User.make!
         show
-        links = comment_item.css( ".blog-comment__actions a" ).map {| a | a.text.squish }
+        links = comment_item.css( ".post-comment__actions a" ).map {| a | a.text.squish }
         expect( links ).to include "Flag"
         expect( links ).not_to include "Edit"
       end
 
       it "shows no actions to logged-out readers" do
         show
-        expect( comment_item.at_css( ".blog-comment__actions" ) ).to be_nil
+        expect( comment_item.at_css( ".post-comment__actions" ) ).to be_nil
       end
 
       it "hides the text of a hidden comment from other readers" do
@@ -880,13 +880,13 @@ describe PostsController, "show for a blog post" do
     it "shows the edit button to its author" do
       sign_in author
       show
-      expect( html.at_css( ".blog-post__title-row a.inat-button" )&.text ).to eq "Edit"
+      expect( html.at_css( ".post-article__title-row a.inat-button" )&.text ).to eq "Edit"
     end
 
     it "hides the edit button from other users" do
       sign_in User.make!
       show
-      expect( html.at_css( ".blog-post__title-row a" ) ).to be_nil
+      expect( html.at_css( ".post-article__title-row a" ) ).to be_nil
     end
 
     it "shows linked observations" do
