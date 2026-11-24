@@ -32,19 +32,18 @@ chdir APP_ROOT do
   end
 
   puts "\n== Creating Template Database =="
-  if system "command -v createdb > /dev/null"
-    if USING_DOCKER
-      puts "docker-compose.override.yml exists, assuming you're using Docker and the template db already exists"
-    else
-      system "createdb template_postgis", exception: true
-      system "psql -d template_postgis -c 'create extension postgis'", exception: true
-      system "psql -d template_postgis -c 'create extension \"uuid-ossp\"'", exception: true
-      set_template_cmd = <<~STRING
-        psql template_postgis -c \
-        "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis'"
-      STRING
-      system set_template_cmd, exception: true
-    end
+
+  if USING_DOCKER
+    puts "docker-compose.override.yml exists, assuming you're using Docker and the template db already exists"
+  elsif system "command -v createdb > /dev/null"
+    system "createdb template_postgis", exception: true
+    system "psql -d template_postgis -c 'create extension postgis'", exception: true
+    system "psql -d template_postgis -c 'create extension \"uuid-ossp\"'", exception: true
+    set_template_cmd = <<~STRING
+      psql template_postgis -c \
+      "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis'"
+    STRING
+    system set_template_cmd, exception: true
   else
     puts "\nError: PostgreSQL needs to be installed before setup can be completed."
     abort
