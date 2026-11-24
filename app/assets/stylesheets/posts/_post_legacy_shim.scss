@@ -1,5 +1,7 @@
 @import "../shared/data_table";
 
+// Some older posts were written to use Bootstrap's look. This page doesn't load Bootstrap,
+// so these rules bring back the few pieces those posts still depend on.
 .post-article__content {
   table {
     border-collapse: collapse;
@@ -8,6 +10,7 @@
     line-height: 1.5;
   }
 
+  // About 1,500 older posts use Bootstrap's table classes; this makes them look like our tables
   .table {
     @extend .inat-table;
     width: auto;
@@ -32,6 +35,7 @@
     font-size: 0.9375rem;
   }
 
+  // About 900 older project posts use Bootstrap's person and calendar icons
   .glyphicon {
     position: relative;
     top: 1px;
@@ -49,6 +53,7 @@
     content: "\e109";
   }
 
+  // Keeps icons from making their line of text taller
   .glyphicon,
   .fa,
   [class^="icon-"],
