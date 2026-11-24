@@ -31,7 +31,7 @@
         - if caption.present?
           %figcaption= caption
     .blog-post__body
-      .post-body--legacy{ tabindex: 0, role: "region", "aria-label": t( "views.posts.show_blog.scrollable_post_content" ) }
+      .post-body{ tabindex: 0, role: "region", "aria-label": t( "views.posts.show_blog.scrollable_post_content" ) }
         = formatted_user_text( post.body,
           scrubber: PostScrubber.new( tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES ),
           skip_simple_format: post.preferred_formatting == Post::FORMATTING_NONE )

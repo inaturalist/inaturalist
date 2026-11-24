@@ -690,10 +690,11 @@ describe PostsController, "show for a blog post" do
   end
 
   describe "body" do
-    it "renders inside the scrollable legacy region" do
+    it "renders inside the scrollable post body region" do
       show
-      region = html.at_css( ".post-body--legacy" )
+      region = html.at_css( ".post-body" )
       expect( region["role"] ).to eq "region"
+      expect( region["aria-label"] ).to eq "Post content, scrolls sideways"
       expect( region["tabindex"] ).to eq "0"
       expect( region.text ).to include blog_post.body
     end

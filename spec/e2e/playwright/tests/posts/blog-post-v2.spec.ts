@@ -14,6 +14,9 @@ const RICH_BODY = [
   "<blockquote><p>iNat is a fantastic tool to learn, to share, to teach.</p><p>Pablo</p></blockquote>"
 ].join( "" );
 
+const LONG_URL = `https://example.org/form?id=${"S8tyj_P-KE6y24h2AnsLmegRZVdS03FPsCWrmqKgwmhU".repeat( 6 )}`;
+const LONG_URL_BODY = `<p>Complete the form: <a href="${LONG_URL}">${LONG_URL}</a></p>`;
+
 const WIDE_CELL = "Legacy-content-that-cannot-wrap-inside-the-column";
 const LEGACY_BODY = `<table class="table table-striped table-condensed"><tr>${
   Array( 6 ).fill( `<td>${WIDE_CELL}</td>` ).join( "" )
@@ -21,6 +24,7 @@ const LEGACY_BODY = `<table class="table table-striped table-condensed"><tr>${
 
 let richPostPath: string;
 let legacyPostPath: string;
+let longUrlPostPath: string;
 
 async function createBlogPost( attrs: Record<string, unknown> ): Promise<string> {
   const post = await app( "create_post", { parent_type: "Site", ...attrs } ) as Record<string, unknown>;
@@ -40,6 +44,7 @@ test.beforeAll( async () => {
     comment_count: 2
   } );
   legacyPostPath = await createBlogPost( { ...base, body: LEGACY_BODY } );
+  longUrlPostPath = await createBlogPost( { ...base, body: LONG_URL_BODY } );
   await createBlogPost( base );
 } );
 
@@ -54,7 +59,7 @@ test.describe( "legacy blog post with a wide table", () => {
     await page.setViewportSize( VIEWPORTS.xs );
     await page.goto( legacyPostPath );
 
-    const region = page.getByRole( "region", { name: "Older post content, scrolls sideways" } );
+    const region = page.getByRole( "region", { name: "Post content, scrolls sideways", exact: true } );
     const { scrollWidth, clientWidth } = await region.evaluate( el => ( {
       scrollWidth: el.scrollWidth,
       clientWidth: el.clientWidth
@@ -64,8 +69,22 @@ test.describe( "legacy blog post with a wide table", () => {
 
   test( "keeps the stripes on Bootstrap 3 striped tables", async ( { page } ) => {
     await page.goto( legacyPostPath );
-    await expect( page.locator( ".post-body--legacy tr" ).first() )
+    await expect( page.locator( ".post-body tr" ).first() )
       .toHaveCSS( "background-color", "rgb(249, 249, 249)" );
+  } );
+} );
+
+test.describe( "blog post with a long unbroken URL", () => {
+  test( "wraps the URL instead of scrolling the post body on phones", async ( { page } ) => {
+    await page.setViewportSize( VIEWPORTS.xs );
+    await page.goto( longUrlPostPath );
+
+    const region = page.getByRole( "region", { name: "Post content, scrolls sideways", exact: true } );
+    const { scrollWidth, clientWidth } = await region.evaluate( el => ( {
+      scrollWidth: el.scrollWidth,
+      clientWidth: el.clientWidth
+    } ) );
+    expect( scrollWidth ).toBe( clientWidth );
   } );
 } );
 

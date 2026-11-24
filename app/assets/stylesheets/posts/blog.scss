@@ -42,7 +42,7 @@ $blog-column: 720px;
 
   a:focus-visible,
   summary:focus-visible,
-  .post-body--legacy:focus-visible {
+  .post-body:focus-visible {
     outline: 3px solid $blog-green;
     outline-offset: 2px;
   }
@@ -186,8 +186,9 @@ $blog-column: 720px;
   }
 }
 
-.post-body--legacy {
+.post-body {
   overflow-x: auto;
+  overflow-wrap: break-word;
   margin-bottom: 2rem;
 
   p,
