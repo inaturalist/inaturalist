@@ -4,6 +4,8 @@ require "rubygems"
 require "optimist"
 require "exemplar_identification_score_backfill"
 
+$stdout.sync = true
+
 OPTS = Optimist.options do
   banner <<~HELP
     One-time backfill of exemplar_identification_scores. Imports the initial
@@ -33,6 +35,7 @@ end
 
 def step( summary, name )
   start = Time.now
+  puts "#{name} started at #{start.utc}"
   result = yield
   duration = ( Time.now - start ).round
   summary[name] = { duration_s: duration, result: result }
@@ -46,8 +49,8 @@ begin
   backfill = ExemplarIdentificationScoreBackfill.new( OPTS.file, started_at: started_at )
   summary = { step: "backfill", file: OPTS.file, started_at: backfill.started_at.utc.iso8601 }
   puts "Started at #{backfill.started_at.utc} (pass it as --started-at to rerun)"
-  step( summary, :import ) { backfill.import }
-  step( summary, :fill_gaps ) { backfill.fill_gaps }
+  step( summary, :import ) { backfill.import {| lines | puts "import: #{lines} lines read" } }
+  step( summary, :fill_gaps ) { backfill.fill_gaps {| exemplars | puts "fill_gaps: #{exemplars} exemplars read" } }
   step( summary, :reset_edited ) { backfill.reset_edited }
   step( summary, :reconcile_active ) { backfill.reconcile_active }
   step( summary, :delete_orphans ) { backfill.delete_orphans }

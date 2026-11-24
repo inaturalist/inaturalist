@@ -13,6 +13,7 @@ require "exemplar_identification_scoring_run"
 # Rows are read and written in batches, and the file is streamed.
 class ExemplarIdentificationScoreBackfill
   BATCH_SIZE = 1000
+  PROGRESS_BATCHES = 100
   REJECTS_FILE = "exemplar_identification_backfill_rejects.csv"
 
   REJECT_DETAILS = {
@@ -40,17 +41,23 @@ class ExemplarIdentificationScoreBackfill
     File.join( File.dirname( @path ), REJECTS_FILE )
   end
 
+  # Yields the number of lines read every PROGRESS_BATCHES batches
   def import
     counts = Hash.new( 0 )
-    CSV.foreach( @path, headers: true, encoding: "UTF-8" ).each_slice( BATCH_SIZE ) do | lines |
+    CSV.foreach( @path, headers: true, encoding: "UTF-8" ).each_slice( BATCH_SIZE ).with_index( 1 ) do | lines, index |
       write_rejects( import_lines( lines, counts ) )
+      yield index * BATCH_SIZE if block_given? && ( index % PROGRESS_BATCHES ).zero?
     end
     counts
   end
 
+  # Yields the number of exemplars read every PROGRESS_BATCHES batches
   def fill_gaps
     inserted = 0
+    batches = 0
     ExemplarIdentification.in_batches( of: BATCH_SIZE ) do | batch |
+      batches += 1
+      yield batches * BATCH_SIZE if block_given? && ( batches % PROGRESS_BATCHES ).zero?
       now = Time.now
       rows = batch.pluck( :id, :active ).map do | id, active |
         unscored_attributes( active ).merge(
@@ -100,20 +107,17 @@ class ExemplarIdentificationScoreBackfill
     end
   end
 
-  # Rows whose exemplar, or its identification, no longer exists: destroyed
-  # while the batch holding their row was still uncommitted, or deleted
-  # without callbacks
+  # Rows whose exemplar no longer exists: destroyed while the batch holding
+  # their row was still uncommitted, or deleted without callbacks. One
+  # statement, so Postgres can run it as a single anti-join
   def delete_orphans
-    each_batch do | batch |
-      batch.where( <<~SQL ).delete_all
-        NOT EXISTS (
-          SELECT 1
-          FROM exemplar_identifications
-          JOIN identifications ON identifications.id = exemplar_identifications.identification_id
-          WHERE exemplar_identifications.id = exemplar_identification_scores.exemplar_identification_id
-        )
-      SQL
-    end
+    ExemplarIdentificationScore.where( <<~SQL ).delete_all
+      NOT EXISTS (
+        SELECT 1
+        FROM exemplar_identifications
+        WHERE exemplar_identifications.id = exemplar_identification_scores.exemplar_identification_id
+      )
+    SQL
   end
 
   def status_counts

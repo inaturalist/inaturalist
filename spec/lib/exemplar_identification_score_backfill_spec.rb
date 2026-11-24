@@ -73,6 +73,13 @@ describe ExemplarIdentificationScoreBackfill do
   end
 
   describe "import" do
+    it "yields the lines read every PROGRESS_BATCHES batches" do
+      stub_const( "ExemplarIdentificationScoreBackfill::BATCH_SIZE", 1 )
+      stub_const( "ExemplarIdentificationScoreBackfill::PROGRESS_BATCHES", 2 )
+      write_file( *Array.new( 4 ) { july_line( make_exemplar ) } )
+      expect {| progress | backfill.import( &progress ) }.to yield_successive_args( 2, 4 )
+    end
+
     it "imports the result of an unchanged body" do
       exemplar = make_exemplar
       write_file( july_line( exemplar ) )
@@ -158,6 +165,13 @@ describe ExemplarIdentificationScoreBackfill do
   end
 
   describe "fill_gaps" do
+    it "yields the exemplars read every PROGRESS_BATCHES batches" do
+      stub_const( "ExemplarIdentificationScoreBackfill::BATCH_SIZE", 1 )
+      stub_const( "ExemplarIdentificationScoreBackfill::PROGRESS_BATCHES", 2 )
+      2.times { make_exemplar }
+      expect {| progress | backfill.fill_gaps( &progress ) }.to yield_successive_args( 2 )
+    end
+
     it "gives exemplars without a row a pending or on_hold row" do
       active = make_exemplar
       inactive = make_exemplar( active: false )
@@ -235,14 +249,12 @@ describe ExemplarIdentificationScoreBackfill do
   end
 
   describe "delete_orphans" do
-    it "deletes rows whose exemplar or identification no longer exists" do
+    it "deletes rows whose exemplar no longer exists" do
       kept = make_exemplar
       without_exemplar = make_exemplar
-      without_identification = make_exemplar
       backfill.fill_gaps
       ExemplarIdentification.where( id: without_exemplar.id ).delete_all
-      Identification.where( id: without_identification.identification_id ).delete_all
-      expect( backfill.delete_orphans ).to eq 2
+      expect( backfill.delete_orphans ).to eq 1
       expect( score_of( kept ) ).not_to be_nil
     end
   end
