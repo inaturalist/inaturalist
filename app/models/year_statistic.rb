@@ -1062,7 +1062,6 @@ class YearStatistic < ApplicationRecord
               field: "observed_on",
               calendar_interval: "day",
               format: "yyyy-MM-dd",
-              time_zone: time_zone_for_options( options ),
               min_doc_count: 0,
               extended_bounds: {
                 min: query[:d1],

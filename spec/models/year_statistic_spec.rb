@@ -226,6 +226,8 @@ describe YearStatistic do
   end
 
   describe "streaks" do
+    elastic_models( Observation )
+
     it "queries each year and returns a streak crossing New Year" do
       user = User.make!
       allow( YearStatistic ).to receive( :time_zone_for_options ).and_return( "UTC" )
@@ -297,6 +299,25 @@ describe YearStatistic do
       end
 
       expect( YearStatistic.streaks( 2025, user: user ) ).to be_nil
+    end
+
+    it "preserves a streak across a new year" do
+      user = User.make!( time_zone: "Arizona" )
+      make_research_grade_candidate_observation( user: user, observed_on_string: "2025-12-29T09:00:00-06:00" )
+      make_research_grade_candidate_observation( user: user, observed_on_string: "2025-12-30T09:00:00-06:00" )
+      make_research_grade_candidate_observation( user: user, observed_on_string: "2025-12-31T09:00:00-06:00" )
+      make_research_grade_candidate_observation( user: user, observed_on_string: "2026-01-01T09:00:00-06:00" )
+      make_research_grade_candidate_observation( user: user, observed_on_string: "2026-01-02T09:00:00-06:00" )
+
+      result = YearStatistic.streaks( 2026, user: user )
+      expect( result ).to include(
+        a_hash_including(
+          user_id: user.id,
+          days: 5,
+          start: "2025-12-29",
+          stop: "2026-01-02"
+        )
+      )
     end
   end
 end
