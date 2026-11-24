@@ -270,14 +270,14 @@ describe Post do
     it "is invalid on a non-Site post" do
       post = journal_post( blog_category: category )
       expect( post ).not_to be_valid
-      expect( post.errors.added?( :blog_category_id, :not_available_on_this_blog ) ).to be true
+      expect( post.errors.added?( :blog_category_id, :not_available_on_this_post ) ).to be true
     end
 
     it "is invalid on a post for a site other than the default" do
       other_site = Site.make!
       post = Post.make( parent: other_site, blog_category: BlogCategory.make!( site: other_site ) )
       expect( post ).not_to be_valid
-      expect( post.errors.added?( :blog_category_id, :not_available_on_this_blog ) ).to be true
+      expect( post.errors.added?( :blog_category_id, :not_available_on_this_post ) ).to be true
     end
   end
 
@@ -290,7 +290,7 @@ describe Post do
       %i[featured_at mobile_featured_at].each do | attr |
         post = journal_post( attr => Time.now )
         expect( post ).not_to be_valid
-        expect( post.errors.added?( attr, :not_available_on_this_blog ) ).to be true
+        expect( post.errors.added?( attr, :not_available_on_this_post ) ).to be true
       end
     end
 
@@ -298,7 +298,7 @@ describe Post do
       %i[featured_at mobile_featured_at].each do | attr |
         post = Post.make( parent: Site.make!, attr => Time.now )
         expect( post ).not_to be_valid
-        expect( post.errors.added?( attr, :not_available_on_this_blog ) ).to be true
+        expect( post.errors.added?( attr, :not_available_on_this_post ) ).to be true
       end
     end
 

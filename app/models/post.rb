@@ -183,7 +183,7 @@ class Post < ApplicationRecord
     return if parent.is_a?( Site ) && parent.blog_v2?
 
     %i[featured_at mobile_featured_at blog_category_id].select {| attr | send( attr ).present? }.each do | attr |
-      errors.add( attr, :not_available_on_this_blog )
+      errors.add( attr, :not_available_on_this_post )
     end
   end
 
