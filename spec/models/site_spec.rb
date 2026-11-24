@@ -25,6 +25,16 @@ describe Site do
     expect( BlogCategory.find_by_id( category.id ) ).to be_nil
   end
 
+  describe "blog_v2?" do
+    it "is true for the default site" do
+      expect( Site.default ).to be_blog_v2
+    end
+
+    it "is false for other sites" do
+      expect( Site.make! ).not_to be_blog_v2
+    end
+  end
+
   # this is maybe out of place, but these tests are targeting behavior in our forked version
   # of the `preferences` gem that we should make sure it preserved in future upgrades
   describe "preferences" do

@@ -40,7 +40,8 @@
       - if @site.editable_by?( current_user )
         #tools.buttonrow
           = link_to t(:new_post), new_site_post_path, id: "newpostbutton", :class => "default button"
-          = link_to t(:manage_categories), blog_categories_path, :class => "default button"
+          - if @site.blog_v2?
+            = link_to t(:manage_categories), blog_categories_path, :class => "default button"
 - else # parent is a user
   - tools = capture do
     - if logged_in? && current_user.login == @parent.journal_display_name
