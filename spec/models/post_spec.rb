@@ -424,4 +424,173 @@ describe Post do
       end
     end
   end
+
+  describe "as_indexed_json" do
+    it "indexes the post's fields" do
+      author = User.make!( login: "indexedauthor", name: "Indexed Author" )
+      post = Post.make!( user: author, parent: author, title: "A title", locale: "es", tag_list: ["Fungi"] )
+      Comment.make!( parent: post )
+      json = post.as_indexed_json
+      expect( json ).to include(
+        id: post.id,
+        uuid: post.uuid,
+        parent_type: "User",
+        parent_id: author.id,
+        title: "A title",
+        tags: ["fungi"],
+        published: true,
+        spam: false,
+        locale: "es",
+        comments_count: 1,
+        published_at: post.published_at
+      )
+      expect( json[:user] ).to eq( id: author.id, login: "indexedauthor", name: "Indexed Author", spammer: false )
+      expect( json ).not_to have_key( :blog_category_id )
+    end
+
+    describe "site_id" do
+      it "is the site for a Site post" do
+        site = Site.make!
+        post = Post.make!( parent: site )
+        expect( post.as_indexed_json[:site_id] ).to eq site.id
+      end
+
+      it "is the author's site for a User post" do
+        site = Site.make!
+        author = User.make!( site: site )
+        post = Post.make!( user: author, parent: author )
+        expect( post.as_indexed_json[:site_id] ).to eq site.id
+      end
+
+      it "is nil for a Project post" do
+        project = Project.make!
+        post = Post.make!( user: project.user, parent: project )
+        expect( post.as_indexed_json[:site_id] ).to be_nil
+      end
+    end
+
+    describe "body" do
+      it "strips HTML and script content, keeping words apart" do
+        html = "<p>First<br>line</p><script>alert('x')</script><p>Second <b>line</b></p>"
+        post = journal_post( body: html ).tap( &:save! )
+        expect( post.as_indexed_json[:body] ).to eq "First line Second line"
+      end
+
+      it "indexes a nil body as empty" do
+        post = journal_post.tap( &:save! )
+        post.update_column( :body, nil )
+        json = post.as_indexed_json
+        expect( json[:body] ).to eq ""
+        expect( json[:body_excerpt] ).to eq ""
+      end
+
+      it "caps the indexed text and keeps a short excerpt" do
+        post = journal_post( body: "word " * 30_000 ).tap( &:save! )
+        json = post.as_indexed_json
+        expect( json[:body].length ).to eq Post::INDEXED_BODY_MAX_LENGTH
+        expect( json[:body_excerpt].length ).to be <= Post::BODY_EXCERPT_LENGTH
+      end
+    end
+
+    it "marks drafts unpublished" do
+      post = journal_post( published_at: nil ).tap( &:save! )
+      expect( post.as_indexed_json[:published] ).to be false
+    end
+
+    it "marks posts flagged as spam" do
+      post = journal_post.tap( &:save! )
+      Flag.make!( flaggable: post, flag: Flag::SPAM )
+      expect( post.as_indexed_json[:spam] ).to be true
+    end
+
+    it "marks posts by spammers" do
+      post = journal_post.tap( &:save! )
+      post.user.update_column( :spammer, true )
+      json = post.as_indexed_json
+      expect( json[:user][:spammer] ).to be true
+      expect( json[:spam] ).to be false
+    end
+
+    it "counts comments for a batch in one query" do
+      with_comments = journal_post.tap( &:save! )
+      2.times { Comment.make!( parent: with_comments ) }
+      without_comments = journal_post.tap( &:save! )
+      batch = Post.where( id: [with_comments.id, without_comments.id] ).to_a
+      Post.prepare_batch_for_index( batch )
+      counts = batch.to_h {| post | [post.id, post.as_indexed_json[:comments_count]] }
+      expect( counts ).to eq( with_comments.id => 2, without_comments.id => 0 )
+    end
+  end
+
+  describe "posts index" do
+    it "does not use dynamic mappings" do
+      expect( Post.mappings.to_hash[:dynamic] ).to be false
+    end
+
+    it "keeps the body in _source without storing it separately" do
+      mapping = Post.mappings.to_hash
+      expect( mapping ).not_to have_key( :_source )
+      expect( mapping[:properties][:body] ).not_to have_key( :store )
+    end
+
+    describe "documents" do
+      before { enable_elastic_indexing( Post, use_transactional_fixtures: false ) }
+
+      it "have the body in _source" do
+        post = journal_post( body: "<p>A pangolin crossed the road.</p>" ).tap( &:save! )
+        Post.elastic_index!( ids: [post.id] )
+        expect( Post.elastic_get( post.id )["_source"]["body"] ).to eq "A pangolin crossed the road."
+      end
+    end
+  end
+
+  describe "prune_batch_for_index" do
+    it "drops trips" do
+      post = journal_post.tap( &:save! )
+      trip = Trip.make!
+      expect( Post.prune_batch_for_index( [post, trip] ) ).to eq [post]
+    end
+  end
+
+  describe "elastic_index!" do
+    it "does not index a trip" do
+      trip = Trip.make!
+      expect( trip.__elasticsearch__ ).not_to receive( :index_document )
+      expect { trip.elastic_index! }.not_to raise_error
+    end
+  end
+
+  describe "with Elasticsearch callbacks off" do
+    # Run this file with E2E_EAGER_LOAD=true to check the eager load order
+    it "installs no Elasticsearch commit callbacks" do
+      elastic_callbacks = Post._commit_callbacks.select do | callback |
+        callback.raw_filter.is_a?( Proc ) &&
+          callback.raw_filter.source_location.first.end_with?( "elastic_model/acts_as_elastic_model.rb" )
+      end
+      expect( elastic_callbacks ).to be_empty
+    end
+
+    describe "comments" do
+      before { enable_elastic_indexing( Post, use_transactional_fixtures: false ) }
+
+      def posts_index_count
+        Post.__elasticsearch__.refresh_index!
+        Post.__elasticsearch__.client.count( index: Post.index_name )["count"]
+      end
+
+      it "do not index the post" do
+        post = journal_post.tap( &:save! )
+        expect( post ).not_to receive( :elastic_index! )
+        Comment.make!( parent: post )
+        expect( posts_index_count ).to eq 0
+      end
+
+      it "do not index a trip" do
+        trip = Trip.make!
+        expect( trip ).not_to receive( :elastic_index! )
+        Comment.make!( parent: trip )
+        expect( posts_index_count ).to eq 0
+      end
+    end
+  end
 end

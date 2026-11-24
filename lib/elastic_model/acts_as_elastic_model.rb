@@ -12,8 +12,9 @@ module ActsAsElasticModel
       return if instance_methods.include?( :es_source ) && !options[:initialize]
 
       options[:lifecycle_callbacks] ||= [:create, :update, :destroy]
-      @inserts = 0
+      cattr_accessor :elastic_inserts, instance_accessor: false, default: 0
       include Elasticsearch::Model
+      singleton_class.prepend ActsAsElasticModel::BaseClassProxy
 
       attr_accessor :skip_indexing
       attr_accessor :wait_for_index_refresh
@@ -53,6 +54,15 @@ module ActsAsElasticModel
 
       include ActsAsElasticModel::InstanceMethods
       extend ActsAsElasticModel::SingletonMethods
+    end
+  end
+
+  # Subclasses use the base class proxy and share its index.
+  module BaseClassProxy
+    def __elasticsearch__( & )
+      return super if self == base_class
+
+      base_class.__elasticsearch__( & )
     end
   end
 
@@ -380,11 +390,10 @@ module ActsAsElasticModel
             update_column(:last_indexed_at, Time.now)
           end
 
-          inserts = self.class.instance_variable_get( "@inserts" ) + 1
-          self.class.instance_variable_set( "@inserts", inserts )
+          self.class.elastic_inserts += 1
           # garbage collect after a small batch of individual instance indexing
           # don't do this for every elastic_index! as GC is somewhat expensive
-          GC.start if ( inserts % 100 ).zero?
+          GC.start if ( self.class.elastic_inserts % 100 ).zero?
         rescue Elastic::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_index! failed: #{ e }"

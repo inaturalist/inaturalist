@@ -135,6 +135,7 @@ def elastic_models
     Observation => {},
     ObservationField => {},
     Place => { batch_size: 20 },
+    Post => {},
     Project => {},
     Taxon => {},
     UpdateAction => { batch_size: 5000 },
