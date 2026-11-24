@@ -897,6 +897,16 @@ da:
   blocking_description: Blokering forhindrer enhver kommunikation med en anden bruger i situationer, hvor vedkommende kan kompromittere din sikkerhed, såsom stalking eller anden krænkende adfærd.
   block_removed: Blokering fjernet
   blocked_users: Blokerede brugere
+  #Title of the admin page listing the categories that site blog posts can be filed under
+  blog_categories: Blogkategorier
+  #Error shown when an admin tries to delete a blog category that posts are still filed under
+  blog_category_in_use: Denne kategori kan ikke slettes, da den bruges af %{count} indlæg.
+  #Confirmation shown after an admin creates a blog category
+  blog_category_was_successfully_created: Kategori oprettet.
+  #Confirmation shown after an admin deletes a blog category
+  blog_category_was_successfully_deleted: Kategori slettet.
+  #Confirmation shown after an admin edits a blog category
+  blog_category_was_successfully_updated: Kategori opdateret.
   blog_widget: Blog-widget
   blue_butterfly_etc: "blå, sommerfugl, etc."
   body: Indhold
@@ -1969,6 +1979,8 @@ da:
   editing: Redigering
   #Title for a page to edit an announcement
   editing_announcement_x: Redigering af bekendtgørelse %{id}
+  #Title of the page for editing a blog category; label is the category's name
+  editing_blog_category_x: Redigering af kategori %{label}
   editing_custom_project_fields_for: Redigering af brugerdefinerede projektfelter for
   editing_observation_field: Redigering af observationsfelter
   editing_observation_id: "Redigering af observation %{obs_id}"
@@ -3103,6 +3115,8 @@ da:
   make_your_app_confidential: Gør din app fortrolig, hvis du kan gemme din app-hemmeligt sikkert, dvs. ikke i en offentligt tilgængelig binær, der kan dekompileres. Afmarkér feltet, hvis dette ikke er tilfældet, og du planlægger at bruge PKCE-flowet
   mammals: pattedyr
   manage_all_your_subscriptions: Administrer alle dine abonnementer
+  #Button on the site blog that takes admins to the page for managing blog categories
+  manage_categories: Kategorihåndtering
   manage_names: Administrér navne
   manage_your_projects: Administrer dine projekter
   manage_your_relationships: Administrér dine forbindelser
@@ -3397,6 +3411,8 @@ da:
   new_announcement: Ny meddelelse
   new_application: Ny applikation
   new_assessment: Ny vurdering
+  #Button and page title for creating a new blog category
+  new_blog_category: Ny kategori
   new_check_list: Ny tjekliste
   new_check_list_for: "Opret en ny tjekliste for %{place}&raquo;"
   new_check_list_record: "Hvis du vil markere denne liste som omfattende, opretter du den, tilføjer taxa, og redigerer den, og du får mulighed for at markere den som omfattende her."
@@ -3451,6 +3467,8 @@ da:
   #Shown when a list of 3rd party applications has no applications
   no_applications_yet: Ingen applikationer endnu
   no_assessments_have_been_added_to_this_project_yet: Ingen vurderinger er blevet tilføjet til dette projekt endnu.
+  #Shown on the blog categories admin page when no categories exist
+  no_blog_categories_yet: Ingen kategorier endnu.
   no_but_it_is_a_member_of_taxon: "Nej, men det er et medlem af %{taxon}"
   no_comments_yet: Ingen kommentarer endnu.
   no_creative_commons_flickr_photos_tagged_x: 'Ingen Creative Commons Flickr foto´s tagget "%{x}"'
@@ -6257,6 +6275,8 @@ da:
   uploading_num_of_count_photos:
     one: Uploader foto...
     other: Uploader %{num} af %{count} foto´s...
+  #Table heading for the short, URL-safe version of a name used in web addresses, e.g. "identifier-profiles"
+  url_slug: URL-slug
   url_for_your_app_outside_of_inaturalist: URL til din app uden for iNaturalist
   url_identifier_of_a_project_derived_from: "URL / identifikator for et projekt afledt af en ekstern ressource"
   url_of_this_taxon_on_the_source_website: URL for denne takson på kildens hjemmeside
@@ -10104,6 +10124,13 @@ da:
       blocked_user:
         #The user who has been blocked
         blocked_user: Blokeret bruger
+      blog_category:
+        #Name of a blog category, as shown to readers
+        friendly_id: Etiket
+        #Name of a blog category, as shown to readers
+        label: Etiket
+        #Number that sets the order blog categories are listed in
+        position: Position
       conservation_status:
         status: Status
         description: Beskrivelse
