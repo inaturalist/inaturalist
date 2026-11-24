@@ -1,0 +1,537 @@
+// Builds the donation amounts and formats workbook that engagement fills in.
+//
+//   node build.js donation-config.xlsx
+
+const fs = require( "node:fs" );
+const ExcelJS = require( "exceljs" );
+const {
+  TABS, H, SETTINGS, DEFAULT_DONATION_URL, FIRST_ROW, LAST_ROW, TIERS, FREQUENCIES, TIER_COLUMNS
+} = require( "./layout" );
+const {
+  STARTER, FRU_CURRENCIES, suggestion, currencyHome, currencyName, formatLanguage, allCountries, suggestedTiers,
+  purchasingPowerAdjusted, USD_RATES, FRU_ENABLED_CONFIRMED
+} = require( "./seed" );
+const { loadLocales } = require( "./locales" );
+const { writeValidations } = require( "./xlsx_validations" );
+
+const FONT = "Arial";
+const C = {
+  header: "FF1F3864",
+  headerText: "FFFFFFFF",
+  req: "FFD9D9D9",
+  input: "FFFFF2CC",
+  reference: "FFF2F2F2",
+  example: "FF7F7F7F",
+  bad: "FFF4CCCC"
+};
+
+const fill = argb => ( { type: "pattern", pattern: "solid", fgColor: { argb } } );
+const font = ( extra = {} ) => ( { name: FONT, size: 10, ...extra } );
+
+function colLetter( n ) {
+  let s = "";
+  let rest = n;
+  while ( rest > 0 ) {
+    const m = ( rest - 1 ) % 26;
+    s = String.fromCharCode( 65 + m ) + s;
+    rest = Math.floor( ( rest - 1 ) / 26 );
+  }
+  return s;
+}
+
+const list = ( ref, error ) => ( {
+  type: "list", formula: ref, errorTitle: "Pick from the list", error
+} );
+const yesNo = list( `${TABS.lists}!$C$2:$C$3`, "Choose Yes or No." );
+const wholeNumber = {
+  type: "whole",
+  operator: "greaterThan",
+  formula: "0",
+  errorTitle: "Whole number",
+  error: "FundraiseUp only accepts whole-number amounts greater than 0."
+};
+const amountPlaceholder = col => ( {
+  type: "custom",
+  formula: `ISNUMBER(SEARCH("{amount}",${col}${FIRST_ROW}))`,
+  errorTitle: "Missing {amount}",
+  error: "Include {amount} where the amount goes."
+} );
+const text = { numFmt: "@" };
+
+// The six tier amount columns; only the one-time min is ever required
+const tierColumns = minReq => FREQUENCIES.flatMap( freq => TIERS.map( tier => ( {
+  header: TIER_COLUMNS[freq][tier],
+  req: freq === "One-time" && tier === "min" ? minReq : "Optional",
+  width: 10,
+  validation: wholeNumber
+} ) ) );
+
+function buildWorkbook( ) {
+  const wb = new ExcelJS.Workbook( );
+  wb.creator = "iNaturalist Web team";
+  const validations = {};
+  const locales = loadLocales( );
+
+  // cols: [{ header, req, width, validation, formula, reference }]
+  function tableSheet( name, intro, cols, rows = [], { exampleRows = [] } = {} ) {
+    const ws = wb.addWorksheet( name );
+    ws.getCell( "A1" ).value = intro;
+    ws.getCell( "A1" ).font = font( { italic: true } );
+    ws.getCell( "A1" ).alignment = { wrapText: true, vertical: "top" };
+    ws.mergeCells( 1, 1, 1, cols.length );
+    ws.getRow( 1 ).height = 42;
+
+    cols.forEach( ( c, i ) => {
+      ws.getColumn( i + 1 ).width = c.width || 18;
+      const h = ws.getCell( 2, i + 1 );
+      h.value = c.header;
+      h.font = font( { bold: true, color: { argb: C.headerText } } );
+      h.fill = fill( C.header );
+      h.alignment = { wrapText: true, vertical: "middle" };
+      const r = ws.getCell( 3, i + 1 );
+      r.value = c.req;
+      r.font = font( { italic: true, bold: c.req.startsWith( "Required" ) } );
+      r.fill = fill( C.req );
+    } );
+    ws.getRow( 2 ).height = 44;
+
+    let row = FIRST_ROW;
+    exampleRows.forEach( values => {
+      values.forEach( ( v, i ) => {
+        const cell = ws.getCell( row, i + 1 );
+        cell.value = v;
+        cell.font = font( { italic: true, color: { argb: C.example } } );
+      } );
+      row += 1;
+    } );
+    rows.forEach( values => {
+      values.forEach( ( v, i ) => {
+        if ( v !== null && v !== undefined ) ws.getCell( row, i + 1 ).value = v;
+      } );
+      row += 1;
+    } );
+
+    const inputFrom = FIRST_ROW + exampleRows.length;
+    cols.forEach( ( c, i ) => {
+      for ( let r = FIRST_ROW; r <= LAST_ROW; r += 1 ) {
+        const cell = ws.getCell( r, i + 1 );
+        if ( !cell.font || !cell.font.italic ) cell.font = font( );
+        if ( c.numFmt ) cell.numFmt = c.numFmt;
+        if ( c.formula ) {
+          cell.value = { formula: c.formula( r ) };
+        } else if ( c.reference ) {
+          cell.fill = fill( C.reference );
+        } else if ( r >= inputFrom ) {
+          cell.fill = fill( C.input );
+        }
+      }
+      if ( c.validation ) {
+        const L = colLetter( i + 1 );
+        validations[name] = validations[name] || [];
+        validations[name].push( { ...c.validation, sqref: `${L}${FIRST_ROW}:${L}${LAST_ROW}` } );
+      }
+    } );
+    ws.views = [{ state: "frozen", ySplit: 3, xSplit: 1 }];
+    return ws;
+  }
+
+  // ---------- How to fill ----------
+  const how = wb.addWorksheet( TABS.how );
+  how.getColumn( 1 ).width = 26;
+  how.getColumn( 2 ).width = 100;
+  const howRows = [
+    ["Donation amounts and button text", null],
+    ["What this is", "The amounts and button text that iNaturalist announcements show donors in their own currency and language. Engineering turns this into config/donation_currencies.yml and the donation_labels locale files."],
+    [null, null],
+    ["Legend", null],
+    ["Light yellow cells", "Fill these in."],
+    ["Light gray cells", "Reference only. Filled from data we already have."],
+    ["Gray italic row", "Example row showing the expected format. Replace it or leave it; it is not imported."],
+    ["Required / Optional", "Row 3 of each tab says whether a column is required for launch. Optional columns help us get formatting right, so fill them where you can."],
+    ["Pre-filled formats", "Symbols and the 1,000.00 and 1,000,000.00 examples are pre-filled from the Unicode CLDR standard (what browsers use). Correct anything that's wrong and set \"Format checked?\" to Yes. Where several currencies share a symbol, such as $, £ or kr, the currency code is added: $1,000.00 (CAD). Remove it only if viewers there won't confuse the currency."],
+    ["Writing the examples", "Write one thousand and one million, with cents, exactly as people in that country and language would see them, including the currency symbol: 1 000,00 € or ₹10,00,000.00. Buttons use whole amounts, but the cents tell us the decimal separator, and the two examples tell us the thousands separator and how digits are grouped."],
+    [null, null],
+    ["Tabs, in order", null],
+    [TABS.settings, "Overall settings: fallback country, tier names, default donation page, FundraiseUp details."],
+    [TABS.currencies, "Every currency FundraiseUp supports, with its default amounts, symbol, default format, and whether it is enabled in the FundraiseUp campaign. Amounts and formats here apply to every country using the currency unless the country sets its own. Only currencies with a count in \"Enabled countries using it\" need checking."],
+    [TABS.countries, "One row per country using a FundraiseUp currency: its currency, how amounts look there, and any amounts that should differ from its currency's. Disable a country to give viewers there the fallback country's amounts and currency instead."],
+    ["How amounts are chosen", "For each tier: the country's own amount, then its currency's on Currencies. Only the one-time min is required for now. A tier with no amount at either level uses the fallback country's amount and currency."],
+    ["Pre-filled amounts", "Currencies on our donation form have one-time amounts pre-filled: $5, $20 and $100, converted at the ratio between the lowest amounts the form shows in that currency and in USD (e.g. DKK 20 to $2.75), then rounded to a round number. No amount may be worth less than $3 at market exchange rates, so a few are raised (e.g. INR to 300). Other currencies have only a one-time min: $5 at market rates, rounded down, marked No in \"Purchasing power adjusted?\". Change any that look wrong."],
+    [TABS.countryLanguages, "Only where a country's amounts should look different in one of its other languages, e.g. Switzerland: CHF 1'000.00 in German, 1'000.00 CHF in French."],
+    ["How formats are chosen", "For a viewer in a country using a language: Country by language first, then the country's own format on Countries, then the currency default on Currencies."],
+    [TABS.buttons, "The button text for each language, with {amount} where the amount goes. Each language is listed with our existing translation of \"Donate\" for reference; leave a row blank to fall back to English."],
+    [TABS.overrides, "Only where the generated button text isn't right for a specific country, language and tier. Write the exact text."],
+    [TABS.reference, "Every config field, whether it is required, and which column it comes from."],
+    [TABS.lists, "Values for the dropdowns. Do not edit."],
+    [null, null],
+    ["Codes", "Countries use 2-letter ISO codes (US, MX, FR). Currencies use 3-letter ISO codes (USD, MXN, EUR). Languages use the iNaturalist locale codes on the Lists tab (es, es-MX, pt-BR)."],
+    ["Placeholders", "Write {amount} in button text where the formatted amount goes. Example: Donnez {amount} becomes Donnez 5 €."]
+  ];
+  howRows.forEach( ( r, i ) => {
+    const row = how.getRow( i + 1 );
+    row.values = r;
+    row.font = font( );
+    row.getCell( 1 ).alignment = { vertical: "top" };
+    row.getCell( 2 ).alignment = { wrapText: true, vertical: "top" };
+    if ( r[0] && r[1] ) row.getCell( 1 ).font = font( { bold: true } );
+  } );
+  how.getCell( "A1" ).font = font( { bold: true, size: 14 } );
+  how.getCell( "A4" ).font = font( { bold: true } );
+  how.getCell( "A12" ).font = font( { bold: true } );
+  how.getCell( "A5" ).fill = fill( C.input );
+  how.getCell( "A6" ).fill = fill( C.reference );
+  how.getCell( "A7" ).font = font( { italic: true, color: { argb: C.example } } );
+
+  // ---------- Settings ----------
+  const settings = wb.addWorksheet( TABS.settings );
+  settings.columns = [
+    { header: "Setting", width: 30 },
+    { header: "Required?", width: 12 },
+    { header: "Value", width: 36 },
+    { header: "Example", width: 36 },
+    { header: "What it's for", width: 70 }
+  ];
+  const settingRows = [
+    [SETTINGS.fallbackCountry, "Required", "US", "US", "Shown when we can't tell the viewer's country, or the country isn't on the Countries tab or is disabled. Must be on the Countries tab."],
+    [SETTINGS.tierNames, "Required", "min, mid, max", "min, mid, max", "The tiers every country must have. Announcements refer to these names."],
+    [SETTINGS.defaultUrl, "Optional", DEFAULT_DONATION_URL, DEFAULT_DONATION_URL, "Where donation buttons send people when the announcement doesn't give its own link. The amount and currency are added to this link. The page opens in the viewer's iNaturalist language."],
+    [SETTINGS.designationId, "Optional", null, "E12345", "Only if announcement gifts should go to a specific designation."],
+    [SETTINGS.customFields, "Optional", null, "source=announcement", "Fields to attach to every announcement donation, for attribution. They must exist in the campaign first."],
+    [SETTINGS.utmSource, "Optional", null, "inaturalist", "Added to donation links so FundraiseUp reports show where gifts came from."],
+    [SETTINGS.utmMedium, "Optional", null, "announcement", "As above."],
+    [SETTINGS.lastReviewed, "Optional", null, "2026-11-01", "When these amounts were last checked."],
+    [SETTINGS.reviewedBy, "Optional", null, "Engagement team", "Who to ask about these amounts."]
+  ];
+  settingRows.forEach( r => settings.addRow( r ) );
+  settings.getRow( 1 ).eachCell( c => {
+    c.font = font( { bold: true, color: { argb: C.headerText } } );
+    c.fill = fill( C.header );
+  } );
+  for ( let r = 2; r <= settingRows.length + 1; r += 1 ) {
+    const row = settings.getRow( r );
+    row.eachCell( { includeEmpty: true }, c => {
+      c.font = font( );
+      c.alignment = { wrapText: true, vertical: "top" };
+    } );
+    row.getCell( 2 ).font = font( { bold: row.getCell( 2 ).value === "Required" } );
+    row.getCell( 3 ).fill = fill( C.input );
+    row.getCell( 3 ).numFmt = "@";
+    row.getCell( 4 ).font = font( { italic: true, color: { argb: C.example } } );
+  }
+  settings.views = [{ state: "frozen", ySplit: 1 }];
+
+  // ---------- Currencies ----------
+  const currencyRows = FRU_CURRENCIES.map( currency => {
+    const [homeCountry, homeName, , homeLangs] = currencyHome( currency );
+    const s = suggestion( homeLangs[0], homeCountry, currency );
+    const tiers = suggestedTiers( currency );
+    const adjusted = purchasingPowerAdjusted( currency );
+    const notes = [`Format from ${homeName}.`, `Enabled in the FundraiseUp campaign (confirmed ${FRU_ENABLED_CONFIRMED}).`];
+    if ( adjusted ) {
+      notes.push( "Amounts are $5, $20 and $100 at the ratio of the lowest amounts on our donation form, rounded, and at least $3 at market rates." );
+    } else if ( tiers ) {
+      notes.push( `One-time min is $5 at market rates (${USD_RATES.updated}), rounded down; not adjusted for purchasing power.` );
+    }
+    return [currency, currencyName( currency ), null, tiers?.min, tiers?.mid, tiers?.max, null, null, null,
+      tiers ? ( adjusted ? "Yes" : "No" ) : null,
+      s.symbol, s.thousand, s.million, null, "Yes", null, null, notes.join( " " )];
+  } );
+  tableSheet( TABS.currencies,
+    "Every currency FundraiseUp supports. Amounts and formats here are defaults for every country using the currency; a country's own on the Countries tab win. Every currency an enabled country uses needs a one-time min, unless all those countries set their own. Symbol and examples are pre-filled from the Unicode CLDR standard.",
+    [
+      { header: H.currencyCode, req: "Required", width: 14, ...text },
+      { header: H.currencyName, req: "Optional", width: 22 },
+      {
+        header: H.currencyUsedBy,
+        req: "Formula",
+        width: 11,
+        formula: r => `IF(A${r}="","",COUNTIFS(${TABS.countries}!$C$${FIRST_ROW}:$C$${LAST_ROW},A${r},${TABS.countries}!$O$${FIRST_ROW}:$O$${LAST_ROW},"<>No"))`
+      },
+      ...tierColumns( "Required if used" ),
+      { header: H.purchasingPower, req: "Optional", width: 13, validation: yesNo },
+      { header: H.symbol, req: "Required", width: 9, ...text },
+      { header: H.currencyThousand, req: "Required", width: 18, ...text },
+      { header: H.currencyMillion, req: "Required", width: 20, ...text },
+      { header: H.formatChecked, req: "Optional", width: 10, validation: yesNo },
+      {
+        header: H.fruEnabled,
+        req: "Required if used",
+        width: 16,
+        validation: list( `${TABS.lists}!$C$2:$C$4`, "Choose Yes, No or Not sure." )
+      },
+      { header: H.fruMinOnce, req: "Optional", width: 14, validation: wholeNumber },
+      { header: H.fruMinMonthly, req: "Optional", width: 14, validation: wholeNumber },
+      { header: H.notes, req: "Optional", width: 30 }
+    ],
+    currencyRows );
+
+  // ---------- Countries ----------
+  const countryList = allCountries( new Set( locales.map( l => l.code ) ) );
+  const countryRows = countryList.map( ( [cc, name, currency, langs, notes] ) => {
+    const starter = STARTER.some( st => st[0] === cc );
+    const s = suggestion( formatLanguage( cc, langs ), cc, currency );
+    return [cc, name, currency, null, null, null, null, null, null, langs.join( ", " ),
+      s.symbol, s.thousand, s.million, null, "Yes", starter ? "Starter country" : notes];
+  } );
+  const countries = tableSheet( TABS.countries,
+    "Every country using a FundraiseUp currency, starter countries first. Amounts are optional here: a blank one uses the currency's amount on the Currencies tab. Fill them in only where a country should differ from others sharing its currency. Set \"Enabled?\" to No for countries that should get the fallback country's amounts and currency instead. Format columns are pre-filled from the Unicode CLDR standard for the country's local language: correct anything that's wrong, then set \"Format checked?\" to Yes.",
+    [
+      {
+        header: H.countryCode,
+        req: "Required",
+        width: 11,
+        ...text,
+        validation: {
+          type: "custom",
+          formula: `AND(LEN(A${FIRST_ROW})=2,EXACT(A${FIRST_ROW},UPPER(A${FIRST_ROW})))`,
+          errorTitle: "Country code",
+          error: "Use a 2-letter uppercase ISO code, e.g. MX."
+        }
+      },
+      { header: H.countryName, req: "Optional", width: 16 },
+      {
+        header: H.currency,
+        req: "Required",
+        width: 10,
+        ...text,
+        validation: list( `${TABS.currencies}!$A$${FIRST_ROW}:$A$${LAST_ROW}`, "Add the currency on the Currencies tab first." )
+      },
+      ...tierColumns( "Optional" ),
+      { header: H.languages, req: "Optional", width: 16 },
+      { header: H.countrySymbol, req: "Optional", width: 9, ...text },
+      { header: H.countryThousand, req: "Optional", width: 16, ...text },
+      { header: H.countryMillion, req: "Optional", width: 19, ...text },
+      { header: H.formatChecked, req: "Optional", width: 10, validation: yesNo },
+      { header: H.enabled, req: "Optional", width: 9, validation: yesNo },
+      { header: H.source, req: "Optional", width: 30 }
+    ],
+    countryRows );
+  // Duplicate country codes and tiers out of order get a red fill
+  countries.addConditionalFormatting( {
+    ref: `A${FIRST_ROW}:A${LAST_ROW}`,
+    rules: [{
+      type: "expression",
+      formulae: [`AND(A${FIRST_ROW}<>"",COUNTIF($A$${FIRST_ROW}:$A$${LAST_ROW},A${FIRST_ROW})>1)`],
+      style: { fill: fill( C.bad ) }
+    }]
+  } );
+  [["D", "E", "F"], ["G", "H", "I"]].forEach( ( [lo, mid, hi] ) => {
+    countries.addConditionalFormatting( {
+      ref: `${lo}${FIRST_ROW}:${hi}${LAST_ROW}`,
+      rules: [{
+        type: "expression",
+        formulae: [`AND(COUNT($${lo}${FIRST_ROW}:$${hi}${FIRST_ROW})=3,NOT(AND($${lo}${FIRST_ROW}<=$${mid}${FIRST_ROW},$${mid}${FIRST_ROW}<=$${hi}${FIRST_ROW})))`],
+        style: { fill: fill( C.bad ) }
+      }]
+    } );
+  } );
+
+  // ---------- Country by language ----------
+  // Rows only for a country's other languages; its own format is on Countries.
+  // Starter countries get a row for each; other countries only where CLDR's
+  // format differs.
+  const countryLanguageRows = [];
+  countryList.forEach( ( [cc, , currency, langs] ) => {
+    const starter = STARTER.some( st => st[0] === cc );
+    const formatLang = formatLanguage( cc, langs );
+    const main = suggestion( formatLang, cc, currency );
+    langs.filter( lang => lang !== formatLang ).forEach( lang => {
+      const s = suggestion( lang, cc, currency );
+      const same = s.thousand === main.thousand && s.million === main.million;
+      if ( same && !starter ) return;
+      countryLanguageRows.push( [cc, lang, s.symbol === main.symbol ? null : s.symbol, s.thousand, s.million,
+        null, same ? "Same as the country's main language; delete unless it needs to differ" : null] );
+    } );
+  } );
+  tableSheet( TABS.countryLanguages,
+    "Only where a country's amounts should look different in one of its other languages, e.g. Switzerland: CHF 1'000.00 in German, 1'000.00 CHF in French. Pre-filled from the Unicode CLDR standard: every other language of a starter country, and other countries' languages where CLDR differs.",
+    [
+      {
+        header: H.country,
+        req: "Required",
+        width: 10,
+        ...text,
+        validation: list( `${TABS.countries}!$A$${FIRST_ROW}:$A$${LAST_ROW}`, "Add the country on the Countries tab first." )
+      },
+      {
+        header: H.language,
+        req: "Required",
+        width: 10,
+        ...text,
+        validation: list( `${TABS.lists}!$A$2:$A$100`, "Pick a language code from the Lists tab." )
+      },
+      { header: H.langSymbol, req: "Optional", width: 12, ...text },
+      { header: H.langThousand, req: "Required", width: 16, ...text },
+      { header: H.langMillion, req: "Required", width: 19, ...text },
+      { header: H.formatChecked, req: "Optional", width: 10, validation: yesNo },
+      { header: H.notes, req: "Optional", width: 40 }
+    ],
+    countryLanguageRows );
+
+  // ---------- Button text ----------
+  tableSheet( TABS.buttons,
+    "Button text for each language. Put {amount} where the amount goes. Leave a row blank to fall back to English. English is required. The gray column shows our existing translation of \"Donate\" for reference.",
+    [
+      { header: H.language, req: "Required", width: 10, ...text },
+      { header: H.languageName, req: "Optional", width: 24 },
+      { header: H.donateReference, req: "Reference", width: 22, reference: true },
+      {
+        header: H.onceText, req: "Required (en)", width: 30, validation: amountPlaceholder( "D" )
+      },
+      {
+        header: H.monthlyText, req: "Required (en)", width: 30, validation: amountPlaceholder( "E" )
+      },
+      {
+        header: H.textSource,
+        req: "Optional",
+        width: 20,
+        validation: list( `${TABS.lists}!$G$2:$G$5`, "Pick a source from the list." )
+      },
+      { header: H.notes, req: "Optional", width: 36 }
+    ],
+    locales.map( l => {
+      const reference = l.donate && l.donateFrom !== l.code ? `${l.donate} (from ${l.donateFrom})` : l.donate;
+      return l.code === "en"
+        ? [l.code, l.name, reference, "Donate {amount}", "Donate {amount}/month", "Engagement", null]
+        : [l.code, l.name, reference, null, null, null, null];
+    } ) );
+
+  // ---------- Exact text overrides ----------
+  tableSheet( TABS.overrides,
+    "Only where the generated button text isn't right. Write the exact text, including the amount. \"Tier amount\" shows the amount from the Countries tab, or the currency's on Currencies, so you can check it matches.",
+    [
+      {
+        header: H.country,
+        req: "Required",
+        width: 10,
+        ...text,
+        validation: list( `${TABS.countries}!$A$${FIRST_ROW}:$A$${LAST_ROW}`, "Add the country on the Countries tab first." )
+      },
+      {
+        header: H.language,
+        req: "Required",
+        width: 10,
+        ...text,
+        validation: list( `${TABS.lists}!$A$2:$A$100`, "Pick a language code from the Lists tab." )
+      },
+      {
+        header: H.frequency,
+        req: "Required",
+        width: 12,
+        validation: list( `${TABS.lists}!$I$2:$I$3`, "Choose One-time or Monthly." )
+      },
+      {
+        header: H.tier,
+        req: "Required",
+        width: 8,
+        validation: list( `${TABS.lists}!$K$2:$K$4`, "Choose min, mid or max." )
+      },
+      { header: H.exactText, req: "Required", width: 30 },
+      { header: H.notes, req: "Optional", width: 30 },
+      {
+        header: H.tierAmount,
+        req: "Formula",
+        width: 12,
+        formula: r => {
+          // The country's own amount, else its currency's
+          const range = ( tab, cols ) => `${tab}!$${cols[0]}$${FIRST_ROW}:$${cols[1]}$${LAST_ROW}`;
+          const row = `MATCH(A${r},${range( TABS.countries, "AA" )},0)`;
+          const col = `IF(C${r}="Monthly",3,0)+MATCH(D${r},${TABS.lists}!$K$2:$K$4,0)`;
+          const own = `INDEX(${range( TABS.countries, "DI" )},${row},${col})`;
+          const currencyRow = `MATCH(INDEX(${range( TABS.countries, "CC" )},${row}),${range( TABS.currencies, "AA" )},0)`;
+          const fromCurrency = `INDEX(${range( TABS.currencies, "DI" )},${currencyRow},${col})`;
+          return `IF(OR(A${r}="",C${r}="",D${r}=""),"",IFERROR(IF(${own}<>"",${own},IFERROR(IF(${fromCurrency}<>"",${fromCurrency},"No amount"),"No amount")),"Country not found"))`;
+        }
+      }
+    ],
+    [],
+    { exampleRows: [["FR", "fr", "One-time", "min", "Donnez 5 €", "Example row"]] } );
+
+  // ---------- Field reference ----------
+  const ref = wb.addWorksheet( TABS.reference );
+  ref.columns = [
+    { header: "File", width: 30 },
+    { header: "Field", width: 44 },
+    { header: "Required?", width: 11 },
+    { header: "Comes from", width: 40 },
+    { header: "Example", width: 30 },
+    { header: "Purpose", width: 70 }
+  ];
+  const Y = "config/donation_currencies.yml";
+  const L = "config/locales/donation_labels/<locale>.yml";
+  const LEVELS = "currencies.<ISO> / countries.\"<ISO2>\" / countries.\"<ISO2>\".formats.<locale>";
+  const EXAMPLES = "the 1,000.00 and 1,000,000.00 examples on Currencies, Countries or Country by language";
+  [
+    [Y, "default_country", "Required", "Settings", "\"US\"", "Fallback when geolocation fails, the country isn't listed or is disabled, or a tier has no amount. Should have every tier any country uses."],
+    [Y, "tier_names", "Required", "Settings", "[min, mid, max]", "Fixed tier set. Only once.min is required for now."],
+    [Y, "frequencies", "Required", "(fixed)", "{ once: once, monthly: monthly }", "Our frequency name and FundraiseUp's recurring value."],
+    [Y, "last_reviewed", "Optional", "Settings", "2026-11-01", "When amounts were last checked."],
+    [Y, "fru.default_url", "Optional", "Settings", DEFAULT_DONATION_URL, "Base URL for [donation-url] when the shortcode doesn't give one. _lang is always the viewer's locale."],
+    [Y, "fru.designation_id", "Optional", "Settings", "E12345", "FundraiseUp designation for announcement gifts."],
+    [Y, "fru.custom_fields", "Optional", "Settings", "{ source: announcement }", "Attribution fields; must exist in the campaign."],
+    [Y, "fru.utm_defaults", "Optional", "Settings", "{ utm_source: inaturalist }", "Shared with WEB-1389."],
+    [Y, "currencies.<ISO>.name", "Optional", "Currencies", "Euro", "Admin preview and docs."],
+    [Y, "currencies.<ISO>.fru_enabled", "Required if used", "Currencies", "true", "Confirms the currency is enabled in the campaign. Only currencies a country uses need it."],
+    [Y, "currencies.<ISO>.fru_minimum", "Optional", "Currencies", "{ once: 1, monthly: 1 }", "Tiers are checked against it."],
+    [Y, "currencies.<ISO>.tiers.<frequency>.<tier>", "once.min required if used", "Currencies", "once: { min: 5, mid: 10, max: 25 }", "Default amounts for countries using the currency."],
+    [Y, "currencies.<ISO>.purchasing_power_adjusted", "Optional", "Currencies", "false", "Whether the amounts were adjusted for purchasing power or converted at market rates."],
+    [Y, "countries.\"<ISO2>\".currency", "Required", "Countries", "EUR", "Must exist under currencies."],
+    [Y, "countries.\"<ISO2>\".tiers.<frequency>.<tier>", "Optional", "Countries", "once: { min: 5 }", "Overrides the currency's amount for that tier."],
+    [Y, "countries.\"<ISO2>\".label_overrides (WEB-1362)", "Optional", TABS.overrides, "fr: { once: { min: \"Donnez 5 €\" } }", "Exact button text; digits must match the amount."],
+    [Y, "countries.\"<ISO2>\".locales", "Optional", "Countries (languages)", "[fr, en]", "Admin preview options and test coverage."],
+    [Y, "countries.\"<ISO2>\".enabled", "Optional", "Countries", "true", "false gives viewers there the fallback country's amounts and currency."],
+    [Y, `${LEVELS} .symbol`, "Required on currencies", "Symbol columns", "€, kr., CHF", "The symbol. Also used to find the symbol in the examples."],
+    [Y, `${LEVELS} .format`, "Required on currencies", EXAMPLES, "\"%n %u\"", "Where the symbol and code go. %n = number, %u = symbol, %c = ISO code."],
+    [Y, `${LEVELS} .delimiter`, "Optional", EXAMPLES, "\" \", \".\", \",\", \"'\"", "Thousands separator. Falls back to the language default from rails-i18n."],
+    [Y, `${LEVELS} .separator`, "Optional", EXAMPLES, "\",\"", "Decimal separator. Stored now; v1 amounts are whole numbers."],
+    [Y, `${LEVELS} .group_min_digits`, "Optional", "the 1,000.00 example", "2", "2 = 1000 is written ungrouped (Spain, Portugal); default 1."],
+    [Y, `${LEVELS} .grouping`, "Optional", "the 1,000,000.00 example", "indian", "standard (default) or indian (10,00,000)."],
+    [`${L} (WEB-1362)`, "donation_labels.once", "Required (en)", TABS.buttons, "Donnez %{amount}", "One-time button text. Other languages fall back to English."],
+    [`${L} (WEB-1362)`, "donation_labels.monthly", "Required (en)", TABS.buttons, "Donnez %{amount}/mois", "Monthly button text."]
+  ].forEach( r => ref.addRow( r ) );
+  ref.getRow( 1 ).eachCell( c => {
+    c.font = font( { bold: true, color: { argb: C.headerText } } );
+    c.fill = fill( C.header );
+  } );
+  ref.eachRow( ( row, n ) => {
+    if ( n === 1 ) return;
+    row.eachCell( { includeEmpty: true }, c => {
+      c.font = font( { bold: c.col === 3 && String( c.value ).startsWith( "Required" ) } );
+      c.alignment = { wrapText: true, vertical: "top" };
+    } );
+  } );
+  ref.views = [{ state: "frozen", ySplit: 1 }];
+
+  // ---------- Lists ----------
+  const lists = wb.addWorksheet( TABS.lists );
+  lists.getRow( 1 ).values = ["Language code", "Language name", "Yes / No", null, null, null,
+    "Text source", null, "Frequency", null, "Tier"];
+  lists.getRow( 1 ).font = font( { bold: true } );
+  locales.forEach( ( l, i ) => {
+    lists.getCell( i + 2, 1 ).value = l.code;
+    lists.getCell( i + 2, 2 ).value = l.name;
+  } );
+  ["Yes", "No", "Not sure"].forEach( ( v, i ) => { lists.getCell( i + 2, 3 ).value = v; } );
+  ["Crowdin", "Engagement", "Machine translation", "Other"].forEach( ( v, i ) => { lists.getCell( i + 2, 7 ).value = v; } );
+  FREQUENCIES.forEach( ( v, i ) => { lists.getCell( i + 2, 9 ).value = v; } );
+  TIERS.forEach( ( v, i ) => { lists.getCell( i + 2, 11 ).value = v; } );
+  lists.getColumn( 1 ).numFmt = "@";
+  [1, 2, 3, 7, 9, 11].forEach( c => { lists.getColumn( c ).width = c === 2 ? 24 : 14; } );
+  lists.eachRow( row => row.eachCell( c => { if ( !c.font?.bold ) c.font = font( ); } ) );
+
+  return { wb, validations };
+}
+
+async function writeWorkbook( out ) {
+  const { wb, validations } = buildWorkbook( );
+  const buffer = await writeValidations( await wb.xlsx.writeBuffer( ), validations );
+  fs.writeFileSync( out, buffer );
+  return buffer.length;
+}
+
+if ( require.main === module ) {
+  const out = process.argv[2] || "donation-config.xlsx";
+  writeWorkbook( out ).then( size => console.log( `wrote ${out} (${size} bytes)` ) );
+}
+
+module.exports = { writeWorkbook };
