@@ -28,6 +28,7 @@ async function createBlogPost( attrs: Record<string, unknown> ): Promise<string>
 }
 
 test.beforeAll( async () => {
+  await app( "enable_feature_flag", { key: "blog_v2" } );
   const user = await appMake( "create", "user", {} );
   const site = await appMake( "create", "site", {} );
   const base = { user_id: user.id, parent_id: site.id, title: LONG_TITLE };

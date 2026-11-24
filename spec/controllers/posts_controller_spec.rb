@@ -540,9 +540,29 @@ describe PostsController, "show" do
   end
 
   describe "templates" do
-    it "renders the blog page for a Site post" do
+    it "renders the blog page for a Site post when blog_v2 is on" do
+      Flipper.enable( :blog_v2 )
       get :show, params: { id: Post.make!( parent: Site.make!, user: user ).id }
       expect( response ).to render_template( :show_blog )
+    end
+
+    it "keeps the shared page for a Site post when blog_v2 is off" do
+      get :show, params: { id: Post.make!( parent: Site.make!, user: user, published_at: 1.hour.ago ).id }
+      expect( response ).to render_template( :show )
+      expect( response ).not_to render_template( :show_blog )
+    end
+
+    it "renders the blog page only for users blog_v2 is enabled for" do
+      staff = User.make!
+      Flipper.enable_actor( :blog_v2, staff )
+      blog_post = Post.make!( parent: Site.make!, user: user, published_at: 1.hour.ago )
+      sign_in staff
+      get :show, params: { id: blog_post.id }
+      expect( response ).to render_template( :show_blog )
+      sign_out staff
+      sign_in User.make!
+      get :show, params: { id: blog_post.id }
+      expect( response ).not_to render_template( :show_blog )
     end
 
     it "keeps the shared page for a journal post" do
@@ -565,6 +585,8 @@ describe PostsController, "show for a blog post" do
   let( :site ) { Site.make! }
   let( :author ) { User.make! }
   let( :blog_post ) { Post.make!( parent: site, user: author, published_at: 1.hour.ago ) }
+
+  before { Flipper.enable( :blog_v2 ) }
 
   def html
     Nokogiri::HTML( response.body )

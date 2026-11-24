@@ -119,7 +119,7 @@ class PostsController < ApplicationController
         end
         @shareable_description = helpers.shareable_description( @post.body ) if @post.body
         @responsive = true
-        if @post.parent_type == "Site"
+        if @post.parent_type == "Site" && FeatureFlagging.enabled?( :blog_v2, current_user )
           @no_bootstrap = true
           @other_posts = @post.parent.posts.published.where.not( id: @post.id ).
             order( published_at: :desc ).limit( 3 ).includes( :blog_category, :cover_image )
