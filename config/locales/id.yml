@@ -804,6 +804,16 @@ id:
   blocking_description: Pemblokiran akan mencegah komunikasi Anda dengan pengguna lain. Pendekatan ini bisa dipakai untuk situasi di mana pengguna lain membahayakan keselamatan Anda, seperti stalking atau perilaku-perilaku lain yang tidak diinginkan.
   block_removed: Blokiran dihapus
   blocked_users: Pengguna Yang Diblokir
+  #Title of the admin page listing the categories that site blog posts can be filed under
+  blog_categories: Kategori blog
+  #Error shown when an admin tries to delete a blog category that posts are still filed under
+  blog_category_in_use: Kategori ini tidak dapat dihapus karena ia digunakan oleh %{count} postingan.
+  #Confirmation shown after an admin creates a blog category
+  blog_category_was_successfully_created: Kategori berhasil dibuat.
+  #Confirmation shown after an admin deletes a blog category
+  blog_category_was_successfully_deleted: Kategori berhasil dihapus.
+  #Confirmation shown after an admin edits a blog category
+  blog_category_was_successfully_updated: Kategori berhasil diperbarui.
   blog_widget: Widget blog
   blue_butterfly_etc: "biru, kupu-kupu, dll."
   body: Isi
@@ -1854,6 +1864,8 @@ id:
   editing: Menyunting
   #Title for a page to edit an announcement
   editing_announcement_x: Mengedit pengumuman %{id}
+  #Title of the page for editing a blog category; label is the category's name
+  editing_blog_category_x: Mengedit kategori %{label}
   editing_custom_project_fields_for: Mengubah bidang proyek kustom untuk
   editing_observation_field: Mengubah bidang pengamatan
   editing_observation_id: "Mengubah Pengamatan %{obs_id}"
@@ -2956,6 +2968,8 @@ id:
   make_your_app_confidential: Buat aplikasi menjadi rahasia jika Anda bisa menyimpan rahasia aplikasi Anda secara aman, tidak dalam format biner yang dapat diakses publik yang dapat diuraikan. Jangan centang kotak ini jika Anda tidak menginginkannya dan Anda berencana menggunakan alur PKCE
   mammals: mamalia
   manage_all_your_subscriptions: Kelola semua langganan Anda
+  #Button on the site blog that takes admins to the page for managing blog categories
+  manage_categories: Kelola kategori
   manage_names: Kelola Nama
   manage_your_projects: Kelola Proyek Anda
   manage_your_relationships: Kelola relasi
@@ -3241,6 +3255,8 @@ id:
   new_announcement: Pengumuman baru
   new_application: Aplikasi baru
   new_assessment: Penilaian baru
+  #Button and page title for creating a new blog category
+  new_blog_category: Kategori baru
   new_check_list: Daftar centang baru
   new_check_list_for: "Buat daftar centang baru untuk %{place} &raquo;"
   new_check_list_record: "Jika Anda ingin menandai daftar ini sebagai daftar komprehensif, buat dan tambahkan taksa, kemudian ubah daftar tersebut dan Anda akan memiliki pilihan untuk menandainya sebagai daftar komprehensif di sini."
@@ -3295,6 +3311,8 @@ id:
   #Shown when a list of 3rd party applications has no applications
   no_applications_yet: Belum ada aplikasi
   no_assessments_have_been_added_to_this_project_yet: Belum ada penilaian yang ditambahkan ke proyek ini.
+  #Shown on the blog categories admin page when no categories exist
+  no_blog_categories_yet: Belum ada kategori.
   no_but_it_is_a_member_of_taxon: "Bukan, itu adalah anggota %{taxon}"
   no_comments_yet: Belum ada komentar.
   no_creative_commons_flickr_photos_tagged_x: 'Tidak ada foto Creative Commons Flickr yang ditandai dengan "%{x}"'
@@ -5958,6 +5976,8 @@ id:
       upload_failed: Gagal mengunggah
   uploading_num_of_count_photos:
     other: Mengunggah %{num} dari %{count} foto...
+  #Table heading for the short, URL-safe version of a name used in web addresses, e.g. "identifier-profiles"
+  url_slug: Slug URL
   url_for_your_app_outside_of_inaturalist: URL untuk aplikasi Anda di luar iNaturalist
   url_identifier_of_a_project_derived_from: "URL / pengenal dari sebuah proyek yang berasal dari beberapa sumber eksternal"
   url_of_this_taxon_on_the_source_website: URL takson ini pada situs sumber
@@ -6375,7 +6395,7 @@ id:
   yir_email_because_of_you: |
     Karena kamu, ada lebih banyak data keanekaragaman hayati tahun ini dibandingkan tahun lalu. Ulasan Tahun ini adalah hadiah kami untuk semua yang telah kamu lakukan untuk keanekaragaman hayati melalui iNaturalist.
   yir_email_log_in_to_generate: |
-    Masuk untuk membuat ulasan tahun pribadimu dan melihatnya!
+    Masuk untuk membuat ulasan tahun pribadi Anda dan melihatnya!
   yir_email_of_your_observations:
     other: Dari %{count} pengamatan Anda, apakah Anda tahu berapa banyak yang dibuat pada %{year}?
   #Feel free to adjust this if %{year} or "Your" don't translate well
@@ -6385,8 +6405,8 @@ id:
   yir_email_the_inaturalist_team: Tim iNaturalist
   yir_email_the_year_isnt_over: |
     Tahun ini belum berakhir, dan tidak ada kata terlambat untuk 
-    mengunggah pengamatan lama. Setelah kamu membagikan lebih banyak 
-    pengamatan, pastikan kamu memilih "Perbarui Statistik" di bawah 
+    mengunggah pengamatan lama. Setelah Anda membagikan lebih banyak 
+    pengamatan, pastikan Anda memilih "Perbarui Statistik" di bawah 
     Ulasan Tahun Anda untuk melihat perubahannya.
   yir_email_what_else_will_you_observe_caps: APA LAGI YANG AKAN ANDA AMATI?
   yir_email_what_new_to_you: |
@@ -9262,6 +9282,13 @@ id:
       blocked_user:
         #The user who has been blocked
         blocked_user: Pengguna Diblokir
+      blog_category:
+        #Name of a blog category, as shown to readers
+        friendly_id: Label
+        #Name of a blog category, as shown to readers
+        label: Label
+        #Number that sets the order blog categories are listed in
+        position: Posisi
       conservation_status:
         status: Status
         description: Deskripsi
