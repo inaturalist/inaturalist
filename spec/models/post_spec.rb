@@ -286,6 +286,54 @@ describe Post do
         expect( post.errors.added?( attr, :only_allowed_on_site_posts ) ).to be true
       end
     end
+
+    describe "featured=" do
+      let( :post ) { Post.make( parent: Site.make! ) }
+
+      it "sets featured_at to now when checked" do
+        post.featured = "1"
+        expect( post.featured_at ).to be_within( 5.seconds ).of( Time.now )
+        expect( post.featured ).to be true
+      end
+
+      it "keeps an existing featured_at when checked again" do
+        original = 3.days.ago.change( usec: 0 )
+        post.featured_at = original
+        post.featured = "1"
+        expect( post.featured_at ).to eq original
+      end
+
+      it "clears featured_at when unchecked" do
+        post.featured_at = Time.now
+        post.featured = "0"
+        expect( post.featured_at ).to be_nil
+        expect( post.featured ).to be false
+      end
+    end
+
+    describe "mobile_featured=" do
+      let( :post ) { Post.make( parent: Site.make! ) }
+
+      it "sets mobile_featured_at to now when checked" do
+        post.mobile_featured = "1"
+        expect( post.mobile_featured_at ).to be_within( 5.seconds ).of( Time.now )
+        expect( post.mobile_featured ).to be true
+      end
+
+      it "keeps an existing mobile_featured_at when checked again" do
+        original = 3.days.ago.change( usec: 0 )
+        post.mobile_featured_at = original
+        post.mobile_featured = "1"
+        expect( post.mobile_featured_at ).to eq original
+      end
+
+      it "clears mobile_featured_at when unchecked" do
+        post.mobile_featured_at = Time.now
+        post.mobile_featured = "0"
+        expect( post.mobile_featured_at ).to be_nil
+        expect( post.mobile_featured ).to be false
+      end
+    end
   end
 
   describe "cover image" do
