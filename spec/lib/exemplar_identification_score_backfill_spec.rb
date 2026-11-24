@@ -189,6 +189,19 @@ describe ExemplarIdentificationScoreBackfill do
       expect( score.flags ).to eq []
     end
 
+    it "resets edited rows across batches of the file" do
+      stub_const( "ExemplarIdentificationScoreBackfill::BATCH_SIZE", 1 )
+      exemplars = [make_exemplar, make_exemplar]
+      write_file( *exemplars.map {| exemplar | july_line( exemplar ) } )
+      backfill.import
+      exemplars.each do | exemplar |
+        exemplar.identification.update_columns( body: "Note the black wing bars", updated_at: Time.now )
+      end
+      expect( backfill.reset_edited ).to eq 2
+      statuses = exemplars.map {| exemplar | score_of( exemplar ).status }
+      expect( statuses ).to all( eq ExemplarIdentificationScore::PENDING )
+    end
+
     it "leaves rows updated after the start without a body change" do
       exemplar = make_exemplar
       write_file( july_line( exemplar ) )

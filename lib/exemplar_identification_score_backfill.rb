@@ -68,19 +68,19 @@ class ExemplarIdentificationScoreBackfill
   # uncommitted: the body hook found no row to reset. Only the
   # identifications updated since the start are compared with the file
   def reset_edited
-    bodies = ExemplarIdentificationScore.
-      joins( exemplar_identification: :identification ).
-      where( "identifications.updated_at >= ?", @started_at ).
-      pluck( "identifications.id", "identifications.body" ).
-      to_h
-    return 0 if bodies.empty?
-
-    edited_ids = []
-    CSV.foreach( @path, headers: true, encoding: "UTF-8" ) do | line |
-      id = line["id"].to_i
-      edited_ids << id if bodies.key?( id ) && sanitize_text( bodies[id] ) != line["body"]
+    CSV.foreach( @path, headers: true, encoding: "UTF-8" ).each_slice( BATCH_SIZE ).sum do | lines |
+      bodies = ExemplarIdentificationScore.
+        joins( exemplar_identification: :identification ).
+        where( identifications: { id: lines.map {| line | line["id"].to_i } } ).
+        where( "identifications.updated_at >= ?", @started_at ).
+        pluck( "identifications.id", "identifications.body" ).
+        to_h
+      edited_ids = lines.filter_map do | line |
+        id = line["id"].to_i
+        id if bodies.key?( id ) && sanitize_text( bodies[id] ) != line["body"]
+      end
+      reset( edited_ids.uniq )
     end
-    reset( edited_ids.uniq )
   end
 
   # active changes made while the batch holding their row was still
