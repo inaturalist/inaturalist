@@ -1,4 +1,5 @@
 @import "breakpoints";
+@import "colors";
 @import "../shared/responsive/scroll_to_top";
 @import "../shared/tokens";
 @import "../shared/buttons";
@@ -6,14 +7,6 @@
 @import "../shared/notice";
 @import "blog_legacy_shim";
 
-$blog-text: #1a1a1a;
-$blog-muted: #666666;
-$blog-green: #4a7200;
-$blog-green-dark: #355200;
-$blog-accent: var(--inat-green);
-$blog-rule: var(--inat-light-gray);
-$blog-placeholder: #e8ece2;
-$blog-pill: #f2f4ef;
 $blog-column: 720px;
 
 #header {
@@ -22,7 +15,7 @@ $blog-column: 720px;
 
 .blog-post-page {
   padding: 32px 24px 72px;
-  color: $blog-text;
+  color: $text-black;
   line-height: 1.5;
 
   // Stands in for Bootstrap's border-box reset; this page renders outside .bootstrap
@@ -33,17 +26,17 @@ $blog-column: 720px;
   }
 
   a {
-    color: $blog-green;
+    color: $inat-green-text;
 
     &:hover {
-      color: $blog-green-dark;
+      color: $inat-green-text-hover;
     }
   }
 
   a:focus-visible,
   summary:focus-visible,
   .post-body:focus-visible {
-    outline: 3px solid $blog-green;
+    outline: 3px solid $inat-green-text;
     outline-offset: 2px;
   }
 
@@ -99,7 +92,7 @@ $blog-column: 720px;
   font-weight: 900;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: $blog-green;
+  color: $inat-green-text;
 
   @media ( max-width: $md-max ) {
     font-size: 0.75rem;
@@ -130,7 +123,7 @@ $blog-column: 720px;
 .blog-post__byline {
   margin: 0;
   font-size: 1rem;
-  color: $blog-muted;
+  color: $text-muted;
 
   a {
     font-weight: 700;
@@ -158,7 +151,7 @@ $blog-column: 720px;
     margin: 12px auto 0;
     font-size: 0.9375rem;
     line-height: 1.5;
-    color: $blog-muted;
+    color: $text-muted;
   }
 
   @media ( max-width: $md-max ) {
@@ -230,7 +223,7 @@ $blog-column: 720px;
   blockquote {
     margin: 0 0 1.5rem;
     padding: 0.25rem 0 0.25rem 1.5rem;
-    border-left: 4px solid $blog-accent;
+    border-left: 4px solid var(--inat-green);
     font-size: inherit;
 
     p {
@@ -247,7 +240,7 @@ $blog-column: 720px;
       margin: 0;
       font-size: 1rem;
       font-weight: 400;
-      color: $blog-muted;
+      color: $text-muted;
     }
 
     @media ( max-width: $md-max ) {
@@ -294,7 +287,7 @@ $blog-column: 720px;
   margin-top: 0.625rem;
   font-size: 0.9375rem;
   line-height: 1.5;
-  color: $blog-muted;
+  color: $text-muted;
 }
 
 .post-tags {
@@ -311,7 +304,7 @@ $blog-column: 720px;
     min-height: 36px;
     padding: 0 14px;
     border-radius: 999px;
-    background: $blog-pill;
+    background: $pill-grey-green;
     font-size: 0.9375rem;
   }
 
@@ -336,8 +329,8 @@ $blog-column: 720px;
   justify-content: space-between;
   gap: 4px 12px;
   padding: 12px 0 24px;
-  border-top: 1px solid $blog-rule;
-  border-bottom: 1px solid $blog-rule;
+  border-top: 1px solid var(--inat-light-gray);
+  border-bottom: 1px solid var(--inat-light-gray);
   font-size: 1rem;
   line-height: 1.55;
 
@@ -399,7 +392,7 @@ $blog-column: 720px;
 .post-comments__disabled {
   flex-basis: 100%;
   margin: 0;
-  color: $blog-muted;
+  color: $text-muted;
 }
 
 .post-comments__sign-in {
@@ -436,7 +429,7 @@ $blog-column: 720px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  background: $blog-placeholder;
+  background: $placeholder-grey-green;
 }
 
 .blog-comment__main {
@@ -455,11 +448,11 @@ $blog-column: 720px;
   gap: 2px 12px;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  color: $blog-muted;
+  color: $text-muted;
 
   .blog-comment__who {
     font-weight: 500;
-    color: $blog-text;
+    color: $text-black;
     text-decoration: none;
   }
 }
@@ -480,7 +473,7 @@ $blog-column: 720px;
 .blog-comment__actions {
   margin: 0;
   font-size: 0.875rem;
-  color: $blog-muted;
+  color: $text-muted;
 }
 
 .blog-comment-form {
@@ -522,7 +515,7 @@ $blog-column: 720px;
   max-width: 1200px;
   margin: 80px auto 0;
   padding-top: 40px;
-  border-top: 1px solid $blog-rule;
+  border-top: 1px solid var(--inat-light-gray);
 
   h2 {
     margin: 0;
@@ -594,7 +587,7 @@ $blog-column: 720px;
 }
 
 .blog-card__img--empty {
-  background: $blog-placeholder;
+  background: $placeholder-grey-green;
 }
 
 .blog-card__category {
@@ -602,7 +595,7 @@ $blog-column: 720px;
   font-weight: 900;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: $blog-green;
+  color: $inat-green-text;
 
   @media ( max-width: $md-max ) {
     font-size: 0.6875rem;
@@ -613,7 +606,7 @@ $blog-column: 720px;
   font-size: 1.375rem;
   line-height: 1.28;
   font-weight: 700;
-  color: $blog-text;
+  color: $text-black;
 
   @media ( max-width: $md-max ) {
     font-size: 1.0625rem;
@@ -623,7 +616,7 @@ $blog-column: 720px;
 
 .blog-card__date {
   font-size: 0.9375rem;
-  color: $blog-muted;
+  color: $text-muted;
 
   @media ( max-width: $md-max ) {
     font-size: 0.8125rem;
