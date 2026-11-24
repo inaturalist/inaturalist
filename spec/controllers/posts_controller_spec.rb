@@ -65,6 +65,23 @@ describe PostsController, "spam" do
   end
 end
 
+describe PostsController, "site blog index" do
+  render_views
+  let( :site ) { Site.make! }
+
+  it "links site admins to the blog category management page" do
+    sign_in SiteAdmin.make!( site: site ).user
+    get :index, params: { inat_site_id: site.id }
+    expect( Nokogiri::HTML( response.body ).at_css( "a[href='#{blog_categories_path}']" ) ).not_to be_nil
+  end
+
+  it "doesn't link normal users to the blog category management page" do
+    sign_in User.make!
+    get :index, params: { inat_site_id: site.id }
+    expect( Nokogiri::HTML( response.body ).at_css( "a[href='#{blog_categories_path}']" ) ).to be_nil
+  end
+end
+
 describe PostsController, "create" do
   let( :site_only_values ) do
     { featured_at: Time.now, mobile_featured_at: Time.now, blog_category_id: BlogCategory.make!.id }

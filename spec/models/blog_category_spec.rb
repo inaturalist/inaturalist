@@ -11,10 +11,26 @@ describe BlogCategory do
     expect( BlogCategory.make!( label: "Behind the Observation" ).slug ).to eq "behind-the-observation"
   end
 
-  it "keeps slugs unique per site" do
+  it "refuses a label already used on the same site, ignoring case" do
     first = BlogCategory.make!( label: "Updates" )
-    expect( BlogCategory.make!( site: first.site, label: "Updates" ).slug ).not_to eq first.slug
+    expect( BlogCategory.make( site: first.site, label: "updates" ) ).not_to be_valid
+  end
+
+  it "allows the same label and slug on another site" do
+    BlogCategory.make!( label: "Updates" )
     expect( BlogCategory.make!( site: Site.make!, label: "Updates" ).slug ).to eq "updates"
+  end
+
+  it "allows a blank position" do
+    expect( BlogCategory.make( position: nil ) ).to be_valid
+  end
+
+  it "refuses a negative position" do
+    expect( BlogCategory.make( position: -1 ) ).not_to be_valid
+  end
+
+  it "refuses a position too large for the column" do
+    expect( BlogCategory.make( position: 2**31 ) ).not_to be_valid
   end
 
   it "reserves the all slug" do

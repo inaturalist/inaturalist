@@ -29,6 +29,7 @@ const MODERATOR_ACTION_FIELDS = {
   id: true,
   created_at: true,
   reason: true,
+  private: true,
   user: USER_FIELDS
 };
 const TAXON_FIELDS = {
@@ -190,7 +191,10 @@ const OBSERVATION_FIELDS = {
     original_dimensions: {
       width: true,
       height: true
-    }
+    },
+    flags: { id: true },
+    hidden: true,
+    moderator_actions: MODERATOR_ACTION_FIELDS
   },
   place_guess: true,
   place_ids: true,

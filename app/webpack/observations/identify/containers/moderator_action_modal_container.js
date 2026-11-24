@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import {
   submitModeratorAction,
-  hideModeratorActionForm
+  hideModeratorActionForm,
+  revealHiddenContent
 } from "../../../shared/ducks/moderator_actions";
 import ModeratorActionModal from "../../../shared/components/moderator_action_modal";
 import { fetchCurrentObservation } from "../actions";
@@ -20,7 +21,8 @@ function mapDispatchToProps( dispatch ) {
         .then( ( ) => dispatch( fetchCurrentObservation( ) ) );
       dispatch( hideModeratorActionForm( ) );
     },
-    hide: ( ) => dispatch( hideModeratorActionForm( ) )
+    hide: ( ) => dispatch( hideModeratorActionForm( ) ),
+    revealHiddenContent: item => dispatch( revealHiddenContent( item ) )
   };
 }
 

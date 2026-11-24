@@ -1,0 +1,22 @@
+@import "breakpoints";
+@import "shared/buttons";
+@import "shared/data_table";
+@import "shared/form_fields";
+
+.blog-categories {
+  @include container-padding;
+  margin-block: 20px 40px;
+
+  h1 {
+    margin-block: 10px 20px;
+  }
+
+  .blog-categories-empty {
+    color: var(--inat-dark-gray-disabled);
+    margin-top: 20px;
+  }
+
+  .inat-table-scroll {
+    margin-top: 20px;
+  }
+}

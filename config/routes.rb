@@ -548,6 +548,7 @@ Rails.application.routes.draw do
     constraints: { login: simplified_login_regex } do
     resources :flags
   end
+  resources :blog_categories, path: "/blog/categories", except: :show
   resources :posts, as: "site_posts", path: "/blog" do
     resources :flags
     collection do

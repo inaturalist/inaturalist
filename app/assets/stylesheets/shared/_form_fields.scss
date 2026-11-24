@@ -1,0 +1,32 @@
+@import "tokens";
+
+.inat-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 480px;
+}
+
+.inat-field label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.inat-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--inat-medium-gray);
+  border-radius: var(--inat-radius-lg);
+  color: var(--inat-dark-gray);
+
+  &:focus-visible {
+    outline: 2px solid var(--inat-green);
+    outline-offset: 0;
+  }
+}
+
+.inat-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

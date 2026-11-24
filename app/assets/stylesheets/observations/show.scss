@@ -11,6 +11,7 @@
 @import "../shared/split_taxon";
 @import "../shared/responsive/user_with_icon";
 @import "../shared/easyzoom";
+@import "../shared/photo_captions";
 @import "../users/user_image";
 @import "../users/user_popover";
 @import "../shared/responsive/observation_modal";
@@ -406,39 +407,6 @@ a.UserImage,
           }
           .flag-notice {
             color: black;
-          }
-          .captions {
-            line-height: 18px;
-            .captions-box {
-              background: rgba(0,0,0,.45);
-              padding: 15px;
-              border-radius: 50px;
-              display: inline-block;
-              padding: 5px 9px 7px;
-              pointer-events: auto;
-              .btn:hover, .fa:hover {
-                text-decoration: none;
-                opacity: 0.8;
-                color: inherit;
-              }
-            }
-            .fa.license {
-              vertical-align: middle;
-              color: white;
-              font-size: 18px;
-              cursor: pointer;
-              &.fa-copyright {
-                font-size: 20px;
-              }
-            }
-            .badge {
-              background: white;
-              color: rgba(0,0,0,.75);
-              margin-inline-start: 5px;
-            }
-            .btn-nostyle {
-              margin-inline-start: 5px;
-            }
           }
         }
         .image-gallery-slide:has(.SoundPlayer) {
@@ -875,23 +843,6 @@ a.UserImage,
 
 .other_observations > .container > .row > .col-xs-6 {
   padding: 0;
-}
-
-.hidden-media {
-  text-align: center;
-  .hidden-status {
-    color: #333;
-    pointer-events: auto;
-    cursor: pointer;
-  }
-  .reveal-hidden {
-    display: block;
-    color: #333;
-    pointer-events: auto;
-    display: block;
-    margin: 0px auto;
-    margin-top: 9px;
-  }
 }
 
 h3, h4 {
