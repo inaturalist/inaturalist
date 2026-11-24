@@ -228,23 +228,6 @@ describe Post do
     end
   end
 
-  describe "search" do
-    it "returns search results" do
-      user = User.make!
-      post1 = Post.make!( title: "nonsense title", body: "this is a test", parent: user )
-      post2 = Post.make!( title: "this is a test", body: "nonsense body", parent: user )
-      expect( Post.dbsearch( user, "test" ).size ).to eq 2
-      expect( Post.dbsearch( user, "test" ) ).to include( post1 )
-      expect( Post.dbsearch( user, "test" ) ).to include( post2 )
-
-      expect( Post.dbsearch( user, "title" ).size ).to eq 1
-      expect( Post.dbsearch( user, "title" ) ).to include( post1 )
-
-      expect( Post.dbsearch( user, "body" ).size ).to eq 1
-      expect( Post.dbsearch( user, "body" ) ).to include( post2 )
-    end
-  end
-
   def journal_post( attrs = {} )
     author = User.make!
     Post.make( { user: author, parent: author }.merge( attrs ) )
@@ -560,34 +543,111 @@ describe Post do
     end
   end
 
-  describe "with Elasticsearch callbacks off" do
+  describe "elastic_delete!" do
+    it "does not send a delete for a trip" do
+      trip = Trip.make!
+      expect( trip.__elasticsearch__ ).not_to receive( :delete_document )
+      expect { trip.destroy }.not_to raise_error
+    end
+  end
+
+  describe "Elasticsearch callbacks" do
+    elastic_models( Post, use_transactional_fixtures: false )
+
+    def posts_index_count
+      Post.__elasticsearch__.refresh_index!
+      Post.__elasticsearch__.client.count( index: Post.index_name )["count"]
+    end
+
+    def indexed_source( post )
+      Post.__elasticsearch__.refresh_index!
+      hits = Post.__elasticsearch__.client.search(
+        index: Post.index_name,
+        body: { query: { ids: { values: [post.id] } } }
+      )["hits"]["hits"]
+      hits.first&.dig( "_source" )
+    end
+
     # Run this file with E2E_EAGER_LOAD=true to check the eager load order
-    it "installs no Elasticsearch commit callbacks" do
+    it "installs create, update and destroy commit callbacks" do
       elastic_callbacks = Post._commit_callbacks.select do | callback |
         callback.raw_filter.is_a?( Proc ) &&
           callback.raw_filter.source_location.first.end_with?( "elastic_model/acts_as_elastic_model.rb" )
       end
-      expect( elastic_callbacks ).to be_empty
+      expect( elastic_callbacks.size ).to eq 3
+    end
+
+    it "index a published post on create" do
+      post = journal_post( title: "Freshly published" ).tap( &:save! )
+      expect( indexed_source( post ) ).to include( "title" => "Freshly published", "published" => true )
+    end
+
+    it "reindex an edited post" do
+      post = journal_post.tap( &:save! )
+      post.update!( title: "Edited title", body: "Edited body" )
+      expect( indexed_source( post ) ).to include( "title" => "Edited title", "body_excerpt" => "Edited body" )
+    end
+
+    it "reindex an unpublished post" do
+      post = journal_post.tap( &:save! )
+      post.update!( published_at: nil )
+      expect( indexed_source( post )["published"] ).to be false
+    end
+
+    it "reindex a re-tagged post" do
+      post = journal_post( tag_list: ["Fungi"] ).tap( &:save! )
+      post.reload.update!( tag_list: ["Lichens"] )
+      expect( indexed_source( post )["tags"] ).to eq ["lichens"]
+    end
+
+    it "remove a destroyed post" do
+      post = journal_post.tap( &:save! )
+      expect( indexed_source( post ) ).not_to be_nil
+      post.destroy
+      expect( indexed_source( post ) ).to be_nil
+    end
+
+    describe "spam flags" do
+      it "reindex the post as spam" do
+        post = journal_post.tap( &:save! )
+        Flag.make!( flaggable: Post.find( post.id ), flag: Flag::SPAM )
+        expect( indexed_source( post )["spam"] ).to be true
+      end
+
+      it "reindex the post as not spam when resolved" do
+        post = journal_post.tap( &:save! )
+        flag = Flag.make!( flaggable: Post.find( post.id ), flag: Flag::SPAM )
+        expect( indexed_source( post )["spam"] ).to be true
+        Flag.find( flag.id ).update!( resolved: true, resolver: User.make! )
+        expect( indexed_source( post )["spam"] ).to be false
+      end
     end
 
     describe "comments" do
-      before { enable_elastic_indexing( Post, use_transactional_fixtures: false ) }
-
-      def posts_index_count
-        Post.__elasticsearch__.refresh_index!
-        Post.__elasticsearch__.client.count( index: Post.index_name )["count"]
+      it "reindex the post on create" do
+        post = journal_post.tap( &:save! )
+        Comment.make!( parent: post )
+        expect( indexed_source( post )["comments_count"] ).to eq 1
       end
 
-      it "do not index the post" do
+      it "reindex the post on update" do
         post = journal_post.tap( &:save! )
-        expect( post ).not_to receive( :elastic_index! )
-        Comment.make!( parent: post )
-        expect( posts_index_count ).to eq 0
+        comment = Comment.make!( parent: post )
+        post.update_column( :title, "Changed without callbacks" )
+        Comment.find( comment.id ).update!( body: "An edited comment" )
+        expect( indexed_source( post )["title"] ).to eq "Changed without callbacks"
+      end
+
+      it "reindex the post on destroy" do
+        post = journal_post.tap( &:save! )
+        comment = Comment.make!( parent: post )
+        expect( indexed_source( post )["comments_count"] ).to eq 1
+        Comment.find( comment.id ).destroy
+        expect( indexed_source( post )["comments_count"] ).to eq 0
       end
 
       it "do not index a trip" do
         trip = Trip.make!
-        expect( trip ).not_to receive( :elastic_index! )
         Comment.make!( parent: trip )
         expect( posts_index_count ).to eq 0
       end

@@ -3,12 +3,7 @@
 require "spec_helper"
 
 describe PostSearch do
-  # TODO: Post has no lifecycle callbacks until WEB-1426
-  before { enable_elastic_indexing( Post, use_transactional_fixtures: false ) }
-
-  def index!( *posts )
-    Post.elastic_index!( ids: posts.flatten.map( &:id ) )
-  end
+  elastic_models( Post )
 
   def search_ids( params = {} )
     PostSearch.new( params ).results.map( &:id )
@@ -52,33 +47,31 @@ describe PostSearch do
     it "ranks a title match above a body-only match" do
       body_match = journal_post( title: "Weekly notes", body: "Today we saw a pangolin by the road" )
       title_match = journal_post( title: "Pangolin sightings", body: "Lots of walking today" )
-      index!( body_match, title_match )
       expect( search_ids( q: "pangolin" ) ).to eq [title_match.id, body_match.id]
     end
 
     it "still matches with a one-letter typo" do
       post = journal_post( title: "Pangolin sightings" )
-      index!( post )
       expect( search_ids( q: "pangolon" ) ).to eq [post.id]
     end
 
     it "matches the author's login and real name" do
       author = User.make!( login: "quokkawatcher", name: "Florentyna Bramblewick" )
       post = journal_post( user: author, parent: author )
-      index!( post, journal_post )
+      journal_post
       expect( search_ids( q: "quokkawatcher" ) ).to eq [post.id]
       expect( search_ids( q: "Bramblewick" ) ).to eq [post.id]
     end
 
     it "matches tags" do
       post = journal_post( tag_list: ["nudibranch"] )
-      index!( post, journal_post )
+      journal_post
       expect( search_ids( q: "nudibranch" ) ).to eq [post.id]
     end
 
     it "matches words the English stopword list would drop" do
       post = journal_post( title: "No hay ranas" )
-      index!( post, journal_post )
+      journal_post
       expect( search_ids( q: "no" ) ).to eq [post.id]
     end
   end
@@ -87,7 +80,6 @@ describe PostSearch do
     it "ranks the recent post first when matches are similarly good" do
       old = journal_post( title: "Quokka census", published_at: 3.years.ago )
       recent = journal_post( title: "Quokka census report", published_at: 5.days.ago )
-      index!( old, recent )
       expect( search_ids( q: "quokka census" ) ).to eq [recent.id, old.id]
     end
 
@@ -103,7 +95,6 @@ describe PostSearch do
           "talked about the weather, had lunch, and on the way back a quokka census volunteer waved",
         published_at: 5.days.ago
       )
-      index!( old, recent )
       expect( search_ids( q: "quokka census" ) ).to eq [old.id, recent.id]
     end
   end
@@ -116,7 +107,8 @@ describe PostSearch do
       Flag.make!( flaggable: spam, flag: Flag::SPAM )
       spammer_post = journal_post( title: "Axolotl" )
       spammer_post.user.update_column( :spammer, true )
-      index!( visible, draft, spam, spammer_post )
+      # update_column skips the callback that reindexes a spammer's posts
+      spammer_post.elastic_index!
       expect( search_ids( q: "axolotl" ) ).to eq [visible.id]
       expect( search_ids ).to eq [visible.id]
     end
@@ -125,11 +117,9 @@ describe PostSearch do
   describe "filters" do
     let( :project ) { Project.make! }
     let( :site ) { Site.make! }
-    let( :site_post ) { Post.make!( parent: site, user: User.make!, title: "Axolotl news" ) }
-    let( :project_post ) { Post.make!( parent: project, user: project.user, title: "Axolotl survey" ) }
-    let( :user_post ) { journal_post( title: "Axolotl diary" ) }
-
-    before { index!( site_post, project_post, user_post ) }
+    let!( :site_post ) { Post.make!( parent: site, user: User.make!, title: "Axolotl news" ) }
+    let!( :project_post ) { Post.make!( parent: project, user: project.user, title: "Axolotl survey" ) }
+    let!( :user_post ) { journal_post( title: "Axolotl diary" ) }
 
     it "scopes by parent" do
       expect( search_ids( q: "axolotl", parent_type: "Project", parent_id: project.id ) ).to eq [project_post.id]
@@ -148,7 +138,6 @@ describe PostSearch do
     it "requires every tag" do
       both = journal_post( tag_list: ["Fungi", "Lichen"] )
       one = journal_post( tag_list: ["fungi"] )
-      index!( both, one )
       expect( search_ids( tags: "fungi" ) ).to contain_exactly( both.id, one.id )
       expect( search_ids( tags: ["fungi", "LICHEN"] ) ).to eq [both.id]
     end
@@ -158,21 +147,19 @@ describe PostSearch do
     it "orders by published_at without q" do
       older = journal_post( published_at: 2.days.ago )
       newer = journal_post( published_at: 1.day.ago )
-      index!( older, newer )
       expect( search_ids ).to eq [newer.id, older.id]
       expect( search_ids( order: "oldest" ) ).to eq [older.id, newer.id]
     end
 
     it "paginates with correct totals" do
       posts = Array.new( 3 ) {| i | journal_post( published_at: i.days.ago ) }
-      index!( posts )
       results = PostSearch.new( page: 2, per_page: 2 ).results
       expect( results.total_entries ).to eq 3
       expect( results.map( &:id ) ).to eq [posts.last.id]
     end
 
     it "loads records with the posts_json preloads" do
-      index!( journal_post )
+      journal_post
       post = PostSearch.new( {} ).results.first
       expect( post.association( :user ) ).to be_loaded
       expect( post.association( :parent ) ).to be_loaded
@@ -180,20 +167,17 @@ describe PostSearch do
 
     it "drops ids that are no longer in the database" do
       gone = journal_post
-      index!( gone )
       Post.where( id: gone.id ).delete_all
       expect( search_ids ).to eq []
     end
 
     it "does not return trips" do
       trip = Trip.make!( title: "Axolotl trip" )
-      index!( trip )
       expect( search_ids( q: "axolotl" ) ).to eq []
     end
 
     it "returns escaped highlights for title and body" do
       post = journal_post( title: "Pangolin <3", body: "<p>A pangolin crossed the road.</p>" )
-      index!( post )
       search = PostSearch.new( q: "pangolin" )
       search.results
       expect( search.highlights[post.id]["title"].first ).to eq "<em>Pangolin</em> &lt;3"

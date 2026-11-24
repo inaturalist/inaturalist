@@ -241,9 +241,13 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.not_flagged_as_spam.
-      published.dbsearch( @parent, params[:q] ).
-      page( params[:page] ).per_page( limited_per_page )
+    @posts = PostSearch.new(
+      q: params[:q],
+      parent_type: @parent.class.polymorphic_name,
+      parent_id: @parent.id,
+      page: params[:page],
+      per_page: limited_per_page
+    ).results
     pagination_headers_for @posts
     respond_to do | format |
       format.html

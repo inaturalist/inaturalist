@@ -4,10 +4,7 @@ class Post < ApplicationRecord
   BLOG_V2_ATTRIBUTES = %w(cover_image_id featured_at mobile_featured_at locale blog_category_id).freeze
   POSTS_JSON_PRELOADS = [{ user: :site }, :stored_preferences, :parent].freeze
 
-  # No lifecycle callbacks until the posts index exists in production. Must
-  # match the call in app/es_indices/post_index.rb, which loads first when
-  # eager loading. WEB-1426 removes `lifecycle_callbacks: []` from both.
-  acts_as_elastic_model lifecycle_callbacks: []
+  acts_as_elastic_model
 
   acts_as_spammable fields: [:title, :body],
     comment_type: "blog-post"
@@ -72,9 +69,6 @@ class Post < ApplicationRecord
 
   scope :published, -> { where( "published_at IS NOT NULL" ) }
   scope :unpublished, -> { where( "published_at IS NULL" ) }
-  scope :dbsearch, lambda {| parent, q |
-    where( parent: parent ).where( "posts.title ILIKE ? OR posts.body ILIKE ?", "%#{q}%", "%#{q}%" )
-  }
   scope :featured, -> { where( parent_type: "Site" ).where.not( featured_at: nil ).order( featured_at: :desc ) }
   scope :mobile_featured, lambda {
     where( parent_type: "Site" ).where.not( mobile_featured_at: nil ).order( mobile_featured_at: :desc )
@@ -233,6 +227,13 @@ class Post < ApplicationRecord
     return if published?
 
     UpdateAction.delete_and_purge( { notifier_type: "Post", notifier_id: id } )
+  end
+
+  # Overrides the acts_as_spammable callback, so it must stay below that call
+  def flagged_with( flag, _options )
+    evaluate_new_flag_for_spam( flag )
+    flags.reload
+    elastic_index!
   end
 
   def to_s
