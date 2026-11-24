@@ -57,13 +57,6 @@ GIT
       rdoc
 
 GIT
-  remote: https://github.com/inaturalist/xmp.git
-  revision: dbb92b555e3e085acb31d8bbec600aacd1146f02
-  specs:
-    xmp (0.2.1)
-      nokogiri (>= 1.8.1)
-
-GIT
   remote: https://github.com/instacart/makara.git
   revision: 9e7960558a75aed3f97ba4cbab61abb64687ec3c
   ref: 9e7960558a75aed3f97ba4cbab61abb64687ec3c
@@ -932,7 +925,6 @@ DEPENDENCIES
   webmock
   whenever
   will_paginate (~> 4.0)
-  xmp!
   ya2yaml
   yajl-ruby
   yui-compressor
