@@ -86,6 +86,12 @@ fr:
   x_observers_caps_html:
     one: '<span class="count">%{count}</span> OBSERVATEUR'
     other: '<span class="count">%{count}</span> OBSERVATEURS'
+  #Footer below the scrolling list of flagged taxa on taxonomy details pages.
+  #count is the number of unresolved flags on taxa covered by the taxon
+  #framework; the list itself only shows the most-flagged taxa
+  x_open_flags_scroll_for_more:
+    one: "%{count} ouvrir le signalement · faire défiler pour en savoir plus"
+    other: "%{count} ouvrir les signalements · faire défiler pour en savoir plus"
   x_others:
     one: "1 autre"
     other: "%{count} autres"
@@ -566,6 +572,8 @@ fr:
   alphabetical: Alphabétique
   alphabetical_order: Ordre alphabétique
   already_have_an_account_log_in_html: Vous avez déjà un compte ? <strong>Connectez-vous.</strong>
+  #Badge on the profile describing when a user became an iNaturalist ambassador, e.g. "Ambassador since January 2020"
+  ambassador_since_date: Ambassadeur depuis %{date}
   amphibians: amphibiens
   #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
   #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
@@ -868,6 +876,16 @@ fr:
   blocking_description: Le blocage empêche toute communication entre vous et un autre utilisateur. Il est conçu pour des situations où un autre utilisateur pourrait être une menace pour votre sécurité, par exemple en vous traquant ou en ayant d'autres comportements abusifs.
   block_removed: Blocage supprimé
   blocked_users: Utilisateurs bloqués
+  #Title of the admin page listing the categories that site blog posts can be filed under
+  blog_categories: Catégories de blogs
+  #Error shown when an admin tries to delete a blog category that posts are still filed under
+  blog_category_in_use: Cette catégorie ne peut pas être supprimée car elle est utilisée par %{count} article(s).
+  #Confirmation shown after an admin creates a blog category
+  blog_category_was_successfully_created: La catégorie a été créée avec succès.
+  #Confirmation shown after an admin deletes a blog category
+  blog_category_was_successfully_deleted: La catégorie a été supprimée avec succès.
+  #Confirmation shown after an admin edits a blog category
+  blog_category_was_successfully_updated: La catégorie a été mise à jour avec succès.
   blog_widget: Widget de blog
   blue_butterfly_etc: "bleu, papillon, etc."
   body: Corps
@@ -1824,6 +1842,8 @@ fr:
   donate: Faire un don
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Faites un don
+  #Label for a button to donate a specific amount, e.g. "Donate $5 (USD)"
+  donate_amount: "Faire un don de %{amount}"
   donate_again_caps: DONNEZ DE NOUVEAU
   donate_again_today_caps: DONNEZ DE NOUVEAU AUJOURD'HUI
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1920,6 +1940,8 @@ fr:
   editing: Modification en cours
   #Title for a page to edit an announcement
   editing_announcement_x: Modification de l’annonce %{id}
+  #Title of the page for editing a blog category; label is the category's name
+  editing_blog_category_x: Édition de la catégorie %{label}
   editing_custom_project_fields_for: Modification des champs de projet personnalisés pour
   editing_observation_field: Modification du champ de l’observation
   editing_observation_id: "Modification de l’observation %{obs_id}"
@@ -2056,6 +2078,44 @@ fr:
     Choisissez jusqu’à sept projets qui apparaitront sous forme de liens dans l’en-tête. Les mises à jour apparaîtront après l’actualisation de la page.
   favorite_taxa: Taxons favoris
   favorites: "Favoris"
+  #Heading of the admin feature flags page and the admin nav link to it
+  feature_flags: Indicateur de fonctionnalité
+  #Note under a flag's kind on the admin feature flags page when the flag assigns app users by their app installation rather than their account, so logging in does not change it
+  feature_flags_by_installation: Répartition par installation d’application
+  #Button on the admin feature flags page that empties the app installation ID field and its preview column
+  feature_flags_clear: Effacer
+  #Label shown before the current admin's on/off value for a flag on the admin feature flags page
+  feature_flags_enabled_for_you: "Activé pour vous :"
+  #Label before the on/off value or variant a logged-out mobile app installation would get, in a column of the admin feature flags page
+  feature_flags_for_installation: "Cette installation, déconnectée :"
+  #Help text under the app installation ID field on the admin feature flags page
+  feature_flags_installation_id_help: Collez un identifiant d’installation d’application (l’en-tête X-Installation-ID) pour voir ce que cette installation obtiendrait en étant déconnecté.
+  #Label for a text field on the admin feature flags page where an admin enters a mobile app installation ID
+  feature_flags_installation_id_label: ID d’installation de l’application
+  #Warning on the admin feature flags page when the entered app installation ID is not a UUID
+  feature_flags_invalid_installation_id: Ce n’est pas un ID d’installation valide. Les ID d’installation sont des UUID.
+  #Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
+  feature_flags_kind_client: Indicateur visible par le client
+  #Help text under the locale field on the admin feature flags page; locale_en is a code name, do not translate
+  feature_flags_locale_help: Un code de langue tel que en ou pt-BR, utilisé par des groupes linguistiques comme locale_en. Défini par défaut pour la langue de cette page.
+  #Label for a text field on the admin feature flags page where an admin enters a language code to preview flags in
+  feature_flags_locale_label: Localisation
+  #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
+  feature_flags_kind_experiment: Expérience
+  #Kind label on the admin feature flags page for a flag that only server code reads
+  feature_flags_kind_server: Indicateur serveur
+  #Button on the admin feature flags page leading to the Flipper UI where flags are created and edited
+  feature_flags_manage: Gérer les indicateurs
+  #Shown on the admin feature flags page when no feature flags exist yet; %{url} is the address of the Flipper UI
+  feature_flags_none_html: Aucun indicateur de fonctionnalité n’existe encore. <a href="%{url}">Créez-en un</a> et il apparaîtra ici.
+  #Shown on the admin feature flags page when the current admin is not enrolled in an A/B experiment
+  feature_flags_not_enrolled: Non inscrit
+  #Intro text on the admin feature flags page, above a table listing every flag with the current admin's own value
+  feature_flags_page_description: Chaque indicateur de fonctionnalité et chaque expérience, résolus pour votre compte. Créez, activez et déployez des indicateurs dans l’interface de gestion.
+  #Button on the admin feature flags page that shows flag values for the entered app installation ID
+  feature_flags_preview: Aperçu
+  #Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
+  feature_flags_your_variant: "Votre variante dans %{experiment}:"
   feature_this_project_: "Mettre en valeur ce projet"
   featured: En vedette
   #Title for a button or section describing the "featured" status of a project
@@ -2172,6 +2232,12 @@ fr:
   flag_this_sound: Signaler ce son
   flagged_: Marqué
   flagged_for_curation: Marqué pour supervision
+  #Note below a list of flagged taxa explaining the difference between the
+  #count column and the links in each row. open_flags is the translated
+  #column header "Open flags" and view_all_flags is the translated link text
+  #"View All Flags". Taxa below a taxon are its descendants, e.g. the species
+  #within a genus
+  flagged_taxa_counts_explanation: "“%{open_flags} « ne compte les signalements que sur ce taxon. » %{view_all_flags}\" affiche également des signalements sur les taxons en dessous."
   flagged_taxon: Taxon signalé
   flagged_thing_explanation: "Les utilisateurs ont signalé @gender{m:ce|cette} %{thing} parce que"
   flagging_desc: |
@@ -2999,6 +3065,8 @@ fr:
   make_your_app_confidential: Rendez votre application confidentielle si vous pouvez stocker votre clé secrète d'application en sécurité, autrement dit pas dans un fichier binaire publiquement accessible et qui peut être décompilé. Décochez cette case si ce n'est pas le cas et que vous comptez utiliser le flux PKCE
   mammals: mammifères
   manage_all_your_subscriptions: Gérer tous vos abonnements
+  #Button on the site blog that takes admins to the page for managing blog categories
+  manage_categories: Gérer les catégories
   manage_names: Gérer les noms
   manage_your_projects: Gérer vos projets
   manage_your_relationships: Gérer vos relations
@@ -3285,6 +3353,8 @@ fr:
   new_announcement: Nouvelle annonce
   new_application: Nouvelle application
   new_assessment: Nouvelle évaluation
+  #Button and page title for creating a new blog category
+  new_blog_category: Nouvelle catégorie
   new_check_list: Nouvelle check-list
   new_check_list_for: "Créer une nouvelle check-list pour %{place} &raquo;"
   new_check_list_record: "Si vous voulez indiquer que cette liste comme complète, créez-la, ajoutez les taxons, puis modifiez-la et vous aurez là la possibilité d’indiquer qu’elle est complète."
@@ -3339,6 +3409,8 @@ fr:
   #Shown when a list of 3rd party applications has no applications
   no_applications_yet: Aucune application pour l'instant
   no_assessments_have_been_added_to_this_project_yet: Aucune évaluation n’a encore été ajoutée à ce projet.
+  #Shown on the blog categories admin page when no categories exist
+  no_blog_categories_yet: Pas encore de catégories.
   no_but_it_is_a_member_of_taxon: "Non, mais je confirme que cela fait partie de %{taxon}"
   no_comments_yet: Aucun commentaire jusqu’à présent.
   no_creative_commons_flickr_photos_tagged_x: 'Aucune photo Creative Commons de Flickr n’a été étiquetée « %{x} »'
@@ -3813,6 +3885,18 @@ fr:
   #Geoprivacy status in which no privacy has been applied
   open_: Ouverte
   open_description: "Tout le monde peut voir les coordonnées sauf si le taxon est menacé."
+  #Column header for the number of unresolved flags on each taxon in a list
+  #of flagged taxa. The count only includes flags on that exact taxon, not
+  #flags on its descendants (lower-ranked taxa within it)
+  open_flags: Signalements ouverts
+  #Label for the number of unresolved flags on taxa covered by a taxon
+  #framework, i.e. the taxa whose classification the framework tracks against
+  #an external source. count is a link that shows a list of the flagged taxa
+  open_flags_on_covered_taxa_count_html: "Signalements ouverts sur les taxons couverts : %{count}"
+  #Label for the number of unresolved flags on taxa within this taxon that are
+  #covered by a taxon framework attached to one of its ancestors. count is a
+  #link that shows a list of the flagged taxa
+  open_flags_on_downstream_taxa_count_html: "Signalements ouverts sur les taxons descendants : %{count}"
   open_street_map: OpenStreetMap
   optional: facultatif
   options: Options
@@ -4946,6 +5030,8 @@ fr:
   scroll_to_top: Défiler vers le haut
   search: Rechercher
   search_all_fields: chercher tous les champs
+  #Placeholder for a search bar where the user can search for another user
+  search_by_name: Recherche par nom
   search_by_name_or_email: Rechercher par nom ou par adresse électronique
   search_by_taxon_name_or_observation_id: Recherche par nom de taxon ou ID d'observation
   search_by_taxon_name_or_flickr_photo_id: Recherche par nom de taxon ou d'identité photo Flickr
@@ -5071,6 +5157,8 @@ fr:
   site_year_in_review: "Rétrospective de l'année %{year} sur %{site}"
   sizes: Tailles
   skip_to_next_page: "Passer à la page suivante"
+  #Label for a button that shows a specific slide in a carousel
+  slide_x: "Diapositive %{x}"
   small: petit
   site_admin_tools: Outils de l'administrateur de site
   #People who administrate a particular iNaturalist Network partner
@@ -5240,6 +5328,8 @@ fr:
   start_a_project: Démarrer un projet
   start_date_time: Date / Heure de début
   start_one_now: Démarrez-en un maintenant !
+  #Button that resumes automatic rotation of carousel slides
+  start_slide_rotation: Démarrez la rotation de la glissière
   start_typing_field_name: Commencez à taper le nom du champ…
   start_typing_place_name: Commencez à taper le nom du lieu…
   start_typing_taxon_name: Commencez à taper le nom du taxon…
@@ -5259,6 +5349,8 @@ fr:
   still_working_on_classifying_taxon: Travail encore en cours pour classifier ce taxon. Revenez plus tard
   stop_editing: Arrêter la modification
   stop_following_user: "Arrêter de suivre %{user}"
+  #Button that pauses automatic rotation of carousel slides
+  stop_slide_rotation: Arrêt de la rotation de la glissière
   stop_testing: Arrêter le test
   stop_trusting_this_person_with_your_private_coordinates: Arrêtez de confier à cette personne vos coordonnées masquées
   #As in a place to purchase things. We use it as a link to a place where you
@@ -6015,6 +6107,8 @@ fr:
   uploading_num_of_count_photos:
     one: Import d’une photo…
     other: Import de %{num} sur %{count} photos…
+  #Table heading for the short, URL-safe version of a name used in web addresses, e.g. "identifier-profiles"
+  url_slug: URL slug
   url_for_your_app_outside_of_inaturalist: URL de votre application en dehors d'iNaturalist
   url_identifier_of_a_project_derived_from: "URL/identifiant d'un projet dérivé d’une ressource externe"
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site Web de la source
@@ -6178,6 +6272,9 @@ fr:
   view_all_caps: TOUT AFFICHER
   view_all_fields: Afficher tous les champs
   view_all_flags: Voir tous les signalements
+  #Link that opens a search of unresolved flags on a taxon and all of its
+  #descendants (lower-ranked taxa within it)
+  view_all_flags_including_descendants: Voir tous les signalements (y compris les descendants)
   view_all_members: Afficher tous les membres
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
@@ -6641,6 +6738,29 @@ fr:
         Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélectionner "Toutes" ou ne pas faire de sélection montrera les annonces à tous les utilisateurs indépendamment de la localisation. Choisir un langage sans une région ne ciblera *pas* les localisations avec régions, par ex. si vous choisissez Anglais, cela n'apparaîtra pas pour les personnes ayant choisi Anglais (Royaume-Uni).
       clients_desc: |
         Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélectionner "Tout" ou ne pas faire de sélection montrera les annonces à tous les utilisateurs indépendamment du client.
+      #Heading of the donation shortcodes help panel on the announcement form
+      donation_shortcodes: Codes raccourcis pour dons
+      #Introduction to the donation shortcodes help panel
+      donation_shortcodes_desc: |
+        Les codes raccourcis dans le corps sont remplacés par des montants de dons tous dans la monnaie et la langue de l'utilisateur. Enregistrez l’annonce, puis prévisualisez d’autres pays et langues sur sa page.
+      #%{example} is button text, e.g. "Donate $5 (USD)"
+      donation_label_shortcode_desc: Texte du bouton de don avec le montant, par exemple %{example}
+      #FundraiseUp is a service name; href is an HTML attribute, don't translate
+      donation_url_shortcode_desc: |
+        Lien vers le paiement de FundraiseUp avec le montant, la monnaie, la fréquence, et le langage rempli. Utilisez-le comme un href de liens.
+      #Heading for the optional settings of donation shortcodes
+      donation_shortcode_attributes: Attributs optionnels
+      #%{tiers} is e.g. "min, mid, max"; %{default_tier} is e.g. "min"
+      donation_shortcode_tier_desc: "Que montrer : %{tiers}. Par défaut : %{default_tier}."
+      #%{frequencies} is e.g. "once, monthly"; %{default_frequency} is e.g. "once"
+      donation_shortcode_frequency_desc: "Don unique ou mensuel : %{frequencies}. Par défaut : %{default_frequency}."
+      #%{shortcode} is "[donation-url]"; %{default_url} is a web address
+      donation_shortcode_url_desc: "%{shortcode} seulement. La page FundraiseUp vers laquelle il faut créer un lien. Par défaut : %{default_url}"
+      #%{shortcode} is "[donation-url]"; %{utm_term} is a setting name
+      donation_shortcode_query_params_desc: |
+        %{shortcode} seulement. Ajouté au lien tel qu’écrit. %{utm_term} est défini à l’ID de l’annonce.
+      #Heading above example donation shortcodes
+      donation_shortcode_examples: Exemples
       end_desc: |
         Heure dans le fuseau horaire de votre compte à laquelle cette annonce n'apparaîtra plus. S'applique au-delà des fuseaux horaires, de sorte que tout le monde ne la voient plus en même, sans relation avec leur temps local.
       excludes_non_site_desc: |
@@ -6662,6 +6782,18 @@ fr:
       parent_announcement_disabled_desc: Cette annonce contient des variantes ciblées et ne peut pas être attribuée à une annonce mondiale.
       #Tooltip for the global announcement select field on the announcement form
       parent_announcement_desc: Sélectionnez une annonce que cette annonce devrait remplacer pour les utilisateurs respectant les règles de ciblage.
+      #Label for a menu choosing the country for a donation preview
+      preview_as_country: Aperçu comme que pays
+      #Label for a menu choosing the language for a donation preview
+      preview_in_locale: Aperçu comme langue
+      #%{country} is a country name; %{currency} is a code, e.g. "USD"
+      preview_default_country: Par défaut (%{country}, %{currency})
+      #Language menu option meaning the viewer's current site language
+      preview_your_locale: Votre langue
+      #Help text under the donation preview menus
+      preview_donation_shortcodes_desc: |
+        Montre les montants des dons dans la monnaie du pays choisi, et le
+        bouton de don et paiement dans la langue choisie. Les personnes dans les pays non listés voient les montants par défaut du pays.
       site_ids_desc: |
         Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélectionner "Tout" ou ne pas faire de sélection montrera les annonces à tous les utilisateurs indépendamment de l'affiliation du site.
       start_desc: |
@@ -9688,6 +9820,13 @@ fr:
       blocked_user:
         #The user who has been blocked
         blocked_user: Utilisateur bloqué
+      blog_category:
+        #Name of a blog category, as shown to readers
+        friendly_id: Étiquette
+        #Name of a blog category, as shown to readers
+        label: Étiquette
+        #Number that sets the order blog categories are listed in
+        position: Position
       conservation_status:
         status: Statut
         description: Description
@@ -9934,6 +10073,41 @@ fr:
               cannot_reference_variant: ne peut référencer une annonce qui est elle-même une variante (un seul niveau d'imbrication est autorisé)
               #Error shown when trying to set an global announcement on an announcement that already has variants
               cannot_have_variants: ne peut être défini sur une annonce qui comporte déjà des variantes (un seul niveau d'imbrication est autorisé)
+            body:
+              #Error shown to site admins when an announcement body contains a
+              #donation shortcode whose name isn't [donation-label] or
+              #[donation-url]. %{shortcode} is the shortcode text as written,
+              #e.g. [donation-amount tier="min"]. Leave the bracketed shortcode
+              #names untranslated. Shown after the field name, e.g. "Body has
+              #an unknown donation shortcode..."
+              unknown_donation_shortcode: "possède un code raccourci de don inconnu %{shortcode} ; utilisez [donation-label] ou [donation-url]"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute that can't be read, e.g. an
+              #unquoted value. %{shortcode} is the shortcode text as written.
+              malformed_donation_shortcode: "possède un code court de don avec un attribut illisible %{shortcode} ; valeurs de citation comme tier=\"min »"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body has an attribute it doesn't accept.
+              #%{attribute} is the attribute name, %{shortcode} the shortcode
+              #text as written.
+              unknown_donation_shortcode_attribute: "possède un code court de don avec un attribut inconnu %{attribute} : %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a tier that doesn't exist. %{value} is
+              #the tier as written, %{allowed} lists the tier names.
+              invalid_donation_tier: "possède un code court de don avec un niveau inconnu %{value} (l’une des %{allowed}) : %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body names a donation frequency that doesn't exist.
+              #%{value} is the frequency as written, %{allowed} lists the
+              #frequencies, e.g. "once, monthly".
+              invalid_donation_frequency: "possède un code court de don à une fréquence inconnue %{value} (l’une des %{allowed}) : %{shortcode}"
+              #Error shown to site admins when a donation shortcode in an
+              #announcement body uses a tier and frequency that has no amount
+              #set for the default country, so some viewers would see nothing.
+              #%{tier} and %{frequency} are as written, e.g. "max" and "once".
+              unpriced_donation_tier: "possède un code court pour un palier sans montant fixé (%{frequency} %{tier}) : %{shortcode}"
+              #Error shown to site admins when the url attribute of a
+              #[donation-url] shortcode in an announcement body isn't a full
+              #http:// or https:// web address.
+              invalid_donation_url: "possède un code court de don dont l’URL doit être une adresse http:// ou https:// complète : %{shortcode}"
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
@@ -10058,12 +10232,29 @@ fr:
               must_have_more_than_three_points: doit avoir plus de 3 points
               polygon_with_less_than_four_points: a un polygone avec moins de 4 points
         post:
+          #Shown when a non-site post, like a project journal post, sets a
+          #blog-only field such as a featured date or blog category
+          only_allowed_on_site_posts: n’est autorisé que sur les publications du site
           attributes:
+            blog_category:
+              #Shown when a blog post is assigned a category that belongs to
+              #a different site's blog
+              must_belong_to_post_site: n’appartient pas au site de cet article
+            cover_image:
+              #Shown when a blog post's cover image is not one of the images
+              #uploaded to that post
+              must_be_one_of_the_post_images: doit être l’une des images du post
+              #Shown when publishing a blog post whose cover image has no alt
+              #text, the description of the image read aloud by screen readers
+              needs_alt_text_to_publish: nécessite du texte alternatif pour publier
             parent:
               #Error message shown when a client tries to create a comment on a
               #post that does not allow comments. Theoretically an end user
               #should never see this, though an API client might.
               prefers_no_comments: n'autorise pas les nouveaux commentaires
+            tag_list:
+              #Shown when a post's tags are too long in total or individually
+              too_long: doit être inférieur à 750 caractères au total, pas plus de 256 caractères par étiquette.
             user:
               must_be_on_site_long_enough: |
                 doit être inscrit depuis plus de 24 heures pour pouvoir
