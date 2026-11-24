@@ -14,6 +14,12 @@ describe IconsHelper, type: :helper do
       expect( helper.icon_svg( "chevron-down" ) ).to be_html_safe
     end
 
+    it "reads each icon from disk once" do
+      helper.icon_svg( "arrow-right" )
+      expect( File ).not_to receive( :read )
+      helper.icon_svg( "arrow-right" )
+    end
+
     it "raises for an unknown icon" do
       expect { helper.icon_svg( "nope" ) }.to raise_error( Errno::ENOENT )
     end

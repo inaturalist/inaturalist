@@ -22,7 +22,7 @@
           = link_to t( :edit ), edit_post_path( post ), class: "inat-button inat-button--neutral"
       - date = ( post.published_at || post.updated_at ).to_date
       %p.blog-post__byline
-        = t( :by_user, user: link_to( post.user.login, person_path( post.user ) ) ).html_safe
+        = t( :by_user, user: post.user ? link_to( post.user.login, person_path( post.user ) ) : t( :deleted_user ) ).html_safe
         &middot;
         %time{ datetime: date.iso8601 }= l( date, format: :long )
     - if cover
@@ -35,16 +35,16 @@
         = formatted_user_text( post.body,
           scrubber: PostScrubber.new( tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES ),
           skip_simple_format: post.preferred_formatting == Post::FORMATTING_NONE )
-      - if post.tag_list.any?
-        %ul.post-tags{ "aria-label": t( :tags ) }
-          - post.tag_list.each do | tag |
-            %li= "##{tag}"
       - if observations.present?
         %section#observations.blog-post__observations
           %h2= t( :observations )
           .observations.medium.grid
             - compact do
               = render partial: "observations/cached_component", collection: observations
+      - if post.tag_list.any?
+        %ul.post-tags{ "aria-label": t( :tags ) }
+          - post.tag_list.each do | tag |
+            %li= "##{tag}"
       %section.post-comments{ "aria-label": t( :comments ) }
         - if comments.any?
           %details.post-comments__details
@@ -70,7 +70,7 @@
   - if other_posts.any?
     %section.blog-other{ "aria-labelledby": "blog-other-heading" }
       %h2#blog-other-heading= other_heading
-      = link_to archives_site_posts_path, class: "blog-other__archive" do
+      = link_to archive_path, class: "blog-other__archive" do
         = t( "views.posts.show_blog.view_blog_archive" )
         = icon_svg( "arrow-right" )
       %ul.blog-other__cards

@@ -10,6 +10,7 @@
       linkedCommentList.open = true;
       linkedComment.scrollIntoView( );
     }
+    $( ".blog-post__observations .observations" ).observationsGrid( "medium" );
     $( "#comment_body" ).textcompleteUsers( );
     $( ".emailConfirmationModalTrigger, #flag_this, a.flaglink" ).click( function( e ) {
       if ( $( "#emailConfirmationModalButton.lacking-interaction" ).length === 1 ) {
@@ -19,11 +20,13 @@
       }
     } );
 = render "posts/meta"
+- blog_root = @post.parent == @site ? "" : @post.parent.url.chomp( "/" )
 = render "posts/v2_post",
   post: @post,
   observations: @observations,
   back_label: t( "views.posts.show_blog.site_blog", site: @post.parent.name ),
-  back_path: site_posts_path,
+  back_path: "#{blog_root}#{site_posts_path}",
+  archive_path: "#{blog_root}#{archives_site_posts_path}",
   eyebrow: @post.blog_category&.label,
   other_heading: t( "views.posts.show_blog.other_posts" ),
   other_posts: @other_posts

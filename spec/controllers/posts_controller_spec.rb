@@ -586,7 +586,10 @@ describe PostsController, "show for a blog post" do
   let( :author ) { User.make! }
   let( :blog_post ) { Post.make!( parent: site, user: author, published_at: 1.hour.ago ) }
 
-  before { Flipper.enable( :blog_v2 ) }
+  before do
+    Flipper.enable( :blog_v2 )
+    controller.request.host = URI.parse( site.url ).host
+  end
 
   def html
     Nokogiri::HTML( response.body )
@@ -626,6 +629,38 @@ describe PostsController, "show for a blog post" do
       Post.make!( parent: site, user: author, published_at: 1.day.ago )
       show
       expect( html.at_css( "a[href='#{archives_site_posts_path}']" ) ).not_to be_nil
+    end
+  end
+
+  describe "deleted author" do
+    it "renders with a deleted user byline" do
+      blog_post
+      User.where( id: author.id ).delete_all
+      show
+      expect( response ).to be_successful
+      expect( html.at_css( ".blog-post__byline" ).text ).to include I18n.t( :deleted_user )
+    end
+  end
+
+  describe "a post from another site" do
+    let( :other_site ) { Site.make! }
+    let( :other_post ) { Post.make!( parent: other_site, user: author, published_at: 1.hour.ago ) }
+
+    before { Post.make!( parent: other_site, user: author, published_at: 1.day.ago ) }
+
+    it "links back to that site's blog" do
+      show( other_post )
+      expect( html.at_css( ".blog-post__back" )["href"] ).to eq "#{other_site.url}#{site_posts_path}"
+    end
+
+    it "links to that site's archive" do
+      show( other_post )
+      expect( html.at_css( ".blog-other__archive" )["href"] ).to eq "#{other_site.url}#{archives_site_posts_path}"
+    end
+
+    it "keeps relative links for the current site's posts" do
+      show
+      expect( html.at_css( ".blog-post__back" )["href"] ).to eq site_posts_path
     end
   end
 
