@@ -67,12 +67,19 @@ end
 
 describe PostsController, "site blog index" do
   render_views
-  let( :site ) { Site.make! }
+  let( :site ) { Site.default }
 
   it "links site admins to the blog category management page" do
     sign_in SiteAdmin.make!( site: site ).user
     get :index, params: { inat_site_id: site.id }
     expect( Nokogiri::HTML( response.body ).at_css( "a[href='#{blog_categories_path}']" ) ).not_to be_nil
+  end
+
+  it "doesn't link admins of other sites to the blog category management page" do
+    other_site = Site.make!
+    sign_in SiteAdmin.make!( site: other_site ).user
+    get :index, params: { inat_site_id: other_site.id }
+    expect( Nokogiri::HTML( response.body ).at_css( "a[href='#{blog_categories_path}']" ) ).to be_nil
   end
 
   it "doesn't link normal users to the blog category management page" do
@@ -154,7 +161,7 @@ describe PostsController, "create" do
     end
   end
   describe "for sites" do
-    let( :site ) { Site.make! }
+    let( :site ) { Site.default }
     it "should work for a site admin" do
       user = SiteAdmin.make!( site: site ).user
       sign_in user
@@ -222,6 +229,15 @@ describe PostsController, "create" do
       created = Post.last
       expect( created.blog_category ).to eq category
       expect( created.tag_list ).to match_array %w(herons birds)
+    end
+    it "should not save featured flags on a site other than the default" do
+      other_site = Site.make!
+      sign_in SiteAdmin.make!( site: other_site ).user
+      expect do
+        post :create, params: {
+          post: { title: "Foo", body: "Bar", parent_type: "Site", parent_id: other_site.id, featured: "1" }
+        }
+      end.not_to change( Post, :count )
     end
   end
 end
@@ -327,7 +343,7 @@ describe PostsController, "update" do
       expect( p.body ).not_to eq new_body
     end
     it "should let a site admin feature the post and set its cover" do
-      site = Site.make!
+      site = Site.default
       sign_in SiteAdmin.make!( site: site ).user
       p = Post.make!( parent: site )
       cover = PostImage.make!( post: p, alt: "A heron" )
@@ -341,7 +357,7 @@ describe PostsController, "update" do
       expect( p.cover_image ).to eq cover
     end
     it "should let the post's author set featured flags without being a site editor" do
-      site = Site.make!
+      site = Site.default
       author = User.make!
       sign_in author
       p = Post.make!( parent: site, user: author )
@@ -352,7 +368,7 @@ describe PostsController, "update" do
     end
     describe "blog form fields" do
       render_views
-      let( :site ) { Site.make! }
+      let( :site ) { Site.default }
       let( :legacy_body ) { "<p>Legacy <b>HTML</b> body\nwith a line break</p>" }
       let( :p ) { Post.make!( parent: site, body: legacy_body ) }
       before { sign_in SiteAdmin.make!( site: site ).user }
@@ -415,8 +431,8 @@ describe PostsController, "post form blog fields" do
     Nokogiri::HTML( response.body ).css( "form.post_form [name]" ).map {| el | el["name"] }
   end
 
-  it "shows the blog fields on a Site post with only the current site's categories" do
-    site = Site.make!
+  it "shows the blog fields on a default site post with only that site's categories" do
+    site = Site.default
     category = BlogCategory.make!( site: site )
     other_category = BlogCategory.make!( site: Site.make! )
     p = Post.make!( parent: site )
@@ -428,11 +444,20 @@ describe PostsController, "post form blog fields" do
     expect( options ).not_to include other_category.id.to_s
   end
 
-  it "shows the blog fields on a new Site post" do
-    site = Site.make!
+  it "shows the blog fields on a new default site post" do
+    site = Site.default
     sign_in SiteAdmin.make!( site: site ).user
     get :new, params: { inat_site_id: site.id }
     expect( form_field_names ).to include( *blog_field_names )
+  end
+
+  it "doesn't show the blog fields on a post for a site other than the default" do
+    site = Site.make!
+    p = Post.make!( parent: site )
+    sign_in SiteAdmin.make!( site: site ).user
+    get :edit, params: { id: p.id }
+    expect( response ).to be_successful
+    expect( form_field_names & blog_field_names ).to be_empty
   end
 
   it "doesn't show the blog fields on a journal post" do

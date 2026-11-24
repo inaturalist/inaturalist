@@ -11464,9 +11464,10 @@ en:
               must_have_more_than_three_points: must have more than 3 points
               polygon_with_less_than_four_points: has a polygon with fewer than 4 points
         post:
-          # Shown when a non-site post, like a project journal post, sets a
-          # blog-only field such as a featured date or blog category
-          only_allowed_on_site_posts: is only allowed on site posts
+          # Shown when a post sets a blog-only field, such as a featured date
+          # or blog category, on a blog that doesn't support it, like a project
+          # journal or a network site's blog
+          not_available_on_this_post: is not available on this post
           attributes:
             blog_category:
               # Shown when a blog post is assigned a category that belongs to

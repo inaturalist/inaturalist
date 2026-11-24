@@ -50,7 +50,7 @@ BlockedIp.blueprint do
 end
 
 BlogCategory.blueprint do
-  site { Site.make! }
+  site { Site.default }
   label { "Category #{sn}" }
 end
 

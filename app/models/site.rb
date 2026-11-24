@@ -534,6 +534,10 @@ class Site < ApplicationRecord
     ) )
   end
 
+  def blog_v2?
+    self == Site.default
+  end
+
   def login_featured_observations
     Rails.cache.fetch( "Site::#{id}::login_featured_observations", expires_in: 1.hour ) do
       es_query = {

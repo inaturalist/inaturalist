@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe BlogCategoriesController do
-  let( :site ) { Site.make! }
+  let( :site ) { Site.default }
   let( :other_site ) { Site.make! }
   let( :site_admin ) { SiteAdmin.make!( site: site ).user }
 
@@ -209,5 +209,16 @@ describe BlogCategoriesController do
     before { sign_in SiteAdmin.make!( site: other_site ).user }
     it_behaves_like "refused", :observations_path
     it_behaves_like "refused with an admin-only error"
+
+    it "is not found on that site" do
+      category = BlogCategory.make!( site: other_site )
+      get :index, params: { inat_site_id: other_site.id }
+      expect( response ).to have_http_status :not_found
+      get :edit, params: { inat_site_id: other_site.id, id: category.id }
+      expect( response ).to have_http_status :not_found
+      expect do
+        post :create, params: { inat_site_id: other_site.id, blog_category: { label: "Field Notes" } }
+      end.not_to change( BlogCategory, :count )
+    end
   end
 end

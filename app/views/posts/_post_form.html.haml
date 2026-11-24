@@ -38,7 +38,7 @@
             = t :allowed_html
             \:
           = Post::ALLOWED_TAGS.to_a.sort.join(', ')
-      - if post.parent_type == "Site"
+      - if post.parent.is_a?( Site ) && post.parent.blog_v2?
         = f.select :blog_category_id,
           post.parent.blog_categories.order( :position, :label ).map {| category | [category.label, category.id] },
           include_blank: true,

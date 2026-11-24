@@ -3,6 +3,7 @@
 class BlogCategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :site_admin_required
+  before_action { render_404 unless @site.blog_v2? }
   before_action :load_blog_category, only: [:edit, :update, :destroy]
   before_action { @responsive = true }
 

@@ -53,7 +53,7 @@ class Post < ApplicationRecord
   validates_presence_of :parent
   validates :locale, inclusion: { in: I18N_SUPPORTED_LOCALES }, allow_blank: true
   validate :user_must_be_on_site_long_enough
-  validate :blog_fields_only_on_site_posts
+  validate :blog_fields_only_on_blog_v2_sites
   validate :blog_category_on_post_site
   validate :cover_image_belongs_to_post
   validate :cover_image_alt_to_publish
@@ -179,11 +179,11 @@ class Post < ApplicationRecord
     errors.add( :user, :must_be_on_site_long_enough )
   end
 
-  def blog_fields_only_on_site_posts
-    return if parent_type == "Site"
+  def blog_fields_only_on_blog_v2_sites
+    return if parent.is_a?( Site ) && parent.blog_v2?
 
     %i[featured_at mobile_featured_at blog_category_id].select {| attr | send( attr ).present? }.each do | attr |
-      errors.add( attr, :only_allowed_on_site_posts )
+      errors.add( attr, :not_available_on_this_post )
     end
   end
 
