@@ -1,4 +1,5 @@
 @import "../shared/data_table";
+@import "../shared/buttons";
 
 // Some older posts were written to use Bootstrap's look. This page doesn't load Bootstrap,
 // so these rules bring back the few pieces those posts still depend on.
@@ -27,6 +28,37 @@
 
   .table-hover {
     @extend .inat-table--hover;
+  }
+
+  .btn {
+    @extend .inat-button;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  .btn-default {
+    @include inat-button-colors( var(--inat-dark-gray), white, var(--inat-dark-gray) );
+  }
+
+  .btn-primary {
+    @include inat-button-colors( white, var(--inat-dark-gray) );
+  }
+
+  .btn-success {
+    @include inat-button-colors( white, var(--inat-green) );
+  }
+
+  .btn-danger {
+    @include inat-button-colors( white, var(--inat-warning-red) );
+  }
+
+  .btn-block {
+    display: flex;
+    width: 100%;
+    max-width: none;
   }
 
   pre,

@@ -20,7 +20,7 @@ const LONG_URL_BODY = `<p>Complete the form: <a href="${LONG_URL}">${LONG_URL}</
 const WIDE_CELL = "Legacy-content-that-cannot-wrap-inside-the-column";
 const LEGACY_BODY = `<table class="table table-striped table-condensed"><tr>${
   Array( 6 ).fill( `<td>${WIDE_CELL}</td>` ).join( "" )
-}</tr></table>`;
+}</tr></table><p><a class="btn btn-primary" href="/observations">See observations</a></p>`;
 
 let richPostPath: string;
 let legacyPostPath: string;
@@ -70,6 +70,14 @@ test.describe( "legacy blog post with a wide table", () => {
     await page.goto( legacyPostPath );
     await expect( page.locator( ".post-article__content tr" ).first() )
       .toHaveCSS( "background-color", "rgb(249, 249, 249)" );
+  } );
+
+  test( "styles Bootstrap 3 buttons as iNat buttons, hovered too", async ( { page } ) => {
+    await page.goto( legacyPostPath );
+    const button = page.getByRole( "link", { name: "See observations" } );
+    await button.hover();
+    await expect( button ).toHaveCSS( "color", "rgb(255, 255, 255)" );
+    await expect( button ).toHaveCSS( "min-height", "44px" );
   } );
 } );
 
