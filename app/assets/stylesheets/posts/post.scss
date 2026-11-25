@@ -36,7 +36,7 @@ $post-column: 720px;
 
   a:focus-visible,
   summary:focus-visible,
-  .post-article__content:focus-visible {
+  .post-article__table-scroll:focus-visible {
     outline: 3px solid $inat-green-text;
     outline-offset: 2px;
   }
@@ -221,6 +221,10 @@ $post-column: 720px;
     height: auto;
   }
 
+  pre {
+    overflow-x: auto;
+  }
+
   blockquote {
     margin: 0 0 1.5rem;
     padding: 0.25rem 0 0.25rem 1.5rem;
@@ -260,6 +264,16 @@ $post-column: 720px;
 
   @media ( max-width: $md-max ) {
     margin-bottom: 1.75rem;
+  }
+}
+
+.post-article__table-scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  margin: 0 0 1.5rem;
+
+  @media ( max-width: $md-max ) {
+    margin-bottom: 1.25rem;
   }
 }
 
@@ -320,12 +334,20 @@ $post-column: 720px;
   }
 }
 
-.post-figure__caption,
-.post-figure__credit {
-  margin-top: 0.625rem;
+.post-article__content .post-figure__caption {
+  margin: 0.75rem 0 0;
   font-size: 0.9375rem;
   line-height: 1.5;
   color: $text-muted;
+
+  @media ( max-width: $md-max ) {
+    margin-top: 0.625rem;
+    font-size: 0.875rem;
+  }
+}
+
+.post-figure__credit {
+  font-size: inherit;
 }
 
 .post-comments {

@@ -725,13 +725,25 @@ describe PostsController, "show for a blog post" do
   end
 
   describe "body" do
-    it "renders inside the scrollable post body region" do
+    it "renders inside the post content" do
       show
-      region = html.at_css( ".post-article__content" )
-      expect( region["role"] ).to eq "region"
-      expect( region["aria-label"] ).to eq "Post content, scrolls sideways"
-      expect( region["tabindex"] ).to eq "0"
-      expect( region.text ).to include blog_post.body
+      content = html.at_css( ".post-article__content" )
+      expect( content["tabindex"] ).to be_nil
+      expect( content.text ).to include blog_post.body
+    end
+
+    it "wraps each table in its own scroller" do
+      blog_post.update!( body: "<table><tr><td>a</td></tr></table><p>between</p><table><tr><td>b</td></tr></table>" )
+      show
+      scrollers = html.css( ".post-article__content > .post-article__table-scroll" )
+      expect( scrollers.size ).to eq 2
+      expect( scrollers.map {| s | s.at_css( "> table" ).text } ).to eq %w(a b)
+    end
+
+    it "leaves tables nested in a table unwrapped" do
+      blog_post.update!( body: "<table><tr><td><table><tr><td>inner</td></tr></table></td></tr></table>" )
+      show
+      expect( html.css( ".post-article__table-scroll" ).size ).to eq 1
     end
   end
 

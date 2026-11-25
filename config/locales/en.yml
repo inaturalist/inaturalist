@@ -8937,9 +8937,6 @@ en:
         read_all_comments:
           one: Read %{count} comment
           other: Read all %{count} comments
-        # Screen reader label for the region holding a blog post's body, which
-        # scrolls sideways when the post contains wide tables or images
-        scrollable_post_content: Post content, scrolls sideways
         # Link for logged-out readers under a blog post's comments
         sign_in_to_comment: Sign in to comment
         # Link back to the blog home from a blog post; %{site} is the site name, e.g. iNaturalist

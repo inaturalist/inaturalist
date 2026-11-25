@@ -55,16 +55,15 @@ test.describe( "blog post with a cover, images and an embed", () => {
 test.describe( "legacy blog post with a wide table", () => {
   expectNoHorizontalOverflow( () => legacyPostPath, { waitForSelector: ".post-article" } );
 
-  test( "scrolls the table inside the post body region on phones", async ( { page } ) => {
+  test( "scrolls the table on its own instead of the post body on phones", async ( { page } ) => {
     await page.setViewportSize( VIEWPORTS.xs );
     await page.goto( legacyPostPath );
 
-    const region = page.getByRole( "region", { name: "Post content, scrolls sideways", exact: true } );
-    const { scrollWidth, clientWidth } = await region.evaluate( el => ( {
-      scrollWidth: el.scrollWidth,
-      clientWidth: el.clientWidth
-    } ) );
-    expect( scrollWidth ).toBeGreaterThan( clientWidth );
+    const widths = ( el: Element ) => ( { scrollWidth: el.scrollWidth, clientWidth: el.clientWidth } );
+    const table = await page.locator( ".post-article__table-scroll" ).evaluate( widths );
+    const content = await page.locator( ".post-article__content" ).evaluate( widths );
+    expect( table.scrollWidth ).toBeGreaterThan( table.clientWidth );
+    expect( content.scrollWidth ).toBe( content.clientWidth );
   } );
 
   test( "keeps the stripes on Bootstrap 3 striped tables", async ( { page } ) => {
@@ -79,8 +78,8 @@ test.describe( "blog post with a long unbroken URL", () => {
     await page.setViewportSize( VIEWPORTS.xs );
     await page.goto( longUrlPostPath );
 
-    const region = page.getByRole( "region", { name: "Post content, scrolls sideways", exact: true } );
-    const { scrollWidth, clientWidth } = await region.evaluate( el => ( {
+    const content = page.locator( ".post-article__content" );
+    const { scrollWidth, clientWidth } = await content.evaluate( el => ( {
       scrollWidth: el.scrollWidth,
       clientWidth: el.clientWidth
     } ) );

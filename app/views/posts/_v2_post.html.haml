@@ -31,10 +31,10 @@
         - if caption.present?
           %figcaption= caption
     .post-article__body
-      .post-article__content{ tabindex: 0, role: "region", "aria-label": t( "views.posts.show_blog.scrollable_post_content" ) }
-        = formatted_user_text( post.body,
+      .post-article__content
+        = with_scrollable_tables( formatted_user_text( post.body,
           scrubber: PostScrubber.new( tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES ),
-          skip_simple_format: post.preferred_formatting == Post::FORMATTING_NONE )
+          skip_simple_format: post.preferred_formatting == Post::FORMATTING_NONE ) )
       - if observations.present?
         %section#observations.post-article__observations
           %h2= t( :observations )
