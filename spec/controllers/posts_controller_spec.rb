@@ -562,13 +562,374 @@ describe PostsController, "show" do
       html = Nokogiri::HTML( response.body )
       expect( html.css( ".post-nav-inline a[href='#observations']" ) ).not_to be_empty
     end
+  end
 
-    it "renders the post nav for a blog post" do
-      site_post = Post.make!( parent: Site.make!, user: user )
-      Comment.make!( parent: site_post )
-      get :show, params: { id: site_post.id }
+  describe "templates" do
+    it "renders the blog page for a Site post when blog_v2 is on" do
+      Flipper.enable( :blog_v2 )
+      get :show, params: { id: Post.make!( parent: Site.make!, user: user ).id }
+      expect( response ).to render_template( :show_blog )
+    end
+
+    it "keeps the shared page for a Site post when blog_v2 is off" do
+      get :show, params: { id: Post.make!( parent: Site.make!, user: user, published_at: 1.hour.ago ).id }
+      expect( response ).to render_template( :show )
+      expect( response ).not_to render_template( :show_blog )
+    end
+
+    it "renders the blog page only for users blog_v2 is enabled for" do
+      staff = User.make!
+      Flipper.enable_actor( :blog_v2, staff )
+      blog_post = Post.make!( parent: Site.make!, user: user, published_at: 1.hour.ago )
+      sign_in staff
+      get :show, params: { id: blog_post.id }
+      expect( response ).to render_template( :show_blog )
+      sign_out staff
+      sign_in User.make!
+      get :show, params: { id: blog_post.id }
+      expect( response ).not_to render_template( :show_blog )
+    end
+
+    it "keeps the shared page for a journal post" do
+      get :show, params: { id: Post.make!( parent: user, user: user ).id, login: user.login }
+      expect( response ).to render_template( :show )
+      expect( response ).not_to render_template( :show_blog )
+    end
+
+    it "keeps the shared page for a project post" do
+      project = Project.make!
+      get :show, params: { id: Post.make!( parent: project, user: project.user ).id, project_id: project.id }
+      expect( response ).to render_template( :show )
+      expect( response ).not_to render_template( :show_blog )
+    end
+  end
+end
+
+describe PostsController, "show for a blog post" do
+  render_views
+  let( :site ) { Site.make! }
+  let( :author ) { User.make! }
+  let( :blog_post ) { Post.make!( parent: site, user: author, published_at: 1.hour.ago ) }
+
+  before do
+    Flipper.enable( :blog_v2 )
+    controller.request.host = URI.parse( site.url ).host
+  end
+
+  def html
+    Nokogiri::HTML( response.body )
+  end
+
+  def show( post = blog_post )
+    get :show, params: { id: post.id }
+  end
+
+  def add_cover( post, attrs = {} )
+    cover = PostImage.make!( { post: post, user: post.user, alt: "A heron on a rock" }.merge( attrs ) )
+    post.update!( cover_image: cover )
+    cover
+  end
+
+  describe "other posts" do
+    it "lists the 3 newest other published posts from the same site" do
+      newest = [1, 2, 3].map {| d | Post.make!( parent: site, user: author, published_at: d.days.ago ) }
+      older = Post.make!( parent: site, user: author, published_at: 10.days.ago )
+      draft = Post.make!( parent: site, user: author, published_at: nil )
+      other_site = Post.make!( parent: Site.make!, user: author, published_at: 1.minute.ago )
+      show
+      expect( assigns( :other_posts ) ).to eq newest
+      expect( assigns( :other_posts ) ).not_to include( blog_post, older, draft, other_site )
+      expect( html.css( ".post-card" ).size ).to eq 3
+    end
+
+    it "skips the journal prev/next lookups" do
+      Post.make!( parent: site, user: author, published_at: 1.day.ago )
+      Post.make!( parent: site, user: author, published_at: 1.minute.ago )
+      show
+      expect( assigns( :prev ) ).to be_nil
+      expect( assigns( :next ) ).to be_nil
+    end
+
+    it "links to the blog archive" do
+      Post.make!( parent: site, user: author, published_at: 1.day.ago )
+      show
+      expect( html.at_css( "a[href='#{archives_site_posts_path}']" ) ).not_to be_nil
+    end
+  end
+
+  describe "deleted author" do
+    it "renders with a deleted user byline" do
+      blog_post
+      User.where( id: author.id ).delete_all
+      show
       expect( response ).to be_successful
-      expect( Nokogiri::HTML( response.body ).css( ".post-nav-inline" ) ).not_to be_empty
+      expect( html.at_css( ".post-article__byline" ).text ).to include I18n.t( :deleted_user )
+    end
+  end
+
+  describe "a post from another site" do
+    let( :other_site ) { Site.make! }
+    let( :other_post ) { Post.make!( parent: other_site, user: author, published_at: 1.hour.ago ) }
+
+    before { Post.make!( parent: other_site, user: author, published_at: 1.day.ago ) }
+
+    it "links back to that site's blog" do
+      show( other_post )
+      expect( html.at_css( ".post-article__back" )["href"] ).to eq "#{other_site.url}#{site_posts_path}"
+    end
+
+    it "links to that site's archive" do
+      show( other_post )
+      expect( html.at_css( ".post-other-posts__archive" )["href"] ).to eq "#{other_site.url}#{archives_site_posts_path}"
+    end
+
+    it "keeps relative links for the current site's posts" do
+      show
+      expect( html.at_css( ".post-article__back" )["href"] ).to eq site_posts_path
+    end
+  end
+
+  describe "link previews" do
+    it "uses the cover image for og:image" do
+      cover = add_cover( blog_post )
+      show
+      expect( assigns( :shareable_image_url ) ).to include cover.file.url( :original ).split( "?" ).first
+    end
+
+    it "falls back to the first body image without a cover" do
+      post = Post.make!( parent: site, user: author, body: "<img src='https://example.org/a.png'>" )
+      show( post )
+      expect( assigns( :shareable_image_url ) ).to eq "https://example.org/a.png"
+    end
+  end
+
+  describe "cover" do
+    it "shows the hero with its alt text and a caption of caption and attribution" do
+      add_cover( blog_post, caption: "Riverweed on a rock", attribution: "Photo © seastarya, CC BY-NC" )
+      show
+      expect( html.at_css( ".post-article__hero img" )["alt"] ).to eq "A heron on a rock"
+      expect( html.at_css( ".post-article__hero figcaption" ).text.squish ).to eq(
+        "Riverweed on a rock. Photo © seastarya, CC BY-NC"
+      )
+    end
+
+    it "shows either caption part alone" do
+      add_cover( blog_post, attribution: "Photo © seastarya" )
+      show
+      expect( html.at_css( ".post-article__hero figcaption" ).text.squish ).to eq "Photo © seastarya"
+    end
+
+    it "has no caption when caption and attribution are empty" do
+      add_cover( blog_post )
+      show
+      expect( html.at_css( ".post-article__hero figcaption" ) ).to be_nil
+    end
+
+    it "has no hero without a cover" do
+      show
+      expect( html.at_css( ".post-article__hero" ) ).to be_nil
+    end
+  end
+
+  describe "category and tags" do
+    it "shows the category label and tags as plain text" do
+      blog_post.update!(
+        blog_category: BlogCategory.make!( site: site, label: "Behind the Observation" ),
+        tag_list: "herons, rivers"
+      )
+      show
+      expect( html.at_css( ".post-article__category" ).text.squish ).to eq "Behind the Observation"
+      expect( html.css( ".post-article__tags li" ).map {| li | li.text.squish } ).to match_array %w(#herons #rivers)
+      expect( html.css( ".post-article__tags a, .post-article__category a" ) ).to be_empty
+    end
+
+    it "has no tags row without tags" do
+      show
+      expect( html.at_css( ".post-article__tags" ) ).to be_nil
+    end
+  end
+
+  describe "body" do
+    it "renders inside the post content" do
+      show
+      content = html.at_css( ".post-article__content" )
+      expect( content["tabindex"] ).to be_nil
+      expect( content.text ).to include blog_post.body
+    end
+
+    it "wraps each table in its own scroller" do
+      blog_post.update!( body: "<table><tr><td>a</td></tr></table><p>between</p><table><tr><td>b</td></tr></table>" )
+      show
+      scrollers = html.css( ".post-article__content > .post-article__table-scroll" )
+      expect( scrollers.size ).to eq 2
+      expect( scrollers.map {| s | s.at_css( "> table" ).text } ).to eq %w(a b)
+    end
+
+    it "leaves tables nested in a table unwrapped" do
+      blog_post.update!( body: "<table><tr><td><table><tr><td>inner</td></tr></table></td></tr></table>" )
+      show
+      expect( html.css( ".post-article__table-scroll" ).size ).to eq 1
+    end
+  end
+
+  describe "comments" do
+    it "offers to read all comments when there are some" do
+      2.times { Comment.make!( parent: blog_post ) }
+      show
+      expect( html.at_css( ".post-comments summary" ).text.squish ).to include "Read all 2 comments"
+    end
+
+    it "says there are no comments yet" do
+      show
+      expect( html.at_css( ".post-comments summary" ) ).to be_nil
+      expect( html.at_css( ".post-comments" ).text ).to include "No comments yet"
+    end
+
+    it "asks logged-out readers to sign in" do
+      show
+      expect( html.at_css( ".post-comments a[href='#{login_path}']" ).text.squish ).to eq "Sign in to comment"
+      expect( html.at_css( ".post-comments form" ) ).to be_nil
+    end
+
+    it "gives signed-in readers the comment form" do
+      sign_in make_user_with_privilege( UserPrivilege::INTERACTION )
+      Comment.make!( parent: blog_post )
+      show
+      form = html.at_css( ".post-comments form" )
+      expect( form.at_css( "input[type=submit]" )["value"] ).to eq "Post comment"
+      expect( form.text ).not_to include "Preview"
+    end
+
+    it "says comments are disabled instead of inviting readers to comment" do
+      blog_post.update!( prefers_no_comments: true )
+      show
+      expect( html.at_css( ".post-comments" ).text ).to include "Comments have been disabled"
+      expect( html.at_css( ".post-comments" ).text ).not_to include "No comments yet"
+      expect( html.at_css( ".post-comments a[href='#{login_path}']" ) ).to be_nil
+    end
+
+    it "says comments are disabled under existing comments" do
+      Comment.make!( parent: blog_post )
+      blog_post.update!( prefers_no_comments: true )
+      show
+      expect( html.at_css( ".post-comments summary" ) ).not_to be_nil
+      expect( html.at_css( ".post-comments" ).text ).to include "Comments have been disabled"
+    end
+
+    it "hides flagged comments" do
+      c = Comment.make!( parent: blog_post )
+      Flag.make!( flaggable: c, flag: Flag::INAPPROPRIATE )
+      show
+      expect( response.body ).not_to include c.body
+    end
+  end
+
+  describe "without Bootstrap" do
+    it "renders the page outside Bootstrap's scope" do
+      show
+      expect( html.at_css( ".post-page" ).ancestors( ".bootstrap" ) ).to be_empty
+    end
+
+    it "keeps Bootstrap's scope for journal posts" do
+      get :show, params: { id: Post.make!( parent: author, user: author, published_at: 1.hour.ago ).id }
+      expect( html.at_css( "#wrapper.bootstrap" ) ).not_to be_nil
+    end
+
+    it "uses no Bootstrap component classes" do
+      commenter = make_user_with_privilege( UserPrivilege::INTERACTION )
+      Comment.make!( parent: blog_post, user: commenter )
+      sign_in author
+      show
+      page = html.at_css( ".post-page" )
+      expect( page.css( ".btn, .alert, .form-control, [data-toggle]" ) ).to be_empty
+    end
+
+    it "marks an unpublished post as a preview with a notice" do
+      sign_in author
+      show( Post.make!( parent: site, user: author, published_at: nil ) )
+      expect( html.at_css( ".post-page > .inat-notice" )&.text&.squish ).to eq "Preview"
+    end
+
+    it "gives the comment form a labeled textarea and shared buttons" do
+      sign_in make_user_with_privilege( UserPrivilege::INTERACTION )
+      show
+      form = html.at_css( ".post-comments form" )
+      textarea = form.at_css( "textarea.inat-input" )
+      expect( form.at_css( "label[for='#{textarea['id']}']" ).text.squish ).to eq "Add a comment"
+      expect( form.at_css( "input[type=submit].inat-button--primary" )["value"] ).to eq "Post comment"
+      expect( form.at_css( ".commentpreviewbutton" ) ).to be_nil
+    end
+
+    it "asks readers who can't interact yet to confirm their email instead of showing the form" do
+      sign_in User.make!
+      show
+      comments = html.at_css( ".post-comments" )
+      expect( comments.at_css( "form textarea" ) ).to be_nil
+      expect( comments.at_css( "a.inat-button.emailConfirmationModalTrigger" ) ).not_to be_nil
+    end
+
+    describe "a comment" do
+      let( :commenter ) { User.make! }
+      let!( :comment ) { Comment.make!( parent: blog_post, user: commenter, body: "What a cool plant!" ) }
+
+      def comment_item
+        html.at_css( "#activity_comment_#{comment.uuid}.post-comment" )
+      end
+
+      it "shows the commenter, when they commented and what they said" do
+        show
+        expect( comment_item.at_css( ".post-comment__who" )["href"] ).to eq person_path( commenter )
+        expect( comment_item.at_css( ".post-comment__who" ).text.squish ).to eq commenter.login
+        expect( comment_item.at_css( "time" )["datetime"] ).to eq comment.created_at.iso8601
+        expect( comment_item.at_css( ".post-comment__body" ).text ).to include "What a cool plant!"
+      end
+
+      it "lets the commenter edit and delete it" do
+        sign_in commenter
+        show
+        links = comment_item.css( ".post-comment__actions a" ).map {| a | a.text.squish }
+        expect( links ).to include( "Edit", "Delete" )
+      end
+
+      it "lets other signed-in readers flag it but not edit it" do
+        sign_in User.make!
+        show
+        links = comment_item.css( ".post-comment__actions a" ).map {| a | a.text.squish }
+        expect( links ).to include "Flag"
+        expect( links ).not_to include "Edit"
+      end
+
+      it "shows no actions to logged-out readers" do
+        show
+        expect( comment_item.at_css( ".post-comment__actions" ) ).to be_nil
+      end
+
+      it "hides the text of a hidden comment from other readers" do
+        ModeratorAction.make!( resource: comment, action: ModeratorAction::HIDE )
+        show
+        expect( comment_item.text ).not_to include "What a cool plant!"
+        expect( comment_item.text ).to include "Content Hidden"
+      end
+    end
+  end
+
+  describe "kept features" do
+    it "shows the edit button to its author" do
+      sign_in author
+      show
+      expect( html.at_css( ".post-article__title-row a.inat-button" )&.text ).to eq "Edit"
+    end
+
+    it "hides the edit button from other users" do
+      sign_in User.make!
+      show
+      expect( html.at_css( ".post-article__title-row a" ) ).to be_nil
+    end
+
+    it "shows linked observations" do
+      blog_post.observations << Observation.make!
+      show
+      expect( html.at_css( "#observations" ) ).not_to be_nil
     end
   end
 end

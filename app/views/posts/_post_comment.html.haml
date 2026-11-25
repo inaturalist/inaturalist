@@ -1,0 +1,22 @@
+- user = post_comment.user
+- hidden = post_comment.hidden?
+- visible = !hidden || post_comment.hidden_content_viewable_by?( current_user )
+- actions = comment_action_links( post_comment )
+%li.post-comment{ id: "activity_comment_#{post_comment.uuid}" }
+  - if visible && user
+    = image_tag user.icon.url( :thumb ), alt: "", class: "post-comment__avatar"
+  - else
+    %span.post-comment__avatar
+  .post-comment__main
+    .post-comment__meta
+      - if visible && user
+        = link_to user.login, person_path( user ), class: "post-comment__who"
+      %time{ datetime: post_comment.created_at.iso8601 }
+        = t( :n_ago, n: time_ago_in_words( post_comment.created_at ) )
+    - if visible
+      .post-comment__body
+        = formatted_user_text( post_comment.body, tags: Observation::ALLOWED_DESCRIPTION_TAGS )
+    - if hidden
+      %p.post-comment__hidden= t( :content_hidden )
+    - if actions.any?
+      %p.post-comment__actions= safe_join( actions, " · " )

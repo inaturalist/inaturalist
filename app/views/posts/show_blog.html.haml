@@ -1,0 +1,33 @@
+- content_for :title do
+  =title_by_user @title = @post.title
+- content_for :extracss do
+  = stylesheet_link_tag "posts/post"
+- content_for :extrajs do
+  :javascript
+    var linkedComment = window.location.hash && document.getElementById( window.location.hash.slice( 1 ) );
+    var linkedCommentList = linkedComment && linkedComment.closest( ".post-comments__details" );
+    if ( linkedCommentList ) {
+      linkedCommentList.open = true;
+      linkedComment.scrollIntoView( );
+    }
+    $( ".post-article__observations .observations" ).observationsGrid( "medium" );
+    $( "#comment_body" ).textcompleteUsers( );
+    $( ".emailConfirmationModalTrigger, #flag_this, a.flaglink" ).click( function( e ) {
+      if ( $( "#emailConfirmationModalButton.lacking-interaction" ).length === 1 ) {
+        $( "#emailConfirmationModalButton.lacking-interaction" ).click( );
+        e.preventDefault( );
+        e.stopPropagation( );
+      }
+    } );
+= render "posts/meta"
+- blog_root = @post.parent == @site ? "" : @post.parent.url.chomp( "/" )
+= render "posts/v2_post",
+  post: @post,
+  observations: @observations,
+  back_label: t( "views.posts.show_blog.site_blog", site: @post.parent.name ),
+  back_path: "#{blog_root}#{site_posts_path}",
+  archive_label: t( "views.posts.show_blog.view_blog_archive" ),
+  archive_path: "#{blog_root}#{archives_site_posts_path}",
+  category: @post.blog_category&.label,
+  other_heading: t( "views.posts.show_blog.other_posts" ),
+  other_posts: @other_posts

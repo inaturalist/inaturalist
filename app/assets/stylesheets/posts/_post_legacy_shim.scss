@@ -1,0 +1,94 @@
+@import "../shared/data_table";
+@import "../shared/buttons";
+
+// Some older posts were written to use Bootstrap's look. This page doesn't load Bootstrap,
+// so these rules bring back the few pieces those posts still depend on.
+.post-article__content {
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  // About 1,500 older posts use Bootstrap's table classes; this makes them look like our tables
+  .table {
+    @extend .inat-table;
+    width: auto;
+    min-width: 100%;
+  }
+
+  .table-condensed {
+    @extend .inat-table--condensed;
+  }
+
+  .table-striped {
+    @extend .inat-table--striped;
+  }
+
+  .table-hover {
+    @extend .inat-table--hover;
+  }
+
+  .btn {
+    @extend .inat-button;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  .btn-default {
+    @include inat-button-colors( var(--inat-dark-gray), white, var(--inat-dark-gray) );
+  }
+
+  .btn-primary {
+    @include inat-button-colors( white, var(--inat-dark-gray) );
+  }
+
+  .btn-success {
+    @include inat-button-colors( white, var(--inat-green) );
+  }
+
+  .btn-danger {
+    @include inat-button-colors( white, var(--inat-warning-red) );
+  }
+
+  .btn-block {
+    display: flex;
+    width: 100%;
+    max-width: none;
+  }
+
+  pre,
+  code {
+    font-size: 0.9375rem;
+  }
+
+  // About 900 older project posts use Bootstrap's person and calendar icons
+  .glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: normal;
+  }
+
+  .glyphicon-user::before {
+    content: "\e008";
+  }
+
+  .glyphicon-calendar::before {
+    content: "\e109";
+  }
+
+  // Keeps icons from making their line of text taller
+  .glyphicon,
+  .fa,
+  [class^="icon-"],
+  [class*=" icon-"] {
+    line-height: 1;
+  }
+}

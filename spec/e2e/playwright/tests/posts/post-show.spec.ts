@@ -9,6 +9,7 @@ const LONG_TITLE = "A fairly long journal post title that has to wrap on narrow 
 
 let testEmail: string;
 let journalPostPath: string;
+let bareJournalPostPath: string;
 let blogPostPath: string;
 
 test.beforeAll( async () => {
@@ -22,6 +23,8 @@ test.beforeAll( async () => {
     comment_count: 1
   } ) as Record<string, unknown>;
   journalPostPath = `/journal/${user.login}/${journalPost.id}`;
+  const bareJournalPost = await app( "create_post", { user_id: user.id, title: LONG_TITLE } ) as Record<string, unknown>;
+  bareJournalPostPath = `/journal/${user.login}/${bareJournalPost.id}`;
 
   const site = await appMake( "create", "site", {} );
   const blogPost = await app( "create_post", {
@@ -42,7 +45,7 @@ test.describe( "journal post", () => {
 } );
 
 test.describe( "blog post", () => {
-  expectNoHorizontalOverflow( () => blogPostPath, { waitForSelector: ".post-layout" } );
+  expectNoHorizontalOverflow( () => blogPostPath, { waitForSelector: ".post-article" } );
 } );
 
 test.describe( "post navigation", () => {
@@ -72,7 +75,7 @@ test.describe( "post navigation", () => {
 
   test( "is omitted and the body spans the full width when there is nothing to link to", async ( { page } ) => {
     await page.setViewportSize( VIEWPORTS.xl );
-    await page.goto( blogPostPath );
+    await page.goto( bareJournalPostPath );
 
     await expect( page.locator( ".post-nav" ) ).toHaveCount( 0 );
     const pageBox = await page.locator( ".post-layout" ).boundingBox();

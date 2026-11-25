@@ -125,7 +125,7 @@
         <% end -%>
       <% end -%>
 
-      <div id="wrapper" class="bootstrap">
+      <div id="wrapper" class="<%= "bootstrap" unless @no_bootstrap %>">
         <% if @feature_test -%>
           <div class="container">
             <div class="box bg-warning">

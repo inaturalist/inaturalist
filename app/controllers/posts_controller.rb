@@ -105,13 +105,10 @@ class PostsController < ApplicationController
 
     respond_to do | format |
       format.html do
-        @next = @post.parent.journal_posts.published.where( "published_at > ?",
-          @post.published_at || @post.updated_at ).order( "published_at ASC" ).first
-        @prev = @post.parent.journal_posts.published.where( "published_at < ?",
-          @post.published_at || @post.updated_at ).order( "published_at DESC" ).first
         user_viewed_updates_for( @post ) if logged_in?
         @observations = @post.observations.order_by( "observed_on" )
-        @shareable_image_url = @post.body[/img.+?src=["'](.+?)["']/, 1] if @post.body
+        @shareable_image_url = helpers.image_url( @post.cover_image.file.url( :original ) ) if @post.cover_image
+        @shareable_image_url ||= @post.body[/img.+?src=["'](.+?)["']/, 1] if @post.body
         @shareable_image_url ||= case @post.parent_type
         when "Project"
           helpers.image_url( @post.parent.icon.url( :original ) )
@@ -122,6 +119,17 @@ class PostsController < ApplicationController
         end
         @shareable_description = helpers.shareable_description( @post.body ) if @post.body
         @responsive = true
+        if @post.parent_type == "Site" && FeatureFlagging.enabled?( :blog_v2, current_user )
+          @no_bootstrap = true
+          @other_posts = @post.parent.posts.published.where.not( id: @post.id ).
+            order( published_at: :desc ).limit( 3 ).includes( :blog_category, :cover_image )
+          render :show_blog
+        else
+          @next = @post.parent.journal_posts.published.where( "published_at > ?",
+            @post.published_at || @post.updated_at ).order( "published_at ASC" ).first
+          @prev = @post.parent.journal_posts.published.where( "published_at < ?",
+            @post.published_at || @post.updated_at ).order( "published_at DESC" ).first
+        end
       end
       format.json { render json: posts_json( [@post] ).first }
     end

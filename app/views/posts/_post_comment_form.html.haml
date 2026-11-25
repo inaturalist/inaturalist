@@ -1,0 +1,17 @@
+- if current_user.can_interact_with?( post )
+  - comment = Comment.new( parent: post, user: current_user )
+  = form_for comment, html: { class: "post-comment-form" } do | f |
+    = f.hidden_field :parent_id
+    = f.hidden_field :parent_type
+    = f.label :body, t( "views.posts.show_blog.add_a_comment" )
+    = f.text_area :body, class: "inat-input", rows: 4, maxlength: Comment::MAX_LENGTH
+    .inat-form-actions
+      = f.submit t( "views.posts.show_blog.post_comment" ),
+        class: "inat-button inat-button--primary",
+        data: { loading_click: true }
+- else
+  .post-comment-form
+    %p= t( "views.email_confirmation.please_confirm_to_interact" )
+    .inat-form-actions
+      = link_to t( :send_confirmation_email ), edit_person_path( current_user ),
+        class: "inat-button inat-button--primary emailConfirmationModalTrigger"
