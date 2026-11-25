@@ -874,6 +874,16 @@ de:
   blocking_description: Das Blockieren unterbindet jegliche Kommunikation zwischen dir und einem anderen Benutzer. Es ist für Situationen gedacht, in denen ein anderer Benutzer deine Sicherheit gefährden kann, wie zum Beispiel durch Stalking oder anderes missbräuchliches Verhalten.
   block_removed: Sperre entfernt
   blocked_users: Gesperrte Benutzer
+  #Title of the admin page listing the categories that site blog posts can be filed under
+  blog_categories: Blog-Kategorien
+  #Error shown when an admin tries to delete a blog category that posts are still filed under
+  blog_category_in_use: Diese Kategorie kann nicht gelöscht werden, weil sie verwendet wird von %{count} Beitrag(e).
+  #Confirmation shown after an admin creates a blog category
+  blog_category_was_successfully_created: Kategorie wurde erfolgreich erstellt.
+  #Confirmation shown after an admin deletes a blog category
+  blog_category_was_successfully_deleted: Kategorie wurde erfolgreich gelöscht.
+  #Confirmation shown after an admin edits a blog category
+  blog_category_was_successfully_updated: Kategorie wurde erfolgreich aktualisiert.
   blog_widget: Blog Widget
   blue_butterfly_etc: "blau, Schmetterling, usw."
   body: Text
@@ -1902,6 +1912,8 @@ de:
   editing: Bearbeiten
   #Title for a page to edit an announcement
   editing_announcement_x: Ankündigung bearbeiten %{id}
+  #Title of the page for editing a blog category; label is the category's name
+  editing_blog_category_x: Kategorie bearbeiten %{label}
   editing_custom_project_fields_for: Benutzerdefinierte Projektfelder bearbeiten für
   editing_observation_field: Beobachtungsfeld bearbeiten
   editing_observation_id: "Beobachtung %{obs_id} bearbeiten"
@@ -2960,6 +2972,8 @@ de:
   make_your_app_confidential: Make your app confidential if you can store your app secret securely, i.e. not in a publicly availble binary that can be decompiled. Uncheck this box if this is not the case and you plan to use the PKCE flow
   mammals: Säugetiere
   manage_all_your_subscriptions: Alle deine Abos verwalten
+  #Button on the site blog that takes admins to the page for managing blog categories
+  manage_categories: Kategorien verwalten
   manage_names: Namen verwalten
   manage_your_projects: Deine Projekte verwalten
   manage_your_relationships: Deine Beziehungen verwalten
@@ -3249,6 +3263,8 @@ de:
   new_announcement: Neue Ankündigungen
   new_application: Neue Anwendung
   new_assessment: Neue Bewertung
+  #Button and page title for creating a new blog category
+  new_blog_category: Neue Kategorie
   new_check_list: Neue Checkliste
   new_check_list_for: "Eine neue Checkliste für %{place} erstellen"
   new_check_list_record: "Wenn du diese Liste als <em>umfassend</em> markieren möchtest, erstellen sie, füge die Taxa hinzu, und dann bearbeite es. Dann hast du die Möglichkeit, es hier als 'umfassend' zu kennzeichnen."
@@ -3303,6 +3319,8 @@ de:
   #Shown when a list of 3rd party applications has no applications
   no_applications_yet: Noch keine Anwendungen
   no_assessments_have_been_added_to_this_project_yet: Zu diesem Projekt sind noch keine Bewertungen hinzugekommen.
+  #Shown on the blog categories admin page when no categories exist
+  no_blog_categories_yet: Noch keine Kategorien.
   no_but_it_is_a_member_of_taxon: "Widerspruch ('%{taxon}' ist als ID aber möglich)"
   no_comments_yet: Noch keine Kommentare.
   no_creative_commons_flickr_photos_tagged_x: 'Keine Creative Commons Flickr Bilder mit "%{x}" getaggt'
@@ -5998,6 +6016,8 @@ de:
   uploading_num_of_count_photos:
     one: Foto wird hochgeladen...
     other: Lade %{num} von %{count} Fotos hoch...
+  #Table heading for the short, URL-safe version of a name used in web addresses, e.g. "identifier-profiles"
+  url_slug: URL-Slug
   url_for_your_app_outside_of_inaturalist: URL für deine App außerhalb von iNaturalist
   url_identifier_of_a_project_derived_from: "URL/ Identifikation eines Projekts, welches von einer externen Quelle abgeleitet wurde"
   url_of_this_taxon_on_the_source_website: URL dieses Taxons auf der Website der Quelle
@@ -9268,6 +9288,13 @@ de:
       blocked_user:
         #The user who has been blocked
         blocked_user: Blockierter Benutzer
+      blog_category:
+        #Name of a blog category, as shown to readers
+        friendly_id: Label
+        #Name of a blog category, as shown to readers
+        label: Label
+        #Number that sets the order blog categories are listed in
+        position: Position
       conservation_status:
         status: Status
         description: Beschreibung
