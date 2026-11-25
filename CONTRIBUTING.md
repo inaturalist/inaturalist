@@ -26,7 +26,8 @@ If you've found a problem in the code, please supply detailed reproduction condi
 You should report security issues that require confidential communication to [help+security@inaturalist.org](mailto:help+security@inaturalist.org). We do not offer any rewards or bounties for reporting security issues, though we may offer to list your name and URL here if we act on your report. Our heartfelt thanks to everyone who has reported issues, including (but not limited to):
 
 * [Sohail Ahmed](https://www.linkedin.com/in/sohail-ahmed-755776184/)
-* [Abdul Wahab](https://twitter.com/BugHunt25657683)
+* [Adrian Fang](https://adrianfang.github.io/)
+* Abdul Wahab
 
 ---
 
