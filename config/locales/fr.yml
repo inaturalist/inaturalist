@@ -235,7 +235,7 @@ fr:
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
-    Les gérants du projet qui auront accès à vos coordonnées masquées sont :
+    Les gestionnaires du projet qui auront accès à vos coordonnées masquées sont :
   about_trusting_projects_warning: |-
     Prenez en compte que les gérants du projet pourront changer les paramètres de celui-ci afin d'y ajouter vos observations, et pour ajouter ou supprimer des gérants n'importe quand. Vous recevrez des notifications, mais vous acceptez de faire confiance à ce projet en donnant vos coordonnées privées, donc soyez prudent.
   #Header for a section listing the different ways you can trust a project
@@ -320,7 +320,7 @@ fr:
   add_blocked_users: Bloquer l'utilisateur
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Ajouter un texte en gras
-  add_comma_separated_tags: "Ajouter des balises séparées par des virgules"
+  add_comma_separated_tags: "Ajouter des étiquettes séparées par des virgules"
   add_comment: Ajouter un commentaire
   add_conservation_status: Ajouter un Statut de Conservation
   add_custom_project_fields: Ajouter des champs de projet personnalisés
@@ -401,9 +401,9 @@ fr:
   add_sex_male_annotation: 'Ajouter l''annotation "Sexe: mâle"'
   add_sex_cannot_be_determined_annotation: 'Ajouter l''annotation "Sexe : indéterminé"'
   add_some_now: En ajouter un·e
-  add_tag: Ajouter une balise
-  add_tags: Ajouter des balises
-  add_tags_to_selected_taxa: Ajouter des balises aux taxons sélectionnés
+  add_tag: Ajouter une étiquette
+  add_tags: Ajouter des étiquettes
+  add_tags_to_selected_taxa: Ajouter des étiquettes aux taxons sélectionnés
   add_taxa: Ajouter des taxons
   add_taxon_batch_to: "Ajouter un groupe de taxons à %{list}"
   add_taxon_range: Ajouter une aire de répartition
@@ -562,8 +562,8 @@ fr:
   all_taxa_in_this_guide: Tous les taxons dans ce guide
   all_taxonomic_groups: "&laquo; Tous les groupes taxinomiques"
   all_updates: Toutes les notifications
-  allow_curator_access: Autoriser l’accès aux responsables
-  allow_project_curators_to_view_your_private_coordinates: Autoriser les responsables de projets à voir vos coordonnées géographiques masquées
+  allow_curator_access: Autoriser l’accès aux curateurs
+  allow_project_curators_to_view_your_private_coordinates: Autoriser les curateurs de projets à voir vos coordonnées géographiques masquées
   allowed_establish_means_values: Valeurs des types d'implantation autorisés
   allowed_html: HTML autorisé
   allowed_occurrence_status_values: Valeurs d'état de peuplement autorisées
@@ -931,6 +931,8 @@ fr:
   casual_tooltip_html: 'Les observations « informelles » ne sont pas documentées, sont sans lieu ou sans date, ou ne satisfont pas aux exigences des catégories « recherche » ou « besoin d''ID » pour d''autres raisons. <a href="https://www.inaturalist.org/pages/help#quality">En savoir plus sur les degrés de qualité</a>'
   casual_tooltip_html2: 'Les observations « Informelles » signifient l’absence de média, de lieu ou de date, ou ne répondent pas aux exigences des notes de qualité « Recherche » ou « Besoin d’ID » pour d’autres raisons. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">En savoir plus sur la qualité des notes</a>'
   categories: Catégories
+  #Label for the dropdown that files a site blog post under one of the site's blog categories
+  category: Catégorie
   cc_0_description: "Cette licence place votre travail dans le domaine public, de telle sorte que d’autres peuvent le copier, le modifier, le distribuer et y accéder, même pour des raisons commerciales, le tout sans demander de permission ou vous mentionner. C’est la licence la plus pratique parmi celles qui nous sont offertes. Recommandée pour une diffusion maximale et l’utilisation de données sous licence."
   cc_0_name: Pas de droit d’auteur (CC0)
   cc_attribution_license: Licence d’attribution Creative Commons
@@ -1402,7 +1404,7 @@ fr:
     <a href="/pages/curator+guide" target="_blank">Guide des curateurs</a>, puis remplissez la demande sur cette page.
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
-    Vous devez expliquer pourquoi vous voulez devenir responsable.
+    Vous devez expliquer pourquoi vous voulez devenir curateur.
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Pourquoi voulez-vous devenir curateur ?
   #Prompt for information when applying to be a curator
@@ -1419,18 +1421,18 @@ fr:
   #Prompt for information when applying to be a curator
   curator_application_fields_moderation_examples_html: |
     Si vous voulez faire de la modération sur iNaturalist, veuillez fournir un exemple
-    ou deux de non-respect des directives de la communauté et indiquer ce que vous feriez dans ces
+    ou deux de non-respect des Directives Communautaires et indiquer ce que vous feriez dans ces
     situations.
   #Header
   curator_application_how_curators_lose_their_powers: |
-    Comment les responsables peuvent perdre leurs pouvoirs
+    Comment les curateurs peuvent perdre leurs pouvoirs
   curator_application_how_curators_lose_their_powers_desc: |
     Les membres de l'équipe iNat peuvent retirer ses pouvoirs à un curateur dans les cas suivants :
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_lose_ignore_policies: |
-    Le curateur a enfreint les règles du Guide des curateurs ;
+    Le curateur a enfreint les règles du Guide des curateurs.
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
@@ -1513,10 +1515,10 @@ fr:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Vous êtes en mesure d'adopter un comportement approprié sur iNaturalist et de vous conformer aux
-    règles de la communauté. On attend des personnes qui reçoivent les pouvoirs de curation qu'elles soient des utilisateurs exemplaires d'iNaturalist.
+    Directives Communautaires. On attend des personnes qui reçoivent les pouvoirs de curation qu'elles soient des utilisateurs exemplaires d'iNaturalist.
   #Label for a menu item linking to a help page aimed at curators
-  curator_guide: Guide des curateurs
-  curators_changed_for_x_html: "Les curateurs ont modifiés à %{x}"
+  curator_guide: Guide des Curateurs
+  curators_changed_for_x_html: "Les curateurs ont modifié à %{x}"
   curators: Curateurs
   curators_can_remove_observations_from: Les curateurs peuvent supprimer des observations du projet. Leurs identifications sont affichées à côté des observations dans certaines vues du projet. Les curateurs peuvent aussi voir les vraies coordonnées des contributions privées et masquées du projet.
   curator_coordinate_access: Accès des coordonnées aux curateurs
@@ -1665,7 +1667,7 @@ fr:
   default_display_time_zone: Fuseau horaire d'affichage par défaut
   default_invite_comment: "Belle photo ! Vous devriez la publier sur %{site_name} : {{INVITE_LINK}}"
   default_observation_license: Licence par défaut des observations
-  default_photo_license: Licence des photos par défaut
+  default_photo_license: Licence photographique par défaut
   default_search_place: Lieu de recherche par défaut
   default_search_place_description: |
     Votre lieu par défaut pour toutes les recherches sous Explorer et Identifier
@@ -1711,7 +1713,7 @@ fr:
   description: Description
   description_from: Description de
   description_sections: Description des sections
-  description_slash_tags: Description / Balises
+  description_slash_tags: Description / Étiquettes
   description_tags_more: "Description, étiquettes, &amp; Plus"
   desription: Description
   destination: Destination
@@ -2116,6 +2118,10 @@ fr:
   feature_flags_preview: Aperçu
   #Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
   feature_flags_your_variant: "Votre variante dans %{experiment}:"
+  #Checkbox label on the site blog post form; checked posts are featured in the iNaturalist mobile app
+  feature_in_the_app: Mettre en avant dans l’application
+  #Checkbox label on the site blog post form; checked posts are featured on the website blog
+  feature_on_the_blog: Mettre en avant sur le blog
   feature_this_project_: "Mettre en valeur ce projet"
   featured: En vedette
   #Title for a button or section describing the "featured" status of a project
@@ -2131,7 +2137,7 @@ fr:
     quelqu’un d’autre l’a déjà fait pour éviter les champs en double.
   fields: champs
   fields_: Champs
-  fields_can_only_be_edited_by_the_people_who: Les champs peuvent uniquement être modifiés par les personnes qui les ont créés et par les responsables de l’organisation du site
+  fields_can_only_be_edited_by_the_people_who: Les champs peuvent uniquement être modifiés par les personnes qui les ont créés et par les curateurs du site
   fields_merged: Champs fusionnés
   file: Fichier
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
@@ -2145,7 +2151,7 @@ fr:
   #The name of a computer file
   filename: Nom de fichier
   filter: Filtrer
-  filter_by_curator_identification: Filtrer par identification du chef de projet
+  filter_by_curator_identification: Filtrer par identification des curateurs
   filter_by_place: Filtrer par lieu
   filter_by_species: Filtrer par espèces
   filter_by_taxon: Filtrer par taxon
@@ -2185,10 +2191,10 @@ fr:
   #Label for the date/time when a flag was created
   flag_created: Signalement créé
   flag_deleted: Indicateur supprimé
-  flag_description: Signaler ce contenu aux responsables de l’organisation pour les informer d'un problème.
+  flag_description: Signaler ce contenu aux curateurs pour les informer d'un problème.
   flag_comment_description: Ajoutez un commentaire facultatif à ce signalement pour expliquer plus en détail pourquoi vous l'ajoutez et pour fournir des liens vers des données qui étayent votre point de vue.
   #Text reminding the user to cite sources
-  flag_comment_taxon_description: Les drapeaux qui citent une source ont plus de chances d’être résolus rapidement par nos conservateurs bénévoles.
+  flag_comment_taxon_description: Les signalements qui citent une source ont plus de chances d’être résolus rapidement par nos curateurs bénévoles.
   flag_for_check_list_title_html: |
     Signalement de la check-list : %{title}
   flag_for_comment_id_html: Signaler pour <a href="%{url}">Commentaire %{id}</a>
@@ -2391,9 +2397,9 @@ fr:
   heads_up_automatable_split_notice_html: |
     <strong>Avertissement :</strong> Certaines ou toutes les identifications affectées par cette division peuvent avoir été remplacées par des identifications de %{taxon}. Ceci se produit lorsque nous ne pouvons pas assigner automatiquement une identification à l'un des taxons de sortie.
   heads_up_observose_taxon_change_html: |
-    <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée impliqués dans cette modification a plus de %{observose_taxon_threshold} observations en aval. Seuls les administrateurs ou les responsables de cette structure taxinomique peuvent valider cette modification.
+    <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée impliqués dans cette modification a plus de %{observose_taxon_threshold} observations en aval. Seuls les administrateurs ou les curateurs de cette structure taxinomique peuvent valider cette modification.
   heads_up_taxon_change_inputs_covered_by_framework_html: |
-    <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée touchés par cette modification sont dans une <a href="%{framework_url}">structure taxinomique</a>. Seuls les administrateurs ou les responsables de cette structure taxinomique peuvent valider des modifications qui touchent les taxons couverts. Adressez-vous à l'un des responsables de ce taxon pour valider cette modification.
+    <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée touchés par cette modification sont dans une <a href="%{framework_url}">structure taxinomique</a>. Seuls les administrateurs ou les responsables de cette structure taxinomique peuvent valider des modifications qui touchent les taxons couverts. Adressez-vous à l'un des curateurs de ce taxon pour valider cette modification.
   heads_up_there_are_other_draft_taxon_changes_html:
     one: "<strong>Avertissement :</strong> Il y a %{count} autre projet de modification de taxon avec les mêmes taxons d'entrée :"
     other: "<strong>Avertissement :</strong> Il y a %{count} autres projets de modification de taxon avec les mêmes taxons d'entrée :"
@@ -2414,7 +2420,7 @@ fr:
   hide: Cacher
   hide_content: Masquer le contenu
   hide_desc: |
-    Masquer du contenu le rendra invisible au public, mais celui-ci pourra toujours voir que quelque chose a été masqué, et les responsables du site ainsi que le créateur du contenu pourront toujours voir le contenu masqué. Les identifications masquées d'une observation ne contribuent pas au taxon de la communauté.
+    Masquer du contenu le rendra invisible au public, mais celui-ci pourra toujours voir que quelque chose a été masqué, et les curateurs ainsi que le créateur du contenu pourront toujours voir le contenu masqué. Les identifications masquées d'une observation ne contribuent pas au Taxon Communautaire.
   hide_desc_staff_can_unhide: |
     Seule l'équipe du site peut afficher de nouveau le contenu qui a été masqué. N'utilisez donc le masquage qu'en cas de violations manifestes des règles de la communauté.
   #Option to hide data series that show "No Annotation" data, i.e. records that
@@ -2553,7 +2559,7 @@ fr:
   import_photos: Importer des photos
   import_ranges: Importer les classements
   import_sections: Importer les sections
-  import_tags_from_csv: Importer des balises à partir d'un fichier CSV
+  import_tags_from_csv: Importer des étiquettes à partir d'un fichier CSV
   importing: "Importation en cours…"
   improving: Amélioration
   in_n: "dans %{n}"
@@ -2686,7 +2692,7 @@ fr:
   journal_posts: Articles de journal
   jpg_png_or_gif: "JPG, PNG ou GIF"
   jump_to_letter: Sauter à la lettre
-  just_a_reminder: Juste un rappel, parce que vous pouvez avoir donné les droits aux responsables de projet pour voir les coordonnées masquées de vos observations dans ce projet.
+  just_a_reminder: Juste un rappel, parce que vous pouvez avoir donné les droits aux curateurs du projet pour voir les coordonnées masquées de vos observations dans ce projet.
   just_added!: Ajouts récents !
   keep_editing: Continuer à modifier
   keyboard_shortcuts: Raccourcis clavier
@@ -3723,7 +3729,7 @@ fr:
   observation_field_type_datetime: Date / Heure
   observation_field_type_taxon: Taxon
   observation_field_type_dna: ADN
-  observation_fields: Champs des observations
+  observation_fields: Champs d'observation
   observation_fields_for_projects: Champs d’observation des projets
   observation_fields_are_additional: Les champs de l’observation sont des champs de données supplémentaires qui peuvent être ajoutés aux observations.
   observation_fields_by_preferences_description: |
@@ -4002,7 +4008,7 @@ fr:
   photo_destroyed_because_it_was_deleted_from: "Photo détruite, car elle a été supprimée sur le site externe ou %{site_name} n’a plus le droit de la voir"
   #Message displayed after a photo has been hidden
   photo_hidden: Photo masquée
-  photo_licensing: Licence de photo
+  photo_licensing: Licence photographique
   photo_type: Type de Photo
   #Message displayed after a photo has been unhidden, i.e. made visible again.
   photo_unhidden: Photo non masquée
@@ -5255,7 +5261,7 @@ fr:
     add_media: Ajouter un média
     add_sounds: Ajouter des sons
     before_importing_sounds: avant d’importer des sons
-    import_from_soundcloud_description: "Sélectionnez des sons à partir de votre compte SoundCloud pour les convertir en observations d’iNaturalist. Nous trouverons la date et l’heure à partir des métadonnées du son et essayerons de récupérer les noms des espèces à partir des balises."
+    import_from_soundcloud_description: "Sélectionnez des sons à partir de votre compte SoundCloud pour les convertir en observations d’iNaturalist. Nous trouverons la date et l’heure à partir des métadonnées du son et essayerons de récupérer les noms des espèces à partir des étiquettes."
     import_from_sounds: Importer à partir des sons
     import_sounds: Importer des sons
     listen: Écouter
@@ -5640,7 +5646,7 @@ fr:
   #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Rangs des taxons
   taxon_removed_from_list: Taxon enlevé de la liste.
-  taxon_scheme: Inventaire taxinomique
+  taxon_scheme: Schéma taxinomique
   taxon_schemes: "Schémas Taxinomiques"
   taxon_search: Recherche de taxon
   taxon_search_results_for: Résultats de recherche de taxon pour
@@ -7732,12 +7738,12 @@ fr:
         #One of a list of requirements an observation must meet to be in the Needs ID category
         dqa_help_needs_id_is_not_of_human_html: l'observation <strong>n'est pas d'un</strong> humain
         #Leads a list of requirements for an observation to be Research Grade
-        dqa_help_research_grade_lead_html: Les observations deviennent <strong>"qualité rechercher"</strong> quand
+        dqa_help_research_grade_lead_html: Les observations deviennent <strong>« qualité recherche »</strong> quand
         #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
-          le <strong>Correspondance entre taxon communautaire et taxon d’observation</strong>
-          (pour les rares occasions où le taxon d’observation peut être plus
-          spécifique que le taxon communautaire)
+          la <strong>correspondance entre le Taxon Communautaire et Taxon de l'Observation</strong>
+          (pour les rares occasions où le Taxon de l'Observation peut être plus
+          spécifique que le Taxon Communautaire)
         #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           la <strong>communauté %{site_name} s'accorde sur l'ID au niveau espèce ou 
@@ -7746,7 +7752,7 @@ fr:
           être amélioré, celui-ci est alors ramené à l'ID de sous-famille ou inférieur)
         #Leads a list of ways an observation to revert to Casual status
         dqa_help_casual_lead_html: |
-          Les observations reviendront à <strong>"occasionel"</strong> si les conditions
+          Les observations reviendront à <strong>« informel »</strong> si les conditions
           ci-dessus ne sont pas remplies ou si la communauté l'accepte
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_day_year_not_accurate2_html: |
@@ -7762,15 +7768,15 @@ fr:
           l'observation <strong>ne présente pas de preuve d'un organisme</strong>, par ex. : images d'eau, de rochers, de paysages, ne présentant pas l'organisme, etc.
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_recent_html: |
-          l'observation <strong>ne présente pas de preuve récente (~100 ans) de l'organisme</strong> (par ex. fossiles, mais les traces, excréments et feuilles mortes sont ok)
+          l'observation <strong>ne présente pas de preuve récente (~100 ans) de l'organisme</strong> (par ex. fossiles, mais les traces, excréments et feuilles mortes sont OK)
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           l'observations <strong>ne présente pas de preuves relatives à un seul sujet</strong> (par ex. : il y a quatre photos d'organismes non apparentés ; une photo montrant l'habitat du sujet de l'observation est OK)
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
-          Le constat <strong>ne présente pas de preuves précises de l’organisme, ou
-          scène</strong> (p. ex., l’intelligence artificielle a été utilisée pour ajouter, supprimer ou remplacer
-          éléments de l’image ou du son. Débruitage, empilement de focus ou fabrication
+          l'observation <strong>ne présente pas de preuves précises de l’organisme, ou
+          scène</strong> (p. ex., l’intelligence artificielle a été utilisée pour ajouter, supprimer ou remplacer des
+          éléments de l’image ou du son. Le débruitage, l'assemblage de mises au point ou l'apport
           de petites corrections comme l’élimination de la poussière du capteur sont généralement acceptables).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
@@ -7817,7 +7823,7 @@ fr:
         <li>Ne traduisez pas les noms de champ existants en d’autres langues. L’anglais est la lingua franca de ce site. Si vous voulez vraiment un champ qui encapsule le même concept, mais dans une autre langue, veuillez faire un nouveau champ d’observation.</li>
         </ol>
       dna_help: |
-        Pour activer la fonctionnalité de correspondance du code-barre ADN GRAS, assurez-vous que le nom du champ inclut les mots « COI », « COX1 », « ITS » ou « matK », correspondant au gène visé par le champ.
+        Pour activer la fonctionnalité de correspondance de code-barre ADN BOLD, assurez-vous que le nom du champ inclut les mots « COI », « COX1 », « ITS » ou « matK » correspondant au gène visé par le champ.
       merge:
         warning_html: |
           Veuillez respecter les données des autres personnes et <strong>parler au créateur
@@ -8051,7 +8057,7 @@ fr:
         coordinates_desc: Vous devez préciser des coordonnées si vous n’avez pas tracé les limites géographiques ou importé un fichier KML.
         map_instruction: Utilisez l’outil polygone pour tracer la limite géographique du lieu.
     posts:
-      formatting_none_help: "Aucun HTML inséré, utilise uniquement les balises que vous saisissez."
+      formatting_none_help: "Aucun HTML inséré, utilisez uniquement les balises que vous saisissez."
       formatting_simple_help: "Lier automatiquement les Url et insérer des sauts de lignes."
     projects:
       project_type: Type de projet
@@ -8850,7 +8856,7 @@ fr:
       #state of a draft taxon change
       draft: brouillon
       #the status of a taxon change: draft, withdrawn or committed
-      status: statut
+      status: Statut
       form:
         move_children_desc2_html: |
           Cocher cette case déplacera les enfants du taxon d'entrée vers le taxon cible pour les Échanges de Taxons et les Fusions de Taxons lorsque cette modification est validée. Si cela concerne un changement au niveau d'un genre ou inférieur, cela créera des Échanges de Taxons pour tous les descendants dont les noms doivent être modifiés. Par exemple, si vous échangez la famille Canidae par Dogidae, cela changera le parent du genre <i>Canis</i> de Canidae à Dogidae. Si vous échangez le genre <i>Canis</i> par le genre <i>Dogis</i>, cela créera et validera des échanges de taxons pour changer <i>Canis lupus</i> en <i>Dogis lupus</i> et <i>Canis lupus</i> ssp. <i>lupus</i> en <i>Dogis lupus</i> ssp. <i>lupus</i>. Cela peut créer beaucoup de confusion, alors utilisez-le avec précaution.
@@ -9501,7 +9507,7 @@ fr:
       - Ven
       - Sam
     abbr_month_names:
-      - 
+      -
       - Jan
       - Fév
       - Mar
@@ -9546,7 +9552,7 @@ fr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%-d %b %Y'
     month_names:
-      - 
+      -
       - janvier
       - février
       - mars
@@ -10199,7 +10205,7 @@ fr:
                 dans votre observation de « %{observation_species_guess} »)
             observation_id:
               user_does_not_accept_fields_from_others: l'utilisateur n'accepte pas les champs des autres
-              user_only_accepts_fields_from_site_curators: l’utilisateur accepte uniquement les champs des responsables du site
+              user_only_accepts_fields_from_site_curators: l’utilisateur accepte uniquement les champs des curateurs du site
         observations_export_flow_task:
           attributes:
             base:
@@ -10232,9 +10238,10 @@ fr:
               must_have_more_than_three_points: doit avoir plus de 3 points
               polygon_with_less_than_four_points: a un polygone avec moins de 4 points
         post:
-          #Shown when a non-site post, like a project journal post, sets a
-          #blog-only field such as a featured date or blog category
-          only_allowed_on_site_posts: n’est autorisé que sur les publications du site
+          #Shown when a post sets a blog-only field, such as a featured date
+          #or blog category, on a blog that doesn't support it, like a project
+          #journal or a network site's blog
+          not_available_on_this_post: n’est pas disponible sur ce post
           attributes:
             blog_category:
               #Shown when a blog post is assigned a category that belongs to
