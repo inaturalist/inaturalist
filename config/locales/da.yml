@@ -952,6 +952,8 @@ da:
   casual_tooltip_html: 'Observationstypen "Uformel" mangler medier, placering eller dato, eller opfylder af andre årsager ikke kriterierne for kvalitetsklasserne "Forskning" eller "Behøver ID". <a href="https://www.inaturalist.org/pages/help#quality"> Få mere at vide om kvalitetsklasser</a>'
   casual_tooltip_html2: '"Uformel"-observationer mangler medie, sted eller dato, eller opfylder af andre årsager ikke kravene til kvalitetsklassificeringerne "Forskning" eller "Behøver ID". <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Læs mere om kvalitetsklasser</a>'
   categories: kategorier
+  #Label for the dropdown that files a site blog post under one of the site's blog categories
+  category: Kategori
   cc_0_description: "Denne licens frigiver dit arbejde til det offentlige domæne, så andre kan kopiere, ændre, distribuere og bruge dit arbejde, også til kommercielle formål, uden at anmode om tilladelse eller uden at du bliver krediteret. Dette er den mest åbne af licenser, der tilbydes. Anbefales til maksimal spredning og brug af licenserede materialer."
   cc_0_name: Ingen ophavsret (CCO)
   cc_attribution_license: Creative Commons kildeangivelses licens
@@ -2156,6 +2158,10 @@ da:
   feature_flags_preview: Prævisning
   #Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
   feature_flags_your_variant: "Din variant i %{experiment}:"
+  #Checkbox label on the site blog post form; checked posts are featured in the iNaturalist mobile app
+  feature_in_the_app: Fremhævet i appen
+  #Checkbox label on the site blog post form; checked posts are featured on the website blog
+  feature_on_the_blog: Fremhævet på bloggen
   feature_this_project_: "Fremhæv dette projekt"
   featured: Udvalgte
   #Title for a button or section describing the "featured" status of a project
@@ -10536,9 +10542,10 @@ da:
               must_have_more_than_three_points: skal have flere end 3 punkter
               polygon_with_less_than_four_points: har en polygon med færre end 4 punkter
         post:
-          #Shown when a non-site post, like a project journal post, sets a
-          #blog-only field such as a featured date or blog category
-          only_allowed_on_site_posts: er kun tilladt på webstedsopslag
+          #Shown when a post sets a blog-only field, such as a featured date
+          #or blog category, on a blog that doesn't support it, like a project
+          #journal or a network site's blog
+          not_available_on_this_post: er ikke tilgængelig i dette opslag
           attributes:
             blog_category:
               #Shown when a blog post is assigned a category that belongs to
