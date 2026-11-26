@@ -859,6 +859,8 @@ id:
   casual_tooltip_html: 'Pengamatan "Kasual" tidak memiliki media, lokasi, atau tanggal, atau tidak memenuhi persyaratan dan kualitas untuk menjadi bagian dari kelas "Riset" atau "Memerlukan ID" karena satu dan lain hal. <a href="https://www.inaturalist.org/pages/help#quality">Pelajari lebih lanjut tentang tingkat kualitas</a>'
   casual_tooltip_html2: 'Pengamatan "kasual" tidak memiliki media, lokasi, atau tanggal, atau tidak memenuhi persyaratan tingkat kualitas "Riset" atau "Memerlukan ID" karena alasan lain. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Pelajari tingkat kualitas lebih lanjut</a>'
   categories: Kategori
+  #Label for the dropdown that files a site blog post under one of the site's blog categories
+  category: Kategori
   cc_0_description: "Lisensi ini merilis pekerjaan Anda kepada domain publik, sehingga orang lain dapat menyalin, memodifikasi, mendistribusikan dan melakukan pekerjaan Anda, bahkan dapat dipakai pula untuk tujuan komersial, tanpa perlu meminta izin atau memberikan penghargaan. Ini adalah lisensi paling akomodatif yang ditawarkan. Direkomendasikan untuk penyebaran seluas-luasnya dan penggunaan bahan-bahan berlisensi."
   cc_0_name: Tidak Ada Hak Cipta (CC0)
   cc_attribution_license: Atribut lisensi yang kreatif dan umum
@@ -2024,6 +2026,10 @@ id:
   feature_flags_page_description: Setiap bendera fitur dan eksperimen, diselesaikan untuk akun Anda. Buat, aktifkan, dan luncurkan bendera di antarmuka manajemen.
   #Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
   feature_flags_your_variant: "Varian Anda untuk %{experiment}:"
+  #Checkbox label on the site blog post form; checked posts are featured in the iNaturalist mobile app
+  feature_in_the_app: Tampilkan di aplikasi
+  #Checkbox label on the site blog post form; checked posts are featured on the website blog
+  feature_on_the_blog: Tampilkan di blog
   feature_this_project_: "Pamerkan Proyek Ini"
   featured: Sorotan
   #Title for a button or section describing the "featured" status of a project
@@ -9681,9 +9687,6 @@ id:
               must_have_more_than_three_points: harus memiliki lebih dari 3 titik
               polygon_with_less_than_four_points: memiliki poligon yang titiknya kurang dari 4
         post:
-          #Shown when a non-site post, like a project journal post, sets a
-          #blog-only field such as a featured date or blog category
-          only_allowed_on_site_posts: hanya diperbolehkan di postingan situs
           attributes:
             blog_category:
               #Shown when a blog post is assigned a category that belongs to
