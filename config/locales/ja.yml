@@ -809,6 +809,12 @@ ja:
   blocking_description: ブロックは、あなたと他のユーザーとの間の交流を完全に防ぎます。 これは、ストーカーなど、別のユーザーがあなたの安全を危険にさらす可能性がある状況のためのものです。
   block_removed: ブロックを削除しました
   blocked_users: ブロックしたユーザー
+  #Confirmation shown after an admin creates a blog category
+  blog_category_was_successfully_created: カテゴリが正常に作成されました。
+  #Confirmation shown after an admin deletes a blog category
+  blog_category_was_successfully_deleted: カテゴリが正常に削除されました。
+  #Confirmation shown after an admin edits a blog category
+  blog_category_was_successfully_updated: カテゴリが正常に更新されました。
   blog_widget: ブログ用のウィジェット
   blue_butterfly_etc: "青, チョウチョウ, など"
   body: 本文
@@ -854,6 +860,8 @@ ja:
   casual_tooltip_html: '"カジュアル"の観察記録は、メディア、位置、または日付が欠けていたり、その他の理由で "研究用" または "要同定" グレードの品質要件を満たしていません。<a href="https://www.inaturalist.org/pages/help#quality">品質グレードの詳細</a>'
   casual_tooltip_html2: '「カジュアル」の観察記録は、写真・音声、位置情報、観察日のいずれかが欠けているか、その他の理由で「研究用グレード」または「要同定」の品質基準を満たしていない記録です。<a href="https://help.inaturalist.org/support/solutions/articles/151000169936">品質グレードについて詳しくはこちら</a>'
   categories: カテゴリ
+  #Label for the dropdown that files a site blog post under one of the site's blog categories
+  category: カテゴリー
   cc_0_description: "このライセンスはあなたの著作物をパブリックドメインに解放するため、他の人たちはあなたの著作物を、たとえ営利目的であっても、許可を得ることも信用を与えることもなく、コピー、変更、配布、実行することができます。これは、提供されるライセンスの中で最も融通の利くものです。認可された材料の最大限の普及と使用のために推奨されます。"
   cc_0_name: 著作権なし(CC0)
   cc_attribution_license: クリエイティブ・コモンズ 表示ライセンス
@@ -1458,8 +1466,12 @@ ja:
     gaps_id_pilot_condition_1: "まだコンピュータビジョンモデルには含まれていません"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
     gaps_id_pilot_condition_2: "あなたが同定できると考えられるもの"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "こちらは、まだコンピュータビジョンモデルに含まれていない種の観察記録へのリンクで、あなたが特定できると考えています。"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_obs_pilot_condition_1: "まだコンピュータビジョンモデルには含まれていません"
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "現在の種のリストは以下の通りです:"
     #instructions once people have participated explaining the list of observations, the first condition for observations in the list
     gaps_obs_pilot_current_condition_1: "まだコンピュータビジョンモデルでは非対応"
     #label of link to explore species view
@@ -1524,6 +1536,10 @@ ja:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1} - %{d2}"
+  #Express a single date with a time range. Better to use a flexible form
+  #here, e.g. not something like "start_time to end_time" if "to" might be
+  #translated differently for different values of start_time and end_time
+  date_time_to_time: "%{date}, %{start_time} - %{end_time}"
   date_updated: 更新日
   day: 日
   decrease_brightness: 輝度を下げる
@@ -1931,8 +1947,18 @@ ja:
   favorites: "お気に入り"
   #Heading of the admin feature flags page and the admin nav link to it
   feature_flags: 特徴フラグ
+  #Button on the admin feature flags page that empties the app installation ID field and its preview column
+  feature_flags_clear: クリア
+  #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
+  feature_flags_kind_experiment: 実験
+  #Button on the admin feature flags page leading to the Flipper UI where flags are created and edited
+  feature_flags_manage: フラグの管理
   #Shown on the admin feature flags page when no feature flags exist yet; %{url} is the address of the Flipper UI
   feature_flags_none_html: 機能フラグはまだ登録されていません。<a href="%{url}">新しく作成する</a>と、ここに表示されます。
+  #Button on the admin feature flags page that shows flag values for the entered app installation ID
+  feature_flags_preview: プレビュー
+  #Checkbox label on the site blog post form; checked posts are featured in the iNaturalist mobile app
+  feature_in_the_app: アプリの機能
   feature_this_project_: "このプロジェクトを紹介"
   featured: 注目
   #Title for a button or section describing the "featured" status of a project
@@ -2346,6 +2372,8 @@ ja:
   inat_next: iNatNext
   #Chart series and legend label on the stats page
   inat_classic_android_temp: アンドロイド
+  #Chart series and legend label on the stats page
+  inat_next_android_temp: iNatNext Android
   #Chart series and legend label on the stats page
   inat_next_ios: iOS
   inaturalist_network: iNaturalistネットワーク
@@ -2982,6 +3010,10 @@ ja:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "H:mm"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_with_zone: "LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_without_zone: "LT"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
@@ -3095,6 +3127,8 @@ ja:
   new_and_noteworthy: 注目すべき新機能
   new_announcement: 新着お知らせ
   new_assessment: 新規評定
+  #Button and page title for creating a new blog category
+  new_blog_category: 新しいカテゴリー
   new_check_list: 新規チェックリスト
   new_check_list_for: "%{place}&raquo; の新しいチェックリストを作成"
   new_comment_on_a_parent_by_user_link: '%{user_link}さんから@vow_or_con{vow:an|a} %{parent}に新規コメントがあります'
@@ -3148,6 +3182,8 @@ ja:
   #Shown when a list of 3rd party applications has no applications
   no_applications_yet: アプリケーションはまだありません
   no_assessments_have_been_added_to_this_project_yet: このプロジェクトにはまだ評価がありません。
+  #Shown on the blog categories admin page when no categories exist
+  no_blog_categories_yet: まだカテゴリーはありません
   no_but_it_is_a_member_of_taxon: "同定に十分な情報が無いか、 %{taxon} の別の分類群です。"
   no_comments_yet: まだコメントはありません
   no_creative_commons_flickr_photos_tagged_x: 'Flickrには「%{x}」とタグ付けられたクリエイティブ・コモンズの写真がありません'
@@ -4542,6 +4578,7 @@ ja:
     1ページあたりの検索結果数が10,000を超えています。フィルタを適用して数を減らしてみてください。
   review_all: すべてを確認済みに
   reviewed: 確認済み
+  revoke: 取り消す
   revoke_caps: 取り消す
   revoke_privacy_consent_warning: "この同意を取り消す唯一の方法は、お客様のアカウントおよび関連するすべてのデータを削除することです。"
   rg_observations: 研究用グレード観察記録のみ

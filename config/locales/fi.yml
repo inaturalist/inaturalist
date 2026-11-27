@@ -86,6 +86,12 @@ fi:
   x_observers_caps_html:
     one: '<span class="count">%{count}</span> HAVAINNOIJA'
     other: '<span class="count">%{count}</span> HAVAINNOIJAA'
+  #Footer below the scrolling list of flagged taxa on taxonomy details pages.
+  #count is the number of unresolved flags on taxa covered by the taxon
+  #framework; the list itself only shows the most-flagged taxa
+  x_open_flags_scroll_for_more:
+    one: "%{count} avaa lippu · selaa lisää"
+    other: "%{count} avaa liput · selaa lisää"
   x_others:
     one: "1 muu"
     other: "%{count} muuta"
@@ -5863,6 +5869,8 @@ fi:
         CMD- tai VAIHTO-napsauta valitaksesi useita. Valitsemalla "Kaikki" tai tekemättä jättäminen
         valinta näyttää ilmoituksen kaikille käyttäjille riippumatta siitä,
         asiakas.
+      #Heading of the donation shortcodes help panel on the announcement form
+      donation_shortcodes: Lahjoituslyhenteet
       end_desc: |
         Aikavyöhykkeellä oleva aika, jolloin tämä ilmoitus päättyy
         esiintyminen. Koskee kaikkia aikavyöhykkeitä, joten kaikki eivät enää näe

@@ -86,6 +86,12 @@ de:
   x_observers_caps_html:
     one: '<span class="count">%{count}</span> BEOBACHTER'
     other: '<span class="count">%{count}</span> BEOBACHTER'
+  #Footer below the scrolling list of flagged taxa on taxonomy details pages.
+  #count is the number of unresolved flags on taxa covered by the taxon
+  #framework; the list itself only shows the most-flagged taxa
+  x_open_flags_scroll_for_more:
+    one: "%{count} Offene Meldung · Runterscrollen für weitere"
+    other: "%{count} Offene Meldungen · Runterscrollen für weitere"
   x_others:
     one: "%{count} weitere Person"
     other: "%{count} weitere Personen"
@@ -558,6 +564,8 @@ de:
   alphabetical: Alphabetisch
   alphabetical_order: Alphabetische Reihenfolge
   already_have_an_account_log_in_html: Hast du schon einen Account? <b><strong>Hier anmelden</strong></b>
+  #Badge on the profile describing when a user became an iNaturalist ambassador, e.g. "Ambassador since January 2020"
+  ambassador_since_date: Botschafter seit %{date}
   amphibians: Amphibien
   #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
   #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
@@ -866,6 +874,16 @@ de:
   blocking_description: Das Blockieren unterbindet jegliche Kommunikation zwischen dir und einem anderen Benutzer. Es ist für Situationen gedacht, in denen ein anderer Benutzer deine Sicherheit gefährden kann, wie zum Beispiel durch Stalking oder anderes missbräuchliches Verhalten.
   block_removed: Sperre entfernt
   blocked_users: Gesperrte Benutzer
+  #Title of the admin page listing the categories that site blog posts can be filed under
+  blog_categories: Blog-Kategorien
+  #Error shown when an admin tries to delete a blog category that posts are still filed under
+  blog_category_in_use: Diese Kategorie kann nicht gelöscht werden, weil sie verwendet wird von %{count} Beitrag(e).
+  #Confirmation shown after an admin creates a blog category
+  blog_category_was_successfully_created: Kategorie wurde erfolgreich erstellt.
+  #Confirmation shown after an admin deletes a blog category
+  blog_category_was_successfully_deleted: Kategorie wurde erfolgreich gelöscht.
+  #Confirmation shown after an admin edits a blog category
+  blog_category_was_successfully_updated: Kategorie wurde erfolgreich aktualisiert.
   blog_widget: Blog Widget
   blue_butterfly_etc: "blau, Schmetterling, usw."
   body: Text
@@ -1894,6 +1912,8 @@ de:
   editing: Bearbeiten
   #Title for a page to edit an announcement
   editing_announcement_x: Ankündigung bearbeiten %{id}
+  #Title of the page for editing a blog category; label is the category's name
+  editing_blog_category_x: Kategorie bearbeiten %{label}
   editing_custom_project_fields_for: Benutzerdefinierte Projektfelder bearbeiten für
   editing_observation_field: Beobachtungsfeld bearbeiten
   editing_observation_id: "Beobachtung %{obs_id} bearbeiten"
@@ -2027,6 +2047,16 @@ de:
     werden nach dem Aktualisieren der Seite angezeigt.
   favorite_taxa: bevorzugte Taxa
   favorites: "Favoriten"
+  #Button on the admin feature flags page that empties the app installation ID field and its preview column
+  feature_flags_clear: Leeren
+  #Label before the on/off value or variant a logged-out mobile app installation would get, in a column of the admin feature flags page
+  feature_flags_for_installation: "Diese Installation, ausgeloggt:"
+  #Label for a text field on the admin feature flags page where an admin enters a mobile app installation ID
+  feature_flags_installation_id_label: App-Installations-ID
+  #Warning on the admin feature flags page when the entered app installation ID is not a UUID
+  feature_flags_invalid_installation_id: Das ist keine gültige Installations-ID. Installations-IDs sind UUIDs.
+  #Button on the admin feature flags page that shows flag values for the entered app installation ID
+  feature_flags_preview: Vorschau
   feature_this_project_: "Dieses Projekt featuren"
   featured: Erwähnenswert
   #Title for a button or section describing the "featured" status of a project
@@ -2143,6 +2173,12 @@ de:
   flag_this_sound: Dieses Audio melden
   flagged_: Gekennzeichnet
   flagged_for_curation: Zur Kuratierung gemeldet
+  #Note below a list of flagged taxa explaining the difference between the
+  #count column and the links in each row. open_flags is the translated
+  #column header "Open flags" and view_all_flags is the translated link text
+  #"View All Flags". Taxa below a taxon are its descendants, e.g. the species
+  #within a genus
+  flagged_taxa_counts_explanation: "“%{open_flags}\"Zählt nur Meldungen für dieses Taxon.\"%{view_all_flags}\" zeigt auch Meldungen für untergeordnete Taxa an."
   flagged_taxon: Taxon mit Meldung
   flagged_thing_explanation: "Benutzer haben dieses %{thing} gemeldet, weil"
   flagging_desc: |
@@ -2936,6 +2972,8 @@ de:
   make_your_app_confidential: Make your app confidential if you can store your app secret securely, i.e. not in a publicly availble binary that can be decompiled. Uncheck this box if this is not the case and you plan to use the PKCE flow
   mammals: Säugetiere
   manage_all_your_subscriptions: Alle deine Abos verwalten
+  #Button on the site blog that takes admins to the page for managing blog categories
+  manage_categories: Kategorien verwalten
   manage_names: Namen verwalten
   manage_your_projects: Deine Projekte verwalten
   manage_your_relationships: Deine Beziehungen verwalten
@@ -3225,6 +3263,8 @@ de:
   new_announcement: Neue Ankündigungen
   new_application: Neue Anwendung
   new_assessment: Neue Bewertung
+  #Button and page title for creating a new blog category
+  new_blog_category: Neue Kategorie
   new_check_list: Neue Checkliste
   new_check_list_for: "Eine neue Checkliste für %{place} erstellen"
   new_check_list_record: "Wenn du diese Liste als <em>umfassend</em> markieren möchtest, erstellen sie, füge die Taxa hinzu, und dann bearbeite es. Dann hast du die Möglichkeit, es hier als 'umfassend' zu kennzeichnen."
@@ -3279,6 +3319,8 @@ de:
   #Shown when a list of 3rd party applications has no applications
   no_applications_yet: Noch keine Anwendungen
   no_assessments_have_been_added_to_this_project_yet: Zu diesem Projekt sind noch keine Bewertungen hinzugekommen.
+  #Shown on the blog categories admin page when no categories exist
+  no_blog_categories_yet: Noch keine Kategorien.
   no_but_it_is_a_member_of_taxon: "Widerspruch ('%{taxon}' ist als ID aber möglich)"
   no_comments_yet: Noch keine Kommentare.
   no_creative_commons_flickr_photos_tagged_x: 'Keine Creative Commons Flickr Bilder mit "%{x}" getaggt'
@@ -3732,6 +3774,14 @@ de:
   #Geoprivacy status in which no privacy has been applied
   open_: öffentlich
   open_description: "Jeder kann die Koordinaten sehen, außer das Taxon ist gefährdet."
+  #Column header for the number of unresolved flags on each taxon in a list
+  #of flagged taxa. The count only includes flags on that exact taxon, not
+  #flags on its descendants (lower-ranked taxa within it)
+  open_flags: Offene Meldungen
+  #Label for the number of unresolved flags on taxa within this taxon that are
+  #covered by a taxon framework attached to one of its ancestors. count is a
+  #link that shows a list of the flagged taxa
+  open_flags_on_downstream_taxa_count_html: "Offene Meldungen bei untergeordneten Taxa: %{count}"
   open_street_map: OpenStreetMap
   optional: optional
   options: Optionen
@@ -5966,6 +6016,8 @@ de:
   uploading_num_of_count_photos:
     one: Foto wird hochgeladen...
     other: Lade %{num} von %{count} Fotos hoch...
+  #Table heading for the short, URL-safe version of a name used in web addresses, e.g. "identifier-profiles"
+  url_slug: URL-Slug
   url_for_your_app_outside_of_inaturalist: URL für deine App außerhalb von iNaturalist
   url_identifier_of_a_project_derived_from: "URL/ Identifikation eines Projekts, welches von einer externen Quelle abgeleitet wurde"
   url_of_this_taxon_on_the_source_website: URL dieses Taxons auf der Website der Quelle
@@ -6119,6 +6171,9 @@ de:
   view_all_caps: ALLE ANZEIGEN
   view_all_fields: Alle Felder anzeigen
   view_all_flags: Alle Meldungen anzeigen
+  #Link that opens a search of unresolved flags on a taxon and all of its
+  #descendants (lower-ranked taxa within it)
+  view_all_flags_including_descendants: Alle Meldungen anzeigen (einschließlich untergeordnete Taxa)
   view_all_members: Alle Mitglieder ansehen
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
@@ -9233,6 +9288,13 @@ de:
       blocked_user:
         #The user who has been blocked
         blocked_user: Blockierter Benutzer
+      blog_category:
+        #Name of a blog category, as shown to readers
+        friendly_id: Label
+        #Name of a blog category, as shown to readers
+        label: Label
+        #Number that sets the order blog categories are listed in
+        position: Position
       conservation_status:
         status: Status
         description: Beschreibung

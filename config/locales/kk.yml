@@ -1362,6 +1362,8 @@ kk:
   favorites: "Таңдаулылар"
   #Kind label on the admin feature flags page for a flag that gates enrollment in an A/B experiment
   feature_flags_kind_experiment: Эксперимент
+  #Button on the admin feature flags page that shows flag values for the entered app installation ID
+  feature_flags_preview: Алдын-ала қарау
   #Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
   feature_flags_your_variant: "Сіздің нұсқаңыз %{experiment}:"
   feedback: Кері байланыс
@@ -1669,6 +1671,7 @@ kk:
     de: Немісше
     el: Грекше
     en: Ағылшынша
+    en-CA: Ағылшын (Канада)
     en-GB: Ағылшынша (Ұлыбритания)
     eo: Эсперантоша
     es: Испанша
@@ -1856,6 +1859,8 @@ kk:
     date_long: "D MMMM, YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_with_zone: "LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_without_zone: "LT"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -4008,6 +4013,7 @@ kk:
           "Plant Phenology=Fruiting": Жеміс беру
           "Plant Phenology=No Evidence of Flowering": Гүлденудің дәлелі жоқ
           "Flowers and Fruits=Flowers": Гүлдер
+          "Leaves=Green Leaves": Жасыл жапырақтар
           "Life Stage=Egg": Жұмыртқа
           "Life Stage=Larva": Дернәсіл
           "Life Stage=Juvenile": Жас
@@ -4560,6 +4566,10 @@ kk:
         #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}Г"
     human:
+      #Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "мың"
+        million: "мил"
       decimal_units:
         format: '%n %u'
         units:
@@ -5223,13 +5233,30 @@ kk:
         Chromista: Хромисттер
   id_summaries:
     demo:
+      filters:
+        language_label: "Тіл"
+      summary_feedback:
+        aria_helpful: "%{label}: пайдалы"
+        aria_not_helpful: "%{label}: пайдалы емес"
+      summary_item:
+        user_fallback: "iNaturalist пайдаланушысы"
+      reference_feedback:
+        aria_helpful: "%{label}: пайдалы"
+        aria_not_helpful: "%{label}: пайдалы емес"
       taxa_list:
         group_labels:
+          animalia: "Басқа жануарлар"
           aves: "Құстар"
+          reptilia: "Бауырымен жорғалаушылар"
+          amphibia: "Қосмекенділер"
           mammalia: "Сүтқоректілер"
+          arachnida: "Өрмекшітәрізділер"
           insecta: "Жәндіктер"
           plantae: "Өсімдіктер"
           fungi: "Саңырауқұлақтар"
+          protozoa: "Қарапайымдылар"
+          mollusca: "Моллюскілер"
+        other_group: "Басқа"
   #Title of a section warning the user about something
   warning_title: Ескерту
   wikimedia: Уикимедиа
