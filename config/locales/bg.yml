@@ -601,6 +601,7 @@ bg:
   ascending: възходящо
   assessment: оценка
   assessments: оценки
+  associations: Асоциации
   atlas_for_taxon_html: Атлас за %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -1220,15 +1221,25 @@ bg:
   default_sound_license: Лиценз по подразбиране за звук
   default_time_zone_desc: |
     Това е часовата зона по подразбиране. Окончателната часова зона ще се зададе въз основа на местоположението на наблюдението, когато то бъде запазено.
+  #As in the definition of a word
+  definition: Дефиниция
+  definitions: Дефиниции
   delete: Изтриване
+  delete_all: Изтрий всички
   delete_conversation: Изтрий разговора
+  #Button to delete the cover (or banner) image for a project
+  delete_cover?: изтрий корицата?
   delete_icon?: Изтрий иконата?
   delete_photo: Изтрий снимката
   delete_project: Изтрий проекта
+  #Label for a button to delete a taxon range
+  delete_range: Изтрий ареала
+  delete_selected: Изтрий избраните
   #Label for a button to delete a sound file
   delete_sound: Изтриване на звука
   delete_taxon_and_merge_most_data_html: |
     Изтрий таксона <i>%{taxon}</i> и обедини повечето от данните му с друг таксон. Използвайте този инструмент за <strong>премахване на дублиращи се таксони</strong>. Ако искате да премахнете неактуален таксон, моля създайте таксономична размяна. <strong>БЪДЕТЕ ВНИМАТЕЛНИ!</strong> Изтриването на таксони може да бъде много разрушително. Погледнете <a href="%{curator_url}">Наръчника за куратори</a> за повече подробности.
+  delete_user: Изтрий потребителя
   delete_your_account: Изтриване на акаунта
   deleted_synonyms: Изтрити синоними
   deleted_user: изтрит потребител
@@ -1250,7 +1261,13 @@ bg:
   deviation: Отклонение
   devise:
     confirmations:
+      confirmed: |
+        Вашият имейл адрес беше потвърден успешно.
       send_instructions: "Ще получите имейл с инструкции за потвърждение на имейл адреса си до няколко минути."
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Ако Вашият имейл адрес съществува в нашата база данни, до няколко минути ще получите имейл с инструкции как да потвърдите имейл адреса.
     failure:
       already_authenticated: 'Вече сте влезли.'
       unauthenticated: 'Трябва да влезете или да се регистрирате, преди да продължите.'
@@ -1281,6 +1298,7 @@ bg:
       signed_up_but_locked: "Регистрирахте се успешно. Въпреки това, не можахте да влезете, тъй като акаунтът ви е заключен."
       signed_up_but_unconfirmed: "Писмо с препратка за потвърждение беше изпратена на Вашия имейл адрес. Моля щракнете на препратката за да активирате акаунта си."
       updated: 'Успешно обновихте акаунта си.'
+      updated_but_not_signed_in: "Вашият акаунт беше обновен успешно, но тъй като паролата Ви беше променена, трябва да влезете отново."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1555,6 +1573,8 @@ bg:
   find_unsuitable_observations: Намери неподходящи наблюдения
   find_your_current_location: Намери твоето текущо местоположение
   finished: Завършено
+  #Label for a pagination button that goes to the first page of results
+  first: Първа
   first_confirmed_inat_observation: "Първо потвърдено наблюдение на %{site_name}"
   first_inat_observation: "Първо наблюдения на %{site_name}"
   first_observer: 1-ви наблюдател
@@ -1750,6 +1770,15 @@ bg:
   #Notification when an identification has been deleted
   identification_deleted: Разпознаването е изтрито.
   identification_saved: "Разпознаването е записано!"
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: Номинирай
+    #Label for a menu option to remove a nomination on an identification
+    remove_nomination: Премахни номинацията
+    #displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} номинира това като съвет за разпознаване"
+    #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation: Номинирай като съвет за разпознаване (диагностични черти, които ще помогнат на другите да разпознаят този организъм) #Notice when an identification has been unhidden by moderators
   #Notification when an identification has been updated
   identification_updated: Разпознаването е обновено!
   #Notification when an identification has been withdrawn
@@ -2079,6 +2108,7 @@ bg:
     es: испански
     es-AR: испански (Аржентина)
     es-CO: испански (Колумбия)
+    es-CR: Испански (Коста Рика)
     es-MX: испански (Мексико)
     et: естонски
     eu: баски
@@ -2101,6 +2131,7 @@ bg:
     lv: латвийски
     mi: маорски
     mk: македонски
+    ml: Малаялам
     mr: маратхи
     nb: норвежки (букмол)
     nl: нидерландски
@@ -2115,6 +2146,7 @@ bg:
     sq: албански
     sr: сръбски
     sv: шведски
+    ta: Тамилски
     th: тайландски
     tr: турски
     uk: украински
@@ -2771,6 +2803,7 @@ bg:
     invalid_email: Неправилен формат на имейл
   password: Парола
   password_confirmation: 'Потвърждение на паролата'
+  password_change_logout_warning: След като промените паролата си, ще излезете от системата и ще трябва да влезете наново с новата си парола.
   paste_in_a_bunch_of_names: Копирай няколко имена, по едно на ред, и натисни бутона!
   people: Хора
   people_following_user: "Хора следващи %{user}"
@@ -3152,6 +3185,7 @@ bg:
     north_korea: Северна Корея
     northern_cyprus: Северен Кипър
     norway: Норвегия
+    oceania: Океания
     oman: Оман
     pakistan: Пакистан
     palau: Палау
@@ -4021,6 +4055,7 @@ bg:
   terms_service: Условия за ползване
   terrain: терен
   text: Текст
+  thank_you!: Благодарим Ви!
   thanks!: Благодарности!
   thanks_from_all_of_us_here_at: Благодарности от всички нас тук на
   that_photo_doesnt_exist: Тази снимка не съществува.
@@ -5429,6 +5464,40 @@ bg:
         complete_taxon_desc: |
           „Изчерпателните“ таксони имат всичките свои съвременни подтаксони от определен ранг добавени в базата данни на уебсайта. Когато даден таксон е изчерпателен до видове например, можем да кажем колко от видовете му са наблюдавани и за колко все още няма наблюдения. Броят видове за таксони изчерпателни до вид не включва „неизброими“ видове – като изчезнали видове или невалидни видове – и включва само видовете, без подвидови таксони като подвидове или вариетети.
         discoveries_desc: "Най-новите първооткривателства от този таксон"
+        identifications:
+          #Label for a a taxon page tab that displays Identifications with remarks
+          #that make them useful information or advice for how to identify the organism
+          identification_tips: Съвети за разпознаване
+          #Placeholder text for a search field allowing users to search on identification
+          #bodies, or search on usernames of who added the identifications
+          search_identifications: Търси разпознавания по текст или потребител
+          #Empty state message saying there are no identifications to show because
+          #none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            Няма номинирани или подкрепени разпознавания за този организъм в момента, моля проверете пак по-късно!
+          sort:
+            #sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Сортиране: От най-много до най-малко гласове"
+            #sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Сортиране: От най-малко до най-много гласове"
+            #sort option for displaying the newest results first
+            newest_to_oldest: "Сортиране: От най-нови до най-стари"
+            #sort option for displaying the oldest results first
+            oldest_to_newest: "Сортиране: От най-стари до най-нови"
+            #sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Сортиране: От най-дълги до най-къси"
+          #label for a subtab that displays only IDs that have been upvoted
+          upvoted: Положителен вот
+          #label for a subtab that displays only IDs that have been downvoted, and
+          #as a result are not visible to most users
+          downvoted_and_hidden: Отрицателен вот (скрито)
+          #label for a subtab that displays only IDs that have not received any votes
+          no_votes: Без вот
+          #label for a subtab that displays only IDs that have not yet been nominated
+          not_nominated: Без номинация
+          #label for a link to view an identification in the context of its associated
+          #observation so users can view other remarks relevant to the conversation
+          view_full_conversation: Виж целия разговор
         frequency:
           research: Изследователско качество
           verifiable: Потвърдимо
