@@ -920,6 +920,8 @@ nl:
   casual_tooltip_html: '"Onvolledige" waarnemingen missen media, een locatie of een datum, of voldoen om andere redenen niet aan de eisen van de kwaliteitsbeoordelingen "Onderzoekskwaliteit" of "ID Nodig"- . <a href="https://www.inaturalist.org/pages/help#quality"> Meer informatie over kwaliteitsbeoordelingen</a>'
   casual_tooltip_html2: '"Onvolledige" waarnemingen missen media, een locatie of een datum, of voldoen om andere redenen niet aan de eisen van de kwaliteitsbeoordelingen "Onderzoekskwaliteit" of "ID Nodig". <a href="https://help.inaturalist.org/nl/support/solutions/articles/151000169936"> Meer informatie over kwaliteitsbeoordelingen</a>'
   categories: Categorieën
+  #Label for the dropdown that files a site blog post under one of the site's blog categories
+  category: Categorie
   cc_0_description: "Deze licentie geeft je werk vrij in het publieke domein, zodat anderen je werk kunnen kopiëren, wijzigen, distribueren en uitvoeren, zelfs voor commerciële doeleinden, allemaal zonder toestemming te vragen of jouw naam te vermelden. Dit is de meest inschikkelijke licentie die wordt aangeboden. Aanbevolen voor maximale verspreiding en gebruik van het materiaal."
   cc_0_name: Geen auteursrecht (CC0)
   cc_attribution_license: Creative Commons Naamsvermelding licentie
@@ -1942,6 +1944,8 @@ nl:
   editing: Bewerken
   #Title for a page to edit an announcement
   editing_announcement_x: Bewerk aankondiging %{id}
+  #Title of the page for editing a blog category; label is the category's name
+  editing_blog_category_x: Categorie bewerken %{label}
   editing_custom_project_fields_for: Bewerk standaard project velden voor
   editing_observation_field: Bewerk waarnemingsveld
   editing_observation_id: "Waarneming bewerken %{obs_id}"
@@ -3065,6 +3069,8 @@ nl:
   make_your_app_confidential: Maak jouw app vertrouwelijk als jij jouw app secret securely kunt opslaan, d.w.z. niet in een publiek beschikbaar binary dat kan worden gedecompileerd. Vink dit vakje uit als dit niet het geval is en je van plan bent de PKCE-stroom te gebruiken
   mammals: zoogdieren
   manage_all_your_subscriptions: Al je abonnementen beheren
+  #Button on the site blog that takes admins to the page for managing blog categories
+  manage_categories: Categorieën beheren
   manage_names: Namen beheren
   manage_your_projects: Beheer je projecten
   manage_your_relationships: Beheer je relaties
@@ -3355,6 +3361,8 @@ nl:
   new_announcement: Nieuwe aankondiging
   new_application: Nieuwe toepassing
   new_assessment: Nieuwe schatting
+  #Button and page title for creating a new blog category
+  new_blog_category: Nieuwe categorie
   new_check_list: Nieuwe checklist
   new_check_list_for: "Maak een nieuwe checklist voor %{place} &raquo;"
   new_check_list_record: "Als je deze lijst wilt markeren als volledig, maak deze aan, voeg de taxa toe, en bewerk de lijst vervolgens. Dan heb je de optie om de lijst hier als volledig te markeren."
@@ -3409,6 +3417,8 @@ nl:
   #Shown when a list of 3rd party applications has no applications
   no_applications_yet: Nog geen toepassingen
   no_assessments_have_been_added_to_this_project_yet: Er zijn nog geen beoordelingen aan dit project toegevoegd.
+  #Shown on the blog categories admin page when no categories exist
+  no_blog_categories_yet: Nog geen categorieën.
   no_but_it_is_a_member_of_taxon: "Nee, maar het is een lid van %{taxon}"
   no_comments_yet: Nog geen reacties.
   no_creative_commons_flickr_photos_tagged_x: 'Geen Creative Commons Flickr-foto''s met de tag "%{x}"'
@@ -3897,10 +3907,18 @@ nl:
   #Geoprivacy status in which no privacy has been applied
   open_: Open
   open_description: "De coördinaten zijn voor iedereen zichtbaar, tenzij het gaat om een bedreigd taxon."
+  #Column header for the number of unresolved flags on each taxon in a list
+  #of flagged taxa. The count only includes flags on that exact taxon, not
+  #flags on its descendants (lower-ranked taxa within it)
+  open_flags: Open meldingen
   #Label for the number of unresolved flags on taxa covered by a taxon
   #framework, i.e. the taxa whose classification the framework tracks against
   #an external source. count is a link that shows a list of the flagged taxa
   open_flags_on_covered_taxa_count_html: "Open meldingen voor bedekte taxa: %{count}"
+  #Label for the number of unresolved flags on taxa within this taxon that are
+  #covered by a taxon framework attached to one of its ancestors. count is a
+  #link that shows a list of the flagged taxa
+  open_flags_on_downstream_taxa_count_html: "Open meldingen op downstream taxa: %{count}"
   open_street_map: OpenStreetMap
   optional: optioneel
   options: Opties
@@ -10091,9 +10109,6 @@ nl:
               must_have_more_than_three_points: moet meer dan 3 punten hebben
               polygon_with_less_than_four_points: heeft een veelhoek met minder dan 4 punten
         post:
-          #Shown when a non-site post, like a project journal post, sets a
-          #blog-only field such as a featured date or blog category
-          only_allowed_on_site_posts: is alleen toegestaan op siteberichten
           attributes:
             blog_category:
               #Shown when a blog post is assigned a category that belongs to
