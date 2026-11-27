@@ -1770,6 +1770,8 @@ id:
   donate: DONASI
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Donasi
+  #Label for a button to donate a specific amount, e.g. "Donate $5 (USD)"
+  donate_amount: "Donasi %{amount}"
   donate_again_caps: DONASI LAGI
   donate_again_today_caps: DONASI LAGI SEKARANG
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -2004,8 +2006,20 @@ id:
   favorites: "Favorit"
   #Heading of the admin feature flags page and the admin nav link to it
   feature_flags: Bendera fitur
+  #Note under a flag's kind on the admin feature flags page when the flag assigns app users by their app installation rather than their account, so logging in does not change it
+  feature_flags_by_installation: Dibagi berdasarkan instalasi aplikasi
+  #Button on the admin feature flags page that empties the app installation ID field and its preview column
+  feature_flags_clear: Bersihkan
   #Label shown before the current admin's on/off value for a flag on the admin feature flags page
   feature_flags_enabled_for_you: "Diaktifkan untuk Anda:"
+  #Label before the on/off value or variant a logged-out mobile app installation would get, in a column of the admin feature flags page
+  feature_flags_for_installation: "Instalasi ini, sudah keluar:"
+  #Help text under the app installation ID field on the admin feature flags page
+  feature_flags_installation_id_help: Tempel ID instalasi aplikasi (header X-Installation-ID) untuk melihat apa yang akan didapat instalasi tersebut saat keluar.
+  #Label for a text field on the admin feature flags page where an admin enters a mobile app installation ID
+  feature_flags_installation_id_label: ID instalasi aplikasi
+  #Warning on the admin feature flags page when the entered app installation ID is not a UUID
+  feature_flags_invalid_installation_id: Itu bukan ID instalasi yang valid. ID instalasi adalah UUID.
   #Kind label on the admin feature flags page for a flag that is sent to web and mobile clients
   feature_flags_kind_client: Flag terlihat klien
   #Help text under the locale field on the admin feature flags page; locale_en is a code name, do not translate
@@ -2024,6 +2038,8 @@ id:
   feature_flags_not_enrolled: belum terdaftar
   #Intro text on the admin feature flags page, above a table listing every flag with the current admin's own value
   feature_flags_page_description: Setiap bendera fitur dan eksperimen, diselesaikan untuk akun Anda. Buat, aktifkan, dan luncurkan bendera di antarmuka manajemen.
+  #Button on the admin feature flags page that shows flag values for the entered app installation ID
+  feature_flags_preview: Pratinjau
   #Label shown before the current admin's assigned variant on the admin feature flags page; %{experiment} is the experiment name
   feature_flags_your_variant: "Varian Anda untuk %{experiment}:"
   #Checkbox label on the site blog post form; checked posts are featured in the iNaturalist mobile app
@@ -6207,6 +6223,8 @@ id:
   view_post: Lihat Postingan
   view_projects_from_place: "Lihat proyek dari %{place}"
   view_sample: Lihat Sampel
+  #Label for a link that opens the external source of a conservation status
+  view_source: Lihat Sumber
   view_stats: Lihat Statistik
   #Text for a link that takes the user to the relevant taxon details page
   view_taxon: Lihat Takson
@@ -6601,8 +6619,29 @@ id:
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang kliennya.
       #Heading of the donation shortcodes help panel on the announcement form
       donation_shortcodes: Kode singkat donasi
+      #Introduction to the donation shortcodes help panel
+      donation_shortcodes_desc: |
+        Kode pendek di isi diganti dengan jumlah donasi di setiap
+        mata uang dan bahasa pemirsa. Simpan pengumuman, lalu pratinjau
+        negara dan bahasa lain di halamannya.
+      #%{example} is button text, e.g. "Donate $5 (USD)"
+      donation_label_shortcode_desc: Tombol donasi berisi jumlah tersebut, misalnya. %{example}
+      #FundraiseUp is a service name; href is an HTML attribute, don't translate
+      donation_url_shortcode_desc: |
+        Tautkan ke checkout FundraiseUp dengan jumlah, mata uang, frekuensi,
+        dan bahasa yang diisi. Gunakan sebagai referensi tautan.
       #Heading for the optional settings of donation shortcodes
       donation_shortcode_attributes: Atribut opsional
+      #%{tiers} is e.g. "min, mid, max"; %{default_tier} is e.g. "min"
+      donation_shortcode_tier_desc: "Jumlah yang harus ditampilkan: %{tiers}. Default: %{default_tier}."
+      #%{frequencies} is e.g. "once, monthly"; %{default_frequency} is e.g. "once"
+      donation_shortcode_frequency_desc: "Donasi satu kali atau bulanan: %{frequencies}. Default: %{default_frequency}."
+      #%{shortcode} is "[donation-url]"; %{default_url} is a web address
+      donation_shortcode_url_desc: "%{shortcode} saja. Halaman FundraiseUp untuk ditautkan. Default: %{default_url}"
+      #%{shortcode} is "[donation-url]"; %{utm_term} is a setting name
+      donation_shortcode_query_params_desc: |
+        %{shortcode} saja. Ditambahkan ke tautan seperti yang tertulis. Default dari %{utm_term}
+        adalah ID pengumumannya.
       #Heading above example donation shortcodes
       donation_shortcode_examples: Contoh
       end_desc: |
@@ -6636,6 +6675,11 @@ id:
       preview_default_country: Default (%{country}, %{currency})
       #Language menu option meaning the viewer's current site language
       preview_your_locale: Bahasa Anda
+      #Help text under the donation preview menus
+      preview_donation_shortcodes_desc: |
+        Menampilkan jumlah donasi dalam mata uang negara yang dipilih, dan
+        Tombol donasi dan checkout dalam bahasa yang dipilih. Orang di
+        negara yang tidak tercantum melihat jumlah dari negara default.
       site_ids_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang afiliasi situsnya.
       start_desc: |
@@ -9687,6 +9731,10 @@ id:
               must_have_more_than_three_points: harus memiliki lebih dari 3 titik
               polygon_with_less_than_four_points: memiliki poligon yang titiknya kurang dari 4
         post:
+          #Shown when a post sets a blog-only field, such as a featured date
+          #or blog category, on a blog that doesn't support it, like a project
+          #journal or a network site's blog
+          not_available_on_this_post: tidak tersedia di postingan ini
           attributes:
             blog_category:
               #Shown when a blog post is assigned a category that belongs to
